@@ -50,13 +50,23 @@ function notifyFunctions (state, { group = functionUpdateGroup.TICK, elapsedDelt
 
   for (const fnEntry of Object.entries(updateGroup)) {
     // these are [key, value] pairs, we don't need the key (for now)
-    fnEntry[1](state, elapsedDelta)
+    if (fnEntry[1].enabled) {
+      fnEntry[1].fn(state, elapsedDelta)
+    }
   }
 }
 
 export const getters = {
   getFormattedRemainingTime (state) {
     return dayjs.utc(state.timerRemaining).format(state.timeFormat)
+  },
+
+  isRunning (state) {
+    return state.timerState === timerState.RUNNING
+  },
+
+  isStopped (state) {
+    return state.timerState === timerState.STOPPED
   }
 }
 
@@ -83,13 +93,13 @@ export const mutations = {
     state.timerOriginal = newTimeInMs
   },
 
-  subscribeToNotify (state, { fn, id, functionGroup = functionUpdateGroup.TICK }) {
+  subscribeToNotify (state, { fn, id, functionGroup = functionUpdateGroup.TICK, enabled = true }) {
     switch (functionGroup) {
       case functionUpdateGroup.TICK:
-        if (!state.tickFunctions[id]) { state.tickFunctions[id] = fn }
+        if (!state.tickFunctions[id]) { state.tickFunctions[id] = { enabled, fn } }
         break
       case functionUpdateGroup.COMPLETE:
-        if (!state.completeFunctions[id]) { state.completeFunctions[id] = fn }
+        if (!state.completeFunctions[id]) { state.completeFunctions[id] = { enabled, fn } }
         break
     }
   },
@@ -172,6 +182,10 @@ export const actions = {
 
     commit('clearTickHandle')
     commit('timerTick', { nextState: stop ? timerState.STOPPED : timerState.PAUSED })
+
+    if (stop) {
+      commit('resetTimer')
+    }
   },
 
   setNewTimer ({ commit, dispatch }, newTimerMs) {
