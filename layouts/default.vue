@@ -42,7 +42,7 @@ export default {
           to: '/'
         }
       ],
-      title: 'A simple Promodoro app'
+      title: 'A simple Pomodoro app'
     }
   }
 }
