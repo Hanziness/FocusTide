@@ -22,6 +22,7 @@ export default {
     this.$store.commit('settings/applyPreset', 'debug')
     this.$store.dispatch('events/checkSchedule')
     this.$store.dispatch('timer/setNewTimer', this.$store.state.events.schedule[0]._length)
+    this.$store.dispatch('timer/initDefaultSubscribeFunctions')
   }
 }
 </script>
