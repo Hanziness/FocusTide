@@ -36,7 +36,8 @@ export const state = () => ({
       shortpause: 8 * 1000,
       longpause: 12 * 1000
     }
-  }
+  },
+  eventLoggingEnabled: true
 })
 
 export const mutations = {

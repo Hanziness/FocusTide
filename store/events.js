@@ -1,3 +1,5 @@
+import dayjs from 'dayjs'
+
 export const state = () => ({
   eventList: [],
   schedule: [],
@@ -22,6 +24,25 @@ export class ScheduleEntry {
   }
 }
 
+export class UserEvent {
+  constructor (timestamp = dayjs(), eventType = UserEventType.OTHER) {
+    this._timestamp = timestamp
+    this._eventType = eventType
+  }
+}
+
+export const UserEventType = {
+  FOCUS_GAIN: 'focus.gain',
+  FOCUS_LOST: 'focus.lost',
+  TIMER_START: 'timer.start',
+  TIMER_PAUSE: 'timer.pause',
+  TIMER_STOP: 'timer.stop',
+  TIMER_FINISH: 'timer.complete',
+  SCHEDULE_ADVANCE_MANUAL: 'schedule.advmanual',
+  SCHEDULE_ADVANCE_AUTO: 'schedule.advauto',
+  OTHER: 'other'
+}
+
 export const mutations = {
   insertNextScheduleEntry (state, { lengths, longPauseInterval }) {
     const numEntriesInABlock = 2 * (longPauseInterval)
@@ -41,6 +62,10 @@ export const mutations = {
 
   completeScheduleEntry (state) {
     state.schedule = state.schedule.slice(1)
+  },
+
+  recordUserEvent (state, eventType = UserEventType.OTHER) {
+    state.eventList.push(new UserEvent(dayjs(), eventType))
   }
 }
 
@@ -52,9 +77,18 @@ export const actions = {
     }
   },
 
-  advanceSchedule ({ commit, dispatch, state }) {
+  advanceSchedule ({ commit, dispatch, state }, { isAutoAdvance = false }) {
     commit('completeScheduleEntry')
     dispatch('checkSchedule')
     dispatch('timer/setNewTimer', state.schedule[0]._length, { root: true })
+
+    const loggedEventType = isAutoAdvance ? UserEventType.SCHEDULE_ADVANCE_AUTO : UserEventType.SCHEDULE_ADVANCE_MANUAL
+    dispatch('recordUserEvent', loggedEventType)
+  },
+
+  recordUserEvent ({ rootState, commit }, eventType = UserEventType.OTHER) {
+    if (rootState.settings.eventLoggingEnabled) {
+      commit('recordUserEvent', eventType)
+    }
   }
 }
