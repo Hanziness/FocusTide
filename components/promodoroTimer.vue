@@ -18,6 +18,9 @@
     transition: 300ms ease-in;
     transition-property: opacity;
     opacity: 0.7;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
   }
 
   .timerDisplay.active {
@@ -31,7 +34,6 @@
 </style>
 
 <script>
-import { functionUpdateGroup } from '@/store/timer'
 import TimerControls from '@/components/timerControls.vue'
 
 export default {
@@ -67,15 +69,6 @@ export default {
   mounted () {
     // this.$store.commit('timer/setStart', new Date())
     // this.$store.commit('timer/setTarget', this.$timeFormat.datefns.addSeconds(new Date(), 80))
-    const storeRef = this.$store
-    this.$store.commit('timer/subscribeToNotify', {
-      fn (state) {
-        storeRef.dispatch('events/advanceSchedule')
-        storeRef.dispatch('timer/startTimer')
-      },
-      id: 'auto-advance',
-      functionGroup: functionUpdateGroup.COMPLETE
-    })
   }
 }
 </script>
