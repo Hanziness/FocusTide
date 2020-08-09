@@ -24,5 +24,25 @@ export const state = () => ({
       wait: 8 * 1000,
       autostart: true
     }
+  },
+  timerPresets: {
+    default: {
+      work: 25 * 60 * 1000, // 25 minutes
+      shortpause: 5 * 60 * 1000, // 5 minutes
+      longpause: 15 * 60 * 1000 // 15 minutes
+    },
+    debug: {
+      work: 2 * 60 * 1000,
+      shortpause: 8 * 1000,
+      longpause: 12 * 1000
+    }
   }
 })
+
+export const mutations = {
+  applyPreset (state, id) {
+    if (state.timerPresets[id]) {
+      state.schedule.lengths = state.timerPresets[id]
+    }
+  }
+}
