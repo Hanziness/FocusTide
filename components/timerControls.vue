@@ -30,7 +30,7 @@
     >
       STOP
     </v-btn>
-    <v-btn large depressed dark color="red" @click="$store.dispatch('events/advanceSchedule')">
+    <v-btn large depressed dark color="red" @click="$store.dispatch('events/advanceSchedule', {})">
       [D] ADVANCE
     </v-btn>
   </div>
