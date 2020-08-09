@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import dayjsduration from 'dayjs/plugin/duration'
 import dayjsutc from 'dayjs/plugin/utc'
+import { UserEventType } from '@/store/events'
 
 dayjs.extend(dayjsduration)
 dayjs.extend(dayjsutc)
@@ -93,6 +94,10 @@ export const mutations = {
     state.timerOriginal = newTimeInMs
   },
 
+  changeTickDelta (state, newTickMs) {
+    state.nextTickDelta = Math.max(50, newTickMs)
+  },
+
   subscribeToNotify (state, { fn, id, functionGroup = functionUpdateGroup.TICK, enabled = true }) {
     switch (functionGroup) {
       case functionUpdateGroup.TICK:
@@ -144,6 +149,25 @@ export const mutations = {
 }
 
 export const actions = {
+  initDefaultSubscribeFunctions ({ commit, dispatch }) {
+    commit('subscribeToNotify', {
+      fn (state) {
+        dispatch('events/advanceSchedule', { isAutoAdvance: true }, { root: true })
+        dispatch('startTimer')
+      },
+      id: 'auto-advance',
+      functionGroup: functionUpdateGroup.COMPLETE
+    })
+  },
+
+  changeTickDelta ({ commit, dispatch }, { newTickDelta, immediate = false }) {
+    commit('changeTickDelta', newTickDelta)
+
+    if (immediate) {
+      dispatch('scheduleNextTick', {})
+    }
+  },
+
   startTimer ({ commit, state, dispatch }) {
     if (state.timerState === timerState.RUNNING) {
       // timer is set to be running, don't do anything
@@ -159,6 +183,7 @@ export const actions = {
     commit('setTimerState', timerState.RUNNING)
     // commit('timerTick', { decrement: false }) // just update the tick timestamp
     dispatch('scheduleNextTick', { decrement: false })
+    dispatch('events/recordUserEvent', UserEventType.TIMER_START, { root: true })
   },
 
   scheduleNextTick ({ commit, state, dispatch }, { decrement = true }) {
@@ -174,7 +199,7 @@ export const actions = {
     }
   },
 
-  pauseOrStopTimer ({ commit, state }, stop = false) {
+  pauseOrStopTimer ({ commit, state, dispatch }, stop = false) {
     // if the timer is not running OR it's not (paused and we want to stop it), we shouldn't do anything
     if (state.timerState !== timerState.RUNNING && !(state.timerState === timerState.PAUSED && stop)) {
       return
@@ -185,6 +210,9 @@ export const actions = {
 
     if (stop) {
       commit('resetTimer')
+      dispatch('events/recordUserEvent', UserEventType.TIMER_STOP, { root: true })
+    } else {
+      dispatch('events/recordUserEvent', UserEventType.TIMER_PAUSE, { root: true })
     }
   },
 
