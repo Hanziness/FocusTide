@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+    "files.insertFinalNewline": true,
+    "eslint.codeActionsOnSave.mode": "all",
+    "editor.codeActionsOnSave": { "source.fixAll": true },
+    "editor.tabSize": 2
+	}
+}
