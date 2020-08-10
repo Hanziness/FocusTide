@@ -1,3 +1,8 @@
+export const AvailableTimers = {
+  TIMER_TRADITIONAL: 'traditional',
+  TIMER_APPROXIMATE: 'approximate'
+}
+
 export const state = () => ({
   visuals: {
     work: {
@@ -32,12 +37,13 @@ export const state = () => ({
       longpause: 15 * 60 * 1000 // 15 minutes
     },
     debug: {
-      work: 2 * 60 * 1000,
+      work: 95 * 1000,
       shortpause: 8 * 1000,
       longpause: 12 * 1000
     }
   },
-  eventLoggingEnabled: true
+  eventLoggingEnabled: true,
+  currentTimer: AvailableTimers.TIMER_APPROXIMATE
 })
 
 export const mutations = {

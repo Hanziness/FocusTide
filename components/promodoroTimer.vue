@@ -1,32 +1,11 @@
 <template>
   <v-sheet :class="['timer-background pa-8', currentColour]" width="100%">
-    <div :class="['timerDisplay', { 'active': $store.getters['timer/isRunning'] }]">
-      {{ $store.getters['timer/getFormattedRemainingTime'] }}
-    </div>
+    <timer-switch :timer-widget="$store.state.settings.currentTimer" />
     <timer-controls />
   </v-sheet>
 </template>
 
 <style lang="scss">
-  .timerDisplay {
-    font-family: 'Source Sans Pro', monospace;
-    font-size: 20vw;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    font-feature-settings: "lnum" on;
-    letter-spacing: 0.5rem;
-    transition: 300ms ease-in;
-    transition-property: opacity;
-    opacity: 0.7;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-  }
-
-  .timerDisplay.active {
-    opacity: 1;
-  }
-
   .timer-background {
     transition: 300ms ease-in;
     transition-property: background-color;
@@ -34,11 +13,12 @@
 </style>
 
 <script>
+import TimerSwitch from '@/components/timers/_timerSwitch.vue'
 import TimerControls from '@/components/timerControls.vue'
 
 export default {
   name: 'PromodoroTimer',
-  components: { TimerControls },
+  components: { TimerSwitch, TimerControls },
   data () {
     return {
       start: this.$dayjs.dayjs(),
