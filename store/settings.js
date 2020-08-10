@@ -3,6 +3,15 @@ export const AvailableTimers = {
   TIMER_APPROXIMATE: 'approximate'
 }
 
+class GlobalPreset {
+  constructor (nameId, tickRate, clockStyle, timerPreset = 'default') {
+    this.nameId = nameId
+    this.tickRate = tickRate
+    this.clockStyle = clockStyle
+    this.timerPreset = timerPreset
+  }
+}
+
 export const state = () => ({
   visuals: {
     work: {
@@ -41,6 +50,10 @@ export const state = () => ({
       shortpause: 8 * 1000,
       longpause: 12 * 1000
     }
+  },
+  globalPresets: {
+    traditional: new GlobalPreset('traditional', 1000, AvailableTimers.TIMER_TRADITIONAL, 'default'),
+    modern: new GlobalPreset('modern', 60000, AvailableTimers.TIMER_APPROXIMATE, 'default')
   },
   eventLoggingEnabled: true,
   currentTimer: AvailableTimers.TIMER_APPROXIMATE
