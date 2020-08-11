@@ -71,7 +71,10 @@ export const getters = {
   },
 
   completedFraction (state) {
-    return (state.timerOriginal - state.timerRemaining) / state.timerOriginal
+    // round values to lower thousand
+    const origTimer = state.timerOriginal - (state.timerOriginal % 1000)
+    const remTimer = state.timerRemaining - (state.timerRemaining % 1000)
+    return (origTimer - remTimer) / origTimer
   }
 }
 
