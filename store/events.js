@@ -43,6 +43,17 @@ export const UserEventType = {
   OTHER: 'other'
 }
 
+export const getters = {
+  nextScheduleColour (state, getters, rootState) {
+    const currentState = state.schedule[1] ? state.schedule[1]._type : null
+    if (currentState) {
+      return rootState.settings.visuals[currentState].colour
+    } else {
+      return ''
+    }
+  }
+}
+
 export const mutations = {
   insertNextScheduleEntry (state, { lengths, longPauseInterval }) {
     const numEntriesInABlock = 2 * (longPauseInterval)

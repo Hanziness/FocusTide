@@ -9,6 +9,8 @@
 div.timer-container {
   width: 100%;
   height: 40vh;
+  z-index: 10;
+  position: relative;
 }
 
 div.timer-display {

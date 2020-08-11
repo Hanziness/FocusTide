@@ -3,15 +3,6 @@ export const AvailableTimers = {
   TIMER_APPROXIMATE: 'approximate'
 }
 
-class GlobalPreset {
-  constructor (nameId, tickRate, clockStyle, timerPreset = 'default') {
-    this.nameId = nameId
-    this.tickRate = tickRate
-    this.clockStyle = clockStyle
-    this.timerPreset = timerPreset
-  }
-}
-
 export const state = () => ({
   visuals: {
     work: {
@@ -26,6 +17,9 @@ export const state = () => ({
     wait: {
       colour: 'purple lighten-2'
     }
+  },
+  performance: {
+    showProgressBar: true
   },
   schedule: {
     lengths: {
@@ -52,17 +46,58 @@ export const state = () => ({
     }
   },
   globalPresets: {
-    traditional: new GlobalPreset('traditional', 1000, AvailableTimers.TIMER_TRADITIONAL, 'default'),
-    modern: new GlobalPreset('modern', 60000, AvailableTimers.TIMER_APPROXIMATE, 'default')
+    traditional: {
+      nameId: 'traditional',
+      tickRate: {
+        normal: 1000,
+        secondary: 60000
+      },
+      clockStyle: AvailableTimers.TIMER_TRADITIONAL,
+      timerPreset: 'default'
+    },
+    modern: {
+      nameId: 'modern',
+      tickRate: {
+        normal: 60000,
+        secondary: 5 * 60000
+      },
+      clockStyle: AvailableTimers.TIMER_APPROXIMATE,
+      timerPreset: 'default'
+    }
   },
   eventLoggingEnabled: true,
   currentTimer: AvailableTimers.TIMER_APPROXIMATE
 })
+
+export const getters = {
+  performanceSettings (state) {
+    return state.performance
+  }
+}
 
 export const mutations = {
   applyPreset (state, id) {
     if (state.timerPresets[id]) {
       state.schedule.lengths = state.timerPresets[id]
     }
+  },
+
+  changeClockStyle (state, newStyle) {
+    if (Object.values(AvailableTimers).findIndex(newStyle) !== -1) {
+      state.currentTimer = newStyle
+    }
+  }
+}
+
+export const actions = {
+  applyGlobalPreset ({ state, commit }, presetId) {
+    let chosenPreset
+    if (!(chosenPreset = state.globalPresets[presetId])) {
+      // TODO Log a potential error: wrong preset ID
+    }
+
+    commit('timer/changeTickDelta', { newTickDelta: chosenPreset.tickRate.normal, immediate: true }, { root: true })
+    commit('changeClockStyle', chosenPreset.clockStyle)
+    commit('applyPreset', chosenPreset.timerPreset)
   }
 }

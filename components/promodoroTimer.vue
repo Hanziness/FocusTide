@@ -1,5 +1,6 @@
 <template>
   <v-sheet :class="['timer-background pa-8', currentColour]" width="100%">
+    <timer-progress v-if="$store.getters['settings/performanceSettings'].showProgressBar" />
     <timer-switch :timer-widget="$store.state.settings.currentTimer" />
     <timer-controls />
   </v-sheet>
@@ -9,16 +10,18 @@
   .timer-background {
     transition: 300ms ease-in;
     transition-property: background-color;
+    position: relative;
   }
 </style>
 
 <script>
 import TimerSwitch from '@/components/timers/_timerSwitch.vue'
 import TimerControls from '@/components/timerControls.vue'
+import TimerProgress from '@/components/timerProgress.vue'
 
 export default {
   name: 'PromodoroTimer',
-  components: { TimerSwitch, TimerControls },
+  components: { TimerSwitch, TimerControls, TimerProgress },
   data () {
     return {
       start: this.$dayjs.dayjs(),

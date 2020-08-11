@@ -68,6 +68,10 @@ export const getters = {
 
   isStopped (state) {
     return state.timerState === timerState.STOPPED
+  },
+
+  completedFraction (state) {
+    return (state.timerOriginal - state.timerRemaining) / state.timerOriginal
   }
 }
 
