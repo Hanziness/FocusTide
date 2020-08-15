@@ -12,8 +12,24 @@ import PromodoroTimer from '@/components/promodoroTimer.vue'
 import ScheduleDisplay from '@/components/scheduleDisplay.vue'
 
 export default {
+
   components: {
     PromodoroTimer, ScheduleDisplay
+  },
+  data () {
+    return {
+
+    }
+  },
+
+  computed: {
+    remainingTimeString () {
+      return this.$dayjs.formatMs(this.$store.state.timer.timerRemaining)
+    },
+
+    pageTitle () {
+      return this.$store.getters['events/currentScheduleEntry'] ? this.$store.getters['events/currentScheduleEntry']._type : 'Pomodoro'
+    }
   },
 
   mounted () {
@@ -21,6 +37,13 @@ export default {
     this.$store.dispatch('events/checkSchedule')
     this.$store.dispatch('timer/setNewTimer', this.$store.state.events.schedule[0]._length)
     this.$store.dispatch('timer/initDefaultSubscribeFunctions')
+  },
+
+  head () {
+    return {
+      titleTemplate: `(${this.remainingTimeString}) %s`,
+      title: `${this.pageTitle}`
+    }
   }
 }
 </script>

@@ -51,6 +51,14 @@ export const getters = {
     } else {
       return ''
     }
+  },
+
+  currentScheduleEntry (state) {
+    if (state.schedule.length > 0) {
+      return state.schedule[0]
+    } else {
+      return null
+    }
   }
 }
 
