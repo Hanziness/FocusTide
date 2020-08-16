@@ -97,7 +97,8 @@ export default {
       alwaysRedirect: false,
       // If no locale for the browsers locale is a match, use this one as a fallback
       fallbackLocale: 'en'
-    },
+    }
+  },
 
   /*
   ** Google Fonts
