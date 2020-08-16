@@ -11,8 +11,8 @@
       width="100%"
       class="rounded-lg text-center pa-2 d-flex flex-column justify-center border-active flex-grow-1"
     >
-      <div class="text-capitalize text-h6">
-        {{ data._type }}
+      <div class="text-h6">
+        {{ $i18n.t('section.' + data._type) }}
       </div>
       <div class="grey--text text--darken-3">
         {{ $dayjs.formatMs(data._length, {}) }}
