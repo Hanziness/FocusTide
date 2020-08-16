@@ -28,7 +28,8 @@ export default {
     },
 
     pageTitle () {
-      return this.$store.getters['events/currentScheduleEntry'] ? this.$store.getters['events/currentScheduleEntry']._type : 'Pomodoro'
+      return this.$store.getters['events/currentScheduleEntry']
+        ? this.$i18n.t('section.' + this.$store.getters['events/currentScheduleEntry']._type) : 'Pomodoro'
     }
   },
 
@@ -55,7 +56,7 @@ export default {
                   fill="none"
                   style="color: ${this.$store.getters['events/currentScheduleColour']};"
                   xmlns="http://www.w3.org/2000/svg"
-                ><circle cx="16" cy="16" r="15.0049" fill="currentColor" /></svg>`
+                ><circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`
         }
       ]
     }
