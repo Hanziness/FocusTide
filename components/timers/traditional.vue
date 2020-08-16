@@ -5,7 +5,7 @@
 </template>
 
 <style lang="scss" scoped>
-.timerDisplay {
+.timer-display {
   font-family: 'Source Sans Pro', monospace;
   font-size: 20vw;
   font-weight: 700;
