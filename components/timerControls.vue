@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-sheet class="rounded-lg pa-2 timer-control-panel text-center elevation-8" color="#343A40">
     <v-btn
       large
       depressed
@@ -33,8 +33,15 @@
     <v-btn large depressed dark color="red" @click="$store.dispatch('events/advanceSchedule', {})">
       [D] ADVANCE
     </v-btn>
-  </div>
+  </v-sheet>
 </template>
+
+<style lang="scss" scoped>
+  div.timer-control-panel {
+    width: max-content;
+    z-index: 10;
+  }
+</style>
 
 <script>
 export default {
