@@ -14,7 +14,7 @@
         {{ data._type }}
       </div>
       <div class="grey--text text--darken-3">
-        {{ $dayjs.formatMs(data._length) }}
+        {{ $dayjs.formatMs(data._length, {}) }}
       </div>
     </v-sheet>
   </v-sheet>
