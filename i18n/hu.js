@@ -4,5 +4,8 @@ export default {
     shortpause: 'Szünet',
     longpause: 'Hosszú szünet',
     wait: 'Várakozás'
+  },
+  settings: {
+    heading: 'Beállítások'
   }
 }
