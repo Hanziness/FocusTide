@@ -5,6 +5,10 @@ import dayjsrelativetime from 'dayjs/plugin/relativeTime'
 
 import { AvailableTimers } from '@/store/settings'
 
+// English and Hungarian locales
+require('dayjs/locale/en')
+require('dayjs/locale/hu')
+
 dayjs.extend(duration)
 dayjs.extend(utc)
 dayjs.extend(dayjsrelativetime)
