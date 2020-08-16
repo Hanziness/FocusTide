@@ -33,6 +33,10 @@
     <v-btn large depressed dark color="red" @click="$store.dispatch('events/advanceSchedule', {})">
       [D] ADVANCE
     </v-btn>
+
+    <v-btn large depressed dark color="purple" @click="changeLocale">
+      [D] Change Locale
+    </v-btn>
   </v-sheet>
 </template>
 
@@ -45,6 +49,13 @@
 
 <script>
 export default {
-
+  methods: {
+    changeLocale () {
+      this.$dayjs.dayjs.locale() === 'hu' ? this.$dayjs.dayjs.locale('en') : this.$dayjs.dayjs.locale('hu')
+      this.$i18n.locale = this.$dayjs.dayjs.locale()
+      this.$store.commit('timer/refreshTime')
+      // console.log('New locale is ' + this.$dayjs.dayjs.locale())
+    }
+  }
 }
 </script>

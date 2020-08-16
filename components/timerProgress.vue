@@ -1,6 +1,6 @@
 <template>
   <transition-group name="progress-transition" mode="out-in">
-    <div :key="$store.getters['events/nextScheduleColour']" :class="['timer-progress', $store.getters['events/nextScheduleColour']]" :style="{ 'clip-path': 'inset(0% ' + progressPercentage + '% 0% 0%)' }" />
+    <v-sheet :key="$store.getters['events/nextScheduleColour']" :class="['timer-progress']" :color="$store.getters['events/nextScheduleColour']" :style="{ 'clip-path': 'inset(0% ' + progressPercentage + '% 0% 0%)' }" />
   </transition-group>
 </template>
 

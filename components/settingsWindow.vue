@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="input" width="600">
     <v-card>
-      <v-card-title>Settings</v-card-title>
+      <v-card-title>{{ $i18n.t('settings.heading') }}</v-card-title>
       <v-card-text>Coming soon...</v-card-text>
       <v-card-actions>
         <v-spacer />

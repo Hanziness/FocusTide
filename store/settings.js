@@ -6,16 +6,16 @@ export const AvailableTimers = {
 export const state = () => ({
   visuals: {
     work: {
-      colour: 'red lighten-2'
+      colour: 'rgb(255, 107, 107)'
     },
     shortpause: {
-      colour: 'orange lighten-1 '
+      colour: 'rgb(244, 162, 97)'
     },
     longpause: {
-      colour: 'green'
+      colour: 'rgb(46, 196, 182)'
     },
     wait: {
-      colour: 'purple lighten-2'
+      colour: 'rgb(222, 226, 230)'
     }
   },
   performance: {

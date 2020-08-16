@@ -1,5 +1,5 @@
 <template>
-  <v-sheet :class="['timer-background pa-8', currentColour]" width="100%">
+  <v-sheet :class="['timer-background pa-8']" :color="$store.getters['events/currentScheduleColour']" width="100%">
     <timer-progress v-if="$store.getters['settings/performanceSettings'].showProgressBar" />
     <timer-switch :timer-widget="$store.state.settings.currentTimer" />
     <timer-controls />

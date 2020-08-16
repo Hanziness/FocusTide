@@ -59,6 +59,10 @@ export const getters = {
     } else {
       return null
     }
+  },
+
+  currentScheduleColour (state, getters, rootState) {
+    return rootState.settings.visuals[state.schedule[0] ? state.schedule[0]._type : 'wait'].colour
   }
 }
 

@@ -83,6 +83,12 @@ export const mutations = {
     state.timerRemaining = state.timerOriginal
   },
 
+  /** Useful when dayjs locale has changed (forces an update on the timer) */
+  refreshTime (state) {
+    state.timerRemaining -= 1
+    state.timerRemaining += 1
+  },
+
   setTimerState (state, newState) {
     state.timerState = newState
   },

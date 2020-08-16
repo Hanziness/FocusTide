@@ -2,7 +2,8 @@
   <v-sheet
     flat
     :elevation="active ? 4 : 2"
-    :class="['schedule-item mr-2 rounded-lg pa-0', $store.state.settings.visuals[data._type].colour, { 'current': active }]"
+    :class="['schedule-item mr-2 rounded-lg pa-0', { 'current': active }]"
+    :color="$store.state.settings.visuals[data._type].colour"
   >
     <v-sheet
       outlined
@@ -10,11 +11,11 @@
       width="100%"
       class="rounded-lg text-center pa-2 d-flex flex-column justify-center border-active flex-grow-1"
     >
-      <div class="text-capitalize text-h6">
-        {{ data._type }}
+      <div class="text-h6">
+        {{ $i18n.t('section.' + data._type) }}
       </div>
       <div class="grey--text text--darken-3">
-        {{ $dayjs.formatMs(data._length) }}
+        {{ $dayjs.formatMs(data._length, {}) }}
       </div>
     </v-sheet>
   </v-sheet>

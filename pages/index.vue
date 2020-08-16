@@ -24,11 +24,12 @@ export default {
 
   computed: {
     remainingTimeString () {
-      return this.$dayjs.formatMs(this.$store.state.timer.timerRemaining)
+      return this.$dayjs.getFormattedTime(this.$store.state.timer.timerRemaining, this.$store.state.settings.currentTimer)
     },
 
     pageTitle () {
-      return this.$store.getters['events/currentScheduleEntry'] ? this.$store.getters['events/currentScheduleEntry']._type : 'Pomodoro'
+      return this.$store.getters['events/currentScheduleEntry']
+        ? this.$i18n.t('section.' + this.$store.getters['events/currentScheduleEntry']._type) : 'Pomodoro'
     }
   },
 
@@ -42,7 +43,22 @@ export default {
   head () {
     return {
       titleTemplate: `(${this.remainingTimeString}) %s`,
-      title: `${this.pageTitle}`
+      title: `${this.pageTitle}`,
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: `data:image/svg+xml,
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  style="color: ${this.$store.getters['events/currentScheduleColour']};"
+                  xmlns="http://www.w3.org/2000/svg"
+                ><circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`
+        }
+      ]
     }
   }
 }
