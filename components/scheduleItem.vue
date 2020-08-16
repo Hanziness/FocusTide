@@ -2,7 +2,8 @@
   <v-sheet
     flat
     :elevation="active ? 4 : 2"
-    :class="['schedule-item mr-2 rounded-lg pa-0', $store.state.settings.visuals[data._type].colour, { 'current': active }]"
+    :class="['schedule-item mr-2 rounded-lg pa-0', { 'current': active }]"
+    :color="$store.state.settings.visuals[data._type].colour"
   >
     <v-sheet
       outlined
