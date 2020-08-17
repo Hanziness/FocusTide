@@ -1,6 +1,7 @@
 export const AvailableTimers = {
   TIMER_TRADITIONAL: 'traditional',
-  TIMER_APPROXIMATE: 'approximate'
+  TIMER_APPROXIMATE: 'approximate',
+  TIMER_PERCENTAGE: 'percentage'
 }
 
 export const state = () => ({
@@ -66,7 +67,7 @@ export const state = () => ({
     }
   },
   eventLoggingEnabled: true,
-  currentTimer: AvailableTimers.TIMER_APPROXIMATE
+  currentTimer: AvailableTimers.TIMER_PERCENTAGE
 })
 
 export const getters = {

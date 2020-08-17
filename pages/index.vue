@@ -36,7 +36,11 @@ export default {
 
   computed: {
     remainingTimeString () {
-      return this.$dayjs.getFormattedTime(this.$store.state.timer.timerRemaining, this.$store.state.settings.currentTimer)
+      return this.$dayjs.getFormattedTime(
+        this.$store.state.timer.timerRemaining,
+        this.$store.state.settings.currentTimer,
+        { total: this.$store.state.timer.timerOriginal }
+      )
     },
 
     pageTitle () {
