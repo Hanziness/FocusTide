@@ -9,9 +9,9 @@
       class="timer-app-bar"
     >
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
-      <v-toolbar-title v-text="title">
+      <!-- <v-toolbar-title v-text="title">
         <v-spacer />
-      </v-toolbar-title>
+      </v-toolbar-title> -->
       <v-btn class="ma-0" icon @click="settingsOpen = !settingsOpen">
         <v-icon>mdi-cog</v-icon>
       </v-btn>
