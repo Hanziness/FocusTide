@@ -17,7 +17,7 @@ import TimerProgress from '@/components/timerProgress.vue'
 import ScheduleDisplay from '@/components/scheduleDisplay.vue'
 
 export default {
-  name: 'PromodoroTimer',
+  name: 'PomodoroTimer',
   components: { TimerSwitch, TimerControls, TimerProgress, ScheduleDisplay },
   data () {
     return {
