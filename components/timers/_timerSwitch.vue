@@ -2,6 +2,7 @@
   <div class="timer-container d-flex flex-column justify-center text-center">
     <timer-traditional v-if="timerWidget === 'traditional'" />
     <timer-approximate v-else-if="timerWidget === 'approximate'" />
+    <timer-percentage v-else-if="timerWidget === 'percentage'" />
   </div>
 </template>
 
@@ -30,17 +31,20 @@ div.timer-display.active {
 <script>
 import TimerTraditional from '@/components/timers/traditional.vue'
 import TimerApproximate from '@/components/timers/approximate.vue'
+import TimerPercentage from '@/components/timers/percentage.vue'
+
+import { AvailableTimers } from '@/store/settings'
 
 export default {
   components: {
-    TimerTraditional, TimerApproximate
+    TimerTraditional, TimerApproximate, TimerPercentage
   },
   props: {
     timerWidget: {
       type: String,
       default: 'traditional',
       validator (value) {
-        return ['traditional', 'approximate'].includes(value)
+        return Object.values(AvailableTimers).includes(value)
       }
     }
   }
