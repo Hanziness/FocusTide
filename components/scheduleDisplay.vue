@@ -1,7 +1,7 @@
 <template>
-  <v-sheet class="d-flex flex-row pa-0">
+  <v-sheet class="d-flex flex-row pa-0 rounded-lg schedule-container elevation-4" color="#343A40">
     <v-slide-group class="pa-0" show-arrows>
-      <transition-group name="list" tag="div" class="pa-4">
+      <transition-group name="list" tag="div" class="pa-4 d-flex">
         <schedule-item
           v-for="(item, i) in $store.state.events.schedule"
           :key="item._index"
@@ -14,6 +14,10 @@
 </template>
 
 <style lang="scss" scoped>
+div.schedule-container {
+  z-index: 10;
+}
+
 .list-enter-active,
 .list-leave-active,
 .list-move {

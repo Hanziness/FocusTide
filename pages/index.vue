@@ -1,20 +1,32 @@
 <template>
-  <section>
-    <schedule-display />
-    <div class="text-center">
+  <section class="timer-section">
+    <v-sheet class="timer-background" :color="$store.getters['events/currentScheduleColour']" height="100%">
       <promodoro-timer />
-    </div>
+      <!-- <portal-target name="footer" /> -->
+    </v-sheet>
   </section>
 </template>
 
+<style lang="scss" scoped>
+section.timer-section {
+  height: 100%;
+}
+
+.timer-background {
+  transition: 300ms ease-in;
+  transition-property: background-color;
+  position: relative;
+  height: 100%;
+}
+</style>
+
 <script>
 import PromodoroTimer from '@/components/promodoroTimer.vue'
-import ScheduleDisplay from '@/components/scheduleDisplay.vue'
 
 export default {
 
   components: {
-    PromodoroTimer, ScheduleDisplay
+    PromodoroTimer
   },
   data () {
     return {
@@ -29,7 +41,7 @@ export default {
 
     pageTitle () {
       return this.$store.getters['events/currentScheduleEntry']
-        ? this.$i18n.t('section.' + this.$store.getters['events/currentScheduleEntry']._type) : 'Pomodoro'
+        ? this.$i18n.t('section.' + this.$store.getters['events/currentScheduleEntry']._type).toLowerCase() : 'Pomodoro'
     }
   },
 

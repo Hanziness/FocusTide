@@ -61,7 +61,8 @@ export default {
   */
   modules: [
     '@nuxtjs/pwa',
-    'nuxt-i18n'
+    'nuxt-i18n',
+    'portal-vue/nuxt'
   ],
 
   /**

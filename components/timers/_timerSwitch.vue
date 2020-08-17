@@ -1,5 +1,5 @@
 <template>
-  <div class="timer-container d-flex flex-column justify-center">
+  <div class="timer-container d-flex flex-column justify-center text-center">
     <timer-traditional v-if="timerWidget === 'traditional'" />
     <timer-approximate v-else-if="timerWidget === 'approximate'" />
   </div>
