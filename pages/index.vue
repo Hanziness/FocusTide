@@ -1,7 +1,7 @@
 <template>
   <section class="timer-section">
     <v-sheet class="timer-background" :color="$store.getters['events/currentScheduleColour']" height="100%">
-      <promodoro-timer />
+      <pomodoro-timer />
       <!-- <portal-target name="footer" /> -->
     </v-sheet>
   </section>
@@ -21,12 +21,12 @@ section.timer-section {
 </style>
 
 <script>
-import PromodoroTimer from '@/components/promodoroTimer.vue'
+import PomodoroTimer from '@/components/pomodoroTimer.vue'
 
 export default {
 
   components: {
-    PromodoroTimer
+    PomodoroTimer
   },
   data () {
     return {
