@@ -5,4 +5,9 @@
 
 $body-font-family: 'Poppins', sans-serif;
 
-$tooltip-background-color: #252422;
+// change tooltip's background colour AND opacity (ref. https://github.com/vuetifyjs/vuetify/issues/11184#issuecomment-666582937)
+.v-tooltip__content.menuable__content__active {
+  opacity: 1 !important;
+}
+
+$tooltip-background-color: rgba(37, 36, 34, 1);
