@@ -1,16 +1,18 @@
 <template>
-  <v-sheet class="d-flex flex-row pa-0 rounded-lg schedule-container elevation-4" color="#343A40">
-    <v-slide-group class="pa-0" show-arrows>
-      <transition-group name="list" tag="div" class="pa-4 d-flex">
-        <schedule-item
-          v-for="(item, i) in $store.getters['events/getSchedule']"
-          :key="item._index"
-          :data="item"
-          :active="i === 0"
-        />
-      </transition-group>
-    </v-slide-group>
-  </v-sheet>
+  <transition name="schedule-transition">
+    <v-sheet v-if="$store.state.settings.schedule.showSchedule" class="d-flex flex-row pa-0 rounded-lg schedule-container elevation-4" color="#343A40">
+      <v-slide-group class="pa-0" show-arrows>
+        <transition-group name="list" tag="div" class="pa-4 d-flex">
+          <schedule-item
+            v-for="(item, i) in $store.getters['events/getSchedule']"
+            :key="item._index"
+            :data="item"
+            :active="i === 0"
+          />
+        </transition-group>
+      </v-slide-group>
+    </v-sheet>
+  </transition>
 </template>
 
 <style lang="scss" scoped>
@@ -43,6 +45,17 @@ div.schedule-container {
   opacity: 0 !important;
   transform: translateX(-50px);
   transform-origin: center top;
+}
+
+.schedule-transition-enter-active,
+.schedule-transition-leave-active {
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+.schedule-transition-enter,
+.schedule-transition-leave-to {
+  opacity: 0;
+  transform: translateY(-60px);
 }
 </style>
 
