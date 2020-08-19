@@ -32,7 +32,8 @@ export const state = () => ({
     autoStartNextTimer: {
       wait: 8 * 1000,
       autostart: true
-    }
+    },
+    numScheduleEntries: 5
   },
   timerPresets: {
     default: {
@@ -67,7 +68,8 @@ export const state = () => ({
     }
   },
   eventLoggingEnabled: true,
-  currentTimer: AvailableTimers.TIMER_PERCENTAGE
+  currentTimer: AvailableTimers.TIMER_APPROXIMATE,
+  locale: null
 })
 
 export const getters = {
@@ -87,6 +89,24 @@ export const mutations = {
     if (Object.values(AvailableTimers).findIndex(newStyle) !== -1) {
       state.currentTimer = newStyle
     }
+  },
+
+  SET (state, { key, value }) {
+    /*
+     * example: key = ['a', 'b']
+     * we find currentElement = state.settings.a, then set currentElement[b] = value
+     * if we found state.settings.a.b at first, we couldn't change the value as
+     * we wouldn't have a reference to the (primitive) a.b!
+     */
+
+    // find parent object
+    let currentElement = state
+    for (let index = 0; index < key.length - 1; index++) {
+      currentElement = currentElement[key[index]]
+    }
+
+    // set value
+    currentElement[key[key.length - 1]] = value
   }
 }
 
