@@ -33,7 +33,8 @@ export const state = () => ({
       wait: 8 * 1000,
       autostart: true
     },
-    numScheduleEntries: 5
+    numScheduleEntries: 5,
+    showSchedule: true
   },
   timerPresets: {
     default: {
@@ -67,18 +68,57 @@ export const state = () => ({
       timerPreset: 'default'
     }
   },
-  eventLoggingEnabled: true,
+  eventLoggingEnabled: false,
   currentTimer: AvailableTimers.TIMER_APPROXIMATE,
-  locale: null
+  locale: null,
+  adaptiveTicking: {
+    enabled: true,
+    hiddenTickRate: 60 * 1000,
+    visibleTickRate: 1000,
+
+    multipliers: {
+      traditional: {
+        hidden: 1 / 60
+      },
+      approximate: {
+        hidden: 5,
+        visible: 30
+      },
+      percentage: {
+        hidden: 1 / 5,
+        visible: 2
+      }
+    },
+    registeredHidden: null
+  }
 })
 
 export const getters = {
+  getAdaptiveTickRate (state) {
+    if (state.adaptiveTicking.enabled && state.adaptiveTicking.registeredHidden !== null) {
+      // fetch settings for the current timer style
+      const timerSettings = state.adaptiveTicking.multipliers[state.currentTimer]
+      const tickVersion = state.adaptiveTicking.registeredHidden ? 'hidden' : 'visible'
+
+      const tickBase = state.adaptiveTicking.registeredHidden ? state.adaptiveTicking.hiddenTickRate : state.adaptiveTicking.visibleTickRate
+      const tickMultiplier = (timerSettings && timerSettings[tickVersion]) ? timerSettings[tickVersion] : 1.0
+
+      return tickBase * tickMultiplier
+    }
+
+    return state.adaptiveTicking.visibleTickRate
+  },
+
   performanceSettings (state) {
     return state.performance
   }
 }
 
 export const mutations = {
+  registerNewHidden (state, newHidden = document.hidden) {
+    state.adaptiveTicking.registeredHidden = newHidden
+  },
+
   applyPreset (state, id) {
     if (state.timerPresets[id]) {
       state.schedule.lengths = state.timerPresets[id]

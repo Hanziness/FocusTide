@@ -12,6 +12,9 @@ export default {
       timer: 'Órarend',
       display: 'Megjelenés'
     },
+    buttons: {
+      close: 'Bezárás'
+    },
     values: {
       eventLoggingEnabled: {
         _title: 'Eseménynaplózás engedélyezése',
@@ -24,6 +27,17 @@ export default {
           traditional: 'Hagyományos',
           approximate: 'Közelítő',
           percentage: 'Százalékos'
+        },
+        _valueDescription: {
+          traditional: '12:34',
+          approximate: '13 perc',
+          percentage: '50%'
+        }
+      },
+      adaptiveTicking: {
+        enabled: {
+          _title: 'Adaptív ketyegés engedélyezése',
+          _description: 'Az időzítő kevesebbszer fog frissülni, amíg háttérben van'
         }
       },
       schedule: {
@@ -34,12 +48,30 @@ export default {
         numScheduleEntries: {
           _title: 'Órarend elemeinek száma',
           _description: ''
+        },
+        showSchedule: {
+          _title: 'Órarend megjelenítése',
+          _description: ''
+        },
+        lengths: {
+          work: {
+            _title: 'Munka hossza',
+            _description: ''
+          },
+          shortpause: {
+            _title: 'Szünet hossza',
+            _description: ''
+          },
+          longpause: {
+            _title: 'Hosszú szünet hossza',
+            _description: ''
+          }
         }
       },
       performance: {
         showProgressBar: {
           _title: 'Folyamatjelző mutatása',
-          _description: 'Az óra mögött jelenjen meg a folyamat'
+          _description: 'Az óra mögött jelenjen meg a folyamatsáv'
         }
       }
     }

@@ -37,7 +37,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '@/plugins/dayjs.js'
+    '@/plugins/dayjs.js',
+    '@/plugins/v-mask.js'
   ],
   /*
   ** Auto import components

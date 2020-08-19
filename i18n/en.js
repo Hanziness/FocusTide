@@ -12,6 +12,9 @@ export default {
       timer: 'Schedule',
       display: 'Display'
     },
+    buttons: {
+      close: 'Close'
+    },
     values: {
       eventLoggingEnabled: {
         _title: 'Enable event logging',
@@ -24,16 +27,45 @@ export default {
           traditional: 'Traditional',
           approximate: 'Approximate',
           percentage: 'Percentage'
+        },
+        _valueDescription: {
+          traditional: '12:34',
+          approximate: '13 minutes',
+          percentage: '50%'
+        }
+      },
+      adaptiveTicking: {
+        enabled: {
+          _title: 'Enable adaptive ticking',
+          _description: 'Timer will tick less frequently while in the background'
         }
       },
       schedule: {
         longPauseInterval: {
-          _title: 'Long Pause interval',
+          _title: 'Long Break interval',
           _description: ''
         },
         numScheduleEntries: {
           _title: 'Number of entries in schedule',
           _description: ''
+        },
+        showSchedule: {
+          _title: 'Show schedule',
+          _description: ''
+        },
+        lengths: {
+          work: {
+            _title: 'Work',
+            _description: ''
+          },
+          shortpause: {
+            _title: 'Break',
+            _description: ''
+          },
+          longpause: {
+            _title: 'Long break',
+            _description: ''
+          }
         }
       },
       performance: {
