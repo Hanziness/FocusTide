@@ -28,7 +28,7 @@ export const functionUpdateGroup = {
 export const state = () => ({
   timerRemaining: 20999,
   timerOriginal: 20999,
-  lastUpdate: dayjs(),
+  lastUpdate: new Date().getTime(),
   nextTickDelta: 1000,
   timerHandle: null,
   timerState: timerState.STOPPED,
