@@ -3,7 +3,7 @@
     <v-slide-group class="pa-0" show-arrows>
       <transition-group name="list" tag="div" class="pa-4 d-flex">
         <schedule-item
-          v-for="(item, i) in $store.state.events.schedule"
+          v-for="(item, i) in $store.getters['events/getSchedule']"
           :key="item._index"
           :data="item"
           :active="i === 0"
