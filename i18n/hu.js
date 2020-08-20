@@ -54,6 +54,16 @@ export default {
           _description: ''
         },
         lengths: {
+          _title: 'Órarend előbeállítás',
+          _description: '',
+          _values: {
+            default: 'Alapértelmezett',
+            debug: 'Debug'
+          },
+          _valueDescription: {
+            default: '25 perc munka, 5 perc szünet',
+            debug: 'Tesztelési célokra'
+          },
           work: {
             _title: 'Munka hossza',
             _description: ''

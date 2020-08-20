@@ -54,6 +54,16 @@ export default {
           _description: ''
         },
         lengths: {
+          _title: 'Schedule preset',
+          _description: '',
+          _values: {
+            default: 'Default',
+            debug: 'Debug'
+          },
+          _valueDescription: {
+            default: '25 minutes work, 5 minutes break',
+            debug: 'For debugging purposes'
+          },
           work: {
             _title: 'Work',
             _description: ''

@@ -94,6 +94,16 @@ export const state = () => ({
 })
 
 export const getters = {
+  getActiveSchedulePreset (state) {
+    for (const key in state.timerPresets) {
+      if (JSON.stringify(state.timerPresets[key]) === JSON.stringify(state.schedule.lengths)) {
+        return key
+      }
+    }
+
+    return null
+  },
+
   getAdaptiveTickRate (state) {
     if (state.adaptiveTicking.enabled && state.adaptiveTicking.registeredHidden !== null) {
       // fetch settings for the current timer style
@@ -121,7 +131,7 @@ export const mutations = {
 
   applyPreset (state, id) {
     if (state.timerPresets[id]) {
-      state.schedule.lengths = state.timerPresets[id]
+      state.schedule.lengths = Object.assign({}, state.timerPresets[id])
     }
   },
 

@@ -4,6 +4,7 @@
     :disabled="!isEnabled"
     :two-line="showDescription && $i18n.t(translationKey + '._description').length > 0"
   >
+    <!-- Title and description of the settings item -->
     <v-list-item-content>
       <v-list-item-title>
         {{ $i18n.t('settings.values.' + stateKeys.join('.') + '._title') }}
@@ -11,9 +12,18 @@
       <v-list-item-subtitle v-if="showDescription && $i18n.t(translationKey + '._description').length > 0">
         {{ $i18n.t(translationKey + '._description') }}
       </v-list-item-subtitle>
-      <settings-preset v-if="type === 'preset'" v-model="settingValue" :state-keys="stateKeys" :values="transformedValues" />
+
+      <!-- Preset settings -->
+      <settings-preset
+        v-if="type === 'preset'"
+        v-model="settingValue"
+        :state-keys="stateKeys"
+        :values="transformedValues"
+        :custom-value="presetCustomSelectedValue"
+      />
     </v-list-item-content>
     <v-list-item-action v-if="type !== 'preset'" class="d-flex flex-row align-center my-0 settings-item-action">
+      <!-- Reset button -->
       <v-tooltip v-if="defaultValue !== null" left>
         <template v-slot:activator="{on, attrs}">
           <v-btn icon class="mr-2" v-bind="attrs" v-on="on" @click.stop="reset">
@@ -22,7 +32,10 @@
         </template>
         <span>Reset</span>
       </v-tooltip>
+
+      <!-- Input types -->
       <v-form v-model="isInputValid">
+        <!-- Boolean -->
         <v-switch
           v-if="type === 'boolean'"
           v-model="settingValue"
@@ -31,6 +44,7 @@
           readonly
           @click.stop="toggleValue"
         />
+        <!-- Select -->
         <v-select
           v-else-if="type === 'select'"
           v-model="settingValue"
@@ -41,6 +55,7 @@
           hide-details
           :items="transformedValues"
         />
+        <!-- Number -->
         <v-text-field
           v-else-if="type === 'number'"
           v-model="settingValue"
@@ -51,6 +66,7 @@
           class="settings-input"
           hide-details
         />
+        <!-- Time -->
         <input-time v-else-if="type === 'time'" v-model="settingValue" :disabled="!isEnabled" />
       </v-form>
     </v-list-item-action>
@@ -152,6 +168,24 @@ export default {
     showDescription: {
       type: Boolean,
       default: false
+    },
+
+    /**
+     * Custom function that will be called when the value changes
+     * Useful for more complicated store operations
+     */
+    customSetFunction: {
+      type: Function,
+      default: null
+    },
+
+    /**
+     * Custom value that will be reported to preset selection
+     * Useful when the selected preset is based on a store getter
+     */
+    presetCustomSelectedValue: {
+      type: [Number, String, Object],
+      default: undefined
     }
   },
 
@@ -188,7 +222,11 @@ export default {
         })
 
         if (isValid) {
-          this.$store.commit('settings/SET', { key: this.stateKeys, value: newValue })
+          if (this.customSetFunction !== null) {
+            this.customSetFunction(newValue)
+          } else {
+            this.$store.commit('settings/SET', { key: this.stateKeys, value: newValue })
+          }
         }
       }
     },

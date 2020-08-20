@@ -1,5 +1,5 @@
 <template>
-  <v-item-group v-model="settingValue" mandatory class="mt-2 settings-presets-itemgroup d-flex flex-row">
+  <v-item-group v-model="settingValue" :mandatory="mandatory && customValue === undefined" class="mt-2 settings-presets-itemgroup d-flex flex-row">
     <v-item
       v-for="(item, i) in values"
       :key="i"
@@ -71,8 +71,16 @@ export default {
       default: () => []
     },
     value: {
-      type: [Number, String],
+      type: [Number, String, Object],
       default: ''
+    },
+    mandatory: {
+      type: Boolean,
+      default: true
+    },
+    customValue: {
+      type: [Number, String, Object],
+      default: undefined
     }
   },
 
@@ -81,7 +89,7 @@ export default {
       get () {
         let foundIndex = 0
         for (let index = 0; index < this.values.length; index++) {
-          if (this.values[index].value === this.value) {
+          if (this.values[index].value === (this.customValue !== undefined ? this.customValue : this.value)) {
             foundIndex = index
             break
           }
@@ -89,7 +97,9 @@ export default {
         return foundIndex
       },
       set (newValue) {
-        this.$emit('input', this.values[newValue].value)
+        if (this.values[newValue] !== undefined) {
+          this.$emit('input', this.values[newValue].value)
+        }
       }
     },
 

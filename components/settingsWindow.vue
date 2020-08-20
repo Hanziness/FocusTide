@@ -23,6 +23,8 @@
                 :visible-if="settingsKey.visibleIf ? settingsKey.visibleIf : []"
                 :enabled-if="settingsKey.enabledIf ? settingsKey.enabledIf : []"
                 :disabled-if="settingsKey.disabledIf ? settingsKey.disabledIf : []"
+                :custom-set-function="settingsKey.customSetFunction ? settingsKey.customSetFunction : null"
+                :preset-custom-selected-value="settingsKey.presetCustomSelectedValue ? settingsKey.presetCustomSelectedValue : undefined"
               />
               <v-divider v-if="!settingsKey.noDividerAfter && i !== contents.length - 1" :key="'div-' + i" class="my-1" />
             </template>
@@ -63,6 +65,13 @@ export default {
         ],
         timer: [
           { type: 'number', key: ['schedule', 'longPauseInterval'], rules: ['positive'] },
+          {
+            type: 'preset',
+            key: ['schedule', 'lengths'],
+            values: Object.keys(this.$store.state.settings.timerPresets),
+            customSetFunction: (value) => { this.$store.commit('settings/applyPreset', value) },
+            presetCustomSelectedValue: this.$store.getters['settings/getActiveSchedulePreset']
+          },
           { type: 'time', key: ['schedule', 'lengths', 'work'], noDividerAfter: true },
           { type: 'time', key: ['schedule', 'lengths', 'shortpause'], noDividerAfter: true },
           { type: 'time', key: ['schedule', 'lengths', 'longpause'] }
