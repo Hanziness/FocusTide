@@ -13,7 +13,8 @@ export default {
       display: 'Display'
     },
     buttons: {
-      close: 'Close'
+      close: 'Close',
+      reset: 'Reset'
     },
     values: {
       eventLoggingEnabled: {

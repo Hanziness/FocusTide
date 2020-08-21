@@ -13,7 +13,8 @@ export default {
       display: 'Megjelenés'
     },
     buttons: {
-      close: 'Bezárás'
+      close: 'Bezárás',
+      reset: 'Visszaállítás'
     },
     values: {
       eventLoggingEnabled: {

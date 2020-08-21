@@ -28,7 +28,7 @@
             <v-icon>mdi-rotate-left</v-icon>
           </v-btn>
         </template>
-        <span>Reset</span>
+        <span>{{ $i18n.t('settings.buttons.reset') }}</span>
       </v-tooltip>
 
       <!-- Inputs aligned to the right -->
