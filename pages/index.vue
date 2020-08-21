@@ -50,7 +50,7 @@ export default {
   },
 
   beforeCreate () {
-    this.$store.commit('settings/applyPreset', 'debug')
+    // this.$store.commit('settings/applyPreset', 'debug')
     // this.$store.dispatch('events/checkSchedule')
     this.$store.dispatch('timer/setNewTimer', this.$store.getters['events/getSchedule'][0]._length)
     this.$store.dispatch('timer/initDefaultSubscribeFunctions')
