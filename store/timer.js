@@ -58,6 +58,7 @@ function notifyFunctions (state, { group = functionUpdateGroup.TICK, elapsedDelt
 }
 
 export const getters = {
+  /** @deprecated Use the $dayjs plugin instead */
   getFormattedRemainingTime (state) {
     return dayjs.utc(state.timerRemaining).format(state.timeFormat)
   },
@@ -140,7 +141,6 @@ export const mutations = {
     const newUpdate = new Date().getTime()
     // console.log(typeof state.lastUpdate)
     const elapsedDelta = newUpdate - state.lastUpdate
-    console.log('Elapsed ' + elapsedDelta + 'ms')
 
     // update remaining time if the timer is still running
     if (state.timerState === timerState.RUNNING) {
@@ -224,7 +224,6 @@ export const actions = {
       // schedule next tick
       if (Math.abs(nextTickMs - state.nextTickDelta) > 50) {
         dispatch('changeTickDelta', { newTickDelta: nextTickMs })
-        console.log('Changed tick delta to ' + nextTickMs)
       }
 
       nextTickMs = Math.min(nextTickMs, state.timerRemaining)
