@@ -2,34 +2,16 @@
   <v-dialog v-model="input" width="600">
     <v-card>
       <v-card-title>{{ $i18n.t('settings.heading') }}</v-card-title>
+
+      <!-- Tabs -->
       <v-tabs v-model="tab" grow>
-        <v-tab v-for="(contents, name, index) in settings" :key="index">
+        <v-tab v-for="(name, index) in ['main', 'timer', 'display']" :key="index">
           {{ $i18n.t('settings.tabs.' + name) }}
         </v-tab>
       </v-tabs>
+
+      <!-- Tab contents -->
       <v-tabs-items v-model="tab">
-        <!-- <v-tab-item v-for="(contents, name, index) in settings" :key="index">
-          <v-list>
-            <template
-              v-for="(settingsKey, i) in settings[name]"
-            >
-              <settings-item
-                :key="i"
-                :type="settingsKey.type"
-                :state-keys="settingsKey.key"
-                :values="settingsKey.values ? settingsKey.values : []"
-                :use-rules="settingsKey.rules ? settingsKey.rules : []"
-                :show-description="settingsKey.showDescription ? settingsKey.showDescription : false"
-                :visible-if="settingsKey.visibleIf ? settingsKey.visibleIf : []"
-                :enabled-if="settingsKey.enabledIf ? settingsKey.enabledIf : []"
-                :disabled-if="settingsKey.disabledIf ? settingsKey.disabledIf : []"
-                :extra-values="settingsKey.extraValues ? settingsKey.extraValues : {}"
-                :extra-attributes="settingsKey.extraAttributes ? settingsKey.extraAttributes : {}"
-              />
-              <v-divider v-if="!settingsKey.noDividerAfter && i !== contents.length - 1" :key="'div-' + i" class="my-1" />
-            </template>
-          </v-list>
-        </v-tab-item> -->
         <v-tab-item :key="0">
           <!-- Main -->
           <v-list>
