@@ -28,7 +28,7 @@ export const functionUpdateGroup = {
 export const state = () => ({
   timerRemaining: 20999,
   timerOriginal: 20999,
-  lastUpdate: dayjs(),
+  lastUpdate: new Date().getTime(),
   nextTickDelta: 1000,
   timerHandle: null,
   timerState: timerState.STOPPED,
@@ -79,6 +79,7 @@ export const getters = {
 }
 
 export const mutations = {
+  /** Resets the remaining time to the original value, resetting the timer to 0% */
   resetTimer (state) {
     state.timerRemaining = state.timerOriginal
   },
@@ -89,28 +90,34 @@ export const mutations = {
     state.timerRemaining += 1
   },
 
+  /** Changes the timer's state to the new one (eg. to PAUSED) */
   setTimerState (state, newState) {
     state.timerState = newState
   },
 
+  /** Sets the new timer handle */
   setTimerHandle (state, newHandle) {
     state.timerHandle = newHandle
   },
 
+  /** Clears the tick handle and stops ticking */
   clearTickHandle (state) {
     clearTimeout(state.timerHandle)
     state.timerHandle = null
   },
 
+  /** Resets the remaining and original times to the new value */
   setTimes (state, newTimeInMs) {
     state.timerRemaining = newTimeInMs
     state.timerOriginal = newTimeInMs
   },
 
+  /** Changes `nextTickDelta` to the new value */
   changeTickDelta (state, newTickMs) {
     state.nextTickDelta = Math.max(50, newTickMs)
   },
 
+  /** Subscribes `fn` function with ID `id` for a notification group. */
   subscribeToNotify (state, { fn, id, functionGroup = functionUpdateGroup.TICK, enabled = true }) {
     switch (functionGroup) {
       case functionUpdateGroup.TICK:
@@ -124,15 +131,16 @@ export const mutations = {
 
   /**
    * Adaptable tick function for handling the timer
-   * @param {*} context The Vuex store context
+   * @param {*} state The Vuex store state
    * @param {timerState} nextState The next state the timer will be in (if not RUNNING), it won't tick further
    * @param {boolean} decrement If set to false, the timer will tick this time, but won't affect the remaining time
    */
   timerTick (state, { nextState = timerState.RUNNING, decrement = true }) {
     // console.log('Hello, tick')
-    const newUpdate = dayjs()
+    const newUpdate = new Date().getTime()
     // console.log(typeof state.lastUpdate)
-    const elapsedDelta = dayjs(newUpdate).diff(state.lastUpdate, 'millisecond')
+    const elapsedDelta = newUpdate - state.lastUpdate
+    console.log('Elapsed ' + elapsedDelta + 'ms')
 
     // update remaining time if the timer is still running
     if (state.timerState === timerState.RUNNING) {
@@ -162,6 +170,7 @@ export const mutations = {
 }
 
 export const actions = {
+  /** Initialized some default tick-handler functions */
   initDefaultSubscribeFunctions ({ commit, dispatch }) {
     commit('subscribeToNotify', {
       fn (state) {
@@ -173,6 +182,7 @@ export const actions = {
     })
   },
 
+  /** Changes the tick delta. If `immediate` is true, it also forces a tick. */
   changeTickDelta ({ commit, dispatch }, { newTickDelta, immediate = false }) {
     commit('changeTickDelta', newTickDelta)
 
@@ -181,6 +191,7 @@ export const actions = {
     }
   },
 
+  /** Starts or resumes the timer */
   startTimer ({ commit, state, dispatch }) {
     if (state.timerState === timerState.RUNNING) {
       // timer is set to be running, don't do anything
@@ -199,15 +210,32 @@ export const actions = {
     dispatch('events/recordUserEvent', UserEventType.TIMER_START, { root: true })
   },
 
-  scheduleNextTick ({ commit, state, dispatch }, { decrement = true }) {
+  /**
+   * Main ticking loop that continously schedules ticks. If called with `decrement == false`,
+   * the timer will tick but its value will not decrease.
+   */
+  scheduleNextTick ({ commit, state, dispatch, rootGetters }, { decrement = true }) {
     commit('timerTick', { decrement })
+
     if (state.timerState === timerState.RUNNING) {
+      // check adaptive ticking settings
+      let nextTickMs = rootGetters['settings/getAdaptiveTickRate']
+
       // schedule next tick
-      const nextTickMs = Math.min(state.nextTickDelta, state.timerRemaining)
+      if (Math.abs(nextTickMs - state.nextTickDelta) > 50) {
+        dispatch('changeTickDelta', { newTickDelta: nextTickMs })
+        console.log('Changed tick delta to ' + nextTickMs)
+      }
+
+      nextTickMs = Math.min(nextTickMs, state.timerRemaining)
       const timeoutHandle = setTimeout(
         () => { dispatch('scheduleNextTick', { }) },
         nextTickMs
       )
+
+      if (state.timerHandle) {
+        commit('clearTickHandle')
+      }
       commit('setTimerHandle', timeoutHandle)
     }
   },
@@ -229,12 +257,14 @@ export const actions = {
     }
   },
 
+  /** Stops and resets the timer with a new value */
   setNewTimer ({ commit, dispatch }, newTimerMs) {
     dispatch('pauseOrStopTimer', true)
     commit('setTimes', newTimerMs)
   },
 
-  getTimerFromSchedule ({ rootState, dispatch }) {
-    dispatch('setNewTimer', rootState.events.schedule[0]._length)
+  /** Automatically resets the timer from the schedule */
+  getTimerFromSchedule ({ rootState, dispatch, rootGetters }) {
+    dispatch('setNewTimer', rootGetters['events/getSchedule'][0]._length)
   }
 }

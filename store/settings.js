@@ -32,7 +32,9 @@ export const state = () => ({
     autoStartNextTimer: {
       wait: 8 * 1000,
       autostart: true
-    }
+    },
+    numScheduleEntries: 5,
+    showSchedule: true
   },
   timerPresets: {
     default: {
@@ -66,26 +68,103 @@ export const state = () => ({
       timerPreset: 'default'
     }
   },
-  eventLoggingEnabled: true,
-  currentTimer: AvailableTimers.TIMER_PERCENTAGE
+  eventLoggingEnabled: false,
+  currentTimer: AvailableTimers.TIMER_APPROXIMATE,
+  locale: null,
+  adaptiveTicking: {
+    enabled: true,
+    hiddenTickRate: 60 * 1000,
+    visibleTickRate: 1000,
+
+    multipliers: {
+      traditional: {
+        hidden: 1 / 60
+      },
+      approximate: {
+        hidden: 5,
+        visible: 30
+      },
+      percentage: {
+        hidden: 1 / 5,
+        visible: 2
+      }
+    },
+    registeredHidden: null
+  }
 })
 
 export const getters = {
+  isUserPresetActive (state) {
+    return JSON.stringify(state.timerPresets.user) === JSON.stringify(state.schedule.lengths)
+  },
+
+  getActiveSchedulePreset (state) {
+    for (const key in state.timerPresets) {
+      if (JSON.stringify(state.timerPresets[key]) === JSON.stringify(state.schedule.lengths)) {
+        return key
+      }
+    }
+
+    return null
+  },
+
+  getAdaptiveTickRate (state) {
+    if (state.adaptiveTicking.enabled && state.adaptiveTicking.registeredHidden !== null) {
+      // fetch settings for the current timer style
+      const timerSettings = state.adaptiveTicking.multipliers[state.currentTimer]
+      const tickVersion = state.adaptiveTicking.registeredHidden ? 'hidden' : 'visible'
+
+      const tickBase = state.adaptiveTicking.registeredHidden ? state.adaptiveTicking.hiddenTickRate : state.adaptiveTicking.visibleTickRate
+      const tickMultiplier = (timerSettings && timerSettings[tickVersion]) ? timerSettings[tickVersion] : 1.0
+
+      return tickBase * tickMultiplier
+    }
+
+    return state.adaptiveTicking.visibleTickRate
+  },
+
   performanceSettings (state) {
     return state.performance
   }
 }
 
 export const mutations = {
+  registerNewHidden (state, newHidden = document.hidden) {
+    state.adaptiveTicking.registeredHidden = newHidden
+  },
+
   applyPreset (state, id) {
     if (state.timerPresets[id]) {
-      state.schedule.lengths = state.timerPresets[id]
+      state.schedule.lengths = Object.assign({}, state.timerPresets[id])
     }
   },
 
   changeClockStyle (state, newStyle) {
     if (Object.values(AvailableTimers).findIndex(newStyle) !== -1) {
       state.currentTimer = newStyle
+    }
+  },
+
+  SET (state, { key, value, byRef = false }) {
+    /*
+     * example: key = ['a', 'b']
+     * we find currentElement = state.settings.a, then set currentElement[b] = value
+     * if we found state.settings.a.b at first, we couldn't change the value as
+     * we wouldn't have a reference to the (primitive) a.b!
+     */
+
+    // find parent object
+    let currentElement = state
+    for (let index = 0; index < key.length - 1; index++) {
+      currentElement = currentElement[key[index]]
+    }
+
+    // set value
+    if (typeof value === 'object' && value !== null && !byRef) {
+      // this avoids assigning by reference
+      currentElement[key[key.length - 1]] = Object.assign({}, value)
+    } else {
+      currentElement[key[key.length - 1]] = value
     }
   }
 }

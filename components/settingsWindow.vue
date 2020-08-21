@@ -2,11 +2,61 @@
   <v-dialog v-model="input" width="600">
     <v-card>
       <v-card-title>{{ $i18n.t('settings.heading') }}</v-card-title>
-      <v-card-text>Coming soon...</v-card-text>
+
+      <!-- Tabs -->
+      <v-tabs v-model="tab" grow>
+        <v-tab v-for="(name, index) in ['main', 'timer', 'display']" :key="index">
+          {{ $i18n.t('settings.tabs.' + name) }}
+        </v-tab>
+      </v-tabs>
+
+      <!-- Tab contents -->
+      <v-tabs-items v-model="tab">
+        <v-tab-item :key="0">
+          <!-- Main -->
+          <v-list>
+            <settings-item :state-keys="['adaptiveTicking', 'enabled']" type="boolean" show-divider show-description />
+            <settings-item :state-keys="['eventLoggingEnabled']" type="boolean" />
+          </v-list>
+        </v-tab-item>
+        <v-tab-item :key="1">
+          <!-- Timer -->
+          <v-list>
+            <settings-item :state-keys="['schedule', 'longPauseInterval']" :use-rules="['positive']" type="number" show-divider />
+            <settings-item
+              :state-keys="['schedule', 'lengths']"
+              type="preset"
+              show-divider
+              :custom-value="$store.getters['settings/getActiveSchedulePreset']"
+              :values="$store.state.settings.timerPresets"
+              :set-value-on-change="false"
+              :custom-set-function="(v) => { $store.commit('settings/applyPreset', v) }"
+            />
+            <settings-item :state-keys="['schedule', 'lengths', 'work']" :use-rules="[additionalData.rules.minOneMinute]" type="time" />
+            <settings-item :state-keys="['schedule', 'lengths', 'shortpause']" :use-rules="[additionalData.rules.minOneMinute]" type="time" />
+            <settings-item :state-keys="['schedule', 'lengths', 'longpause']" :use-rules="[additionalData.rules.minOneMinute]" type="time" />
+          </v-list>
+        </v-tab-item>
+        <v-tab-item :key="2">
+          <!-- Display -->
+          <v-list>
+            <settings-item :state-keys="['currentTimer']" type="preset" :values="additionalData.AvailableTimers" set-value-on-change show-divider />
+            <settings-item :state-keys="['schedule', 'showSchedule']" type="boolean" />
+            <settings-item
+              :state-keys="['schedule', 'numScheduleEntries']"
+              :use-rules="['min3']"
+              :disabled="!$store.state.settings.schedule.showSchedule"
+              type="number"
+            />
+            <settings-item :state-keys="['performance', 'showProgressBar']" type="boolean" />
+          </v-list>
+        </v-tab-item>
+      </v-tabs-items>
+
       <v-card-actions>
         <v-spacer />
         <v-btn color="success" depressed @click="input = false">
-          Close
+          {{ $i18n.t('settings.buttons.close') }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -14,11 +64,28 @@
 </template>
 
 <script>
+import SettingsItem from '@/components/settings/settingsItem.vue'
+import { AvailableTimers } from '@/store/settings'
+import { timeStrToMs } from '@/components/settings/input/controls/inputTime.vue'
+
 export default {
+  components: { SettingsItem },
+
   props: {
     value: {
       type: Boolean,
       default: false
+    }
+  },
+  data () {
+    return {
+      tab: 0,
+      additionalData: {
+        AvailableTimers: Object.values(AvailableTimers),
+        rules: {
+          minOneMinute (v) { return timeStrToMs(v) >= 60000 }
+        }
+      }
     }
   },
 
@@ -32,6 +99,10 @@ export default {
         this.$emit('input', newValue)
       }
     }
+  },
+
+  methods: {
+    dummy () {}
   }
 }
 </script>

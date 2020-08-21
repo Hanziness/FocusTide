@@ -1,8 +1,10 @@
 <template>
   <div class="timer-container d-flex flex-column justify-center text-center">
-    <timer-traditional v-if="timerWidget === 'traditional'" />
-    <timer-approximate v-else-if="timerWidget === 'approximate'" />
-    <timer-percentage v-else-if="timerWidget === 'percentage'" />
+    <transition name="timer-switch" mode="out-in">
+      <timer-traditional v-if="timerWidget === 'traditional'" :key="'traditional'" />
+      <timer-approximate v-else-if="timerWidget === 'approximate'" :key="'approximate'" />
+      <timer-percentage v-else-if="timerWidget === 'percentage'" :key="'percentage'" />
+    </transition>
   </div>
 </template>
 
@@ -25,6 +27,16 @@ div.timer-display {
 
 div.timer-display.active {
   opacity: 1;
+}
+
+.timer-switch-enter-active,
+.timer-switch-leave-active {
+  transition: opacity 0.5s ease-out;
+}
+
+.timer-switch-enter,
+.timer-switch-leave-to {
+  opacity: 0 !important;
 }
 </style>
 
