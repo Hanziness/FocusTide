@@ -47,6 +47,7 @@
               :use-rules="['min3']"
               :disabled="!$store.state.settings.schedule.showSchedule"
               type="number"
+              show-divider
             />
             <settings-item :state-keys="['performance', 'showProgressBar']" type="boolean" />
           </v-list>
