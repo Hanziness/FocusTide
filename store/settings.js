@@ -43,9 +43,9 @@ export const state = () => ({
       longpause: 15 * 60 * 1000 // 15 minutes
     },
     debug: {
-      work: 95 * 1000,
-      shortpause: 8 * 1000,
-      longpause: 12 * 1000
+      work: 6 * 1000,
+      shortpause: 5 * 1000,
+      longpause: 4 * 1000
     }
   },
   globalPresets: {
