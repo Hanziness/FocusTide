@@ -24,7 +24,6 @@ section.timer-section {
 import PomodoroTimer from '@/components/pomodoroTimer.vue'
 
 export default {
-
   components: {
     PomodoroTimer
   },
@@ -57,6 +56,14 @@ export default {
 
   mounted () {
     this.$store.dispatch('timer/initDefaultSubscribeFunctions')
+
+    const thisRef = this
+    document.addEventListener('visibilitychange', function () {
+      thisRef.$store.commit('settings/registerNewHidden', document.hidden)
+      if (!document.hidden) {
+        thisRef.$store.dispatch('timer/scheduleNextTick', {}) // tick the timer if document is now visible
+      }
+    })
   },
 
   head () {
