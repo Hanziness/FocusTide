@@ -58,11 +58,13 @@ export default {
           _description: '',
           _values: {
             default: 'Default',
-            debug: 'Debug'
+            debug: 'Debug',
+            custom: 'Custom'
           },
           _valueDescription: {
             default: '25 minutes work, 5 minutes break',
-            debug: 'For debugging purposes'
+            debug: 'For debugging purposes',
+            custom: 'Set by you'
           },
           work: {
             _title: 'Work',

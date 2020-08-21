@@ -58,11 +58,13 @@ export default {
           _description: '',
           _values: {
             default: 'Alapértelmezett',
-            debug: 'Debug'
+            debug: 'Debug',
+            custom: 'Egyedi'
           },
           _valueDescription: {
             default: '25 perc munka, 5 perc szünet',
-            debug: 'Tesztelési célokra'
+            debug: 'Tesztelési célokra',
+            custom: 'Felhasználói beállítások'
           },
           work: {
             _title: 'Munka hossza',
