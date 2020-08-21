@@ -24,7 +24,9 @@ const dayjsUtils = {
     return dayjs().to(dayjs().add(ms, 'millisecond'), true)
   },
   formatPercentage (ms, { total }) {
-    return '' + Math.round(((total - ms) / total) * 100) + '%'
+    const msRounded = ms - (ms % 1000)
+    const totalRounded = total - (total % 1000)
+    return '' + Math.round(((totalRounded - msRounded) / totalRounded) * 100) + '%'
   },
   getFormattedTime (ms, config = AvailableTimers.TIMER_TRADITIONAL, additionalArgs = {}) {
     switch (config) {
