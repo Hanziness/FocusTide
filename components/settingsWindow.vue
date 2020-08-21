@@ -8,7 +8,7 @@
         </v-tab>
       </v-tabs>
       <v-tabs-items v-model="tab">
-        <v-tab-item v-for="(contents, name, index) in settings" :key="index">
+        <!-- <v-tab-item v-for="(contents, name, index) in settings" :key="index">
           <v-list>
             <template
               v-for="(settingsKey, i) in settings[name]"
@@ -23,11 +23,50 @@
                 :visible-if="settingsKey.visibleIf ? settingsKey.visibleIf : []"
                 :enabled-if="settingsKey.enabledIf ? settingsKey.enabledIf : []"
                 :disabled-if="settingsKey.disabledIf ? settingsKey.disabledIf : []"
-                :custom-set-function="settingsKey.customSetFunction ? settingsKey.customSetFunction : null"
-                :preset-custom-selected-value="settingsKey.presetCustomSelectedValue ? settingsKey.presetCustomSelectedValue : undefined"
+                :extra-values="settingsKey.extraValues ? settingsKey.extraValues : {}"
+                :extra-attributes="settingsKey.extraAttributes ? settingsKey.extraAttributes : {}"
               />
               <v-divider v-if="!settingsKey.noDividerAfter && i !== contents.length - 1" :key="'div-' + i" class="my-1" />
             </template>
+          </v-list>
+        </v-tab-item> -->
+        <v-tab-item :key="0">
+          <!-- Main -->
+          <v-list>
+            <settings-item :state-keys="['adaptiveTicking', 'enabled']" type="boolean" show-divider show-description />
+            <settings-item :state-keys="['eventLoggingEnabled']" type="boolean" />
+          </v-list>
+        </v-tab-item>
+        <v-tab-item :key="1">
+          <!-- Timer -->
+          <v-list>
+            <settings-item :state-keys="['schedule', 'longPauseInterval']" :use-rules="['positive']" type="number" show-divider />
+            <settings-item
+              :state-keys="['schedule', 'lengths']"
+              type="preset"
+              show-divider
+              :custom-value="$store.getters['settings/getActiveSchedulePreset']"
+              :values="$store.state.settings.timerPresets"
+              :set-value-on-change="false"
+              :custom-set-function="(v) => { $store.commit('settings/applyPreset', v) }"
+            />
+            <settings-item :state-keys="['schedule', 'lengths', 'work']" type="time" />
+            <settings-item :state-keys="['schedule', 'lengths', 'shortpause']" type="time" />
+            <settings-item :state-keys="['schedule', 'lengths', 'longpause']" type="time" />
+          </v-list>
+        </v-tab-item>
+        <v-tab-item :key="2">
+          <!-- Display -->
+          <v-list>
+            <settings-item :state-keys="['currentTimer']" type="preset" :values="additionalData.AvailableTimers" set-value-on-change show-divider />
+            <settings-item :state-keys="['schedule', 'showSchedule']" type="boolean" />
+            <settings-item
+              :state-keys="['schedule', 'numScheduleEntries']"
+              :use-rules="['min3']"
+              :disabled="!$store.state.settings.schedule.showSchedule"
+              type="number"
+            />
+            <settings-item :state-keys="['performance', 'showProgressBar']" type="boolean" />
           </v-list>
         </v-tab-item>
       </v-tabs-items>
@@ -58,37 +97,8 @@ export default {
   data () {
     return {
       tab: 0,
-      settings: {
-        main: [
-          { type: 'boolean', key: ['adaptiveTicking', 'enabled'], showDescription: true },
-          { type: 'boolean', key: ['eventLoggingEnabled'] }
-        ],
-        timer: [
-          { type: 'number', key: ['schedule', 'longPauseInterval'], rules: ['positive'] },
-          {
-            type: 'preset',
-            key: ['schedule', 'lengths'],
-            values: Object.keys(this.$store.state.settings.timerPresets),
-            customSetFunction: (value) => { this.$store.commit('settings/applyPreset', value) },
-            presetCustomSelectedValue: this.$store.getters['settings/getActiveSchedulePreset']
-          },
-          { type: 'time', key: ['schedule', 'lengths', 'work'], noDividerAfter: true },
-          { type: 'time', key: ['schedule', 'lengths', 'shortpause'], noDividerAfter: true },
-          { type: 'time', key: ['schedule', 'lengths', 'longpause'] }
-        ],
-        display: [
-          { type: 'preset', key: ['currentTimer'], values: Object.values(AvailableTimers) },
-          { type: 'boolean', key: ['schedule', 'showSchedule'] },
-          {
-            type: 'number',
-            key: ['schedule', 'numScheduleEntries'],
-            rules: ['min3'],
-            enabledIf: [
-              ['schedule', 'showSchedule']
-            ]
-          },
-          { type: 'boolean', key: ['performance', 'showProgressBar'], showDescription: true }
-        ]
+      additionalData: {
+        AvailableTimers: Object.values(AvailableTimers)
       }
     }
   },

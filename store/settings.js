@@ -94,6 +94,10 @@ export const state = () => ({
 })
 
 export const getters = {
+  isUserPresetActive (state) {
+    return JSON.stringify(state.timerPresets.user) === JSON.stringify(state.schedule.lengths)
+  },
+
   getActiveSchedulePreset (state) {
     for (const key in state.timerPresets) {
       if (JSON.stringify(state.timerPresets[key]) === JSON.stringify(state.schedule.lengths)) {
@@ -141,7 +145,7 @@ export const mutations = {
     }
   },
 
-  SET (state, { key, value }) {
+  SET (state, { key, value, byRef = false }) {
     /*
      * example: key = ['a', 'b']
      * we find currentElement = state.settings.a, then set currentElement[b] = value
@@ -156,7 +160,12 @@ export const mutations = {
     }
 
     // set value
-    currentElement[key[key.length - 1]] = value
+    if (typeof value === 'object' && value !== null && !byRef) {
+      // this avoids assigning by reference
+      currentElement[key[key.length - 1]] = Object.assign({}, value)
+    } else {
+      currentElement[key[key.length - 1]] = value
+    }
   }
 }
 

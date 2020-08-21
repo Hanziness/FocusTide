@@ -1,76 +1,22 @@
 <template>
-  <v-list-item
-    v-if="(visibleIf.length > 0 && visibleIf.every((item) => item === true)) || true"
-    :disabled="!isEnabled"
-    :two-line="showDescription && $i18n.t(translationKey + '._description').length > 0"
-  >
-    <!-- Title and description of the settings item -->
-    <v-list-item-content>
-      <v-list-item-title>
-        {{ $i18n.t('settings.values.' + stateKeys.join('.') + '._title') }}
-      </v-list-item-title>
-      <v-list-item-subtitle v-if="showDescription && $i18n.t(translationKey + '._description').length > 0">
-        {{ $i18n.t(translationKey + '._description') }}
-      </v-list-item-subtitle>
-
-      <!-- Preset settings -->
-      <settings-preset
-        v-if="type === 'preset'"
-        v-model="settingValue"
-        :state-keys="stateKeys"
-        :values="transformedValues"
-        :custom-value="presetCustomSelectedValue"
-      />
-    </v-list-item-content>
-    <v-list-item-action v-if="type !== 'preset'" class="d-flex flex-row align-center my-0 settings-item-action">
-      <!-- Reset button -->
-      <v-tooltip v-if="defaultValue !== null" left>
-        <template v-slot:activator="{on, attrs}">
-          <v-btn icon class="mr-2" v-bind="attrs" v-on="on" @click.stop="reset">
-            <v-icon>mdi-rotate-left</v-icon>
-          </v-btn>
-        </template>
-        <span>Reset</span>
-      </v-tooltip>
-
-      <!-- Input types -->
-      <v-form v-model="isInputValid">
-        <!-- Boolean -->
-        <v-switch
-          v-if="type === 'boolean'"
-          v-model="settingValue"
-          :disabled="!isEnabled"
-          inset
-          readonly
-          @click.stop="toggleValue"
-        />
-        <!-- Select -->
-        <v-select
-          v-else-if="type === 'select'"
-          v-model="settingValue"
-          :disabled="!isEnabled"
-          class="settings-input"
-          outlined
-          dense
-          hide-details
+  <div>
+    <settings-item-base :disabled="disabled" :settings-key="stateKeys" :show-description="showDescription">
+      <template v-if="type === 'preset'" v-slot:content-main>
+        <!-- Preset settings -->
+        <settings-preset
+          :value="settingValue"
           :items="transformedValues"
+          @change="customSetFunction ? customSetFunction($event) : (settingValue = $event)"
         />
-        <!-- Number -->
-        <v-text-field
-          v-else-if="type === 'number'"
-          v-model="settingValue"
-          :disabled="!isEnabled"
-          :rules="ruleFunctions"
-          outlined
-          dense
-          class="settings-input"
-          hide-details
-        />
-        <!-- Time -->
-        <input-time v-else-if="type === 'time'" v-model="settingValue" :disabled="!isEnabled" />
-      </v-form>
-    </v-list-item-action>
-  </v-list-item>
+      </template>
+
+      <!-- Inline inputs -->
+      <template v-if="type !== 'preset'" v-slot:content-action>
+        <settings-input-inline v-model="settingValue" :disabled="disabled" :rules="ruleFunctions" :type="type" />
+      </template>
+    </settings-item-base>
+    <v-divider v-if="showDivider" class="my-1" />
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -84,8 +30,11 @@
 </style>
 
 <script>
-import SettingsPreset from '@/components/settings/settingsPresets.vue'
-import InputTime from '@/components/settings/inputTime.vue'
+import SettingsItemBase from '@/components/settings/settingsItemBase.vue'
+import SettingsInputInline from '@/components/settings/input/settingsInputInline.vue'
+// import SettingsPreset from '@/components/settings/settingsPresets.vue'
+import SettingsPreset from '@/components/settings/input/controls/presetSelector.vue'
+// import InputTime from '@/components/settings/inputTime.vue'
 
 export const rules = {
   number (input) {
@@ -100,7 +49,13 @@ export const rules = {
 }
 
 export default {
-  components: { SettingsPreset, InputTime },
+  components: {
+    SettingsItemBase,
+    SettingsInputInline,
+    // SettingsPreset,
+    // InputTime,
+    SettingsPreset
+  },
 
   props: {
     /** Array of `String`s specifying the path to the controlled store variable. Eg.
@@ -111,39 +66,29 @@ export default {
       required: true
     },
 
+    setValueOnChange: {
+      type: Boolean,
+      default: true
+    },
+
     /** Determines the input type */
     type: {
       type: String,
       default: 'boolean',
       validator (v) {
-        return ['boolean', 'select', 'number', 'preset', 'time'].includes(v)
+        return ['boolean', 'select', 'number', 'preset', 'preset-apply', 'time'].includes(v)
       }
     },
 
     /** Used by select inputs to determine the possible values for a setting. */
     values: {
-      type: Array,
-      default: () => []
-    },
-    extraAttributes: {
-      type: Object,
-      default: () => {}
-    },
-    visibleIf: {
-      type: Array,
+      type: [Array, Object],
       default: () => []
     },
 
-    /** Array of store key arrays that need to be truish for this input to be enabled */
-    enabledIf: {
-      type: Array,
-      default: () => []
-    },
-
-    /** Array of store key arrays - if any of these turn truish, this input will be disabled */
-    disabledIf: {
-      type: Array,
-      default: () => []
+    disabled: {
+      type: Boolean,
+      default: false
     },
 
     /** Rule function names specified in `rules` that will be applied to the input */
@@ -153,6 +98,11 @@ export default {
       validator (val) {
         return val.every(v => Object.keys(rules).includes(v))
       }
+    },
+
+    showDivider: {
+      type: Boolean,
+      default: false
     },
 
     /**
@@ -176,14 +126,10 @@ export default {
      */
     customSetFunction: {
       type: Function,
-      default: null
+      default: undefined
     },
 
-    /**
-     * Custom value that will be reported to preset selection
-     * Useful when the selected preset is based on a store getter
-     */
-    presetCustomSelectedValue: {
+    customValue: {
       type: [Number, String, Object],
       default: undefined
     }
@@ -213,7 +159,8 @@ export default {
      */
     settingValue: {
       get () {
-        return this.resolveKeys(this.stateKeys, false)
+        // if customValue is set, return that, else query the store
+        return this.customValue !== undefined ? this.customValue : this.resolveKeys(this.stateKeys, false)
       },
       set (newValue) {
         let isValid = true
@@ -222,10 +169,10 @@ export default {
         })
 
         if (isValid) {
-          if (this.customSetFunction !== null) {
-            this.customSetFunction(newValue)
-          } else {
+          if (this.setValueOnChange) {
             this.$store.commit('settings/SET', { key: this.stateKeys, value: newValue })
+          } else {
+            this.$emit('changed', newValue)
           }
         }
       }
@@ -238,14 +185,20 @@ export default {
      */
     transformedValues: {
       get () {
-        const returnValue = []
         const i18n = this.$i18n
-        this.values.forEach((element) => {
+        const returnValue = []
+        const isArray = Array.isArray(this.values)
+
+        // `it` will be the element of the array or the key of the object
+        for (const it in this.values) {
           returnValue.push({
-            value: element,
-            text: i18n.t(this.translationKey + '._values.' + element)
+            value: this.values[it],
+            text: i18n.t(this.translationKey + '._values.' + (isArray ? this.values[it] : it)),
+            description: i18n.t(this.translationKey + '._valueDescription.' + (isArray ? this.values[it] : it)),
+            key: isArray ? undefined : it
           })
-        })
+        }
+
         return returnValue
       }
     },
@@ -268,40 +221,10 @@ export default {
 
         return returnRules
       }
-    },
-
-    /**
-     * Evaluates all store keys in `disabledIf` and `enabledIf` to see if this input can
-     * be enabled.
-     */
-    isEnabled: {
-      get () {
-        if (this.enabledIf.length < 1 && this.disabledIf.length < 1) { return true }
-
-        for (const storeKeys of this.disabledIf) {
-          const currentValue = this.resolveKeys(storeKeys, false)
-
-          if (currentValue) { return false }
-        }
-
-        for (const storeKeys of this.enabledIf) {
-          const currentValue = this.resolveKeys(storeKeys, false)
-
-          if (!currentValue) { return false }
-        }
-
-        return true
-      }
     }
   },
 
   methods: {
-    toggleValue () {
-      this.settingValue = !this.settingValue
-    },
-    reset (event) {
-      // do something
-    },
     resolveKeys (keys, parent = false) {
       const maxIndex = parent ? keys.length - 1 : keys.length
       let currentValue = this.$store.state.settings
@@ -309,6 +232,10 @@ export default {
         currentValue = currentValue ? currentValue[keys[index]] : null
       }
       return currentValue
+    },
+
+    reset (event) {
+      // do something
     }
   }
 }
