@@ -166,17 +166,10 @@ export default {
         return this.customValue !== undefined ? this.customValue : this.resolveKeys(this.stateKeys, false)
       },
       set (newValue) {
-        let isValid = true
-        this.ruleFunctions.forEach(function (fn) {
-          isValid = isValid && fn(newValue)
-        })
-
-        if (isValid) {
-          if (this.setValueOnChange) {
-            this.$store.commit('settings/SET', { key: this.stateKeys, value: newValue })
-          } else {
-            this.$emit('changed', newValue)
-          }
+        if (this.setValueOnChange) {
+          this.$store.commit('settings/SET', { key: this.stateKeys, value: newValue })
+        } else {
+          this.$emit('changed', newValue)
         }
       }
     },

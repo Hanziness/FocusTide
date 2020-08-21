@@ -32,9 +32,9 @@
               :set-value-on-change="false"
               :custom-set-function="(v) => { $store.commit('settings/applyPreset', v) }"
             />
-            <settings-item :state-keys="['schedule', 'lengths', 'work']" type="time" />
-            <settings-item :state-keys="['schedule', 'lengths', 'shortpause']" type="time" />
-            <settings-item :state-keys="['schedule', 'lengths', 'longpause']" type="time" />
+            <settings-item :state-keys="['schedule', 'lengths', 'work']" :use-rules="[additionalData.rules.minOneMinute]" type="time" />
+            <settings-item :state-keys="['schedule', 'lengths', 'shortpause']" :use-rules="[additionalData.rules.minOneMinute]" type="time" />
+            <settings-item :state-keys="['schedule', 'lengths', 'longpause']" :use-rules="[additionalData.rules.minOneMinute]" type="time" />
           </v-list>
         </v-tab-item>
         <v-tab-item :key="2">
@@ -66,6 +66,7 @@
 <script>
 import SettingsItem from '@/components/settings/settingsItem.vue'
 import { AvailableTimers } from '@/store/settings'
+import { timeStrToMs } from '@/components/settings/input/controls/inputTime.vue'
 
 export default {
   components: { SettingsItem },
@@ -80,7 +81,10 @@ export default {
     return {
       tab: 0,
       additionalData: {
-        AvailableTimers: Object.values(AvailableTimers)
+        AvailableTimers: Object.values(AvailableTimers),
+        rules: {
+          minOneMinute (v) { return timeStrToMs(v) >= 60000 }
+        }
       }
     }
   },

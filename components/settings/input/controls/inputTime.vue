@@ -4,16 +4,17 @@
     dense
     outlined
     :v-mask="'#?#?#:##'"
-    :rules="rules"
+    :rules="processedRules"
     :disabled="disabled"
     hide-details
   />
 </template>
 
 <script>
+// import { rules } from '../../settingsItem.vue'
 export function timeRule (valueString) {
   const splitStr = valueString.split(':')
-  const firstCheck = splitStr.length === 2 && splitStr.every(v => !isNaN(v))
+  const firstCheck = splitStr.length === 2 && splitStr.every(v => !isNaN(v) && Number.isInteger(Number(v)))
 
   if (!firstCheck) { return false }
 
@@ -22,7 +23,7 @@ export function timeRule (valueString) {
 }
 
 export function timeStrToMs (valueString) {
-  if (!timeRule(valueString)) { return null }
+  if (typeof valueString !== 'string' || !timeRule(valueString)) { return null }
 
   const splitStr = valueString.split(':')
   return Number(splitStr[0]) * 60000 + Number(splitStr[1]) * 1000
@@ -55,7 +56,7 @@ export default {
     },
     rules: {
       type: Array,
-      default: () => [timeRule]
+      default: () => []
     },
     disabled: {
       type: Boolean,
@@ -69,11 +70,17 @@ export default {
         return msToTimeStr(this.value)
       },
       set (newValue) {
-        for (const rule of this.rules) {
+        for (const rule of this.processedRules) {
           if (!rule(newValue)) { return }
         }
 
         this.$emit('input', timeStrToMs(newValue))
+      }
+    },
+
+    processedRules: {
+      get () {
+        return [timeRule].concat(this.rules)
       }
     }
   }

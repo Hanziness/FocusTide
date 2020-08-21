@@ -32,9 +32,7 @@
       </v-tooltip>
 
       <!-- Inputs aligned to the right -->
-      <v-form v-model="isInputValid">
-        <slot name="content-action" />
-      </v-form>
+      <slot name="content-action" />
     </v-list-item-action>
   </v-list-item>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-form v-model="isInputValid">
     <v-switch
       v-if="type === 'boolean'"
       v-model="settingValue"
@@ -31,8 +31,8 @@
       hide-details
     />
     <!-- Time -->
-    <input-time v-else-if="type === 'time'" v-model="settingValue" :disabled="disabled" />
-  </div>
+    <input-time v-else-if="type === 'time'" v-model="settingValue" :disabled="disabled" :rules="rules" />
+  </v-form>
 </template>
 
 <style lang="scss" scoped>
@@ -43,6 +43,7 @@
 
 <script>
 export default {
+
   props: {
     type: {
       type: String,
@@ -76,6 +77,11 @@ export default {
       }
     }
   },
+  data () {
+    return {
+      isInputValid: true
+    }
+  },
 
   computed: {
     settingValue: {
@@ -83,7 +89,10 @@ export default {
         return this.value
       },
       set (newValue) {
-        this.$emit('input', newValue)
+        // time is trusted to only return valid input, the rest should be checked manually
+        if (this.type === 'time' || this.rules.every((rule) => { return rule(newValue) })) {
+          this.$emit('input', newValue)
+        }
       }
     }
   }
