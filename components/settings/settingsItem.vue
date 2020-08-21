@@ -66,6 +66,7 @@ export default {
       required: true
     },
 
+    /** Whether to commit store change as soon as the value changes */
     setValueOnChange: {
       type: Boolean,
       default: true
@@ -96,7 +97,8 @@ export default {
       type: Array,
       default: () => [],
       validator (val) {
-        return val.every(v => Object.keys(rules).includes(v))
+        // check if v is a function or one of the keys of the `rules` object
+        return val.every(v => typeof v === 'function' || Object.keys(rules).includes(v))
       }
     },
 
@@ -129,6 +131,7 @@ export default {
       default: undefined
     },
 
+    /** Value used for preset controls to specify active item (read-only) */
     customValue: {
       type: [Number, String, Object],
       default: undefined
@@ -212,7 +215,7 @@ export default {
       get () {
         const returnRules = []
         this.useRules.forEach(function (rule) {
-          returnRules.push(rules[rule])
+          returnRules.push(typeof rule === 'function' ? rule : rules[rule])
         })
 
         if (this.type === 'number' && !this.useRules.includes('number')) {
