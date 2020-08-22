@@ -4,6 +4,11 @@
     :disabled="disabled"
     :two-line="showDescription"
   >
+    <v-list-item-avatar v-if="!!icon">
+      <slot name="item-icon">
+        <v-icon v-if="icon" v-text="icon" />
+      </slot>
+    </v-list-item-avatar>
     <!-- Title and description of the settings item -->
     <v-list-item-content>
       <v-list-item-title>
@@ -65,6 +70,10 @@ export default {
     visible: {
       type: Boolean,
       default: true
+    },
+    icon: {
+      type: String,
+      default: undefined
     }
   },
   data () {

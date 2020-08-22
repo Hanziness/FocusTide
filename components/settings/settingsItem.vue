@@ -1,6 +1,6 @@
 <template>
   <div>
-    <settings-item-base :disabled="disabled" :settings-key="stateKeys" :show-description="showDescription">
+    <settings-item-base :disabled="disabled" :settings-key="stateKeys" :show-description="showDescription" :icon="icon">
       <template v-if="type === 'preset'" v-slot:content-main>
         <!-- Preset settings -->
         <settings-preset
@@ -135,6 +135,11 @@ export default {
     customValue: {
       type: [Number, String, Object],
       default: undefined
+    },
+
+    icon: {
+      type: String,
+      default: undefined
     }
   },
 
@@ -169,7 +174,7 @@ export default {
         if (this.setValueOnChange) {
           this.$store.commit('settings/SET', { key: this.stateKeys, value: newValue })
         } else {
-          this.$emit('changed', newValue)
+          this.$emit('change', newValue)
         }
       }
     },
