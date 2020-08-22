@@ -16,7 +16,8 @@
           <!-- Main -->
           <v-list>
             <settings-item :state-keys="['adaptiveTicking', 'enabled']" type="boolean" show-divider show-description />
-            <settings-item :state-keys="['eventLoggingEnabled']" type="boolean" />
+            <settings-item :state-keys="['eventLoggingEnabled']" type="boolean" show-divider />
+            <permission-settings />
           </v-list>
         </v-tab-item>
         <v-tab-item :key="1">
@@ -66,11 +67,12 @@
 
 <script>
 import SettingsItem from '@/components/settings/settingsItem.vue'
+import PermissionSettings from '@/components/settings/input/controls/permissionSettings.vue'
 import { AvailableTimers } from '@/store/settings'
 import { timeStrToMs } from '@/components/settings/input/controls/inputTime.vue'
 
 export default {
-  components: { SettingsItem },
+  components: { SettingsItem, PermissionSettings },
 
   props: {
     value: {
