@@ -20,10 +20,6 @@
 </template>
 
 <style lang="scss" scoped>
-.settings-item-action {
-  max-width: 30%;
-}
-
 .settings-input {
   font-size: 14px;
 }
