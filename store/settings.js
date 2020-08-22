@@ -90,6 +90,14 @@ export const state = () => ({
       }
     },
     registeredHidden: null
+  },
+  permissions: {
+    notifications: false,
+    audio: true
+  },
+  audio: {
+    volume: 0.9,
+    repeatTimes: 2
   }
 })
 

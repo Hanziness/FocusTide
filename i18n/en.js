@@ -86,7 +86,34 @@ export default {
           _title: 'Show progress bar',
           _description: 'Show progress behind timer'
         }
+      },
+      permissions: {
+        audio: {
+          _title: 'Play audio',
+          _description: 'Let the app play sounds when a section is over'
+        },
+        notifications: {
+          _title: 'Notification permissions',
+          _description: 'Let the app send you notifications when a section is over'
+        }
       }
+    }
+  },
+  notification: {
+    action: {
+      ready: 'Let\'s go!'
+    },
+    work: {
+      title: 'Time to get back to work!',
+      body: 'Your break is over. Work some more, then rest again.'
+    },
+    shortpause: {
+      title: 'Time for a break',
+      body: 'Nice, you\'ve earned a short break.'
+    },
+    longpause: {
+      title: 'Whew! More spare time!',
+      body: 'Well-well. After working this much, you deserve a longer break.'
     }
   }
 }

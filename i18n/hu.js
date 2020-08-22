@@ -86,7 +86,34 @@ export default {
           _title: 'Folyamatjelző mutatása',
           _description: 'Az óra mögött jelenjen meg a folyamatsáv'
         }
+      },
+      permissions: {
+        audio: {
+          _title: 'Hang lejátszása',
+          _description: 'Az alkalmazás hangot játszhat le, ha véget ért egy szakasz'
+        },
+        notifications: {
+          _title: 'Értesítések engedélyezése',
+          _description: 'Az alkalmazás értesítést küldhet, ha véget ért egy szakasz'
+        }
       }
+    }
+  },
+  notification: {
+    action: {
+      ready: 'Gyerünk!'
+    },
+    work: {
+      title: 'Ideje újra dolgozni!',
+      body: 'Vége a szünetnek. Dolgozz egy kicsit, majd pihenj megint.'
+    },
+    shortpause: {
+      title: 'Szünidő',
+      body: 'Szép munka! Megérdemelsz egy kis szünetet.'
+    },
+    longpause: {
+      title: 'Ejha! Még több szabadidő!',
+      body: 'Nem semmi. Ennyi munka után megérdemelsz egy kis extra szünidőt.'
     }
   }
 }
