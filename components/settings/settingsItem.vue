@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="visible">
     <settings-item-base :disabled="disabled" :settings-key="stateKeys" :show-description="showDescription" :icon="icon">
       <template v-if="type === 'preset'" v-slot:content-main>
         <!-- Preset settings -->
@@ -133,9 +133,16 @@ export default {
       default: undefined
     },
 
+    /** Icon to be used with <v-icon> in the setting's avatar slot */
     icon: {
       type: String,
       default: undefined
+    },
+
+    /** Determines whether the component should render at all */
+    visible: {
+      type: Boolean,
+      default: true
     }
   },
 
