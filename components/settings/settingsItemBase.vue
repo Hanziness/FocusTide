@@ -45,7 +45,6 @@
 <style lang="scss" scoped>
 .settings-item-action {
   max-width: 30%;
-  flex-grow: 1;
   justify-content: end;
 }
 
