@@ -16,12 +16,47 @@ export default {
         work: null,
         shortpause: null,
         longpause: null
+      },
+      storeUnwatch: {
+        volume: null,
+        soundSet: null
+      }
+    }
+  },
+
+  created () {
+    // volume watcher
+    this.storeUnwatch.volume = this.$store.watch(
+      state => state.settings.audio.volume,
+      (newValue) => {
+        // update volume of sounds
+        for (const key in this.sounds) {
+          this.sounds[key].volume(newValue)
+        }
+      }
+    )
+
+    // sound set watcher
+    this.storeUnwatch.soundSet = this.$store.watch(
+      state => state.settings.audio.soundSet,
+      (newValue) => {
+        // load new sound set
+        this.loadSoundSet(newValue)
+      }
+    )
+  },
+
+  beforeDestroy () {
+    // de-register store watchers
+    for (const key in this.storeUnwatch) {
+      if (this.storeUnwatch[key]) {
+        this.storeUnwatch[key]()
       }
     }
   },
 
   mounted () {
-    this.loadSoundSet('musical')
+    this.loadSoundSet(this.$store.state.settings.audio.soundSet)
 
     const thisRef = this
     this.$store.commit('timer/subscribeToNotify', {
@@ -43,11 +78,11 @@ export default {
             src: `/audio/${setName}/${key}.mp3`,
             loop: false,
             autoplay: false,
-            volume: 0.9
+            volume: this.$store.state.settings.audio.volume
           })
         }
       } catch (err) {
-        console.warn(err)
+        // console.warn(err)
       }
     },
 
@@ -74,7 +109,7 @@ export default {
           actions: notificationActions
         }, {
           onclick () {
-            console.log('YAY! I was clicked!')
+            // console.log('YAY! I was clicked!')
           }
         })
       } catch (err) {
