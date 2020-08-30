@@ -38,7 +38,8 @@ export default {
   */
   plugins: [
     '@/plugins/dayjs.js',
-    '@/plugins/v-mask.js'
+    '@/plugins/v-mask.js',
+    '@/plugins/notifications.client.js'
   ],
   /*
   ** Auto import components

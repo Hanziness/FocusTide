@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <settings-item-base :disabled="disabled" :settings-key="stateKeys" :show-description="showDescription">
+  <div v-if="visible">
+    <settings-item-base :disabled="disabled" :settings-key="stateKeys" :show-description="showDescription" :icon="icon">
       <template v-if="type === 'preset'" v-slot:content-main>
         <!-- Preset settings -->
         <settings-preset
@@ -20,10 +20,6 @@
 </template>
 
 <style lang="scss" scoped>
-.settings-item-action {
-  max-width: 30%;
-}
-
 .settings-input {
   font-size: 14px;
 }
@@ -135,6 +131,18 @@ export default {
     customValue: {
       type: [Number, String, Object],
       default: undefined
+    },
+
+    /** Icon to be used with <v-icon> in the setting's avatar slot */
+    icon: {
+      type: String,
+      default: undefined
+    },
+
+    /** Determines whether the component should render at all */
+    visible: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -169,7 +177,7 @@ export default {
         if (this.setValueOnChange) {
           this.$store.commit('settings/SET', { key: this.stateKeys, value: newValue })
         } else {
-          this.$emit('changed', newValue)
+          this.$emit('change', newValue)
         }
       }
     },

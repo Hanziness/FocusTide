@@ -16,7 +16,8 @@
           <!-- Main -->
           <v-list>
             <settings-item :state-keys="['adaptiveTicking', 'enabled']" type="boolean" show-divider show-description />
-            <settings-item :state-keys="['eventLoggingEnabled']" type="boolean" />
+            <settings-item :state-keys="['eventLoggingEnabled']" type="boolean" show-divider />
+            <permission-settings />
           </v-list>
         </v-tab-item>
         <v-tab-item :key="1">
@@ -49,7 +50,8 @@
               type="number"
               show-divider
             />
-            <settings-item :state-keys="['performance', 'showProgressBar']" type="boolean" />
+            <settings-item :state-keys="['performance', 'showProgressBar']" type="boolean" show-divider />
+            <audio-settings />
           </v-list>
         </v-tab-item>
       </v-tabs-items>
@@ -66,11 +68,13 @@
 
 <script>
 import SettingsItem from '@/components/settings/settingsItem.vue'
+import PermissionSettings from '@/components/settings/input/controls/permissionSettings.vue'
+import AudioSettings from '@/components/settings/input/audioSettings.vue'
 import { AvailableTimers } from '@/store/settings'
 import { timeStrToMs } from '@/components/settings/input/controls/inputTime.vue'
 
 export default {
-  components: { SettingsItem },
+  components: { SettingsItem, PermissionSettings, AudioSettings },
 
   props: {
     value: {
@@ -99,6 +103,17 @@ export default {
         // this.value = newValue
         this.$emit('input', newValue)
       }
+    }
+  },
+
+  mounted () {
+    // remove 'debug' timer preset in production
+    if (process.env.NODE_ENV === 'production' && this.$store.state.settings.timerPresets.debug) {
+      const { debug, ...newTimerPreset } = this.$store.state.settings.timerPresets
+      this.$store.commit('settings/SET', {
+        key: ['timerPresets'],
+        value: newTimerPreset
+      })
     }
   },
 
