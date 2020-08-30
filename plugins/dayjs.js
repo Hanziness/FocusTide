@@ -23,12 +23,19 @@ const dayjsUtils = {
   formatRelative (ms) {
     return dayjs().to(dayjs().add(ms, 'millisecond'), true)
   },
+  formatPercentage (ms, { total }) {
+    const msRounded = ms - (ms % 1000)
+    const totalRounded = total - (total % 1000)
+    return '' + Math.round(((totalRounded - msRounded) / totalRounded) * 100) + '%'
+  },
   getFormattedTime (ms, config = AvailableTimers.TIMER_TRADITIONAL, additionalArgs = {}) {
     switch (config) {
       case AvailableTimers.TIMER_TRADITIONAL:
         return this.formatMs(ms, additionalArgs)
       case AvailableTimers.TIMER_APPROXIMATE:
         return this.formatRelative(ms)
+      case AvailableTimers.TIMER_PERCENTAGE:
+        return this.formatPercentage(ms, additionalArgs)
       default:
         return ''
     }

@@ -2,27 +2,43 @@
   <v-app>
     <settings-window v-model="settingsOpen" />
     <v-app-bar
-      fixed
+      absolute
       app
       flat
+      collapse
+      class="timer-app-bar"
     >
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn icon @click="settingsOpen = !settingsOpen">
+      <!-- <v-toolbar-title v-text="title">
+        <v-spacer />
+      </v-toolbar-title> -->
+      <v-btn class="ma-0" icon @click="settingsOpen = !settingsOpen">
         <v-icon>mdi-cog</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-main>
+    <v-main class="py-0">
       <nuxt />
     </v-main>
-    <v-footer
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+    <portal to="footer">
+      <v-footer
+        class="timer-footer"
+      >
+        <span>&copy; {{ new Date().getFullYear() }}</span>
+      </v-footer>
+    </portal>
   </v-app>
 </template>
+
+<style lang="scss" scoped>
+.timer-app-bar {
+  position: fixed;
+  width: max-content;
+}
+
+footer.timer-footer {
+  background-color: transparent;
+}
+</style>
 
 <script>
 import SettingsWindow from '@/components/settingsWindow.vue'

@@ -5,7 +5,8 @@ export const state = () => ({
   schedule: [],
   currentBlockIndex: 0,
   maxScheduleEntries: 5,
-  scheduleIndexCounter: 0
+  scheduleIndexCounter: 0,
+  statesCompleted: 0
 })
 
 export const ScheduleItemType = {
@@ -44,8 +45,30 @@ export const UserEventType = {
 }
 
 export const getters = {
+  getSchedule (state, getters, rootState) {
+    const numEntriesInABlock = 2 * (rootState.settings.schedule.longPauseInterval)
+    const schedule = []
+    let i = state.statesCompleted
+
+    while (schedule.length < rootState.settings.schedule.numScheduleEntries) {
+      const index = i % numEntriesInABlock
+      if (index === numEntriesInABlock - 1) {
+        schedule.push(new ScheduleEntry(rootState.settings.schedule.lengths.longpause + 900, i, ScheduleItemType.LONGPAUSE))
+      } else if (index % 2) {
+        schedule.push(new ScheduleEntry(rootState.settings.schedule.lengths.shortpause + 900, i, ScheduleItemType.SHORTPAUSE))
+      } else {
+        schedule.push(new ScheduleEntry(rootState.settings.schedule.lengths.work + 900, i, ScheduleItemType.WORK))
+      }
+
+      i++
+    }
+
+    return schedule
+  },
+
   nextScheduleColour (state, getters, rootState) {
-    const currentState = state.schedule[1] ? state.schedule[1]._type : null
+    // const currentState = state.schedule[1] ? state.schedule[1]._type : null
+    const currentState = getters.getSchedule[1]._type
     if (currentState) {
       return rootState.settings.visuals[currentState].colour
     } else {
@@ -53,16 +76,18 @@ export const getters = {
     }
   },
 
-  currentScheduleEntry (state) {
-    if (state.schedule.length > 0) {
-      return state.schedule[0]
-    } else {
-      return null
-    }
+  currentScheduleEntry (state, getters) {
+    // if (state.schedule.length > 0) {
+    //   return state.schedule[0]
+    // } else {
+    //   return null
+    // }
+    return getters.getSchedule[0]
   },
 
   currentScheduleColour (state, getters, rootState) {
-    return rootState.settings.visuals[state.schedule[0] ? state.schedule[0]._type : 'wait'].colour
+    // return rootState.settings.visuals[state.schedule[0] ? state.schedule[0]._type : 'wait'].colour
+    return rootState.settings.visuals[getters.getSchedule[0]._type].colour
   }
 }
 
@@ -85,6 +110,7 @@ export const mutations = {
 
   completeScheduleEntry (state) {
     state.schedule = state.schedule.slice(1)
+    state.statesCompleted++
   },
 
   recordUserEvent (state, eventType = UserEventType.OTHER) {
@@ -100,10 +126,10 @@ export const actions = {
     }
   },
 
-  advanceSchedule ({ commit, dispatch, state }, { isAutoAdvance = false }) {
+  advanceSchedule ({ commit, dispatch, state, getters }, { isAutoAdvance = false }) {
     commit('completeScheduleEntry')
-    dispatch('checkSchedule')
-    dispatch('timer/setNewTimer', state.schedule[0]._length, { root: true })
+    // dispatch('checkSchedule')
+    dispatch('timer/setNewTimer', getters.getSchedule[0]._length, { root: true })
 
     const loggedEventType = isAutoAdvance ? UserEventType.SCHEDULE_ADVANCE_AUTO : UserEventType.SCHEDULE_ADVANCE_MANUAL
     dispatch('recordUserEvent', loggedEventType)

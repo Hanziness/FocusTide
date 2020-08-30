@@ -1,20 +1,31 @@
 <template>
-  <section>
-    <schedule-display />
-    <div class="text-center">
-      <promodoro-timer />
-    </div>
+  <section class="timer-section">
+    <v-sheet class="timer-background" :color="$store.getters['events/currentScheduleColour']" height="100%">
+      <pomodoro-timer />
+      <!-- <portal-target name="footer" /> -->
+    </v-sheet>
   </section>
 </template>
 
+<style lang="scss" scoped>
+section.timer-section {
+  height: 100%;
+}
+
+.timer-background {
+  transition: 300ms ease-in;
+  transition-property: background-color;
+  position: relative;
+  height: 100%;
+}
+</style>
+
 <script>
-import PromodoroTimer from '@/components/promodoroTimer.vue'
-import ScheduleDisplay from '@/components/scheduleDisplay.vue'
+import PomodoroTimer from '@/components/pomodoroTimer.vue'
 
 export default {
-
   components: {
-    PromodoroTimer, ScheduleDisplay
+    PomodoroTimer
   },
   data () {
     return {
@@ -24,20 +35,35 @@ export default {
 
   computed: {
     remainingTimeString () {
-      return this.$dayjs.getFormattedTime(this.$store.state.timer.timerRemaining, this.$store.state.settings.currentTimer)
+      return this.$dayjs.getFormattedTime(
+        this.$store.state.timer.timerRemaining,
+        this.$store.state.settings.currentTimer,
+        { total: this.$store.state.timer.timerOriginal }
+      )
     },
 
     pageTitle () {
       return this.$store.getters['events/currentScheduleEntry']
-        ? this.$i18n.t('section.' + this.$store.getters['events/currentScheduleEntry']._type) : 'Pomodoro'
+        ? this.$i18n.t('section.' + this.$store.getters['events/currentScheduleEntry']._type).toLowerCase() : 'Pomodoro'
     }
   },
 
+  beforeCreate () {
+    // this.$store.commit('settings/applyPreset', 'debug')
+    // this.$store.dispatch('events/checkSchedule')
+    this.$store.dispatch('timer/setNewTimer', this.$store.getters['events/getSchedule'][0]._length)
+  },
+
   mounted () {
-    this.$store.commit('settings/applyPreset', 'debug')
-    this.$store.dispatch('events/checkSchedule')
-    this.$store.dispatch('timer/setNewTimer', this.$store.state.events.schedule[0]._length)
     this.$store.dispatch('timer/initDefaultSubscribeFunctions')
+
+    const thisRef = this
+    document.addEventListener('visibilitychange', function () {
+      thisRef.$store.commit('settings/registerNewHidden', document.hidden)
+      if (!document.hidden) {
+        thisRef.$store.dispatch('timer/scheduleNextTick', {}) // tick the timer if document is now visible
+      }
+    })
   },
 
   head () {

@@ -37,7 +37,9 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '@/plugins/dayjs.js'
+    '@/plugins/dayjs.js',
+    '@/plugins/v-mask.js',
+    '@/plugins/notifications.client.js'
   ],
   /*
   ** Auto import components
@@ -61,7 +63,8 @@ export default {
   */
   modules: [
     '@nuxtjs/pwa',
-    'nuxt-i18n'
+    'nuxt-i18n',
+    'portal-vue/nuxt'
   ],
 
   /**
@@ -139,5 +142,11 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    extend (config, ctx) {
+      // enable source maps (inline on the server!)
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
+    }
   }
 }
