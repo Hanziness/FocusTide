@@ -10,7 +10,8 @@ export default {
     tabs: {
       main: 'Alap',
       timer: 'Órarend',
-      display: 'Megjelenés'
+      display: 'Megjelenés',
+      audio: 'Hang'
     },
     buttons: {
       close: 'Bezárás',
@@ -95,6 +96,22 @@ export default {
         notifications: {
           _title: 'Értesítések engedélyezése',
           _description: 'Az alkalmazás értesítést küldhet, ha véget ért egy szakasz'
+        }
+      },
+      audio: {
+        volume: {
+          _title: 'Hangerő',
+          _description: ''
+        },
+        soundSet: {
+          _title: 'Hangkészlet',
+          _description: 'Az értesítésekhez használt hangok',
+          _values: {
+            musical: 'Zenés'
+          },
+          _valueDescription: {
+            musical: 'Az alapértelmezett hangok'
+          }
         }
       }
     }

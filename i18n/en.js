@@ -10,7 +10,8 @@ export default {
     tabs: {
       main: 'Main',
       timer: 'Schedule',
-      display: 'Display'
+      display: 'Display',
+      audio: 'Audio'
     },
     buttons: {
       close: 'Close',
@@ -95,6 +96,22 @@ export default {
         notifications: {
           _title: 'Notification permissions',
           _description: 'Let the app send you notifications when a section is over'
+        }
+      },
+      audio: {
+        volume: {
+          _title: 'Audio volume',
+          _description: ''
+        },
+        soundSet: {
+          _title: 'Sound set',
+          _description: 'Sounds used for notifications',
+          _values: {
+            musical: 'Musical'
+          },
+          _valueDescription: {
+            musical: 'The default sounds'
+          }
         }
       }
     }

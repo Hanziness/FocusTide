@@ -4,6 +4,10 @@ export const AvailableTimers = {
   TIMER_PERCENTAGE: 'percentage'
 }
 
+export const AvailableSoundSets = {
+  SOUNDSET_MUSICAL: 'musical'
+}
+
 export const state = () => ({
   visuals: {
     work: {
@@ -97,7 +101,8 @@ export const state = () => ({
   },
   audio: {
     volume: 0.9,
-    repeatTimes: 2
+    repeatTimes: 2,
+    soundSet: 'musical'
   }
 })
 
