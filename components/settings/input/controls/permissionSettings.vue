@@ -7,6 +7,7 @@
       :set-value-on-change="false"
       :icon="notificationPermissionIcon"
       show-description
+      :disabled="notificationPermissionIcon === 'mdi-bell-remove-outline'"
       @change="notificationPermission = $event"
     />
   </div>
@@ -22,6 +23,12 @@ export default {
     value: {
       type: Boolean,
       default: false
+    }
+  },
+
+  data () {
+    return {
+      notificationsBlocked: false
     }
   },
 
@@ -61,6 +68,7 @@ export default {
             if (newValue === 'granted') {
               thisRef.$store.commit('settings/SET', { key: ['permissions', 'notifications'], value: true })
             } else {
+              thisRef.notificationsBlocked = true
               thisRef.$store.commit('settings/SET', { key: ['permissions', 'notifications'], value: false })
             }
           })
