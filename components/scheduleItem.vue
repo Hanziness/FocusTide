@@ -13,6 +13,7 @@
           width="100%"
           class="rounded-lg text-center pa-2 d-flex flex-column justify-center border-active flex-grow-1"
           v-bind="attrs"
+          role="none"
           v-on="on"
         >
           <!-- <div class="text-h6">
