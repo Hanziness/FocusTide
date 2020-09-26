@@ -40,11 +40,11 @@
 .schedule-item {
   display: inline-block;
   opacity: 0.4;
-  // width: 200px;
-  // height: 80px;
   min-width: 48px;
   min-height: 48px;
   position: relative;
+  // width: 200px;
+  // height: 80px;
   // :style="{ 'clip-path': 'circle(' + item.progress * 1.4 + '% at 0% 50%)' }"
 }
 
