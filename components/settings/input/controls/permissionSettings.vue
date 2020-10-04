@@ -35,6 +35,10 @@ export default {
   computed: {
     notificationPermissionIcon: {
       get () {
+        if (!Notification) {
+          return 'mdi-bell-remove-outline'
+        }
+
         if (this.$store.state.settings.permissions.notifications && Notification.permission === 'granted') {
           // We can show notifications: show icon based on the setting
           return 'mdi-bell-ring-outline'
@@ -59,7 +63,7 @@ export default {
 
     notificationPermission: {
       get () {
-        return Notification.permission === 'granted' && this.$store.state.settings.permissions.notifications
+        return Notification ? (Notification.permission === 'granted' && this.$store.state.settings.permissions.notifications) : false
       },
       set (newValue) {
         if (Notification.permission === 'default') {

@@ -17,7 +17,9 @@
           <v-list>
             <settings-item :state-keys="['adaptiveTicking', 'enabled']" type="boolean" show-divider show-description />
             <settings-item :state-keys="['eventLoggingEnabled']" type="boolean" show-divider />
-            <permission-settings />
+            <client-only>
+              <permission-settings />
+            </client-only>
           </v-list>
         </v-tab-item>
         <v-tab-item :key="1">

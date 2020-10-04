@@ -12,11 +12,11 @@
 
 <script>
 import TimerSwitch from '@/components/timers/_timerSwitch.vue'
-import TimerControls from '@/components/timerControls.vue'
+import TimerControls from '@/components/tailwinded/timer/timerControls.vue'
 import TimerProgress from '@/components/timerProgress.vue'
 import NotificationController from '@/components/notifications/notificationController.vue'
 
-import ScheduleDisplay from '@/components/scheduleDisplay.vue'
+import ScheduleDisplay from '@/components/tailwinded/schedule/scheduleDisplay.vue'
 
 export default {
   name: 'PomodoroTimer',
