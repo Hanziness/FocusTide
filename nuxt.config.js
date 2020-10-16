@@ -40,7 +40,7 @@ export default {
     '@/plugins/dayjs.js',
     '@/plugins/v-mask.js',
     { src: '@/plugins/notifications.client.js', ssr: false },
-    { src: '~/plugins/vuex-persist.client.js', ssr: false }
+    { src: '@/plugins/vuex-persist.client.js', ssr: false }
   ],
   /*
   ** Auto import components
