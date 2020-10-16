@@ -51,10 +51,13 @@ export default {
   },
   methods: {
     changeLocale () {
-      this.$dayjs.dayjs.locale() === 'hu' ? this.$dayjs.dayjs.locale('en') : this.$dayjs.dayjs.locale('hu')
-      this.$i18n.locale = this.$dayjs.dayjs.locale()
+      // console.log('Test print')
+      const newLocale = this.$dayjs.dayjs.locale() === 'hu' ? 'en' : 'hu'
+      // this.$dayjs.dayjs.locale() === 'hu' ? this.$dayjs.dayjs.locale('en') : this.$dayjs.dayjs.locale('hu')
+      this.$dayjs.dayjs.locale(newLocale)
+      this.$i18n.setLocale(newLocale)
       this.$store.commit('timer/refreshTime')
-      // console.log('New locale is ' + this.$dayjs.dayjs.locale())
+      // console.log('New locale is ' + this.$i18n.locale)
     }
   }
 }
