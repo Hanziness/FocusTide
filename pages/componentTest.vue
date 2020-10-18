@@ -33,7 +33,7 @@
               </template>
             </settings-item-base> -->
             <settings-check :settings-key="['performance', 'showProgressBar']" />
-            <settings-text :settings-key="['schedule', 'longPauseInterval']" />
+            <settings-text :settings-key="['schedule', 'longPauseInterval']" :min="1" numeric />
             <settings-time :settings-key="['schedule', 'lengths', 'work']" />
             <settings-options :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" :settings-key="['currentTimer']" />
           </div>

@@ -132,5 +132,14 @@ export default {
       title: 'Whew! More spare time!',
       body: 'Well-well. After working this much, you deserve a longer break.'
     }
+  },
+  error: {
+    format_invalid: 'Invalid input format',
+    range_invalid: 'Value must be between {min} and {max}',
+    required: 'This field must be filled',
+    numeric: 'Value must be a number',
+    min: 'Value must be at least {min}',
+    max: 'Value must be at most {max}',
+    undefined: 'Undefined error'
   }
 }

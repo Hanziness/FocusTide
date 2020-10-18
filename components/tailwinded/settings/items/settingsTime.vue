@@ -1,6 +1,6 @@
 <template>
   <settings-resolver :settings-key="settingsKey">
-    <base-settings-item slot-scope="{ value, update, error, translationKey }" :settings-value="value" :translation-key="translationKey">
+    <base-settings-item slot-scope="{ value, update, error, lastError, translationKey }" :settings-value="value" :error-value="lastError" :translation-key="translationKey">
       <template #content-action="{ settingsValue }">
         <input
           class="form-input w-full text-right bg-gray-200 focus:bg-white"
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+// import Error from '@/assets/errors'
+
 export function timeRule (valueString) {
   const splitStr = valueString.split(':')
   const firstCheck = splitStr.length === 2 && splitStr.every(v => !isNaN(v) && Number.isInteger(Number(v)))
@@ -60,6 +62,16 @@ export default {
     rules: {
       type: Array,
       default: () => []
+    },
+
+    minMs: {
+      type: Number,
+      default: 0
+    },
+
+    maxMs: {
+      type: Number,
+      default: undefined
     }
   },
 
@@ -77,24 +89,42 @@ export default {
   methods: {
     checkUpdate (newValue, updateFn, errorFn) {
       if (!timeRule(newValue)) {
-        errorFn(false)
+        errorFn('error.format_invalid')
         return
+      }
+
+      const errorAdditionalInfo = {
+        min: this.$dayjs.formatMs(this.minMs, { format: 'mm:ss' }),
+        max: this.$dayjs.formatMs(this.maxMs, { format: 'mm:ss' })
       }
 
       const valueInMs = timeStrToMs(newValue)
       let pass = true
 
+      // check if value is above minimum
+      // if (this.minMs && valueInMs < this.minMs) {
+      //   errorFn(Error.ERR_MIN, errorAdditionalInfo)
+      //   return
+      // }
+
+      // // check if value is below maximum
+      // if (this.maxMs && valueInMs > this.maxMs) {
+      //   errorFn(Error.ERR_MAX, errorAdditionalInfo)
+      //   return
+      // }
+
       for (const rule in this.rules) {
         const rulePass = rule(valueInMs)
         if (rulePass !== true) {
           pass = rulePass
+          break
         }
       }
 
       if (pass === true) {
         updateFn(valueInMs)
       } else {
-        errorFn(pass)
+        errorFn(pass, errorAdditionalInfo, true)
       }
     },
 

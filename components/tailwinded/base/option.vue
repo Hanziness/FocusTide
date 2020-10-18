@@ -15,7 +15,7 @@
 
 <style lang="postcss" scoped>
 .select-option {
-  @apply px-3 py-4 border border-solid border-gray-300 rounded bg-white text-left;
+  @apply px-3 py-4 border border-solid border-gray-300 rounded-md bg-white text-left;
 }
 
 .select-option:hover {
@@ -23,7 +23,7 @@
 }
 
 .select-option.active {
-  @apply bg-primary;
+  @apply bg-primary border-white shadow;
 }
 
 .select-option-title {

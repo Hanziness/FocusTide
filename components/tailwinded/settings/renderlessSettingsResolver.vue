@@ -1,4 +1,6 @@
 <script>
+// import Error from '@/assets/errors'
+
 export default {
 
   props: {
@@ -71,10 +73,15 @@ export default {
 
     updateValue (newValue) {
       this.settingValue = newValue
+      this.lastError = null
     },
 
-    errorValue (error) {
-      this.lastError = error
+    errorValue (error, additionalInfo = {}) {
+      if (error !== undefined) {
+        this.lastError = this.$i18n.t('error.' + error, additionalInfo)
+      } else {
+        this.lastError = undefined
+      }
     }
   },
 
