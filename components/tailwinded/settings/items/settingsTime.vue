@@ -2,13 +2,20 @@
   <settings-resolver :settings-key="settingsKey">
     <base-settings-item slot-scope="{ value, update, error, lastError, translationKey }" :settings-value="value" :error-value="lastError" :translation-key="translationKey">
       <template #content-action="{ settingsValue }">
-        <input
+        <!-- <input
           class="form-input w-full text-right bg-gray-200 focus:bg-white"
           :v-mask="'#?#?#:##'"
           type="text"
           :value="msToTimeStr(settingsValue)"
           @input="checkUpdate($event.target.value, update, error)"
-        >
+        > -->
+        <input-text
+          :value="msToTimeStr(settingsValue)"
+          :min="min"
+          :max="max"
+          @input="update($event)"
+          @error="error($event.type, $event.additionalInfo)"
+        />
       </template>
     </base-settings-item>
   </settings-resolver>
@@ -16,6 +23,7 @@
 
 <script>
 // import Error from '@/assets/errors'
+import InputText from '@/components/tailwinded/base/inputText.vue'
 
 export function timeRule (valueString) {
   const splitStr = valueString.split(':')
@@ -50,7 +58,8 @@ export function msToTimeStr (value) {
 export default {
   components: {
     SettingsResolver: () => import('@/components/tailwinded/settings/renderlessSettingsResolver.vue'),
-    BaseSettingsItem: () => import('@/components/tailwinded/settings/baseSettingsItemBare.vue')
+    BaseSettingsItem: () => import('@/components/tailwinded/settings/baseSettingsItemBare.vue'),
+    InputText
   },
 
   props: {

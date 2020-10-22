@@ -9,14 +9,14 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-
 import { required, minValue, maxValue, numeric } from 'vuelidate/lib/validators'
+
 export default {
   mixins: [validationMixin],
 
   props: {
     value: {
-      type: String,
+      type: [String, Number],
       default: ''
     },
 
@@ -30,6 +30,7 @@ export default {
       default: false
     },
 
+    /** Mask string for v-mask */
     mask: {
       type: String,
       default: undefined
@@ -45,6 +46,7 @@ export default {
       default: undefined
     },
 
+    /** Object containing custom validators */
     customValidators: {
       type: Object,
       default: () => {}
@@ -53,14 +55,21 @@ export default {
 
   data () {
     return {
-      internalData: '',
+      /** Internal v-model value (can contain invalid input, unlike the setting
+       * value that it corresponds to) */
+      internalData: null,
+
+      /** Controls whether the input is invalid or not */
       dirty: true
     }
   },
 
   validations () {
-    const validationData = {}
+    const validationData = {
+      ...this.customValidators
+    }
 
+    // Add validation rules based on props
     if (this.required) { validationData.required = required }
     if (this.numeric) { validationData.numeric = numeric }
     if (this.min) { validationData.min = minValue(this.min) }
@@ -72,6 +81,11 @@ export default {
   },
 
   computed: {
+    /** This value will return the original (valid) settings value if
+     * the input is in an invalid state but will allow the input to have its
+     * own internal state as well (so it won't be janky when the user enters
+     * an invalid input)
+     */
     displayValue: {
       get () {
         if (!this.dirty) {
@@ -83,14 +97,20 @@ export default {
 
       set (newValue) {
         this.internalData = newValue
+
+        // Check if the value needs to be numeric (if so, cast it)
+        if (this.numeric) { this.internalData = Number.parseInt(this.internalData) }
+
+        // Force validation
         this.$v.internalData.$touch()
 
         this.dirty = this.$v.internalData.$anyError
         if (!this.dirty) {
-          this.$emit('input', this.displayValue)
-          console.log('Outputting ' + this.displayValue + ' (internal = ' + this.internalData + ', value = ' + this.value + ')')
+          // Validation successful, emit input event with updated value
+          this.$emit('input', this.numeric ? Number.parseInt(this.displayValue) : this.displayValue)
         }
 
+        // Check which rule was violated first
         const rules = Object.keys(this.$v.internalData).filter(name => !name.startsWith('$'))
         let errorRule
 
@@ -101,6 +121,8 @@ export default {
           }
         }
 
+        // Update error message
+        // This should also be called when there is no error, so the error gets cleared
         this.$emit('error', { type: errorRule, additionalInfo: this.additionalInfo })
       }
     },

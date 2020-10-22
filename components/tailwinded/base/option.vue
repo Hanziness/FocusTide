@@ -23,7 +23,7 @@
 }
 
 .select-option.active {
-  @apply bg-primary border-white shadow;
+  @apply bg-primary border-transparent shadow;
 }
 
 .select-option-title {

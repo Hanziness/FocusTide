@@ -1,6 +1,6 @@
 <template>
   <section v-show="visible" :class="[{'disabled': disabled}]" :disabled="disabled" :aria-disabled="disabled">
-    <div class="flex flex-row h-16 align-center mx-4">
+    <div class="flex flex-row align-center mx-4" :class="[{ 'h-12': !!$slots['content-main'], 'h-16': !$slots['content-main'] }]">
       <div v-if="!!$slots['icon']" class="w-12 text-left">
         <slot name="icon" />
       </div>

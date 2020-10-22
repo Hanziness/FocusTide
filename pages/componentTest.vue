@@ -1,6 +1,5 @@
 <template>
   <div class="w-full h-full flex flex-column justify-center align-center bg-purple-200">
-    <p>Settings come here</p>
     <section class="bg-white rounded-lg shadow-xl w-3/5 py-4">
       <!-- Header -->
       <h1 class="mb-2 mx-4">
@@ -23,7 +22,9 @@
         <!-- Tab content -->
         <transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
           <div v-if="activeTab == 1" :key="1">
-            <p>Tab 1</p>
+            <settings-check :settings-key="['adaptiveTicking', 'enabled']" />
+            <divider />
+            <settings-check :settings-key="['permissions', 'audio']" />
           </div>
           <div v-else-if="activeTab == 2" :key="2">
             <!-- <settings-item-base :settings-key="['performance', 'showProgressBar']">
@@ -95,7 +96,8 @@ export default {
     SettingsCheck: () => import('@/components/tailwinded/settings/items/settingsCheck.vue'),
     SettingsText: () => import('@/components/tailwinded/settings/items/settingsText.vue'),
     SettingsTime: () => import('@/components/tailwinded/settings/items/settingsTime.vue'),
-    SettingsOptions: () => import('@/components/tailwinded/settings/items/settingsOptions.vue')
+    SettingsOptions: () => import('@/components/tailwinded/settings/items/settingsOptions.vue'),
+    Divider: () => import('@/components/tailwinded/base/divider.vue')
   },
 
   data () {
