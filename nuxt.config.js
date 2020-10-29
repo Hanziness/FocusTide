@@ -31,6 +31,7 @@ export default {
   ** Global CSS
   */
   css: [
+    'normalize.css/normalize.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -113,10 +114,10 @@ export default {
   */
   googleFonts: {
     families: {
-      Poppins: true,
+      Poppins: [400, 700],
       'Source Sans Pro': [700]
     },
-    subsets: ['all']
+    display: 'swap'
     // download: true
   },
 
