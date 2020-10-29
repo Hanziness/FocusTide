@@ -2,7 +2,7 @@
   <div class="w-full h-full flex flex-column justify-center align-center bg-purple-200">
     <section class="bg-white rounded-lg shadow-xl w-3/5 py-4">
       <!-- Header -->
-      <h1 class="mb-2 mx-4">
+      <h1 class="mt-0 mb-2 mx-4">
         Settings
       </h1>
       <!-- Content -->

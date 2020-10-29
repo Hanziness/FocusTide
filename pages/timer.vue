@@ -1,0 +1,121 @@
+<template>
+  <section class="timer-section" :style="{'background-color': $store.getters['events/currentScheduleColour']}">
+    <lazy-hydrate when-visible>
+      <div>
+        <settings-panel v-if="showSettings" v-model="showSettings" class="left-0" />
+      </div>
+    </lazy-hydrate>
+    <div :class="['pa-8 flex flex-column justify-center items-center bg-transparent h-full']" width="100%" height="100%">
+      <v-btn @click="showSettings = !showSettings">
+        Show settings
+      </v-btn>
+      <schedule-display />
+      <notification-controller />
+      <timer-progress v-if="$store.getters['settings/performanceSettings'].showProgressBar" />
+      <v-spacer />
+      <timer-switch :timer-widget="$store.state.settings.currentTimer" />
+      <v-spacer />
+      <timer-controls />
+    </div>
+  </section>
+</template>
+
+<style lang="scss" scoped>
+section.timer-section {
+  height: 100%;
+  transition: background-color 300ms ease-in;
+}
+
+.timer-background {
+  transition: 300ms ease-in;
+  transition-property: background-color;
+  position: relative;
+  height: 100%;
+}
+</style>
+
+<script>
+import LazyHydrate from 'vue-lazy-hydration'
+
+export default {
+  components: {
+    ScheduleDisplay: () => import('@/components/tailwinded/schedule/scheduleDisplay.vue'),
+    NotificationController: () => import('@/components/notifications/notificationController.vue'),
+    TimerProgress: () => import('@/components/timerProgress.vue'),
+    TimerSwitch: () => import('@/components/tailwinded/timer/display/_timerSwitch.vue'),
+    TimerControls: () => import('@/components/tailwinded/timer/timerControls.vue'),
+    SettingsPanel: () => import('@/components/tailwinded/settings/settingsPanel.vue'),
+    // UiOverlay: () => import('@/components/tailwinded/base/overlay.vue'),
+    LazyHydrate
+  },
+
+  data () {
+    return {
+      showSettings: false
+    }
+  },
+  computed: {
+    currentColour () {
+      const currentState = this.$store.state.events.schedule[0] ? this.$store.state.events.schedule[0]._type : null
+      if (currentState) {
+        return this.$store.state.settings.visuals[currentState].colour
+      } else {
+        return ''
+      }
+    },
+
+    remainingTimeString () {
+      return this.$dayjs.getFormattedTime(
+        this.$store.state.timer.timerRemaining,
+        this.$store.state.settings.currentTimer,
+        { total: this.$store.state.timer.timerOriginal }
+      )
+    },
+
+    pageTitle () {
+      return this.$store.getters['events/currentScheduleEntry']
+        ? this.$i18n.t('section.' + this.$store.getters['events/currentScheduleEntry']._type).toLowerCase() : 'Pomodoro'
+    }
+  },
+
+  beforeCreate () {
+    // this.$store.commit('settings/applyPreset', 'debug')
+    // this.$store.dispatch('events/checkSchedule')
+    this.$store.dispatch('timer/setNewTimer', this.$store.getters['events/getSchedule'][0]._length)
+  },
+
+  mounted () {
+    this.$store.dispatch('timer/initDefaultSubscribeFunctions')
+
+    const thisRef = this
+    document.addEventListener('visibilitychange', function () {
+      thisRef.$store.commit('settings/registerNewHidden', document.hidden)
+      if (!document.hidden) {
+        thisRef.$store.dispatch('timer/scheduleNextTick', {}) // tick the timer if document is now visible
+      }
+    })
+  },
+
+  head () {
+    return {
+      titleTemplate: `(${this.remainingTimeString}) %s`,
+      title: `${this.pageTitle}`,
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: `data:image/svg+xml,
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  style="color: ${this.$store.getters['events/currentScheduleColour']};"
+                  xmlns="http://www.w3.org/2000/svg"
+                ><circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`
+        }
+      ]
+    }
+  }
+}
+</script>

@@ -140,6 +140,7 @@ export default {
     numeric: 'Value must be a number',
     min: 'Value must be at least {min}',
     max: 'Value must be at most {max}',
+    time_format: 'Incorrectly formatted time (MM:SS)',
     undefined: 'Undefined error'
   }
 }
