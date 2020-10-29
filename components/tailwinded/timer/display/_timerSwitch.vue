@@ -45,9 +45,9 @@ import { AvailableTimers } from '@/store/settings'
 
 export default {
   components: {
-    TimerTraditional: () => import('@/components/tailwinded/timers/display/traditional.vue'),
-    TimerApproximate: () => import('@/components/tailwinded/timers/display/approximate.vue'),
-    TimerPercentage: () => import('@/components/tailwinded/timers/display/percentage.vue')
+    TimerTraditional: () => import('@/components/tailwinded/timer/display/traditional.vue'),
+    TimerApproximate: () => import('@/components/tailwinded/timer/display/approximate.vue'),
+    TimerPercentage: () => import('@/components/tailwinded/timer/display/percentage.vue')
   },
   props: {
     timerWidget: {
