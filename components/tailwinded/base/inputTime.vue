@@ -1,5 +1,5 @@
 <template>
-  <input-text /></input-text>
+  <input-text />
 </template>
 
 <script>
