@@ -4,7 +4,7 @@
       v-if="$store.state.settings.schedule.showSchedule"
       name="list"
       tag="div"
-      class="p-4 bg-gray-800 flex flex-grow-0 flex-row p-0 rounded-lg schedule-container shadow-lg overflow-hidden"
+      class="schedule-container"
     >
       <schedule-item
         v-for="(item, i) in $store.getters['events/getSchedule']"
@@ -18,6 +18,8 @@
 
 <style lang="scss" scoped>
 div.schedule-container {
+  @apply p-4 bg-gray-800 flex flex-grow-0 flex-row rounded-lg shadow-lg overflow-hidden;
+
   z-index: 10;
 }
 
@@ -69,9 +71,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.schedule-container {
-  // height: 64px;
-}
-</style>
