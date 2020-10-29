@@ -56,6 +56,10 @@ export default {
   },
 
   mounted () {
+    // TODO Due to Chrome restrictions, this will trigger warnings that
+    // Howler cannot create the audio context until an interaction has
+    // been made. Try to only initialize the sounds when the user starts
+    // the timer.
     this.loadSoundSet(this.$store.state.settings.audio.soundSet)
 
     const thisRef = this
@@ -78,6 +82,7 @@ export default {
             src: `/audio/${setName}/${key}.mp3`,
             loop: false,
             autoplay: false,
+            preload: true,
             volume: this.$store.state.settings.audio.volume
           })
         }
