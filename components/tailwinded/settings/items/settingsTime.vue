@@ -2,18 +2,10 @@
   <settings-resolver :settings-key="settingsKey">
     <base-settings-item slot-scope="{ value, update, error, lastError, translationKey }" :settings-value="value" :error-value="lastError" :translation-key="translationKey">
       <template #content-action="{ settingsValue }">
-        <!-- <input
-          class="form-input w-full text-right bg-gray-200 focus:bg-white"
-          :v-mask="'#?#?#:##'"
-          type="text"
-          :value="msToTimeStr(settingsValue)"
-          @input="checkUpdate($event.target.value, update, error)"
-        > -->
         <input-text
           :value="msToTimeStr(settingsValue)"
-          :min="min"
-          :max="max"
-          @input="update($event)"
+          :custom-validators="{ 'time_format': timeRule }"
+          @input="update(timeStrToMs($event))"
           @error="error($event.type, $event.additionalInfo)"
         />
       </template>
@@ -22,44 +14,11 @@
 </template>
 
 <script>
-// import Error from '@/assets/errors'
-import InputText from '@/components/tailwinded/base/inputText.vue'
-
-export function timeRule (valueString) {
-  const splitStr = valueString.split(':')
-  const firstCheck = splitStr.length === 2 && splitStr.every(v => !isNaN(v) && Number.isInteger(Number(v)))
-
-  if (!firstCheck) { return false }
-
-  const secondPartAsNumber = Number(splitStr[1])
-  return secondPartAsNumber >= 0 && secondPartAsNumber <= 59
-}
-
-export function timeStrToMs (valueString) {
-  if (typeof valueString !== 'string' || !timeRule(valueString)) { return null }
-
-  const splitStr = valueString.split(':')
-  return Number(splitStr[0]) * 60000 + Number(splitStr[1]) * 1000
-}
-
-export function msToTimeStr (value) {
-  let seconds = Math.round(value / 1000) % 60
-  const minutes = '' + ((Math.round(value / 1000) - seconds) / 60)
-
-  if (seconds < 10) {
-    seconds = '0' + seconds
-  } else {
-    seconds = '' + seconds
-  }
-
-  return minutes + ':' + seconds
-}
-
 export default {
   components: {
     SettingsResolver: () => import('@/components/tailwinded/settings/renderlessSettingsResolver.vue'),
     BaseSettingsItem: () => import('@/components/tailwinded/settings/baseSettingsItemBare.vue'),
-    InputText
+    InputText: () => import('@/components/tailwinded/base/inputText.vue')
   },
 
   props: {
@@ -87,17 +46,34 @@ export default {
   computed: {
     processedValue: {
       get () {
-        return msToTimeStr(this.value)
+        return this.msToTimeStr(this.value)
       },
       set (newValue) {
-        this.$emit('input', timeStrToMs(newValue))
+        this.$emit('input', this.timeStrToMs(newValue))
       }
     }
   },
 
   methods: {
+    timeRule (valueString) {
+      const splitStr = valueString.split(':')
+      const firstCheck = splitStr.length === 2 && splitStr.every(v => !isNaN(v) && Number.isInteger(Number(v)))
+
+      if (!firstCheck) { return false }
+
+      const secondPartAsNumber = Number(splitStr[1])
+      return secondPartAsNumber >= 0 && secondPartAsNumber <= 59
+    },
+
+    timeStrToMs (valueString) {
+      if (typeof valueString !== 'string' || !this.timeRule(valueString)) { return null }
+
+      const splitStr = valueString.split(':')
+      return Number(splitStr[0]) * 60000 + Number(splitStr[1]) * 1000
+    },
+
     checkUpdate (newValue, updateFn, errorFn) {
-      if (!timeRule(newValue)) {
+      if (!this.timeRule(newValue)) {
         errorFn('error.format_invalid')
         return
       }
@@ -107,7 +83,7 @@ export default {
         max: this.$dayjs.formatMs(this.maxMs, { format: 'mm:ss' })
       }
 
-      const valueInMs = timeStrToMs(newValue)
+      const valueInMs = this.timeStrToMs(newValue)
       let pass = true
 
       // check if value is above minimum
@@ -138,7 +114,16 @@ export default {
     },
 
     msToTimeStr (value) {
-      return msToTimeStr(value)
+      let seconds = Math.round(value / 1000) % 60
+      const minutes = '' + ((Math.round(value / 1000) - seconds) / 60)
+
+      if (seconds < 10) {
+        seconds = '0' + seconds
+      } else {
+        seconds = '' + seconds
+      }
+
+      return minutes + ':' + seconds
     }
   }
 }
