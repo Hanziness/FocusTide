@@ -1,14 +1,10 @@
 <template>
   <settings-resolver :settings-key="settingsKey">
-    <!-- <div slot-scope="{ svalue }" class="w-full bg-red-300 asd"> -->
-    <!-- ASD {{ svalue }} -->
-    <!-- Okay, so I guess svalue is NOT reactive once passed into a slot. Great... -->
     <base-settings-item slot-scope="{ value, update, translationKey }" :settings-value="value" :translation-key="translationKey">
       <template #content-main="{ settingsValue }">
         <option-group :translation-key="translationKey" :values="values" :selected="settingsValue" @input="update" />
       </template>
     </base-settings-item>
-    <!-- </div> -->
   </settings-resolver>
 </template>
 
