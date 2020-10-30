@@ -1,21 +1,38 @@
 <template>
   <transition name="settings">
     <section v-show="processedValue" class="settings-panel sm:w-full md:w-1/2">
-      <span class="float-right" @click="processedValue = false">Close</span>
-      <h1 class="text-xl">
-        Beállítások
-      </h1>
-      <div class="flex flex-column">
-        <settings-check :settings-key="['adaptiveTicking', 'enabled']" />
-        <divider />
-        <settings-check :settings-key="['permissions', 'audio']" />
+      <div class="settings-panel-main">
+        <span class="float-right" @click="processedValue = false">Close</span>
+        <h1 class="text-xl">
+          Beállítások
+        </h1>
+        <div class="flex flex-column">
+          <transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
+            <div v-if="activeTab === 1" :key="1">
+              <settings-check :settings-key="['adaptiveTicking', 'enabled']" />
+              <divider />
+              <settings-check :settings-key="['permissions', 'audio']" />
+            </div>
 
-        <divider />
-
-        <settings-check :settings-key="['performance', 'showProgressBar']" />
-        <settings-text :settings-key="['schedule', 'longPauseInterval']" :min="1" numeric />
-        <settings-time :settings-key="['schedule', 'lengths', 'work']" />
-        <settings-options :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" :settings-key="['currentTimer']" />
+            <div v-if="activeTab === 2" :key="2">
+              <settings-check :settings-key="['performance', 'showProgressBar']" />
+              <settings-text :settings-key="['schedule', 'longPauseInterval']" :min="1" numeric />
+              <settings-time :settings-key="['schedule', 'lengths', 'work']" />
+              <settings-options :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" :settings-key="['currentTimer']" />
+            </div>
+          </transition>
+        </div>
+      </div>
+      <div class="settings-panel-menubar">
+        <div class="tab-header" :class="[{'active': activeTab === 1}]" @click="activeTab = 1">
+          <span>Main</span>
+        </div>
+        <div class="tab-header" :class="[{'active': activeTab === 2}]" @click="activeTab = 2">
+          <span>Schedule</span>
+        </div>
+        <div class="tab-header" :class="[{'active': activeTab === 3}]" @click="activeTab = 3">
+          <span>Display</span>
+        </div>
       </div>
     </section>
   </transition>
@@ -39,6 +56,12 @@ export default {
     }
   },
 
+  data () {
+    return {
+      activeTab: 1
+    }
+  },
+
   computed: {
     processedValue: {
       get () { return this.value },
@@ -50,18 +73,45 @@ export default {
 
 <style lang="scss" scoped>
 section.settings-panel {
-  @apply bg-white h-full fixed shadow w-2/5 px-4;
+  @apply bg-white h-full fixed shadow w-2/5 flex flex-col;
 
-  z-index: 20;
+  z-index: 1001;
 }
 
-.settings-enter-active,
-.settings-leave-active {
-  transition: transform 200ms ease-in;
+div.settings-panel-main {
+  @apply px-4 flex-grow overflow-y-auto;
 }
 
-.settings-enter,
-.settings-leave-to {
-  transform: translateX(-100%);
+div.settings-panel-menubar {
+  @apply flex-none h-12 flex flex-row;
+}
+
+div.tab-header {
+  @apply flex-1 h-full bg-gray-300 p-2 cursor-pointer text-center flex items-center justify-center;
+
+  transition: border-color 0.2s ease-out;
+  box-sizing: border-box;
+}
+
+div.tab-header.active {
+  @apply bg-blue-300;
+}
+
+// ===== TAB TRANSITIONS =====
+.tab-transition-enter-active,
+.tab-transition-leave-active {
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  // transition: opacity 0.5s ease-out;
+  position: relative;
+}
+
+.tab-transition-enter {
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+.tab-transition-leave-to {
+  transform: translateY(10px);
+  opacity: 0;
 }
 </style>
