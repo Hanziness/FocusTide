@@ -22,6 +22,7 @@
     "portal-vue": "^2.1.7",
     "v-mask": "^2.2.3",
     "vue-lazy-hydration": "^1.0.0-beta.14",
+    "vue-material-design-icons": "^4.10.0",
     "vue-native-notification": "^1.1.1",
     "vuelidate": "^0.7.5",
     "vuex-persist": "^2.2.0"
