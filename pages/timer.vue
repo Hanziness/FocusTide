@@ -2,7 +2,12 @@
   <section class="timer-section" :style="{'background-color': $store.getters['events/currentScheduleColour']}">
     <lazy-hydrate when-visible>
       <div>
-        <settings-panel v-if="showSettings" v-model="showSettings" class="left-0" />
+        <transition name="transition-fade">
+          <ui-overlay v-if="showSettings" :value="true" />
+        </transition>
+        <transition name="transition-slidein">
+          <settings-panel v-if="showSettings" v-model="showSettings" class="left-0" />
+        </transition>
       </div>
     </lazy-hydrate>
     <div :class="['pa-8 flex flex-column justify-center items-center bg-transparent h-full']" width="100%" height="100%">
@@ -44,8 +49,8 @@ export default {
     TimerProgress: () => import('@/components/timerProgress.vue'),
     TimerSwitch: () => import('@/components/tailwinded/timer/display/_timerSwitch.vue'),
     TimerControls: () => import('@/components/tailwinded/timer/timerControls.vue'),
-    SettingsPanel: () => import('@/components/tailwinded/settings/settingsPanel.vue'),
-    // UiOverlay: () => import('@/components/tailwinded/base/overlay.vue'),
+    SettingsPanel: () => import(/* webpackPrefetch: true */ '@/components/tailwinded/settings/settingsPanel.vue'),
+    UiOverlay: () => import('@/components/tailwinded/base/overlay.vue'),
     LazyHydrate
   },
 
