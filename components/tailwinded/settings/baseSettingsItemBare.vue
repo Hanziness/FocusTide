@@ -28,7 +28,7 @@
     </div>
 
     <!-- Content to show below the title and description -->
-    <div class="mx-4">
+    <div class="">
       <slot name="content-main" :settingsValue="settingsValue" />
     </div>
   </section>
