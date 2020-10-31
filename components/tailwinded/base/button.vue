@@ -17,38 +17,44 @@
 </template>
 
 <style lang="scss" scoped>
-.ui-button {
-  transition: background-color 0.1s ease-out;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.ui-button.regular {
-  @apply bg-gray-400 rounded p-4;
-}
+@layer components {
+  .ui-button {
+    transition: background-color 0.1s ease-out;
+  }
 
-.ui-button.regular:hover:not(:disabled) {
-  @apply bg-gray-500;
-}
+  .ui-button.regular {
+    @apply bg-gray-400 rounded p-4;
+  }
 
-.ui-button.regular:active:not(:disabled) {
-  @apply bg-gray-600;
-}
+  .ui-button.regular:hover:not(:disabled) {
+    @apply bg-gray-500;
+  }
 
-.ui-button.subtle {
-  @apply bg-transparent rounded-full p-2;
-}
+  .ui-button.regular:active:not(:disabled) {
+    @apply bg-gray-600;
+  }
 
-.ui-button.subtle:hover {
-  @apply bg-gray-200;
-}
+  .ui-button.subtle {
+    @apply bg-transparent rounded-full p-2;
+  }
 
-.ui-button.subtle:active {
-  @apply bg-gray-400;
-}
+  .ui-button.subtle:hover {
+    @apply bg-gray-200;
+  }
 
-.ui-button.disabled {
-  @apply cursor-default;
+  .ui-button.subtle:active {
+    @apply bg-gray-400;
+  }
 
-  opacity: 0.5;
+  .ui-button.disabled {
+    @apply cursor-default;
+
+    opacity: 0.5;
+  }
 }
 </style>
 
