@@ -135,6 +135,12 @@ export default {
         }
       }
     }
+  },
+
+  watch: {
+    value (newValue) {
+      this.internalData = newValue
+    }
   }
 }
 </script>
