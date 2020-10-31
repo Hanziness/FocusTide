@@ -1,4 +1,4 @@
-import colors from 'vuetify/es5/util/colors'
+// import colors from 'vuetify/es5/util/colors'
 
 export default {
   /*
@@ -31,7 +31,8 @@ export default {
   ** Global CSS
   */
   css: [
-    'normalize.css/normalize.css',
+    // 'normalize.css/normalize.css',
+    // '@/assets/global.scss',
     '@/assets/transitions.scss'
   ],
   /*
@@ -58,7 +59,7 @@ export default {
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
-    '@nuxtjs/vuetify',
+    // '@nuxtjs/vuetify',
     '@nuxtjs/tailwindcss'
   ],
 
@@ -67,8 +68,8 @@ export default {
   */
   modules: [
     '@nuxtjs/pwa',
-    'nuxt-i18n',
-    'portal-vue/nuxt'
+    'nuxt-i18n'
+    // 'portal-vue/nuxt'
   ],
 
   /** Modules that need to be transpiled */
@@ -126,24 +127,24 @@ export default {
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
   */
-  vuetify: {
-    customVariables: ['~/assets/variables.scss'],
-    treeShake: true,
-    theme: {
-      dark: false,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
-  },
+  // vuetify: {
+  //   customVariables: ['~/assets/variables.scss'],
+  //   treeShake: true,
+  //   theme: {
+  //     dark: false,
+  //     themes: {
+  //       dark: {
+  //         primary: colors.blue.darken2,
+  //         accent: colors.grey.darken3,
+  //         secondary: colors.amber.darken3,
+  //         info: colors.teal.lighten1,
+  //         warning: colors.amber.base,
+  //         error: colors.deepOrange.accent4,
+  //         success: colors.green.accent3
+  //       }
+  //     }
+  //   }
+  // },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
