@@ -14,6 +14,12 @@
               <settings-check :settings-key="['adaptiveTicking', 'enabled']" />
               <divider />
               <settings-check :settings-key="['permissions', 'audio']" />
+              <settings-check
+                :settings-key="['permissions', 'notifications']"
+                :set-value-on-change="false"
+                :disabled="false"
+                :custom-set-function="changeNotificationSettings"
+              />
             </div>
 
             <div v-if="activeTab === 2" :key="2" class="settings-tab">
@@ -30,11 +36,21 @@
               <settings-time :settings-key="['schedule', 'lengths', 'work']" />
               <settings-time :settings-key="['schedule', 'lengths', 'shortpause']" />
               <settings-time :settings-key="['schedule', 'lengths', 'longpause']" />
-              <divider />
-              <settings-options :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" :settings-key="['currentTimer']" />
             </div>
 
-            <div v-if="activeTab === 3" :key="3" class="settings-tab" />
+            <div v-if="activeTab === 3" :key="3" class="settings-tab">
+              <settings-options :settings-key="['currentTimer']" :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
+              <settings-check :settings-key="['schedule', 'showSchedule']" />
+              <settings-text
+                :settings-key="['schedule', 'numScheduleEntries']"
+                :min="3"
+                :max="10"
+                :disabled="!$store.state.settings.schedule.showSchedule"
+                numeric
+              />
+              <settings-check :settings-key="['performance', 'showProgressBar']" />
+              <!-- TODO Audio volume control -->
+            </div>
           </transition>
         </div>
       </div>
@@ -83,6 +99,33 @@ export default {
     processedValue: {
       get () { return this.value },
       set (newValue) { this.$emit('input', newValue) }
+    },
+
+    notificationPermission: {
+      get () {
+        return Notification ? (Notification.permission === 'granted' && this.$store.state.settings.permissions.notifications) : false
+      },
+      set (newValue) {
+        if (Notification.permission === 'default') {
+          const thisRef = this
+          this.$notification.requestPermission().then((newValue) => {
+            if (newValue === 'granted') {
+              thisRef.$store.commit('settings/SET', { key: ['permissions', 'notifications'], value: true })
+            } else {
+              thisRef.notificationsBlocked = true
+              thisRef.$store.commit('settings/SET', { key: ['permissions', 'notifications'], value: false })
+            }
+          })
+        } else if (Notification.permission === 'granted') {
+          this.$store.commit('settings/SET', { key: ['permissions', 'notifications'], value: newValue })
+        }
+      }
+    }
+  },
+
+  methods: {
+    changeNotificationSettings (newValue) {
+      this.notificationPermission = newValue
     }
   }
 }
