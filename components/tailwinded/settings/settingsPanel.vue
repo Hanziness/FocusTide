@@ -51,7 +51,7 @@ export default {
     SettingsTime: () => import('@/components/tailwinded/settings/items/settingsTime.vue'),
     SettingsOptions: () => import('@/components/tailwinded/settings/items/settingsOptions.vue'),
     Divider: () => import('@/components/tailwinded/base/divider.vue'),
-    CloseIcon: () => import('vue-material-design-icons/Close')
+    CloseIcon: () => import('vue-material-design-icons/Close.vue')
   },
   props: {
     value: {
