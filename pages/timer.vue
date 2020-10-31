@@ -1,7 +1,7 @@
 <template>
   <section class="timer-section" :style="{'background-color': $store.getters['events/currentScheduleColour']}">
     <!-- Settings button -->
-    <ui-button subtle class="absolute" style="top: 0.5rem; right: 0.5rem;" @click="showSettings = true">
+    <ui-button subtle class="absolute" style="top: 0.5rem; right: 0.5rem; z-index: 10;" @click="showSettings = true">
       <client-only>
         <cog-icon class="text-lg" />
       </client-only>
@@ -17,21 +17,25 @@
         </transition>
       </div>
     </lazy-hydrate>
-    <div :class="['pa-8 flex flex-column justify-center items-center bg-transparent h-full']" width="100%" height="100%">
+    <div :class="['p-8 flex flex-col justify-center items-center bg-transparent h-full']" width="100%" height="100%">
       <schedule-display />
       <notification-controller />
       <timer-progress v-if="$store.getters['settings/performanceSettings'].showProgressBar" />
-      <v-spacer />
+      <div class="flex-grow" />
       <timer-switch :timer-widget="$store.state.settings.currentTimer" />
-      <v-spacer />
+      <div class="flex-grow" />
       <timer-controls />
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
+html {
+  @apply overflow-hidden;
+}
+
 section.timer-section {
-  height: 100%;
+  height: 100vh;
   transition: background-color 300ms ease-in;
 }
 
@@ -52,7 +56,7 @@ export default {
     UiButton: () => import('@/components/tailwinded/base/button.vue'),
     ScheduleDisplay: () => import('@/components/tailwinded/schedule/scheduleDisplay.vue'),
     NotificationController: () => import('@/components/notifications/notificationController.vue'),
-    TimerProgress: () => import('@/components/timerProgress.vue'),
+    TimerProgress: () => import('@/components/tailwinded/timer/timerProgress.vue'),
     TimerSwitch: () => import('@/components/tailwinded/timer/display/_timerSwitch.vue'),
     TimerControls: () => import('@/components/tailwinded/timer/timerControls.vue'),
     SettingsPanel: () => import(/* webpackPrefetch: true */ '@/components/tailwinded/settings/settingsPanel.vue'),
