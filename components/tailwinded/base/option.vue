@@ -18,6 +18,7 @@
   @apply px-3 py-4 border border-solid border-gray-300 rounded-md bg-white text-left;
 
   flex-basis: 0;
+  transition: background-color 100ms ease-out, color 100ms ease-out;
 }
 
 .select-option:hover {
@@ -25,7 +26,7 @@
 }
 
 .select-option.active {
-  @apply bg-primary border-transparent shadow;
+  @apply bg-primary border-transparent shadow text-white;
 }
 
 .select-option-title {
