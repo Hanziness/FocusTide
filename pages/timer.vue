@@ -1,19 +1,23 @@
 <template>
   <section class="timer-section" :style="{'background-color': $store.getters['events/currentScheduleColour']}">
+    <!-- Settings button -->
+    <ui-button subtle class="absolute" style="top: 0.5rem; right: 0.5rem;" @click="showSettings = true">
+      <client-only>
+        <cog-icon class="text-lg" />
+      </client-only>
+    </ui-button>
+    <!-- Settings panel -->
     <lazy-hydrate when-visible>
       <div>
         <transition name="transition-fade">
           <ui-overlay v-if="showSettings" />
         </transition>
         <transition name="transition-slidein">
-          <settings-panel v-if="showSettings" v-model="showSettings" class="left-0" />
+          <settings-panel v-if="showSettings" v-model="showSettings" class="right-0" />
         </transition>
       </div>
     </lazy-hydrate>
     <div :class="['pa-8 flex flex-column justify-center items-center bg-transparent h-full']" width="100%" height="100%">
-      <v-btn @click="showSettings = !showSettings">
-        Show settings
-      </v-btn>
       <schedule-display />
       <notification-controller />
       <timer-progress v-if="$store.getters['settings/performanceSettings'].showProgressBar" />
@@ -43,7 +47,9 @@ section.timer-section {
 import LazyHydrate from 'vue-lazy-hydration'
 
 export default {
+  layout: 'timer',
   components: {
+    UiButton: () => import('@/components/tailwinded/base/button.vue'),
     ScheduleDisplay: () => import('@/components/tailwinded/schedule/scheduleDisplay.vue'),
     NotificationController: () => import('@/components/notifications/notificationController.vue'),
     TimerProgress: () => import('@/components/timerProgress.vue'),
@@ -51,6 +57,7 @@ export default {
     TimerControls: () => import('@/components/tailwinded/timer/timerControls.vue'),
     SettingsPanel: () => import(/* webpackPrefetch: true */ '@/components/tailwinded/settings/settingsPanel.vue'),
     UiOverlay: () => import('@/components/tailwinded/base/overlay.vue'),
+    CogIcon: () => import('vue-material-design-icons/Cog.vue'),
     LazyHydrate
   },
 
