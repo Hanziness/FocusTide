@@ -19,6 +19,11 @@ export default {
     validators: {
       type: Object,
       default: () => {}
+    },
+
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
 

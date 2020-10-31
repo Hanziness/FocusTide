@@ -1,6 +1,13 @@
 <template>
   <settings-resolver :settings-key="settingsKey">
-    <base-settings-item-bare slot-scope="{ value, update, error, lastError, translationKey }" :settings-key="settingsKey" :settings-value="value" :error-value="lastError" :translation-key="translationKey">
+    <base-settings-item-bare
+      slot-scope="{ value, update, error, lastError, translationKey }"
+      :disabled="disabled"
+      :settings-key="settingsKey"
+      :settings-value="value"
+      :error-value="lastError"
+      :translation-key="translationKey"
+    >
       <template #content-action="{ settingsValue }">
         <slot
           name="content-action"

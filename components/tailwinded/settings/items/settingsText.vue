@@ -1,6 +1,6 @@
 <template>
   <!-- FIXME try to make sure that the field can be edited even if it results in an errorneous state -->
-  <base-settings-item :settings-key="settingsKey">
+  <base-settings-item :settings-key="settingsKey" :disabled="disabled">
     <template #content-action="{ settingsValue, update, error }">
       <!-- <input
         class="form-input w-full text-right bg-gray-200 focus:bg-white"
