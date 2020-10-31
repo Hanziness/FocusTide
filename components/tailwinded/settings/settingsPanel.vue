@@ -4,9 +4,9 @@
       <div class="settings-panel-main">
         <h1 class="text-xl">
           {{ $i18n.t('settings.heading') }}
-          <button class="float-right button-close" @click="processedValue = false">
+          <ui-button subtle class="float-right -mt-1 -mr-1" @click="processedValue = false">
             <close-icon />
-          </button>
+          </ui-button>
         </h1>
         <div class="flex flex-column">
           <transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
@@ -45,6 +45,7 @@ export default {
   name: 'SettingsPanel',
   components: {
     // UiOverlay: () => import('@/components/tailwinded/base/overlay.vue'),
+    UiButton: () => import('@/components/tailwinded/base/button.vue'),
     SettingsCheck: () => import('@/components/tailwinded/settings/items/settingsCheck.vue'),
     SettingsText: () => import('@/components/tailwinded/settings/items/settingsText.vue'),
     SettingsTime: () => import('@/components/tailwinded/settings/items/settingsTime.vue'),
