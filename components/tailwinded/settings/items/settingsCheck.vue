@@ -1,5 +1,5 @@
 <template>
-  <settings-resolver :settings-key="settingsKey">
+  <settings-resolver :settings-key="settingsKey" :custom-set-function="customSetFunction">
     <base-settings-item slot-scope="{ value, update, translationKey }" :settings-value="value" :translation-key="translationKey">
       <template #content-action="{ settingsValue }">
         <input
@@ -24,6 +24,11 @@ export default {
     settingsKey: {
       type: Array,
       default: () => []
+    },
+
+    customSetFunction: {
+      type: Function,
+      default: undefined
     }
   }
 }
