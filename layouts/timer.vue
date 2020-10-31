@@ -1,12 +1,10 @@
 <template>
-  <v-app>
-    <v-main class="py-0">
-      <nuxt />
-    </v-main>
-    <portal to="footer">
+  <div class="page">
+    <nuxt />
+    <!-- <portal to="footer">
       <span>&copy; {{ new Date().getFullYear() }}</span>
-    </portal>
-  </v-app>
+    </portal> -->
+  </div>
 </template>
 
 <style lang="scss" scoped>
