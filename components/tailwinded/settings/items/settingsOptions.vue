@@ -1,6 +1,6 @@
 <template>
-  <settings-resolver :settings-key="settingsKey">
-    <base-settings-item slot-scope="{ value, update, translationKey }" :settings-value="value" :translation-key="translationKey">
+  <settings-resolver :settings-key="settingsKey" :custom-value="customValue" :custom-set-function="customSetFunction">
+    <base-settings-item slot-scope="{ value, update, translationKey }" :show-description="false" :settings-value="value" :translation-key="translationKey">
       <template #content-main="{ settingsValue }">
         <option-group :translation-key="translationKey" :values="values" :selected="settingsValue" @input="update" />
       </template>
@@ -25,6 +25,17 @@ export default {
     values: {
       type: Object,
       default: () => {}
+    },
+
+    /** Value used for preset controls to specify active item (read-only) */
+    customValue: {
+      type: [Number, String, Object],
+      default: undefined
+    },
+
+    customSetFunction: {
+      type: Function,
+      default: undefined
     }
   },
 
