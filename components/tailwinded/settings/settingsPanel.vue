@@ -2,9 +2,11 @@
   <transition name="settings">
     <section v-show="processedValue" class="settings-panel sm:w-full md:w-1/2">
       <div class="settings-panel-main">
-        <span class="float-right" @click="processedValue = false">Close</span>
         <h1 class="text-xl">
-          Beállítások
+          {{ $i18n.t('settings.heading') }}
+          <button class="float-right close-button" @click="processedValue = false">
+            <close-icon />
+          </button>
         </h1>
         <div class="flex flex-column">
           <transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
@@ -25,13 +27,13 @@
       </div>
       <div class="settings-panel-menubar">
         <div class="tab-header" :class="[{'active': activeTab === 1}]" @click="activeTab = 1">
-          <span>Main</span>
+          <span>{{ $i18n.t('settings.tabs.main') }}</span>
         </div>
         <div class="tab-header" :class="[{'active': activeTab === 2}]" @click="activeTab = 2">
-          <span>Schedule</span>
+          <span>{{ $i18n.t('settings.tabs.timer') }}</span>
         </div>
         <div class="tab-header" :class="[{'active': activeTab === 3}]" @click="activeTab = 3">
-          <span>Display</span>
+          <span>{{ $i18n.t('settings.tabs.display') }}</span>
         </div>
       </div>
     </section>
@@ -47,7 +49,8 @@ export default {
     SettingsText: () => import('@/components/tailwinded/settings/items/settingsText.vue'),
     SettingsTime: () => import('@/components/tailwinded/settings/items/settingsTime.vue'),
     SettingsOptions: () => import('@/components/tailwinded/settings/items/settingsOptions.vue'),
-    Divider: () => import('@/components/tailwinded/base/divider.vue')
+    Divider: () => import('@/components/tailwinded/base/divider.vue'),
+    CloseIcon: () => import('vue-material-design-icons/Close')
   },
   props: {
     value: {
