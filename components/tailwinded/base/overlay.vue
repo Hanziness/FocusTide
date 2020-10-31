@@ -1,5 +1,5 @@
 <template>
-  <div class="ui-overlay" :style="{ 'background-color': `rgba(0, 0, 0, ${value ? 0.3 : 0})` }">
+  <div class="ui-overlay" :style="{ 'background-color': `rgba(0, 0, 0, ${opacity})` }">
     <slot class="ui-overlay-contents" />
   </div>
 </template>
@@ -24,10 +24,6 @@ export default {
       type: Number,
       default: 0.3,
       validator (value) { return value >= 0 && value <= 1 }
-    },
-    value: {
-      type: Boolean,
-      default: false
     }
   }
 }

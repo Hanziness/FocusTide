@@ -3,7 +3,7 @@
     <lazy-hydrate when-visible>
       <div>
         <transition name="transition-fade">
-          <ui-overlay v-if="showSettings" :value="true" />
+          <ui-overlay v-if="showSettings" />
         </transition>
         <transition name="transition-slidein">
           <settings-panel v-if="showSettings" v-model="showSettings" class="left-0" />
