@@ -4,7 +4,7 @@
       <div class="settings-panel-main">
         <h1 class="text-xl">
           {{ $i18n.t('settings.heading') }}
-          <button class="float-right close-button" @click="processedValue = false">
+          <button class="float-right button-close" @click="processedValue = false">
             <close-icon />
           </button>
         </h1>
@@ -116,5 +116,20 @@ div.tab-header.active {
 .tab-transition-leave-to {
   transform: translateY(10px);
   opacity: 0;
+}
+
+// ===== CLOSE BUTTON =====
+.button-close {
+  @apply p-2 rounded-full -mt-1 -mr-1;
+
+  transition: background-color 200ms ease-out;
+}
+
+.button-close:hover {
+  @apply bg-gray-200;
+}
+
+.button-close:active {
+  @apply bg-gray-400;
 }
 </style>
