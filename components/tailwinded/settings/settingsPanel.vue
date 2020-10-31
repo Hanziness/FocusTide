@@ -8,20 +8,33 @@
             <close-icon />
           </ui-button>
         </h1>
-        <div class="flex flex-col w-full">
+        <div class="w-full">
           <transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
-            <div v-if="activeTab === 1" :key="1">
+            <div v-if="activeTab === 1" :key="1" class="settings-tab">
               <settings-check :settings-key="['adaptiveTicking', 'enabled']" />
               <divider />
               <settings-check :settings-key="['permissions', 'audio']" />
             </div>
 
-            <div v-if="activeTab === 2" :key="2">
+            <div v-if="activeTab === 2" :key="2" class="settings-tab">
               <settings-check :settings-key="['performance', 'showProgressBar']" />
               <settings-text :settings-key="['schedule', 'longPauseInterval']" :min="1" numeric />
+              <divider />
+              <settings-options
+                :settings-key="['schedule', 'lengths']"
+                :custom-value="$store.getters['settings/getActiveSchedulePreset']"
+                :values="$store.state.settings.timerPresets"
+                :set-value-on-change="false"
+                :custom-set-function="(v) => { $store.commit('settings/applyPreset', v) }"
+              />
               <settings-time :settings-key="['schedule', 'lengths', 'work']" />
+              <settings-time :settings-key="['schedule', 'lengths', 'shortpause']" />
+              <settings-time :settings-key="['schedule', 'lengths', 'longpause']" />
+              <divider />
               <settings-options :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" :settings-key="['currentTimer']" />
             </div>
+
+            <div v-if="activeTab === 3" :key="3" class="settings-tab" />
           </transition>
         </div>
       </div>
@@ -99,6 +112,10 @@ div.tab-header {
 
 div.tab-header.active {
   @apply bg-blue-300;
+}
+
+div.settings-tab {
+  @apply grid grid-cols-1 gap-1;
 }
 
 // ===== TAB TRANSITIONS =====
