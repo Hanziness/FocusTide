@@ -2,13 +2,13 @@
   <transition name="settings">
     <section v-show="processedValue" class="settings-panel sm:w-full md:w-1/2">
       <div class="settings-panel-main">
-        <h1 class="text-xl">
+        <h1 class="text-xl my-3">
           {{ $i18n.t('settings.heading') }}
-          <ui-button subtle class="float-right -mt-1 -mr-1" @click="processedValue = false">
+          <ui-button subtle class="float-right -mt-1 -mr-2" @click="processedValue = false">
             <close-icon />
           </ui-button>
         </h1>
-        <div class="flex flex-column">
+        <div class="flex flex-col w-full">
           <transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
             <div v-if="activeTab === 1" :key="1">
               <settings-check :settings-key="['adaptiveTicking', 'enabled']" />

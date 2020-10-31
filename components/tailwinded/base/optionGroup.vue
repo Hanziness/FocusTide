@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-row md:flex-column select-option-group">
+  <div class="flex flex-col md:flex-row select-option-group">
     <option-control
       v-for="(item, key) in values"
       :key="key"
-      class="flex-grow-1"
+      class="flex-grow"
       :active="key === selected"
       :translation-key="translationKey"
       :translation-subkey="key"

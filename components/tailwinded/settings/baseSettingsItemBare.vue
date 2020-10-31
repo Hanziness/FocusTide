@@ -1,10 +1,10 @@
 <template>
   <section v-show="visible" :class="[{'disabled': disabled}]" :disabled="disabled" :aria-disabled="disabled">
-    <div class="flex flex-row align-center" :class="[{ 'h-12': !!$slots['content-main'], 'h-16': !$slots['content-main'] }]">
+    <div class="flex flex-row items-center" :class="[{ 'h-12': !!$slots['content-main'], 'h-16': !$slots['content-main'] }]">
       <div v-if="!!$slots['icon']" class="w-12 text-left">
         <slot name="icon" />
       </div>
-      <div class="flex-grow-1">
+      <div class="flex-grow">
         <div class="truncate">
           <slot name="item-title">
             {{ $i18n.t(translationKey + '._title') }}

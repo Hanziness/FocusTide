@@ -1,5 +1,5 @@
 <template>
-  <div class="timer-container flex flex-column justify-center text-center">
+  <div class="timer-container flex flex-col justify-center text-center">
     <transition name="timer-switch" mode="out-in">
       <timer-traditional v-if="timerWidget === 'traditional'" :key="'traditional'" />
       <timer-approximate v-else-if="timerWidget === 'approximate'" :key="'approximate'" />
@@ -45,9 +45,9 @@ import { AvailableTimers } from '@/store/settings'
 
 export default {
   components: {
-    TimerTraditional: () => import('@/components/tailwinded/timer/display/traditional.vue'),
-    TimerApproximate: () => import('@/components/tailwinded/timer/display/approximate.vue'),
-    TimerPercentage: () => import('@/components/tailwinded/timer/display/percentage.vue')
+    TimerTraditional: () => import(/* webpackPrefetch: true */ '@/components/tailwinded/timer/display/traditional.vue'),
+    TimerApproximate: () => import(/* webpackPrefetch: true */ '@/components/tailwinded/timer/display/approximate.vue'),
+    TimerPercentage: () => import(/* webpackPrefetch: true */ '@/components/tailwinded/timer/display/percentage.vue')
   },
   props: {
     timerWidget: {
