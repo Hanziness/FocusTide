@@ -158,7 +158,7 @@ div.tab-header.active {
 }
 
 div.settings-tab {
-  @apply grid grid-cols-1 gap-1;
+  @apply grid grid-cols-1 gap-2;
 }
 
 // ===== TAB TRANSITIONS =====
