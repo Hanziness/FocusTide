@@ -7,7 +7,10 @@
 </template>
 
 <script>
+import TimerMixin from '@/assets/mixins/timerMixin'
+
 export default {
+  mixins: [TimerMixin],
   computed: {
     value () {
       return this.$dayjs.formatRelative(this.$store.state.timer.timerRemaining)

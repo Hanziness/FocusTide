@@ -1,6 +1,6 @@
 <template>
   <div :class="['timer-traditional timer-display', { 'active': $store.getters['timer/isRunning'] }]">
-    {{ $store.getters['timer/getFormattedRemainingTime'] }}
+    {{ $dayjs.formatMs(timerRemaining, {}) }}
   </div>
 </template>
 
@@ -14,3 +14,11 @@
   letter-spacing: 0.5rem;
 }
 </style>
+
+<script>
+import TimerMixin from '@/assets/mixins/timerMixin'
+
+export default {
+  mixins: [TimerMixin]
+}
+</script>

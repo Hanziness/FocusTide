@@ -10,7 +10,10 @@
 </template>
 
 <script>
+import TimerMixin from '@/assets/mixins/timerMixin'
+
 export default {
+  mixins: [TimerMixin],
   computed: {
     timerValue () {
       return Math.round(this.$store.getters['timer/completedFraction'] * 100)

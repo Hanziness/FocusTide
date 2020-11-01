@@ -1,9 +1,9 @@
 <template>
   <div class="timer-container flex flex-col justify-center text-center">
     <transition name="timer-switch" mode="out-in">
-      <timer-traditional v-if="timerWidget === 'traditional'" :key="'traditional'" />
-      <timer-approximate v-else-if="timerWidget === 'approximate'" :key="'approximate'" />
-      <timer-percentage v-else-if="timerWidget === 'percentage'" :key="'percentage'" />
+      <timer-traditional v-if="timerWidget === 'traditional'" :key="'traditional'" v-bind="timerInfo" />
+      <timer-approximate v-else-if="timerWidget === 'approximate'" :key="'approximate'" v-bind="timerInfo" />
+      <timer-percentage v-else-if="timerWidget === 'percentage'" :key="'percentage'" v-bind="timerInfo" />
     </transition>
   </div>
 </template>
@@ -42,6 +42,7 @@ div.timer-display.active {
 
 <script>
 import { AvailableTimers } from '@/store/settings'
+import TimerMixin from '@/assets/mixins/timerMixin'
 
 export default {
   components: {
@@ -49,12 +50,22 @@ export default {
     TimerApproximate: () => import(/* webpackPrefetch: true */ '@/components/tailwinded/timer/display/approximate.vue'),
     TimerPercentage: () => import(/* webpackPrefetch: true */ '@/components/tailwinded/timer/display/percentage.vue')
   },
+  mixins: [TimerMixin],
   props: {
     timerWidget: {
       type: String,
       default: 'traditional',
       validator (value) {
         return Object.values(AvailableTimers).includes(value)
+      }
+    }
+  },
+  computed: {
+    timerInfo () {
+      return {
+        timerRemaining: this.timerRemaining,
+        timerOriginal: this.timerOriginal,
+        timerState: this.timerState
       }
     }
   }
