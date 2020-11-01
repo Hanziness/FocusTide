@@ -17,15 +17,29 @@
         </transition>
       </div>
     </lazy-hydrate>
-    <div :class="['p-8 flex flex-col justify-center items-center bg-transparent h-full']" width="100%" height="100%">
-      <schedule-display />
-      <notification-controller />
-      <timer-progress v-if="$store.getters['settings/performanceSettings'].showProgressBar" />
-      <div class="flex-grow" />
-      <timer-switch :timer-widget="$store.state.settings.currentTimer" />
-      <div class="flex-grow" />
-      <timer-controls />
-    </div>
+    <ticker
+      :timer-original="$store.getters['events/getSchedule'][0]._length"
+      :timer-state="$store.state.timer.timerState"
+      @tick="console.log($event)"
+      @complete="console.log('YAY, complete!')"
+    >
+      <div
+        slot-scope="{ timerRemaining, timerOriginal }"
+        :class="['p-8 flex flex-col justify-center items-center bg-transparent h-full']"
+        width="100%"
+        height="100%"
+      >
+        <!-- <div slot-scope="{ timerRemaining, timerOriginal }"> -->
+        <schedule-display />
+        <notification-controller />
+        <timer-progress v-if="$store.getters['settings/performanceSettings'].showProgressBar" />
+        <div class="flex-grow" />
+        <timer-switch :timer-remaining="timerRemaining" :timer-original="timerOriginal" :timer-widget="$store.state.settings.currentTimer" />
+        <div class="flex-grow" />
+        <timer-controls />
+        <!-- </div> -->
+      </div>
+    </ticker>
   </section>
 </template>
 
@@ -53,13 +67,14 @@ import LazyHydrate from 'vue-lazy-hydration'
 export default {
   layout: 'timer',
   components: {
-    UiButton: () => import('@/components/tailwinded/base/button.vue'),
+    Ticker: () => import('@/components/ticker.vue'),
     ScheduleDisplay: () => import('@/components/tailwinded/schedule/scheduleDisplay.vue'),
     NotificationController: () => import('@/components/notifications/notificationController.vue'),
     TimerProgress: () => import('@/components/tailwinded/timer/timerProgress.vue'),
     TimerSwitch: () => import('@/components/tailwinded/timer/display/_timerSwitch.vue'),
     TimerControls: () => import('@/components/tailwinded/timer/timerControls.vue'),
     SettingsPanel: () => import(/* webpackPrefetch: true */ '@/components/tailwinded/settings/settingsPanel.vue'),
+    UiButton: () => import('@/components/tailwinded/base/button.vue'),
     UiOverlay: () => import('@/components/tailwinded/base/overlay.vue'),
     CogIcon: () => import('vue-material-design-icons/Cog.vue'),
     LazyHydrate
