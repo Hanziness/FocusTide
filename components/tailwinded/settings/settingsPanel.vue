@@ -147,14 +147,14 @@ div.settings-panel-menubar {
 }
 
 div.tab-header {
-  @apply flex-1 h-full bg-gray-300 p-2 cursor-pointer text-center flex items-center justify-center;
+  @apply flex-1 h-full bg-gray-300 p-2 cursor-pointer text-center flex items-center justify-center select-none;
 
   transition: border-color 0.2s ease-out;
   box-sizing: border-box;
 }
 
 div.tab-header.active {
-  @apply bg-blue-300;
+  @apply bg-primary text-white;
 }
 
 div.settings-tab {
