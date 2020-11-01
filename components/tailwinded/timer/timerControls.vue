@@ -3,21 +3,21 @@
     <ui-button
       color="blue darken-2"
       :disabled="$store.getters['timer/isRunning']"
-      @click="$store.dispatch('timer/startTimer')"
+      @click="$store.commit('timer/setTimerState', 1)"
     >
       GO
     </ui-button>
     <ui-button
       color="orange darken"
       :disabled="!$store.getters['timer/isRunning']"
-      @click="$store.dispatch('timer/pauseOrStopTimer', false)"
+      @click="$store.commit('timer/setTimerState', 2)"
     >
       PAUSE
     </ui-button>
     <ui-button
       color="red darken"
       :disabled="$store.getters['timer/isStopped']"
-      @click="$store.dispatch('timer/pauseOrStopTimer', true)"
+      @click="$store.commit('timer/setTimerState', 0)"
     >
       STOP
     </ui-button>

@@ -101,6 +101,10 @@ export const mutations = {
     state.timerHandle = newHandle
   },
 
+  setRemainingTime (state, newRemainingTime) {
+    state.timerRemaining = Math.max(0, newRemainingTime)
+  },
+
   /** Clears the tick handle and stops ticking */
   clearTickHandle (state) {
     clearTimeout(state.timerHandle)

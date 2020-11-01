@@ -20,8 +20,8 @@
     <ticker
       :timer-original="$store.getters['events/getSchedule'][0]._length"
       :timer-state="$store.state.timer.timerState"
-      @tick="console.log($event)"
-      @complete="console.log('YAY, complete!')"
+      @tick="$store.commit('timer/setRemainingTime', $event)"
+      @complete="$store.dispatch('events/advanceSchedule', {})"
     >
       <div
         slot-scope="{ timerRemaining, timerOriginal }"

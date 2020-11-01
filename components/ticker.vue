@@ -26,6 +26,10 @@ export default {
     timerOriginal: {
       type: Number,
       required: true
+    },
+    timerState: {
+      type: Number,
+      default: timerState.STOPPED
     }
   },
 
@@ -35,7 +39,6 @@ export default {
       lastUpdate: new Date().getTime(),
       nextTickDelta: 1000,
       timerHandle: null,
-      timerState: timerState.STOPPED,
 
       // notify groups
       tickFunctions: {},
@@ -55,6 +58,7 @@ export default {
     },
 
     timerState (newValue, oldValue) {
+      console.log(`New timerState = ${newValue}`)
       if (newValue !== oldValue) {
         switch (newValue) {
           case timerState.RUNNING:
@@ -128,14 +132,14 @@ export default {
 
         nextTickMs = Math.min(nextTickMs, this.timerRemaining)
         const timeoutHandle = setTimeout(
-          () => { this.scheduleNextTick() },
+          () => { this.scheduleNextTick({}) },
           nextTickMs
         )
 
         if (this.timerHandle) {
           this.clearTickHandle()
         }
-        this.setTimerHandle(timeoutHandle)
+        this.timerHandle = timeoutHandle
       }
     },
 
@@ -160,14 +164,14 @@ export default {
       // check if timer completed and schedule next tick
       if (this.timerRemaining <= 0) {
       // timer completed, notify participants
-        this.timerState = timerState.COMPLETED
+        // this.timerState = timerState.COMPLETED
         this.$emit('complete')
         // notifyFunctions(this, { group: functionUpdateGroup.COMPLETE, elapsedDelta })
       } else if (nextState === timerState.RUNNING) {
         // next tick is scheduled in the action
       } else {
         // do not tick further
-        this.timerState = nextState
+        // this.timerState = nextState
       }
 
       // execute subscribed update functions
@@ -176,14 +180,15 @@ export default {
       }
 
       this.$emit('tick', this.timerRemaining)
+      // this.$store.commit('timer/setRemainingTime', this.timerRemaining)
     },
 
     /** Starts or resumes the timer */
     startTimer () {
-      if (this.timerState === timerState.RUNNING) {
-        // timer is set to be running, don't do anything
-        return
-      }
+      // if (this.timerState === timerState.RUNNING) {
+      //   // timer is set to be running, don't do anything
+      //   return
+      // }
 
       if (this.timerState === timerState.PAUSED) {
         // do not touch remaining time
@@ -199,34 +204,34 @@ export default {
 
     pauseOrStopTimer (stop = false) {
       // if the timer is not running OR it's not (paused and we want to stop it), we shouldn't do anything
-      if (this.timerState !== timerState.RUNNING && !(this.timerState === timerState.PAUSED && stop)) {
-        return
-      }
+      // if (this.timerState !== timerState.RUNNING && !(this.timerState === timerState.PAUSED && stop)) {
+      //   return
+      // }
 
       this.clearTickHandle()
       this.timerTick({ nextState: stop ? timerState.STOPPED : timerState.PAUSED })
 
       if (stop) {
         this.resetTimer()
-        this.$store.dispatch('events/recordUserEvent', UserEventType.TIMER_STOP, { root: true })
+        this.$store.dispatch('events/recordUserEvent', UserEventType.TIMER_STOP)
       } else {
-        this.$store.dispatch('events/recordUserEvent', UserEventType.TIMER_PAUSE, { root: true })
+        this.$store.dispatch('events/recordUserEvent', UserEventType.TIMER_PAUSE)
       }
     },
 
     /** Stops and resets the timer with a new value */
-    setNewTimer ({ commit, dispatch }, newTimerMs) {
-      dispatch('pauseOrStopTimer', true)
-      commit('setTimes', newTimerMs)
+    setNewTimer (newTimerMs) {
+      this.pauseOrStopTimer(true)
+      this.setTimes(newTimerMs)
     },
 
     /** Automatically resets the timer from the schedule */
     getTimerFromSchedule ({ rootState, dispatch, rootGetters }) {
-      dispatch('setNewTimer', rootGetters['events/getSchedule'][0]._length)
+      this.setNewTimer(rootGetters['events/getSchedule'][0]._length)
     },
 
     setTimerState (newState) {
-      this.timerState = newState
+      // this.timerState = newState
     }
   },
 

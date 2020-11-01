@@ -1,7 +1,7 @@
 <template>
   <transition-group name="progress-transition" mode="out-in">
     <div
-      :key="$store.getters['events/nextScheduleColour']"
+      :key="$store.getters['events/getSchedule'][0]._index"
       :class="['timer-progress']"
       :style="{
         'background-color': $store.getters['events/nextScheduleColour'],

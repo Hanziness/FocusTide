@@ -1,8 +1,12 @@
 import dayjs from 'dayjs'
+import { timerState } from '@/store/timer'
 
 export const state = () => ({
   eventList: [],
-  schedule: [],
+  schedule: [
+    new ScheduleEntry(60000, 0, ScheduleItemType.WORK),
+    new ScheduleEntry(60000, 0, ScheduleItemType.SHORTPAUSE)
+  ],
   currentBlockIndex: 0,
   maxScheduleEntries: 5,
   scheduleIndexCounter: 0,
@@ -18,10 +22,10 @@ export const ScheduleItemType = {
 }
 
 export class ScheduleEntry {
-  constructor (length, index, type = ScheduleItemType.WORK) {
-    this._type = type
-    this._length = length
+  constructor (index) {
+    this._remaining = -1
     this._index = index
+    this._timerState = timerState.STOPPED
   }
 }
 
@@ -47,20 +51,26 @@ export const UserEventType = {
 export const getters = {
   getSchedule (state, getters, rootState) {
     const numEntriesInABlock = 2 * (rootState.settings.schedule.longPauseInterval)
-    const schedule = []
-    let i = state.statesCompleted
+    const schedule = JSON.parse(JSON.stringify(state.schedule))
+    const i = state.statesCompleted
 
-    while (schedule.length < rootState.settings.schedule.numScheduleEntries) {
-      const index = i % numEntriesInABlock
-      if (index === numEntriesInABlock - 1) {
-        schedule.push(new ScheduleEntry(rootState.settings.schedule.lengths.longpause + 900, i, ScheduleItemType.LONGPAUSE))
-      } else if (index % 2) {
-        schedule.push(new ScheduleEntry(rootState.settings.schedule.lengths.shortpause + 900, i, ScheduleItemType.SHORTPAUSE))
-      } else {
-        schedule.push(new ScheduleEntry(rootState.settings.schedule.lengths.work + 900, i, ScheduleItemType.WORK))
+    for (let j = 0; j < rootState.settings.schedule.numScheduleEntries; j++) {
+      const index = (i + j) % numEntriesInABlock
+      if (!schedule[j]) {
+        schedule[j] = JSON.parse(JSON.stringify(new ScheduleEntry(i + j)))
       }
+      const item = schedule[j]
 
-      i++
+      if (index === numEntriesInABlock - 1) {
+        item._length = rootState.settings.schedule.lengths.longpause + 900
+        item._type = ScheduleItemType.LONGPAUSE
+      } else if (index % 2) {
+        item._length = rootState.settings.schedule.lengths.shortpause + 900
+        item._type = ScheduleItemType.SHORTPAUSE
+      } else {
+        item._length = rootState.settings.schedule.lengths.work + 900
+        item._type = ScheduleItemType.WORK
+      }
     }
 
     return schedule
@@ -92,6 +102,10 @@ export const getters = {
 }
 
 export const mutations = {
+  initSchedule (state, newSchedule) {
+    state.schedule = newSchedule
+  },
+
   insertNextScheduleEntry (state, { lengths, longPauseInterval }) {
     const numEntriesInABlock = 2 * (longPauseInterval)
 
@@ -119,6 +133,27 @@ export const mutations = {
 }
 
 export const actions = {
+  initSchedule ({ state, commit, rootState }) {
+    const numEntriesInABlock = 2 * (rootState.settings.schedule.longPauseInterval)
+    const schedule = []
+    let i = state.statesCompleted
+
+    while (schedule.length < rootState.settings.schedule.numScheduleEntries) {
+      const index = i % numEntriesInABlock
+      if (index === numEntriesInABlock - 1) {
+        schedule.push(new ScheduleEntry(rootState.settings.schedule.lengths.longpause + 900, i, ScheduleItemType.LONGPAUSE))
+      } else if (index % 2) {
+        schedule.push(new ScheduleEntry(rootState.settings.schedule.lengths.shortpause + 900, i, ScheduleItemType.SHORTPAUSE))
+      } else {
+        schedule.push(new ScheduleEntry(rootState.settings.schedule.lengths.work + 900, i, ScheduleItemType.WORK))
+      }
+
+      i++
+    }
+
+    commit('initSchedule', JSON.parse(JSON.stringify(schedule)))
+  },
+
   checkSchedule ({ state, commit, rootState }) {
     const settingsToUse = rootState.settings.schedule
     while (state.schedule.length < state.maxScheduleEntries) {
