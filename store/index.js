@@ -1,7 +1,7 @@
 export default {
   actions: {
-    nuxtServerInit ({ dispatch }) {
-      dispatch('events/initSchedule')
+    nuxtServerInit ({ state, commit }) {
+      commit('schedule/initSchedule', state.settings.schedule.numScheduleEntries)
     }
   }
 }

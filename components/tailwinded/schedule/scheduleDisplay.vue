@@ -7,8 +7,8 @@
       class="schedule-container"
     >
       <schedule-item
-        v-for="(item, i) in $store.getters['events/getSchedule']"
-        :key="item._index"
+        v-for="(item, i) in $store.getters['schedule/getSchedule']"
+        :key="item.id"
         :data="item"
         :active="i === 0"
       />
