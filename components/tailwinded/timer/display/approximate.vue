@@ -1,6 +1,6 @@
 <template>
   <transition name="transition-approximate-up" mode="out-in">
-    <div :key="value" :class="['timer-approximate timer-display', { 'active': $store.getters['timer/isRunning'] }]">
+    <div :key="value" :class="['timer-approximate timer-display', { 'active': running }]">
       {{ value }}
     </div>
   </transition>
@@ -13,7 +13,7 @@ export default {
   mixins: [TimerMixin],
   computed: {
     value () {
-      return this.$dayjs.formatRelative(this.$store.state.timer.timerRemaining)
+      return this.$dayjs.formatRelative(this.timeOriginal - this.timeElapsed)
     }
   }
 }

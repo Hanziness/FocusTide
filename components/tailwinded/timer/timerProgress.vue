@@ -1,11 +1,11 @@
 <template>
   <transition-group name="progress-transition" mode="out-in">
     <div
-      :key="$store.getters['events/getSchedule'][0]._index"
+      :key="$store.getters['schedule/getCurrentItem'].id"
       :class="['timer-progress']"
       :style="{
-        'background-color': $store.getters['events/nextScheduleColour'],
-        'transform': `translateX(${-progressPercentage}%)`
+        'background-color': $store.getters['schedule/nextScheduleColour'],
+        'transform': `translateX(${-100 + progressPercentage}%)`
       }"
     />
   </transition-group>
@@ -13,9 +13,21 @@
 
 <script>
 export default {
+  props: {
+    timeElapsed: {
+      type: Number,
+      required: true
+    },
+    timeOriginal: {
+      type: Number,
+      required: true
+    }
+  },
+
   computed: {
     progressPercentage () {
-      return (1 - this.$store.getters['timer/completedFraction']) * 100
+      // return (1 - this.$store.getters['timer/completedFraction']) * 100
+      return (this.timeElapsed / this.timeOriginal) * 100
     }
   }
 }
@@ -40,15 +52,15 @@ export default {
 .progress-transition-enter-active,
 .progress-transition-leave-active {
   transition: 500ms ease-in;
-  transition-property: opacity clip-path !important;
+  transition-property: opacity transform !important;
 }
 
 .progress-transition-enter {
-  opacity: 0;
+  // opacity: 0;
 }
 
 .progress-transition-leave-to {
-  opacity: 0;
-  clip-path: inset(0% 0% 0% 0%) !important;
+  // opacity: 0;
+  transform: translateX(0%) !important;
 }
 </style>

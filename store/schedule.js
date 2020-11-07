@@ -9,8 +9,7 @@ export const ScheduleItemType = {
 function createScheduleEntry (id) {
   return {
     id,
-    timerElapsed: 0,
-    timerState: 0,
+    timeElapsed: 0,
     length: undefined,
     type: undefined
   }
@@ -18,7 +17,8 @@ function createScheduleEntry (id) {
 
 export const state = () => {
   return {
-    items: []
+    items: [],
+    timerState: 0
   }
 }
 
@@ -67,22 +67,46 @@ export const getters = {
       if (returnArray[index].type === undefined) { returnArray[index].type = itemType }
 
       // set length if needed
-      if (returnArray[index].length === undefined || returnArray[index].timerState === 0) {
+      if (returnArray[index].length === undefined) {
         returnArray[index].length = rootState.settings.schedule.lengths[itemType]
       }
 
       // set remaining timer field
-      returnArray[index].timerRemaining = returnArray[index].length - returnArray[index].timerElapsed
+      returnArray[index].timeRemaining = returnArray[index].length - returnArray[index].timeElapsed
     }
 
     return returnArray
+  },
+
+  getCurrentItem (state, getters) {
+    return getters.getSchedule[0]
+  },
+
+  getCurrentTimerState (state) {
+    return state.timerState
+  },
+
+  // VISUALS
+  currentScheduleColour (state, getters, rootState) {
+    // return rootState.settings.visuals[state.schedule[0] ? state.schedule[0]._type : 'wait'].colour
+    return rootState.settings.visuals[getters.getCurrentItem.type].colour
+  },
+
+  nextScheduleColour (state, getters, rootState) {
+    const nextState = getters.getSchedule[1].type
+    if (nextState) {
+      return rootState.settings.visuals[nextState].colour
+    } else {
+      return ''
+    }
   }
 }
 
 export const mutations = {
   /** Advances the schedule by removing the first item and adding a new one to the end */
   advance (state) {
-    state.items = state.items.slice(1).push(createScheduleEntry(state.items.lastItem.id + 1))
+    state.items = state.items.slice(1)
+    state.items.push(createScheduleEntry(state.items.slice(-1).pop().id + 1))
   },
 
   /** Allows locking information on a schedule item (so the getter will not override it) */
@@ -96,6 +120,11 @@ export const mutations = {
   /** Updates elapsed time on the first schedule entry */
   updateTime (state, timeElapsed) {
     state.items[0].timeElapsed = timeElapsed
+  },
+
+  updateTimerState (state, newState) {
+    // state.items[0].timerState = newState
+    state.timerState = newState
   },
 
   /** Mutation to generate an initial schedule state */

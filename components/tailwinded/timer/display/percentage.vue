@@ -1,5 +1,5 @@
 <template>
-  <div :class="['timer-percentage timer-display', { 'active': $store.getters['timer/isRunning'] }]">
+  <div :class="['timer-percentage timer-display', { 'active': running }]">
     <transition name="transition-percentage" tag="span" mode="out-in">
       <span :key="timerValue" class="timer-percentage-value">
         {{ timerValue }}
@@ -16,7 +16,7 @@ export default {
   mixins: [TimerMixin],
   computed: {
     timerValue () {
-      return Math.round(this.$store.getters['timer/completedFraction'] * 100)
+      return Math.round((this.timeElapsed / this.timeOriginal) * 100)
     }
   }
 }

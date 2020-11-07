@@ -1,5 +1,5 @@
 <template>
-  <section class="timer-section" :style="{'background-color': $store.getters['events/currentScheduleColour']}">
+  <section class="timer-section" :style="{'background-color': $store.getters['schedule/currentScheduleColour']}">
     <!-- Settings button -->
     <ui-button subtle class="absolute" style="top: 0.5rem; right: 0.5rem; z-index: 10;" @click="showSettings = true">
       <client-only>
@@ -17,14 +17,9 @@
         </transition>
       </div>
     </lazy-hydrate>
-    <ticker
-      :timer-original="$store.getters['events/getSchedule'][0]._length"
-      :timer-state="$store.state.timer.timerState"
-      @tick="$store.commit('timer/setRemainingTime', $event)"
-      @complete="$store.dispatch('events/advanceSchedule', {})"
-    >
+    <ticker>
       <div
-        slot-scope="{ timerRemaining, timerOriginal }"
+        slot-scope="{ timerState, timeElapsed, timeOriginal }"
         :class="['p-8 flex flex-col justify-center items-center bg-transparent h-full']"
         width="100%"
         height="100%"
@@ -32,9 +27,18 @@
         <!-- <div slot-scope="{ timerRemaining, timerOriginal }"> -->
         <schedule-display />
         <notification-controller />
-        <timer-progress v-if="$store.getters['settings/performanceSettings'].showProgressBar" />
+        <timer-progress
+          v-if="$store.getters['settings/performanceSettings'].showProgressBar"
+          :time-elapsed="timeElapsed"
+          :time-original="timeOriginal"
+        />
         <div class="flex-grow" />
-        <timer-switch :timer-remaining="timerRemaining" :timer-original="timerOriginal" :timer-widget="$store.state.settings.currentTimer" />
+        <timer-switch
+          :time-elapsed="timeElapsed"
+          :time-original="timeOriginal"
+          :timer-state="timerState"
+          :timer-widget="$store.state.settings.currentTimer"
+        />
         <div class="flex-grow" />
         <timer-controls />
         <!-- </div> -->
@@ -96,33 +100,35 @@ export default {
     },
 
     remainingTimeString () {
+      const currentScheduleItem = this.$store.getters['schedule/getCurrentItem']
       return this.$dayjs.getFormattedTime(
-        this.$store.state.timer.timerRemaining,
+        currentScheduleItem.length - currentScheduleItem.timeElapsed,
         this.$store.state.settings.currentTimer,
-        { total: this.$store.state.timer.timerOriginal }
+        { total: currentScheduleItem.length }
       )
     },
 
     pageTitle () {
-      return this.$store.getters['events/currentScheduleEntry']
-        ? this.$i18n.t('section.' + this.$store.getters['events/currentScheduleEntry']._type).toLowerCase() : 'Pomodoro'
+      return this.$store.getters['schedule/getCurrentItem']
+        ? this.$i18n.t('section.' + this.$store.getters['schedule/getCurrentItem'].type).toLowerCase() : 'Pomodoro'
     }
   },
 
   beforeCreate () {
     // this.$store.commit('settings/applyPreset', 'debug')
     // this.$store.dispatch('events/checkSchedule')
-    this.$store.dispatch('timer/setNewTimer', this.$store.getters['events/getSchedule'][0]._length)
+    // this.$store.dispatch('timer/setNewTimer', this.$store.getters['events/getSchedule'][0]._length)
   },
 
   mounted () {
-    this.$store.dispatch('timer/initDefaultSubscribeFunctions')
+    // this.$store.dispatch('timer/initDefaultSubscribeFunctions')
 
     const thisRef = this
     document.addEventListener('visibilitychange', function () {
       thisRef.$store.commit('settings/registerNewHidden', document.hidden)
       if (!document.hidden) {
-        thisRef.$store.dispatch('timer/scheduleNextTick', {}) // tick the timer if document is now visible
+        // tick if needed
+        // thisRef.$store.dispatch('timer/scheduleNextTick', {}) // tick the timer if document is now visible
       }
     })
   },

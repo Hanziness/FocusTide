@@ -1,16 +1,22 @@
 export default {
   props: {
-    timerRemaining: {
+    timeElapsed: {
       type: Number,
-      default: 0
+      required: true
     },
-    timerOriginal: {
+    timeOriginal: {
       type: Number,
-      default: 1
+      required: true
     },
     timerState: {
       type: Number,
-      default: 0
+      required: true
+    }
+  },
+
+  computed: {
+    running () {
+      return this.timerState === 1
     }
   }
 }

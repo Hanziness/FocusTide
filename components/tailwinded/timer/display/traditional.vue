@@ -1,6 +1,6 @@
 <template>
-  <div :class="['timer-traditional timer-display', { 'active': $store.getters['timer/isRunning'] }]">
-    {{ $dayjs.formatMs(timerRemaining, {}) }}
+  <div :class="['timer-traditional timer-display', { 'active': running }]">
+    {{ $dayjs.formatMs(timeOriginal - timeElapsed, {}) }}
   </div>
 </template>
 

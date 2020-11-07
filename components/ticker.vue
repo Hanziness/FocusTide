@@ -1,14 +1,5 @@
 
 <script>
-import { UserEventType } from '@/store/events'
-
-const timerMode = {
-  NULL: 0,
-  WORK: 1,
-  SHORTPAUSE: 2,
-  LONGPAUSE: 3
-}
-
 const timerState = {
   STOPPED: 0,
   RUNNING: 1,
@@ -16,49 +7,66 @@ const timerState = {
   COMPLETED: 3
 }
 
-const functionUpdateGroup = {
-  TICK: 0,
-  COMPLETE: 1
-}
-
 export default {
-  props: {
-    timerOriginal: {
-      type: Number,
-      required: true
-    },
-    timerState: {
-      type: Number,
-      default: timerState.STOPPED
+  data () {
+    return {
+      // timeOriginal: 1,
+      timeElapsed: 0,
+      lastUpdate: new Date().getTime(),
+      nextTickDelta: 1000,
+      timerHandle: null
     }
   },
 
-  data () {
-    return {
-      timerRemaining: this.timerOriginal,
-      lastUpdate: new Date().getTime(),
-      nextTickDelta: 1000,
-      timerHandle: null,
+  computed: {
+    timeOriginal () {
+      return this.$store.getters['schedule/getCurrentItem'].length
+    },
 
-      // notify groups
-      tickFunctions: {},
-      completeFunctions: {},
+    timeRemaining () {
+      return this.timeOriginal - this.timeElapsed
+    },
 
-      mode: timerMode.NULL
+    /** Allows detecting advances in schedule */
+    scheduleId () {
+      return this.$store.getters['schedule/getCurrentItem'].id
+    },
+
+    timerState: {
+      get () {
+        return this.$store.getters['schedule/getCurrentTimerState']
+      },
+      set (newValue) {
+        this.$store.commit('schedule/updateTimerState', newValue)
+      }
     }
   },
 
   watch: {
-    timerOriginal (newValue, oldValue) {
-      console.log(`Changed: ${oldValue} -> ${newValue}`)
-      if (newValue !== oldValue && this.timerState === timerState.STOPPED) {
-        this.$store.commit('timer/setTimes', newValue)
+    /** Reset the timer if it was stopped and the original time changes */
+    timeOriginalStore (newValue, oldValue) {
+      console.log(`timerOriginalStore: ${oldValue} -> ${newValue}`)
+      if (this.timerState === timerState.STOPPED) {
+        // this.$store.commit('timer/setTimes', newValue)
+        this.timeOriginal = newValue
         this.resetTimer()
       }
     },
 
+    /** Watcher to automatically reset timer if schedule changes */
+    scheduleId (newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.pauseOrStopTimer(true)
+        this.resetTimer()
+      }
+    },
+
+    /** Start/pause/stop timer if timerState changes */
     timerState (newValue, oldValue) {
-      console.log(`New timerState = ${newValue}`)
+      if (oldValue === timerState.COMPLETED) {
+        this.resetTimer()
+      }
+
       if (newValue !== oldValue) {
         switch (newValue) {
           case timerState.RUNNING:
@@ -77,16 +85,21 @@ export default {
     }
   },
 
+  mounted () {
+    this.timeOriginal = this.$store.getters['schedule/getCurrentItem'].length
+  },
+
   methods: {
     /** Resets the remaining time to the original value, resetting the timer to 0% */
     resetTimer () {
-      this.timerRemaining = this.timerOriginal
+      // this.timeRemaining = this.timerOriginal
+      this.timeElapsed = 0
     },
 
     /** Useful when dayjs locale has changed (forces an update on the timer) */
     refreshTime () {
-      this.timerRemaining -= 1
-      this.timerRemaining += 1
+      this.timeElapsed -= 1
+      this.timeElapsed += 1
     },
 
     /** Clears the tick handle and stops ticking */
@@ -95,27 +108,9 @@ export default {
       this.timerHandle = null
     },
 
-    /** Resets the remaining and original times to the new value */
-    setTimes (newTimeInMs) {
-      this.timerRemaining = newTimeInMs
-      // this.timerOriginal = newTimeInMs
-    },
-
     /** Changes `nextTickDelta` to the new value */
     changeTickDelta (newTickMs) {
       this.nextTickDelta = Math.max(50, newTickMs)
-    },
-
-    /** Subscribes `fn` function with ID `id` for a notification group. */
-    subscribeToNotify ({ fn, id, functionGroup = functionUpdateGroup.TICK, enabled = true }) {
-      switch (functionGroup) {
-        case functionUpdateGroup.TICK:
-          if (!this.tickFunctions[id]) { this.tickFunctions[id] = { enabled, fn } }
-          break
-        case functionUpdateGroup.COMPLETE:
-          if (!this.completeFunctions[id]) { this.completeFunctions[id] = { enabled, fn } }
-          break
-      }
     },
 
     scheduleNextTick ({ decrement = true }) {
@@ -127,18 +122,18 @@ export default {
 
         // schedule next tick
         if (Math.abs(nextTickMs - this.nextTickDelta) > 50) {
-          this.changeTickDelta({ newTickDelta: nextTickMs })
+          this.nextTickDelta = nextTickMs
         }
 
-        nextTickMs = Math.min(nextTickMs, this.timerRemaining)
+        nextTickMs = Math.min(nextTickMs, this.timeRemaining)
         const timeoutHandle = setTimeout(
-          () => { this.scheduleNextTick({}) },
+          () => {
+            this.clearTickHandle()
+            this.scheduleNextTick({})
+          },
           nextTickMs
         )
 
-        if (this.timerHandle) {
-          this.clearTickHandle()
-        }
         this.timerHandle = timeoutHandle
       }
     },
@@ -156,66 +151,49 @@ export default {
       // update remaining time if the timer is still running
       if (this.timerState === timerState.RUNNING) {
         if (decrement) {
-          this.timerRemaining = Math.max(this.timerRemaining - elapsedDelta, 0)
+          // this.timeRemaining = Math.max(this.timeRemaining - elapsedDelta, 0)
+          this.timeElapsed = Math.min(this.timeElapsed + elapsedDelta, this.timeOriginal)
         }
+
         this.lastUpdate = newUpdate
       }
 
       // check if timer completed and schedule next tick
-      if (this.timerRemaining <= 0) {
+      if (this.timeElapsed >= this.timeOriginal) {
       // timer completed, notify participants
-        // this.timerState = timerState.COMPLETED
+        this.timerState = timerState.COMPLETED
         this.$emit('complete')
-        // notifyFunctions(this, { group: functionUpdateGroup.COMPLETE, elapsedDelta })
       } else if (nextState === timerState.RUNNING) {
-        // next tick is scheduled in the action
+        // next tick is scheduled
       } else {
         // do not tick further
-        // this.timerState = nextState
+        this.timerState = nextState
       }
 
-      // execute subscribed update functions
-      if (decrement) {
-        // notifyFunctions(state, { group: functionUpdateGroup.TICK, elapsedDelta })
-      }
-
-      this.$emit('tick', this.timerRemaining)
-      // this.$store.commit('timer/setRemainingTime', this.timerRemaining)
+      this.$emit('tick', this.timeElapsed)
+      this.$store.commit('schedule/updateTime', this.timeElapsed)
     },
 
     /** Starts or resumes the timer */
     startTimer () {
-      // if (this.timerState === timerState.RUNNING) {
-      //   // timer is set to be running, don't do anything
-      //   return
-      // }
-
-      if (this.timerState === timerState.PAUSED) {
-        // do not touch remaining time
-      } else if (this.timerState === timerState.STOPPED || this.timerState === timerState.COMPLETED) {
-        this.resetTimer()
-      }
-
-      this.setTimerState(timerState.RUNNING)
-      // commit('timerTick', { decrement: false }) // just update the tick timestamp
+      this.$store.commit('schedule/lockInfo', {
+        length: this.timeOriginal,
+        type: this.$store.getters['schedule/getCurrentItem'].type
+      })
       this.scheduleNextTick({ decrement: false })
-      this.$store.dispatch('events/recordUserEvent', UserEventType.TIMER_START, { root: true })
     },
 
     pauseOrStopTimer (stop = false) {
-      // if the timer is not running OR it's not (paused and we want to stop it), we shouldn't do anything
-      // if (this.timerState !== timerState.RUNNING && !(this.timerState === timerState.PAUSED && stop)) {
-      //   return
-      // }
-
       this.clearTickHandle()
       this.timerTick({ nextState: stop ? timerState.STOPPED : timerState.PAUSED })
 
       if (stop) {
+        // remove info lock on schedule entry
+        this.$store.commit('schedule/lockInfo', {
+          length: undefined,
+          type: undefined
+        })
         this.resetTimer()
-        this.$store.dispatch('events/recordUserEvent', UserEventType.TIMER_STOP)
-      } else {
-        this.$store.dispatch('events/recordUserEvent', UserEventType.TIMER_PAUSE)
       }
     },
 
@@ -228,17 +206,14 @@ export default {
     /** Automatically resets the timer from the schedule */
     getTimerFromSchedule ({ rootState, dispatch, rootGetters }) {
       this.setNewTimer(rootGetters['events/getSchedule'][0]._length)
-    },
-
-    setTimerState (newState) {
-      // this.timerState = newState
     }
   },
 
   render () {
     return this.$scopedSlots.default({
-      timerRemaining: this.timerRemaining,
-      timerOriginal: this.timerOriginal,
+      timeRemaining: this.timeRemaining,
+      timeElapsed: this.timeElapsed,
+      timeOriginal: this.timeOriginal,
       timerState: this.timerState,
       fn_changeTimerState: this.setTimerState
     })
