@@ -147,7 +147,7 @@ export default {
                   height="32"
                   viewBox="0 0 32 32"
                   fill="none"
-                  style="color: ${this.$store.getters['events/currentScheduleColour']};"
+                  style="color: ${this.$store.getters['schedule/currentScheduleColour']};"
                   xmlns="http://www.w3.org/2000/svg"
                 ><circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`
         }
