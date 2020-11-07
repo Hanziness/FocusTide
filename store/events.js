@@ -4,8 +4,8 @@ import { timerState } from '@/store/timer'
 export const state = () => ({
   eventList: [],
   schedule: [
-    new ScheduleEntry(60000, 0, ScheduleItemType.WORK),
-    new ScheduleEntry(60000, 0, ScheduleItemType.SHORTPAUSE)
+    JSON.parse(JSON.stringify(new ScheduleEntry(60000, 0, ScheduleItemType.WORK))),
+    JSON.parse(JSON.stringify(new ScheduleEntry(60000, 0, ScheduleItemType.SHORTPAUSE)))
   ],
   currentBlockIndex: 0,
   maxScheduleEntries: 5,
