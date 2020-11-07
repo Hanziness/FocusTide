@@ -1,11 +1,9 @@
-import dayjs from 'dayjs'
-
 export const state = () => ({
   eventList: []
 })
 
 export class UserEvent {
-  constructor (timestamp = dayjs(), eventType = UserEventType.OTHER) {
+  constructor (timestamp = new Date(), eventType = UserEventType.OTHER) {
     this._timestamp = timestamp
     this._eventType = eventType
   }
@@ -25,7 +23,7 @@ export const UserEventType = {
 
 export const mutations = {
   recordUserEvent (state, eventType = UserEventType.OTHER) {
-    state.eventList.push(new UserEvent(dayjs(), eventType))
+    state.eventList.push(new UserEvent(new Date(), eventType))
   }
 }
 
