@@ -1,7 +1,8 @@
 export default {
   actions: {
-    nuxtServerInit ({ state, commit }) {
-      commit('schedule/initSchedule', state.settings.schedule.numScheduleEntries)
+    nuxtServerInit ({ commit }) {
+      // initialize with 10 entries, no need for phantom entries then
+      commit('schedule/initSchedule', 10)
     }
   }
 }

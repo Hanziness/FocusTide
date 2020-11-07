@@ -54,10 +54,10 @@ export const getters = {
     if (numEntities < returnArray.length) {
       // remove last few entities
       returnArray.splice(numEntities, returnArray.length - numEntities)
-    } else {
+    } else if (numEntities > returnArray.length) {
       // add remaining entities
-      for (let i = 0; i < returnArray.length - numEntities; i++) {
-        returnArray.push(createScheduleEntry(returnArray.lastItem.id + 1))
+      for (let i = 0; i < numEntities - returnArray.length; i++) {
+        returnArray.push(createScheduleEntry(returnArray[returnArray.length - 1].id + 1))
       }
     }
 
