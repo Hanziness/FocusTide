@@ -18,15 +18,16 @@ const dayjsUtils = {
     return dayjs.duration(target.diff(start))
   },
   formatMs (ms, { format = 'mm:ss' }) {
-    return dayjs.utc(ms).format(format)
+    return dayjs.utc(Math.floor(ms / 1000) * 1000).format(format)
   },
   formatRelative (ms) {
     return dayjs().to(dayjs().add(ms, 'millisecond'), true)
   },
-  formatPercentage (ms, { total }) {
+  formatPercentage (ms, { total, addPercentage = true }) {
     const msRounded = ms - (ms % 1000)
     const totalRounded = total - (total % 1000)
-    return '' + Math.round(((totalRounded - msRounded) / totalRounded) * 100) + '%'
+    const percentageValue = Math.round(((totalRounded - msRounded) / totalRounded) * 100)
+    return '' + percentageValue + (addPercentage ? '%' : '')
   },
   getFormattedTime (ms, config = AvailableTimers.TIMER_TRADITIONAL, additionalArgs = {}) {
     switch (config) {

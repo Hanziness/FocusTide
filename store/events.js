@@ -1,32 +1,9 @@
-import dayjs from 'dayjs'
-
 export const state = () => ({
-  eventList: [],
-  schedule: [],
-  currentBlockIndex: 0,
-  maxScheduleEntries: 5,
-  scheduleIndexCounter: 0,
-  statesCompleted: 0
+  eventList: []
 })
 
-export const ScheduleItemType = {
-  WORK: 'work',
-  SHORTPAUSE: 'shortpause',
-  LONGPAUSE: 'longpause',
-  WAIT: 'wait',
-  OTHER: 'other'
-}
-
-export class ScheduleEntry {
-  constructor (length, index, type = ScheduleItemType.WORK) {
-    this._type = type
-    this._length = length
-    this._index = index
-  }
-}
-
 export class UserEvent {
-  constructor (timestamp = dayjs(), eventType = UserEventType.OTHER) {
+  constructor (timestamp = new Date(), eventType = UserEventType.OTHER) {
     this._timestamp = timestamp
     this._eventType = eventType
   }
@@ -44,97 +21,13 @@ export const UserEventType = {
   OTHER: 'other'
 }
 
-export const getters = {
-  getSchedule (state, getters, rootState) {
-    const numEntriesInABlock = 2 * (rootState.settings.schedule.longPauseInterval)
-    const schedule = []
-    let i = state.statesCompleted
-
-    while (schedule.length < rootState.settings.schedule.numScheduleEntries) {
-      const index = i % numEntriesInABlock
-      if (index === numEntriesInABlock - 1) {
-        schedule.push(new ScheduleEntry(rootState.settings.schedule.lengths.longpause + 900, i, ScheduleItemType.LONGPAUSE))
-      } else if (index % 2) {
-        schedule.push(new ScheduleEntry(rootState.settings.schedule.lengths.shortpause + 900, i, ScheduleItemType.SHORTPAUSE))
-      } else {
-        schedule.push(new ScheduleEntry(rootState.settings.schedule.lengths.work + 900, i, ScheduleItemType.WORK))
-      }
-
-      i++
-    }
-
-    return schedule
-  },
-
-  nextScheduleColour (state, getters, rootState) {
-    // const currentState = state.schedule[1] ? state.schedule[1]._type : null
-    const currentState = getters.getSchedule[1]._type
-    if (currentState) {
-      return rootState.settings.visuals[currentState].colour
-    } else {
-      return ''
-    }
-  },
-
-  currentScheduleEntry (state, getters) {
-    // if (state.schedule.length > 0) {
-    //   return state.schedule[0]
-    // } else {
-    //   return null
-    // }
-    return getters.getSchedule[0]
-  },
-
-  currentScheduleColour (state, getters, rootState) {
-    // return rootState.settings.visuals[state.schedule[0] ? state.schedule[0]._type : 'wait'].colour
-    return rootState.settings.visuals[getters.getSchedule[0]._type].colour
-  }
-}
-
 export const mutations = {
-  insertNextScheduleEntry (state, { lengths, longPauseInterval }) {
-    const numEntriesInABlock = 2 * (longPauseInterval)
-
-    // we add 900 to the lengths to make sure the timer does not start by "subtracting 2 seconds"
-    // at the very first tick: it's a bit more than 1000ms that gets subtracted
-
-    if (state.currentBlockIndex === numEntriesInABlock - 1) {
-      state.schedule.push(new ScheduleEntry(lengths.longpause + 900, state.scheduleIndexCounter++, ScheduleItemType.LONGPAUSE))
-    } else if (state.currentBlockIndex % 2) {
-      state.schedule.push(new ScheduleEntry(lengths.shortpause + 900, state.scheduleIndexCounter++, ScheduleItemType.SHORTPAUSE))
-    } else {
-      state.schedule.push(new ScheduleEntry(lengths.work + 900, state.scheduleIndexCounter++, ScheduleItemType.WORK))
-    }
-    state.currentBlockIndex = (state.currentBlockIndex + 1) % numEntriesInABlock
-  },
-
-  completeScheduleEntry (state) {
-    state.schedule = state.schedule.slice(1)
-    state.statesCompleted++
-  },
-
   recordUserEvent (state, eventType = UserEventType.OTHER) {
-    state.eventList.push(new UserEvent(dayjs(), eventType))
+    state.eventList.push(new UserEvent(new Date(), eventType))
   }
 }
 
 export const actions = {
-  checkSchedule ({ state, commit, rootState }) {
-    const settingsToUse = rootState.settings.schedule
-    while (state.schedule.length < state.maxScheduleEntries) {
-      commit('insertNextScheduleEntry', settingsToUse)
-    }
-  },
-
-  advanceSchedule ({ commit, dispatch, state, getters }, { isAutoAdvance = false }) {
-    commit('completeScheduleEntry')
-    // dispatch('checkSchedule')
-    dispatch('timer/setNewTimer', getters.getSchedule[0]._length, { root: true })
-
-    const loggedEventType = isAutoAdvance ? UserEventType.SCHEDULE_ADVANCE_AUTO : UserEventType.SCHEDULE_ADVANCE_MANUAL
-    dispatch('recordUserEvent', loggedEventType)
-  },
-
   recordUserEvent ({ rootState, commit }, eventType = UserEventType.OTHER) {
     if (rootState.settings.eventLoggingEnabled) {
       commit('recordUserEvent', eventType)

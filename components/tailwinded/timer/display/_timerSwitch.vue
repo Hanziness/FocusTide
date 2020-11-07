@@ -63,8 +63,8 @@ export default {
   computed: {
     timerInfo () {
       return {
-        timerRemaining: this.timerRemaining,
-        timerOriginal: this.timerOriginal,
+        timeElapsed: this.timeElapsed,
+        timeOriginal: this.timeOriginal,
         timerState: this.timerState
       }
     }

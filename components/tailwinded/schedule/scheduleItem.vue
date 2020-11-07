@@ -6,7 +6,7 @@
       { 'shadow-sm': !active, 'shadow': active }
     ]"
     :style="[
-      { 'background-color': $store.state.settings.visuals[data._type].colour }
+      { 'background-color': $store.state.settings.visuals[data.type].colour }
     ]"
   >
     <!-- <div class="text-center">
