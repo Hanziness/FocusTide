@@ -2,28 +2,28 @@
   <div class="rounded-lg p-2 timer-control-panel bg-gray-800 text-center shadow-lg" color="#343A40">
     <ui-button
       color="blue darken-2"
-      :disabled="$store.getters['timer/isRunning']"
-      @click="$store.commit('timer/setTimerState', 1)"
+      :disabled="$store.getters['schedule/getCurrentTimerState'] === 1"
+      @click="$store.commit('schedule/updateTimerState', 1)"
     >
       GO
     </ui-button>
     <ui-button
       color="orange darken"
-      :disabled="!$store.getters['timer/isRunning']"
-      @click="$store.commit('timer/setTimerState', 2)"
+      :disabled="$store.getters['schedule/getCurrentTimerState'] !== 1"
+      @click="$store.commit('schedule/updateTimerState', 2)"
     >
       PAUSE
     </ui-button>
     <ui-button
       color="red darken"
-      :disabled="$store.getters['timer/isStopped']"
-      @click="$store.commit('timer/setTimerState', 0)"
+      :disabled="$store.getters['schedule/getCurrentTimerState'] === 0"
+      @click="$store.commit('schedule/updateTimerState', 0)"
     >
       STOP
     </ui-button>
     <ui-button
       color="red"
-      @click="$store.dispatch('events/advanceSchedule', {})"
+      @click="$store.commit('schedule/advance')"
     >
       [D] ADVANCE
     </ui-button>
