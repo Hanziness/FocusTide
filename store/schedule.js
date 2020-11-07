@@ -68,7 +68,9 @@ export const getters = {
 
       // set length if needed
       if (returnArray[index].length === undefined) {
-        returnArray[index].length = rootState.settings.schedule.lengths[itemType]
+        // note: +900 is used to adjust math flooring (first tick would look like it
+        // subtracts 2 seconds)
+        returnArray[index].length = rootState.settings.schedule.lengths[itemType] + 900
       }
 
       // set remaining timer field
