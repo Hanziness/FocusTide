@@ -7,7 +7,7 @@
 
 <script>
 // import { Howl } from 'howler'
-import { functionUpdateGroup } from '@/store/timer'
+// import { functionUpdateGroup } from '@/store/timer'
 
 export default {
   data () {
@@ -62,16 +62,16 @@ export default {
     // the timer.
     this.loadSoundSet(this.$store.state.settings.audio.soundSet)
 
-    const thisRef = this
-    this.$store.commit('timer/subscribeToNotify', {
-      fn (state) {
-        const nextScheduleType = thisRef.$store.getters['events/getSchedule'][1]._type
-        thisRef.playSound(nextScheduleType)
-        thisRef.showNotification(nextScheduleType)
-      },
-      id: 'notification-sound',
-      functionGroup: functionUpdateGroup.COMPLETE
-    })
+    // const thisRef = this
+    // this.$store.commit('timer/subscribeToNotify', {
+    //   fn (state) {
+    //     const nextScheduleType = thisRef.$store.getters['events/getSchedule'][1]._type
+    //     thisRef.playSound(nextScheduleType)
+    //     thisRef.showNotification(nextScheduleType)
+    //   },
+    //   id: 'notification-sound'
+    //   // functionGroup: functionUpdateGroup.COMPLETE
+    // })
   },
 
   methods: {
