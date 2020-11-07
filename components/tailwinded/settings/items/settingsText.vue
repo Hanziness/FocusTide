@@ -2,12 +2,6 @@
   <!-- FIXME try to make sure that the field can be edited even if it results in an errorneous state -->
   <base-settings-item :settings-key="settingsKey" :disabled="disabled">
     <template #content-action="{ settingsValue, update, error }">
-      <!-- <input
-        class="form-input w-full text-right bg-gray-200 focus:bg-white"
-        type="text"
-        :value="settingsValue"
-        @input="checkUpdate($event.target.value, update, error)"
-      > -->
       <input-text
         :value="settingsValue"
         :min="min"
@@ -52,22 +46,26 @@ export default {
   validations () {
     const returnValue = { inputData: { required } }
 
+    // Check if input should be numeric
     if (this.numeric) {
       returnValue.inputData.numeric = numeric
-    }
 
-    if (this.min) {
-      returnValue.inputData.min = minValue(this.min)
-    }
+      // Check for minimum value
+      if (this.min) {
+        returnValue.inputData.min = minValue(this.min)
+      }
 
-    if (this.max) {
-      returnValue.inputData.max = maxValue(this.max)
+      // Check for maximum value
+      if (this.max) {
+        returnValue.inputData.max = maxValue(this.max)
+      }
     }
 
     return returnValue
   },
 
   computed: {
+    /** Information needed to display better error messages */
     additionalInfo: {
       get () {
         return {
@@ -80,16 +78,13 @@ export default {
   },
 
   methods: {
+    /** Validates the input before calling the update function */
     checkUpdate (newValue, updateFn, errorFn) {
-      console.log('Updating with value "' + newValue + '"')
       this.inputData = newValue
       this.$v.inputData.$touch()
 
-      console.log('Error? ' + this.$v.inputData.$error)
-
       if (!this.$v.inputData.$error) {
         updateFn(newValue)
-        console.log('Updated with "' + newValue + '"')
         return true
       }
 
@@ -100,19 +95,6 @@ export default {
           errorFn(key, this.additionalInfo)
         }
       }
-
-      // for (const rule in this.rules) {
-      //   const rulePass = rule(newValue)
-      //   if (rulePass !== true) {
-      //     pass = rulePass.type
-      //   }
-      // }
-
-      // if (pass === true) {
-      //   updateFn(newValue)
-      // } else {
-      //   errorFn(pass.type, pass.additionalInfo)
-      // }
     }
   }
 }
