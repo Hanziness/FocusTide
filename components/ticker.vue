@@ -43,16 +43,6 @@ export default {
   },
 
   watch: {
-    /** Reset the timer if it was stopped and the original time changes */
-    timeOriginalStore (newValue, oldValue) {
-      console.log(`timerOriginalStore: ${oldValue} -> ${newValue}`)
-      if (this.timerState === timerState.STOPPED) {
-        // this.$store.commit('timer/setTimes', newValue)
-        this.timeOriginal = newValue
-        this.resetTimer()
-      }
-    },
-
     /** Watcher to automatically reset timer if schedule changes */
     scheduleId (newValue, oldValue) {
       if (newValue !== oldValue) {
