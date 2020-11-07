@@ -5,7 +5,7 @@
         {{ timerValue }}
       </span>
     </transition>
-    %
+    <span>%</span>
   </div>
 </template>
 
@@ -16,7 +16,10 @@ export default {
   mixins: [TimerMixin],
   computed: {
     timerValue () {
-      return Math.round((this.timeElapsed / this.timeOriginal) * 100)
+      return this.$dayjs.formatPercentage(this.timeOriginal - this.timeElapsed, {
+        total: this.timeOriginal,
+        addPercentage: false
+      })
     }
   }
 }
