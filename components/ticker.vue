@@ -75,10 +75,6 @@ export default {
     }
   },
 
-  mounted () {
-    this.timeOriginal = this.$store.getters['schedule/getCurrentItem'].length
-  },
-
   methods: {
     /** Resets the remaining time to the original value, resetting the timer to 0% */
     resetTimer () {
