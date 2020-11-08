@@ -158,7 +158,7 @@ export default {
       }
 
       // check if timer completed and schedule next tick
-      if (this.timeElapsed >= this.timeOriginal) {
+      if (nextState === timerState.RUNNING && this.timeElapsed >= this.timeOriginal) {
       // timer completed, notify participants
         this.timerState = timerState.COMPLETED
         this.$emit('complete')
