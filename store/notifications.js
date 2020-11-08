@@ -16,9 +16,9 @@ export const mutations = {
       if (permissions === 'default') {
         state.enabled = null
       } else if (permissions === 'granted') {
-        state.enabled = false
-      } else {
         state.enabled = true
+      } else {
+        state.enabled = false
       }
     } else {
       state.enabled = false
