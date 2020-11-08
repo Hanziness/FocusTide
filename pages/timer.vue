@@ -17,33 +17,34 @@
         </transition>
       </div>
     </lazy-hydrate>
-    <ticker>
-      <div
-        slot-scope="{ timerState, timeElapsed, timeOriginal }"
-        :class="['p-8 flex flex-col justify-center items-center bg-transparent h-full']"
-        width="100%"
-        height="100%"
-      >
-        <!-- <div slot-scope="{ timerRemaining, timerOriginal }"> -->
-        <schedule-display />
-        <notification-controller />
-        <timer-progress
-          v-if="$store.getters['settings/performanceSettings'].showProgressBar"
-          :time-elapsed="timeElapsed"
-          :time-original="timeOriginal"
-        />
-        <div class="flex-grow" />
-        <timer-switch
-          :time-elapsed="timeElapsed"
-          :time-original="timeOriginal"
-          :timer-state="timerState"
-          :timer-widget="$store.state.settings.currentTimer"
-        />
-        <div class="flex-grow" />
-        <timer-controls />
+    <notification-controller>
+      <ticker slot-scope="{handleCompletion}" @complete="handleCompletion">
+        <div
+          slot-scope="{ timerState, timeElapsed, timeOriginal }"
+          :class="['p-8 flex flex-col justify-center items-center bg-transparent h-full']"
+          width="100%"
+          height="100%"
+        >
+          <!-- <div slot-scope="{ timerRemaining, timerOriginal }"> -->
+          <schedule-display />
+          <timer-progress
+            v-if="$store.getters['settings/performanceSettings'].showProgressBar"
+            :time-elapsed="timeElapsed"
+            :time-original="timeOriginal"
+          />
+          <div class="flex-grow" />
+          <timer-switch
+            :time-elapsed="timeElapsed"
+            :time-original="timeOriginal"
+            :timer-state="timerState"
+            :timer-widget="$store.state.settings.currentTimer"
+          />
+          <div class="flex-grow" />
+          <timer-controls />
         <!-- </div> -->
-      </div>
-    </ticker>
+        </div>
+      </ticker>
+    </notification-controller>
   </section>
 </template>
 

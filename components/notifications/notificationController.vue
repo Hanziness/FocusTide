@@ -1,14 +1,4 @@
-<template>
-  <!-- <v-btn @click="playSound('work')">
-    Play Work
-  </v-btn> -->
-  <div id="pomodoro-notification-handler" />
-</template>
-
 <script>
-// import { Howl } from 'howler'
-// import { functionUpdateGroup } from '@/store/timer'
-
 export default {
   data () {
     return {
@@ -62,16 +52,18 @@ export default {
     // the timer.
     this.loadSoundSet(this.$store.state.settings.audio.soundSet)
 
-    // const thisRef = this
-    // this.$store.commit('timer/subscribeToNotify', {
-    //   fn (state) {
-    //     const nextScheduleType = thisRef.$store.getters['events/getSchedule'][1]._type
-    //     thisRef.playSound(nextScheduleType)
-    //     thisRef.showNotification(nextScheduleType)
-    //   },
-    //   id: 'notification-sound'
-    //   // functionGroup: functionUpdateGroup.COMPLETE
-    // })
+    // Check Visibility and register in store
+    if (window && window.document && 'hidden' in window.document) {
+      const storeRef = this.$store
+      window.document.addEventListener('visibilitychange', () => {
+        storeRef.commit('settings/registerNewHidden', window.document.hidden)
+      }, false)
+
+      // Commit this information immediately to make sure it's up to date
+      storeRef.commit('settings/registerNewHidden', window.document.hidden)
+    } else {
+      this.$store.commit('settings/registerNewHidden', null)
+    }
   },
 
   methods: {
@@ -99,6 +91,7 @@ export default {
 
     showNotification (nextState) {
       // TODO Firefox does not support actions
+      if (window.Notification.permission !== 'granted') { return }
       const notificationActions = []
       if (nextState === 'work') {
         notificationActions.push({
@@ -120,7 +113,19 @@ export default {
       } catch (err) {
 
       }
+    },
+
+    handleCompletion (nextType = undefined) {
+      const nextScheduleType = nextType || this.$store.getters['schedule/getSchedule'][1].type
+      this.playSound(nextScheduleType)
+      this.showNotification(nextScheduleType)
     }
+  },
+
+  render () {
+    return this.$scopedSlots.default({
+      handleCompletion: this.handleCompletion
+    })
   }
 }
 </script>
