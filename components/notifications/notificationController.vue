@@ -94,7 +94,7 @@ export default {
 
     showNotification (nextState) {
       // TODO Firefox does not support actions
-      if (window.Notification.permission !== 'granted') { return }
+      if (window.Notification.permission !== 'granted' || this.$store.state.settings.permissions.notifications !== true) { return }
       const notificationActions = []
       if (nextState === 'work') {
         notificationActions.push({
