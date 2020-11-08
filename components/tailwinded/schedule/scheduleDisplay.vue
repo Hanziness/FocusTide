@@ -2,7 +2,7 @@
   <transition name="schedule-transition">
     <transition-group
       v-if="$store.state.settings.schedule.showSchedule"
-      name="list"
+      name="transition-schedule"
       tag="div"
       class="schedule-container"
     >
@@ -18,47 +18,34 @@
 
 <style lang="scss" scoped>
 div.schedule-container {
-  @apply p-4 bg-gray-800 flex flex-grow-0 flex-row rounded-lg shadow-lg overflow-hidden;
+  @apply p-4 bg-gray-800 flex flex-grow-0 flex-row rounded-lg shadow-lg overflow-hidden relative;
 
   z-index: 10;
 }
 
-.list-enter-active,
-.list-leave-active,
-.list-move {
+div.schedule-item.transition-schedule-enter-active,
+div.schedule-item.transition-schedule-leave-active,
+div.schedule-item.transition-schedule-move {
   transition: 500ms cubic-bezier(0.59, 0.12, 0.34, 0.95);
   transition-property: opacity, transform;
 }
 
-.list-enter {
+div.schedule-item.transition-schedule-enter {
   opacity: 0;
   transform: translateX(50px);
 }
 
-.list-enter-to {
-  // opacity: 1;
+div.schedule-item.transition-schedule-enter-to {
   transform: translateX(0);
 }
 
-.list-leave-active {
+div.schedule-item.transition-schedule-leave-active {
   position: absolute;
 }
 
-.list-leave-to {
+div.schedule-item.transition-schedule-leave-to {
   opacity: 0 !important;
   transform: translateX(-50px);
-  // transform-origin: center top;
-}
-
-.schedule-transition-enter-active,
-.schedule-transition-leave-active {
-  transition: opacity 300ms ease-in, transform 300ms ease-in;
-}
-
-.schedule-transition-enter,
-.schedule-transition-leave-to {
-  opacity: 0;
-  transform: translateY(-60px);
 }
 </style>
 
