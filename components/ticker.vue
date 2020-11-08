@@ -32,6 +32,10 @@ export default {
       return this.$store.getters['schedule/getCurrentItem'].id
     },
 
+    adaptiveTickRate () {
+      return this.$store.getters['settings/getAdaptiveTickRate']
+    },
+
     timerState: {
       get () {
         return this.$store.getters['schedule/getCurrentTimerState']
@@ -48,6 +52,12 @@ export default {
       if (newValue !== oldValue) {
         this.pauseOrStopTimer(true)
         this.resetTimer()
+      }
+    },
+
+    adaptiveTickRate (newValue, oldValue) {
+      if (this.timerState === timerState.RUNNING && newValue !== oldValue) {
+        this.scheduleNextTick({})
       }
     },
 
@@ -110,6 +120,9 @@ export default {
         if (Math.abs(nextTickMs - this.nextTickDelta) > 50) {
           this.nextTickDelta = nextTickMs
         }
+
+        // if there was a timer handle, clear it
+        this.clearTickHandle()
 
         nextTickMs = Math.min(nextTickMs, this.timeRemaining)
         const timeoutHandle = setTimeout(
