@@ -1,24 +1,22 @@
 <template>
-  <settings-resolver :settings-key="settingsKey" :custom-set-function="customSetFunction">
-    <base-settings-item slot-scope="{ value, update, translationKey }" :settings-value="value" :translation-key="translationKey">
-      <template #content-action="{ settingsValue }">
-        <input
-          class="form-checkbox w-6 h-6 bg-gray-200 cursor-pointer"
-          type="checkbox"
-          :checked="settingsValue"
-          @input="update($event.target.checked)"
-        >
-      </template>
-    </base-settings-item>
-  </settings-resolver>
+  <base-settings-item :settings-key="settingsKey" :disabled="disabled" :custom-set-function="customSetFunction">
+    <template #content-action="{ settingsValue, update }">
+      <input
+        class="form-checkbox w-6 h-6 bg-gray-200 cursor-pointer"
+        type="checkbox"
+        :checked="settingsValue"
+        :value="settingsValue"
+        @input="update($event.target.checked)"
+      >
+    </template>
+  </base-settings-item>
 </template>
 
 <script>
+import settingsInputMixin from '@/assets/mixins/settings/settingsItemBase'
+
 export default {
-  components: {
-    SettingsResolver: () => import('@/components/tailwinded/settings/renderlessSettingsResolver.vue'),
-    BaseSettingsItem: () => import('@/components/tailwinded/settings/baseSettingsItemBare.vue')
-  },
+  mixins: [settingsInputMixin],
 
   props: {
     settingsKey: {

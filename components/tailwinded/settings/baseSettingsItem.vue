@@ -1,5 +1,5 @@
 <template>
-  <settings-resolver :settings-key="settingsKey">
+  <settings-resolver :settings-key="settingsKey" :custom-set-function="customSetFunction">
     <base-settings-item-bare
       slot-scope="{ value, update, error, lastError, translationKey }"
       :disabled="disabled"

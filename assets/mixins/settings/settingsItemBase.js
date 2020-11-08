@@ -24,6 +24,11 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+
+    customSetFunction: {
+      type: Function,
+      default: undefined
     }
   },
 
@@ -39,19 +44,6 @@ export default {
   methods: {
     checkUpdate (newValue, updateFn, errorFn) {
       updateFn(newValue)
-
-      // for (const rule in this.rules) {
-      //   const rulePass = rule(newValue)
-      //   if (rulePass !== true) {
-      //     pass = rulePass.type
-      //   }
-      // }
-
-      // if (pass === true) {
-      //   updateFn(newValue)
-      // } else {
-      //   errorFn(pass.type, pass.additionalInfo)
-      // }
     }
   }
 }
