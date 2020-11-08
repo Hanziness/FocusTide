@@ -4,9 +4,9 @@ module.exports = {
   // prefix: '',
   // important: false,
   // separator: ':',
-  // purge: [
-  //   './src/**/*.vue'
-  // ],
+  purge: {
+    enabled: true
+  },
   theme: {
     extend: {
       fontFamily: {
