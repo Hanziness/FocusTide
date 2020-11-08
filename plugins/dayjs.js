@@ -18,7 +18,7 @@ const dayjsUtils = {
     return dayjs.duration(target.diff(start))
   },
   formatMs (ms, { format = 'mm:ss' }) {
-    return dayjs.utc(Math.floor(ms / 1000) * 1000).format(format)
+    return dayjs.utc(Math.round(ms / 1000) * 1000).format(format)
   },
   formatRelative (ms) {
     return dayjs().to(dayjs().add(ms, 'millisecond'), true)
