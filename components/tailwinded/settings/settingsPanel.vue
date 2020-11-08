@@ -17,7 +17,7 @@
               <settings-check
                 :settings-key="['permissions', 'notifications']"
                 :set-value-on-change="false"
-                :disabled="false"
+                :disabled="$store.state.notifications.enabled === false"
                 :custom-set-function="changeNotificationSettings"
               />
             </div>
@@ -115,6 +115,8 @@ export default {
               thisRef.notificationsBlocked = true
               thisRef.$store.commit('settings/SET', { key: ['permissions', 'notifications'], value: false })
             }
+
+            thisRef.$store.commit('notifications/updateEnabled', newValue === 'granted')
           })
         } else if (Notification.permission === 'granted') {
           this.$store.commit('settings/SET', { key: ['permissions', 'notifications'], value: newValue })

@@ -64,6 +64,9 @@ export default {
     } else {
       this.$store.commit('settings/registerNewHidden', null)
     }
+
+    // Check permissions
+    this.$store.commit('notifications/updateEnabled')
   },
 
   methods: {

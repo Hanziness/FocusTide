@@ -83,7 +83,7 @@ export const state = () => ({
     registeredHidden: null
   },
   permissions: {
-    notifications: false,
+    notifications: undefined,
     audio: true
   },
   audio: {
