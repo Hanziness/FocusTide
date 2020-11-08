@@ -2,7 +2,7 @@
   <div class="rounded-lg p-2 timer-control-panel bg-gray-800 text-center shadow-lg" color="#343A40">
     <ui-button
       color="blue darken-2"
-      :disabled="$store.getters['schedule/getCurrentTimerState'] === 1"
+      :disabled="[1, 3].includes($store.getters['schedule/getCurrentTimerState'])"
       @click="$store.commit('schedule/updateTimerState', 1)"
     >
       GO
