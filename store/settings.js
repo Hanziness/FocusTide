@@ -167,6 +167,10 @@ export const mutations = {
     } else {
       currentElement[key[key.length - 1]] = value
     }
+  },
+
+  removeDebugItems (state) {
+    delete state.timerPresets.debug
   }
 }
 
