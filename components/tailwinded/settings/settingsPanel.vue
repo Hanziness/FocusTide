@@ -11,6 +11,10 @@
         <div class="w-full">
           <transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
             <div v-if="activeTab === 1" :key="1" class="settings-tab">
+              <settings-options
+                :settings-key="['lang']"
+                :values="{'en': 'en', 'hu': 'hu'}"
+              />
               <settings-check :settings-key="['adaptiveTicking', 'enabled']" />
               <divider />
               <settings-check :settings-key="['permissions', 'audio']" />
