@@ -150,6 +150,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    extractCSS: true,
     extend (config, ctx) {
       // enable source maps (inline on the server!)
       if (ctx.isDev) {
