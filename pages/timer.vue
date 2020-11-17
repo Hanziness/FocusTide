@@ -105,7 +105,7 @@ export default {
       return this.$dayjs.getFormattedTime(
         currentScheduleItem.length - currentScheduleItem.timeElapsed,
         this.$store.state.settings.currentTimer,
-        { total: currentScheduleItem.length }
+        { total: currentScheduleItem.length, langPlaceholder: this.$store.state.settings.lang }
       )
     },
 

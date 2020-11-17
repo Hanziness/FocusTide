@@ -20,7 +20,7 @@ const dayjsUtils = {
   formatMs (ms, { format = 'mm:ss' }) {
     return dayjs.utc(Math.round(ms / 1000) * 1000).format(format)
   },
-  formatRelative (ms) {
+  formatRelative (ms, { langPlaceholder = null }) {
     return dayjs().to(dayjs().add(ms, 'millisecond'), true)
   },
   formatPercentage (ms, { total, addPercentage = true }) {
@@ -34,7 +34,7 @@ const dayjsUtils = {
       case AvailableTimers.TIMER_TRADITIONAL:
         return this.formatMs(ms, additionalArgs)
       case AvailableTimers.TIMER_APPROXIMATE:
-        return this.formatRelative(ms)
+        return this.formatRelative(ms, additionalArgs)
       case AvailableTimers.TIMER_PERCENTAGE:
         return this.formatPercentage(ms, additionalArgs)
       default:
@@ -45,5 +45,12 @@ const dayjsUtils = {
 }
 
 export default function (context, inject) {
+  // watch for language changes and update dayJS locale
+  context.store.watch(state => state.settings.lang, (newValue) => {
+    if (newValue) {
+      dayjsUtils.dayjs.locale(newValue)
+    }
+  })
+
   inject('dayjs', dayjsUtils)
 }

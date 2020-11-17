@@ -11,6 +11,7 @@ export const AvailableSoundSets = {
 }
 
 export const state = () => ({
+  lang: undefined,
   visuals: {
     work: {
       colour: 'rgb(255, 107, 107)'
