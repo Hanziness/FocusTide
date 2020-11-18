@@ -18,6 +18,18 @@ export default {
       reset: 'Visszaállítás'
     },
     values: {
+      lang: {
+        _title: 'Nyelv',
+        _description: '',
+        _values: {
+          en: 'Angol',
+          hu: 'Magyar'
+        },
+        _valueDescription: {
+          en: '',
+          hu: ''
+        }
+      },
       eventLoggingEnabled: {
         _title: 'Eseménynaplózás engedélyezése',
         _description: ''

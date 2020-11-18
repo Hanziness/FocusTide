@@ -18,6 +18,18 @@ export default {
       reset: 'Reset'
     },
     values: {
+      lang: {
+        _title: 'Language',
+        _description: '',
+        _values: {
+          en: 'English',
+          hu: 'Hungarian'
+        },
+        _valueDescription: {
+          en: '',
+          hu: ''
+        }
+      },
       eventLoggingEnabled: {
         _title: 'Enable event logging',
         _description: ''
