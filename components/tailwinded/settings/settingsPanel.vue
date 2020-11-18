@@ -15,6 +15,7 @@
                 :settings-key="['lang']"
                 :values="{'en': 'en', 'hu': 'hu'}"
               />
+              <divider />
               <settings-check :settings-key="['adaptiveTicking', 'enabled']" />
               <divider />
               <settings-check :settings-key="['permissions', 'audio']" />
