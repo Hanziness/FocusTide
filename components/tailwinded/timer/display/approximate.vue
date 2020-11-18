@@ -15,7 +15,7 @@ export default {
     value () {
       const lang = this.$store.state.settings.lang
       return this.$dayjs.formatRelative(this.timeOriginal - this.timeElapsed, {
-        langPlaceholder: lang
+        lang
       })
     }
   }
