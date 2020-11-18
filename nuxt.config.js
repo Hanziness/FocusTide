@@ -43,7 +43,8 @@ export default {
     '@/plugins/dayjs.js',
     '@/plugins/v-mask.js',
     { src: '@/plugins/notifications.client.js', ssr: false },
-    { src: '@/plugins/vuex-persist.client.js', ssr: false }
+    { src: '@/plugins/vuex-persist.client.js', ssr: false },
+    { src: '@/plugins/i18nwatcher.client.js', ssr: false }
   ],
   /*
   ** Auto import components
@@ -88,6 +89,7 @@ export default {
     vueI18n: {
       fallbackLocale: 'en'
     },
+    vuex: false,
     // Routes generation strategy, can be set to one of the following:
     // - 'no_prefix': routes won't be prefixed
     // - 'prefix_except_default': add locale prefix for every locale except default
@@ -98,7 +100,7 @@ export default {
       // If enabled, a cookie is set once a user has been redirected to his
       // preferred language to prevent subsequent redirections
       // Set to false to redirect every time
-      useCookie: true,
+      useCookie: false,
       // Set to override the default domain of the cookie. Defaults to host of the site.
       cookieDomain: null,
       // Cookie name
