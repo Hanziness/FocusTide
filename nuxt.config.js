@@ -1,4 +1,5 @@
 // import colors from 'vuetify/es5/util/colors'
+import { join } from 'path'
 
 export default {
   /*
@@ -129,7 +130,61 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
-    extractCSS: true,
+    corejs: 3,
+    babel: {
+      presets ({ envName }) {
+        const envTargets = {
+          client: { browsers: ['last 2 versions'], ie: 11 },
+          server: { node: 'current' }
+        }
+        return [
+          [
+            '@nuxt/babel-preset-app',
+            {
+              targets: envTargets[envName],
+              corejs: { version: 3 }
+            }
+          ]
+        ]
+      }
+    },
+    extractCSS: {
+      ignoreOrder: true
+    },
+    optimizeCSS: {},
+    postcss: {
+      plugins: {
+        tailwindcss: join(__dirname, 'tailwind.config.js'),
+        cssnano: {
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true }
+            }
+          ]
+        }
+      }
+    },
+    optimization: {
+      splitChunks: {
+        // minSize: 4096,
+        // maxInitialRequests: 3,
+        chunks: 'all',
+        cacheGroups: {
+          styles: {
+            name: true,
+            test: /\.(s?css|vue)$/,
+            chunks: 'all',
+            minSize: 2048,
+            maxAsyncRequests: 5,
+            // maxInitialRequests: 3,
+            reuseExistingChunk: true
+            // minChunks: 2,
+            // enforce: true
+          }
+        }
+      }
+    },
     extend (config, ctx) {
       // enable source maps (inline on the server!)
       if (ctx.isDev) {
