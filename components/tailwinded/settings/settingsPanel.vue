@@ -1,6 +1,6 @@
 <template>
   <transition name="settings">
-    <section v-show="processedValue" class="settings-panel sm:w-full md:w-1/2">
+    <section v-show="processedValue" class="settings-panel sm:w-full md:w-1/2 lg:w-2/5">
       <div class="settings-panel-main">
         <h1 class="text-xl my-3">
           {{ $i18n.t('settings.heading') }}
