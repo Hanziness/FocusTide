@@ -6,8 +6,8 @@ import dayjsrelativetime from 'dayjs/plugin/relativeTime'
 import { AvailableTimers } from '@/store/settings'
 
 // English and Hungarian locales
-import('dayjs/locale/en')
-import('dayjs/locale/hu')
+import(/* webpackChunkName: "dayjsLocales", webpackMode: "eager" */ 'dayjs/locale/en')
+import(/* webpackChunkName: "dayjsLocales", webpackMode: "eager" */ 'dayjs/locale/hu')
 
 dayjs.extend(duration)
 dayjs.extend(utc)
