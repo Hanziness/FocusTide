@@ -42,8 +42,6 @@ export default {
   */
   plugins: [
     '@/plugins/dayjs.js',
-    '@/plugins/v-mask.js',
-    { src: '@/plugins/notifications.client.js', ssr: false },
     { src: '@/plugins/vuex-persist.client.js', ssr: false },
     { src: '@/plugins/i18nwatcher.client.js', ssr: false }
   ],
@@ -118,8 +116,8 @@ export default {
   */
   googleFonts: {
     families: {
-      Poppins: [400, 700],
-      'Source Sans Pro': [700]
+      Poppins: [400, 700]
+      // 'Source Sans Pro': [700]
     },
     display: 'swap'
     // download: true
@@ -167,20 +165,15 @@ export default {
     },
     optimization: {
       splitChunks: {
-        // minSize: 4096,
-        // maxInitialRequests: 3,
         chunks: 'all',
         cacheGroups: {
           styles: {
             name: true,
+            priority: 10,
             test: /\.(s?css|vue)$/,
             chunks: 'all',
-            minSize: 2048,
-            maxAsyncRequests: 5,
-            // maxInitialRequests: 3,
+            minSize: 10000,
             reuseExistingChunk: true
-            // minChunks: 2,
-            // enforce: true
           }
         }
       }

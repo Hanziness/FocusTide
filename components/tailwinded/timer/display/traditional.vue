@@ -5,6 +5,8 @@
 </template>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/SourceSansPro_Numbers.scss';
+
 .timer-traditional {
   font-family: 'Source Sans Pro', monospace;
   font-size: 20vw;

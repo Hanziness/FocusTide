@@ -80,6 +80,11 @@ export default {
     LazyHydrate: () => import(/* webpackMode: "eager" */ 'vue-lazy-hydration')
   },
 
+  plugins: [
+    '@/plugins/v-mask.js',
+    { src: '@/plugins/notifications.client.js', ssr: false }
+  ],
+
   data () {
     return {
       showSettings: false
