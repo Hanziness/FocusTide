@@ -18,9 +18,20 @@
 
 <style lang="scss" scoped>
 div.schedule-container {
-  @apply p-4 bg-gray-800 flex flex-grow-0 flex-row rounded-lg shadow-lg overflow-hidden relative;
+  @apply p-4 bg-gray-800 flex flex-grow-0 flex-row rounded-lg shadow-lg overflow-hidden;
 
   z-index: 10;
+}
+
+div.schedule-transition-enter-active,
+div.schedule-transition-leave-active {
+  transition: transform 300ms ease-out, opacity 200ms ease-out;
+}
+
+div.schedule-transition-enter,
+div.schedule-transition-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
 }
 
 div.schedule-item.transition-schedule-enter-active,

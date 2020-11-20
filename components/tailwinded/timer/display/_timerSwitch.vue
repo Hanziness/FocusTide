@@ -10,9 +10,9 @@
 
 <style lang="scss" scoped>
 div.timer-container {
-  width: 100%;
-  height: 40vh;
-  z-index: 10;
+  @apply w-full h-full;
+
+  z-index: 5;
   position: relative;
 }
 

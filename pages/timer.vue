@@ -21,27 +21,22 @@
       <ticker slot-scope="{handleCompletion}" @complete="handleCompletion">
         <div
           slot-scope="{ timerState, timeElapsed, timeOriginal }"
-          :class="['p-8 flex flex-col justify-center items-center bg-transparent h-full']"
-          width="100%"
-          height="100%"
+          class="relative w-full h-full flex justify-center"
         >
-          <!-- <div slot-scope="{ timerRemaining, timerOriginal }"> -->
-          <schedule-display />
+          <schedule-display class="absolute ml-auto mr-auto" style="top: 2rem;" />
           <timer-progress
             v-if="$store.getters['settings/performanceSettings'].showProgressBar"
             :time-elapsed="timeElapsed"
             :time-original="timeOriginal"
           />
-          <div class="flex-grow" />
           <timer-switch
             :time-elapsed="timeElapsed"
             :time-original="timeOriginal"
             :timer-state="timerState"
             :timer-widget="$store.state.settings.currentTimer"
+            class="grid absolute place-items-center"
           />
-          <div class="flex-grow" />
-          <timer-controls />
-        <!-- </div> -->
+          <timer-controls class="absolute" style="bottom: 2rem;" />
         </div>
       </ticker>
     </notification-controller>
@@ -73,14 +68,14 @@ export default {
   layout: 'timer',
   components: {
     Ticker: () => import(/* webpackChunkName: "ticker", webpackMode: "eager" */ '@/components/ticker.vue'),
-    ScheduleDisplay: () => import(/* webpackChunkName: "schedule" */ '@/components/tailwinded/schedule/scheduleDisplay.vue'),
+    ScheduleDisplay: () => import(/* webpackChunkName: "schedule", webpackPreload: true */ '@/components/tailwinded/schedule/scheduleDisplay.vue'),
     NotificationController: () => import(/* webpackChunkName: "notificationController", webpackMode: "eager" */ '@/components/notifications/notificationController.vue'),
-    TimerProgress: () => import(/* webpackChunkName: "progress" */ '@/components/tailwinded/timer/timerProgress.vue'),
-    TimerSwitch: () => import(/* webpackChunkName: "timerSwitch" */ '@/components/tailwinded/timer/display/_timerSwitch.vue'),
-    TimerControls: () => import(/* webpackChunkName: "timerControls" */ '@/components/tailwinded/timer/timerControls.vue'),
-    SettingsPanel: () => import(/* webpackPrefetch: true, webpackChunkName: "settings" */ '@/components/tailwinded/settings/settingsPanel.vue'),
-    UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/tailwinded/base/button.vue'),
-    UiOverlay: () => import(/* webpackChunkName: "uibase" */ '@/components/tailwinded/base/overlay.vue'),
+    TimerProgress: () => import(/* webpackChunkName: "progress", webpackPreload: true */ '@/components/tailwinded/timer/timerProgress.vue'),
+    TimerSwitch: () => import(/* webpackChunkName: "timerSwitch", webpackPreload: true */ '@/components/tailwinded/timer/display/_timerSwitch.vue'),
+    TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPreload: true */ '@/components/tailwinded/timer/timerControls.vue'),
+    SettingsPanel: () => import(/* webpackChunkName: "settings", webpackPrefetch: true */ '@/components/tailwinded/settings/settingsPanel.vue'),
+    UiButton: () => import(/* webpackChunkName: "uibase", webpackPreload: true */ '@/components/tailwinded/base/button.vue'),
+    UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPreload: true */ '@/components/tailwinded/base/overlay.vue'),
     CogIcon: () => import(/* webpackChunkName: "icons" */ 'vue-material-design-icons/Cog.vue'),
     LazyHydrate: () => import(/* webpackMode: "eager" */ 'vue-lazy-hydration')
   },
