@@ -67,22 +67,22 @@ section.timer-section {
 </style>
 
 <script>
-import LazyHydrate from 'vue-lazy-hydration'
+// import LazyHydrate from 'vue-lazy-hydration'
 
 export default {
   layout: 'timer',
   components: {
-    Ticker: () => import('@/components/ticker.vue'),
-    ScheduleDisplay: () => import('@/components/tailwinded/schedule/scheduleDisplay.vue'),
-    NotificationController: () => import('@/components/notifications/notificationController.vue'),
-    TimerProgress: () => import('@/components/tailwinded/timer/timerProgress.vue'),
-    TimerSwitch: () => import('@/components/tailwinded/timer/display/_timerSwitch.vue'),
-    TimerControls: () => import('@/components/tailwinded/timer/timerControls.vue'),
-    SettingsPanel: () => import(/* webpackPrefetch: true */ '@/components/tailwinded/settings/settingsPanel.vue'),
-    UiButton: () => import('@/components/tailwinded/base/button.vue'),
-    UiOverlay: () => import('@/components/tailwinded/base/overlay.vue'),
-    CogIcon: () => import('vue-material-design-icons/Cog.vue'),
-    LazyHydrate
+    Ticker: () => import(/* webpackChunkName: "ticker", webpackMode: "eager" */ '@/components/ticker.vue'),
+    ScheduleDisplay: () => import(/* webpackChunkName: "schedule" */ '@/components/tailwinded/schedule/scheduleDisplay.vue'),
+    NotificationController: () => import(/* webpackChunkName: "notificationController", webpackMode: "eager" */ '@/components/notifications/notificationController.vue'),
+    TimerProgress: () => import(/* webpackChunkName: "progress" */ '@/components/tailwinded/timer/timerProgress.vue'),
+    TimerSwitch: () => import(/* webpackChunkName: "timerSwitch" */ '@/components/tailwinded/timer/display/_timerSwitch.vue'),
+    TimerControls: () => import(/* webpackChunkName: "timerControls" */ '@/components/tailwinded/timer/timerControls.vue'),
+    SettingsPanel: () => import(/* webpackPrefetch: true, webpackChunkName: "settings" */ '@/components/tailwinded/settings/settingsPanel.vue'),
+    UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/tailwinded/base/button.vue'),
+    UiOverlay: () => import(/* webpackChunkName: "uibase" */ '@/components/tailwinded/base/overlay.vue'),
+    CogIcon: () => import(/* webpackChunkName: "icons" */ 'vue-material-design-icons/Cog.vue'),
+    LazyHydrate: () => import(/* webpackMode: "eager" */ 'vue-lazy-hydration')
   },
 
   data () {

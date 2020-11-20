@@ -8,16 +8,7 @@
     :style="[
       { 'background-color': $store.state.settings.visuals[data.type].colour }
     ]"
-  >
-    <!-- <div class="text-center">
-      <div class="text-h6">
-        {{ $i18n.t('section.' + data._type) }}
-      </div>
-      <div class="">
-        {{ $dayjs.formatMs(data._length, {}) }}
-      </div>
-    </div> -->
-  </div>
+  />
 </template>
 
 <style lang="scss" scoped>

@@ -1,24 +1,21 @@
 <template>
-  <settings-resolver :settings-key="settingsKey">
-    <base-settings-item slot-scope="{ value, update, error, lastError, translationKey }" :settings-value="value" :error-value="lastError" :translation-key="translationKey">
-      <template #content-action="{ settingsValue }">
-        <input-text
-          :value="msToTimeStr(settingsValue)"
-          :custom-validators="{ 'time_format': timeRule }"
-          @input="update(timeStrToMs($event))"
-          @error="error($event.type, $event.additionalInfo)"
-        />
-      </template>
-    </base-settings-item>
-  </settings-resolver>
+  <base-settings-item :settings-key="settingsKey" :disabled="disabled">
+    <template #content-action="{ settingsValue, update, error }">
+      <input-text
+        :value="msToTimeStr(settingsValue)"
+        :custom-validators="{ 'time_format': timeRule }"
+        @input="update(timeStrToMs($event))"
+        @error="error($event.type, $event.additionalInfo)"
+      />
+    </template>
+  </base-settings-item>
 </template>
 
 <script>
 export default {
   components: {
-    SettingsResolver: () => import('@/components/tailwinded/settings/renderlessSettingsResolver.vue'),
-    BaseSettingsItem: () => import('@/components/tailwinded/settings/baseSettingsItemBare.vue'),
-    InputText: () => import('@/components/tailwinded/base/inputText.vue')
+    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/settings/baseSettingsItem.vue'),
+    InputText: () => import(/* webpackChunkName: "uibase" */ '@/components/tailwinded/base/inputText.vue')
   },
 
   props: {
@@ -40,6 +37,11 @@ export default {
     maxMs: {
       type: Number,
       default: undefined
+    },
+
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
 

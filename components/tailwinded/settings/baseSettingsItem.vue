@@ -1,5 +1,5 @@
 <template>
-  <settings-resolver :settings-key="settingsKey" :custom-set-function="customSetFunction">
+  <settings-resolver :settings-key="settingsKey" :custom-value="customValue" :custom-set-function="customSetFunction">
     <base-settings-item-bare
       slot-scope="{ value, update, error, lastError, translationKey }"
       :disabled="disabled"
@@ -25,7 +25,7 @@
           :translation-key="translationKey"
           :values="values"
           :selected="settingsValue"
-          @input="update"
+          :update="update"
         />
       </template>
     </base-settings-item-bare>
@@ -37,8 +37,8 @@ import settingsInputMixin from '@/assets/mixins/settings/settingsItemBase'
 
 export default {
   components: {
-    SettingsResolver: () => import('@/components/tailwinded/settings/renderlessSettingsResolver.vue'),
-    BaseSettingsItemBare: () => import('@/components/tailwinded/settings/baseSettingsItemBare.vue')
+    SettingsResolver: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/settings/renderlessSettingsResolver.vue'),
+    BaseSettingsItemBare: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/settings/baseSettingsItemBare.vue')
   },
 
   mixins: [settingsInputMixin],
@@ -47,6 +47,11 @@ export default {
     values: {
       type: Object,
       default: () => {}
+    },
+
+    customValue: {
+      type: [Number, String, Object],
+      default: undefined
     }
   }
 }

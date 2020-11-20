@@ -21,7 +21,7 @@
 <script>
 export default {
   components: {
-    OptionControl: () => import('@/components/tailwinded/base/option.vue')
+    OptionControl: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/base/option.vue')
   },
 
   props: {

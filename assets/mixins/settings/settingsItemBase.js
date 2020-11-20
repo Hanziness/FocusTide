@@ -1,7 +1,7 @@
 export default {
-  components: {
-    BaseSettingsItem: () => import('@/components/tailwinded/settings/baseSettingsItem.vue')
-  },
+  // components: {
+  //   BaseSettingsItem: () => import('@/components/tailwinded/settings/baseSettingsItem.vue')
+  // },
 
   data () {
     return {

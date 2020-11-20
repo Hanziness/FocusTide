@@ -17,12 +17,14 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import settingsInputMixin from '@/assets/mixins/settings/settingsItemBase'
-import InputText from '@/components/tailwinded/base/inputText.vue'
 
 import { required, minValue, maxValue, numeric } from 'vuelidate/lib/validators'
 
 export default {
-  components: { InputText },
+  components: {
+    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/settings/baseSettingsItem.vue'),
+    InputText: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/base/inputText.vue')
+  },
 
   mixins: [validationMixin, settingsInputMixin],
 

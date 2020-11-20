@@ -47,7 +47,7 @@
 <script>
 export default {
   components: {
-    UiButton: () => import('@/components/tailwinded/base/button.vue')
+    UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/tailwinded/base/button.vue')
   },
   methods: {
     changeLocale () {

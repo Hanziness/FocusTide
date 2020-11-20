@@ -1,19 +1,16 @@
 <template>
-  <settings-resolver :settings-key="settingsKey" :custom-value="customValue" :custom-set-function="customSetFunction">
-    <base-settings-item slot-scope="{ value, update, translationKey }" :show-description="false" :settings-value="value" :translation-key="translationKey">
-      <template #content-main="{ settingsValue }">
-        <option-group :translation-key="translationKey" :values="values" :selected="settingsValue" @input="update" />
-      </template>
-    </base-settings-item>
-  </settings-resolver>
+  <base-settings-item :settings-key="settingsKey" :disabled="disabled" :custom-value="customValue" :custom-set-function="customSetFunction">
+    <template #content-main="{ settingsValue, update, translationKey }">
+      <option-group :translation-key="translationKey" :values="values" :selected="settingsValue" @input="update" />
+    </template>
+  </base-settings-item>
 </template>
 
 <script>
 export default {
   components: {
-    SettingsResolver: () => import('@/components/tailwinded/settings/renderlessSettingsResolver.vue'),
-    BaseSettingsItem: () => import('@/components/tailwinded/settings/baseSettingsItemBare.vue'),
-    OptionGroup: () => import('@/components/tailwinded/base/optionGroup.vue')
+    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/settings/baseSettingsItem.vue'),
+    OptionGroup: () => import(/* webpackChunkName: "uibase" */ '@/components/tailwinded/base/optionGroup.vue')
   },
 
   props: {
@@ -25,6 +22,11 @@ export default {
     values: {
       type: Object,
       default: () => {}
+    },
+
+    disabled: {
+      type: Boolean,
+      default: false
     },
 
     /** Value used for preset controls to specify active item (read-only) */
