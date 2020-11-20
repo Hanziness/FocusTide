@@ -1,5 +1,4 @@
 import dayjs from 'dayjs'
-import duration from 'dayjs/plugin/duration'
 import utc from 'dayjs/plugin/utc'
 import dayjsrelativetime from 'dayjs/plugin/relativeTime'
 
@@ -9,15 +8,11 @@ import { AvailableTimers } from '@/store/settings'
 import(/* webpackChunkName: "dayjsLocales", webpackMode: "eager" */ 'dayjs/locale/en')
 import(/* webpackChunkName: "dayjsLocales", webpackMode: "eager" */ 'dayjs/locale/hu')
 
-dayjs.extend(duration)
 dayjs.extend(utc)
 dayjs.extend(dayjsrelativetime)
 
 export default function ({ store }, inject) {
   inject('dayjs', {
-    getDiff (start, target) {
-      return dayjs.duration(target.diff(start))
-    },
     formatMs (ms, { format = 'mm:ss' }) {
       return dayjs.utc(Math.round(ms / 1000) * 1000).format(format)
     },
