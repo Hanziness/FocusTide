@@ -31,7 +31,7 @@ export default function ({ store }, inject) {
       const percentageValue = Math.round(((totalRounded - msRounded) / totalRounded) * 100)
       return '' + percentageValue + (addPercentage ? '%' : '')
     },
-    getFormattedTime (ms, config = AvailableTimers.TIMER_TRADITIONAL, additionalArgs = {}) {
+    getFormattedTime (ms, config = store.state.settings.currentTimer, additionalArgs = {}) {
       switch (config) {
         case AvailableTimers.TIMER_TRADITIONAL:
           return this.formatMs(ms, additionalArgs)
