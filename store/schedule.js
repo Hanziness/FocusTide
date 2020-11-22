@@ -97,8 +97,16 @@ export const getters = {
     if (nextState) {
       return rootState.settings.visuals[nextState].colour
     } else {
-      return ''
+      return 'transparent'
     }
+  },
+
+  getScheduleColour (state, getters, rootState) {
+    const colours = []
+    for (const item of getters.getSchedule) {
+      colours.push(rootState.settings.visuals[item.type].colour)
+    }
+    return colours
   }
 }
 

@@ -4,7 +4,7 @@
       :key="$store.getters['schedule/getCurrentItem'].id"
       :class="['timer-progress']"
       :style="{
-        'background-color': $store.getters['schedule/nextScheduleColour'],
+        'background-color': $store.getters['schedule/getScheduleColour'][scheduleEntryId],
         'transform': `translateX(${-100 + progressPercentage}%)`
       }"
     />
@@ -21,6 +21,10 @@ export default {
     timeOriginal: {
       type: Number,
       required: true
+    },
+    scheduleEntryId: {
+      type: Number,
+      default: 1
     }
   },
 
@@ -37,7 +41,7 @@ export default {
 // provides a background filling progress bar (parent needs to be position: relative)
 .timer-progress {
   transition: 200ms ease-in-out;
-  transition-property: clip-path background-color transform;
+  transition-property: background-color transform;
   // background-color: red;
   // clip-path: inset(0% 100% 0% 0%);
   width: 100%;
@@ -52,7 +56,7 @@ export default {
 .progress-transition-enter-active,
 .progress-transition-leave-active {
   transition: 500ms ease-in;
-  transition-property: opacity transform !important;
+  transition-property: transform !important;
 }
 
 .progress-transition-enter {
