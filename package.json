@@ -20,7 +20,6 @@
     "nuxt": "^2.14.0",
     "nuxt-i18n": "^6.13.8",
     "sass-loader": "^10.0.4",
-    "v-mask": "^2.2.3",
     "vue-lazy-hydration": "^1.0.0-beta.14",
     "vue-material-design-icons": "^4.10.0",
     "vue-native-notification": "^1.1.1",

@@ -1,7 +1,6 @@
 <template>
   <input
     v-model="displayValue"
-    :v-mask="mask"
     class="form-input bg-gray-200 focus:bg-white w-full text-right"
     type="text"
   >
@@ -28,12 +27,6 @@ export default {
     numeric: {
       type: Boolean,
       default: false
-    },
-
-    /** Mask string for v-mask */
-    mask: {
-      type: String,
-      default: undefined
     },
 
     min: {
