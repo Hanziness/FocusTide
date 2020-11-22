@@ -143,6 +143,7 @@ section.settings-panel {
   @apply bg-white h-full fixed shadow w-2/5 flex flex-col;
 
   z-index: 1001;
+  min-width: calc(min(600px, 100%));
 }
 
 div.settings-panel-main {
