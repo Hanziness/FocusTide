@@ -23,12 +23,24 @@
           slot-scope="{ timerState, timeElapsed, timeOriginal }"
           class="relative w-full h-full flex justify-center"
         >
-          <schedule-display class="absolute ml-auto mr-auto" style="top: 2rem;" />
-          <timer-progress
-            v-if="$store.getters['settings/performanceSettings'].showProgressBar"
-            :time-elapsed="timeElapsed"
-            :time-original="timeOriginal"
-          />
+          <lazy-hydrate when-visible>
+            <transition slot-scope="{ hydrated }" name="schedule-transition">
+              <schedule-display
+                v-if="hydrated && $store.state.settings.schedule.showSchedule"
+                class="absolute ml-auto mr-auto"
+                style="top: 2rem;"
+              />
+            </transition>
+          </lazy-hydrate>
+
+          <lazy-hydrate when-visible>
+            <timer-progress
+              v-if="hydrated && $store.getters['settings/performanceSettings'].showProgressBar"
+              slot-scope="{ hydrated }"
+              :time-elapsed="timeElapsed"
+              :time-original="timeOriginal"
+            />
+          </lazy-hydrate>
           <timer-switch
             :time-elapsed="timeElapsed"
             :time-original="timeOriginal"
@@ -59,6 +71,17 @@ section.timer-section {
   position: relative;
   height: 100%;
 }
+
+.schedule-transition-enter-active,
+.schedule-transition-leave-active {
+  transition: transform 300ms ease-out, opacity 200ms ease-out;
+}
+
+.schedule-transition-enter,
+.schedule-transition-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
 </style>
 
 <script>
@@ -79,11 +102,6 @@ export default {
     CogIcon: () => import(/* webpackChunkName: "icons" */ 'vue-material-design-icons/Cog.vue'),
     LazyHydrate: () => import(/* webpackMode: "eager" */ 'vue-lazy-hydration')
   },
-
-  plugins: [
-    '@/plugins/v-mask.js',
-    { src: '@/plugins/notifications.client.js', ssr: false }
-  ],
 
   data () {
     return {

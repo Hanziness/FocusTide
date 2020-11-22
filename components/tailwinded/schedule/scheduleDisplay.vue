@@ -1,19 +1,16 @@
 <template>
-  <transition name="schedule-transition">
-    <transition-group
-      v-if="$store.state.settings.schedule.showSchedule"
-      name="transition-schedule"
-      tag="div"
-      class="schedule-container"
-    >
-      <schedule-item
-        v-for="(item, i) in $store.getters['schedule/getSchedule']"
-        :key="item.id"
-        :data="item"
-        :active="i === 0"
-      />
-    </transition-group>
-  </transition>
+  <transition-group
+    name="transition-schedule"
+    tag="div"
+    class="schedule-container"
+  >
+    <schedule-item
+      v-for="(item, i) in $store.getters['schedule/getSchedule']"
+      :key="item.id"
+      :data="item"
+      :active="i === 0"
+    />
+  </transition-group>
 </template>
 
 <style lang="scss" scoped>
@@ -21,17 +18,6 @@ div.schedule-container {
   @apply p-4 bg-gray-800 flex flex-grow-0 flex-row rounded-lg shadow-lg overflow-hidden;
 
   z-index: 10;
-}
-
-div.schedule-transition-enter-active,
-div.schedule-transition-leave-active {
-  transition: transform 300ms ease-out, opacity 200ms ease-out;
-}
-
-div.schedule-transition-enter,
-div.schedule-transition-leave-to {
-  transform: translateY(-20px);
-  opacity: 0;
 }
 
 div.schedule-item.transition-schedule-enter-active,
