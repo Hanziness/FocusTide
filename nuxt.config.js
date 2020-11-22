@@ -60,14 +60,14 @@ export default {
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/pwa'
   ],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/pwa',
     'nuxt-i18n'
     // 'portal-vue/nuxt'
   ],
