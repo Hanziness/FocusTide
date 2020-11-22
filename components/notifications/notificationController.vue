@@ -21,7 +21,7 @@ export default {
       (newValue) => {
         // update volume of sounds
         for (const key in this.sounds) {
-          this.sounds[key].volume(newValue)
+          this.sounds[key].source.volume = newValue
         }
       }
     )
@@ -47,7 +47,7 @@ export default {
 
   mounted () {
     // TODO Due to Chrome restrictions, this will trigger warnings that
-    // Howler cannot create the audio context until an interaction has
+    // we cannot create the audio context until an interaction has
     // been made. Try to only initialize the sounds when the user starts
     // the timer.
     this.loadSoundSet(this.$store.state.settings.audio.soundSet)
@@ -73,12 +73,14 @@ export default {
     loadSoundSet (setName) {
       try {
         for (const key in this.sounds) {
-          this.sounds[key] = new this.$notifications.Howl({
-            src: `/audio/${setName}/${key}.mp3`,
-            loop: false,
-            autoplay: false,
-            preload: true,
-            volume: this.$store.state.settings.audio.volume
+          this.sounds[key] = {
+            source: new Audio(`/audio/${setName}/${key}.mp3`),
+            ready: false
+          }
+
+          const thisRef = this
+          this.sounds[key].source.addEventListener('canplay', (event) => {
+            thisRef.sounds[key].ready = true
           })
         }
       } catch (err) {
@@ -88,7 +90,7 @@ export default {
 
     playSound (key) {
       if (this.sounds[key] && this.$store.state.settings.permissions.audio) {
-        this.sounds[key].play()
+        this.sounds[key].source.play()
       }
     },
 

@@ -15,7 +15,6 @@
     "@nuxtjs/pwa": "^3.0.0-beta.20",
     "@tailwindcss/typography": "^0.2.0",
     "dayjs": "^1.8.32",
-    "howler": "^2.2.0",
     "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
     "nuxt": "^2.14.0",
