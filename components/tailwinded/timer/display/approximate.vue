@@ -1,9 +1,11 @@
 <template>
-  <transition name="transition-approximate-up" mode="out-in">
-    <div :key="value" :class="['timer-approximate timer-display', { 'active': running }]">
-      {{ value }}
-    </div>
-  </transition>
+  <div>
+    <transition name="transition-approximate-up" mode="out-in">
+      <div :key="value" :class="['timer-approximate timer-display', { 'active': running }]">
+        {{ value }}
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -35,11 +37,11 @@ div.timer-approximate.transition-approximate-up-leave-active {
 
 div.timer-approximate.transition-approximate-up-enter {
   opacity: 0 !important;
-  transform: translateY(60px);
+  transform: translateY(30px) !important;
 }
 
 div.timer-approximate.transition-approximate-up-leave-to {
   opacity: 0 !important;
-  transform: translateY(-60px);
+  transform: translateY(-30px) !important;
 }
 </style>
