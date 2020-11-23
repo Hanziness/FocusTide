@@ -25,7 +25,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import '@/assets/scss/SourceSansPro_Numbers.scss';
+
 div.timer-percentage {
   font-size: 40vh;
   font-weight: 700;
