@@ -4,9 +4,9 @@ module.exports = {
   // prefix: '',
   // important: false,
   // separator: ':',
-  purge: {
-    enabled: true
-  },
+  // purge: {
+  //   enabled: true
+  // },
   theme: {
     extend: {
       fontFamily: {
