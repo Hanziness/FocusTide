@@ -2,7 +2,7 @@
   <Component
     :is="props.tag"
     :ref="data.ref"
-    :class="['ui-button', { 'subtle': props.subtle, 'regular': !props.subtle }, data.class, data.staticClass, {
+    :class="['ui-button', { 'subtle': !props.noStyle && props.subtle, 'regular': !props.noStyle && !props.subtle }, data.class, data.staticClass, {
       'cursor-pointer': !props.disabled,
       'disabled': props.disabled
     }]"
@@ -71,6 +71,10 @@ export default {
       type: Boolean
     },
     subtle: {
+      default: false,
+      type: Boolean
+    },
+    noStyle: {
       default: false,
       type: Boolean
     }
