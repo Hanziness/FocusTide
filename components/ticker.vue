@@ -148,14 +148,12 @@ export default {
       const elapsedDelta = newUpdate - this.lastUpdate
 
       // update remaining time if the timer is still running
-      if (this.timerState === timerState.RUNNING) {
-        if (decrement) {
-          // this.timeRemaining = Math.max(this.timeRemaining - elapsedDelta, 0)
-          this.timeElapsed = Math.min(this.timeElapsed + elapsedDelta, this.timeOriginal)
-        }
-
-        this.lastUpdate = newUpdate
+      if (decrement) {
+        // this.timeRemaining = Math.max(this.timeRemaining - elapsedDelta, 0)
+        this.timeElapsed = Math.min(this.timeElapsed + elapsedDelta, this.timeOriginal)
       }
+
+      this.lastUpdate = newUpdate
 
       // check if timer completed and schedule next tick
       if (nextState === timerState.RUNNING && this.timeElapsed >= this.timeOriginal) {
