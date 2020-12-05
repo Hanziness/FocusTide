@@ -1,10 +1,10 @@
 <template>
   <div class="timer-control-panel-basic p-2 bg-transparent flex flex-row items-center mb-4">
-    <div class="control-button rounded-l-lg -mr-2 text-lg z-10 p-3 px-4">
+    <div class="control-button rounded-l-lg -mr-2 text-lg p-3 px-4 lower-z">
       SKIP
     </div>
     <div
-      class="control-button -mt-6 -mb-6 rounded-full text-xl z-20 shadow-xl p-4 play-button"
+      class="control-button -mt-6 -mb-6 rounded-full text-xl shadow-xl p-4 play-button"
       aria-label="button"
       :class="[{ 'active': $store.getters['schedule/getCurrentTimerState'] === 1 }]"
       @click="$store.commit('schedule/updateTimerState', $store.getters['schedule/getCurrentTimerState'] !== 1 ? 1 : 2)"
@@ -18,13 +18,17 @@
         </div>
       </transition>
     </div>
-    <div class="control-button rounded-r-lg -ml-2 text-lg z-10 p-3 px-4">
+    <div class="control-button rounded-r-lg -ml-2 text-lg z-10 p-3 px-4 lower-z">
       STOP
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.lower-z {
+  z-index: -2;
+}
+
 div.timer-control-panel-basic {
   width: max-content;
   z-index: 10;
@@ -38,8 +42,8 @@ div.play-button {
   position: relative;
 }
 
-div.play-button.active::before,
-div.play-button.active::after {
+div.play-button::before,
+div.play-button::after {
   @apply rounded-full;
 
   content: '';
@@ -48,7 +52,7 @@ div.play-button.active::after {
   top: -2px;
   background:
     linear-gradient(
-      45deg,
+      90deg,
       #fb0094,
       #00f,
       #0f0,
@@ -58,13 +62,21 @@ div.play-button.active::after {
       #00f,
       #0f0,
       #ff0,
-      #f00
+      #f00,
+      #fb0094
     );
   background-size: 400%;
   width: calc(100% + 4px);
   height: calc(100% + 4px);
   z-index: -1;
+  transition: opacity 200ms ease-out;
   animation: flowbg 20s linear infinite;
+  opacity: 0;
+}
+
+div.play-button.active::before,
+div.play-button.active::after {
+  opacity: 1;
 }
 
 @keyframes flowbg {
@@ -72,13 +84,13 @@ div.play-button.active::after {
     background-position: 0 0;
   }
 
-  50% {
+  100% {
     background-position: 400% 0;
   }
 
-  100% {
-    background-position: 0 0;
-  }
+  // 100% {
+  //   background-position: 0 0;
+  // }
 }
 
 div.play-button::after {
