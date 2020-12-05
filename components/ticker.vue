@@ -90,6 +90,7 @@ export default {
     resetTimer () {
       // this.timeRemaining = this.timerOriginal
       this.timeElapsed = 0
+      this.timerTick({ nextState: timerState.STOPPED, decrement: false })
     },
 
     /** Useful when dayjs locale has changed (forces an update on the timer) */
