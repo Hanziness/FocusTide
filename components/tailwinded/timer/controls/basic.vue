@@ -1,12 +1,16 @@
 <template>
   <div class="timer-control-panel-basic p-2 bg-transparent flex flex-row items-center mb-4">
-    <div class="control-button rounded-l-lg -mr-2 text-lg p-3 px-4 lower-z">
-      SKIP
+    <div
+      class="control-button rounded-l-lg -mr-2 text-lg p-3 px-4 lower-z"
+      @click="$store.commit('schedule/advance')"
+    >
+      <p>SKIP</p>
     </div>
     <div
       class="control-button -mt-6 -mb-6 rounded-full text-xl shadow-xl p-4 play-button"
       aria-label="button"
-      :class="[{ 'active': $store.getters['schedule/getCurrentTimerState'] === 1 }]"
+      :class="[{ 'active': $store.getters['schedule/getCurrentTimerState'] === 1,
+                 'disabled': $store.getters['schedule/getCurrentTimerState'] === 3 }]"
       @click="$store.commit('schedule/updateTimerState', $store.getters['schedule/getCurrentTimerState'] !== 1 ? 1 : 2)"
     >
       <transition name="transition-fade" mode="out-in" tag="div" class="">
@@ -18,13 +22,26 @@
         </div>
       </transition>
     </div>
-    <div class="control-button rounded-r-lg -ml-2 text-lg z-10 p-3 px-4 lower-z">
-      STOP
+    <div
+      class="control-button rounded-r-lg -ml-2 text-lg z-10 p-3 px-4 lower-z"
+      :class="[{ 'disabled': $store.getters['schedule/getCurrentTimerState'] === 0 }]"
+      :aria-disabled="$store.getters['schedule/getCurrentTimerState'] === 0"
+      @click="$store.commit('schedule/updateTimerState', 0)"
+    >
+      <p>STOP</p>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.disabled {
+  pointer-events: none;
+
+  & > * {
+    opacity: 0.6;
+  }
+}
+
 .lower-z {
   z-index: -2;
 }
@@ -36,6 +53,10 @@ div.timer-control-panel-basic {
 
 div.control-button {
   @apply bg-gray-300 cursor-pointer;
+
+  & > * {
+    transition: opacity 300ms ease-out;
+  }
 }
 
 div.play-button {
