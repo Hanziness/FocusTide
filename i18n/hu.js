@@ -5,6 +5,12 @@ export default {
     longpause: 'Hosszú szünet',
     wait: 'Várakozás'
   },
+  controls: {
+    start: 'Időzítő indítása',
+    pause: 'Időzítő szünetelése',
+    stop: 'Időzítő visszaállítása',
+    next: 'Következő szakasz'
+  },
   settings: {
     heading: 'Beállítások',
     tabs: {
@@ -18,6 +24,18 @@ export default {
       reset: 'Visszaállítás'
     },
     values: {
+      lang: {
+        _title: 'Nyelv',
+        _description: '',
+        _values: {
+          en: 'Angol',
+          hu: 'Magyar'
+        },
+        _valueDescription: {
+          en: '',
+          hu: ''
+        }
+      },
       eventLoggingEnabled: {
         _title: 'Eseménynaplózás engedélyezése',
         _description: ''

@@ -1,0 +1,9 @@
+.transition-fade-enter-active,
+.transition-fade-leave-active {
+  transition: opacity 300ms ease-out !important;
+}
+
+.transition-fade-enter,
+.transition-fade-leave-to {
+  opacity: 0 !important;
+}

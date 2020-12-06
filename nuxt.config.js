@@ -1,11 +1,12 @@
-import colors from 'vuetify/es5/util/colors'
+// import colors from 'vuetify/es5/util/colors'
+import { join } from 'path'
 
 export default {
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
-  mode: 'universal',
+  // mode: 'universal',
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
@@ -31,6 +32,9 @@ export default {
   ** Global CSS
   */
   css: [
+    // 'normalize.css/normalize.css',
+    // '@/assets/global.scss',
+    '@/assets/transitions.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -38,14 +42,15 @@ export default {
   */
   plugins: [
     '@/plugins/dayjs.js',
-    '@/plugins/v-mask.js',
-    '@/plugins/notifications.client.js'
+    { src: '@/plugins/notifications.client.js', ssr: false },
+    { src: '@/plugins/vuex-persist.client.js', ssr: false },
+    { src: '@/plugins/i18nwatcher.client.js', ssr: false }
   ],
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
   */
-  components: true,
+  components: false,
   /*
   ** Nuxt.js dev-modules
   */
@@ -55,17 +60,20 @@ export default {
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/pwa'
   ],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/pwa',
-    'nuxt-i18n',
-    'portal-vue/nuxt'
+    'nuxt-i18n'
+    // 'portal-vue/nuxt'
   ],
+
+  /** Modules that need to be transpiled */
+  transpileDependencies: ['vuex-persist'],
 
   /**
    * i18n settings
@@ -81,6 +89,7 @@ export default {
     vueI18n: {
       fallbackLocale: 'en'
     },
+    vuex: false,
     // Routes generation strategy, can be set to one of the following:
     // - 'no_prefix': routes won't be prefixed
     // - 'prefix_except_default': add locale prefix for every locale except default
@@ -91,7 +100,7 @@ export default {
       // If enabled, a cookie is set once a user has been redirected to his
       // preferred language to prevent subsequent redirections
       // Set to false to redirect every time
-      useCookie: true,
+      useCookie: false,
       // Set to override the default domain of the cookie. Defaults to host of the site.
       cookieDomain: null,
       // Cookie name
@@ -108,40 +117,68 @@ export default {
   */
   googleFonts: {
     families: {
-      Poppins: true,
-      'Source Sans Pro': [700]
+      Poppins: [400, 700]
+      // 'Source Sans Pro': [700]
     },
-    subsets: ['all']
+    display: 'swap'
     // download: true
   },
 
-  /*
-  ** vuetify module configuration
-  ** https://github.com/nuxt-community/vuetify-module
-  */
-  vuetify: {
-    customVariables: ['~/assets/variables.scss'],
-    treeShake: true,
-    theme: {
-      dark: false,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
-  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    corejs: 3,
+    babel: {
+      presets ({ envName }) {
+        const envTargets = {
+          client: { browsers: ['last 2 versions'], ie: 11 },
+          server: { node: 'current' }
+        }
+        return [
+          [
+            '@nuxt/babel-preset-app',
+            {
+              targets: envTargets[envName],
+              corejs: { version: 3 }
+            }
+          ]
+        ]
+      }
+    },
+    extractCSS: {
+      ignoreOrder: true
+    },
+    optimizeCSS: {},
+    postcss: {
+      plugins: {
+        tailwindcss: join(__dirname, 'tailwind.config.js'),
+        cssnano: {
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true }
+            }
+          ]
+        }
+      }
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          styles: {
+            name: true,
+            priority: 10,
+            test: /\.(s?css|vue)$/,
+            chunks: 'all',
+            minSize: 10000,
+            reuseExistingChunk: true
+          }
+        }
+      }
+    },
     extend (config, ctx) {
       // enable source maps (inline on the server!)
       if (ctx.isDev) {
