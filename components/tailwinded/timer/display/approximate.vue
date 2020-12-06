@@ -26,6 +26,7 @@ export default {
 
 <style lang="scss" scoped>
 div.timer-approximate {
+  user-select: none;
   font-size: 8vw;
 }
 
