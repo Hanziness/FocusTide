@@ -32,6 +32,8 @@
 
     <div
       class="control-button text-lg lower-z next"
+      :class="[{ 'disabled': $store.getters['schedule/getCurrentTimerState'] === 1 }]"
+      :aria-disabled="$store.getters['schedule/getCurrentTimerState'] === 1"
       @click="$store.commit('schedule/advance')"
     >
       <!-- <p>NEXT</p> -->
