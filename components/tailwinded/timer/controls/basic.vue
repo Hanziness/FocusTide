@@ -1,11 +1,15 @@
 <template>
-  <div class="timer-control-panel-basic p-2 bg-transparent flex flex-row items-center mb-4">
+  <div class="timer-control-panel-basic ">
     <div
-      class="control-button rounded-l-lg -mr-2 text-lg p-3 px-4 lower-z"
-      @click="$store.commit('schedule/advance')"
+      class="control-button text-lg z-10 lower-z prev"
+      :class="[{ 'disabled': $store.getters['schedule/getCurrentTimerState'] === 0 }]"
+      :aria-disabled="$store.getters['schedule/getCurrentTimerState'] === 0"
+      @click="$store.commit('schedule/updateTimerState', 0)"
     >
-      <p>SKIP</p>
+      <!-- <p>STOP</p> -->
+      <icon-stop :size="24" :title="$i18n.t('controls.stop')" />
     </div>
+
     <div
       class="control-button -mt-6 -mb-6 rounded-full text-xl shadow-xl p-4 play-button"
       aria-label="button"
@@ -18,30 +22,49 @@
     >
       <transition name="transition-fade" mode="out-in" tag="div" class="">
         <div v-if="$store.getters['schedule/getCurrentTimerState'] !== 1" :key="1" class="relative">
-          <icon-play :size="64" />
+          <icon-play :size="64" :title="$i18n.t('controls.start')" />
         </div>
         <div v-else :key="2" class="relative">
-          <icon-pause :size="64" />
+          <icon-pause :size="64" :title="$i18n.t('controls.pause')" />
         </div>
       </transition>
     </div>
+
     <div
-      class="control-button rounded-r-lg -ml-2 text-lg z-10 p-3 px-4 lower-z"
-      :class="[{ 'disabled': $store.getters['schedule/getCurrentTimerState'] === 0 }]"
-      :aria-disabled="$store.getters['schedule/getCurrentTimerState'] === 0"
-      @click="$store.commit('schedule/updateTimerState', 0)"
+      class="control-button text-lg lower-z next"
+      @click="$store.commit('schedule/advance')"
     >
-      <p>STOP</p>
+      <!-- <p>NEXT</p> -->
+      <icon-skip-next :size="24" :title="$i18n.t('controls.next')" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.disabled {
-  pointer-events: none;
+div.timer-control-panel-basic {
+  @apply p-2 bg-transparent flex flex-row items-center mb-4;
 
-  & > * {
-    opacity: 0.6;
+  width: max-content;
+  z-index: 10;
+
+  & > div.control-button:first-child {
+    @apply rounded-l-lg -mr-2;
+  }
+
+  & > div.control-button:last-child {
+    @apply rounded-r-lg -ml-2;
+  }
+
+  & > div.control-button:not(.play-button) {
+    @apply p-3 px-4 shadow-md uppercase;
+  }
+
+  & > div.control-button.prev {
+    @apply pr-5;
+  }
+
+  & > div.control-button.next {
+    @apply pl-5;
   }
 }
 
@@ -49,16 +72,25 @@
   z-index: -2;
 }
 
-div.timer-control-panel-basic {
-  width: max-content;
-  z-index: 10;
-}
-
 div.control-button {
   @apply bg-gray-300 cursor-pointer;
 
+  transition: background-color 200ms ease-out;
+
+  &:not(.play-button):hover {
+    @apply bg-gray-400;
+  }
+
   & > * {
     transition: opacity 300ms ease-out;
+  }
+
+  &.disabled {
+    pointer-events: none;
+
+    & > * {
+      opacity: 0.4;
+    }
   }
 }
 
@@ -85,10 +117,19 @@ div.play-button::after {
   opacity: 0;
 }
 
+div.play-button::after {
+  filter: blur(6px);
+}
+
 div.play-button.active::before,
 div.play-button.active::after {
   animation-play-state: running;
   opacity: 1;
+}
+
+div.play-button:not(.active):hover::before,
+div.play-button:not(.active):hover::after {
+  opacity: 0.6;
 }
 
 @keyframes spinbg {
@@ -101,10 +142,6 @@ div.play-button.active::after {
   }
 }
 
-div.play-button::after {
-  filter: blur(10px);
-  opacity: 20%;
-}
 </style>
 
 <script>
@@ -112,7 +149,9 @@ export default {
   components: {
     // UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/tailwinded/base/button.vue'),
     IconPlay: () => import('vue-material-design-icons/Play.vue'),
-    IconPause: () => import('vue-material-design-icons/Pause.vue')
+    IconPause: () => import('vue-material-design-icons/Pause.vue'),
+    IconStop: () => import('vue-material-design-icons/Stop.vue'),
+    IconSkipNext: () => import('vue-material-design-icons/SkipNext.vue')
   },
 
   computed: {

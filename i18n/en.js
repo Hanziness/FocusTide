@@ -5,6 +5,12 @@ export default {
     longpause: 'Long Break',
     wait: 'Waiting'
   },
+  controls: {
+    start: 'Start timer',
+    pause: 'Pause timer',
+    stop: 'Reset timer',
+    next: 'Go to next section'
+  },
   settings: {
     heading: 'Settings',
     tabs: {

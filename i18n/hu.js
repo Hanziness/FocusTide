@@ -5,6 +5,12 @@ export default {
     longpause: 'Hosszú szünet',
     wait: 'Várakozás'
   },
+  controls: {
+    start: 'Időzítő indítása',
+    pause: 'Időzítő szünetelése',
+    stop: 'Időzítő visszaállítása',
+    next: 'Következő szakasz'
+  },
   settings: {
     heading: 'Beállítások',
     tabs: {
