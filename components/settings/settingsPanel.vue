@@ -78,13 +78,13 @@
 export default {
   name: 'SettingsPanel',
   components: {
-    // UiOverlay: () => import('@/components/tailwinded/base/overlay.vue'),
-    UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/tailwinded/base/button.vue'),
-    SettingsCheck: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/settings/items/settingsCheck.vue'),
-    SettingsText: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/settings/items/settingsText.vue'),
-    SettingsTime: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/settings/items/settingsTime.vue'),
-    SettingsOptions: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/settings/items/settingsOptions.vue'),
-    Divider: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/base/divider.vue'),
+    // UiOverlay: () => import('@/components/base/overlay.vue'),
+    UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/base/button.vue'),
+    SettingsCheck: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsCheck.vue'),
+    SettingsText: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsText.vue'),
+    SettingsTime: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsTime.vue'),
+    SettingsOptions: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsOptions.vue'),
+    Divider: () => import(/* webpackMode: "eager" */ '@/components/base/divider.vue'),
     CloseIcon: () => import(/* webpackMode: "eager" */ 'vue-material-design-icons/Close.vue')
   },
   props: {

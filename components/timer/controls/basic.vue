@@ -149,7 +149,7 @@ div.play-button:not(.active):hover::after {
 <script>
 export default {
   components: {
-    // UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/tailwinded/base/button.vue'),
+    // UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/base/button.vue'),
     IconPlay: () => import('vue-material-design-icons/Play.vue'),
     IconPause: () => import('vue-material-design-icons/Pause.vue'),
     IconStop: () => import('vue-material-design-icons/Stop.vue'),

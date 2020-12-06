@@ -14,8 +14,8 @@
 <script>
 export default {
   components: {
-    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/settings/baseSettingsItem.vue'),
-    InputText: () => import(/* webpackChunkName: "uibase" */ '@/components/tailwinded/base/inputText.vue')
+    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/settings/baseSettingsItem.vue'),
+    InputText: () => import(/* webpackChunkName: "uibase" */ '@/components/base/inputText.vue')
   },
 
   props: {

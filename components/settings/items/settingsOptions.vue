@@ -9,8 +9,8 @@
 <script>
 export default {
   components: {
-    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/settings/baseSettingsItem.vue'),
-    OptionGroup: () => import(/* webpackChunkName: "uibase" */ '@/components/tailwinded/base/optionGroup.vue')
+    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/settings/baseSettingsItem.vue'),
+    OptionGroup: () => import(/* webpackChunkName: "uibase" */ '@/components/base/optionGroup.vue')
   },
 
   props: {

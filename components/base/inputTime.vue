@@ -5,7 +5,7 @@
 <script>
 export default {
   components: {
-    InputText: () => import('@/components/tailwinded/base/inputText.vue')
+    InputText: () => import('@/components/base/inputText.vue')
   },
 
   props: {

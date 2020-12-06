@@ -49,7 +49,7 @@ div.schedule-item.transition-schedule-leave-to {
 <script>
 export default {
   components: {
-    ScheduleItem: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/schedule/scheduleItem.vue')
+    ScheduleItem: () => import(/* webpackMode: "eager" */ '@/components/schedule/scheduleItem.vue')
   }
 }
 </script>

@@ -22,8 +22,8 @@ import { required, minValue, maxValue, numeric } from 'vuelidate/lib/validators'
 
 export default {
   components: {
-    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/settings/baseSettingsItem.vue'),
-    InputText: () => import(/* webpackMode: "eager" */ '@/components/tailwinded/base/inputText.vue')
+    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/settings/baseSettingsItem.vue'),
+    InputText: () => import(/* webpackMode: "eager" */ '@/components/base/inputText.vue')
   },
 
   mixins: [validationMixin, settingsInputMixin],

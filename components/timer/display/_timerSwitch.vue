@@ -46,9 +46,9 @@ import TimerMixin from '@/assets/mixins/timerMixin'
 
 export default {
   components: {
-    TimerTraditional: () => import(/* webpackChunkName: "timerTraditional" */ '@/components/tailwinded/timer/display/traditional.vue'),
-    TimerApproximate: () => import(/* webpackChunkName: "timerApproximate" */ '@/components/tailwinded/timer/display/approximate.vue'),
-    TimerPercentage: () => import(/* webpackChunkName: "timerPercentage" */ '@/components/tailwinded/timer/display/percentage.vue')
+    TimerTraditional: () => import(/* webpackChunkName: "timerTraditional" */ '@/components/timer/display/traditional.vue'),
+    TimerApproximate: () => import(/* webpackChunkName: "timerApproximate" */ '@/components/timer/display/approximate.vue'),
+    TimerPercentage: () => import(/* webpackChunkName: "timerPercentage" */ '@/components/timer/display/percentage.vue')
   },
   mixins: [TimerMixin],
   props: {
