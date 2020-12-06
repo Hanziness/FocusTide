@@ -10,9 +10,9 @@ AnotherPomodoro is a very creatively named Pomodoro timer application running in
 
 When working with AnotherPomodoro, you'll be moving between three types of sections:
 
-1. ▶ Work. Do what you gotta do.
-2. ⏸ (Short) Pause. Take a short rest, stand up from your computer and drink some water.
-3. ⏸ Long pause. Having worked some time now, take a longer break. You can grab a cup of coffee, watch some memes and scroll social media.
+1. ▶ Work. <br> Do what you gotta do.
+2. ⏸ (Short) Pause. <br> Take a short rest, stand up from your computer and drink some water.
+3. ⏸ Long pause. <br> Having worked some time now, take a longer break. You can grab a cup of coffee, watch some memes and scroll social media.
 
 Typically, every third break will be a long one. With the default settings that means:
 
@@ -27,9 +27,9 @@ Typically, every third break will be a long one. With the default settings that 
 
 ### What you get
 * ⏰ **Multiple types of timers**
-  * (12:34) _traditional_: a classic one with second-precision for those who want to know exactly how much time is left until coffee break
-  * (12 minutes) _approximate_: this one displays time in minute-precision so you know how much time is left but your eyes won't stick to the counter since it does not change every second
-  * (50%) _percentage_: this one is even less informative, keeping you away from the distraction of calculating "what can I do in the remaining 12 minutes and 34 seconds?".
+  * (12:34) _traditional_ <br> a classic one with second-precision for those who want to know exactly how much time is left until coffee break
+  * (12 minutes) _approximate_ <br> this one displays time in minute-precision so you know how much time is left but your eyes won't stick to the counter since it does not change every second
+  * (50%) _percentage_ <br> this one is even less informative, keeping you away from the distraction of calculating "what can I do in the remaining 12 minutes and 34 seconds?".
 * 💡 **Friendly, focused and clean user interface**
   * a timer in the center, a quick glance of your schedule at the top and controls at the bottom. What else?
   * fancy and colourful progress bar in the background
@@ -50,6 +50,7 @@ Typically, every third break will be a long one. With the default settings that 
   * _adaptive ticking_: timers will update less frequently while the browser tab is not visible
   * it's a _PWA_ (Progressive Web App): it's fast and it can run fully offline (you can "install" it through your browser!)
   * has some nice animations :)
+* ✔ **No installation required**. Just open the webpage and enjoy it!
 * 📵 **No tracking, ads or any fishy stuff -- and it's entirely _free_**
 * 👋 **Open development**
   * anyone can view the source code, raise issues (feature requests, bug reports) or even submit their own improvements!
