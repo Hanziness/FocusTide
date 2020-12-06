@@ -8,6 +8,10 @@
     "files.insertFinalNewline": true,
     "eslint.codeActionsOnSave.mode": "all",
     "editor.codeActionsOnSave": { "source.fixAll": true },
-    "editor.tabSize": 2
+		"editor.tabSize": 2,
+		"css.validate": false,
+		"scss.validate": false,
+		"less.validate": false,
+		"terminal.integrated.fontSize": 16
 	}
 }

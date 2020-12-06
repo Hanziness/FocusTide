@@ -1,14 +1,4 @@
-<template>
-  <!-- <v-btn @click="playSound('work')">
-    Play Work
-  </v-btn> -->
-  <div id="pomodoro-notification-handler" />
-</template>
-
 <script>
-// import { Howl } from 'howler'
-import { functionUpdateGroup } from '@/store/timer'
-
 export default {
   data () {
     return {
@@ -31,7 +21,7 @@ export default {
       (newValue) => {
         // update volume of sounds
         for (const key in this.sounds) {
-          this.sounds[key].volume(newValue)
+          this.sounds[key].source.volume = newValue
         }
       }
     )
@@ -56,29 +46,41 @@ export default {
   },
 
   mounted () {
+    // TODO Due to Chrome restrictions, this will trigger warnings that
+    // we cannot create the audio context until an interaction has
+    // been made. Try to only initialize the sounds when the user starts
+    // the timer.
     this.loadSoundSet(this.$store.state.settings.audio.soundSet)
 
-    const thisRef = this
-    this.$store.commit('timer/subscribeToNotify', {
-      fn (state) {
-        const nextScheduleType = thisRef.$store.getters['events/getSchedule'][1]._type
-        thisRef.playSound(nextScheduleType)
-        thisRef.showNotification(nextScheduleType)
-      },
-      id: 'notification-sound',
-      functionGroup: functionUpdateGroup.COMPLETE
-    })
+    // Check Visibility and register in store
+    if (window && window.document && 'hidden' in window.document) {
+      const storeRef = this.$store
+      window.document.addEventListener('visibilitychange', () => {
+        storeRef.commit('settings/registerNewHidden', window.document.hidden)
+      }, false)
+
+      // Commit this information immediately to make sure it's up to date
+      storeRef.commit('settings/registerNewHidden', window.document.hidden)
+    } else {
+      this.$store.commit('settings/registerNewHidden', null)
+    }
+
+    // Check permissions
+    this.$store.commit('notifications/updateEnabled')
   },
 
   methods: {
     loadSoundSet (setName) {
       try {
         for (const key in this.sounds) {
-          this.sounds[key] = new this.$notifications.Howl({
-            src: `/audio/${setName}/${key}.mp3`,
-            loop: false,
-            autoplay: false,
-            volume: this.$store.state.settings.audio.volume
+          this.sounds[key] = {
+            source: new Audio(`/audio/${setName}/${key}.mp3`),
+            ready: false
+          }
+
+          const thisRef = this
+          this.sounds[key].source.addEventListener('canplay', (event) => {
+            thisRef.sounds[key].ready = true
           })
         }
       } catch (err) {
@@ -88,12 +90,13 @@ export default {
 
     playSound (key) {
       if (this.sounds[key] && this.$store.state.settings.permissions.audio) {
-        this.sounds[key].play()
+        this.sounds[key].source.play()
       }
     },
 
     showNotification (nextState) {
       // TODO Firefox does not support actions
+      if (window.Notification.permission !== 'granted' || this.$store.state.settings.permissions.notifications !== true) { return }
       const notificationActions = []
       if (nextState === 'work') {
         notificationActions.push({
@@ -115,7 +118,19 @@ export default {
       } catch (err) {
 
       }
+    },
+
+    handleCompletion (nextType = undefined) {
+      const nextScheduleType = nextType || this.$store.getters['schedule/getSchedule'][1].type
+      this.playSound(nextScheduleType)
+      this.showNotification(nextScheduleType)
     }
+  },
+
+  render () {
+    return this.$scopedSlots.default({
+      handleCompletion: this.handleCompletion
+    })
   }
 }
 </script>

@@ -1,3 +1,5 @@
+import TickMultipliers from '@/assets/settings/adaptiveTickingMultipliers'
+
 export const AvailableTimers = {
   TIMER_TRADITIONAL: 'traditional',
   TIMER_APPROXIMATE: 'approximate',
@@ -9,6 +11,7 @@ export const AvailableSoundSets = {
 }
 
 export const state = () => ({
+  lang: undefined,
   visuals: {
     work: {
       colour: 'rgb(255, 107, 107)'
@@ -77,26 +80,11 @@ export const state = () => ({
   locale: null,
   adaptiveTicking: {
     enabled: true,
-    hiddenTickRate: 60 * 1000,
-    visibleTickRate: 1000,
-
-    multipliers: {
-      traditional: {
-        hidden: 1 / 60
-      },
-      approximate: {
-        hidden: 5,
-        visible: 30
-      },
-      percentage: {
-        hidden: 1 / 5,
-        visible: 2
-      }
-    },
+    baseTickRate: 1000,
     registeredHidden: null
   },
   permissions: {
-    notifications: false,
+    notifications: undefined,
     audio: true
   },
   audio: {
@@ -124,16 +112,17 @@ export const getters = {
   getAdaptiveTickRate (state) {
     if (state.adaptiveTicking.enabled && state.adaptiveTicking.registeredHidden !== null) {
       // fetch settings for the current timer style
-      const timerSettings = state.adaptiveTicking.multipliers[state.currentTimer]
+      const timerSettings = TickMultipliers[state.currentTimer]
       const tickVersion = state.adaptiveTicking.registeredHidden ? 'hidden' : 'visible'
 
-      const tickBase = state.adaptiveTicking.registeredHidden ? state.adaptiveTicking.hiddenTickRate : state.adaptiveTicking.visibleTickRate
+      // const tickBase = state.adaptiveTicking.registeredHidden ? state.adaptiveTicking.hiddenTickRate : state.adaptiveTicking.visibleTickRate
+      const tickBase = state.adaptiveTicking.baseTickRate
       const tickMultiplier = (timerSettings && timerSettings[tickVersion]) ? timerSettings[tickVersion] : 1.0
 
       return tickBase * tickMultiplier
     }
 
-    return state.adaptiveTicking.visibleTickRate
+    return state.adaptiveTicking.baseTickRate
   },
 
   performanceSettings (state) {
@@ -179,6 +168,10 @@ export const mutations = {
     } else {
       currentElement[key[key.length - 1]] = value
     }
+  },
+
+  removeDebugItems (state) {
+    delete state.timerPresets.debug
   }
 }
 

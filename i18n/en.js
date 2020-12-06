@@ -5,6 +5,12 @@ export default {
     longpause: 'Long Break',
     wait: 'Waiting'
   },
+  controls: {
+    start: 'Start timer',
+    pause: 'Pause timer',
+    stop: 'Reset timer',
+    next: 'Go to next section'
+  },
   settings: {
     heading: 'Settings',
     tabs: {
@@ -18,6 +24,18 @@ export default {
       reset: 'Reset'
     },
     values: {
+      lang: {
+        _title: 'Language',
+        _description: '',
+        _values: {
+          en: 'English',
+          hu: 'Hungarian'
+        },
+        _valueDescription: {
+          en: '',
+          hu: ''
+        }
+      },
       eventLoggingEnabled: {
         _title: 'Enable event logging',
         _description: ''
@@ -132,5 +150,15 @@ export default {
       title: 'Whew! More spare time!',
       body: 'Well-well. After working this much, you deserve a longer break.'
     }
+  },
+  error: {
+    format_invalid: 'Invalid input format',
+    range_invalid: 'Value must be between {min} and {max}',
+    required: 'This field must be filled',
+    numeric: 'Value must be a number',
+    min: 'Value must be at least {min}',
+    max: 'Value must be at most {max}',
+    time_format: 'Incorrectly formatted time (MM:SS)',
+    undefined: 'Undefined error'
   }
 }
