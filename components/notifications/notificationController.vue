@@ -2,6 +2,7 @@
 export default {
   data () {
     return {
+      currentSoundSet: null,
       sounds: {
         work: null,
         shortpause: null,
@@ -9,7 +10,8 @@ export default {
       },
       storeUnwatch: {
         volume: null,
-        soundSet: null
+        soundSet: null,
+        timerState: null
       }
     }
   },
@@ -34,6 +36,16 @@ export default {
         this.loadSoundSet(newValue)
       }
     )
+
+    this.storeUnwatch.timerState = this.$store.watch(
+      state => state.schedule.timerState,
+      (newValue) => {
+        // update volume of sounds
+        if (newValue === 1) {
+          this.loadSoundSet(this.$store.state.settings.audio.soundSet)
+        }
+      }
+    )
   },
 
   beforeDestroy () {
@@ -46,11 +58,10 @@ export default {
   },
 
   mounted () {
-    // TODO Due to Chrome restrictions, this will trigger warnings that
-    // we cannot create the audio context until an interaction has
-    // been made. Try to only initialize the sounds when the user starts
-    // the timer.
-    this.loadSoundSet(this.$store.state.settings.audio.soundSet)
+    // check if timer is already running
+    if (this.$store.state.schedule.timerState === 1) {
+      this.loadSoundSet()
+    }
 
     // Check Visibility and register in store
     if (window && window.document && 'hidden' in window.document) {
@@ -70,7 +81,13 @@ export default {
   },
 
   methods: {
-    loadSoundSet (setName) {
+    /**
+     * Load a sound set into memory
+     * @param {String} setName Name of the sound set to load
+     */
+    loadSoundSet (setName = this.$store.state.settings.audio.soundSet) {
+      if (this.currentSoundSet === setName) { return }
+
       try {
         for (const key in this.sounds) {
           this.sounds[key] = {
@@ -83,17 +100,32 @@ export default {
             thisRef.sounds[key].ready = true
           })
         }
+
+        this.currentSoundSet = setName
       } catch (err) {
         // console.warn(err)
       }
     },
 
+    /**
+     * Play the specified sound
+     * @param {String} key The key of the sound. Valid values are `work`, `pause` and `longpause`.
+     */
     playSound (key) {
+      // load sound set if not already loaded
+      if (!this.currentSoundSet) {
+        this.loadSoundSet()
+      }
+
       if (this.sounds[key] && this.$store.state.settings.permissions.audio) {
         this.sounds[key].source.play()
       }
     },
 
+    /**
+     * Show desktop notification (if possible) based on the next state.
+     * @param {String} nextState The type of the next section
+     */
     showNotification (nextState) {
       // TODO Firefox does not support actions
       if (window.Notification.permission !== 'granted' || this.$store.state.settings.permissions.notifications !== true) { return }
