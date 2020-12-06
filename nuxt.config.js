@@ -76,6 +76,19 @@ export default {
   transpileDependencies: ['vuex-persist'],
 
   /**
+   * PWA module settings
+   */
+  pwa: {
+    meta: {
+      name: 'AnotherPomodoro',
+      author: 'Imre Gera',
+      description: 'Free and open-source Pomodoro app for everyone',
+      theme_color: '#FF6B6B',
+      lang: 'en'
+    }
+  },
+
+  /**
    * i18n settings
    */
   i18n: {
