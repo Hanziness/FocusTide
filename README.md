@@ -2,6 +2,8 @@
 
 Free and open-source Pomodoro application, right in your browser.
 
+![Screenshot of the application showing a work section.](./static/img/Screenshot-Main.png)
+
 ## What is it?
 
 AnotherPomodoro is a very creatively named Pomodoro timer application running in the browser. It helps you manage your time so that you can spend more time doing work in exchange for time spent on watching videos of cute cats 😿
