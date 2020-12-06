@@ -11,6 +11,9 @@
       aria-label="button"
       :class="[{ 'active': $store.getters['schedule/getCurrentTimerState'] === 1,
                  'disabled': $store.getters['schedule/getCurrentTimerState'] === 3 }]"
+      :style="{ '--next': $store.getters['schedule/nextScheduleColour'],
+                '--old': $store.getters['schedule/currentScheduleColour'],
+                '--percentage': ((progressPercentage * 100) * 0.85 + 10) + '%' }"
       @click="$store.commit('schedule/updateTimerState', $store.getters['schedule/getCurrentTimerState'] !== 1 ? 1 : 2)"
     >
       <transition name="transition-fade" mode="out-in" tag="div" class="">
@@ -71,47 +74,31 @@ div.play-button::after {
   position: absolute;
   left: -2px;
   top: -2px;
-  background:
-    linear-gradient(
-      90deg,
-      #fb0094,
-      #00f,
-      #0f0,
-      #ff0,
-      #f00,
-      #fb0094,
-      #00f,
-      #0f0,
-      #ff0,
-      #f00,
-      #fb0094
-    );
-  background-size: 400%;
+  background: conic-gradient(var(--next) 0%, var(--next) var(--percentage), var(--old) var(--percentage), var(--old) 100%);
   width: calc(100% + 4px);
   height: calc(100% + 4px);
   z-index: -1;
   transition: opacity 200ms ease-out;
-  animation: flowbg 20s linear infinite;
+  animation: spinbg 1s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
   opacity: 0;
 }
 
 div.play-button.active::before,
 div.play-button.active::after {
+  animation-play-state: running;
   opacity: 1;
 }
 
-@keyframes flowbg {
+@keyframes spinbg {
   0% {
-    background-position: 0 0;
+    transform: rotate(0);
   }
 
   100% {
-    background-position: 400% 0;
+    transform: rotate(360deg);
   }
-
-  // 100% {
-  //   background-position: 0 0;
-  // }
 }
 
 div.play-button::after {
@@ -126,6 +113,12 @@ export default {
     // UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/tailwinded/base/button.vue'),
     IconPlay: () => import('vue-material-design-icons/Play.vue'),
     IconPause: () => import('vue-material-design-icons/Pause.vue')
+  },
+
+  computed: {
+    progressPercentage () {
+      return this.$store.getters['schedule/getCurrentItem'].timeElapsed / this.$store.getters['schedule/getCurrentItem'].length
+    }
   }
 }
 </script>
