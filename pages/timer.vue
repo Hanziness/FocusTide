@@ -155,8 +155,7 @@ export default {
 
   head () {
     return {
-      titleTemplate: `(${this.remainingTimeString}) %s`,
-      title: `${this.pageTitle}`,
+      title: `(${this.remainingTimeString}) ${this.pageTitle}`,
       link: [
         {
           rel: 'icon',
