@@ -5,7 +5,7 @@
         <h1 class="text-xl my-3">
           {{ $i18n.t('settings.heading') }}
           <ui-button subtle class="float-right -mt-1 -mr-2" @click="processedValue = false">
-            <close-icon />
+            <close-icon :title="$i18n.t('settings.buttons.close')" />
           </ui-button>
         </h1>
         <div class="w-full">

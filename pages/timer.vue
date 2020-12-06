@@ -3,7 +3,7 @@
     <!-- Settings button -->
     <ui-button subtle class="absolute" style="top: 0.5rem; right: 0.5rem; z-index: 10;" @click="showSettings = true">
       <client-only>
-        <cog-icon class="text-lg" />
+        <cog-icon class="text-lg" :title="$i18n.t('settings.heading')" />
       </client-only>
     </ui-button>
     <!-- Settings panel -->
