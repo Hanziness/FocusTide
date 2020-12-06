@@ -39,7 +39,8 @@ export default {
   plugins: [
     '@/plugins/dayjs.js',
     '@/plugins/v-mask.js',
-    '@/plugins/notifications.client.js'
+    { src: '@/plugins/notifications.client.js', ssr: false },
+    { src: '~/plugins/vuex-persist.client.js', ssr: false }
   ],
   /*
   ** Auto import components
@@ -66,6 +67,9 @@ export default {
     'nuxt-i18n',
     'portal-vue/nuxt'
   ],
+
+  /** Modules that need to be transpiled */
+  transpileDependencies: ['vuex-persist'],
 
   /**
    * i18n settings
