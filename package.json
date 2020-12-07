@@ -1,6 +1,6 @@
 {
   "name": "pomodoro-app",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -9,7 +9,10 @@
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
-    "lint": "yarn lint:js && yarn lint:style"
+    "lint": "yarn lint:js && yarn lint:style",
+    "release-patch": "yarn version --patch && git push --follow-tags",
+    "release-minor": "yarn version --minor && git push --follow-tags",
+    "release-major": "yarn version --major && git push --follow-tags"
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.0.0-beta.20",
