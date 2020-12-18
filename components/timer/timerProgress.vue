@@ -42,11 +42,8 @@ export default {
 .timer-progress {
   transition: 200ms ease-in-out;
   transition-property: background-color transform;
-  // background-color: red;
-  // clip-path: inset(0% 100% 0% 0%);
   width: 100%;
   height: 100%;
-  content: "";
   position: fixed;
   display: block;
   top: 0;
@@ -59,12 +56,10 @@ export default {
   transition-property: transform !important;
 }
 
-.progress-transition-enter {
-  // opacity: 0;
-}
+// .progress-transition-enter {
+// }
 
 .progress-transition-leave-to {
-  // opacity: 0;
   transform: translateX(0%) !important;
 }
 </style>
