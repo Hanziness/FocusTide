@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.0.0-beta.20",
-    "@tailwindcss/typography": "^0.2.0",
     "dayjs": "^1.8.32",
     "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
