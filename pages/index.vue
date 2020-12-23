@@ -105,7 +105,7 @@
         If you watch too many videos of cats while you should be working instead, then <b>give it a try</b>.
       </div>
 
-      <h1 class="section-title mt-4 mb-3">
+      <h1 class="section-title my-4">
         FAQ
       </h1>
 
@@ -182,6 +182,8 @@
         <div>No trackers</div>
         <div>No ads &amp; pop-ups</div>
         <div>Clean design</div>
+        <div>Adaptive ticking</div>
+        <div>... and more to come</div>
       </div>
     </section>
 
@@ -263,7 +265,7 @@
     // }
 
     .schedule-row {
-      @apply my-4 inline-grid grid-cols-3 grid-flow-row gap-2 md:gap-4 justify-center max-w-screen-lg;
+      @apply my-6 inline-grid grid-cols-3 grid-flow-row gap-2 md:gap-4 justify-center max-w-screen-lg;
     }
   }
 
@@ -349,7 +351,8 @@
         }
       }
 
-      & > div:first-of-type {
+      // :first-of-type
+      & > div {
         @apply mt-2;
       }
 
