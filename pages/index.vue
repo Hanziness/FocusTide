@@ -34,7 +34,7 @@
       <div class="-mt-12 features-row-primary md:grid-flow-col">
         <div class="feature-card">
           <h3 class="card-title">
-            <span class="icon"><icon-light-bulb class="text-yellow-500" /></span> Focused, clean interface
+            <span class="icon"><icon-light-bulb class="text-yellow-500" role="none" title="" /></span> Focused, clean interface
           </h3>
           <div class="card-description">
             Just your timer, the essential controls and a bunch of customizations
@@ -43,7 +43,7 @@
 
         <div class="feature-card">
           <h3 class="card-title">
-            <span class="icon"><icon-check class="text-green-600" /></span> Nothing to install
+            <span class="icon"><icon-check class="text-green-600" role="none" title="" /></span> Nothing to install
           </h3>
           <div class="card-description">
             Runs in your browser, entirely offline after launch
@@ -52,7 +52,7 @@
 
         <div class="feature-card">
           <h3 class="card-title">
-            <span class="icon"><icon-hand class="text-blue-600" /></span> Free &amp; open-source
+            <span class="icon"><icon-hand class="text-blue-600" role="none" title="" /></span> Free &amp; open-source
           </h3>
           <div class="card-description">
             No hidden trackers, everyone can view and contribute to the code.
@@ -95,7 +95,7 @@
         <div class="bg-blue-100 border-blue-400 do-card">
           <div class="content">
             <h3 class="title">
-              Repeat <span class="title-icon"><icon-repeat role="none" /></span>
+              Repeat <span class="title-icon"><icon-repeat role="none" title="" /></span>
             </h3>
             <div>Do it again! A few more rounds and you'll get some extra rest!</div>
           </div>
@@ -109,7 +109,7 @@
         FAQ
       </h1>
 
-      <div class="mx-auto container faq-container text-left">
+      <div class="mx-auto container faq-container">
         <details>
           <summary>Can I change those timers?</summary>
           <div>
@@ -142,7 +142,7 @@
           </div>
         </details>
         <details>
-          <summary>So what do I need to use this?</summary>
+          <summary>So what do I need to know use this?</summary>
           <div>
             <div>
               Absolutely nothing. If you don't want to delve into the settings, just start the timer and listen for the audio chime when it finishes. Once it's done, start the next timer when you're ready.
@@ -156,7 +156,13 @@
           <summary>Which timer style should I use?</summary>
           <div>
             <div>
-              That depends on how obscure you want the timer to be. If you want seconds-precision, go for the <em>traditional</em>, if you're fine with minutes, go for <em>approximate</em>. If that's still too precise, how about the <em>percentage</em> one? That only shows you the fraction of time elapsed (eg. 80% if you have a 25-minute session and you're done with 20 minutes). Hopefully that will prevent you from thinking about how many more minutes you have to work for!
+              That depends on how obscure you want the timer to be. Here's a little guidance on them:
+
+              <ul>
+                <li>if you want seconds-precision, go with the <em>traditional</em></li>
+                <li>if you're fine with minutes, go for <em>approximate</em> (the default one)</li>
+                <li>if that's still too precise, how about the <em>percentage</em> one?</li>
+              </ul>
             </div>
           </div>
         </details>
@@ -174,6 +180,8 @@
         <div>Offline</div>
         <div>Open-source</div>
         <div>No trackers</div>
+        <div>No ads &amp; pop-ups</div>
+        <div>Clean design</div>
       </div>
     </section>
 
@@ -181,7 +189,7 @@
       <h1 class="section-title">
         Support this project
       </h1>
-      <div class="">
+      <div class="mt-2">
         AnotherPomodoro is being developed as a side project with no compensation in mind. <br>
         If you feel that this is a project worth supporting, please <b>do so</b>.
       </div>
@@ -192,7 +200,7 @@
           </div>
         </a>
         <a href="https://www.buymeacoffee.com/imreg" target="_blank" aria-label="Buy me a coffee!">
-          <div class="p-1 bg-red-300 rounded-full inline-block">
+          <div class="p-1 bg-red-200 rounded-full inline-block">
             <img src="/img/BMC Logo - Black.svg" style="width: 42px; height: 42px;">
           </div>
         </a>
@@ -315,22 +323,26 @@
   }
 
   .faq-container {
+    @apply text-left rounded-lg overflow-hidden border divide-gray-200 divide-solid divide-y-2;
+
     & > details {
-      @apply border p-3 bg-gray-100;
-
-      &:first-child {
-        @apply rounded-t-lg;
-      }
-
-      &:last-child {
-        @apply rounded-b-lg;
-      }
+      @apply p-3 bg-gray-100;
 
       & > summary {
-        @apply font-bold;
+        @apply font-bold cursor-pointer;
       }
 
-      & > div:first-child {
+      & ul {
+        @apply mt-1 ml-4;
+
+        & > li::before {
+          @apply mr-1;
+
+          content: "-";
+        }
+      }
+
+      & > div:first-of-type {
         @apply mt-2;
       }
 
