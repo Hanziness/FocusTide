@@ -1,5 +1,5 @@
 // import colors from 'vuetify/es5/util/colors'
-import { join } from 'path'
+// import { join } from 'path'
 
 export default {
   /*
@@ -166,7 +166,7 @@ export default {
     optimizeCSS: {},
     postcss: {
       plugins: {
-        tailwindcss: join(__dirname, 'tailwind.config.js'),
+        tailwindcss: require('tailwindcss'),
         cssnano: {
           preset: [
             'default',
@@ -174,6 +174,18 @@ export default {
               discardComments: { removeAll: true }
             }
           ]
+        },
+        /*
+          TODO This is only needed while @nuxtjs/tailwindcss does not ship Tailwind V2
+          with PostCSS 8 by default.
+          See https://github.com/nuxt-community/tailwindcss-module/pull/203 and
+          https://github.com/tailwindlabs/tailwindcss/issues/1190#issuecomment-546621554.
+        */
+        'postcss-preset-env': {
+          stage: 1,
+          features: {
+            'focus-within-pseudo-class': false
+          }
         }
       }
     },

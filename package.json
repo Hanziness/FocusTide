@@ -35,12 +35,15 @@
     "@nuxtjs/google-fonts": "^1.0.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@nuxtjs/tailwindcss": "^3.1.0",
-    "@tailwindcss/custom-forms": "^0.2.1",
+    "@tailwindcss/forms": "^0.2.1",
+    "autoprefixer": "9",
     "babel-eslint": "^10.1.0",
     "core-js": "3",
     "eslint": "^7.5.0",
     "eslint-plugin-nuxt": "^1.0.0",
+    "postcss": "7",
     "stylelint": "^13.6.1",
-    "stylelint-config-standard": "^20.0.0"
+    "stylelint-config-standard": "^20.0.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
 }
