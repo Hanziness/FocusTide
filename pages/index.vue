@@ -62,14 +62,14 @@
     </section>
 
     <section class="section section-03">
-      <h1 class="section-title">
+      <h1 class="section-title mt-4">
         What does it do?
       </h1>
       <div>
         <b>AnotherPomodoro</b> helps you keep track of your time. Just work or take a break when it says so.
       </div>
 
-      <div class="my-4 inline-grid grid-cols-3 grid-flow-row gap-2 justify-center">
+      <div class="schedule-row">
         <div class="bg-red-100 border-red-400 do-card">
           <div class="content">
             <h3 class="title">
@@ -109,7 +109,7 @@
         FAQ
       </h1>
 
-      <div class="mx-auto container faq-container">
+      <div class="mx-auto faq-container">
         <details>
           <summary>Can I change those timers?</summary>
           <div>
@@ -193,7 +193,7 @@
         AnotherPomodoro is being developed as a side project with no compensation in mind. <br>
         If you feel that this is a project worth supporting, please <b>do so</b>.
       </div>
-      <div class="text-xl mt-4 inline-grid auto-cols-max grid-flow-col gap-2">
+      <div class="text-xl my-4 inline-grid auto-cols-max grid-flow-col gap-2">
         <a href="https://github.com/Hanziness/AnotherPomodoro" target="_blank" aria-label="View on GitHub">
           <div class="p-1 text-white bg-gray-900 rounded-full inline-block">
             <icon-github :size="42" title="" />
@@ -204,6 +204,9 @@
             <img src="/img/BMC Logo - Black.svg" style="width: 42px; height: 42px;">
           </div>
         </a>
+      </div>
+      <div class="mb-2">
+        Made with ❤ by Imre Gera
       </div>
     </section>
   </div>
@@ -258,6 +261,10 @@
     // & > h1:first-child {
     //   @apply mt-12;
     // }
+
+    .schedule-row {
+      @apply my-4 inline-grid grid-cols-3 grid-flow-row gap-2 md:gap-4 justify-center max-w-screen-lg;
+    }
   }
 
   .section-04 {
@@ -294,7 +301,7 @@
   .feature-card {
     @apply border border-gray-300 border-solid bg-white p-4 shadow-md rounded-lg text-left;
 
-    max-width: 300px;
+    // max-width: 300px;
     transition: transform 200ms ease-out, box-shadow 200ms ease-out;
 
     & > .card-title {
@@ -317,13 +324,13 @@
   }
 
   .features-row-primary {
-    @apply grid gap-4 ml-auto mr-auto;
+    @apply grid gap-4 ml-auto mr-auto md:grid-flow-col md:grid-cols-3 max-w-full lg:max-w-screen-lg;
 
     width: max-content;
   }
 
   .faq-container {
-    @apply text-left rounded-lg overflow-hidden border divide-gray-200 divide-solid divide-y-2;
+    @apply text-left rounded-lg overflow-hidden border divide-gray-200 divide-solid divide-y-2 max-w-screen-lg;
 
     & > details {
       @apply p-3 bg-gray-100;
@@ -357,13 +364,11 @@
   }
 
   .feature-list {
-    @apply text-lg mt-4 grid grid-flow-row grid-cols-3 gap-5 ml-auto mr-auto;
+    @apply text-lg mt-4 grid grid-flow-row grid-cols-3 gap-5 ml-auto mr-auto max-w-screen-lg;
   }
 
   .do-card {
     @apply rounded-lg text-left border-2 grid content-between shadow-md;
-
-    max-width: 300px;
 
     & > .content {
       @apply p-4;
