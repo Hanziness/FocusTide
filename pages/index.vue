@@ -4,7 +4,7 @@
       <h1 class="product-title">
         Another<b>Pomodoro</b>
       </h1>
-      <h2 class="-mt-2">
+      <h2>
         Free Pomodoro timer right in your browser
       </h2>
 
@@ -70,29 +70,29 @@
       </div>
 
       <div class="my-4 inline-grid grid-cols-3 grid-flow-row gap-2 justify-center">
-        <div class="bg-red-100 border-2 border-red-500 do-card">
+        <div class="bg-red-100 border-red-400 do-card">
           <div class="content">
             <h3 class="title">
               Work <span class="title-icon" role="none">1</span>
             </h3>
             <div>Time to get things done</div>
           </div>
-          <div class="border-t-2 border-red-500 info">
+          <div class="border-t-2 border-red-400 info">
             25 minutes
           </div>
         </div>
-        <div class="bg-yellow-100 border-2 border-yellow-500 do-card">
+        <div class="bg-yellow-100 border-yellow-400 do-card">
           <div class="content">
             <h3 class="title">
               Pause <span class="title-icon" role="none">2</span>
             </h3>
             <div>Watch a video, read an article, drink a coffee</div>
           </div>
-          <div class="border-t-2 border-yellow-500 info">
+          <div class="border-t-2 border-yellow-400 info">
             5-15 minutes
           </div>
         </div>
-        <div class="bg-blue-100 border-2 border-blue-500 do-card">
+        <div class="bg-blue-100 border-blue-400 do-card">
           <div class="content">
             <h3 class="title">
               Repeat <span class="title-icon"><icon-repeat role="none" /></span>
@@ -105,7 +105,7 @@
         If you watch too many videos of cats while you should be working instead, then <b>give it a try</b>.
       </div>
 
-      <h1 class="section-title mt-4 mb-2">
+      <h1 class="section-title mt-4 mb-3">
         FAQ
       </h1>
 
@@ -120,7 +120,7 @@
           <summary>Will this app help me?</summary>
 
           <div>
-            That depends on you. This app tries hard create a motivating environment with its clean design and flexibility, but it's up to you whether you follow the schedule it gives you.
+            That depends on you. This app tries hard to create a motivating environment with its clean design and flexibility, but it's up to you whether you follow the schedule it gives you.
           </div>
           <div>
             <span class="hint">Hint</span> If you realize you can't work 25 minutes straight or a break of 5 minutes is too short, adjust them to something more comfortable. Don't give up, follow a more relaxed schedule and progressively go stricter.
@@ -218,7 +218,7 @@
     @apply shadow-lg;
 
     &:hover {
-      @apply bg-yellow-500;
+      @apply bg-yellow-300;
     }
   }
 
@@ -245,7 +245,7 @@
   }
 
   .section-03 {
-    @apply text-center bg-orange-400 py-12 -mt-6;
+    @apply text-center bg-yellow-400 py-12 -mt-6;
 
     // & > h1:first-child {
     //   @apply mt-12;
@@ -253,7 +253,7 @@
   }
 
   .section-04 {
-    @apply text-center bg-blue-400 py-12 -mt-6;
+    @apply text-center bg-blue-300 py-12 -mt-6;
   }
 
   .section-05 {
@@ -284,7 +284,7 @@
   }
 
   .feature-card {
-    @apply border border-gray-400 border-solid bg-white p-4 shadow-md rounded-lg text-left;
+    @apply border border-gray-300 border-solid bg-white p-4 shadow-md rounded-lg text-left;
 
     max-width: 300px;
     transition: transform 200ms ease-out, box-shadow 200ms ease-out;
@@ -330,7 +330,7 @@
         @apply font-bold;
       }
 
-      & > div {
+      & > div:first-child {
         @apply mt-2;
       }
 
