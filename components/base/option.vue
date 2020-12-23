@@ -19,14 +19,14 @@
 
   flex-basis: 0;
   transition: background-color 100ms ease-out, color 100ms ease-out;
-}
 
-.select-option:hover {
-  @apply bg-gray-200;
-}
+  &:hover {
+    @apply bg-gray-200;
+  }
 
-.select-option.active {
-  @apply bg-primary border-transparent shadow text-white;
+  &.active {
+    @apply bg-primary border-transparent shadow text-white;
+  }
 }
 
 .select-option-title {
