@@ -2,7 +2,7 @@
   <base-settings-item :settings-key="settingsKey" :disabled="disabled" :custom-set-function="customSetFunction">
     <template #content-action="{ settingsValue, update }">
       <input
-        class="form-checkbox w-6 h-6 bg-gray-200 cursor-pointer"
+        class="w-6 h-6 cursor-pointer"
         type="checkbox"
         :checked="settingsValue"
         :value="settingsValue"

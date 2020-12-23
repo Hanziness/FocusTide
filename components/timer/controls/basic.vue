@@ -75,12 +75,12 @@ div.timer-control-panel-basic {
 }
 
 div.control-button {
-  @apply bg-gray-300 cursor-pointer;
+  @apply bg-gray-200 cursor-pointer;
 
   transition: background-color 200ms ease-out;
 
   &:not(.play-button):hover {
-    @apply bg-gray-400;
+    @apply bg-gray-300;
   }
 
   & > * {
