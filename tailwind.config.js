@@ -1,9 +1,4 @@
-// const defaultTheme = require('tailwindcss/defaultTheme')
-
 module.exports = {
-  // prefix: '',
-  // important: false,
-  // separator: ':',
   // purge: {
   //   enabled: true
   // },
@@ -22,10 +17,6 @@ module.exports = {
   variants: {},
   plugins: [
     // require('@tailwindcss/typography')
-    require('@tailwindcss/custom-forms')
-  ],
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true
-  }
+    require('@tailwindcss/forms')
+  ]
 }
