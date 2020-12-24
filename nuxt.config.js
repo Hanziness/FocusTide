@@ -1,6 +1,10 @@
 // import colors from 'vuetify/es5/util/colors'
 // import { join } from 'path'
 
+import fs from 'fs'
+const packageJson = fs.readFileSync('./package.json')
+const version = JSON.parse(packageJson).version || 0
+
 export default {
   /*
   ** Nuxt rendering mode
@@ -11,6 +15,10 @@ export default {
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
   */
+  env: {
+    PACKAGE_VERSION: version
+  },
+
   target: 'static',
   /*
   ** Headers of the page
@@ -93,12 +101,13 @@ export default {
    */
   i18n: {
     locales: [
-      { code: 'en', iso: 'en-US', file: 'en.js' },
-      { code: 'hu', iso: 'hu-HU', file: 'hu.js' }
+      { code: 'en', name: 'English', iso: 'en-US', file: 'en.js' },
+      { code: 'hu', name: 'Magyar', iso: 'hu-HU', file: 'hu.js' }
     ],
     defaultLocale: 'en',
     lazy: true,
     langDir: 'i18n/',
+    parsePages: false,
     vueI18n: {
       fallbackLocale: 'en'
     },
