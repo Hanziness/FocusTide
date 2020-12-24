@@ -288,10 +288,14 @@
     @apply text-left rounded-lg overflow-hidden border divide-gray-200 divide-solid divide-y-2 max-w-screen-lg;
 
     & > details {
-      @apply p-3 bg-gray-100;
+      @apply bg-gray-100;
 
       & > summary {
-        @apply font-bold cursor-pointer;
+        @apply p-3 font-bold cursor-pointer;
+      }
+
+      & > * {
+        @apply p-3 pt-0;
       }
 
       & ul {
@@ -305,9 +309,9 @@
       }
 
       // :first-of-type
-      & > div {
-        @apply mt-2;
-      }
+      // & > div {
+      //   @apply mt-2;
+      // }
 
       & span.hint {
         @apply bg-green-700 rounded-md px-1 text-white font-bold uppercase;
