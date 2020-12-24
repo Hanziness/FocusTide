@@ -4,23 +4,18 @@
       <h1 class="product-title">
         Another<b>Pomodoro</b>
       </h1>
-      <h2>
-        Free Pomodoro timer right in your browser
-      </h2>
+      <h2 v-text="$i18n.t('index.app_description')" />
 
       <!-- CTA -->
       <div class="cta-container grid-flow-row md:grid-flow-col">
         <nuxt-link to="/timer">
           <div
             class="bg-white text-black cta-button cta-main"
-          >
-            Quickstart
-          </div>
+            v-text="$i18n.t('index.cta.quickstart')"
+          />
         </nuxt-link>
-        <span class="mx-2">or</span>
-        <div class="bg-gray-300 text-black cta-button">
-          Configure
-        </div>
+        <span class="mx-2" v-text="$i18n.t('index.cta.or')" />
+        <div class="bg-gray-300 text-black cta-button" v-text="$i18n.t('index.cta.configure')" />
       </div>
     </section>
 
@@ -30,186 +25,110 @@
         <div ref="productImg" :class="['product-img', { 'bottom': !productImgTop }]" />
       </div>
 
-      <!-- Features here -->
       <div class="-mt-12 features-row-primary md:grid-flow-col">
-        <div class="feature-card">
+        <div v-for="(feature, i) in features" :key="'feature-' + i" class="feature-card">
           <h3 class="card-title">
-            <span class="icon"><icon-light-bulb class="text-yellow-500" role="none" title="" /></span> Focused, clean interface
+            <span class="icon"><component :is="feature.icon" :class="feature.iconClass" role="none" title="" /></span> {{ $i18n.t('index.features[' + i + '].title') }}
           </h3>
           <div class="card-description">
-            Just your timer, the essential controls and a bunch of customizations
-          </div>
-        </div>
-
-        <div class="feature-card">
-          <h3 class="card-title">
-            <span class="icon"><icon-check class="text-green-600" role="none" title="" /></span> Nothing to install
-          </h3>
-          <div class="card-description">
-            Runs in your browser, entirely offline after launch
-          </div>
-        </div>
-
-        <div class="feature-card">
-          <h3 class="card-title">
-            <span class="icon"><icon-hand class="text-blue-600" role="none" title="" /></span> Free &amp; open-source
-          </h3>
-          <div class="card-description">
-            No hidden trackers, everyone can view and contribute to the code.
+            {{ $i18n.t('index.features[' + i + '].description') }}
           </div>
         </div>
       </div>
     </section>
 
     <section class="section section-03">
-      <h1 class="section-title mt-4">
-        What does it do?
+      <h1 class="section-title mt-4 mb-2">
+        {{ $i18n.t('index.section_03.title') }}
       </h1>
-      <div>
-        <b>AnotherPomodoro</b> helps you keep track of your time. Just work or take a break when it says so.
-      </div>
+
+      <!-- Translations cause SSR vs Client rendering differences -->
+      <client-only>
+        <i18n path="index.section_03.subtitle" tag="div">
+          <b>AnotherPomodoro</b>
+        </i18n>
+      </client-only>
 
       <div class="schedule-row">
         <div class="bg-red-100 border-red-400 do-card">
           <div class="content">
             <h3 class="title">
-              Work <span class="title-icon" role="none">1</span>
+              {{ $i18n.t('index.section_03.cards[0].title') }} <span class="title-icon" role="none">1</span>
             </h3>
-            <div>Time to get things done</div>
+            <div>{{ $i18n.t('index.section_03.cards[0].description') }}</div>
           </div>
-          <div class="border-t-2 border-red-400 info">
-            25 minutes
-          </div>
+          <div class="border-red-400 info" v-text="$i18n.t('index.section_03.cards[0].info')" />
         </div>
         <div class="bg-yellow-100 border-yellow-400 do-card">
           <div class="content">
             <h3 class="title">
-              Pause <span class="title-icon" role="none">2</span>
+              {{ $i18n.t('index.section_03.cards[1].title') }} <span class="title-icon" role="none">2</span>
             </h3>
-            <div>Watch a video, read an article, drink a coffee</div>
+            <div v-text="$i18n.t('index.section_03.cards[1].description')" />
           </div>
-          <div class="border-t-2 border-yellow-400 info">
-            5-15 minutes
-          </div>
+          <div class="border-yellow-400 info" v-text="$i18n.t('index.section_03.cards[1].info')" />
         </div>
         <div class="bg-blue-100 border-blue-400 do-card">
           <div class="content">
             <h3 class="title">
-              Repeat <span class="title-icon"><icon-repeat role="none" title="" /></span>
+              {{ $i18n.t('index.section_03.cards[2].title') }} <span class="title-icon"><icon-repeat role="none" title="" /></span>
             </h3>
-            <div>Do it again! A few more rounds and you'll get some extra rest!</div>
+            <div v-text="$i18n.t('index.section_03.cards[2].description')" />
           </div>
         </div>
       </div>
-      <div class="">
-        If you watch too many videos of cats while you should be working instead, then <b>give it a try</b>.
-      </div>
 
-      <h1 class="section-title my-4">
-        FAQ
-      </h1>
+      <i18n path="index.section_03.try_it.base" tag="div">
+        <strong>{{ $i18n.t('index.section_03.try_it.try') }}</strong>
+      </i18n>
+
+      <h1 class="section-title my-4" v-text="$i18n.t('index.faq.title')" />
 
       <div class="mx-auto faq-container">
-        <details>
-          <summary>Can I change those timers?</summary>
-          <div>
-            Absolutely! You can change the <em>work</em>, <em>pause</em> and <em>long pause</em> timers to whatever you want! You can also change how frequent <em>long pauses</em> are!
-          </div>
-        </details>
-        <details>
-          <summary>Will this app help me?</summary>
-
-          <div>
-            That depends on you. This app tries hard to create a motivating environment with its clean design and flexibility, but it's up to you whether you follow the schedule it gives you.
-          </div>
-          <div>
-            <span class="hint">Hint</span> If you realize you can't work 25 minutes straight or a break of 5 minutes is too short, adjust them to something more comfortable. Don't give up, follow a more relaxed schedule and progressively go stricter.
-          </div>
-        </details>
-        <details>
-          <summary>Does it collect any data?</summary>
-          <div>
-            <span class="emph">Nope!</span> The app runs only in your browser, no data is being collected or sent anywhere!
-          </div>
-        </details>
-        <details>
-          <summary>How will it remember my settings then?</summary>
-          <div>
-            It relies on your browser to do that. If you clear your browser data, the app's settings will revert to their defaults, too.
-          </div>
-          <div class="">
-            <span class="hint">HINT</span> If you want to keep your settings, don't use the app in private browsing (incognito mode).
-          </div>
-        </details>
-        <details>
-          <summary>So what do I need to know use this?</summary>
-          <div>
-            <div>
-              Absolutely nothing. If you don't want to delve into the settings, just start the timer and listen for the audio chime when it finishes. Once it's done, start the next timer when you're ready.
-            </div>
-            <div>
-              No knowledge is necessary to use this timer, just pay attention to the time left!
-            </div>
-          </div>
-        </details>
-        <details>
-          <summary>Which timer style should I use?</summary>
-          <div>
-            <div>
-              That depends on how obscure you want the timer to be. Here's a little guidance on them:
-
-              <ul>
-                <li>if you want seconds-precision, go with the <em>traditional</em></li>
-                <li>if you're fine with minutes, go for <em>approximate</em> (the default one)</li>
-                <li>if that's still too precise, how about the <em>percentage</em> one?</li>
-              </ul>
-            </div>
+        <details v-for="(question, i) in faq" :key="'faq-' + i">
+          <summary v-text="$i18n.t('index.faq.accordion.' + question.q +'.q')" />
+          <div v-text="$i18n.t('index.faq.accordion.' + question.q + '.a')" />
+          <div v-if="question.hint">
+            <span class="hint" v-text="$i18n.t('index.faq.hint')" />
+            {{ $i18n.t('index.faq.accordion.' + question.q + '.hint') }}
           </div>
         </details>
       </div>
     </section>
 
     <section class="section section-04">
-      <h1 class="section-title">
-        Feature list
-      </h1>
+      <h1 class="section-title" v-text="$i18n.t('index.section_04.title')" />
       <div class="container feature-list">
-        <div>Customization</div>
-        <div>Audio &amp; Notifications </div>
-        <div>Flexible</div>
-        <div>Offline</div>
-        <div>Open-source</div>
-        <div>No trackers</div>
-        <div>No ads &amp; pop-ups</div>
-        <div>Clean design</div>
-        <div>Adaptive ticking</div>
-        <div>... and more to come</div>
+        <div v-for="(feature, i) in smallFeatures" :key="'smallFeature-' + i" v-text="$i18n.t('index.section_04.list.' + feature)" />
       </div>
     </section>
 
     <section class="section section-05 ">
-      <h1 class="section-title">
-        Support this project
-      </h1>
+      <h1 class="section-title" v-text="$i18n.t('index.section_05.title')" />
       <div class="mt-2">
-        AnotherPomodoro is being developed as a side project with no compensation in mind. <br>
-        If you feel that this is a project worth supporting, please <b>do so</b>.
+        {{ $i18n.t('index.section_05.subtitle[0]') }} <br>
+        <i18n path="index.section_05.subtitle[1].base">
+          <b>{{ $i18n.t('index.section_05.subtitle[1].action') }}</b>
+        </i18n>
       </div>
-      <div class="text-xl my-4 inline-grid auto-cols-max grid-flow-col gap-2">
-        <a href="https://github.com/Hanziness/AnotherPomodoro" target="_blank" aria-label="View on GitHub">
-          <div class="p-1 text-white bg-gray-900 rounded-full inline-block">
-            <icon-github :size="42" title="" />
-          </div>
-        </a>
-        <a href="https://www.buymeacoffee.com/imreg" target="_blank" aria-label="Buy me a coffee!">
-          <div class="p-1 bg-red-200 rounded-full inline-block">
-            <img src="/img/BMC Logo - Black.svg" style="width: 42px; height: 42px;">
-          </div>
-        </a>
+      <div class="support-icon-container">
+        <!-- TODO For some reason, data-hint and aria-label are not updated after page render,
+        leaving the tooltips in English regardless of the language selected -->
+        <client-only>
+          <a href="https://github.com/Hanziness/AnotherPomodoro" class="relative hint-left" target="_blank" :aria-label="$i18n.t('index.section_05.support.github')" :data-hint="$i18n.t('index.section_05.support.github')">
+            <div class="support-icon text-white bg-gray-900">
+              <icon-github :size="42" title="" />
+            </div>
+          </a>
+          <a href="https://www.buymeacoffee.com/imreg" class="relative hint-right" target="_blank" :data-hint="$i18n.t('index.section_05.support.buymeacoffee')">
+            <div class="support-icon bg-red-200">
+              <img src="/img/BMC Logo - Black.svg" style="width: 42px; height: 42px;">
+            </div>
+          </a>
+        </client-only>
       </div>
-      <div class="mb-2">
-        Made with ❤ by Imre Gera
-      </div>
+      <div class="" v-text="$i18n.t('index.section_05.credits')" />
+      <div class="version-number" v-text="$store.state.version" />
     </section>
   </div>
 </template>
@@ -270,11 +189,45 @@
   }
 
   .section-04 {
-    @apply text-center bg-blue-300 py-12 -mt-6;
+    @apply text-center bg-blue-600 text-white py-12 -mt-6;
   }
 
   .section-05 {
     @apply text-center bg-gray-100 pt-12 pb-4;
+
+    .version-number {
+      @apply inline-block rounded-lg bg-gray-900 text-white p-1 px-2 text-sm mt-1 mb-2 select-none;
+    }
+
+    .support-icon-container {
+      @apply my-4 inline-grid auto-cols-max grid-flow-col gap-2;
+
+      .support-icon {
+        @apply p-1 rounded-full block relative z-10;
+      }
+    }
+  }
+
+  .hint::before {
+    @apply px-4 rounded-full absolute h-full hidden bg-gray-200 top-0 w-max z-0 border border-gray-300;
+
+    content: attr(data-hint);
+  }
+
+  .hint:hover::before {
+    @apply inline-grid items-center;
+  }
+
+  .hint-right::before {
+    @extend .hint::before;
+
+    @apply pl-8 rounded-l-none left-1/2;
+  }
+
+  .hint-left::before {
+    @extend .hint::before;
+
+    @apply pr-8 rounded-r-none right-1/2;
   }
 
   .product-img {
@@ -386,7 +339,7 @@
     }
 
     & > .info {
-      @apply px-4 py-2 italic text-opacity-75;
+      @apply px-4 py-2 italic text-opacity-75 border-t-2;
     }
   }
 </style>
@@ -406,7 +359,29 @@ export default {
   data () {
     return {
       productImgTop: true,
-      productImgIntersection: null
+      productImgIntersection: null,
+      features: [
+        { icon: 'IconLightBulb', iconClass: 'text-yellow-500' },
+        { icon: 'IconCheck', iconClass: 'text-green-600' },
+        { icon: 'IconHand', iconClass: 'text-blue-600' }
+      ],
+      scheduleCards: [
+        { bg: 'bg-red-100', border: 'border-red-400', info: true },
+        { bg: 'bg-yellow-100', info: true },
+        { bg: 'bg-blue-100', border: 'border-blue-400', info: false }
+      ],
+      faq: [
+        { q: 'change_timers' },
+        { q: 'will_it_help', hint: true },
+        { q: 'data_collection' },
+        { q: 'remember_settings', hint: true },
+        { q: 'need_to_know' },
+        { q: 'timer_style' }
+      ],
+      smallFeatures: [
+        'customization', 'notifications', 'flexible', 'pwa', 'opensource', 'notrackers', 'noads',
+        'clean', 'adaptiveticking', 'localization', 'more'
+      ]
     }
   },
 

@@ -1,4 +1,113 @@
 export default {
+  index: {
+    app_description: 'Ingyenes Pomodoro alkalmazás közvetlenül a böngésződben',
+    cta: {
+      quickstart: 'Gyorsindítás',
+      or: 'vagy',
+      configure: 'Beállítás'
+    },
+    features: {
+      0: {
+        title: 'Tiszta kezelőfelület',
+        description: 'Csak az időzítőd, a kötelező vezérlők és egy csomó beállítási lehetőség'
+      },
+      1: {
+        title: 'Nem kell telepíteni',
+        description: 'A böngésződben fut, indítás után teljesen offline'
+      },
+      2: {
+        title: 'Ingyenes & nyílt forrású',
+        description: 'Nincsenek rejtett követők, bárki megtekintheti és hozzáadhat a forráskódhoz'
+      }
+    },
+    section_03: {
+      title: 'Mire jó ez?',
+      subtitle: 'Az {0} segít kordában tartani az idődet. Te csak dolgozz vagy pihenj, amikor azt mondja.',
+      cards: [
+        {
+          title: 'Munka',
+          description: 'Ideje tenni a tennivalót',
+          info: '25 perc'
+        },
+        {
+          title: 'Szünet',
+          description: 'Nézz meg egy videót, olvass el egy cikket vagy igyál egy kávét',
+          info: '5-15 perc'
+        },
+        {
+          title: 'Ismétlés',
+          description: 'Újra! Még egy pár kör és kapsz egy kis plusz pihenőt!'
+        }
+      ],
+      try_it: {
+        base: 'Ha úgy érzed, túl sok macskás videót nézel munka helyett, akkor {0}.',
+        try: 'próbáld ki'
+      }
+    },
+    faq: {
+      title: 'GYIK',
+      hint: 'Tipp',
+      accordion: {
+        change_timers: {
+          q: 'Átállíthatom az időzítőket?',
+          a: 'Persze! Úgy állíthatod be a munka, szünet és hosszú szünet időzítőket, ahogy neked tetszik! Azt is megváltoztathatod, hogy milyen gyakran legyenek hosszú szünetek!'
+        },
+        will_it_help: {
+          q: 'Segíteni fog rajtam ez az alkalmazás?',
+          a: 'Ez rajtad áll. Az alkalmazás mindent megtesz, hogy egy motiváló környezetet teremtsen a letisztult megjelenésével, de tőled függ, hogy követed-e a menetrendet.',
+          hint: 'Ha úgy érzed, nem tudsz 25 percig egyfolytában dolgozni vagy rövid az 5 perces szünet, állítsd át az időzítőket valami könyelmesebbre. Ne add fel, kövess egy lazább menetrendet és napról-napra szigoríts rajta egy kicsit.'
+        },
+        data_collection: {
+          q: 'Gyűjt az alkalmazás bármilyen adatot?',
+          a: 'Nem! Az alkalmazás csak a böngésződben fut, nem gyűjt és nem küld adatot sehova!'
+        },
+        remember_settings: {
+          q: 'De akkor hogyan jegyzi meg a beállításaimat?',
+          a: 'Ehhez a böngésződre támaszkodik. Ha törlöd a böngészőből az adataidat, az alkalmazás beállításai is alaphelyzetbe állnak.',
+          hint: 'Ha meg akarod tartani a beállításaidat, ne privát böngészésben (inkognitó módban) használd.'
+        },
+        need_to_know: {
+          q: 'Mit kell tudnom az alkalmazás használatához?',
+          a: 'Semmit. Ha nem akarsz a beállítások között matatni, csak indítsd el az időzítőt és dolgozz a hangjelzésig. Amint kész vagy, indítsd el a következő időzítőt. Semmi extra tudásra nem lesz szükség, csak figyelj a hátralévő időre!'
+        },
+        timer_style: {
+          q: 'Melyik időzítő-stílust használjam?',
+          a: 'Ez attól függ, mennyire akarod, hogy pontos legyen az az időzítő. Választhatsz hagyományos ("12:34", másodpercre pontos), közelítő ("13 perc", szöveges és percre pontos), valamint százalékos ("50%") megjelenítés közül.'
+        }
+      }
+    },
+    section_04: {
+      title: 'Funkciók',
+      list: {
+        customization: 'Testreszabható',
+        notifications: 'Hang & Értesítések',
+        flexible: 'Rugalmas',
+        pwa: 'Offline',
+        opensource: 'Nyílt forrású',
+        notrackers: 'Nincsenek követők',
+        noads: 'Nincs reklám & felugró ablak',
+        clean: 'Letisztult megjelenés',
+        adaptiveticking: 'Adaptív ketyegés',
+        localization: 'Magyarul is tud',
+        more: '... és még több'
+      }
+    },
+    section_05: {
+      title: 'Támogasd a projektet',
+      subtitle: {
+        0: 'Az AnotherPomodoro hobbiprojektként készült, bárminemű anyagi bevétel szándéka nélkül.',
+        1: {
+          base: 'Ha ennek ellenére úgy érzed, megérdemli, {0}.',
+          action: 'támogasd a szerzőt egy kávéval'
+        }
+      },
+      support: {
+        github: 'Megtekintés GitHubon',
+        buymeacoffee: 'Fejlesztő meghívása egy kávéra'
+      },
+      credits: '❤ Szeretettel készítette: Gera Imre'
+    }
+  },
   section: {
     work: 'Munka',
     shortpause: 'Szünet',
