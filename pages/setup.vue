@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="pt-12 pb-24 text-center bg-red-400">
+    <section class="pt-12 pb-24 text-center bg-gray-900 text-white">
       <h1 class="text-5xl font-bold uppercase" v-text="$i18n.t('setup.title')" />
     </section>
     <section class="container mx-auto setup-panel">
