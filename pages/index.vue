@@ -15,7 +15,9 @@
           />
         </nuxt-link>
         <span class="mx-2" v-text="$i18n.t('index.cta.or')" />
-        <div class="bg-gray-300 text-black cta-button" v-text="$i18n.t('index.cta.configure')" />
+        <nuxt-link to="/setup">
+          <div class="bg-gray-300 text-black cta-button" v-text="$i18n.t('index.cta.configure')" />
+        </nuxt-link>
       </div>
     </section>
 
@@ -209,13 +211,13 @@
   }
 
   .hint::before {
-    @apply px-4 rounded-full absolute h-full hidden bg-gray-200 top-0 w-max z-0 border border-gray-300;
+    @apply px-4 rounded-full absolute h-full hidden bg-gray-200 top-0 w-max z-0 border border-gray-300 items-center;
 
     content: attr(data-hint);
   }
 
   .hint:hover::before {
-    @apply inline-grid items-center;
+    @apply grid;
   }
 
   .hint-right::before {
@@ -292,6 +294,11 @@
 
       & > summary {
         @apply p-3 font-bold cursor-pointer;
+
+        // disable extra outline in Chromium based browsers when item is focused
+        &:focus {
+          outline: none;
+        }
       }
 
       & > * {
