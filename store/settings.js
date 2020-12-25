@@ -141,6 +141,22 @@ export const mutations = {
     }
   },
 
+  mergeSettings (state, newSettings) {
+    for (const key in newSettings) {
+      if (Object.hasOwnProperty.call(newSettings, key)) {
+        if (typeof newSettings[key] === 'object') {
+          // perform merge
+          state[key] = {
+            ...state[key],
+            ...newSettings[key]
+          }
+        } else {
+          state[key] = newSettings[key]
+        }
+      }
+    }
+  },
+
   changeClockStyle (state, newStyle) {
     if (Object.values(AvailableTimers).findIndex(newStyle) !== -1) {
       state.currentTimer = newStyle
