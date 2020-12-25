@@ -1,5 +1,9 @@
 // import colors from 'vuetify/es5/util/colors'
-import { join } from 'path'
+// import { join } from 'path'
+
+import fs from 'fs'
+const packageJson = fs.readFileSync('./package.json')
+const version = JSON.parse(packageJson).version || 0
 
 export default {
   /*
@@ -11,6 +15,10 @@ export default {
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
   */
+  env: {
+    PACKAGE_VERSION: version
+  },
+
   target: 'static',
   /*
   ** Headers of the page
@@ -55,6 +63,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@aceforth/nuxt-optimized-images',
     '@nuxtjs/google-fonts',
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
@@ -63,6 +72,11 @@ export default {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/pwa'
   ],
+
+  optimizedImages: {
+    optimizeImages: true,
+    optimizeImagesInDev: true
+  },
 
   /*
   ** Nuxt.js modules
@@ -85,6 +99,10 @@ export default {
       description: 'Free and open-source Pomodoro app for everyone',
       theme_color: '#FF6B6B',
       lang: 'en'
+    },
+    icon: {
+      fileName: 'icon.png',
+      purpose: ['maskable', 'any']
     }
   },
 
@@ -93,12 +111,13 @@ export default {
    */
   i18n: {
     locales: [
-      { code: 'en', iso: 'en-US', file: 'en.js' },
-      { code: 'hu', iso: 'hu-HU', file: 'hu.js' }
+      { code: 'en', name: 'English', iso: 'en-US', file: 'en.js' },
+      { code: 'hu', name: 'Magyar', iso: 'hu-HU', file: 'hu.js' }
     ],
     defaultLocale: 'en',
     lazy: true,
     langDir: 'i18n/',
+    parsePages: false,
     vueI18n: {
       fallbackLocale: 'en'
     },
@@ -166,7 +185,7 @@ export default {
     optimizeCSS: {},
     postcss: {
       plugins: {
-        tailwindcss: join(__dirname, 'tailwind.config.js'),
+        tailwindcss: require('tailwindcss'),
         cssnano: {
           preset: [
             'default',
@@ -174,6 +193,18 @@ export default {
               discardComments: { removeAll: true }
             }
           ]
+        },
+        /*
+          TODO This is only needed while @nuxtjs/tailwindcss does not ship Tailwind V2
+          with PostCSS 8 by default.
+          See https://github.com/nuxt-community/tailwindcss-module/pull/203 and
+          https://github.com/tailwindlabs/tailwindcss/issues/1190#issuecomment-546621554.
+        */
+        'postcss-preset-env': {
+          stage: 1,
+          features: {
+            'focus-within-pseudo-class': false
+          }
         }
       }
     },

@@ -2,7 +2,7 @@
 
 Free and open-source Pomodoro application, right in your browser.
 
-![Screenshot of the application showing a work section.](./static/img/Screenshot-Main.png)
+![Screenshot of the application showing a work section.](./assets/img/Screenshot-Main.png)
 
 ## What is it?
 

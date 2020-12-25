@@ -12,6 +12,7 @@
 		"css.validate": false,
 		"scss.validate": false,
 		"less.validate": false,
+		"vetur.validation.style": false,
 		"terminal.integrated.fontSize": 16
 	}
 }

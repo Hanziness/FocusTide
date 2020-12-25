@@ -1,7 +1,7 @@
 <template>
   <input
     v-model="displayValue"
-    class="form-input bg-gray-200 focus:bg-white w-full text-right"
+    class="form-input w-full text-right"
     type="text"
   >
 </template>

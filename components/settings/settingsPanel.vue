@@ -45,6 +45,7 @@
 
             <div v-if="activeTab === 3" :key="3" class="settings-tab">
               <settings-options :settings-key="['currentTimer']" :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
+              <divider />
               <settings-check :settings-key="['schedule', 'showSchedule']" />
               <settings-text
                 :settings-key="['schedule', 'numScheduleEntries']"
@@ -138,6 +139,18 @@ export default {
 }
 </script>
 
+<style lang="scss">
+section.settings-panel {
+  & input {
+    @apply rounded-md border-gray-300 bg-gray-100 focus:bg-white focus:ring-primary;
+  }
+
+  & input[type="checkbox"] {
+    @apply text-primary;
+  }
+}
+</style>
+
 <style lang="scss" scoped>
 section.settings-panel {
   @apply bg-white h-full fixed shadow w-2/5 flex flex-col;
@@ -155,14 +168,14 @@ div.settings-panel-menubar {
 }
 
 div.tab-header {
-  @apply flex-1 h-full bg-gray-300 p-2 cursor-pointer text-center flex items-center justify-center select-none;
+  @apply flex-1 h-full bg-gray-200 p-2 cursor-pointer text-center flex items-center justify-center select-none;
 
   transition: border-color 0.2s ease-out;
   box-sizing: border-box;
-}
 
-div.tab-header.active {
-  @apply bg-primary text-white;
+  &.active {
+    @apply bg-primary text-white;
+  }
 }
 
 div.settings-tab {
@@ -192,13 +205,13 @@ div.settings-tab {
   @apply p-2 rounded-full -mt-1 -mr-1;
 
   transition: background-color 200ms ease-out;
-}
 
-.button-close:hover {
-  @apply bg-gray-200;
-}
+  &:hover {
+    @apply bg-gray-200;
+  }
 
-.button-close:active {
-  @apply bg-gray-400;
+  &:active {
+    @apply bg-gray-400;
+  }
 }
 </style>
