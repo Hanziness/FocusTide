@@ -108,6 +108,28 @@ export default {
       credits: 'Made with ❤ by Imre Gera'
     }
   },
+  setup: {
+    head: 'Setup',
+    title: 'Let\'s get you started',
+    startButton: 'Let\'s go',
+    steps: {
+      preset: 'Válassz előbeállítást'
+    },
+    presets: {
+      traditional: {
+        title: 'Absolutely traditional',
+        description: 'Typical Pomodoro setup with 25 minutes of work, 5-minute-long pauses and 15-minute-long long breaks. Uses the classic timer.'
+      },
+      default: {
+        title: 'Default',
+        description: 'A sensible default preset with an approximate timer.'
+      },
+      hardcore: {
+        title: 'Work don\'t look',
+        description: '1-hour cycles with 50 minutes of work and 10 minutes of pause. Uses the percentage timer so you can worry less about the time left.'
+      }
+    }
+  },
   section: {
     work: 'Work',
     shortpause: 'Break',

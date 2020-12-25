@@ -108,6 +108,28 @@ export default {
       credits: '❤ Szeretettel készítette: Gera Imre'
     }
   },
+  setup: {
+    head: 'Beállítás',
+    title: 'Indulás',
+    startButton: 'Hajrá',
+    steps: {
+      preset: 'Válassz előbeállítást'
+    },
+    presets: {
+      traditional: {
+        title: 'Abszolút hagyományos',
+        description: 'Tipikus Pomodoro időzítő 25 perc munkával, 5 perces szünetekkel és 15 perces hosszú szünettel. A klasszikus időzítőt használja.'
+      },
+      default: {
+        title: 'Alapértelmezett',
+        description: 'Egy alap beállítás a közelítő időzítővel.'
+      },
+      hardcore: {
+        title: 'Ne nézz, dolgozz',
+        description: 'Órás ciklusok 50 perc munkával és 10 perc szünettel. A százalékos időzítőt használja, így kevésbé kell aggódnod a hátralévő időn.'
+      }
+    }
+  },
   section: {
     work: 'Munka',
     shortpause: 'Szünet',
