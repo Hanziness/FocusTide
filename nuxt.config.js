@@ -93,6 +93,10 @@ export default {
       description: 'Free and open-source Pomodoro app for everyone',
       theme_color: '#FF6B6B',
       lang: 'en'
+    },
+    icon: {
+      fileName: 'icon.png',
+      purpose: ['maskable', 'any']
     }
   },
 
