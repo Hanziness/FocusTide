@@ -113,7 +113,7 @@ export default {
     title: 'Let\'s get you started',
     startButton: 'Let\'s go',
     steps: {
-      preset: 'Válassz előbeállítást'
+      preset: 'Choose a preset'
     },
     presets: {
       traditional: {
