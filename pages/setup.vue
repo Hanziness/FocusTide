@@ -27,12 +27,12 @@
         </div>
       </div>
 
-      <div class="step">
+      <!-- <div class="step">
         <h1>Engedélyek</h1>
         <div class="description">
           Engedélyezd, hogy hangot játsszon le az alkalmazás és/vagy hogy értesítést küldjön, ha lejárt az idő. Megígérjük, nem fogunk visszaélni ezekkel!
         </div>
-      </div>
+      </div> -->
 
       <div class="finish-button" role="button" @click="applyFinalSettings" v-text="$i18n.t('setup.startButton')" />
     </section>
