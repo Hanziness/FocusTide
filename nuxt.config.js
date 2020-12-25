@@ -63,6 +63,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@aceforth/nuxt-optimized-images',
     '@nuxtjs/google-fonts',
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
@@ -71,6 +72,11 @@ export default {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/pwa'
   ],
+
+  optimizedImages: {
+    optimizeImages: true,
+    optimizeImagesInDev: true
+  },
 
   /*
   ** Nuxt.js modules
