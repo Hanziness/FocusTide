@@ -5,7 +5,7 @@ export default {
     }
   },
   actions: {
-    nuxtServerInit ({ commit, isDev }) {
+    nuxtServerInit ({ commit }, { isDev }) {
       // initialize with 10 entries, no need for phantom entries then
       commit('schedule/initSchedule', 10)
 

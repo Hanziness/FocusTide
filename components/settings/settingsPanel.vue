@@ -2,9 +2,9 @@
   <transition name="settings">
     <section v-show="processedValue" class="settings-panel sm:w-full md:w-1/2 lg:w-2/5">
       <div class="settings-panel-main">
-        <h1 class="text-xl my-3">
-          {{ $i18n.t('settings.heading') }}
-          <ui-button subtle class="float-right -mt-1 -mr-2" @click="processedValue = false">
+        <h1 class="title">
+          <span>{{ $i18n.t('settings.heading') }}</span>
+          <ui-button subtle class="float-right -mt-2 -mr-2" @click="processedValue = false">
             <close-icon :title="$i18n.t('settings.buttons.close')" />
           </ui-button>
         </h1>
@@ -28,7 +28,6 @@
             </div>
 
             <div v-if="activeTab === 2" :key="2" class="settings-tab">
-              <settings-check :settings-key="['performance', 'showProgressBar']" />
               <settings-text :settings-key="['schedule', 'longPauseInterval']" :min="1" numeric />
               <divider />
               <settings-options
@@ -46,14 +45,16 @@
             <div v-if="activeTab === 3" :key="3" class="settings-tab">
               <settings-options :settings-key="['currentTimer']" :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
               <divider />
-              <settings-check :settings-key="['schedule', 'showSchedule']" />
+              <settings-check :settings-key="['schedule', 'visibility', 'enabled']" />
+              <settings-check :settings-key="['schedule', 'visibility', 'showSectionType']" :disabled="!$store.state.settings.schedule.visibility.enabled" />
               <settings-text
                 :settings-key="['schedule', 'numScheduleEntries']"
                 :min="3"
                 :max="10"
-                :disabled="!$store.state.settings.schedule.showSchedule"
+                :disabled="!$store.state.settings.schedule.visibility.enabled"
                 numeric
               />
+              <divider />
               <settings-check :settings-key="['performance', 'showProgressBar']" />
               <!-- TODO Audio volume control -->
             </div>
@@ -161,6 +162,10 @@ section.settings-panel {
 
 div.settings-panel-main {
   @apply px-4 flex-grow overflow-y-auto;
+
+  & > .title {
+    @apply text-xl mt-4 mb-3 uppercase font-bold;
+  }
 }
 
 div.settings-panel-menubar {

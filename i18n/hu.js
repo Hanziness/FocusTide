@@ -200,9 +200,15 @@ export default {
           _title: 'Órarend elemeinek száma',
           _description: ''
         },
-        showSchedule: {
-          _title: 'Órarend megjelenítése',
-          _description: ''
+        visibility: {
+          enabled: {
+            _title: 'Órarend mutatása',
+            _description: ''
+          },
+          showSectionType: {
+            _title: 'Szakasz típusának megjelenítése',
+            _description: 'Megjeleníti a jelenlegi szakasz típusát az órarend alatt'
+          }
         },
         lengths: {
           _title: 'Órarend előbeállítás',

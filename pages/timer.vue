@@ -26,7 +26,7 @@
           <lazy-hydrate when-visible>
             <transition slot-scope="{ hydrated }" name="schedule-transition">
               <schedule-display
-                v-if="hydrated && $store.state.settings.schedule.showSchedule"
+                v-if="hydrated && $store.state.settings.schedule.visibility.enabled"
                 class="absolute ml-auto mr-auto"
                 style="top: 2rem;"
               />
@@ -34,13 +34,15 @@
           </lazy-hydrate>
 
           <lazy-hydrate when-visible>
-            <timer-progress
-              v-if="hydrated && $store.getters['settings/performanceSettings'].showProgressBar"
-              slot-scope="{ hydrated }"
-              :time-elapsed="timeElapsed"
-              :time-original="timeOriginal"
-            />
+            <transition slot-scope="{ hydrated }" name="transition-fade">
+              <timer-progress
+                v-if="hydrated && $store.getters['settings/performanceSettings'].showProgressBar"
+                :time-elapsed="timeElapsed"
+                :time-original="timeOriginal"
+              />
+            </transition>
           </lazy-hydrate>
+
           <timer-switch
             :time-elapsed="timeElapsed"
             :time-original="timeOriginal"
@@ -91,16 +93,16 @@ export default {
   layout: 'timer',
   components: {
     Ticker: () => import(/* webpackChunkName: "ticker", webpackMode: "eager" */ '@/components/ticker.vue'),
-    ScheduleDisplay: () => import(/* webpackChunkName: "schedule", webpackPreload: true */ '@/components/schedule/scheduleDisplay.vue'),
+    ScheduleDisplay: () => import(/* webpackChunkName: "schedule", webpackPrefetch: true */ '@/components/schedule/scheduleDisplay.vue'),
     NotificationController: () => import(/* webpackChunkName: "notificationController", webpackMode: "eager" */ '@/components/notifications/notificationController.vue'),
-    TimerProgress: () => import(/* webpackChunkName: "progress", webpackPreload: true */ '@/components/timer/timerProgress.vue'),
-    TimerSwitch: () => import(/* webpackChunkName: "timerSwitch", webpackPreload: true */ '@/components/timer/display/_timerSwitch.vue'),
-    // TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPreload: true */ '@/components/timer/timerControls.vue'),
-    TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPreload: true */ '@/components/timer/controls/basic.vue'),
-    SettingsPanel: () => import(/* webpackChunkName: "settings", webpackPrefetch: true */ '@/components/settings/settingsPanel.vue'),
-    UiButton: () => import(/* webpackChunkName: "uibase", webpackPreload: true */ '@/components/base/button.vue'),
-    UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPreload: true */ '@/components/base/overlay.vue'),
-    CogIcon: () => import(/* webpackChunkName: "icons" */ 'vue-material-design-icons/Cog.vue'),
+    TimerProgress: () => import(/* webpackChunkName: "progress", webpackPrefetch: true */ '@/components/timer/timerProgress.vue'),
+    TimerSwitch: () => import(/* webpackChunkName: "timerSwitch", webpackPrefetch: true */ '@/components/timer/display/_timerSwitch.vue'),
+    // TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPrefetch: true */ '@/components/timer/timerControls.vue'),
+    TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPrefetch: true */ '@/components/timer/controls/basic.vue'),
+    SettingsPanel: () => import(/* webpackChunkName: "settings", webpackMode: "eager" */ '@/components/settings/settingsPanel.vue'),
+    UiButton: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/button.vue'),
+    UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/overlay.vue'),
+    CogIcon: () => import(/* webpackChunkName: "icons", webpackMode: "eager" */ 'vue-material-design-icons/Cog.vue'),
     LazyHydrate: () => import(/* webpackMode: "eager" */ 'vue-lazy-hydration')
   },
 
