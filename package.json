@@ -1,6 +1,6 @@
 {
   "name": "pomodoro-app",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -10,9 +10,10 @@
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "yarn lint:js && yarn lint:style",
-    "release-patch": "yarn version --patch && git push --follow-tags",
-    "release-minor": "yarn version --minor && git push --follow-tags",
-    "release-major": "yarn version --major && git push --follow-tags"
+    "release-patch": "standard-version --release-as patch && git push --follow-tags",
+    "release-minor": "standard-version --release-as minor && git push --follow-tags",
+    "release-major": "standard-version --release-as major && git push --follow-tags",
+    "release": "standard-version"
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.0.0-beta.20",
@@ -44,6 +45,7 @@
     "eslint-plugin-nuxt": "^1.0.0",
     "imagemin-pngquant": "^9.0.1",
     "postcss": "7",
+    "standard-version": "^9.0.0",
     "stylelint": "^13.6.1",
     "stylelint-config-standard": "^20.0.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
