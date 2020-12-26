@@ -31,7 +31,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
-      { hid: 'twitter:title', name: 'twitter:title', content: 'AnotherPomodoro: free pomodoro web app' },
+      { hid: 'twitter:title', name: 'twitter:title', content: 'AnotherPomodoro' },
       { hid: 'twitter:description', name: 'twitter:description', content: process.env.npm_package_description || '' },
       { hid: 'twitter:image', name: 'twitter:image', content: '/icon.png' }
     ],
