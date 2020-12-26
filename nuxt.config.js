@@ -33,7 +33,8 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
       { hid: 'twitter:title', name: 'twitter:title', content: 'AnotherPomodoro' },
       { hid: 'twitter:description', name: 'twitter:description', content: process.env.npm_package_description || '' },
-      { hid: 'twitter:image', name: 'twitter:image', content: '/icon.png' }
+      { hid: 'twitter:image', name: 'twitter:image', content: '/icon.png' },
+      { hid: 'og:image', name: 'og:image', content: '/icon.png' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -184,56 +185,6 @@ export default {
             }
           ]
         ]
-      }
-    },
-    extractCSS: {
-      ignoreOrder: true
-    },
-    optimizeCSS: {},
-    postcss: {
-      plugins: {
-        tailwindcss: require('tailwindcss'),
-        cssnano: {
-          preset: [
-            'default',
-            {
-              discardComments: { removeAll: true }
-            }
-          ]
-        },
-        /*
-          TODO This is only needed while @nuxtjs/tailwindcss does not ship Tailwind V2
-          with PostCSS 8 by default.
-          See https://github.com/nuxt-community/tailwindcss-module/pull/203 and
-          https://github.com/tailwindlabs/tailwindcss/issues/1190#issuecomment-546621554.
-        */
-        'postcss-preset-env': {
-          stage: 1,
-          features: {
-            'focus-within-pseudo-class': false
-          }
-        }
-      }
-    },
-    // optimization: {
-    //   splitChunks: {
-    //     chunks: 'all',
-    //     cacheGroups: {
-    //       styles: {
-    //         name: true,
-    //         priority: 10,
-    //         test: /\.(s?css|vue)$/,
-    //         chunks: 'all',
-    //         minSize: 10000,
-    //         reuseExistingChunk: true
-    //       }
-    //     }
-    //   }
-    // },
-    extend (config, ctx) {
-      // enable source maps (inline on the server!)
-      if (ctx.isDev) {
-        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
       }
     }
   }
