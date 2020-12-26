@@ -103,6 +103,9 @@ export default {
     icon: {
       fileName: 'icon.png',
       purpose: ['maskable', 'any']
+    },
+    manifest: {
+      start_url: ''
     }
   },
 
@@ -208,21 +211,21 @@ export default {
         }
       }
     },
-    optimization: {
-      splitChunks: {
-        chunks: 'all',
-        cacheGroups: {
-          styles: {
-            name: true,
-            priority: 10,
-            test: /\.(s?css|vue)$/,
-            chunks: 'all',
-            minSize: 10000,
-            reuseExistingChunk: true
-          }
-        }
-      }
-    },
+    // optimization: {
+    //   splitChunks: {
+    //     chunks: 'all',
+    //     cacheGroups: {
+    //       styles: {
+    //         name: true,
+    //         priority: 10,
+    //         test: /\.(s?css|vue)$/,
+    //         chunks: 'all',
+    //         minSize: 10000,
+    //         reuseExistingChunk: true
+    //       }
+    //     }
+    //   }
+    // },
     extend (config, ctx) {
       // enable source maps (inline on the server!)
       if (ctx.isDev) {
