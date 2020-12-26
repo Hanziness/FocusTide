@@ -200,9 +200,15 @@ export default {
           _title: 'Number of entries in schedule',
           _description: ''
         },
-        showSchedule: {
-          _title: 'Show schedule',
-          _description: ''
+        visibility: {
+          enabled: {
+            _title: 'Show schedule',
+            _description: ''
+          },
+          showSectionType: {
+            _title: 'Show section type in schedule',
+            _description: 'Displays the current section type under the schedule'
+          }
         },
         lengths: {
           _title: 'Schedule preset',

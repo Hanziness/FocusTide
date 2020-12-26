@@ -41,7 +41,10 @@ export const state = () => ({
       autostart: true
     },
     numScheduleEntries: 5,
-    showSchedule: true
+    visibility: {
+      enabled: true,
+      showSectionType: true
+    }
   },
   timerPresets: {
     default: {

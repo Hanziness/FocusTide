@@ -26,7 +26,7 @@
           <lazy-hydrate when-visible>
             <transition slot-scope="{ hydrated }" name="schedule-transition">
               <schedule-display
-                v-if="hydrated && $store.state.settings.schedule.showSchedule"
+                v-if="hydrated && $store.state.settings.schedule.visibility.enabled"
                 class="absolute ml-auto mr-auto"
                 style="top: 2rem;"
               />

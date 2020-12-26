@@ -46,14 +46,16 @@
             <div v-if="activeTab === 3" :key="3" class="settings-tab">
               <settings-options :settings-key="['currentTimer']" :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
               <divider />
-              <settings-check :settings-key="['schedule', 'showSchedule']" />
+              <settings-check :settings-key="['schedule', 'visibility', 'enabled']" />
+              <settings-check :settings-key="['schedule', 'visibility', 'showSectionType']" :disabled="!$store.state.settings.schedule.visibility.enabled" />
               <settings-text
                 :settings-key="['schedule', 'numScheduleEntries']"
                 :min="3"
                 :max="10"
-                :disabled="!$store.state.settings.schedule.showSchedule"
+                :disabled="!$store.state.settings.schedule.visibility.enabled"
                 numeric
               />
+              <divider />
               <settings-check :settings-key="['performance', 'showProgressBar']" />
               <!-- TODO Audio volume control -->
             </div>
