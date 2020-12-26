@@ -21,31 +21,33 @@
 <style lang="scss" scoped>
 div.schedule-container {
   @apply p-4 flex flex-grow-0 flex-row overflow-hidden;
-}
 
-div.schedule-item.transition-schedule-enter-active,
-div.schedule-item.transition-schedule-leave-active,
-div.schedule-item.transition-schedule-move {
-  transition: 500ms cubic-bezier(0.59, 0.12, 0.34, 0.95);
-  transition-property: opacity, transform;
-}
+  div.schedule-item {
+    &.transition-schedule-enter-active,
+    &.transition-schedule-leave-active,
+    &.transition-schedule-move {
+      transition: 500ms cubic-bezier(0.59, 0.12, 0.34, 0.95);
+      transition-property: opacity, transform;
+    }
 
-div.schedule-item.transition-schedule-enter {
-  opacity: 0;
-  transform: translateX(50px);
-}
+    &.transition-schedule-enter {
+      opacity: 0;
+      transform: translateX(50px);
+    }
 
-div.schedule-item.transition-schedule-enter-to {
-  transform: translateX(0);
-}
+    &.transition-schedule-enter-to {
+      transform: translateX(0);
+    }
 
-div.schedule-item.transition-schedule-leave-active {
-  position: absolute;
-}
+    &.transition-schedule-leave-active {
+      position: absolute;
+    }
 
-div.schedule-item.transition-schedule-leave-to {
-  opacity: 0 !important;
-  transform: translateX(-50px);
+    &.transition-schedule-leave-to {
+      opacity: 0 !important;
+      transform: translateX(-50px);
+    }
+  }
 }
 
 div.section-type {
