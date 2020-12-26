@@ -28,7 +28,6 @@
             </div>
 
             <div v-if="activeTab === 2" :key="2" class="settings-tab">
-              <settings-check :settings-key="['performance', 'showProgressBar']" />
               <settings-text :settings-key="['schedule', 'longPauseInterval']" :min="1" numeric />
               <divider />
               <settings-options
