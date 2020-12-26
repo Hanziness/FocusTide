@@ -103,7 +103,7 @@ export default {
       description: 'Free and open-source Pomodoro app for everyone, right from your browser!',
       theme_color: '#FF6B6B',
       lang: 'en',
-      twitterCard: 'summary'
+      twitterCard: 'summary_large_image'
     },
     icon: {
       fileName: 'icon.png',
