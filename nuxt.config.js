@@ -30,7 +30,10 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { hid: 'twitter:title', name: 'twitter:title', content: 'AnotherPomodoro: free pomodoro web app' },
+      { hid: 'twitter:description', name: 'twitter:description', content: process.env.npm_package_description || '' },
+      { hid: 'twitter:image', name: 'twitter:image', content: '/icon.png' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -96,9 +99,10 @@ export default {
     meta: {
       name: 'AnotherPomodoro',
       author: 'Imre Gera',
-      description: 'Free and open-source Pomodoro app for everyone',
+      description: 'Free and open-source Pomodoro app for everyone, right from your browser!',
       theme_color: '#FF6B6B',
-      lang: 'en'
+      lang: 'en',
+      twitterCard: 'summary'
     },
     icon: {
       fileName: 'icon.png',
