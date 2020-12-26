@@ -33,8 +33,8 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
       { hid: 'twitter:title', name: 'twitter:title', content: 'AnotherPomodoro' },
       { hid: 'twitter:description', name: 'twitter:description', content: process.env.npm_package_description || '' },
-      { hid: 'twitter:image', name: 'twitter:image', content: '/icon.png' },
-      { hid: 'og:image', name: 'og:image', content: '/icon.png' }
+      { hid: 'twitter:image', name: 'twitter:image', content: '/img/ogImage.jpg' },
+      { hid: 'og:image', property: 'og:image', content: '/img/ogImage.jpg' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
