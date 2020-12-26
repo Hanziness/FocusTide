@@ -34,13 +34,15 @@
           </lazy-hydrate>
 
           <lazy-hydrate when-visible>
-            <timer-progress
-              v-if="hydrated && $store.getters['settings/performanceSettings'].showProgressBar"
-              slot-scope="{ hydrated }"
-              :time-elapsed="timeElapsed"
-              :time-original="timeOriginal"
-            />
+            <transition slot-scope="{ hydrated }" name="transition-fade">
+              <timer-progress
+                v-if="hydrated && $store.getters['settings/performanceSettings'].showProgressBar"
+                :time-elapsed="timeElapsed"
+                :time-original="timeOriginal"
+              />
+            </transition>
           </lazy-hydrate>
+
           <timer-switch
             :time-elapsed="timeElapsed"
             :time-original="timeOriginal"
