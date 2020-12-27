@@ -434,8 +434,10 @@ export default {
     this.productImgIntersection.disconnect()
   },
 
-  head: {
-    title: 'AnotherPomodoro'
+  head () {
+    return {
+      title: 'AnotherPomodoro'
+    }
   }
 }
 </script>

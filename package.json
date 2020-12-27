@@ -1,5 +1,6 @@
 {
   "name": "pomodoro-app",
+  "description": "Free and open-source Pomodoro app for everyone, right from your browser!",
   "version": "0.4.0",
   "private": true,
   "scripts": {

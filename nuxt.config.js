@@ -30,7 +30,11 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { hid: 'twitter:title', name: 'twitter:title', content: 'AnotherPomodoro' },
+      { hid: 'twitter:description', name: 'twitter:description', content: process.env.npm_package_description || '' },
+      { hid: 'twitter:image', name: 'twitter:image', content: '/img/ogImage.jpg' },
+      { hid: 'og:image', property: 'og:image', content: '/img/ogImage.jpg' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -96,9 +100,10 @@ export default {
     meta: {
       name: 'AnotherPomodoro',
       author: 'Imre Gera',
-      description: 'Free and open-source Pomodoro app for everyone',
+      description: 'Free and open-source Pomodoro app for everyone, right from your browser!',
       theme_color: '#FF6B6B',
-      lang: 'en'
+      lang: 'en',
+      twitterCard: 'summary_large_image'
     },
     icon: {
       fileName: 'icon.png',
@@ -180,56 +185,6 @@ export default {
             }
           ]
         ]
-      }
-    },
-    extractCSS: {
-      ignoreOrder: true
-    },
-    optimizeCSS: {},
-    postcss: {
-      plugins: {
-        tailwindcss: require('tailwindcss'),
-        cssnano: {
-          preset: [
-            'default',
-            {
-              discardComments: { removeAll: true }
-            }
-          ]
-        },
-        /*
-          TODO This is only needed while @nuxtjs/tailwindcss does not ship Tailwind V2
-          with PostCSS 8 by default.
-          See https://github.com/nuxt-community/tailwindcss-module/pull/203 and
-          https://github.com/tailwindlabs/tailwindcss/issues/1190#issuecomment-546621554.
-        */
-        'postcss-preset-env': {
-          stage: 1,
-          features: {
-            'focus-within-pseudo-class': false
-          }
-        }
-      }
-    },
-    // optimization: {
-    //   splitChunks: {
-    //     chunks: 'all',
-    //     cacheGroups: {
-    //       styles: {
-    //         name: true,
-    //         priority: 10,
-    //         test: /\.(s?css|vue)$/,
-    //         chunks: 'all',
-    //         minSize: 10000,
-    //         reuseExistingChunk: true
-    //       }
-    //     }
-    //   }
-    // },
-    extend (config, ctx) {
-      // enable source maps (inline on the server!)
-      if (ctx.isDev) {
-        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
       }
     }
   }
