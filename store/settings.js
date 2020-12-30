@@ -169,17 +169,6 @@ export const mutations = {
 }
 
 export const actions = {
-  applyGlobalPreset ({ state, commit }, presetId) {
-    let chosenPreset
-    if (!(chosenPreset = state.globalPresets[presetId])) {
-      // TODO Log a potential error: wrong preset ID
-    }
-
-    commit('timer/changeTickDelta', { newTickDelta: chosenPreset.tickRate.normal, immediate: true }, { root: true })
-    commit('changeClockStyle', chosenPreset.clockStyle)
-    commit('applyPreset', chosenPreset.timerPreset)
-  },
-
   resetSettings (store) {
     const defaults = state()
     defaults.lang = store.state.lang // keep language preference
