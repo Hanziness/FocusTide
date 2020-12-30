@@ -292,5 +292,15 @@ export default {
       title: 'Ejha! Még több szabadidő!',
       body: 'Nem semmi. Ennyi munka után megérdemelsz egy kis extra szünidőt.'
     }
+  },
+  error: {
+    format_invalid: 'Hibás formátum',
+    range_invalid: 'Az érték {min} és {max} között legyen',
+    required: 'Ezt a mezőt ki kell tölteni',
+    numeric: 'A beírt értéknek számnak kell lennie',
+    min: 'Az érték legalább {min} legyen',
+    max: 'Az érték legfeljebb {max} legyen',
+    time_format: 'Hibásan formázott idő (PP:MM)',
+    undefined: 'Ismeretlen hiba'
   }
 }
