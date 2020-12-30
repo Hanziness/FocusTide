@@ -14,6 +14,7 @@
               <settings-options
                 :settings-key="['lang']"
                 :values="{'en': 'en', 'hu': 'hu'}"
+                :custom-value="$store.state.settings.lang ? $store.state.settings.lang : $i18n.locale"
               />
               <divider />
               <settings-check :settings-key="['adaptiveTicking', 'enabled']" />
@@ -25,6 +26,21 @@
                 :disabled="$store.state.notifications.enabled === false"
                 :custom-set-function="changeNotificationSettings"
               />
+
+              <divider />
+
+              <div :class="['reset-button', { 'active': resetConfirm }]" role="button" @click="resetConfirm = true">
+                <span>
+                  <span v-text="$i18n.t('settings.reset.title')" />
+                  <span class="float-right"><reset-icon :size="28" /></span>
+                </span>
+                <transition name="transition-fade">
+                  <div v-if="resetConfirm" class="left-0 top-0 absolute w-full h-full grid grid-flow-col grid-cols-2 items-stretch">
+                    <div class="reset-subbutton" @click.stop="triggerSettingsReset" v-text="$i18n.t('settings.reset.confirm')" />
+                    <div class="reset-subbutton" @click.stop="resetConfirm = false" v-text="$i18n.t('settings.reset.cancel')" />
+                  </div>
+                </transition>
+              </div>
             </div>
 
             <div v-if="activeTab === 2" :key="2" class="settings-tab">
@@ -61,6 +77,7 @@
           </transition>
         </div>
       </div>
+
       <div class="settings-panel-menubar">
         <div class="tab-header" :class="[{'active': activeTab === 1}]" @click="activeTab = 1">
           <span>{{ $i18n.t('settings.tabs.main') }}</span>
@@ -77,6 +94,8 @@
 </template>
 
 <script>
+import ResetIcon from 'vue-material-design-icons/AlertCircle.vue'
+
 export default {
   name: 'SettingsPanel',
   components: {
@@ -87,7 +106,8 @@ export default {
     SettingsTime: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsTime.vue'),
     SettingsOptions: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsOptions.vue'),
     Divider: () => import(/* webpackMode: "eager" */ '@/components/base/divider.vue'),
-    CloseIcon: () => import(/* webpackMode: "eager" */ 'vue-material-design-icons/Close.vue')
+    CloseIcon: () => import(/* webpackMode: "eager" */ 'vue-material-design-icons/Close.vue'),
+    ResetIcon
   },
   props: {
     value: {
@@ -98,7 +118,8 @@ export default {
 
   data () {
     return {
-      activeTab: 1
+      activeTab: 1,
+      resetConfirm: false
     }
   },
 
@@ -135,6 +156,13 @@ export default {
   methods: {
     changeNotificationSettings (newValue) {
       this.notificationPermission = newValue
+    },
+
+    triggerSettingsReset () {
+      this.$store.dispatch('settings/resetSettings')
+      window.localStorage.clear()
+      // this.$router.go()
+      window.location.reload()
     }
   }
 }
@@ -203,6 +231,34 @@ div.settings-tab {
 .tab-transition-leave-to {
   transform: translateY(10px);
   opacity: 0;
+}
+
+div.reset-button {
+  @apply w-full p-4 text-black bg-gray-200 text-lg cursor-pointer transition-colors rounded-lg relative;
+
+  &:hover:not(.active) {
+    @apply bg-red-500 text-white;
+  }
+
+  &:active {
+    @apply bg-red-600 text-white;
+  }
+
+  &.active {
+    @apply bg-gray-200 text-black cursor-default;
+  }
+
+  & .reset-subbutton {
+    @apply m-2 rounded-lg flex justify-center items-center cursor-pointer;
+
+    &:first-child {
+      @apply mr-1 bg-red-600 hover:bg-red-700 text-white;
+    }
+
+    &:last-child {
+      @apply ml-1 bg-white hover:bg-gray-100 text-black;
+    }
+  }
 }
 
 // ===== CLOSE BUTTON =====

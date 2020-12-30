@@ -110,7 +110,7 @@ export default {
       purpose: ['maskable', 'any']
     },
     manifest: {
-      start_url: ''
+      start_url: '/'
     }
   },
 

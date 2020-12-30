@@ -144,17 +144,20 @@ export const mutations = {
     }
   },
 
-  mergeSettings (state, newSettings) {
+  mergeSettings (currentState, newSettings) {
+    // reset settings before merging new ones
+    Object.assign(currentState, state())
+
     for (const key in newSettings) {
       if (Object.hasOwnProperty.call(newSettings, key)) {
         if (typeof newSettings[key] === 'object') {
           // perform merge
-          state[key] = {
-            ...state[key],
+          currentState[key] = {
+            ...currentState[key],
             ...newSettings[key]
           }
         } else {
-          state[key] = newSettings[key]
+          currentState[key] = newSettings[key]
         }
       }
     }
@@ -204,5 +207,13 @@ export const actions = {
     commit('timer/changeTickDelta', { newTickDelta: chosenPreset.tickRate.normal, immediate: true }, { root: true })
     commit('changeClockStyle', chosenPreset.clockStyle)
     commit('applyPreset', chosenPreset.timerPreset)
+  },
+
+  resetSettings (store) {
+    const defaults = state()
+    defaults.lang = store.state.lang // keep language preference
+
+    // defaults.lang = store.state.lang
+    store.commit('mergeSettings', defaults)
   }
 }
