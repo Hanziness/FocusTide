@@ -13,8 +13,13 @@ dayjs.extend(dayjsrelativetime)
 
 export default function ({ store }, inject) {
   inject('dayjs', {
+    // TODO deprecate format parameter
     formatMs (ms, { format = 'mm:ss' }) {
-      return dayjs.utc(Math.round(ms / 1000) * 1000).format(format)
+      const roundedValue = Math.round(ms / 1000) * 1000
+      if (roundedValue >= 60 * 60 * 1000) {
+        format = 'HH:mm:ss'
+      }
+      return dayjs.utc(roundedValue).format(format)
     },
     formatRelative (ms, { lang = null }) {
       let instance = dayjs()
