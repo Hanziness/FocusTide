@@ -5,14 +5,9 @@ export default {
     }
   },
   actions: {
-    nuxtServerInit ({ commit }, { isDev }) {
+    nuxtServerInit ({ commit }) {
       // initialize with 10 entries, no need for phantom entries then
       commit('schedule/initSchedule', 10)
-
-      // remove debug items from settings in production
-      if (!isDev) {
-        commit('settings/removeDebugItems')
-      }
     }
   }
 }

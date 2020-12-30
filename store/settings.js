@@ -10,6 +10,14 @@ export const AvailableSoundSets = {
   SOUNDSET_MUSICAL: 'musical'
 }
 
+export const timerPresets = {
+  default: {
+    work: 25 * 60 * 1000, // 25 minutes
+    shortpause: 5 * 60 * 1000, // 5 minutes
+    longpause: 15 * 60 * 1000 // 15 minutes
+  }
+}
+
 export const state = () => ({
   lang: undefined,
   visuals: {
@@ -46,41 +54,8 @@ export const state = () => ({
       showSectionType: true
     }
   },
-  timerPresets: {
-    default: {
-      work: 25 * 60 * 1000, // 25 minutes
-      shortpause: 5 * 60 * 1000, // 5 minutes
-      longpause: 15 * 60 * 1000 // 15 minutes
-    },
-    debug: {
-      work: 6 * 1000,
-      shortpause: 5 * 1000,
-      longpause: 4 * 1000
-    }
-  },
-  globalPresets: {
-    traditional: {
-      nameId: 'traditional',
-      tickRate: {
-        normal: 1000,
-        secondary: 60000
-      },
-      clockStyle: AvailableTimers.TIMER_TRADITIONAL,
-      timerPreset: 'default'
-    },
-    modern: {
-      nameId: 'modern',
-      tickRate: {
-        normal: 60000,
-        secondary: 5 * 60000
-      },
-      clockStyle: AvailableTimers.TIMER_APPROXIMATE,
-      timerPreset: 'default'
-    }
-  },
   eventLoggingEnabled: false,
   currentTimer: AvailableTimers.TIMER_APPROXIMATE,
-  locale: null,
   adaptiveTicking: {
     enabled: true,
     baseTickRate: 1000,
@@ -140,7 +115,7 @@ export const mutations = {
 
   applyPreset (state, id) {
     if (state.timerPresets[id]) {
-      state.schedule.lengths = Object.assign({}, state.timerPresets[id])
+      state.schedule.lengths = Object.assign({}, timerPresets[id])
     }
   },
 
@@ -190,10 +165,6 @@ export const mutations = {
     } else {
       currentElement[key[key.length - 1]] = value
     }
-  },
-
-  removeDebugItems (state) {
-    delete state.timerPresets.debug
   }
 }
 

@@ -49,7 +49,7 @@
               <settings-options
                 :settings-key="['schedule', 'lengths']"
                 :custom-value="$store.getters['settings/getActiveSchedulePreset']"
-                :values="$store.state.settings.timerPresets"
+                :values="timerPresets"
                 :set-value-on-change="false"
                 :custom-set-function="(v) => { $store.commit('settings/applyPreset', v) }"
               />
@@ -95,6 +95,7 @@
 
 <script>
 import ResetIcon from 'vue-material-design-icons/AlertCircle.vue'
+import { timerPresets } from '@/store/settings'
 
 export default {
   name: 'SettingsPanel',
@@ -119,7 +120,8 @@ export default {
   data () {
     return {
       activeTab: 1,
-      resetConfirm: false
+      resetConfirm: false,
+      timerPresets
     }
   },
 
