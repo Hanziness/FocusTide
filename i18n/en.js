@@ -154,6 +154,11 @@ export default {
       close: 'Close',
       reset: 'Reset'
     },
+    reset: {
+      title: 'Reset settings',
+      confirm: 'Reset',
+      cancel: 'Cancel'
+    },
     values: {
       lang: {
         _title: 'Language',

@@ -31,17 +31,13 @@
 
               <div :class="['reset-button', { 'active': resetConfirm }]" role="button" @click="resetConfirm = true">
                 <span>
-                  <span>Reset settings</span>
+                  <span v-text="$i18n.t('settings.reset.title')" />
                   <span class="float-right"><reset-icon :size="28" /></span>
                 </span>
                 <transition name="transition-fade">
                   <div v-if="resetConfirm" class="left-0 top-0 absolute w-full h-full grid grid-flow-col grid-cols-2 items-stretch">
-                    <div class="reset-subbutton" @click.stop="triggerSettingsReset">
-                      Reset
-                    </div>
-                    <div class="reset-subbutton" @click.stop="resetConfirm = false">
-                      Cancel
-                    </div>
+                    <div class="reset-subbutton" @click.stop="triggerSettingsReset" v-text="$i18n.t('settings.reset.confirm')" />
+                    <div class="reset-subbutton" @click.stop="resetConfirm = false" v-text="$i18n.t('settings.reset.cancel')" />
                   </div>
                 </transition>
               </div>

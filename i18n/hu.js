@@ -154,6 +154,11 @@ export default {
       close: 'Bezárás',
       reset: 'Visszaállítás'
     },
+    reset: {
+      title: 'Alaphelyzetbe állítás',
+      confirm: 'Visszaállítás',
+      cancel: 'Mégsem'
+    },
     values: {
       lang: {
         _title: 'Nyelv',
