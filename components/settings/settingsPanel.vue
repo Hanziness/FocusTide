@@ -14,6 +14,7 @@
               <settings-options
                 :settings-key="['lang']"
                 :values="{'en': 'en', 'hu': 'hu'}"
+                :custom-value="$store.state.settings.lang ? $store.state.settings.lang : $i18n.locale"
               />
               <divider />
               <settings-check :settings-key="['adaptiveTicking', 'enabled']" />
