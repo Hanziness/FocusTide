@@ -66,7 +66,7 @@ Typically, every third break will be a long one. With the default settings that 
   * [`nuxt/google-fonts`](https://github.com/nuxt-community/google-fonts-module) for Google Fonts support
   * [`nuxt/pwa`](https://pwa.nuxtjs.org/) for PWA (Progressive Web Apps) support
   * [`vue-native-notification`](https://github.com/dennisbruner/vue-native-notification) for easier notifications support
-  * [`vuex-persist`](https://github.com/championswimmer/vuex-persist) for store persistence
+  * [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate) for store persistence
   * [Vue Lazy Hydration](https://github.com/maoberlehner/vue-lazy-hydration) (`vue-lazy-hydration`)
   * [Vuelidate](https://vuelidate.js.org/) form validation (`vuelidate`)
 * [**Tailwind CSS**](https://tailwindcss.com/)

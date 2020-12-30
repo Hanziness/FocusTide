@@ -28,7 +28,7 @@
     "vue-material-design-icons": "^4.10.0",
     "vue-native-notification": "^1.1.1",
     "vuelidate": "^0.7.5",
-    "vuex-persist": "^2.2.0"
+    "vuex-persistedstate": "3"
   },
   "devDependencies": {
     "@aceforth/nuxt-optimized-images": "^1.3.0",
