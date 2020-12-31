@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.1](https://github.com/Hanziness/AnotherPomodoro/compare/v0.7.0...v0.7.1) (2020-12-31)
+
+
+### Bug Fixes
+
+* **controls:** Fix transparency of disabled control buttons in Chromium ([605fe46](https://github.com/Hanziness/AnotherPomodoro/commit/605fe46f770a8fb7b2a5959562772fe56b7b8b8f)), closes [#59](https://github.com/Hanziness/AnotherPomodoro/issues/59)
+
 ## [0.7.0](https://github.com/Hanziness/AnotherPomodoro/compare/v0.6.0...v0.7.0) (2020-12-30)
 
 

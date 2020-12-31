@@ -6,8 +6,9 @@
       :aria-disabled="$store.getters['schedule/getCurrentTimerState'] === 0"
       @click="$store.commit('schedule/updateTimerState', 0)"
     >
-      <!-- <p>STOP</p> -->
-      <icon-stop :size="24" :title="$i18n.t('controls.stop')" />
+      <div>
+        <icon-stop :size="24" :title="$i18n.t('controls.stop')" />
+      </div>
     </div>
 
     <div
@@ -36,8 +37,9 @@
       :aria-disabled="$store.getters['schedule/getCurrentTimerState'] === 1"
       @click="$store.commit('schedule/advance')"
     >
-      <!-- <p>NEXT</p> -->
-      <icon-skip-next :size="24" :title="$i18n.t('controls.next')" />
+      <div>
+        <icon-skip-next :size="24" :title="$i18n.t('controls.next')" />
+      </div>
     </div>
   </div>
 </template>
