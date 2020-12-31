@@ -110,7 +110,9 @@ export default {
       purpose: ['maskable', 'any']
     },
     manifest: {
-      start_url: '/'
+      name: 'AnotherPomodoro - free & modern Pomodoro app',
+      short_name: 'AnotherPomodoro',
+      start_url: '/timer?standalone=true'
     }
   },
 

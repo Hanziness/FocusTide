@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.2](https://github.com/Hanziness/AnotherPomodoro/compare/v0.7.1...v0.7.2) (2020-12-31)
+
+
+### Features
+
+* **pwa:** PWA app now starts on timer page ([595f372](https://github.com/Hanziness/AnotherPomodoro/commit/595f372ca78dfa03e4782cca31379e8d2ac0557f))
+
+
+### Bug Fixes
+
+* **pwa:** Display correct app name in PWA contexts ([7d208cf](https://github.com/Hanziness/AnotherPomodoro/commit/7d208cf4a0bfd62a161132c759261837cf8927b8))
+
 ### [0.7.1](https://github.com/Hanziness/AnotherPomodoro/compare/v0.7.0...v0.7.1) (2020-12-31)
 
 
