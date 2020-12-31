@@ -110,6 +110,8 @@ export default {
       purpose: ['maskable', 'any']
     },
     manifest: {
+      name: 'AnotherPomodoro - free & modern Pomodoro app',
+      short_name: 'AnotherPomodoro',
       start_url: '/'
     }
   },
