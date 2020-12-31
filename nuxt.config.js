@@ -112,7 +112,7 @@ export default {
     manifest: {
       name: 'AnotherPomodoro - free & modern Pomodoro app',
       short_name: 'AnotherPomodoro',
-      start_url: '/'
+      start_url: '/timer?standalone=true'
     }
   },
 
