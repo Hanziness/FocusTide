@@ -50,7 +50,7 @@
             :timer-widget="$store.state.settings.currentTimer"
             class="grid absolute place-items-center"
           />
-          <timer-controls class="absolute" style="bottom: 2rem;" />
+          <timer-controls class="absolute" style="bottom: 2rem;" :can-use-keyboard="!showSettings" />
         </div>
       </ticker>
     </notification-controller>

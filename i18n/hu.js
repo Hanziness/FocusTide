@@ -273,6 +273,12 @@ export default {
             musical: 'Az alapértelmezett hangok'
           }
         }
+      },
+      timerControls: {
+        enableKeyboardShortcuts: {
+          _title: 'Billentyűzettel történő vezérlés',
+          _description: 'Időzítő indítása/megállítása a szóköz gombbal'
+        }
       }
     }
   },

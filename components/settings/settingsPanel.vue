@@ -18,6 +18,7 @@
               />
               <divider />
               <settings-check :settings-key="['adaptiveTicking', 'enabled']" />
+              <settings-check :settings-key="['timerControls', 'enableKeyboardShortcuts']" />
               <divider />
               <settings-check :settings-key="['permissions', 'audio']" />
               <settings-check

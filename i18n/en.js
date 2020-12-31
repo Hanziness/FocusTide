@@ -273,6 +273,12 @@ export default {
             musical: 'The default sounds'
           }
         }
+      },
+      timerControls: {
+        enableKeyboardShortcuts: {
+          _title: 'Enable keyboard shortcuts',
+          _description: 'Start/pause the timer with the space key'
+        }
       }
     }
   },

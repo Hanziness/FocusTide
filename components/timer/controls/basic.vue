@@ -4,7 +4,7 @@
       class="control-button text-lg z-10 lower-z prev"
       :class="[{ 'disabled': $store.getters['schedule/getCurrentTimerState'] === 0 }]"
       :aria-disabled="$store.getters['schedule/getCurrentTimerState'] === 0"
-      @click="$store.commit('schedule/updateTimerState', 0)"
+      @click="reset"
     >
       <div>
         <icon-stop :size="24" :title="$i18n.t('controls.stop')" />
@@ -19,7 +19,7 @@
       :style="{ '--next': $store.getters['schedule/nextScheduleColour'],
                 '--old': $store.getters['schedule/currentScheduleColour'],
                 '--percentage': ((progressPercentage * 100) * 0.85 + 10) + '%' }"
-      @click="$store.commit('schedule/updateTimerState', $store.getters['schedule/getCurrentTimerState'] !== 1 ? 1 : 2)"
+      @click="playPause"
     >
       <transition name="transition-fade" mode="out-in" tag="div" class="">
         <div v-if="$store.getters['schedule/getCurrentTimerState'] !== 1" :key="1" class="relative">
@@ -35,7 +35,7 @@
       class="control-button text-lg lower-z next"
       :class="[{ 'disabled': $store.getters['schedule/getCurrentTimerState'] === 1 }]"
       :aria-disabled="$store.getters['schedule/getCurrentTimerState'] === 1"
-      @click="$store.commit('schedule/advance')"
+      @click="advance"
     >
       <div>
         <icon-skip-next :size="24" :title="$i18n.t('controls.next')" />
@@ -149,6 +149,8 @@ div.play-button:not(.active):hover::after {
 </style>
 
 <script>
+import KeyboardListener from '@/assets/mixins/keyboardListener'
+
 export default {
   components: {
     // UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/base/button.vue'),
@@ -158,9 +160,32 @@ export default {
     IconSkipNext: () => import('vue-material-design-icons/SkipNext.vue')
   },
 
+  mixins: [KeyboardListener],
+
   computed: {
     progressPercentage () {
       return this.$store.getters['schedule/getCurrentItem'].timeElapsed / this.$store.getters['schedule/getCurrentItem'].length
+    }
+  },
+
+  methods: {
+    mixin_keyboardListener_handleKeyUp (e) {
+      if (!this.canUseKeyboard || !this.$store.state.settings.timerControls.enableKeyboardShortcuts) { return }
+      if (e.code.toLowerCase() === 'space') {
+        this.playPause()
+      }
+    },
+
+    playPause () {
+      this.$store.commit('schedule/updateTimerState', this.$store.getters['schedule/getCurrentTimerState'] !== 1 ? 1 : 2)
+    },
+
+    reset () {
+      this.$store.commit('schedule/updateTimerState', 0)
+    },
+
+    advance () {
+      this.$store.commit('schedule/advance')
     }
   }
 }
