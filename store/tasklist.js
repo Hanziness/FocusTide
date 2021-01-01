@@ -35,31 +35,30 @@ export const mutations = {
   changePriority (state, { item, direction }) {
     const itemIndex = state.tasks.indexOf(item)
 
-    if (itemIndex < 0) { return }
-
-    // change priority by +1 or -1 but keep it between -5 and +5
-    state.tasks[itemIndex].priority = Math.min(5, Math.max(-5, state.tasks[itemIndex].priority + Math.sign(direction)))
+    if (itemIndex >= 0) {
+      // change priority by +1 or -1 but keep it between -5 and +5
+      state.tasks[itemIndex].priority = Math.min(5, Math.max(-5, state.tasks[itemIndex].priority + Math.sign(direction)))
+    }
   },
 
-  // TODO COPY-PASTE WARNING
   toggleWorking (state, { item }) {
     const itemIndex = state.tasks.indexOf(item)
-    if (itemIndex < 0) { return }
-
-    state.tasks[itemIndex].state = state.tasks[itemIndex].state === taskState.inProgress ? taskState.waiting : taskState.inProgress
+    if (itemIndex >= 0) {
+      state.tasks[itemIndex].state = state.tasks[itemIndex].state === taskState.inProgress ? taskState.waiting : taskState.inProgress
+    }
   },
 
   toggleComplete (state, { item }) {
     const itemIndex = state.tasks.indexOf(item)
-    if (itemIndex < 0) { return }
-
-    state.tasks[itemIndex].state = state.tasks[itemIndex].state === taskState.inProgress ? taskState.complete : taskState.inProgress
+    if (itemIndex >= 0) {
+      state.tasks[itemIndex].state = state.tasks[itemIndex].state === taskState.inProgress ? taskState.complete : taskState.inProgress
+    }
   },
 
   delete (state, { item }) {
     const itemIndex = state.tasks.indexOf(item)
-    if (itemIndex < 0) { return }
-
-    state.tasks.splice(itemIndex, 1)
+    if (itemIndex >= 0) {
+      state.tasks.splice(itemIndex, 1)
+    }
   }
 }
