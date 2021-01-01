@@ -51,7 +51,7 @@
             class="grid absolute place-items-center"
           />
           <timer-controls class="absolute" style="bottom: 2rem;" :can-use-keyboard="!showSettings" />
-          <task-window style="right: 24px; bottom: 24px;" :editing="[0].includes($store.state.schedule.timerState)" />
+          <task-window v-if="$store.state.settings.tasks.enabled" style="right: 24px; bottom: 24px;" :editing="[0].includes($store.state.schedule.timerState)" />
         </div>
       </ticker>
     </notification-controller>
