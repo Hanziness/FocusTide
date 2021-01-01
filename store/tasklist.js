@@ -9,22 +9,6 @@ export const state = () => ({
 })
 
 export const getters = {
-  getRelevantTasks (state, getters, rootState, rootGetters) {
-    const currentSectionType = rootGetters['schedule/getCurrentItem'].type
-    const isTimerRunning = [1, 2, 3].includes(rootState.schedule.timerState)
-
-    // show top n tasks
-    if (isTimerRunning) {
-      // get only tasks that should be present in this section
-      return getters.sortedTasks.filter((item) => {
-        return item.section === currentSectionType && item.state !== taskState.waiting
-      }).slice(0, 3)
-      // TODO make "3" configurable
-    } else {
-      return getters.sortedTasks
-    }
-  },
-
   /** Returns a sorted version of the tasks array where higher priorities go before lower priorities */
   sortedTasks (state) {
     // return a sorted copy (`sort` sorts in place)
