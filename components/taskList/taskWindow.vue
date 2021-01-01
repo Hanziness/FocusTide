@@ -109,8 +109,7 @@ export default {
         // get only tasks that should be present in this section
         return this.$store.getters['tasklist/sortedTasks'].filter((item) => {
           return item.section === currentSectionType && item.state !== taskState.waiting
-        }).slice(0, 3)
-        // TODO make "3" configurable
+        }).slice(0, this.$store.state.settings.tasks.maxActiveTasks)
       } else {
         return this.$store.getters['tasklist/sortedTasks']
       }
