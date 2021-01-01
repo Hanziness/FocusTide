@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/Hanziness/AnotherPomodoro/compare/v0.7.2...v0.8.0) (2021-01-01)
+
+
+### Features
+
+* **controls:** Allow starting/pausing the timer using the `space` key ([7aaf827](https://github.com/Hanziness/AnotherPomodoro/commit/7aaf827b11142396897b27048f811f88c068e0c7))
+* **settings:** Add setting to toggle keyboard shortcuts ([735a18a](https://github.com/Hanziness/AnotherPomodoro/commit/735a18ae229c1ad524ad3192c7b77f54ca469b3c))
+* **tasks:** Implement task list ([#73](https://github.com/Hanziness/AnotherPomodoro/issues/73)) ([31796c3](https://github.com/Hanziness/AnotherPomodoro/commit/31796c317522a8bcb3fa9fd96b80af2e74368a65)), closes [#19](https://github.com/Hanziness/AnotherPomodoro/issues/19)
+
 ### [0.7.2](https://github.com/Hanziness/AnotherPomodoro/compare/v0.7.1...v0.7.2) (2020-12-31)
 
 
