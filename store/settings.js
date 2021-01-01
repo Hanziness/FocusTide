@@ -72,6 +72,10 @@ export const state = () => ({
   },
   timerControls: {
     enableKeyboardShortcuts: true
+  },
+  tasks: {
+    enabled: false,
+    maxActiveTasks: 3
   }
 })
 

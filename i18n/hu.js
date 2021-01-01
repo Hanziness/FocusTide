@@ -279,6 +279,16 @@ export default {
           _title: 'Billentyűzettel történő vezérlés',
           _description: 'Időzítő indítása/megállítása a szóköz gombbal'
         }
+      },
+      tasks: {
+        enabled: {
+          _title: 'Feladatlista',
+          _description: 'Kezeld a teendőidet közvetlenül az alkalmazásból'
+        },
+        maxActiveTasks: {
+          _title: 'Maximum aktív feladatok',
+          _description: 'Legfeljebb ennyi aktív feladatot mutat majd a lista'
+        }
       }
     }
   },
@@ -308,5 +318,13 @@ export default {
     max: 'Az érték legfeljebb {max} legyen',
     time_format: 'Hibásan formázott idő (PP:MM)',
     undefined: 'Ismeretlen hiba'
+  },
+  tasks: {
+    title: 'Feladatok',
+    form: {
+      title: 'cím',
+      description: 'leírás (nem kötelező)'
+    },
+    empty: 'Nincs mit tenni (?)'
   }
 }
