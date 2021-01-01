@@ -30,6 +30,16 @@
 
               <divider />
 
+              <settings-check :settings-key="['tasks', 'enabled']" />
+              <settings-text
+                :settings-key="['tasks', 'maxActiveTasks']"
+                :min="1"
+                numeric
+                :disabled="!$store.state.settings.tasks.enabled"
+              />
+
+              <divider />
+
               <div :class="['reset-button', { 'active': resetConfirm }]" role="button" @click="resetConfirm = true">
                 <span>
                   <span v-text="$i18n.t('settings.reset.title')" />
