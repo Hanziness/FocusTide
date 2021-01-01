@@ -18,6 +18,7 @@
               />
               <divider />
               <settings-check :settings-key="['adaptiveTicking', 'enabled']" />
+              <settings-check :settings-key="['timerControls', 'enableKeyboardShortcuts']" />
               <divider />
               <settings-check :settings-key="['permissions', 'audio']" />
               <settings-check
@@ -25,6 +26,16 @@
                 :set-value-on-change="false"
                 :disabled="$store.state.notifications.enabled === false"
                 :custom-set-function="changeNotificationSettings"
+              />
+
+              <divider />
+
+              <settings-check :settings-key="['tasks', 'enabled']" />
+              <settings-text
+                :settings-key="['tasks', 'maxActiveTasks']"
+                :min="1"
+                numeric
+                :disabled="!$store.state.settings.tasks.enabled"
               />
 
               <divider />

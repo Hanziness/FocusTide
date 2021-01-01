@@ -69,6 +69,13 @@ export const state = () => ({
     volume: 0.9,
     repeatTimes: 2,
     soundSet: 'musical'
+  },
+  timerControls: {
+    enableKeyboardShortcuts: true
+  },
+  tasks: {
+    enabled: false,
+    maxActiveTasks: 3
   }
 })
 

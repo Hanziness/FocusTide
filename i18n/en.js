@@ -273,6 +273,22 @@ export default {
             musical: 'The default sounds'
           }
         }
+      },
+      timerControls: {
+        enableKeyboardShortcuts: {
+          _title: 'Enable keyboard shortcuts',
+          _description: 'Start/pause the timer with the space key'
+        }
+      },
+      tasks: {
+        enabled: {
+          _title: 'Enable task list',
+          _description: 'Manage your work right from the app'
+        },
+        maxActiveTasks: {
+          _title: 'Maximum active tasks to show',
+          _description: 'You\'ll only see this many active tasks at most'
+        }
       }
     }
   },
@@ -302,5 +318,13 @@ export default {
     max: 'Value must be at most {max}',
     time_format: 'Incorrectly formatted time (MM:SS)',
     undefined: 'Undefined error'
+  },
+  tasks: {
+    title: 'Tasks',
+    form: {
+      title: 'title',
+      description: 'description (optional)'
+    },
+    empty: 'Nothing to do (?)'
   }
 }
