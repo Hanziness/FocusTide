@@ -3,7 +3,7 @@
   <div class="tasks-window" @keyup.stop="">
     <div class="header">
       <span v-text="$i18n.t('tasks.title')" />
-      <div class="float-right flex flex-row justify-center ml-2">
+      <div class="header-controls">
         <div :class="['header-toggle', { 'active': controls.showAddControls && editing, 'disabled': !editing }]" @click="controls.showAddControls = !controls.showAddControls">
           <icon-add :size="20" title="" />
         </div>
@@ -164,19 +164,23 @@ div.tasks-window {
   & > .header {
     @apply uppercase font-bold text-lg pl-4 pr-2;
 
-    .header-toggle {
-      @apply rounded-full bg-gray-200 mr-1 p-1;
+    & > .header-controls {
+      @apply float-right flex flex-row justify-center ml-4;
 
-      &:last-child {
-        @apply mr-0;
-      }
+      & > .header-toggle {
+        @apply rounded-full bg-gray-200 mr-1 p-1;
 
-      &.active {
-        @apply bg-gray-700 text-white;
-      }
+        &:last-child {
+          @apply mr-0;
+        }
 
-      &.disabled {
-        @apply opacity-40 pointer-events-none;
+        &.active {
+          @apply bg-gray-700 text-white;
+        }
+
+        &.disabled {
+          @apply opacity-40 pointer-events-none;
+        }
       }
     }
   }
