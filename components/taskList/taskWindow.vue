@@ -2,12 +2,19 @@
   <!-- @keyup.stop="" prevents `space` triggering a timer start/pause -->
   <div class="tasks-window" @keyup.stop="">
     <div class="header">
-      Tasks
-      <!-- TODO Buttons: show all sections, edit mode toggle -->
+      <span>Tasks</span>
+      <div class="float-right flex flex-row justify-center ml-2">
+        <div :class="['header-toggle', { 'active': controls.showAddControls && editing, 'disabled': !editing }]" @click="controls.showAddControls = !controls.showAddControls">
+          <icon-add :size="20" title="" />
+        </div>
+        <div :class="['header-toggle', { 'active': !controls.open }]" @click="controls.open = !controls.open">
+          <icon-minimize :size="20" title="" />
+        </div>
+      </div>
     </div>
 
     <!-- List -->
-    <transition-group name="tasklist-transition" tag="div" class="list">
+    <transition-group v-show="controls.open" name="tasklist-transition" tag="div" class="list">
       <div v-for="item in tasksToShow" :key="item.title" :class="['list-item', { 'complete': item.state === 2 }]">
         <div class="status">
           <task-status
@@ -38,7 +45,7 @@
     </transition-group>
 
     <!-- Footer -->
-    <div v-if="editing" class="footer">
+    <div v-if="editing && controls.open && controls.showAddControls" class="footer">
       <div class="input">
         <input v-model="newTask.title" type="text" class="input-title" placeholder="title">
         <input v-model="newTask.description" type="text" class="input-desc" placeholder="description (optional)">
@@ -71,11 +78,12 @@ import IconUp from 'vue-material-design-icons/ChevronUp.vue'
 import IconDown from 'vue-material-design-icons/ChevronDown.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
+import IconMinimize from 'vue-material-design-icons/ArrowCollapse.vue'
 
 import { taskState } from '@/store/tasklist'
 
 export default {
-  components: { TaskStatus, IconUp, IconDown, IconDelete, IconAdd },
+  components: { TaskStatus, IconUp, IconDown, IconDelete, IconAdd, IconMinimize },
   props: {
     editing: {
       type: Boolean,
@@ -91,7 +99,8 @@ export default {
         section: 'work'
       },
       controls: {
-        open: true
+        open: true,
+        showAddControls: true
       }
     }
   },
@@ -158,7 +167,23 @@ div.tasks-window {
   // @apply dark:bg-gray-900 dark:text-white;
 
   & > .header {
-    @apply uppercase font-bold text-lg px-4;
+    @apply uppercase font-bold text-lg pl-4 pr-2;
+
+    .header-toggle {
+      @apply rounded-full bg-gray-200 mr-1 p-1;
+
+      &:last-child {
+        @apply mr-0;
+      }
+
+      &.active {
+        @apply bg-gray-700 text-white;
+      }
+
+      &.disabled {
+        @apply opacity-40 pointer-events-none;
+      }
+    }
   }
 
   & > .list {
