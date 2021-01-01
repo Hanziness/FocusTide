@@ -1,12 +1,3 @@
-const demoData = [
-  { title: 'Release AnotherPomodoro', priority: 1, section: 'work', state: 1, keepOnScreen: false },
-  { title: 'Finish the TODO part', description: '... and make it quick!', priority: 1, section: 'work', state: 1, keepOnScreen: false },
-  { title: 'Listen to Margarita', priority: 2, section: 'work', state: 0, keepOnScreen: false },
-  { title: 'Not relevant task', priority: -1, section: 'work', state: 0, keepOnScreen: false },
-  { title: 'Do a backflip', priority: 2, section: 'shortpause', state: 2, keepOnScreen: false },
-  { title: 'Push-ups haha', priority: 1, section: 'shortpause', state: 1, keepOnScreen: false }
-]
-
 export const taskState = {
   waiting: 0,
   inProgress: 1,
@@ -14,7 +5,7 @@ export const taskState = {
 }
 
 export const state = () => ({
-  tasks: [...demoData]
+  tasks: []
 })
 
 export const getters = {
