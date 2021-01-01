@@ -86,8 +86,8 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    'nuxt-i18n'
-    // 'portal-vue/nuxt'
+    'nuxt-i18n',
+    '@nuxtjs/sitemap'
   ],
 
   /** Modules that need to be transpiled */
@@ -152,6 +152,10 @@ export default {
       // If no locale for the browsers locale is a match, use this one as a fallback
       fallbackLocale: 'en'
     }
+  },
+
+  sitemap: {
+    hostname: process.env.hostname ? process.env.hostname : 'https://another-pomodoro.netlify.app'
   },
 
   /*
