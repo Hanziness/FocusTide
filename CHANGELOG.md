@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.1](https://github.com/Hanziness/AnotherPomodoro/compare/v0.8.0...v0.8.1) (2021-01-01)
+
+
+### Features
+
+* Add sitemap generation ([cc50a73](https://github.com/Hanziness/AnotherPomodoro/commit/cc50a73606f3b00d5f0cd08e459d0906937acb6c))
+
 ## [0.8.0](https://github.com/Hanziness/AnotherPomodoro/compare/v0.7.2...v0.8.0) (2021-01-01)
 
 
