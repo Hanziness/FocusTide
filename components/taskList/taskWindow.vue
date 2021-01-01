@@ -2,7 +2,7 @@
   <!-- @keyup.stop="" prevents `space` triggering a timer start/pause -->
   <div class="tasks-window" @keyup.stop="">
     <div class="header">
-      <span>Tasks</span>
+      <span v-text="$i18n.t('tasks.title')" />
       <div class="float-right flex flex-row justify-center ml-2">
         <div :class="['header-toggle', { 'active': controls.showAddControls && editing, 'disabled': !editing }]" @click="controls.showAddControls = !controls.showAddControls">
           <icon-add :size="20" title="" />
@@ -47,18 +47,12 @@
     <!-- Footer -->
     <div v-if="editing && controls.open && controls.showAddControls" class="footer">
       <div class="input">
-        <input v-model="newTask.title" type="text" class="input-title" placeholder="title">
-        <input v-model="newTask.description" type="text" class="input-desc" placeholder="description (optional)">
+        <input v-model="newTask.title" type="text" class="input-title" :placeholder="$i18n.t('tasks.form.title')">
+        <input v-model="newTask.description" type="text" class="input-desc" :placeholder="$i18n.t('tasks.form.description')">
         <select v-model="newTask.section" class="input-section text-white text-sm py-1 bg-transparent">
-          <option value="work">
-            work
-          </option>
-          <option value="shortpause">
-            pause
-          </option>
-          <option value="longpause">
-            long pause
-          </option>
+          <option value="work" v-text="$i18n.t('section.work')" />
+          <option value="shortpause" v-text="$i18n.t('section.shortpause')" />
+          <option value="longpause" v-text="$i18n.t('section.longpause')" />
         </select>
       </div>
       <div
