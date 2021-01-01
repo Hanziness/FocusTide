@@ -324,6 +324,7 @@ export default {
     form: {
       title: 'cím',
       description: 'leírás (nem kötelező)'
-    }
+    },
+    empty: 'Nincs mit tenni (?)'
   }
 }

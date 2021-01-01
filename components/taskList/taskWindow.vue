@@ -44,6 +44,8 @@
       </div>
     </transition-group>
 
+    <div v-show="tasksToShow.length < 1 && controls.open" class="empty" v-text="$i18n.t('tasks.empty')" />
+
     <!-- Footer -->
     <div v-if="editing && controls.open && controls.showAddControls" class="footer">
       <div class="input">
@@ -231,8 +233,12 @@ div.tasks-window {
     }
   }
 
+  & > .empty {
+    @apply mx-4 my-2 text-black text-opacity-80;
+  }
+
   & > .footer {
-    @apply px-2 flex flex-row my-2 content-center;
+    @apply mx-2 flex flex-row my-2 content-center;
 
     & > .input {
       @apply flex flex-col flex-grow;

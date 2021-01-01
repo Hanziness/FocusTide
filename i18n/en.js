@@ -324,6 +324,7 @@ export default {
     form: {
       title: 'title',
       description: 'description (optional)'
-    }
+    },
+    empty: 'Nothing to do (?)'
   }
 }
