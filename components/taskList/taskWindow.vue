@@ -20,7 +20,7 @@
           <task-status
             :status="item.state"
             :section="item.section"
-            @click="[1, 2, 3].includes($store.state.schedule.timerState) ? toggleComplete(item) : toggleWorking(item)"
+            @click="$store.state.schedule.timerState !== 0 ? toggleComplete(item) : toggleWorking(item)"
           />
         </div>
 
@@ -102,7 +102,7 @@ export default {
   computed: {
     tasksToShow () {
       const currentSectionType = this.$store.getters['schedule/getCurrentItem'].type
-      const isTimerRunning = [1, 2, 3].includes(this.$store.state.schedule.timerState)
+      const isTimerRunning = this.$store.state.schedule.timerState !== 0
 
       // show top n tasks
       if (isTimerRunning) {
