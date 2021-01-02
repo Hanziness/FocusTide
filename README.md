@@ -65,9 +65,12 @@ Typically, every third break will be a long one. With the default settings that 
 * 👋 **Open development**
   * anyone can view the source code, raise issues (feature requests, bug reports) or even submit their own improvements!
 
-  > ⚠ Production deployments are currently using the open-source and privacy-friendly [Plausible Analytics](https://plausible.io) to measure site performance. Plausible does not collect personal data nor does it track visitors across sites and is fully GDPR-compliant! Visit their website for more info.
-  > This will likely change in the close future to make the deployed web app entirely free of all kinds of tracking.
-  > The app itself still does not collect any data (eg. when you're running it on your own machine) 💪
+### ⚠ Transparency warning
+Production deployments are currently using the open-source and privacy-friendly [Plausible Analytics](https://plausible.io) to measure site performance.
+This will likely change in the close future to make the deployed web app entirely free of tracking.
+
+Plausible does not collect personal data nor does it track visitors across sites and is fully GDPR-compliant! Visit their website for more info.
+The app itself still does not collect any data (eg. when you're running it on your own machine) 💪
 
 ## 🏗 For other developers
 
