@@ -2,6 +2,8 @@
 
 Free and open-source Pomodoro application, right in your browser.
 
+![Netlify Status](https://api.netlify.com/api/v1/badges/7cb2b7fb-cacd-4acf-803b-8af9dad9f2a8/deploy-status)
+
 ![Screenshot of the application showing a work section.](./assets/img/Screenshot-Main.png)
 
 ## What is it?
@@ -28,6 +30,7 @@ Typically, every third break will be a long one. With the default settings that 
   > 💡 **Tip**. You can customize the frequency of long pauses!
 
 ### What you get
+
 * ⏰ **Multiple types of timers**
   * (12:34) _traditional_ <br> a classic one with second-precision for those who want to know exactly how much time is left until coffee break
   * (12 minutes) _approximate_ <br> this one displays time in minute-precision so you know how much time is left but your eyes won't stick to the counter since it does not change every second
@@ -46,16 +49,28 @@ Typically, every third break will be a long one. With the default settings that 
   * hide the schedule or the progress bar
   * enable/disable audio and/or desktop notifications
   * change number of schedule items
+  * control your timer using the keyboard
   * ... and more to come in the future!
+* 📑 **Flexible task list**
+  * set separate tasks for work, pause and long pause sections
+  * only shows your top _n_ relevant tasks while the timer is running
+  * remembers your tasks across sessions
 * ✨ **Other nice-to-have features**
   * remembers your settings
   * _adaptive ticking_: timers will update less frequently while the browser tab is not visible
-  * it's a _PWA_ (Progressive Web App): it's fast and it can run fully offline (you can "install" it through your browser!)
+  * it's a _PWA_ (Progressive Web App): it's fast and you can "install" it through your browser!
   * has some nice animations :)
 * ✔ **No installation required**. Just open the webpage and enjoy it!
 * 📵 **No tracking, ads or any fishy stuff -- and it's entirely _free_**
 * 👋 **Open development**
   * anyone can view the source code, raise issues (feature requests, bug reports) or even submit their own improvements!
+
+### ⚠ Transparency warning
+Production deployments are currently using the open-source and privacy-friendly [Plausible Analytics](https://plausible.io) to measure site performance.
+This will likely change in the close future to make the deployed web app entirely free of tracking.
+
+Plausible does not collect personal data nor does it track visitors across sites and is fully GDPR-compliant! Visit their website for more info.
+The app itself still does not collect any data (eg. when you're running it on your own machine) 💪
 
 ## 🏗 For other developers
 
@@ -68,11 +83,13 @@ Typically, every third break will be a long one. With the default settings that 
   * [`vue-native-notification`](https://github.com/dennisbruner/vue-native-notification) for easier notifications support
   * [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate) for store persistence
   * [Vue Lazy Hydration](https://github.com/maoberlehner/vue-lazy-hydration) (`vue-lazy-hydration`)
-  * [Vuelidate](https://vuelidate.js.org/) form validation (`vuelidate`)
+  * [Vuelidate](https://vuelidate.js.org/) for input validation (`vuelidate`)
+  * [`@aceforth/nuxt-optimized-images`](https://marquez.co/docs/nuxt-optimized-images) for automatic build-time image optimization
 * [**Tailwind CSS**](https://tailwindcss.com/)
-* [Normalize.CSS](https://csstools.github.io/normalize.css/)
+  * [`@tailwindcss/forms`](https://github.com/tailwindlabs/tailwindcss-forms)
 * [Material Design Icons](https://materialdesignicons.com/) through [`vue-material-design-icons`](https://github.com/robcresswell/vue-material-design-icons)
 * [DayJS](https://day.js.org/) for time formatting
+* [`conventional-changelog/standard-version`](https://github.com/conventional-changelog/standard-version) for automatic changelog generation from [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ### 🛠 Building the app yourself
 

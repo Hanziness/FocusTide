@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.2](https://github.com/Hanziness/AnotherPomodoro/compare/v0.8.1...v0.8.2) (2021-01-02)
+
+
+### Documentation
+
+* **readme:** Update README ([a8d3a08](https://github.com/Hanziness/AnotherPomodoro/commit/a8d3a0800312d52aef7e7b4b66739a474aa15156))
+* **readme:** Update styling ([e56ef48](https://github.com/Hanziness/AnotherPomodoro/commit/e56ef48a564164a19d264b9d4c2fc1841f5594a9))
+
 ### [0.8.1](https://github.com/Hanziness/AnotherPomodoro/compare/v0.8.0...v0.8.1) (2021-01-01)
 
 
