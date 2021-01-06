@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.3](https://github.com/Hanziness/AnotherPomodoro/compare/v0.8.2...v0.8.3) (2021-01-06)
+
+
+### Features
+
+* **meta:** Add meta keywords ([97f6d10](https://github.com/Hanziness/AnotherPomodoro/commit/97f6d107d48561fa126bd0fa272cbb3f68f49711))
+
 ### [0.8.2](https://github.com/Hanziness/AnotherPomodoro/compare/v0.8.1...v0.8.2) (2021-01-02)
 
 
