@@ -1,7 +1,7 @@
 {
   "name": "pomodoro-app",
   "description": "Free and open-source Pomodoro app for everyone, right from your browser!",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "private": true,
   "scripts": {
     "dev": "nuxt",
