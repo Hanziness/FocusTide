@@ -124,6 +124,10 @@ export default {
     },
 
     remainingTimeString () {
+      if (this.$store.getters['schedule/getCurrentTimerState'] === 3) {
+        return '✔'
+      }
+
       const currentScheduleItem = this.$store.getters['schedule/getCurrentItem']
       return this.$dayjs.getFormattedTime(
         currentScheduleItem.length - currentScheduleItem.timeElapsed,
