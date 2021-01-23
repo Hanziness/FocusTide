@@ -289,6 +289,12 @@ export default {
           _title: 'Maximum active tasks to show',
           _description: 'You\'ll only see this many active tasks at most'
         }
+      },
+      pageTitle: {
+        useTickEmoji: {
+          _title: 'Use tick emoji in title',
+          _description: 'Show ✔ instead of "done"'
+        }
       }
     }
   },
@@ -326,5 +332,6 @@ export default {
       description: 'description (optional)'
     },
     empty: 'Nothing to do (?)'
-  }
+  },
+  ready: 'Done'
 }

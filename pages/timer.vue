@@ -125,7 +125,7 @@ export default {
 
     remainingTimeString () {
       if (this.$store.getters['schedule/getCurrentTimerState'] === 3) {
-        return '✔'
+        return this.$store.state.settings.pageTitle.useTickEmoji ? '✔' : this.$i18n.t('ready').toLowerCase()
       }
 
       const currentScheduleItem = this.$store.getters['schedule/getCurrentItem']
