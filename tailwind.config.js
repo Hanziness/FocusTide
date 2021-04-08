@@ -1,7 +1,4 @@
 module.exports = {
-  // purge: {
-  //   enabled: true
-  // },
   theme: {
     extend: {
       fontFamily: {
@@ -14,7 +11,6 @@ module.exports = {
       }
     }
   },
-  variants: {},
   plugins: [
     // require('@tailwindcss/typography')
     require('@tailwindcss/forms')

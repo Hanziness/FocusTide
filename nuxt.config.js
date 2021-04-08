@@ -78,6 +78,10 @@ export default {
     '@nuxtjs/pwa'
   ],
 
+  tailwindcss: {
+    jit: true
+  },
+
   optimizedImages: {
     optimizeImages: true,
     optimizeImagesInDev: false

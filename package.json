@@ -38,19 +38,20 @@
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/google-fonts": "^1.0.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
-    "@nuxtjs/tailwindcss": "^3.1.0",
+    "@nuxtjs/tailwindcss": "^4.0.3",
     "@tailwindcss/forms": "^0.2.1",
+    "@tailwindcss/jit": "^0.1.18",
     "autoprefixer": "9",
     "babel-eslint": "^10.1.0",
     "core-js": "3",
     "eslint": "^7.5.0",
     "eslint-plugin-nuxt": "^1.0.0",
     "imagemin-pngquant": "^9.0.1",
-    "postcss": "7",
+    "postcss": "^8.2.9",
     "standard-version": "^9.0.0",
     "stylelint": "^13.6.1",
     "stylelint-config-standard": "^20.0.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "tailwindcss": "2",
     "webp-loader": "^0.6.0"
   }
 }
