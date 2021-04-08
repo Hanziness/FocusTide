@@ -5,9 +5,12 @@
 		}
 	],
 	"settings": {
-    "files.insertFinalNewline": true,
-    "eslint.codeActionsOnSave.mode": "all",
-    "editor.codeActionsOnSave": { "source.fixAll": true },
+		"files.insertFinalNewline": true,
+		"eslint.codeActionsOnSave.mode": "all",
+		"editor.codeActionsOnSave": {
+			"source.fixAll": true
+		},
+		"editor.formatOnSave": false,
 		"editor.tabSize": 2,
 		"css.validate": false,
 		"scss.validate": false,
