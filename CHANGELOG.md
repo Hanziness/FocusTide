@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/Hanziness/AnotherPomodoro/compare/v0.8.3...v0.9.0) (2021-04-08)
+
+
+### Features
+
+* **settings:** Add settings to enable tick emoji in title ([3586ce8](https://github.com/Hanziness/AnotherPomodoro/commit/3586ce8d8f4b9c58f3ef690e8852724c0e0d4e7c))
+* Show checkmark instead of time in title when timer is completed ([bdc3db8](https://github.com/Hanziness/AnotherPomodoro/commit/bdc3db8ca7ac4da3cf13e6ee44390615c4c57966))
+* Timer is replaced with a checkmark when completed ([8dfcf99](https://github.com/Hanziness/AnotherPomodoro/commit/8dfcf991e1162c30b595eb7348d3525d93af32d0))
+
+
+### Bug Fixes
+
+* Fix invalid units warning for checkmark ([ff38a19](https://github.com/Hanziness/AnotherPomodoro/commit/ff38a19c22b646a5c75918f25698430d04995e29))
+
 ### [0.8.3](https://github.com/Hanziness/AnotherPomodoro/compare/v0.8.2...v0.8.3) (2021-01-06)
 
 

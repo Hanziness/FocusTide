@@ -289,6 +289,12 @@ export default {
           _title: 'Maximum aktív feladatok',
           _description: 'Legfeljebb ennyi aktív feladatot mutat majd a lista'
         }
+      },
+      pageTitle: {
+        useTickEmoji: {
+          _title: 'Pipa jel használata a címsorban',
+          _description: 'Mutasson ✔ emojit a "kész" helyett az alkalmazás'
+        }
       }
     }
   },
@@ -326,5 +332,6 @@ export default {
       description: 'leírás (nem kötelező)'
     },
     empty: 'Nincs mit tenni (?)'
-  }
+  },
+  ready: 'Kész'
 }

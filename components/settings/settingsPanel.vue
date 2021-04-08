@@ -83,6 +83,7 @@
               />
               <divider />
               <settings-check :settings-key="['performance', 'showProgressBar']" />
+              <settings-check :settings-key="['pageTitle', 'useTickEmoji']" />
               <!-- TODO Audio volume control -->
             </div>
           </transition>
