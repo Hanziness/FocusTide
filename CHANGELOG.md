@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.2](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.0...v0.9.2) (2021-05-07)
+
+
+### Features
+
+* Update dependencies, including TailwindCSS and enable JIT ([#83](https://github.com/Hanziness/AnotherPomodoro/issues/83)) ([781f356](https://github.com/Hanziness/AnotherPomodoro/commit/781f3562673ab8a243750852317e27408a2fe5d8))
+
 ### [0.9.1](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.0...v0.9.1) (2021-04-08)
 
 
