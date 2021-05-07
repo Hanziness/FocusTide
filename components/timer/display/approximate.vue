@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div :class="['timer-display', { 'active': running }]">
     <transition name="transition-approximate-up" mode="out-in">
-      <div :key="value" :class="['timer-approximate timer-display', { 'active': running }]">
+      <div :key="value" class="timer-approximate">
         {{ value }}
       </div>
     </transition>
