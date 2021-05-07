@@ -40,7 +40,6 @@
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@nuxtjs/tailwindcss": "^4.0.3",
     "@tailwindcss/forms": "^0.2.1",
-    "@tailwindcss/jit": "^0.1.18",
     "autoprefixer": "9",
     "babel-eslint": "^10.1.0",
     "core-js": "3",
