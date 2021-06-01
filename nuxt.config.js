@@ -78,10 +78,6 @@ export default {
     '@nuxtjs/pwa'
   ],
 
-  tailwindcss: {
-    jit: true
-  },
-
   optimizedImages: {
     optimizeImages: true,
     optimizeImagesInDev: false
@@ -182,10 +178,6 @@ export default {
   build: {
     corejs: 3,
     babel: {
-      // TODO added temporarily due to "loose" warnings (see https://github.com/nuxt/nuxt.js/issues/9224)
-      plugins: [
-        ['@babel/plugin-proposal-private-methods', { loose: true }]
-      ],
       presets ({ envName }) {
         const envTargets = {
           client: { browsers: ['last 2 versions'], ie: 11 },
