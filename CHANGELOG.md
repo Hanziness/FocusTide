@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.3](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.2...v0.9.3) (2021-06-01)
+
+
+### Features
+
+* Switch to new Tailwind JIT engine ([d16fd17](https://github.com/Hanziness/AnotherPomodoro/commit/d16fd1794c3449b339819f51f7438a458c05e93c))
+
+
+### Bug Fixes
+
+* Fix approximate timer not being transparent when inactive ([#86](https://github.com/Hanziness/AnotherPomodoro/issues/86)) ([d4a9758](https://github.com/Hanziness/AnotherPomodoro/commit/d4a9758745e3b66b01417bde5af63b13ea4a4062)), closes [#70](https://github.com/Hanziness/AnotherPomodoro/issues/70)
+
+### [0.9.1](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.0...v0.9.1) (2021-04-08)
+
+
+### Features
+
+* Update TailwindCSS and enable Tailwind's JIT ([68f2588](https://github.com/Hanziness/AnotherPomodoro/commit/68f2588889e4f3b08b16edd8e72561269712b7a6))
+
 ### [0.9.2](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.0...v0.9.2) (2021-05-07)
 
 
