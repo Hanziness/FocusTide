@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.6](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.2...v0.9.6) (2021-06-16)
+
+
+### Refactors
+
+* Perform major update on dependencies ([#92](https://github.com/Hanziness/AnotherPomodoro/issues/92)) ([691c89c](https://github.com/Hanziness/AnotherPomodoro/commit/691c89c401b50afddb8e72cbf14a29b0c385c1b3))
+
 ### [0.9.5](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.2...v0.9.5) (2021-06-15)
 
 ### [0.9.4](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.3...v0.9.4) (2021-06-15)
