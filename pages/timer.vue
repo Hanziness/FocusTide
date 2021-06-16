@@ -24,9 +24,9 @@
           class="relative w-full h-full flex justify-center"
         >
           <lazy-hydrate when-visible>
-            <transition slot-scope="{ hydrated }" name="schedule-transition">
+            <transition name="schedule-transition">
               <schedule-display
-                v-if="hydrated && $store.state.settings.schedule.visibility.enabled"
+                v-if="$store.state.settings.schedule.visibility.enabled"
                 class="absolute ml-auto mr-auto"
                 style="top: 2rem;"
               />
@@ -34,9 +34,9 @@
           </lazy-hydrate>
 
           <lazy-hydrate when-visible>
-            <transition slot-scope="{ hydrated }" name="transition-fade">
+            <transition name="transition-fade">
               <timer-progress
-                v-if="hydrated && $store.getters['settings/performanceSettings'].showProgressBar"
+                v-if="$store.getters['settings/performanceSettings'].showProgressBar"
                 :time-elapsed="timeElapsed"
                 :time-original="timeOriginal"
               />
@@ -91,7 +91,6 @@ section.timer-section {
 // import LazyHydrate from 'vue-lazy-hydration'
 
 export default {
-  layout: 'timer',
   components: {
     Ticker: () => import(/* webpackChunkName: "ticker", webpackMode: "eager" */ '@/components/ticker.vue'),
     ScheduleDisplay: () => import(/* webpackChunkName: "schedule", webpackPrefetch: true */ '@/components/schedule/scheduleDisplay.vue'),
@@ -107,10 +106,32 @@ export default {
     LazyHydrate: () => import(/* webpackMode: "eager" */ 'vue-lazy-hydration'),
     TaskWindow: () => import(/* webpackChunkName: "task-list" */ '@/components/taskList/taskWindow.vue')
   },
+  layout: 'timer',
 
   data () {
     return {
       showSettings: false
+    }
+  },
+
+  head () {
+    return {
+      title: `(${this.remainingTimeString}) ${this.pageTitle}`,
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: `data:image/svg+xml,
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  style="color: ${this.$store.getters['schedule/currentScheduleColour']};"
+                  xmlns="http://www.w3.org/2000/svg"
+                ><circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`
+        }
+      ]
     }
   },
   computed: {
@@ -138,7 +159,8 @@ export default {
 
     pageTitle () {
       return this.$store.getters['schedule/getCurrentItem']
-        ? this.$i18n.t('section.' + this.$store.getters['schedule/getCurrentItem'].type).toLowerCase() : 'Pomodoro'
+        ? this.$i18n.t('section.' + this.$store.getters['schedule/getCurrentItem'].type).toLowerCase()
+        : 'Pomodoro'
     }
   },
 
@@ -159,27 +181,6 @@ export default {
         // thisRef.$store.dispatch('timer/scheduleNextTick', {}) // tick the timer if document is now visible
       }
     })
-  },
-
-  head () {
-    return {
-      title: `(${this.remainingTimeString}) ${this.pageTitle}`,
-      link: [
-        {
-          rel: 'icon',
-          type: 'image/svg+xml',
-          href: `data:image/svg+xml,
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="0 0 32 32"
-                  fill="none"
-                  style="color: ${this.$store.getters['schedule/currentScheduleColour']};"
-                  xmlns="http://www.w3.org/2000/svg"
-                ><circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`
-        }
-      ]
-    }
   }
 }
 </script>
