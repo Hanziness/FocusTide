@@ -24,9 +24,9 @@
           class="relative w-full h-full flex justify-center"
         >
           <lazy-hydrate when-visible>
-            <transition slot-scope="{ hydrated }" name="schedule-transition">
+            <transition name="schedule-transition">
               <schedule-display
-                v-if="hydrated && $store.state.settings.schedule.visibility.enabled"
+                v-if="$store.state.settings.schedule.visibility.enabled"
                 class="absolute ml-auto mr-auto"
                 style="top: 2rem;"
               />
@@ -34,9 +34,9 @@
           </lazy-hydrate>
 
           <lazy-hydrate when-visible>
-            <transition slot-scope="{ hydrated }" name="transition-fade">
+            <transition name="transition-fade">
               <timer-progress
-                v-if="hydrated && $store.getters['settings/performanceSettings'].showProgressBar"
+                v-if="$store.getters['settings/performanceSettings'].showProgressBar"
                 :time-elapsed="timeElapsed"
                 :time-original="timeOriginal"
               />
@@ -57,6 +57,104 @@
     </notification-controller>
   </section>
 </template>
+
+<script>
+// import LazyHydrate from 'vue-lazy-hydration'
+
+export default {
+  components: {
+    Ticker: () => import(/* webpackChunkName: "ticker", webpackMode: "eager" */ '@/components/ticker.vue'),
+    ScheduleDisplay: () => import(/* webpackChunkName: "schedule", webpackPrefetch: true */ '@/components/schedule/scheduleDisplay.vue'),
+    NotificationController: () => import(/* webpackChunkName: "notificationController", webpackMode: "eager" */ '@/components/notifications/notificationController.vue'),
+    TimerProgress: () => import(/* webpackChunkName: "progress", webpackPrefetch: true */ '@/components/timer/timerProgress.vue'),
+    TimerSwitch: () => import(/* webpackChunkName: "timerSwitch", webpackPrefetch: true */ '@/components/timer/display/_timerSwitch.vue'),
+    // TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPrefetch: true */ '@/components/timer/timerControls.vue'),
+    TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPrefetch: true */ '@/components/timer/controls/basic.vue'),
+    SettingsPanel: () => import(/* webpackChunkName: "settings", webpackMode: "eager" */ '@/components/settings/settingsPanel.vue'),
+    UiButton: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/button.vue'),
+    UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/overlay.vue'),
+    CogIcon: () => import(/* webpackChunkName: "icons", webpackMode: "eager" */ 'vue-material-design-icons/Cog.vue'),
+    LazyHydrate: () => import(/* webpackMode: "eager" */ 'vue-lazy-hydration'),
+    TaskWindow: () => import(/* webpackChunkName: "task-list" */ '@/components/taskList/taskWindow.vue')
+  },
+  layout: 'timer',
+
+  data () {
+    return {
+      showSettings: false
+    }
+  },
+
+  head () {
+    return {
+      title: `(${this.remainingTimeString}) ${this.pageTitle}`,
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: `data:image/svg+xml,
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  style="color: ${this.$store.getters['schedule/currentScheduleColour']};"
+                  xmlns="http://www.w3.org/2000/svg"
+                ><circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`
+        }
+      ]
+    }
+  },
+  computed: {
+    currentColour () {
+      const currentState = this.$store.state.events.schedule[0] ? this.$store.state.events.schedule[0]._type : null
+      if (currentState) {
+        return this.$store.state.settings.visuals[currentState].colour
+      } else {
+        return ''
+      }
+    },
+
+    remainingTimeString () {
+      if (this.$store.getters['schedule/getCurrentTimerState'] === 3) {
+        return this.$store.state.settings.pageTitle.useTickEmoji ? '✔' : this.$i18n.t('ready').toLowerCase()
+      }
+
+      const currentScheduleItem = this.$store.getters['schedule/getCurrentItem']
+      return this.$dayjs.getFormattedTime(
+        currentScheduleItem.length - currentScheduleItem.timeElapsed,
+        this.$store.state.settings.currentTimer,
+        { total: currentScheduleItem.length, lang: this.$store.state.settings.lang }
+      )
+    },
+
+    pageTitle () {
+      return this.$store.getters['schedule/getCurrentItem']
+        ? this.$i18n.t('section.' + this.$store.getters['schedule/getCurrentItem'].type).toLowerCase()
+        : 'Pomodoro'
+    }
+  },
+
+  beforeCreate () {
+    // this.$store.commit('settings/applyPreset', 'debug')
+    // this.$store.dispatch('events/checkSchedule')
+    // this.$store.dispatch('timer/setNewTimer', this.$store.getters['events/getSchedule'][0]._length)
+  },
+
+  mounted () {
+    // this.$store.dispatch('timer/initDefaultSubscribeFunctions')
+
+    const thisRef = this
+    document.addEventListener('visibilitychange', function () {
+      thisRef.$store.commit('settings/registerNewHidden', document.hidden)
+      if (!document.hidden) {
+        // tick if needed
+        // thisRef.$store.dispatch('timer/scheduleNextTick', {}) // tick the timer if document is now visible
+      }
+    })
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 html {
@@ -86,100 +184,3 @@ section.timer-section {
   opacity: 0;
 }
 </style>
-
-<script>
-// import LazyHydrate from 'vue-lazy-hydration'
-
-export default {
-  layout: 'timer',
-  components: {
-    Ticker: () => import(/* webpackChunkName: "ticker", webpackMode: "eager" */ '@/components/ticker.vue'),
-    ScheduleDisplay: () => import(/* webpackChunkName: "schedule", webpackPrefetch: true */ '@/components/schedule/scheduleDisplay.vue'),
-    NotificationController: () => import(/* webpackChunkName: "notificationController", webpackMode: "eager" */ '@/components/notifications/notificationController.vue'),
-    TimerProgress: () => import(/* webpackChunkName: "progress", webpackPrefetch: true */ '@/components/timer/timerProgress.vue'),
-    TimerSwitch: () => import(/* webpackChunkName: "timerSwitch", webpackPrefetch: true */ '@/components/timer/display/_timerSwitch.vue'),
-    // TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPrefetch: true */ '@/components/timer/timerControls.vue'),
-    TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPrefetch: true */ '@/components/timer/controls/basic.vue'),
-    SettingsPanel: () => import(/* webpackChunkName: "settings", webpackMode: "eager" */ '@/components/settings/settingsPanel.vue'),
-    UiButton: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/button.vue'),
-    UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/overlay.vue'),
-    CogIcon: () => import(/* webpackChunkName: "icons", webpackMode: "eager" */ 'vue-material-design-icons/Cog.vue'),
-    LazyHydrate: () => import(/* webpackMode: "eager" */ 'vue-lazy-hydration'),
-    TaskWindow: () => import(/* webpackChunkName: "task-list" */ '@/components/taskList/taskWindow.vue')
-  },
-
-  data () {
-    return {
-      showSettings: false
-    }
-  },
-  computed: {
-    currentColour () {
-      const currentState = this.$store.state.events.schedule[0] ? this.$store.state.events.schedule[0]._type : null
-      if (currentState) {
-        return this.$store.state.settings.visuals[currentState].colour
-      } else {
-        return ''
-      }
-    },
-
-    remainingTimeString () {
-      if (this.$store.getters['schedule/getCurrentTimerState'] === 3) {
-        return this.$store.state.settings.pageTitle.useTickEmoji ? '✔' : this.$i18n.t('ready').toLowerCase()
-      }
-
-      const currentScheduleItem = this.$store.getters['schedule/getCurrentItem']
-      return this.$dayjs.getFormattedTime(
-        currentScheduleItem.length - currentScheduleItem.timeElapsed,
-        this.$store.state.settings.currentTimer,
-        { total: currentScheduleItem.length, lang: this.$store.state.settings.lang }
-      )
-    },
-
-    pageTitle () {
-      return this.$store.getters['schedule/getCurrentItem']
-        ? this.$i18n.t('section.' + this.$store.getters['schedule/getCurrentItem'].type).toLowerCase() : 'Pomodoro'
-    }
-  },
-
-  beforeCreate () {
-    // this.$store.commit('settings/applyPreset', 'debug')
-    // this.$store.dispatch('events/checkSchedule')
-    // this.$store.dispatch('timer/setNewTimer', this.$store.getters['events/getSchedule'][0]._length)
-  },
-
-  mounted () {
-    // this.$store.dispatch('timer/initDefaultSubscribeFunctions')
-
-    const thisRef = this
-    document.addEventListener('visibilitychange', function () {
-      thisRef.$store.commit('settings/registerNewHidden', document.hidden)
-      if (!document.hidden) {
-        // tick if needed
-        // thisRef.$store.dispatch('timer/scheduleNextTick', {}) // tick the timer if document is now visible
-      }
-    })
-  },
-
-  head () {
-    return {
-      title: `(${this.remainingTimeString}) ${this.pageTitle}`,
-      link: [
-        {
-          rel: 'icon',
-          type: 'image/svg+xml',
-          href: `data:image/svg+xml,
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="0 0 32 32"
-                  fill="none"
-                  style="color: ${this.$store.getters['schedule/currentScheduleColour']};"
-                  xmlns="http://www.w3.org/2000/svg"
-                ><circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`
-        }
-      ]
-    }
-  }
-}
-</script>
