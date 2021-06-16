@@ -58,35 +58,6 @@
   </section>
 </template>
 
-<style lang="scss" scoped>
-html {
-  @apply overflow-hidden;
-}
-
-section.timer-section {
-  height: 100vh;
-  transition: background-color 300ms ease-in;
-}
-
-.timer-background {
-  transition: 300ms ease-in;
-  transition-property: background-color;
-  position: relative;
-  height: 100%;
-}
-
-.schedule-transition-enter-active,
-.schedule-transition-leave-active {
-  transition: transform 300ms ease-out, opacity 200ms ease-out;
-}
-
-.schedule-transition-enter,
-.schedule-transition-leave-to {
-  transform: translateY(-20px);
-  opacity: 0;
-}
-</style>
-
 <script>
 // import LazyHydrate from 'vue-lazy-hydration'
 
@@ -184,3 +155,32 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+html {
+  @apply overflow-hidden;
+}
+
+section.timer-section {
+  height: 100vh;
+  transition: background-color 300ms ease-in;
+}
+
+.timer-background {
+  transition: 300ms ease-in;
+  transition-property: background-color;
+  position: relative;
+  height: 100%;
+}
+
+.schedule-transition-enter-active,
+.schedule-transition-leave-active {
+  transition: transform 300ms ease-out, opacity 200ms ease-out;
+}
+
+.schedule-transition-enter,
+.schedule-transition-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+</style>
