@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.7](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.2...v0.9.7) (2021-07-07)
+
 ### [0.9.6](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.2...v0.9.6) (2021-06-16)
 
 

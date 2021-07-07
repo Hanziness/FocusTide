@@ -1,7 +1,7 @@
 {
   "name": "pomodoro-app",
   "description": "Free and open-source Pomodoro app for everyone, right from your browser!",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -26,11 +26,11 @@
     "nuxt-i18n": "^6.13.8",
     "sass-loader": "^10.0.4",
     "vue": "2.6.12",
-    "vue-server-renderer": "2.6.12",
-    "vue-template-compiler": "2.6.12",
     "vue-lazy-hydration": "^2.0.0-beta.4",
     "vue-material-design-icons": "^4.10.0",
     "vue-native-notification": "^1.1.1",
+    "vue-server-renderer": "2.6.12",
+    "vue-template-compiler": "2.6.12",
     "vuelidate": "^0.7.5",
     "vuex": "^3.6.2",
     "vuex-persistedstate": "^3.0.0"
