@@ -16,12 +16,14 @@
 <style lang="postcss" scoped>
 .select-option {
   @apply px-3 py-4 border border-solid border-gray-300 rounded-md bg-white text-left;
+  @apply dark:bg-gray-800 dark:border-gray-600;
 
   flex-basis: 0;
   transition: background-color 100ms ease-out, color 100ms ease-out;
 
   &:hover {
     @apply bg-gray-200;
+    @apply dark:bg-gray-600;
   }
 
   &.active {

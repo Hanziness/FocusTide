@@ -70,6 +70,8 @@
             </div>
 
             <div v-if="activeTab === 3" :key="3" class="settings-tab">
+              <settings-check :settings-key="['visuals', 'darkMode']" />
+              <divider />
               <settings-options :settings-key="['currentTimer']" :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
               <divider />
               <settings-check :settings-key="['schedule', 'visibility', 'enabled']" />
@@ -186,10 +188,19 @@ export default {
 section.settings-panel {
   & input {
     @apply rounded-md border-gray-300 bg-gray-100 focus:bg-white focus:ring-primary;
+    @apply dark:bg-gray-800 dark:focus:bg-gray-600 dark:text-gray-100 dark:border-gray-700;
   }
 
   & input[type="checkbox"] {
     @apply text-primary;
+
+    &:hover {
+      @apply dark:bg-gray-500;
+    }
+
+    &:checked {
+      @apply dark:bg-primary;
+    }
   }
 }
 </style>
@@ -197,6 +208,7 @@ section.settings-panel {
 <style lang="scss" scoped>
 section.settings-panel {
   @apply bg-white h-full fixed shadow w-2/5 flex flex-col;
+  @apply dark:bg-gray-900 dark:text-gray-50;
 
   z-index: 1001;
   min-width: calc(min(600px, 100%));
@@ -216,6 +228,7 @@ div.settings-panel-menubar {
 
 div.tab-header {
   @apply flex-1 h-full bg-gray-200 p-2 cursor-pointer text-center flex items-center justify-center select-none;
+  @apply dark:bg-gray-800;
 
   transition: border-color 0.2s ease-out;
   box-sizing: border-box;
@@ -249,13 +262,16 @@ div.settings-tab {
 
 div.reset-button {
   @apply w-full p-4 text-black bg-gray-200 text-lg cursor-pointer transition-colors rounded-lg relative;
+  @apply dark:bg-gray-700 dark:text-gray-50;
 
   &:hover:not(.active) {
     @apply bg-red-500 text-white;
+    @apply dark:bg-red-700;
   }
 
   &:active {
     @apply bg-red-600 text-white;
+    @apply dark:bg-red-800;
   }
 
   &.active {
