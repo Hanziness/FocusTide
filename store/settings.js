@@ -32,7 +32,8 @@ export const state = () => ({
     },
     wait: {
       colour: 'rgb(222, 226, 230)'
-    }
+    },
+    darkMode: false
   },
   performance: {
     showProgressBar: true

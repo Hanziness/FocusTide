@@ -295,6 +295,12 @@ export default {
           _title: 'Use tick emoji in title',
           _description: 'Show ✔ instead of "done"'
         }
+      },
+      visuals: {
+        darkMode: {
+          _title: 'Enable dark mode',
+          _description: 'Less bright, more productive'
+        }
       }
     }
   },
