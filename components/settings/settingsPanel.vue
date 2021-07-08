@@ -280,7 +280,7 @@ div.reset-button {
   }
 
   &.active {
-    @apply bg-gray-200 text-black cursor-default;
+    @apply bg-gray-200 text-black dark:bg-gray-600 dark:text-white cursor-default;
   }
 
   & .reset-subbutton {
