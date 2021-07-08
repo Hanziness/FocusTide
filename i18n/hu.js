@@ -295,6 +295,12 @@ export default {
           _title: 'Pipa jel használata a címsorban',
           _description: 'Mutasson ✔ emojit a "kész" helyett az alkalmazás'
         }
+      },
+      visuals: {
+        darkMode: {
+          _title: 'Sötét téma bekapcsolása',
+          _description: 'Kevesebb fényerő, ugyanannyi produktivitás'
+        }
       }
     }
   },

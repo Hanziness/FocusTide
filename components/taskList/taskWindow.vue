@@ -159,7 +159,7 @@ export default {
 <style lang="scss" scoped>
 div.tasks-window {
   @apply py-2 rounded-lg bg-gray-100 border border-gray-200 text-gray-900 shadow-xl absolute z-20 max-w-lg max-h-96 flex flex-col;
-  // @apply dark:bg-gray-900 dark:text-white;
+  @apply dark:bg-gray-800 dark:text-gray-50 dark:border-gray-600;
 
   & > .header {
     @apply uppercase font-bold text-lg pl-4 pr-2;
@@ -169,6 +169,7 @@ div.tasks-window {
 
       & > .header-toggle {
         @apply rounded-full bg-gray-200 mr-1 p-1;
+        @apply dark:bg-gray-500 dark:bg-opacity-25;
 
         &:last-child {
           @apply mr-0;
@@ -176,6 +177,7 @@ div.tasks-window {
 
         &.active {
           @apply bg-gray-700 text-white;
+          @apply dark:bg-gray-400 dark:bg-opacity-100;
         }
 
         &.disabled {
@@ -187,7 +189,7 @@ div.tasks-window {
 
   & > .list {
     @apply grid grid-flow-row divide-y divide-gray-300 overflow-y-scroll flex-shrink overflow-x-hidden;
-    // @apply dark:divide-gray-500;
+    @apply dark:divide-gray-500;
 
     & > .list-item {
       @apply flex flex-row items-center px-4 py-2; // h-11
@@ -213,7 +215,7 @@ div.tasks-window {
 
         & > .description {
           @apply text-black text-opacity-80 text-sm overflow-ellipsis;
-          // @apply dark:text-white;
+          @apply dark:text-gray-100 dark:text-opacity-80;
         }
       }
 
@@ -222,12 +224,12 @@ div.tasks-window {
 
         & > .priority {
           @apply text-black text-opacity-60 text-sm mr-2 w-4 text-right flex flex-col justify-center;
-          // @apply dark:text-white;
+          @apply dark:text-gray-100;
         }
 
         & > .priority-change-button {
           @apply rounded-full bg-gray-700 bg-opacity-0 hover:bg-opacity-30;
-          // @apply dark:bg-white;
+          @apply dark:bg-transparent;
 
           &.disabled {
             @apply pointer-events-none opacity-40;
@@ -238,7 +240,7 @@ div.tasks-window {
   }
 
   & > .empty {
-    @apply mx-4 my-2 text-black text-opacity-80;
+    @apply mx-4 my-2 text-black text-opacity-80 dark:text-gray-100 dark:text-opacity-80;
   }
 
   & > .footer {
@@ -251,7 +253,7 @@ div.tasks-window {
       & > input,
       & > select {
         @apply p-2 focus:ring-0 border-gray-200 bg-gray-200 text-gray-900 text-sm;
-        // @apply dark:border-gray-800 dark:bg-gray-800 dark:text-white;
+        @apply dark:border-gray-700 dark:bg-gray-700 dark:text-gray-50;
 
         &:first-child {
           @apply rounded-t-lg;
@@ -263,22 +265,22 @@ div.tasks-window {
 
         &:focus {
           @apply bg-gray-100;
-          // @apply dark:bg-gray-700;
+          @apply dark:bg-gray-600;
         }
       }
 
       & > input.input-desc {
         @apply text-gray-900 text-opacity-80 text-xs;
-        // @apply dark:text-white;
+        @apply dark:text-gray-50;
       }
     }
 
     & > .add-button {
       @apply bg-blue-900 hover:bg-blue-800 text-white rounded-lg p-2 ml-2 select-none flex flex-col justify-center;
-      // @apply dark:bg-gray-100 dark:hover:bg-gray-200 dark:text-black;
+      @apply dark:bg-gray-100 dark:hover:bg-gray-200 dark:text-black;
 
       &.disabled {
-        @apply opacity-60 pointer-events-none;
+        @apply opacity-60 dark:opacity-25 pointer-events-none;
       }
     }
   }

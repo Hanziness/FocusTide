@@ -1,5 +1,8 @@
 <template>
   <section class="timer-section" :style="{'background-color': $store.getters['schedule/currentScheduleColour']}">
+    <!-- Dark mode background override -->
+    <div class="absolute w-full h-full dark:bg-gray-900" />
+
     <!-- Settings button -->
     <ui-button subtle class="absolute" style="top: 0.5rem; right: 0.5rem; z-index: 10;" @click="showSettings = true">
       <client-only>
@@ -162,6 +165,8 @@ html {
 }
 
 section.timer-section {
+  @apply dark:text-gray-50;
+
   height: 100vh;
   transition: background-color 300ms ease-in;
 }
