@@ -7,7 +7,10 @@
         'background-color': $store.getters['schedule/getScheduleColour'][scheduleEntryId],
         'transform': `translateX(${-100 + progressPercentage}%)`
       }"
-    />
+    >
+      <!-- Dark mode background override -->
+      <div class="absolute w-full h-full invisible dark:visible dark:bg-white" />
+    </div>
   </transition-group>
 </template>
 
@@ -40,6 +43,8 @@ export default {
 <style lang="scss" scoped>
 // provides a background filling progress bar (parent needs to be position: relative)
 .timer-progress {
+  @apply dark:opacity-20;
+
   transition: 200ms ease-in-out;
   transition-property: background-color transform;
   width: 100%;

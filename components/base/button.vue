@@ -27,6 +27,7 @@
 
 .ui-button.regular:hover:not(:disabled) {
   @apply bg-gray-500;
+  @apply dark:bg-gray-50 dark:bg-opacity-20;
 }
 
 .ui-button.regular:active:not(:disabled) {
@@ -39,10 +40,12 @@
 
 .ui-button.subtle:hover {
   @apply bg-gray-200;
+  @apply dark:bg-gray-50 dark:bg-opacity-20;
 }
 
 .ui-button.subtle:active {
   @apply bg-gray-400;
+  @apply dark:bg-gray-50 dark:bg-opacity-40;
 }
 
 .ui-button.disabled {

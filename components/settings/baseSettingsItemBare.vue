@@ -10,7 +10,7 @@
             {{ $i18n.t(translationKey + '._title') }}
           </slot>
         </div>
-        <div v-if="showDescription" class="text-gray-800 text-sm truncate">
+        <div v-if="showDescription" class="text-black text-opacity-75 dark:text-gray-50 dark:text-opacity-75 text-sm truncate">
           <slot name="item-subtitle">
             {{ $i18n.t(translationKey + '._description') }}
           </slot>
