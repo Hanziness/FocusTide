@@ -89,6 +89,7 @@ export default {
         clean: 'Clean design',
         adaptiveticking: 'Adaptive ticking',
         localization: 'Multiple languages',
+        darkmode: 'Dark mode',
         more: '... and more to come'
       }
     },

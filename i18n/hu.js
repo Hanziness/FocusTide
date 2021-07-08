@@ -89,6 +89,7 @@ export default {
         clean: 'Letisztult megjelenés',
         adaptiveticking: 'Adaptív ketyegés',
         localization: 'Magyarul is tud',
+        darkmode: 'Sötét téma',
         more: '... és még több'
       }
     },
