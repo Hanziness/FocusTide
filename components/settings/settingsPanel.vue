@@ -189,17 +189,22 @@ section.settings-panel {
   & input {
     @apply rounded-md border-gray-300 bg-gray-100 focus:bg-white focus:ring-primary;
     @apply dark:bg-gray-800 dark:focus:bg-gray-600 dark:text-gray-100 dark:border-gray-700;
+    @apply transition-colors;
   }
 
   & input[type="checkbox"] {
     @apply text-primary;
 
     &:hover {
-      @apply dark:bg-gray-500;
+      @apply dark:bg-gray-500 bg-gray-200;
     }
 
     &:checked {
-      @apply dark:bg-primary;
+      @apply dark:bg-primary dark:border-primary;
+
+      &:hover {
+        background-color: scale-color(#3498db, $lightness: 30%);
+      }
     }
   }
 }
