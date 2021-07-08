@@ -299,7 +299,7 @@ export default {
       visuals: {
         darkMode: {
           _title: 'Sötét téma bekapcsolása',
-          _description: 'Kevesebb fényerő, több produktivitás'
+          _description: 'Kevesebb fényerő, ugyanannyi produktivitás'
         }
       }
     }

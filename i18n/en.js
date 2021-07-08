@@ -299,7 +299,7 @@ export default {
       visuals: {
         darkMode: {
           _title: 'Enable dark mode',
-          _description: 'Less bright, more productive'
+          _description: 'Less bright, just as productive'
         }
       }
     }
