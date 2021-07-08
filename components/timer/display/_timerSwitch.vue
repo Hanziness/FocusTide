@@ -9,38 +9,6 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-div.timer-container {
-  @apply w-full h-full;
-
-  z-index: 5;
-  position: relative;
-}
-
-div.timer-display {
-  transition: 300ms ease-in;
-  transition-property: opacity;
-  opacity: 0.7;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-}
-
-div.timer-display.active {
-  opacity: 1;
-}
-
-.timer-switch-enter-active,
-.timer-switch-leave-active {
-  transition: opacity 0.5s ease-out;
-}
-
-.timer-switch-enter,
-.timer-switch-leave-to {
-  opacity: 0 !important;
-}
-</style>
-
 <script>
 import { AvailableTimers } from '@/store/settings'
 import TimerMixin from '@/assets/mixins/timerMixin'
@@ -73,3 +41,35 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+div.timer-container {
+  @apply w-full h-full;
+
+  z-index: 5;
+  position: relative;
+}
+
+div.timer-display {
+  transition: 300ms ease-in;
+  transition-property: opacity;
+  opacity: 0.7;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+div.timer-display.active {
+  opacity: 1;
+}
+
+.timer-switch-enter-active,
+.timer-switch-leave-active {
+  transition: opacity 0.5s ease-out;
+}
+
+.timer-switch-enter,
+.timer-switch-leave-to {
+  opacity: 0 !important;
+}
+</style>

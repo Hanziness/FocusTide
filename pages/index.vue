@@ -139,6 +139,80 @@
   </div>
 </template>
 
+<script>
+import IconLightBulb from 'vue-material-design-icons/LightbulbOn.vue'
+import IconCheck from 'vue-material-design-icons/CheckBold.vue'
+import IconHand from 'vue-material-design-icons/Handshake.vue'
+import IconGithub from 'vue-material-design-icons/Github.vue'
+import IconRepeat from 'vue-material-design-icons/Repeat.vue'
+
+export default {
+  components: {
+    IconLightBulb, IconCheck, IconHand, IconGithub, IconRepeat
+  },
+
+  data () {
+    return {
+      productImgTop: true,
+      productImgIntersection: null,
+      features: [
+        { icon: 'IconLightBulb', iconClass: 'text-yellow-500' },
+        { icon: 'IconCheck', iconClass: 'text-green-600' },
+        { icon: 'IconHand', iconClass: 'text-blue-600' }
+      ],
+      scheduleCards: [
+        { bg: 'bg-red-100', border: 'border-red-400', info: true },
+        { bg: 'bg-yellow-100', info: true },
+        { bg: 'bg-blue-100', border: 'border-blue-400', info: false }
+      ],
+      faq: [
+        { q: 'change_timers' },
+        { q: 'will_it_help', hint: true },
+        { q: 'data_collection' },
+        { q: 'remember_settings', hint: true },
+        { q: 'need_to_know' },
+        { q: 'timer_style' }
+      ],
+      smallFeatures: [
+        'customization', 'notifications', 'flexible', 'pwa', 'opensource', 'notrackers', 'noads',
+        'clean', 'adaptiveticking', 'localization', 'more'
+      ]
+    }
+  },
+
+  head () {
+    return {
+      title: 'AnotherPomodoro'
+    }
+  },
+
+  mounted () {
+    const thisRef = this
+
+    this.productImgIntersection = new IntersectionObserver(
+      function (entries, observer) {
+        // scroll the image to bottom if its top is outside the viewport
+        if (entries[0].boundingClientRect.top < 0) {
+          thisRef.productImgTop = false
+        } else {
+          thisRef.productImgTop = true
+        }
+      },
+      {
+        threshold: [1]
+        // rootMargin: '60px 0px 0px 0px'
+      }
+    )
+
+    this.productImgIntersection.observe(this.$refs.productImg)
+  },
+
+  beforeDestroy () {
+    this.productImgIntersection.disconnect()
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 h1 {
   @apply text-5xl;
@@ -367,77 +441,3 @@ h2 {
   }
 }
 </style>
-
-<script>
-import IconLightBulb from 'vue-material-design-icons/LightbulbOn.vue'
-import IconCheck from 'vue-material-design-icons/CheckBold.vue'
-import IconHand from 'vue-material-design-icons/Handshake.vue'
-import IconGithub from 'vue-material-design-icons/Github.vue'
-import IconRepeat from 'vue-material-design-icons/Repeat.vue'
-
-export default {
-  components: {
-    IconLightBulb, IconCheck, IconHand, IconGithub, IconRepeat
-  },
-
-  data () {
-    return {
-      productImgTop: true,
-      productImgIntersection: null,
-      features: [
-        { icon: 'IconLightBulb', iconClass: 'text-yellow-500' },
-        { icon: 'IconCheck', iconClass: 'text-green-600' },
-        { icon: 'IconHand', iconClass: 'text-blue-600' }
-      ],
-      scheduleCards: [
-        { bg: 'bg-red-100', border: 'border-red-400', info: true },
-        { bg: 'bg-yellow-100', info: true },
-        { bg: 'bg-blue-100', border: 'border-blue-400', info: false }
-      ],
-      faq: [
-        { q: 'change_timers' },
-        { q: 'will_it_help', hint: true },
-        { q: 'data_collection' },
-        { q: 'remember_settings', hint: true },
-        { q: 'need_to_know' },
-        { q: 'timer_style' }
-      ],
-      smallFeatures: [
-        'customization', 'notifications', 'flexible', 'pwa', 'opensource', 'notrackers', 'noads',
-        'clean', 'adaptiveticking', 'localization', 'more'
-      ]
-    }
-  },
-
-  mounted () {
-    const thisRef = this
-
-    this.productImgIntersection = new IntersectionObserver(
-      function (entries, observer) {
-        // scroll the image to bottom if its top is outside the viewport
-        if (entries[0].boundingClientRect.top < 0) {
-          thisRef.productImgTop = false
-        } else {
-          thisRef.productImgTop = true
-        }
-      },
-      {
-        threshold: [1]
-        // rootMargin: '60px 0px 0px 0px'
-      }
-    )
-
-    this.productImgIntersection.observe(this.$refs.productImg)
-  },
-
-  beforeDestroy () {
-    this.productImgIntersection.disconnect()
-  },
-
-  head () {
-    return {
-      title: 'AnotherPomodoro'
-    }
-  }
-}
-</script>
