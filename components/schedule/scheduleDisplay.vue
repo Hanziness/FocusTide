@@ -13,10 +13,18 @@
       />
     </transition-group>
     <div v-if="$store.state.settings.schedule.visibility.showSectionType" class="section-type">
-      {{ $i18n.t('section.' + this.$store.getters['schedule/getCurrentItem'].type).toLowerCase() }}
+      {{ $i18n.t('section.' + $store.getters['schedule/getCurrentItem'].type).toLowerCase() }}
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  components: {
+    ScheduleItem: () => import(/* webpackMode: "eager" */ '@/components/schedule/scheduleItem.vue')
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 div.schedule-container {
@@ -54,11 +62,3 @@ div.section-type {
   @apply bg-gray-700 text-center text-gray-50 py-2;
 }
 </style>
-
-<script>
-export default {
-  components: {
-    ScheduleItem: () => import(/* webpackMode: "eager" */ '@/components/schedule/scheduleItem.vue')
-  }
-}
-</script>

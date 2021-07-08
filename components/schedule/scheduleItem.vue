@@ -11,6 +11,21 @@
   />
 </template>
 
+<script>
+export default {
+  props: {
+    data: {
+      type: Object,
+      default: () => {}
+    },
+    active: {
+      type: Boolean,
+      default: false
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .schedule-item {
   display: inline-block;
@@ -40,18 +55,3 @@
 //   // border-color: #757575;
 // }
 </style>
-
-<script>
-export default {
-  props: {
-    data: {
-      type: Object,
-      default: () => {}
-    },
-    active: {
-      type: Boolean,
-      default: false
-    }
-  }
-}
-</script>

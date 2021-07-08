@@ -12,12 +12,6 @@
   </div>
 </template>
 
-<style lang="postcss">
-.select-option:not(:last-child) {
-  @apply mr-2;
-}
-</style>
-
 <script>
 export default {
   components: {
@@ -56,3 +50,9 @@ export default {
   }
 }
 </script>
+
+<style lang="postcss">
+.select-option:not(:last-child) {
+  @apply mr-2;
+}
+</style>

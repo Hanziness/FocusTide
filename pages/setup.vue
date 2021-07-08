@@ -39,66 +39,6 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-section.setup-panel {
-  @apply bg-gray-100 border border-gray-300 shadow-xl rounded-lg -mt-8 divide-y divide-gray-400;
-
-  & > .step {
-    @apply p-4;
-
-    & > h1 {
-      @apply text-2xl font-bold uppercase text-gray-800 mb-2;
-    }
-
-    & > .content {
-      @apply overflow-hidden scale-y-0 transform;
-
-      transition: transform 500ms ease-out;
-    }
-
-    &.active > .content {
-      @apply scale-y-100;
-    }
-
-    & > .description {
-      @apply text-black text-opacity-90 -mt-1;
-    }
-  }
-
-  div.preset-card {
-    @apply bg-gray-50 p-3 border border-gray-200 text-black cursor-pointer select-none;
-
-    h1 {
-      @apply text-lg;
-
-      & > span.title {
-        @apply font-bold uppercase;
-      }
-
-      & > span.preview {
-        @apply float-right;
-      }
-    }
-
-    & > div.description {
-      @apply text-opacity-80 text-black;
-    }
-
-    &.selected {
-      @apply bg-primary text-white shadow-md;
-
-      & > div.description {
-        @apply text-white;
-      }
-    }
-  }
-
-  .finish-button {
-    @apply bg-green-600 text-white font-bold text-lg text-center p-2 rounded-lg border border-green-700 uppercase hover:bg-green-700 cursor-pointer m-4 mt-0;
-  }
-}
-</style>
-
 <script>
 import { AvailableTimers } from '@/store/settings'
 
@@ -162,6 +102,12 @@ export default {
     }
   },
 
+  head () {
+    return {
+      title: `AnotherPomodoro: ${this.$i18n.t('setup.head').toLowerCase()}`
+    }
+  },
+
   methods: {
     applyFinalSettings () {
       const finalOptions = {
@@ -172,12 +118,66 @@ export default {
 
       this.$router.push('/timer')
     }
-  },
-
-  head () {
-    return {
-      title: `AnotherPomodoro: ${this.$i18n.t('setup.head').toLowerCase()}`
-    }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+section.setup-panel {
+  @apply bg-gray-100 border border-gray-300 shadow-xl rounded-lg -mt-8 divide-y divide-gray-400;
+
+  & > .step {
+    @apply p-4;
+
+    & > h1 {
+      @apply text-2xl font-bold uppercase text-gray-800 mb-2;
+    }
+
+    & > .content {
+      @apply overflow-hidden scale-y-0 transform;
+
+      transition: transform 500ms ease-out;
+    }
+
+    &.active > .content {
+      @apply scale-y-100;
+    }
+
+    & > .description {
+      @apply text-black text-opacity-90 -mt-1;
+    }
+  }
+
+  div.preset-card {
+    @apply bg-gray-50 p-3 border border-gray-200 text-black cursor-pointer select-none;
+
+    h1 {
+      @apply text-lg;
+
+      & > span.title {
+        @apply font-bold uppercase;
+      }
+
+      & > span.preview {
+        @apply float-right;
+      }
+    }
+
+    & > div.description {
+      @apply text-opacity-80 text-black;
+    }
+
+    &.selected {
+      @apply bg-primary text-white shadow-md;
+
+      & > div.description {
+        @apply text-white;
+      }
+    }
+  }
+
+  .finish-button {
+    @apply bg-green-600 text-white font-bold text-lg text-center p-2 rounded-lg border border-green-700 uppercase hover:bg-green-700 cursor-pointer m-4 mt-0;
+  }
+}
+</style>

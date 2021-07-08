@@ -16,6 +16,30 @@
   </Component>
 </template>
 
+<script>
+export default {
+  name: 'ControlButton',
+  props: {
+    tag: {
+      default: 'button',
+      type: String
+    },
+    disabled: {
+      default: false,
+      type: Boolean
+    },
+    subtle: {
+      default: false,
+      type: Boolean
+    },
+    noStyle: {
+      default: false,
+      type: Boolean
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .ui-button {
   transition: background-color 0.1s ease-out;
@@ -54,27 +78,3 @@
   opacity: 0.5;
 }
 </style>
-
-<script>
-export default {
-  name: 'ControlButton',
-  props: {
-    tag: {
-      default: 'button',
-      type: String
-    },
-    disabled: {
-      default: false,
-      type: Boolean
-    },
-    subtle: {
-      default: false,
-      type: Boolean
-    },
-    noStyle: {
-      default: false,
-      type: Boolean
-    }
-  }
-}
-</script>

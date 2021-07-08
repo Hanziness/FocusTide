@@ -4,6 +4,18 @@
   </div>
 </template>
 
+<script>
+export default {
+  props: {
+    opacity: {
+      type: Number,
+      default: 0.3,
+      validator (value) { return value >= 0 && value <= 1 }
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 div.ui-overlay {
   @apply w-full h-full fixed bg-transparent overflow-hidden;
@@ -16,15 +28,3 @@ div.ui-overlay {
   z-index: 1001;
 }
 </style>
-
-<script>
-export default {
-  props: {
-    opacity: {
-      type: Number,
-      default: 0.3,
-      validator (value) { return value >= 0 && value <= 1 }
-    }
-  }
-}
-</script>

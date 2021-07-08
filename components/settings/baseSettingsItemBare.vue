@@ -34,14 +34,6 @@
   </section>
 </template>
 
-<style lang="postcss" scoped>
-.disabled {
-  @apply opacity-50 cursor-default;
-
-  pointer-events: none;
-}
-</style>
-
 <script>
 export default {
   props: {
@@ -94,3 +86,11 @@ export default {
   }
 }
 </script>
+
+<style lang="postcss" scoped>
+.disabled {
+  @apply opacity-50 cursor-default;
+
+  pointer-events: none;
+}
+</style>
