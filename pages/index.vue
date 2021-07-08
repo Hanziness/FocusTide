@@ -175,7 +175,7 @@ export default {
       ],
       smallFeatures: [
         'customization', 'notifications', 'flexible', 'pwa', 'opensource', 'notrackers', 'noads',
-        'clean', 'adaptiveticking', 'localization', 'more'
+        'clean', 'adaptiveticking', 'localization', 'darkmode', 'more'
       ]
     }
   },
