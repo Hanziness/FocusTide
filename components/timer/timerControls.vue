@@ -37,13 +37,6 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-  div.timer-control-panel {
-    width: max-content;
-    z-index: 10;
-  }
-</style>
-
 <script>
 export default {
   components: {
@@ -62,3 +55,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  div.timer-control-panel {
+    width: max-content;
+    z-index: 10;
+  }
+</style>

@@ -44,6 +44,49 @@
   </div>
 </template>
 
+<script>
+import KeyboardListener from '@/assets/mixins/keyboardListener'
+
+export default {
+  components: {
+    // UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/base/button.vue'),
+    IconPlay: () => import('vue-material-design-icons/Play.vue'),
+    IconPause: () => import('vue-material-design-icons/Pause.vue'),
+    IconStop: () => import('vue-material-design-icons/Stop.vue'),
+    IconSkipNext: () => import('vue-material-design-icons/SkipNext.vue')
+  },
+
+  mixins: [KeyboardListener],
+
+  computed: {
+    progressPercentage () {
+      return this.$store.getters['schedule/getCurrentItem'].timeElapsed / this.$store.getters['schedule/getCurrentItem'].length
+    }
+  },
+
+  methods: {
+    mixin_keyboardListener_handleKeyUp (e) {
+      if (!this.canUseKeyboard || !this.$store.state.settings.timerControls.enableKeyboardShortcuts) { return }
+      if (e.code.toLowerCase() === 'space') {
+        this.playPause()
+      }
+    },
+
+    playPause () {
+      this.$store.commit('schedule/updateTimerState', this.$store.getters['schedule/getCurrentTimerState'] !== 1 ? 1 : 2)
+    },
+
+    reset () {
+      this.$store.commit('schedule/updateTimerState', 0)
+    },
+
+    advance () {
+      this.$store.commit('schedule/advance')
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 div.timer-control-panel-basic {
   @apply p-2 bg-transparent flex flex-row items-center mb-4;
@@ -148,46 +191,3 @@ div.play-button:not(.active):hover::after {
 }
 
 </style>
-
-<script>
-import KeyboardListener from '@/assets/mixins/keyboardListener'
-
-export default {
-  components: {
-    // UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/base/button.vue'),
-    IconPlay: () => import('vue-material-design-icons/Play.vue'),
-    IconPause: () => import('vue-material-design-icons/Pause.vue'),
-    IconStop: () => import('vue-material-design-icons/Stop.vue'),
-    IconSkipNext: () => import('vue-material-design-icons/SkipNext.vue')
-  },
-
-  mixins: [KeyboardListener],
-
-  computed: {
-    progressPercentage () {
-      return this.$store.getters['schedule/getCurrentItem'].timeElapsed / this.$store.getters['schedule/getCurrentItem'].length
-    }
-  },
-
-  methods: {
-    mixin_keyboardListener_handleKeyUp (e) {
-      if (!this.canUseKeyboard || !this.$store.state.settings.timerControls.enableKeyboardShortcuts) { return }
-      if (e.code.toLowerCase() === 'space') {
-        this.playPause()
-      }
-    },
-
-    playPause () {
-      this.$store.commit('schedule/updateTimerState', this.$store.getters['schedule/getCurrentTimerState'] !== 1 ? 1 : 2)
-    },
-
-    reset () {
-      this.$store.commit('schedule/updateTimerState', 0)
-    },
-
-    advance () {
-      this.$store.commit('schedule/advance')
-    }
-  }
-}
-</script>

@@ -4,6 +4,14 @@
   </div>
 </template>
 
+<script>
+import TimerMixin from '@/assets/mixins/timerMixin'
+
+export default {
+  mixins: [TimerMixin]
+}
+</script>
+
 <style lang="scss" scoped>
 @import '@/assets/scss/SourceSansPro_Numbers.scss';
 
@@ -16,11 +24,3 @@
   letter-spacing: 0.5rem;
 }
 </style>
-
-<script>
-import TimerMixin from '@/assets/mixins/timerMixin'
-
-export default {
-  mixins: [TimerMixin]
-}
-</script>

@@ -7,17 +7,6 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-.timer-app-bar {
-  position: fixed;
-  width: max-content;
-}
-
-footer.timer-footer {
-  background-color: transparent;
-}
-</style>
-
 <script>
 export default {
   components: {
@@ -47,3 +36,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.timer-app-bar {
+  position: fixed;
+  width: max-content;
+}
+
+footer.timer-footer {
+  background-color: transparent;
+}
+</style>

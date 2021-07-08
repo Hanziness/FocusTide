@@ -13,6 +13,27 @@
   </button>
 </template>
 
+<script>
+export default {
+  props: {
+    translationKey: {
+      type: String,
+      default: ''
+    },
+
+    translationSubkey: {
+      type: String,
+      default: ''
+    },
+
+    active: {
+      type: Boolean,
+      default: false
+    }
+  }
+}
+</script>
+
 <style lang="postcss" scoped>
 .select-option {
   @apply px-3 py-4 border border-solid border-gray-300 rounded-md bg-white text-left;
@@ -39,24 +60,3 @@
   @apply text-sm text-opacity-75;
 }
 </style>
-
-<script>
-export default {
-  props: {
-    translationKey: {
-      type: String,
-      default: ''
-    },
-
-    translationSubkey: {
-      type: String,
-      default: ''
-    },
-
-    active: {
-      type: Boolean,
-      default: false
-    }
-  }
-}
-</script>
