@@ -43,6 +43,7 @@
 import { AvailableTimers } from '@/store/settings'
 
 export default {
+  name: 'PageSetup',
   data () {
     return {
       step: 0,
