@@ -65,6 +65,7 @@
 // import LazyHydrate from 'vue-lazy-hydration'
 
 export default {
+  name: 'PageTimer',
   components: {
     Ticker: () => import(/* webpackChunkName: "ticker", webpackMode: "eager" */ '@/components/ticker.vue'),
     ScheduleDisplay: () => import(/* webpackChunkName: "schedule", webpackPrefetch: true */ '@/components/schedule/scheduleDisplay.vue'),

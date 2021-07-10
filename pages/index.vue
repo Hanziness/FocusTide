@@ -147,6 +147,7 @@ import IconGithub from 'vue-material-design-icons/Github.vue'
 import IconRepeat from 'vue-material-design-icons/Repeat.vue'
 
 export default {
+  name: 'PageIndex',
   components: {
     IconLightBulb, IconCheck, IconHand, IconGithub, IconRepeat
   },
