@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.0](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.7...v0.10.0) (2021-07-12)
+
+
+### Features
+
+* Add dark mode ([#97](https://github.com/Hanziness/AnotherPomodoro/issues/97)) ([3da8e41](https://github.com/Hanziness/AnotherPomodoro/commit/3da8e41bc7eae02e923abcbbb2a5fb77e13cd572))
+* **seo:** Add meta descriptions to the setup and timer pages ([a5a506b](https://github.com/Hanziness/AnotherPomodoro/commit/a5a506b55d4685382fcefe3af1ca5f785b432f19))
+
+
+### Bug Fixes
+
+* Fix Vue warnings related to component names ([0497ec8](https://github.com/Hanziness/AnotherPomodoro/commit/0497ec885a15cbd0f965df43c993e28e4a1090bc))
+* Improve progress bar behaviour on skip ([8e8f12a](https://github.com/Hanziness/AnotherPomodoro/commit/8e8f12abe2616710f00b7e8a387f4eb408b2e369))
+* Language should now be permanent across pages ([9fad494](https://github.com/Hanziness/AnotherPomodoro/commit/9fad494b2ac41e8f7aad7cdfb5c36c2678b924b2))
+
+
+### Refactors
+
+* Fix `vue/component-tag-order` warnings ([#98](https://github.com/Hanziness/AnotherPomodoro/issues/98)) ([96a9c10](https://github.com/Hanziness/AnotherPomodoro/commit/96a9c109357e954f5f832e404358c54f565aac6c))
+
 ### [0.9.7](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.2...v0.9.7) (2021-07-07)
 
 ### [0.9.6](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.2...v0.9.6) (2021-06-16)
