@@ -1,17 +1,15 @@
 <template>
-  <transition-group name="progress-transition" mode="out-in">
-    <div
-      :key="$store.getters['schedule/getCurrentItem'].id"
-      :class="['timer-progress']"
-      :style="{
-        'background-color': $store.getters['schedule/getScheduleColour'][scheduleEntryId],
-        'transform': `translateX(${-100 + progressPercentage}%)`
-      }"
-    >
-      <!-- Dark mode background override -->
-      <div class="absolute w-full h-full invisible dark:visible dark:bg-white" />
-    </div>
-  </transition-group>
+  <div
+    :key="$store.getters['schedule/getCurrentItem'].id"
+    :class="['timer-progress']"
+    :style="{
+      'background-color': $store.getters['schedule/getScheduleColour'][scheduleEntryId],
+      'transform': `translateX(${-100 + progressPercentage}%)`
+    }"
+  >
+    <!-- Dark mode background override -->
+    <div class="absolute w-full h-full invisible dark:visible dark:bg-white" />
+  </div>
 </template>
 
 <script>
@@ -53,18 +51,5 @@ export default {
   display: block;
   top: 0;
   left: 0;
-}
-
-.progress-transition-enter-active,
-.progress-transition-leave-active {
-  transition: 500ms ease-in;
-  transition-property: transform !important;
-}
-
-// .progress-transition-enter {
-// }
-
-.progress-transition-leave-to {
-  transform: translateX(0%) !important;
 }
 </style>

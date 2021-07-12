@@ -37,9 +37,10 @@
           </lazy-hydrate>
 
           <lazy-hydrate when-visible>
-            <transition name="transition-fade">
+            <transition name="progress-transition">
               <timer-progress
                 v-if="$store.getters['settings/performanceSettings'].showProgressBar"
+                :key="$store.getters['schedule/getCurrentItem'].id"
                 :time-elapsed="timeElapsed"
                 :time-original="timeOriginal"
               />
@@ -166,10 +167,10 @@ html {
 }
 
 section.timer-section {
-  @apply dark:text-gray-50;
+  @apply dark:text-gray-50 transition-colors duration-300 ease-in;
 
   height: 100vh;
-  transition: background-color 300ms ease-in;
+  // transition: background-color 300ms ease-in;
 }
 
 .timer-background {
@@ -188,5 +189,22 @@ section.timer-section {
 .schedule-transition-leave-to {
   transform: translateY(-20px);
   opacity: 0;
+}
+
+.progress-transition-enter-active,
+.progress-transition-leave-active {
+  transition: 500ms ease-in;
+  transition-property: transform !important;
+}
+
+// .progress-transition-enter {
+// }
+
+.progress-transition-leave-to {
+  transform: translateX(0%) !important;
+}
+
+.dark .progress-transition-leave-to {
+  transform: translateX(-100%) !important;
 }
 </style>
