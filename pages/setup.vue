@@ -105,7 +105,11 @@ export default {
 
   head () {
     return {
-      title: `AnotherPomodoro: ${this.$i18n.t('setup.head').toLowerCase()}`
+      title: `AnotherPomodoro: ${this.$i18n.t('setup.head').toLowerCase()}`,
+      meta: [{
+        hid: 'description',
+        content: 'Set up AnotherPomdoro for use using this setup page.'
+      }]
     }
   },
 
