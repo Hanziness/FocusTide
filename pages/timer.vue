@@ -93,6 +93,10 @@ export default {
   head () {
     return {
       title: `(${this.remainingTimeString}) ${this.pageTitle}`,
+      meta: [{
+        hid: 'description',
+        content: 'Jumpstart your Pomodoro sessions with the timer of AnotherPomodoro.'
+      }],
       link: [
         {
           rel: 'icon',
