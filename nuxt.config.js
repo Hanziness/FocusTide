@@ -2,10 +2,12 @@
 // import { join } from 'path'
 
 import fs from 'fs'
+import { defineNuxtConfig } from '@nuxt/bridge'
+
 const packageJson = fs.readFileSync('./package.json')
 const version = JSON.parse(packageJson).version || 0
 
-export default {
+export default defineNuxtConfig({
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
@@ -15,6 +17,8 @@ export default {
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
   */
+  bridge: false,
+
   env: {
     PACKAGE_VERSION: version
   },
@@ -68,15 +72,19 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    '@aceforth/nuxt-optimized-images',
+    // '@aceforth/nuxt-optimized-images',
+    '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
-    '@nuxtjs/tailwindcss',
     '@nuxtjs/pwa'
   ],
+
+  tailwindcss: {
+    viewer: false
+  },
 
   optimizedImages: {
     optimizeImages: true,
@@ -176,23 +184,23 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
-    corejs: 3,
-    babel: {
-      presets ({ envName }) {
-        const envTargets = {
-          client: { browsers: ['last 2 versions'], ie: 11 },
-          server: { node: 'current' }
-        }
-        return [
-          [
-            '@nuxt/babel-preset-app',
-            {
-              targets: envTargets[envName],
-              corejs: { version: 3 }
-            }
-          ]
-        ]
-      }
-    }
+    corejs: 3
+    // babel: {
+    //   presets ({ envName }) {
+    //     const envTargets = {
+    //       client: { browsers: ['last 2 versions'], ie: 11 },
+    //       server: { node: 'current' }
+    //     }
+    //     return [
+    //       [
+    //         '@nuxt/babel-preset-app',
+    //         {
+    //           targets: envTargets[envName],
+    //           corejs: { version: 3 }
+    //         }
+    //       ]
+    //     ]
+    //   }
+    // }
   }
-}
+})
