@@ -309,13 +309,13 @@ h2 {
 }
 
 .hint-right::before {
-  @extend .hint::before;
+  @extend .hint, ::before;
 
   @apply pl-8 rounded-l-none left-1/2;
 }
 
 .hint-left::before {
-  @extend .hint::before;
+  @extend .hint, ::before;
 
   @apply pr-8 rounded-r-none right-1/2;
 }
