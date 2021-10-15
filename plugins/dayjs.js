@@ -1,12 +1,12 @@
 import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-import dayjsrelativetime from 'dayjs/plugin/relativeTime'
+import utc from 'dayjs/plugin/utc.js'
+import dayjsrelativetime from 'dayjs/plugin/relativeTime.js'
 
 import { AvailableTimers } from '@/store/settings'
 
 // English and Hungarian locales
-import(/* webpackChunkName: "dayjsLocales", webpackMode: "eager" */ 'dayjs/locale/en')
-import(/* webpackChunkName: "dayjsLocales", webpackMode: "eager" */ 'dayjs/locale/hu')
+import(/* webpackChunkName: "dayjsLocales", webpackMode: "eager" */ 'dayjs/locale/en.js')
+import(/* webpackChunkName: "dayjsLocales", webpackMode: "eager" */ 'dayjs/locale/hu.js')
 
 dayjs.extend(utc)
 dayjs.extend(dayjsrelativetime)

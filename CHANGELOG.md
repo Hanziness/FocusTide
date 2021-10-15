@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.0](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.7...v0.11.0) (2021-10-15)
+
+
+### Features
+
+* Add dark mode ([#97](https://github.com/Hanziness/AnotherPomodoro/issues/97)) ([37b8c82](https://github.com/Hanziness/AnotherPomodoro/commit/37b8c82403aad615439e77cfd3e18ae56cd37f79))
+* **seo:** Add meta descriptions to the setup and timer pages ([09fe79b](https://github.com/Hanziness/AnotherPomodoro/commit/09fe79bc039c113c17a706c680b4db19275bb859))
+
+
+### Bug Fixes
+
+* Fix SSR error by statically importing MD icons ([61a18ef](https://github.com/Hanziness/AnotherPomodoro/commit/61a18ef679449b5f8d28e61e9b08a583a67f5c88))
+* Fix Vue warnings related to component names ([a55849e](https://github.com/Hanziness/AnotherPomodoro/commit/a55849e85f88d04fc2bd53f2ce516c44e1c88c6d))
+* Improve progress bar behaviour on skip ([6f27d6d](https://github.com/Hanziness/AnotherPomodoro/commit/6f27d6de4ec6926232ea675d3d512d7364315fa5))
+* Language should now be permanent across pages ([35eb99c](https://github.com/Hanziness/AnotherPomodoro/commit/35eb99c96399469132df063505ec391f88bcc5fe))
+
+
+### Refactors
+
+* Add `generate:modern` to create modern bundles ([0f5f7e9](https://github.com/Hanziness/AnotherPomodoro/commit/0f5f7e9bfa71a30fdb4cabc54fccb6bc89045950))
+* Fix `vue/component-tag-order` warnings ([#98](https://github.com/Hanziness/AnotherPomodoro/issues/98)) ([d5335f3](https://github.com/Hanziness/AnotherPomodoro/commit/d5335f3da1d9f40cf08487ff30811322f5e59b0a))
+* Remove unused normalize.css ([c218c38](https://github.com/Hanziness/AnotherPomodoro/commit/c218c389c3596b3ffc6a1a88075fcdac98b8e9ca))
+* Replace node-sass with Dart Sass ([e304db0](https://github.com/Hanziness/AnotherPomodoro/commit/e304db01661b743f957f1681431b6e92a61a245e))
+* Update Babel preset code (currently disabled) ([f7d6efc](https://github.com/Hanziness/AnotherPomodoro/commit/f7d6efcc263b92f88d4fa020f80ca03cd356d333))
+* Update dependencies and nuxt-i18n to @nuxtjs/i18n (v7) ([65b799b](https://github.com/Hanziness/AnotherPomodoro/commit/65b799b234d77ab4baabf31d2eae0c191f31d6b1))
+* Update to Nuxt Bridge ([56c41bb](https://github.com/Hanziness/AnotherPomodoro/commit/56c41bb156404d9c1d9bce5defc1f15882236602))
+
 ## [0.10.0](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.7...v0.10.0) (2021-07-12)
 
 
