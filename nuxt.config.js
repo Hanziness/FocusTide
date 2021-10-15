@@ -185,16 +185,18 @@ export default defineNuxtConfig({
   build: {
     corejs: 3
     // babel: {
-    //   presets ({ envName }) {
+    //   presets ({ isServer }) {
     //     const envTargets = {
-    //       client: { browsers: ['last 2 versions'], ie: 11 },
+    //       client: { browsers: ['last 2 versions'] },
     //       server: { node: 'current' }
     //     }
+    //     const env = isServer ? 'server' : 'client'
+
     //     return [
     //       [
     //         '@nuxt/babel-preset-app',
     //         {
-    //           targets: envTargets[envName],
+    //           targets: envTargets[env],
     //           corejs: { version: 3 }
     //         }
     //       ]
