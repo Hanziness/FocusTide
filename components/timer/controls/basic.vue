@@ -46,14 +46,18 @@
 
 <script>
 import KeyboardListener from '@/assets/mixins/keyboardListener'
+import IconPlay from 'vue-material-design-icons/Play.vue'
+import IconPause from 'vue-material-design-icons/Pause.vue'
+import IconStop from 'vue-material-design-icons/Stop.vue'
+import IconSkipNext from 'vue-material-design-icons/SkipNext.vue'
 
 export default {
   components: {
     // UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/base/button.vue'),
-    IconPlay: () => import('vue-material-design-icons/Play.vue'),
-    IconPause: () => import('vue-material-design-icons/Pause.vue'),
-    IconStop: () => import('vue-material-design-icons/Stop.vue'),
-    IconSkipNext: () => import('vue-material-design-icons/SkipNext.vue')
+    IconPlay,
+    IconPause,
+    IconStop,
+    IconSkipNext
   },
 
   mixins: [KeyboardListener],
