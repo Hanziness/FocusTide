@@ -49,7 +49,6 @@ export default defineNuxtConfig({
   ** Global CSS
   */
   css: [
-    // 'normalize.css/normalize.css',
     // '@/assets/global.scss',
     '@/assets/transitions.scss'
   ],
