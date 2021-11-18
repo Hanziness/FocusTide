@@ -1,106 +1,108 @@
 <template>
   <transition name="settings">
     <section v-show="processedValue" class="settings-panel sm:w-full md:w-1/2 lg:w-2/5">
-      <div class="settings-panel-main">
+      <div class="settings-wrapper">
         <h1 class="title">
           <span>{{ $i18n.t('settings.heading') }}</span>
           <ui-button subtle class="float-right -mt-2 -mr-2" @click="processedValue = false">
             <close-icon :title="$i18n.t('settings.buttons.close')" />
           </ui-button>
         </h1>
-        <div class="w-full">
-          <transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
-            <div v-if="activeTab === 1" :key="1" class="settings-tab">
-              <settings-options
-                :settings-key="['lang']"
-                :values="{'en': 'en', 'hu': 'hu'}"
-                :custom-value="$store.state.settings.lang ? $store.state.settings.lang : $i18n.locale"
-              />
-              <divider />
-              <settings-check :settings-key="['adaptiveTicking', 'enabled']" />
-              <settings-check :settings-key="['timerControls', 'enableKeyboardShortcuts']" />
-              <divider />
-              <settings-check :settings-key="['permissions', 'audio']" />
-              <settings-check
-                :settings-key="['permissions', 'notifications']"
-                :set-value-on-change="false"
-                :disabled="$store.state.notifications.enabled === false"
-                :custom-set-function="changeNotificationSettings"
-              />
+        <div class="settings-panel-main">
+          <div class="w-full">
+            <transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
+              <div v-if="activeTab === 1" :key="1" class="settings-tab">
+                <settings-options
+                  :settings-key="['lang']"
+                  :values="{'en': 'en', 'hu': 'hu'}"
+                  :custom-value="$store.state.settings.lang ? $store.state.settings.lang : $i18n.locale"
+                />
+                <divider />
+                <settings-check :settings-key="['adaptiveTicking', 'enabled']" />
+                <settings-check :settings-key="['timerControls', 'enableKeyboardShortcuts']" />
+                <divider />
+                <settings-check :settings-key="['permissions', 'audio']" />
+                <settings-check
+                  :settings-key="['permissions', 'notifications']"
+                  :set-value-on-change="false"
+                  :disabled="$store.state.notifications.enabled === false"
+                  :custom-set-function="changeNotificationSettings"
+                />
 
-              <divider />
+                <divider />
 
-              <settings-check :settings-key="['tasks', 'enabled']" />
-              <settings-text
-                :settings-key="['tasks', 'maxActiveTasks']"
-                :min="1"
-                numeric
-                :disabled="!$store.state.settings.tasks.enabled"
-              />
+                <settings-check :settings-key="['tasks', 'enabled']" />
+                <settings-text
+                  :settings-key="['tasks', 'maxActiveTasks']"
+                  :min="1"
+                  numeric
+                  :disabled="!$store.state.settings.tasks.enabled"
+                />
 
-              <divider />
+                <divider />
 
-              <div :class="['reset-button', { 'active': resetConfirm }]" role="button" @click="resetConfirm = true">
-                <span>
-                  <span v-text="$i18n.t('settings.reset.title')" />
-                  <span class="float-right"><reset-icon :size="28" /></span>
-                </span>
-                <transition name="transition-fade">
-                  <div v-if="resetConfirm" class="left-0 top-0 absolute w-full h-full grid grid-flow-col grid-cols-2 items-stretch">
-                    <div class="reset-subbutton" @click.stop="triggerSettingsReset" v-text="$i18n.t('settings.reset.confirm')" />
-                    <div class="reset-subbutton" @click.stop="resetConfirm = false" v-text="$i18n.t('settings.reset.cancel')" />
-                  </div>
-                </transition>
+                <div :class="['reset-button', { 'active': resetConfirm }]" role="button" @click="resetConfirm = true">
+                  <span>
+                    <span v-text="$i18n.t('settings.reset.title')" />
+                    <span class="float-right"><reset-icon :size="28" /></span>
+                  </span>
+                  <transition name="transition-fade">
+                    <div v-if="resetConfirm" class="left-0 top-0 absolute w-full h-full grid grid-flow-col grid-cols-2 items-stretch">
+                      <div class="reset-subbutton" @click.stop="triggerSettingsReset" v-text="$i18n.t('settings.reset.confirm')" />
+                      <div class="reset-subbutton" @click.stop="resetConfirm = false" v-text="$i18n.t('settings.reset.cancel')" />
+                    </div>
+                  </transition>
+                </div>
               </div>
-            </div>
 
-            <div v-if="activeTab === 2" :key="2" class="settings-tab">
-              <settings-text :settings-key="['schedule', 'longPauseInterval']" :min="1" numeric />
-              <divider />
-              <settings-options
-                :settings-key="['schedule', 'lengths']"
-                :custom-value="$store.getters['settings/getActiveSchedulePreset']"
-                :values="timerPresets"
-                :set-value-on-change="false"
-                :custom-set-function="(v) => { $store.commit('settings/applyPreset', v) }"
-              />
-              <settings-time :settings-key="['schedule', 'lengths', 'work']" />
-              <settings-time :settings-key="['schedule', 'lengths', 'shortpause']" />
-              <settings-time :settings-key="['schedule', 'lengths', 'longpause']" />
-            </div>
+              <div v-if="activeTab === 2" :key="2" class="settings-tab">
+                <settings-text :settings-key="['schedule', 'longPauseInterval']" :min="1" numeric />
+                <divider />
+                <settings-options
+                  :settings-key="['schedule', 'lengths']"
+                  :custom-value="$store.getters['settings/getActiveSchedulePreset']"
+                  :values="timerPresets"
+                  :set-value-on-change="false"
+                  :custom-set-function="(v) => { $store.commit('settings/applyPreset', v) }"
+                />
+                <settings-time :settings-key="['schedule', 'lengths', 'work']" />
+                <settings-time :settings-key="['schedule', 'lengths', 'shortpause']" />
+                <settings-time :settings-key="['schedule', 'lengths', 'longpause']" />
+              </div>
 
-            <div v-if="activeTab === 3" :key="3" class="settings-tab">
-              <settings-check :settings-key="['visuals', 'darkMode']" />
-              <divider />
-              <settings-options :settings-key="['currentTimer']" :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
-              <divider />
-              <settings-check :settings-key="['schedule', 'visibility', 'enabled']" />
-              <settings-check :settings-key="['schedule', 'visibility', 'showSectionType']" :disabled="!$store.state.settings.schedule.visibility.enabled" />
-              <settings-text
-                :settings-key="['schedule', 'numScheduleEntries']"
-                :min="3"
-                :max="10"
-                :disabled="!$store.state.settings.schedule.visibility.enabled"
-                numeric
-              />
-              <divider />
-              <settings-check :settings-key="['performance', 'showProgressBar']" />
-              <settings-check :settings-key="['pageTitle', 'useTickEmoji']" />
+              <div v-if="activeTab === 3" :key="3" class="settings-tab">
+                <settings-check :settings-key="['visuals', 'darkMode']" />
+                <divider />
+                <settings-options :settings-key="['currentTimer']" :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
+                <divider />
+                <settings-check :settings-key="['schedule', 'visibility', 'enabled']" />
+                <settings-check :settings-key="['schedule', 'visibility', 'showSectionType']" :disabled="!$store.state.settings.schedule.visibility.enabled" />
+                <settings-text
+                  :settings-key="['schedule', 'numScheduleEntries']"
+                  :min="3"
+                  :max="10"
+                  :disabled="!$store.state.settings.schedule.visibility.enabled"
+                  numeric
+                />
+                <divider />
+                <settings-check :settings-key="['performance', 'showProgressBar']" />
+                <settings-check :settings-key="['pageTitle', 'useTickEmoji']" />
               <!-- TODO Audio volume control -->
-            </div>
-          </transition>
+              </div>
+            </transition>
+          </div>
         </div>
-      </div>
 
-      <div class="settings-panel-menubar">
-        <div class="tab-header" :class="[{'active': activeTab === 1}]" @click="activeTab = 1">
-          <span>{{ $i18n.t('settings.tabs.main') }}</span>
-        </div>
-        <div class="tab-header" :class="[{'active': activeTab === 2}]" @click="activeTab = 2">
-          <span>{{ $i18n.t('settings.tabs.timer') }}</span>
-        </div>
-        <div class="tab-header" :class="[{'active': activeTab === 3}]" @click="activeTab = 3">
-          <span>{{ $i18n.t('settings.tabs.display') }}</span>
+        <div class="settings-panel-menubar">
+          <div class="tab-header" :class="[{'active': activeTab === 1}]" @click="activeTab = 1">
+            <span>{{ $i18n.t('settings.tabs.main') }}</span>
+          </div>
+          <div class="tab-header" :class="[{'active': activeTab === 2}]" @click="activeTab = 2">
+            <span>{{ $i18n.t('settings.tabs.timer') }}</span>
+          </div>
+          <div class="tab-header" :class="[{'active': activeTab === 3}]" @click="activeTab = 3">
+            <span>{{ $i18n.t('settings.tabs.display') }}</span>
+          </div>
         </div>
       </div>
     </section>
@@ -212,19 +214,23 @@ section.settings-panel {
 
 <style lang="scss" scoped>
 section.settings-panel {
-  @apply bg-white h-full fixed shadow w-2/5 flex flex-col;
-  @apply dark:bg-gray-900 dark:text-gray-50;
+  @apply h-full fixed w-2/5 p-0 md:p-4;
 
   z-index: 1001;
   min-width: calc(min(600px, 100%));
+
+  div.settings-wrapper {
+    @apply flex flex-col h-full rounded-none md:rounded-lg overflow-hidden shadow-lg;
+    @apply bg-white dark:bg-gray-900 dark:text-gray-50;
+
+    div.settings-panel-main {
+      @apply px-4 flex-grow overflow-y-auto pb-2;
+    }
+  }
 }
 
-div.settings-panel-main {
-  @apply px-4 flex-grow overflow-y-auto;
-
-  & > .title {
-    @apply text-xl mt-4 mb-3 uppercase font-bold;
-  }
+.title {
+  @apply px-4 text-xl mt-4 mb-3 uppercase font-bold;
 }
 
 div.settings-panel-menubar {
