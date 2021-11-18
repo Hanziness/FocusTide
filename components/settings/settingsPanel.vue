@@ -232,11 +232,11 @@ section.settings-panel {
 }
 
 div.settings-panel-menubar {
-  @apply flex-none h-12 flex flex-row;
+  @apply flex-none h-20 flex flex-row p-4;
 }
 
 div.tab-header {
-  @apply flex-1 h-full bg-gray-200 p-2 cursor-pointer text-center flex items-center justify-center select-none;
+  @apply flex-1 h-full bg-gray-200 p-2 cursor-pointer text-center flex items-center justify-center select-none rounded-lg;
   @apply dark:bg-gray-800;
 
   transition: border-color 0.2s ease-out;
@@ -244,6 +244,14 @@ div.tab-header {
 
   &.active {
     @apply bg-primary text-white;
+  }
+
+  &:not(:first-of-type) {
+    @apply ml-1;
+  }
+
+  &:not(:last-of-type) {
+    @apply mr-1;
   }
 }
 
