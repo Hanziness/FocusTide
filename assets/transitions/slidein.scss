@@ -1,9 +1,12 @@
 .transition-slidein-enter-active,
 .transition-slidein-leave-active {
-  transition: transform 200ms ease-out;
+  @apply transform-gpu transition duration-500 ease-in;
+
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .transition-slidein-enter,
 .transition-slidein-leave-to {
   transform: translateX(100%);
+  opacity: 0;
 }

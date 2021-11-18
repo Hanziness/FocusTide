@@ -1,13 +1,13 @@
 <template>
-  <transition name="settings">
-    <section v-show="processedValue" class="settings-panel sm:w-full md:w-1/2 lg:w-2/5">
+  <section v-show="processedValue" class="settings-panel sm:w-full md:w-1/2 lg:w-2/5">
+    <div class="settings-wrapper">
+      <h1 class="title">
+        <span>{{ $i18n.t('settings.heading') }}</span>
+        <ui-button subtle class="float-right -mt-2 -mr-2" @click="processedValue = false">
+          <close-icon :title="$i18n.t('settings.buttons.close')" />
+        </ui-button>
+      </h1>
       <div class="settings-panel-main">
-        <h1 class="title">
-          <span>{{ $i18n.t('settings.heading') }}</span>
-          <ui-button subtle class="float-right -mt-2 -mr-2" @click="processedValue = false">
-            <close-icon :title="$i18n.t('settings.buttons.close')" />
-          </ui-button>
-        </h1>
         <div class="w-full">
           <transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
             <div v-if="activeTab === 1" :key="1" class="settings-tab">
@@ -103,8 +103,8 @@
           <span>{{ $i18n.t('settings.tabs.display') }}</span>
         </div>
       </div>
-    </section>
-  </transition>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -212,19 +212,23 @@ section.settings-panel {
 
 <style lang="scss" scoped>
 section.settings-panel {
-  @apply bg-white h-full fixed shadow w-2/5 flex flex-col;
-  @apply dark:bg-gray-900 dark:text-gray-50;
+  @apply h-full fixed w-2/5 p-0 md:p-4;
 
   z-index: 1001;
   min-width: calc(min(600px, 100%));
+
+  div.settings-wrapper {
+    @apply flex flex-col h-full rounded-none md:rounded-lg overflow-hidden shadow-lg;
+    @apply bg-white dark:bg-gray-900 dark:text-gray-50;
+
+    div.settings-panel-main {
+      @apply px-4 flex-grow overflow-y-auto pb-2;
+    }
+  }
 }
 
-div.settings-panel-main {
-  @apply px-4 flex-grow overflow-y-auto;
-
-  & > .title {
-    @apply text-xl mt-4 mb-3 uppercase font-bold;
-  }
+.title {
+  @apply px-4 text-xl mt-4 mb-3 uppercase font-bold;
 }
 
 div.settings-panel-menubar {
