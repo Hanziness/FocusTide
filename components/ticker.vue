@@ -1,11 +1,6 @@
 
 <script>
-const timerState = {
-  STOPPED: 0,
-  RUNNING: 1,
-  PAUSED: 2,
-  COMPLETED: 3
-}
+import { TimerState } from '@/store/schedule'
 
 export default {
   data () {
@@ -50,32 +45,31 @@ export default {
     /** Watcher to automatically reset timer if schedule changes */
     scheduleId (newValue, oldValue) {
       if (newValue !== oldValue) {
-        this.pauseOrStopTimer(true)
         this.resetTimer()
       }
     },
 
     adaptiveTickRate (newValue, oldValue) {
-      if (this.timerState === timerState.RUNNING && newValue !== oldValue) {
+      if (this.timerState === TimerState.TICKING && newValue !== oldValue) {
         this.scheduleNextTick({})
       }
     },
 
     /** Start/pause/stop timer if timerState changes */
     timerState (newValue, oldValue) {
-      if (oldValue === timerState.COMPLETED) {
+      if (oldValue === TimerState.COMPLETED) {
         this.resetTimer()
       }
 
       if (newValue !== oldValue) {
         switch (newValue) {
-          case timerState.RUNNING:
+          case TimerState.TICKING:
             this.startTimer()
             break
-          case timerState.STOPPED:
+          case TimerState.RESET:
             this.pauseOrStopTimer(true)
             break
-          case timerState.PAUSED:
+          case TimerState.PAUSED:
             this.pauseOrStopTimer(false)
             break
           default:
@@ -90,7 +84,7 @@ export default {
     resetTimer () {
       // this.timeRemaining = this.timerOriginal
       this.timeElapsed = 0
-      this.timerTick({ nextState: timerState.STOPPED, decrement: false })
+      this.timerTick({ nextState: this.$store.getters['schedule/getCurrentTimerState'], decrement: false })
     },
 
     /** Useful when dayjs locale has changed (forces an update on the timer) */
@@ -113,7 +107,7 @@ export default {
     scheduleNextTick ({ decrement = true }) {
       this.timerTick({ decrement })
 
-      if (this.timerState === timerState.RUNNING) {
+      if (this.timerState === TimerState.TICKING) {
         // check adaptive ticking settings
         let nextTickMs = this.$store.getters['settings/getAdaptiveTickRate']
 
@@ -144,7 +138,7 @@ export default {
      * @param {timerState} nextState The next state the timer will be in (if not RUNNING), it won't tick further
      * @param {boolean} decrement If set to false, the timer will tick this time, but won't affect the remaining time
      */
-    timerTick ({ nextState = timerState.RUNNING, decrement = true }) {
+    timerTick ({ nextState = TimerState.TICKING, decrement = true }) {
       const newUpdate = new Date().getTime()
       const elapsedDelta = newUpdate - this.lastUpdate
 
@@ -157,11 +151,11 @@ export default {
       this.lastUpdate = newUpdate
 
       // check if timer completed and schedule next tick
-      if (nextState === timerState.RUNNING && this.timeElapsed >= this.timeOriginal) {
+      if (nextState === TimerState.TICKING && this.timeElapsed >= this.timeOriginal) {
       // timer completed, notify participants
-        this.timerState = timerState.COMPLETED
+        this.timerState = TimerState.COMPLETED
         this.$emit('complete')
-      } else if (nextState === timerState.RUNNING) {
+      } else if (nextState === TimerState.TICKING) {
         // next tick is scheduled
       } else {
         // do not tick further
@@ -183,7 +177,7 @@ export default {
 
     pauseOrStopTimer (stop = false) {
       this.clearTickHandle()
-      this.timerTick({ nextState: stop ? timerState.STOPPED : timerState.PAUSED })
+      this.timerTick({ nextState: stop ? TimerState.RESET : TimerState.PAUSED })
 
       if (stop) {
         // remove info lock on schedule entry
