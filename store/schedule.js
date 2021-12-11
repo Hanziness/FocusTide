@@ -6,6 +6,13 @@ export const ScheduleItemType = {
   OTHER: 'other'
 }
 
+export const TimerState = {
+  RESET: 0,
+  TICKING: 1,
+  PAUSED: 2,
+  COMPLETED: 3
+}
+
 function createScheduleEntry (id) {
   return {
     id,

@@ -14,8 +14,7 @@
     <div
       class="control-button -mt-6 -mb-6 rounded-full text-xl shadow-xl p-4 play-button"
       aria-label="button"
-      :class="[{ 'active': $store.getters['schedule/getCurrentTimerState'] === 1,
-                 'disabled': $store.getters['schedule/getCurrentTimerState'] === 3 }]"
+      :class="[{ 'active': $store.getters['schedule/getCurrentTimerState'] === 1 }]"
       :style="{ '--next': $store.getters['schedule/nextScheduleColour'],
                 '--old': $store.getters['schedule/currentScheduleColour'],
                 '--percentage': ((progressPercentage * 100) * 0.85 + 10) + '%' }"
@@ -45,11 +44,13 @@
 </template>
 
 <script>
-import KeyboardListener from '@/assets/mixins/keyboardListener'
 import IconPlay from 'vue-material-design-icons/Play.vue'
 import IconPause from 'vue-material-design-icons/Pause.vue'
 import IconStop from 'vue-material-design-icons/Stop.vue'
 import IconSkipNext from 'vue-material-design-icons/SkipNext.vue'
+import KeyboardListener from '@/assets/mixins/keyboardListener'
+
+import { TimerState } from '@/store/schedule'
 
 export default {
   components: {
@@ -77,11 +78,17 @@ export default {
     },
 
     playPause () {
-      this.$store.commit('schedule/updateTimerState', this.$store.getters['schedule/getCurrentTimerState'] !== 1 ? 1 : 2)
+      // move to next section if timer is completed
+      if (this.$store.getters['schedule/getCurrentTimerState'] === TimerState.COMPLETED) {
+        this.advance()
+        this.$store.commit('schedule/updateTimerState', TimerState.TICKING)
+      } else {
+        this.$store.commit('schedule/updateTimerState', this.$store.getters['schedule/getCurrentTimerState'] !== TimerState.TICKING ? TimerState.TICKING : TimerState.PAUSED)
+      }
     },
 
     reset () {
-      this.$store.commit('schedule/updateTimerState', 0)
+      this.$store.commit('schedule/updateTimerState', TimerState.RESET)
     },
 
     advance () {
