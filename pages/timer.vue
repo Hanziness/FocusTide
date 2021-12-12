@@ -1,5 +1,5 @@
 <template>
-  <section class="timer-section" :style="{'background-color': $store.getters['schedule/currentScheduleColour']}">
+  <section class="timer-section">
     <!-- Dark mode background override -->
     <div class="absolute w-full h-full dark:bg-gray-900" />
 
@@ -37,14 +37,22 @@
           </lazy-hydrate>
 
           <lazy-hydrate when-visible>
-            <transition name="progress-transition">
+            <transition-group name="progress-transition">
               <timer-progress
-                v-if="$store.getters['settings/performanceSettings'].showProgressBar"
                 :key="$store.getters['schedule/getCurrentItem'].id"
+                :colour="$store.getters['schedule/getScheduleColour'][0]"
+                :time-elapsed="0"
+                :time-original="1"
+                background
+              />
+              <timer-progress
+                v-show="$store.getters['settings/performanceSettings'].showProgressBar"
+                :key="$store.getters['schedule/getCurrentItem'].id + 1"
+                :colour="$store.getters['schedule/getScheduleColour'][1]"
                 :time-elapsed="timeElapsed"
                 :time-original="timeOriginal"
               />
-            </transition>
+            </transition-group>
           </lazy-hydrate>
 
           <timer-switch
@@ -195,17 +203,16 @@ section.timer-section {
   opacity: 0;
 }
 
-.progress-transition-enter-active,
-.progress-transition-leave-active {
-  transition: 500ms ease-in;
-  transition-property: transform !important;
+.progress-transition-leave-active,
+.progress-transition-move {
+  // @apply transition-transform ease-in duration-500;
+
+  // transition: 15000ms ease-in !important;
+  // transition-property: transform !important;
 }
 
-// .progress-transition-enter {
-// }
-
 .progress-transition-leave-to {
-  transform: translateX(0%) !important;
+  // transform: translateX(0%) !important;
 }
 
 .dark .progress-transition-leave-to {

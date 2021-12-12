@@ -3,8 +3,8 @@
     :key="$store.getters['schedule/getCurrentItem'].id"
     :class="['timer-progress']"
     :style="{
-      'background-color': $store.getters['schedule/getScheduleColour'][scheduleEntryId],
-      'transform': `translateX(${-100 + progressPercentage}%)`
+      'background-color': colour ? colour : $store.getters['schedule/getScheduleColour'][scheduleEntryId],
+      'transform': !background ? `translateX(${-100 + progressPercentage}%)` : 'translateX(0%)'
     }"
   >
     <!-- Dark mode background override -->
@@ -26,6 +26,14 @@ export default {
     scheduleEntryId: {
       type: Number,
       default: 1
+    },
+    colour: {
+      type: String,
+      default: null
+    },
+    background: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -43,8 +51,8 @@ export default {
 .timer-progress {
   @apply dark:opacity-20;
 
-  transition: 200ms ease-in-out;
-  transition-property: background-color transform;
+  transition: background-color 200ms ease-in-out, transform 200ms ease-in-out;
+  // transition-property: background-color transform;
   width: 100%;
   height: 100%;
   position: fixed;
