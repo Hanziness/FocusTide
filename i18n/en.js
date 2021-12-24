@@ -289,6 +289,10 @@ export default {
         maxActiveTasks: {
           _title: 'Maximum active tasks to show',
           _description: 'You\'ll only see this many active tasks at most'
+        },
+        removeCompletedTasks: {
+          _title: 'Remove completed tasks',
+          _description: 'Tasks completed will be removed when a new section begins'
         }
       },
       pageTitle: {
@@ -334,11 +338,8 @@ export default {
   },
   tasks: {
     title: 'Tasks',
-    form: {
-      title: 'title',
-      description: 'description (optional)'
-    },
-    empty: 'Nothing to do (?)'
+    empty: 'No tasks yet',
+    manage: 'Manage'
   },
   ready: 'Done'
 }

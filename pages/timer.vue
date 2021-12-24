@@ -55,7 +55,7 @@
             class="grid absolute place-items-center"
           />
           <timer-controls class="absolute" style="bottom: 2rem;" :can-use-keyboard="!showSettings" />
-          <task-window v-if="$store.state.settings.tasks.enabled" style="right: 24px; bottom: 24px;" :editing="[0].includes($store.state.schedule.timerState)" />
+          <todo-list v-show="$store.state.settings.tasks.enabled" class="absolute z-10" style="right: 24px; bottom: 24px;" :editing="[0].includes($store.state.schedule.timerState)" />
         </div>
       </ticker>
     </notification-controller>
@@ -80,7 +80,7 @@ export default {
     UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/overlay.vue'),
     CogIcon: () => import(/* webpackChunkName: "icons", webpackMode: "eager" */ 'vue-material-design-icons/Cog.vue'),
     LazyHydrate: () => import(/* webpackMode: "eager" */ 'vue-lazy-hydration'),
-    TaskWindow: () => import(/* webpackChunkName: "task-list" */ '@/components/taskList/taskWindow.vue')
+    TodoList: () => import('@/components/todoList/main.vue')
   },
   layout: 'timer',
 

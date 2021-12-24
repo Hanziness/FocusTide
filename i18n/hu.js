@@ -289,6 +289,10 @@ export default {
         maxActiveTasks: {
           _title: 'Maximum aktív feladatok',
           _description: 'Legfeljebb ennyi aktív feladatot mutat majd a lista'
+        },
+        removeCompletedTasks: {
+          _title: 'Kész feladatok törlése',
+          _description: 'Új szakaszra lépéskor törlődnek a kész feladatok'
         }
       },
       pageTitle: {
@@ -334,11 +338,8 @@ export default {
   },
   tasks: {
     title: 'Feladatok',
-    form: {
-      title: 'cím',
-      description: 'leírás (nem kötelező)'
-    },
-    empty: 'Nincs mit tenni (?)'
+    empty: 'Nincs felvett teendő',
+    manage: 'Kezelés'
   },
   ready: 'Kész'
 }
