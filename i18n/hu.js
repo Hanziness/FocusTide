@@ -338,10 +338,6 @@ export default {
   },
   tasks: {
     title: 'Feladatok',
-    form: {
-      title: 'cím',
-      description: 'leírás (nem kötelező)'
-    },
     empty: 'Nincs felvett teendő',
     manage: 'Kezelés'
   },

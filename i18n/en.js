@@ -338,10 +338,6 @@ export default {
   },
   tasks: {
     title: 'Tasks',
-    form: {
-      title: 'title',
-      description: 'description (optional)'
-    },
     empty: 'No tasks yet',
     manage: 'Manage'
   },

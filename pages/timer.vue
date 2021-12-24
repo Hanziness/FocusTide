@@ -55,7 +55,6 @@
             class="grid absolute place-items-center"
           />
           <timer-controls class="absolute" style="bottom: 2rem;" :can-use-keyboard="!showSettings" />
-          <!-- <task-window v-show="$store.state.settings.tasks.enabled" class="absolute z-10" style="right: 24px; bottom: 24px;" :editing="[0].includes($store.state.schedule.timerState)" /> -->
           <todo-list v-show="$store.state.settings.tasks.enabled" class="absolute z-10" style="right: 24px; bottom: 24px;" :editing="[0].includes($store.state.schedule.timerState)" />
         </div>
       </ticker>
@@ -82,7 +81,6 @@ export default {
     CogIcon: () => import(/* webpackChunkName: "icons", webpackMode: "eager" */ 'vue-material-design-icons/Cog.vue'),
     LazyHydrate: () => import(/* webpackMode: "eager" */ 'vue-lazy-hydration'),
     TodoList: () => import('@/components/todoList/main.vue')
-    // TaskWindow: () => import(/* webpackChunkName: "task-list" */ '@/components/taskList/taskWindow.vue')
   },
   layout: 'timer',
 
