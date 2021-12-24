@@ -60,5 +60,9 @@ export const mutations = {
     if (itemIndex >= 0) {
       state.tasks.splice(itemIndex, 1)
     }
+  },
+
+  removeCompleted (state) {
+    state.tasks = state.tasks.filter(task => task.state !== taskState.complete)
   }
 }

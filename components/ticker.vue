@@ -52,6 +52,10 @@ export default {
       if (newValue !== oldValue) {
         this.pauseOrStopTimer(true)
         this.resetTimer()
+
+        if (this.$store.state.settings.tasks.removeCompletedTasks) {
+          this.$store.commit('tasklist/removeCompleted')
+        }
       }
     },
 
