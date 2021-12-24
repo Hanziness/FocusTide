@@ -342,7 +342,8 @@ export default {
       title: 'title',
       description: 'description (optional)'
     },
-    empty: 'Nothing to do (?)'
+    empty: 'No tasks yet',
+    manage: 'Manage'
   },
   ready: 'Done'
 }

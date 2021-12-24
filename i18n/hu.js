@@ -342,7 +342,8 @@ export default {
       title: 'cím',
       description: 'leírás (nem kötelező)'
     },
-    empty: 'Nincs mit tenni (?)'
+    empty: 'Nincs felvett teendő',
+    manage: 'Kezelés'
   },
   ready: 'Kész'
 }
