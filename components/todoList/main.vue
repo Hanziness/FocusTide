@@ -60,7 +60,13 @@ export default {
 
         // only return tasks from the current section type if the timer is running
         if (this.$store.getters['schedule/isRunning']) {
-          tasks = tasks.filter(task => task.section === this.$store.getters['schedule/getCurrentItem'].type)
+          tasks = tasks
+            .filter(task => task.section === this.$store.getters['schedule/getCurrentItem'].type)
+
+          // only show first few tasks in this section (according to settings)
+          if (this.$store.state.settings.tasks.maxActiveTasks > 0) {
+            tasks = tasks.slice(0, this.$store.state.settings.tasks.maxActiveTasks)
+          }
         }
 
         return tasks
