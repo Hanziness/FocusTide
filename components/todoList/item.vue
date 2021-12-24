@@ -1,6 +1,21 @@
 <template>
-  <div :class="['bg-gray-100 hover:bg-gray-200 hover:shadow-sm rounded-md border-l-8 themed-border px-2 py-2 transition-all duration-200 flex flex-row items-center', { 'opacity-50 line-through italic': item.state === 2 }]" :style="{ '--theme': $store.state.settings.visuals[item.section].colour }">
-    <div class="flex flex-col">
+  <div
+    :class="['bg-gray-100 hover:bg-gray-200 hover:shadow-sm rounded-md border-l-8 themed-border px-2 py-2 transition-all duration-200 flex flex-row items-center', { 'opacity-50 line-through italic': item.state === 2, 'cursor-move': showReorder, 'ring themed-ring': dragged || droptarget }]"
+    :style="{ '--theme': $store.state.settings.visuals[item.section].colour }"
+    draggable
+    @mouseenter="hovering = true"
+    @mouseleave="hovering = false"
+    @dragstart="startDrag($event, item), $emit('dropstart', item)"
+    @dragover.prevent
+    @dragend="dragged = false, $emit('dropfinish', item)"
+    @dragenter="$emit('droptarget', item)"
+  >
+    <div :class="['-ml-2 -my-2 mr-2 self-stretch themed-bg transition-all duration-75 text-white flex flex-row items-center', { 'w-0': !showReorder, 'w-6': showReorder }]">
+      <span v-show="showReorder">
+        <IconMenu :size="16" />
+      </span>
+    </div>
+    <div class="flex flex-col select-none">
       <span>{{ item.title }}</span>
       <!-- <span class="text-sm">Description</span> -->
     </div>
@@ -15,11 +30,12 @@
 </template>
 
 <script>
+import IconMenu from 'vue-material-design-icons/Menu.vue'
 import IconDelete from 'vue-material-design-icons/TrashCan.vue'
 import { taskState } from '@/store/tasklist'
 
 export default {
-  components: { IconDelete },
+  components: { IconMenu, IconDelete },
   props: {
     item: {
       type: Object,
@@ -28,6 +44,17 @@ export default {
     manage: {
       type: Boolean,
       default: false
+    },
+    /** Whether a dragged item is over this one */
+    droptarget: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data () {
+    return {
+      hovering: false,
+      dragged: false
     }
   },
   computed: {
@@ -38,6 +65,20 @@ export default {
       set (newValue) {
         this.$emit('input', newValue)
       }
+    },
+    showReorder: {
+      get () {
+        return this.hovering
+      }
+    }
+  },
+  methods: {
+    startDrag (evt, item) {
+      evt.dataTransfer.dropEffect = 'move'
+      evt.dataTransfer.effectAllowed = 'move'
+      evt.dataTransfer.setData('source.title', item.title)
+      evt.dataTransfer.setData('source.section', item.section)
+      this.dragged = true
     }
   }
 }
@@ -48,12 +89,20 @@ export default {
   border-color: var(--theme);
 }
 
+.themed-bg {
+  background-color: var(--theme);
+}
+
 .themed-checkbox {
   color: var(--theme);
 
   &:focus {
     --tw-ring-color: var(--theme);
   }
+}
+
+.themed-ring {
+  --tw-ring-color: var(--theme);
 }
 
 .slidein-enter,

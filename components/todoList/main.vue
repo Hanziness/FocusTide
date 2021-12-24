@@ -12,14 +12,23 @@
     <div v-show="displayedTasks.length < 1" key="notask" class="italic text-black text-opacity-70 mt-3">
       <p>No tasks yet</p>
     </div>
-    <transition-group tag="div" name="transition-item" class="flex flex-col space-y-2 mt-3">
+    <transition-group
+      tag="div"
+      name="transition-item"
+      class="flex flex-col space-y-2 mt-3"
+      @drop.prevent="itemDropped($event, 1)"
+    >
       <TaskItem
         v-for="task in displayedTasks"
         :key="task.section + '-' + task.title"
         :manage="!$store.getters['schedule/isRunning'] && manageMode"
         :item="task"
+        :droptarget="task === dropTarget"
         @input="$store.commit('tasklist/toggleComplete', { item: task })"
         @delete="$store.commit('tasklist/delete', { item: task })"
+        @dropstart="draggedItem = task, dragging = true"
+        @dropfinish="handleDrop"
+        @droptarget="updateDropTarget"
       />
     </transition-group>
     <TaskAdd class="mt-3" />
@@ -34,7 +43,14 @@ export default {
   components: { TaskItem, TaskAdd },
   data () {
     return {
-      manageMode: false
+      manageMode: false,
+
+      /** Is a task being dragged to another place? */
+      dragging: false,
+      /** The task that is being moved */
+      draggedItem: null,
+      /** The task that the moved item will be dropped onto */
+      dropTarget: null
     }
   },
   computed: {
@@ -42,12 +58,29 @@ export default {
       get () {
         let tasks = this.$store.getters['tasklist/sortedTasks']
 
+        // only return tasks from the current section type if the timer is running
         if (this.$store.getters['schedule/isRunning']) {
           tasks = tasks.filter(task => task.section === this.$store.getters['schedule/getCurrentItem'].type)
         }
 
         return tasks
       }
+    }
+  },
+  methods: {
+    updateDropTarget (item) {
+      this.dropTarget = item
+    },
+
+    handleDrop () {
+      // move `draggedItem` around `dropTarget`
+      const newIndex = this.$store.state.tasklist.tasks.indexOf(this.dropTarget)
+      this.$store.commit('tasklist/moveItem', { item: this.draggedItem, newIndex })
+
+      // reset drag-and-drop variables
+      this.draggedItem = null
+      this.dragging = false
+      this.dropTarget = null
     }
   }
 }

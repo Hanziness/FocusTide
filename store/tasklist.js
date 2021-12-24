@@ -64,5 +64,12 @@ export const mutations = {
 
   removeCompleted (state) {
     state.tasks = state.tasks.filter(task => task.state !== taskState.complete)
+  },
+
+  moveItem (state, { item, newIndex }) {
+    const oldIndex = state.tasks.indexOf(item)
+    if (oldIndex < 0 || newIndex >= state.tasks.length) { return }
+
+    state.tasks.splice(newIndex, 0, state.tasks.splice(oldIndex, 1)[0])
   }
 }
