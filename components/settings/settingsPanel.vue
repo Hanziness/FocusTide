@@ -95,13 +95,13 @@
 
       <div class="settings-panel-menubar">
         <div class="tab-header" :class="[{'active': activeTab === 1}]" @click="activeTab = 1">
-          <span>{{ $i18n.t('settings.tabs.main') }}</span>
+          <TabIconGeneral /> <span>{{ $i18n.t('settings.tabs.main') }}</span>
         </div>
         <div class="tab-header" :class="[{'active': activeTab === 2}]" @click="activeTab = 2">
-          <span>{{ $i18n.t('settings.tabs.timer') }}</span>
+          <TabIconSchedule /> <span>{{ $i18n.t('settings.tabs.timer') }}</span>
         </div>
         <div class="tab-header" :class="[{'active': activeTab === 3}]" @click="activeTab = 3">
-          <span>{{ $i18n.t('settings.tabs.display') }}</span>
+          <TabIconVisuals /> <span>{{ $i18n.t('settings.tabs.display') }}</span>
         </div>
       </div>
     </div>
@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import { RefreshAlertIcon, XIcon } from 'vue-tabler-icons'
+import { RefreshAlertIcon, XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon } from 'vue-tabler-icons'
 import { timerPresets } from '@/store/settings'
 
 export default {
@@ -123,7 +123,10 @@ export default {
     SettingsOptions: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsOptions.vue'),
     Divider: () => import(/* webpackMode: "eager" */ '@/components/base/divider.vue'),
     CloseIcon: XIcon,
-    ResetIcon: RefreshAlertIcon
+    ResetIcon: RefreshAlertIcon,
+    TabIconGeneral: AdjustmentsIcon,
+    TabIconSchedule: AlarmIcon,
+    TabIconVisuals: ArtboardIcon
   },
   props: {
     value: {
@@ -237,7 +240,7 @@ div.settings-panel-menubar {
 }
 
 div.tab-header {
-  @apply flex-1 h-full bg-gray-200 p-2 cursor-pointer text-center flex items-center justify-center select-none rounded-lg;
+  @apply flex-1 h-full bg-gray-200 p-2 cursor-pointer text-center flex flex-row space-x-1 items-center justify-center select-none rounded-lg;
   @apply dark:bg-gray-800;
 
   transition: border-color 0.2s ease-out;
