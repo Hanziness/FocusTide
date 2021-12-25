@@ -12,7 +12,7 @@
   >
     <div :class="['-ml-2 -my-2 mr-2 self-stretch themed-bg transition-all duration-75 text-white flex flex-row items-center', { 'w-0': !showReorder, 'w-6': showReorder }]">
       <span v-show="showReorder">
-        <IconMenu :size="16" />
+        <IconMenu size="16" />
       </span>
     </div>
     <div class="flex flex-col select-none">
@@ -22,7 +22,7 @@
     <span class="flex-grow" />
     <transition name="slidein">
       <button v-show="manage" class="transition-all duration-100" @click="$emit('delete')">
-        <IconDelete :size="18" />
+        <IconDelete size="18" class="mr-1" />
       </button>
     </transition>
     <span><input :checked="checked" type="checkbox" class="rounded w-5 h-5 mr-1 themed-checkbox" @input="checked = !checked"></span>
@@ -30,12 +30,11 @@
 </template>
 
 <script>
-import IconMenu from 'vue-material-design-icons/Menu.vue'
-import IconDelete from 'vue-material-design-icons/TrashCan.vue'
+import { MenuIcon, EraserIcon } from 'vue-tabler-icons'
 import { taskState } from '@/store/tasklist'
 
 export default {
-  components: { IconMenu, IconDelete },
+  components: { IconMenu: MenuIcon, IconDelete: EraserIcon },
   props: {
     item: {
       type: Object,

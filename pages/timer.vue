@@ -64,6 +64,7 @@
 
 <script>
 // import LazyHydrate from 'vue-lazy-hydration'
+import { SettingsIcon } from 'vue-tabler-icons'
 
 export default {
   name: 'PageTimer',
@@ -78,7 +79,7 @@ export default {
     SettingsPanel: () => import(/* webpackChunkName: "settings", webpackMode: "eager" */ '@/components/settings/settingsPanel.vue'),
     UiButton: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/button.vue'),
     UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/overlay.vue'),
-    CogIcon: () => import(/* webpackChunkName: "icons", webpackMode: "eager" */ 'vue-material-design-icons/Cog.vue'),
+    CogIcon: SettingsIcon,
     LazyHydrate: () => import(/* webpackMode: "eager" */ 'vue-lazy-hydration'),
     TodoList: () => import('@/components/todoList/main.vue')
   },
