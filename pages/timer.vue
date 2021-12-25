@@ -40,10 +40,12 @@
             <transition-group name="progress-transition">
               <timer-progress
                 v-for="(scheduleItem, index) in $store.getters['schedule/getSchedule'].slice(0, 2)"
+                v-show="index === 0 || $store.state.settings.performance.showProgressBar"
                 :key="scheduleItem.id"
                 :colour="$store.getters['schedule/getScheduleColour'][index]"
-                :time-elapsed="index === 0 ? 1 : timeElapsed"
-                :time-original="index === 0 ? 1 : timeOriginal"
+                :background="index === 0"
+                :time-elapsed="timeElapsed"
+                :time-original="timeOriginal"
               />
             </transition-group>
           </lazy-hydrate>
