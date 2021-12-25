@@ -1,6 +1,6 @@
 
 <script>
-import { TimerState } from '@/store/schedule'
+import { TIMERSTATE, TimerState } from '@/store/schedule'
 
 export default {
   data () {
@@ -86,9 +86,10 @@ export default {
   methods: {
     /** Resets the remaining time to the original value, resetting the timer to 0% */
     resetTimer () {
-      // this.timeRemaining = this.timerOriginal
+      const currentTimerState = this.$store.getters['schedule/getCurrentTimerState']
+      const nextState = currentTimerState === TIMERSTATE.RUNNING ? currentTimerState : TIMERSTATE.STOPPED
       this.timeElapsed = 0
-      this.timerTick({ nextState: this.$store.getters['schedule/getCurrentTimerState'], decrement: false })
+      this.timerTick({ nextState, decrement: false })
     },
 
     /** Useful when dayjs locale has changed (forces an update on the timer) */
