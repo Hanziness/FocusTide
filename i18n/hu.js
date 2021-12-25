@@ -306,6 +306,10 @@ export default {
           _title: 'Sötét téma bekapcsolása',
           _description: 'Kevesebb fényerő, ugyanannyi produktivitás'
         }
+      },
+      reset: {
+        _title: 'Alaphelyzetbe állítás',
+        _description: 'Az alkalmazás újratöltése után minden beállítás vissza lesz állítva'
       }
     }
   },

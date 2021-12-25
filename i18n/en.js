@@ -306,6 +306,10 @@ export default {
           _title: 'Enable dark mode',
           _description: 'Less bright, just as productive'
         }
+      },
+      reset: {
+        _title: 'Reset settings',
+        _description: 'All settings will be reset after the app is reloaded'
       }
     }
   },

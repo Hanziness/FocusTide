@@ -41,18 +41,7 @@
 
               <divider />
 
-              <div :class="['reset-button', { 'active': resetConfirm }]" role="button" @click="resetConfirm = true">
-                <span>
-                  <span v-text="$i18n.t('settings.reset.title')" />
-                  <span class="float-right"><reset-icon size="28" /></span>
-                </span>
-                <transition name="transition-fade">
-                  <div v-if="resetConfirm" class="left-0 top-0 absolute w-full h-full grid grid-flow-col grid-cols-2 items-stretch">
-                    <div class="reset-subbutton" @click.stop="triggerSettingsReset" v-text="$i18n.t('settings.reset.confirm')" />
-                    <div class="reset-subbutton" @click.stop="resetConfirm = false" v-text="$i18n.t('settings.reset.cancel')" />
-                  </div>
-                </transition>
-              </div>
+              <settings-check :settings-key="['reset']" />
             </div>
 
             <div v-if="activeTab === 2" :key="2" class="settings-tab">
@@ -109,7 +98,7 @@
 </template>
 
 <script>
-import { RefreshAlertIcon, XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon } from 'vue-tabler-icons'
+import { XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon } from 'vue-tabler-icons'
 import { timerPresets } from '@/store/settings'
 
 export default {
@@ -123,7 +112,7 @@ export default {
     SettingsOptions: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsOptions.vue'),
     Divider: () => import(/* webpackMode: "eager" */ '@/components/base/divider.vue'),
     CloseIcon: XIcon,
-    ResetIcon: RefreshAlertIcon,
+    // ResetIcon: RefreshAlertIcon,
     TabIconGeneral: AdjustmentsIcon,
     TabIconSchedule: AlarmIcon,
     TabIconVisuals: ArtboardIcon
