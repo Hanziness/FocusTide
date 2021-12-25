@@ -123,7 +123,7 @@
         <client-only>
           <a href="https://github.com/Hanziness/AnotherPomodoro" class="relative hint-left" rel="noopener" :aria-label="$i18n.t('index.section_05.support.github')">
             <div class="support-icon text-white bg-gray-900">
-              <icon-github size="42" title="" />
+              <icon-github class="m-[3px]" size="36" title="" />
             </div>
           </a>
           <a href="https://www.buymeacoffee.com/imreg" class="relative hint-right" rel="noopener" :aria-label="$i18n.t('index.section_05.support.buymeacoffee')">
