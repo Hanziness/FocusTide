@@ -39,18 +39,11 @@
           <lazy-hydrate when-visible>
             <transition-group name="progress-transition">
               <timer-progress
-                :key="$store.getters['schedule/getCurrentItem'].id"
-                :colour="$store.getters['schedule/getScheduleColour'][0]"
-                :time-elapsed="0"
-                :time-original="1"
-                background
-              />
-              <timer-progress
-                v-show="$store.getters['settings/performanceSettings'].showProgressBar"
-                :key="$store.getters['schedule/getCurrentItem'].id + 1"
-                :colour="$store.getters['schedule/getScheduleColour'][1]"
-                :time-elapsed="timeElapsed"
-                :time-original="timeOriginal"
+                v-for="(scheduleItem, index) in $store.getters['schedule/getSchedule'].slice(0, 2)"
+                :key="scheduleItem.id"
+                :colour="$store.getters['schedule/getScheduleColour'][index]"
+                :time-elapsed="index === 0 ? 1 : timeElapsed"
+                :time-original="index === 0 ? 1 : timeOriginal"
               />
             </transition-group>
           </lazy-hydrate>
@@ -202,21 +195,5 @@ section.timer-section {
 .schedule-transition-leave-to {
   transform: translateY(-20px);
   opacity: 0;
-}
-
-.progress-transition-leave-active,
-.progress-transition-move {
-  // @apply transition-transform ease-in duration-500;
-
-  // transition: 15000ms ease-in !important;
-  // transition-property: transform !important;
-}
-
-.progress-transition-leave-to {
-  // transform: translateX(0%) !important;
-}
-
-.dark .progress-transition-leave-to {
-  transform: translateX(-100%) !important;
 }
 </style>
