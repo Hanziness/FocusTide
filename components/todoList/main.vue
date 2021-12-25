@@ -1,13 +1,13 @@
 <template>
-  <div class="px-4 py-3 rounded-xl bg-gray-50 shadow-lg border border-gray-400 border-opacity-20 w-96" @keyup.stop="">
+  <div class="px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-lg border border-gray-400 border-opacity-20 w-96" @keyup.stop="">
     <div class="flex flex-row items-center">
-      <p class="uppercase text-xl text-gray-800 font-bold tracking-tighter" v-text="$i18n.t('tasks.title')" />
+      <p class="uppercase text-xl text-gray-800 dark:text-gray-100 font-bold tracking-tighter" v-text="$i18n.t('tasks.title')" />
       <div class="flex-grow" />
-      <button v-show="!$store.getters['schedule/isRunning']" :class="['px-2 py-1 text-xs rounded-lg border border-yellow-300 bg-yellow-100 text-yellow-800 transition-colors', { 'bg-yellow-200': manageMode }]" @click="manageMode = !manageMode">
+      <button v-show="!$store.getters['schedule/isRunning']" :class="['px-2 py-1 text-xs rounded-lg border border-yellow-300 bg-yellow-100 dark:border-opacity-50 dark:text-yellow-100 text-yellow-800 transition-colors', { 'bg-yellow-200 dark:bg-opacity-40': manageMode, 'dark:bg-opacity-10': !manageMode }]" @click="manageMode = !manageMode">
         <span><IconManage class="inline translate-y-[-0.1rem]" size="16" /> {{ $i18n.t('tasks.manage') }}</span>
       </button>
     </div>
-    <div v-show="displayedTasks.length < 1" key="notask" class="italic text-black text-opacity-70 mt-3" v-text="$i18n.t('tasks.empty')" />
+    <div v-show="displayedTasks.length < 1" key="notask" class="italic text-black dark:text-gray-200 text-opacity-70 mt-3" v-text="$i18n.t('tasks.empty')" />
     <transition-group
       tag="div"
       name="transition-item"
