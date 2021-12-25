@@ -1,14 +1,13 @@
 <template>
   <div
-    :key="$store.getters['schedule/getCurrentItem'].id"
     :class="['timer-progress']"
     :style="{
-      'background-color': $store.getters['schedule/getScheduleColour'][scheduleEntryId],
-      'transform': `translateX(${-100 + progressPercentage}%)`
+      'background-color': colour ? colour : $store.getters['schedule/getScheduleColour'][scheduleEntryId],
+      'transform': !background ? `translateX(${-100 + progressPercentage}%)` : 'translateX(0%)'
     }"
   >
     <!-- Dark mode background override -->
-    <div class="absolute w-full h-full invisible dark:visible dark:bg-white" />
+    <div class="absolute w-full h-full invisible dark:visible bg-gray-600 mix-blend-multiply" />
   </div>
 </template>
 
@@ -26,12 +25,19 @@ export default {
     scheduleEntryId: {
       type: Number,
       default: 1
+    },
+    colour: {
+      type: String,
+      default: null
+    },
+    background: {
+      type: Boolean,
+      default: false
     }
   },
 
   computed: {
     progressPercentage () {
-      // return (1 - this.$store.getters['timer/completedFraction']) * 100
       return (this.timeElapsed / this.timeOriginal) * 100
     }
   }
@@ -41,10 +47,7 @@ export default {
 <style lang="scss" scoped>
 // provides a background filling progress bar (parent needs to be position: relative)
 .timer-progress {
-  @apply dark:opacity-20;
-
-  transition: 200ms ease-in-out;
-  transition-property: background-color transform;
+  transition: background-color 200ms ease-in-out, transform 200ms ease-in-out;
   width: 100%;
   height: 100%;
   position: fixed;
