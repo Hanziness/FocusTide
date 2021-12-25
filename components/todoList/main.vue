@@ -11,7 +11,7 @@
     <transition-group
       tag="div"
       name="transition-item"
-      class="flex flex-col space-y-2 mt-3 max-h-64 overflow-y-auto overflow-x-hidden"
+      class="flex flex-col space-y-2 mt-2 py-1 -mx-2 px-2 max-h-64 overflow-y-auto overflow-x-hidden"
       @drop.prevent="itemDropped($event, 1)"
     >
       <TaskItem
