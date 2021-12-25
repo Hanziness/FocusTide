@@ -7,7 +7,7 @@
       @click="reset"
     >
       <div>
-        <icon-stop :size="24" :title="$i18n.t('controls.stop')" />
+        <icon-stop size="24" :title="$i18n.t('controls.stop')" />
       </div>
     </div>
 
@@ -22,10 +22,10 @@
     >
       <transition name="transition-fade" mode="out-in" tag="div" class="">
         <div v-if="$store.getters['schedule/getCurrentTimerState'] !== 1" :key="1" class="relative">
-          <icon-play :size="64" :title="$i18n.t('controls.start')" />
+          <icon-play size="64" stroke-width="1" :title="$i18n.t('controls.start')" />
         </div>
         <div v-else :key="2" class="relative">
-          <icon-pause :size="64" :title="$i18n.t('controls.pause')" />
+          <icon-pause size="64" stroke-width="1" :title="$i18n.t('controls.pause')" />
         </div>
       </transition>
     </div>
@@ -37,17 +37,14 @@
       @click="advance"
     >
       <div>
-        <icon-skip-next :size="24" :title="$i18n.t('controls.next')" />
+        <icon-skip-next size="24" :title="$i18n.t('controls.next')" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import IconPlay from 'vue-material-design-icons/Play.vue'
-import IconPause from 'vue-material-design-icons/Pause.vue'
-import IconStop from 'vue-material-design-icons/Stop.vue'
-import IconSkipNext from 'vue-material-design-icons/SkipNext.vue'
+import { PlayerPlayIcon, PlayerPauseIcon, PlayerStopIcon, PlayerSkipForwardIcon } from 'vue-tabler-icons'
 import KeyboardListener from '@/assets/mixins/keyboardListener'
 
 import { TimerState } from '@/store/schedule'
@@ -55,10 +52,10 @@ import { TimerState } from '@/store/schedule'
 export default {
   components: {
     // UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/base/button.vue'),
-    IconPlay,
-    IconPause,
-    IconStop,
-    IconSkipNext
+    IconPlay: PlayerPlayIcon,
+    IconPause: PlayerPauseIcon,
+    IconStop: PlayerStopIcon,
+    IconSkipNext: PlayerSkipForwardIcon
   },
 
   mixins: [KeyboardListener],

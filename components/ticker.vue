@@ -46,6 +46,10 @@ export default {
     scheduleId (newValue, oldValue) {
       if (newValue !== oldValue) {
         this.resetTimer()
+
+        if (this.$store.state.settings.tasks.removeCompletedTasks) {
+          this.$store.commit('tasklist/removeCompleted')
+        }
       }
     },
 

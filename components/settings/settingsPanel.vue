@@ -37,13 +37,14 @@
                 numeric
                 :disabled="!$store.state.settings.tasks.enabled"
               />
+              <settings-check :settings-key="['tasks', 'removeCompletedTasks']" />
 
               <divider />
 
               <div :class="['reset-button', { 'active': resetConfirm }]" role="button" @click="resetConfirm = true">
                 <span>
                   <span v-text="$i18n.t('settings.reset.title')" />
-                  <span class="float-right"><reset-icon :size="28" /></span>
+                  <span class="float-right"><reset-icon size="28" /></span>
                 </span>
                 <transition name="transition-fade">
                   <div v-if="resetConfirm" class="left-0 top-0 absolute w-full h-full grid grid-flow-col grid-cols-2 items-stretch">
@@ -108,7 +109,7 @@
 </template>
 
 <script>
-import ResetIcon from 'vue-material-design-icons/AlertCircle.vue'
+import { RefreshAlertIcon, XIcon } from 'vue-tabler-icons'
 import { timerPresets } from '@/store/settings'
 
 export default {
@@ -121,8 +122,8 @@ export default {
     SettingsTime: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsTime.vue'),
     SettingsOptions: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsOptions.vue'),
     Divider: () => import(/* webpackMode: "eager" */ '@/components/base/divider.vue'),
-    CloseIcon: () => import(/* webpackMode: "eager" */ 'vue-material-design-icons/Close.vue'),
-    ResetIcon
+    CloseIcon: XIcon,
+    ResetIcon: RefreshAlertIcon
   },
   props: {
     value: {

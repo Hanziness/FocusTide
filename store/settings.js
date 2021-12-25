@@ -76,7 +76,8 @@ export const state = () => ({
   },
   tasks: {
     enabled: false,
-    maxActiveTasks: 3
+    maxActiveTasks: 3,
+    removeCompletedTasks: true
   },
   pageTitle: {
     useTickEmoji: true

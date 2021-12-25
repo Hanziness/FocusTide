@@ -13951,11 +13951,6 @@ vue-loader@^15.9.8:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-material-design-icons@^4.10.0:
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/vue-material-design-icons/-/vue-material-design-icons-4.13.0.tgz#8bab3335c4f906799493d5de52dafed853daa186"
-  integrity sha512-TwaWrvh4J49VdkV9Uzcbr/p3FBRiBthRkIrg6SUh7ogFUljdA2ySNoAYD9dTU+mJkANIn1A6MoD/PnyLONnkWg==
-
 vue-meta@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/vue-meta/-/vue-meta-2.4.0.tgz#a419fb4b4135ce965dab32ec641d1989c2ee4845"
@@ -13999,6 +13994,11 @@ vue-style-loader@^4.1.0, vue-style-loader@^4.1.3:
   dependencies:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
+
+vue-tabler-icons@^1.0:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/vue-tabler-icons/-/vue-tabler-icons-1.12.1.tgz#3865c7b641cc7f755619533d94530fbefb2e07eb"
+  integrity sha512-hWojgXOfk6ZHBSC8t38ZIuIT1fyrpC9V5+cn7lzTH84xKHBnXU7PaNr7xHoL4Xy3JFlhA9AgCNpW16/QuAk9aA==
 
 vue-template-compiler@^2.6.14:
   version "2.6.14"
