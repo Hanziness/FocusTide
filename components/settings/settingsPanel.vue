@@ -37,7 +37,7 @@
                 numeric
                 :disabled="!$store.state.settings.tasks.enabled"
               />
-              <settings-check :settings-key="['tasks', 'removeCompletedTasks']" />
+              <settings-check :settings-key="['tasks', 'removeCompletedTasks']" :disabled="!$store.state.settings.tasks.enabled" />
 
               <divider />
 
