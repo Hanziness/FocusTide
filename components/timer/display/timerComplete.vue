@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import CompleteIcon from 'vue-material-design-icons/Check.vue'
+import { CheckIcon } from 'vue-tabler-icons'
 
 export default {
-  components: { CompleteIcon }
+  components: { CompleteIcon: CheckIcon }
 }
 </script>
 

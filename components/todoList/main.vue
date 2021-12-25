@@ -3,7 +3,9 @@
     <div class="flex flex-row items-center">
       <p class="uppercase text-xl text-gray-800 font-bold tracking-tighter" v-text="$i18n.t('tasks.title')" />
       <div class="flex-grow" />
-      <button v-show="!$store.getters['schedule/isRunning']" :class="['px-2 py-1 text-xs rounded-lg border border-yellow-300 bg-yellow-100 text-yellow-800 transition-colors', { 'bg-yellow-200': manageMode }]" @click="manageMode = !manageMode" v-text="$i18n.t('tasks.manage')" />
+      <button v-show="!$store.getters['schedule/isRunning']" :class="['px-2 py-1 text-xs rounded-lg border border-yellow-300 bg-yellow-100 text-yellow-800 transition-colors', { 'bg-yellow-200': manageMode }]" @click="manageMode = !manageMode">
+        <span><IconManage class="inline translate-y-[-0.1rem]" size="16" /> {{ $i18n.t('tasks.manage') }}</span>
+      </button>
     </div>
     <div v-show="displayedTasks.length < 1" key="notask" class="italic text-black text-opacity-70 mt-3" v-text="$i18n.t('tasks.empty')" />
     <transition-group
@@ -30,11 +32,12 @@
 </template>
 
 <script>
+import { EditIcon } from 'vue-tabler-icons'
 import TaskItem from '@/components/todoList/item.vue'
 import TaskAdd from '@/components/todoList/addTask.vue'
 
 export default {
-  components: { TaskItem, TaskAdd },
+  components: { TaskItem, TaskAdd, IconManage: EditIcon },
   data () {
     return {
       manageMode: false,

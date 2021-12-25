@@ -87,7 +87,7 @@ The app itself still does not collect any data (eg. when you're running it on yo
   * [`@aceforth/nuxt-optimized-images`](https://marquez.co/docs/nuxt-optimized-images) for automatic build-time image optimization
 * [**Tailwind CSS**](https://tailwindcss.com/)
   * [`@tailwindcss/forms`](https://github.com/tailwindlabs/tailwindcss-forms)
-* [Material Design Icons](https://materialdesignicons.com/) through [`vue-material-design-icons`](https://github.com/robcresswell/vue-material-design-icons)
+* [Tabler Icons](https://tabler-icons.io/) through [`vue-tabler-icons`](https://github.com/alex-oleshkevich/vue-tabler-icons)
 * [DayJS](https://day.js.org/) for time formatting
 * [`conventional-changelog/standard-version`](https://github.com/conventional-changelog/standard-version) for automatic changelog generation from [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
 

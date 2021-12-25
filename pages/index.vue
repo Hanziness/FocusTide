@@ -123,7 +123,7 @@
         <client-only>
           <a href="https://github.com/Hanziness/AnotherPomodoro" class="relative hint-left" rel="noopener" :aria-label="$i18n.t('index.section_05.support.github')">
             <div class="support-icon text-white bg-gray-900">
-              <icon-github :size="42" title="" />
+              <icon-github class="m-[3px]" size="36" title="" />
             </div>
           </a>
           <a href="https://www.buymeacoffee.com/imreg" class="relative hint-right" rel="noopener" :aria-label="$i18n.t('index.section_05.support.buymeacoffee')">
@@ -140,16 +140,16 @@
 </template>
 
 <script>
-import IconLightBulb from 'vue-material-design-icons/LightbulbOn.vue'
-import IconCheck from 'vue-material-design-icons/CheckBold.vue'
-import IconHand from 'vue-material-design-icons/Handshake.vue'
-import IconGithub from 'vue-material-design-icons/Github.vue'
-import IconRepeat from 'vue-material-design-icons/Repeat.vue'
+import { BulbIcon, CheckIcon, HeartIcon, BrandGithubIcon, RepeatIcon } from 'vue-tabler-icons'
 
 export default {
   name: 'PageIndex',
   components: {
-    IconLightBulb, IconCheck, IconHand, IconGithub, IconRepeat
+    IconLightBulb: BulbIcon,
+    IconCheck: CheckIcon,
+    IconOpenSource: HeartIcon,
+    IconGithub: BrandGithubIcon,
+    IconRepeat: RepeatIcon
   },
 
   data () {
@@ -159,7 +159,7 @@ export default {
       features: [
         { icon: 'IconLightBulb', iconClass: 'text-yellow-500' },
         { icon: 'IconCheck', iconClass: 'text-green-600' },
-        { icon: 'IconHand', iconClass: 'text-blue-600' }
+        { icon: 'IconOpenSource', iconClass: 'text-red-600' }
       ],
       scheduleCards: [
         { bg: 'bg-red-100', border: 'border-red-400', info: true },
