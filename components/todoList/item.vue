@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['bg-gray-100 hover:bg-gray-200 hover:shadow-sm rounded-md border-l-8 themed-border px-2 py-2 transition-all duration-200 flex flex-row items-center', { 'opacity-50 line-through italic': item.state === 2, 'cursor-move': showReorder, 'ring themed-ring': dragged || droptarget }]"
+    :class="['bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 hover:shadow-sm rounded-md border-l-8 themed-border px-2 py-2 transition-all duration-200 flex flex-row items-center', { 'opacity-50 line-through italic': item.state === 2, 'cursor-move': showReorder, 'ring themed-ring': dragged || droptarget }]"
     :style="{ '--theme': $store.state.settings.visuals[item.section].colour }"
     draggable
     @mouseenter="hovering = true"
@@ -25,7 +25,7 @@
         <IconDelete size="18" class="mr-1" />
       </button>
     </transition>
-    <span><input :checked="checked" type="checkbox" class="rounded w-5 h-5 mr-1 themed-checkbox" @input="checked = !checked"></span>
+    <span><input :checked="checked" type="checkbox" class="rounded w-5 h-5 mr-1 themed-checkbox dark:bg-gray-300" @input="checked = !checked"></span>
   </div>
 </template>
 
@@ -93,10 +93,14 @@ export default {
 }
 
 .themed-checkbox {
-  color: var(--theme);
+  color: var(--theme) !important;
 
   &:focus {
     --tw-ring-color: var(--theme);
+  }
+
+  .dark &:checked {
+    background-color: var(--theme);
   }
 }
 
