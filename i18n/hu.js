@@ -149,7 +149,8 @@ export default {
       main: 'Alap',
       timer: 'Órarend',
       display: 'Megjelenés',
-      audio: 'Hang'
+      audio: 'Hang',
+      about: 'Névjegy'
     },
     buttons: {
       close: 'Bezárás',
@@ -161,6 +162,12 @@ export default {
       cancel: 'Mégsem'
     },
     scheduleMinTime: 'A legrövidebb megengedett időtartam 5 másodperc',
+    about: {
+      madeby: 'Készítette: Gera Imre',
+      source: 'Forráskód',
+      support: 'Támogasd a projektet',
+      share: 'vagy oszd meg ismerőseiddel az alkalmazást:'
+    },
     values: {
       lang: {
         _title: 'Nyelv',

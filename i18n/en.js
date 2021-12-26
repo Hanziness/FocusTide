@@ -149,7 +149,8 @@ export default {
       main: 'Main',
       timer: 'Schedule',
       display: 'Display',
-      audio: 'Audio'
+      audio: 'Audio',
+      about: 'About'
     },
     buttons: {
       close: 'Close',
@@ -161,6 +162,12 @@ export default {
       cancel: 'Cancel'
     },
     scheduleMinTime: 'The minimum allowed time is 5 seconds',
+    about: {
+      madeby: 'Made by Imre Gera',
+      source: 'Source code',
+      support: 'Support the project',
+      share: 'or share the app on social media:'
+    },
     values: {
       lang: {
         _title: 'Language',
