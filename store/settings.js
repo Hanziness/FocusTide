@@ -81,7 +81,8 @@ export const state = () => ({
   },
   pageTitle: {
     useTickEmoji: true
-  }
+  },
+  reset: false
 })
 
 export const getters = {

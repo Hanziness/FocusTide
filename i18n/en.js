@@ -149,7 +149,8 @@ export default {
       main: 'Main',
       timer: 'Schedule',
       display: 'Display',
-      audio: 'Audio'
+      audio: 'Audio',
+      about: 'About'
     },
     buttons: {
       close: 'Close',
@@ -160,13 +161,20 @@ export default {
       confirm: 'Reset',
       cancel: 'Cancel'
     },
+    scheduleMinTime: 'The minimum allowed time is 5 seconds',
+    about: {
+      madeby: 'Made by Imre Gera',
+      source: 'Source code',
+      support: 'Support the project',
+      share: 'or share the app on social media:'
+    },
     values: {
       lang: {
         _title: 'Language',
         _description: '',
         _values: {
           en: 'English',
-          hu: 'Hungarian'
+          hu: 'Magyar'
         },
         _valueDescription: {
           en: '',
@@ -306,6 +314,10 @@ export default {
           _title: 'Enable dark mode',
           _description: 'Less bright, just as productive'
         }
+      },
+      reset: {
+        _title: 'Reset settings',
+        _description: 'All settings will be reset after the app is reloaded'
       }
     }
   },
@@ -334,6 +346,7 @@ export default {
     min: 'Value must be at least {min}',
     max: 'Value must be at most {max}',
     time_format: 'Incorrectly formatted time (MM:SS)',
+    min_time: 'The input time is too short',
     undefined: 'Undefined error'
   },
   tasks: {

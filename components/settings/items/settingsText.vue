@@ -7,6 +7,7 @@
         :min="min"
         :max="max"
         :numeric="numeric"
+        required
         @input="update($event)"
         @error="error($event.type, $event.additionalInfo)"
       />
@@ -16,9 +17,8 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import settingsInputMixin from '@/assets/mixins/settings/settingsItemBase'
-
 import { required, minValue, maxValue, numeric } from 'vuelidate/lib/validators'
+import settingsInputMixin from '@/assets/mixins/settings/settingsItemBase'
 
 export default {
   components: {

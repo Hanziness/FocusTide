@@ -1,5 +1,5 @@
 <template>
-  <section v-show="visible" :class="[{'disabled': disabled}]" :disabled="disabled" :aria-disabled="disabled">
+  <section v-show="visible" :class="['transition-all -m-1 p-1 rounded-lg', { 'disabled': disabled, 'ring ring-yellow-200 bg-yellow-100': isError }]" :disabled="disabled" :aria-disabled="disabled">
     <div class="flex flex-row items-center" :class="[(!showDescription || !!$slots['content-main']) ? 'h-10' : 'h-12']">
       <div v-if="!!$slots['icon']" class="w-12 text-left">
         <slot name="icon" />
@@ -16,11 +16,6 @@
           </slot>
         </div>
       </div>
-      <slot name="content-error" :errorValue="errorValue">
-        <div v-show="errorValue && errorValue.length > 0" class="bg-red-700 text-white text-sm rounded px-2 mx-2">
-          {{ errorValue }}
-        </div>
-      </slot>
       <div class="w-24 text-right">
         <!-- v-if="!!$slots['content-action']"  -->
         <slot name="content-action" :settingsValue="settingsValue" :errorValue="errorValue" />
@@ -31,11 +26,22 @@
     <div class="">
       <slot name="content-main" :settingsValue="settingsValue" />
     </div>
+    <slot name="content-error" :errorValue="errorValue">
+      <div v-show="isError" class="mt-1 text-yellow-700 flex flex-row space-x-1 items-center">
+        <ErrorIcon />
+        <span v-text="errorValue" />
+      </div>
+    </slot>
   </section>
 </template>
 
 <script>
+import { AlertTriangleIcon } from 'vue-tabler-icons'
+
 export default {
+  components: {
+    ErrorIcon: AlertTriangleIcon
+  },
   props: {
     /** Whether to show the description of the setting */
     showDescription: {
@@ -82,6 +88,11 @@ export default {
   data () {
     return {
       isInputValid: true
+    }
+  },
+  computed: {
+    isError () {
+      return this.errorValue && this.errorValue.length > 0
     }
   }
 }

@@ -3,7 +3,7 @@
     <template #content-action="{ settingsValue, update, error }">
       <input-text
         :value="msToTimeStr(settingsValue)"
-        :custom-validators="{ 'time_format': timeRule }"
+        :custom-validators="{ 'time_format': timeRule, 'min_time': minTimeRule }"
         @input="update(timeStrToMs($event))"
         @error="error($event.type, $event.additionalInfo)"
       />
@@ -67,6 +67,15 @@ export default {
       return secondPartAsNumber >= 0 && secondPartAsNumber <= 59
     },
 
+    minTimeRule (valueString) {
+      if (!this.timeRule(valueString)) {
+        return false
+      }
+
+      const timeInMs = this.timeStrToMs(valueString)
+      return timeInMs >= this.minMs
+    },
+
     timeStrToMs (valueString) {
       if (typeof valueString !== 'string' || !this.timeRule(valueString)) { return null }
 
@@ -89,16 +98,16 @@ export default {
       let pass = true
 
       // check if value is above minimum
-      // if (this.minMs && valueInMs < this.minMs) {
-      //   errorFn(Error.ERR_MIN, errorAdditionalInfo)
-      //   return
-      // }
+      if (this.minMs && valueInMs < this.minMs) {
+        errorFn(Error.ERR_MIN, errorAdditionalInfo)
+        return
+      }
 
-      // // check if value is below maximum
-      // if (this.maxMs && valueInMs > this.maxMs) {
-      //   errorFn(Error.ERR_MAX, errorAdditionalInfo)
-      //   return
-      // }
+      // check if value is below maximum
+      if (this.maxMs && valueInMs > this.maxMs) {
+        errorFn(Error.ERR_MAX, errorAdditionalInfo)
+        return
+      }
 
       for (const rule in this.rules) {
         const rulePass = rule(valueInMs)

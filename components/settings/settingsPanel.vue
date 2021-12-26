@@ -1,7 +1,7 @@
 <template>
   <section v-show="processedValue" class="settings-panel sm:w-full md:w-1/2 lg:w-2/5">
     <div class="settings-wrapper">
-      <h1 class="title">
+      <h1 class="px-4 text-xl mt-4 mb-2 uppercase font-bold">
         <span>{{ $i18n.t('settings.heading') }}</span>
         <ui-button subtle class="float-right -mt-2 -mr-2" @click="processedValue = false">
           <close-icon :title="$i18n.t('settings.buttons.close')" />
@@ -41,23 +41,13 @@
 
               <divider />
 
-              <div :class="['reset-button', { 'active': resetConfirm }]" role="button" @click="resetConfirm = true">
-                <span>
-                  <span v-text="$i18n.t('settings.reset.title')" />
-                  <span class="float-right"><reset-icon size="28" /></span>
-                </span>
-                <transition name="transition-fade">
-                  <div v-if="resetConfirm" class="left-0 top-0 absolute w-full h-full grid grid-flow-col grid-cols-2 items-stretch">
-                    <div class="reset-subbutton" @click.stop="triggerSettingsReset" v-text="$i18n.t('settings.reset.confirm')" />
-                    <div class="reset-subbutton" @click.stop="resetConfirm = false" v-text="$i18n.t('settings.reset.cancel')" />
-                  </div>
-                </transition>
-              </div>
+              <settings-check :settings-key="['reset']" />
             </div>
 
             <div v-if="activeTab === 2" :key="2" class="settings-tab">
               <settings-text :settings-key="['schedule', 'longPauseInterval']" :min="1" numeric />
               <divider />
+
               <settings-options
                 :settings-key="['schedule', 'lengths']"
                 :custom-value="$store.getters['settings/getActiveSchedulePreset']"
@@ -65,9 +55,13 @@
                 :set-value-on-change="false"
                 :custom-set-function="(v) => { $store.commit('settings/applyPreset', v) }"
               />
-              <settings-time :settings-key="['schedule', 'lengths', 'work']" />
-              <settings-time :settings-key="['schedule', 'lengths', 'shortpause']" />
-              <settings-time :settings-key="['schedule', 'lengths', 'longpause']" />
+              <settings-time :settings-key="['schedule', 'lengths', 'work']" :min-ms="5000" />
+              <settings-time :settings-key="['schedule', 'lengths', 'shortpause']" :min-ms="5000" />
+              <settings-time :settings-key="['schedule', 'lengths', 'longpause']" :min-ms="5000" />
+              <div class="rounded-lg ring-inset ring ring-blue-400 bg-blue-100 dark:bg-gray-700 dark:text-gray-100 px-3 py-4 flex flex-row items-center space-x-2">
+                <InfoIcon />
+                <span v-text="$i18n.t('settings.scheduleMinTime')" />
+              </div>
             </div>
 
             <div v-if="activeTab === 3" :key="3" class="settings-tab">
@@ -89,19 +83,60 @@
               <settings-check :settings-key="['pageTitle', 'useTickEmoji']" />
               <!-- TODO Audio volume control -->
             </div>
+            <div v-if="activeTab === 4" :key="4" class="settings-tab">
+              <div class="flex flex-col items-center">
+                <img src="/favicon.png" width="64" height="64" class="inline-block bg-red-200 rounded-lg p-2 mb-1">
+                <div>
+                  <div class="font-bold text-2xl inline-block">
+                    AnotherPomodoro
+                  </div>
+                  <sup class="text-base" v-text="$store.state.version" />
+                </div>
+                <div v-text="$i18n.t('settings.about.madeby')" />
+                <div class="mt-8 flex flex-col justify-center items-center">
+                  <!-- Support links -->
+                  <div class="mt-3 flex flex-row space-x-2">
+                    <a href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="rounded-full bg-black hover:bg-gray-700 active:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:active:bg-gray-800 text-white flex flex-row items-center px-3 py-2 space-x-1 transition-colors">
+                      <AboutGithub />
+                      <span v-text="$i18n.t('settings.about.source')" />
+                    </a>
+                    <a href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="rounded-full bg-yellow-300 hover:bg-yellow-200 active:bg-yellow-400 text-black flex flex-row items-center px-3 py-2 space-x-1 transition-colors">
+                      <AboutSupport />
+                      <span v-text="$i18n.t('settings.about.support')" />
+                    </a>
+                  </div>
+                  <!-- Share links -->
+                  <div class="my-2" v-text="$i18n.t('settings.about.share')" />
+                  <div class="flex flex-row items-center space-x-2 text-sm">
+                    <a href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="rounded-full w-12 h-12 bg-[#1da1f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+                      <AboutTwitter size="24" />
+                    </a>
+                    <a href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#1877f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+                      <AboutFacebook size="24" class="translate-x-[-1px]" />
+                    </a>
+                    <a href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#ff4500] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+                      <AboutReddit size="24" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </transition>
         </div>
       </div>
 
       <div class="settings-panel-menubar">
         <div class="tab-header" :class="[{'active': activeTab === 1}]" @click="activeTab = 1">
-          <span>{{ $i18n.t('settings.tabs.main') }}</span>
+          <TabIconGeneral /> <span>{{ $i18n.t('settings.tabs.main') }}</span>
         </div>
         <div class="tab-header" :class="[{'active': activeTab === 2}]" @click="activeTab = 2">
-          <span>{{ $i18n.t('settings.tabs.timer') }}</span>
+          <TabIconSchedule /> <span>{{ $i18n.t('settings.tabs.timer') }}</span>
         </div>
         <div class="tab-header" :class="[{'active': activeTab === 3}]" @click="activeTab = 3">
-          <span>{{ $i18n.t('settings.tabs.display') }}</span>
+          <TabIconVisuals /> <span>{{ $i18n.t('settings.tabs.display') }}</span>
+        </div>
+        <div class="tab-header" :class="[{'active': activeTab === 4}]" @click="activeTab = 4">
+          <TabIconAbout /> <span>{{ $i18n.t('settings.tabs.about') }}</span>
         </div>
       </div>
     </div>
@@ -109,7 +144,7 @@
 </template>
 
 <script>
-import { RefreshAlertIcon, XIcon } from 'vue-tabler-icons'
+import { XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon, InfoCircleIcon, BrandGithubIcon, CoffeeIcon, BrandTwitterIcon, BrandFacebookIcon, BrandRedditIcon } from 'vue-tabler-icons'
 import { timerPresets } from '@/store/settings'
 
 export default {
@@ -123,7 +158,17 @@ export default {
     SettingsOptions: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsOptions.vue'),
     Divider: () => import(/* webpackMode: "eager" */ '@/components/base/divider.vue'),
     CloseIcon: XIcon,
-    ResetIcon: RefreshAlertIcon
+    // ResetIcon: RefreshAlertIcon,
+    TabIconGeneral: AdjustmentsIcon,
+    TabIconSchedule: AlarmIcon,
+    TabIconVisuals: ArtboardIcon,
+    TabIconAbout: InfoCircleIcon,
+    InfoIcon: InfoCircleIcon,
+    AboutGithub: BrandGithubIcon,
+    AboutSupport: CoffeeIcon,
+    AboutTwitter: BrandTwitterIcon,
+    AboutFacebook: BrandFacebookIcon,
+    AboutReddit: BrandRedditIcon
   },
   props: {
     value: {
@@ -223,13 +268,9 @@ section.settings-panel {
     @apply bg-white dark:bg-gray-900 dark:text-gray-50;
 
     div.settings-panel-main {
-      @apply px-4 flex-grow overflow-y-auto pb-2;
+      @apply px-4 flex-grow overflow-y-auto py-2;
     }
   }
-}
-
-.title {
-  @apply px-4 text-xl mt-4 mb-3 uppercase font-bold;
 }
 
 div.settings-panel-menubar {
@@ -237,7 +278,7 @@ div.settings-panel-menubar {
 }
 
 div.tab-header {
-  @apply flex-1 h-full bg-gray-200 p-2 cursor-pointer text-center flex items-center justify-center select-none rounded-lg;
+  @apply flex-1 h-full bg-gray-200 p-2 cursor-pointer text-center flex flex-row space-x-1 items-center justify-center select-none rounded-lg;
   @apply dark:bg-gray-800;
 
   transition: border-color 0.2s ease-out;
@@ -274,7 +315,7 @@ div.settings-tab {
 }
 
 .tab-transition-leave-to {
-  transform: translateY(10px);
+  transform: translateY(-10px);
   opacity: 0;
 }
 

@@ -149,7 +149,8 @@ export default {
       main: 'Alap',
       timer: 'Órarend',
       display: 'Megjelenés',
-      audio: 'Hang'
+      audio: 'Hang',
+      about: 'Névjegy'
     },
     buttons: {
       close: 'Bezárás',
@@ -160,12 +161,19 @@ export default {
       confirm: 'Visszaállítás',
       cancel: 'Mégsem'
     },
+    scheduleMinTime: 'A legrövidebb megengedett időtartam 5 másodperc',
+    about: {
+      madeby: 'Készítette: Gera Imre',
+      source: 'Forráskód',
+      support: 'Támogasd a projektet',
+      share: 'vagy oszd meg ismerőseiddel az alkalmazást:'
+    },
     values: {
       lang: {
         _title: 'Nyelv',
         _description: '',
         _values: {
-          en: 'Angol',
+          en: 'English',
           hu: 'Magyar'
         },
         _valueDescription: {
@@ -306,6 +314,10 @@ export default {
           _title: 'Sötét téma bekapcsolása',
           _description: 'Kevesebb fényerő, ugyanannyi produktivitás'
         }
+      },
+      reset: {
+        _title: 'Alaphelyzetbe állítás',
+        _description: 'Az alkalmazás újratöltése után minden beállítás vissza lesz állítva'
       }
     }
   },
@@ -334,6 +346,7 @@ export default {
     min: 'Az érték legalább {min} legyen',
     max: 'Az érték legfeljebb {max} legyen',
     time_format: 'Hibásan formázott idő (PP:MM)',
+    min_time: 'A bevitt időtartam túl rövid',
     undefined: 'Ismeretlen hiba'
   },
   tasks: {
