@@ -121,12 +121,12 @@
         <!-- TODO For some reason, data-hint and aria-label are not updated after page render,
         leaving the tooltips in English regardless of the language selected -->
         <client-only>
-          <a href="https://github.com/Hanziness/AnotherPomodoro" class="relative hint-left" rel="noopener" :aria-label="$i18n.t('index.section_05.support.github')">
+          <a href="https://github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home_link" class="relative hint-left" rel="noopener" :aria-label="$i18n.t('index.section_05.support.github')">
             <div class="support-icon text-white bg-gray-900">
               <icon-github class="m-[3px]" size="36" title="" />
             </div>
           </a>
-          <a href="https://www.buymeacoffee.com/imreg" class="relative hint-right" rel="noopener" :aria-label="$i18n.t('index.section_05.support.buymeacoffee')">
+          <a href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home_link" class="relative hint-right" rel="noopener" :aria-label="$i18n.t('index.section_05.support.buymeacoffee')">
             <div class="support-icon bg-red-200">
               <img src="/img/BMC Logo - Black.svg" alt="Buy Me a Coffee! logo" style="width: 42px; height: 42px;">
             </div>
