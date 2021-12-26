@@ -110,11 +110,12 @@
                   <div class="flex flex-row items-center space-x-2 text-sm">
                     <a href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="rounded-full w-12 h-12 bg-[#1da1f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
                       <AboutTwitter size="24" />
-                    <!-- <span>@AnotherPomodoro</span> -->
                     </a>
-                    <a href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.com" class="rounded-full w-12 h-12 bg-[#1877f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+                    <a href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#1877f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
                       <AboutFacebook size="24" class="translate-x-[-1px]" />
-                    <!-- <span>@AnotherPomodoro</span> -->
+                    </a>
+                    <a href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#ff4500] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+                      <AboutReddit size="24" />
                     </a>
                   </div>
                 </div>
@@ -143,7 +144,7 @@
 </template>
 
 <script>
-import { XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon, InfoCircleIcon, BrandGithubIcon, CoffeeIcon, BrandTwitterIcon, BrandFacebookIcon } from 'vue-tabler-icons'
+import { XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon, InfoCircleIcon, BrandGithubIcon, CoffeeIcon, BrandTwitterIcon, BrandFacebookIcon, BrandRedditIcon } from 'vue-tabler-icons'
 import { timerPresets } from '@/store/settings'
 
 export default {
@@ -166,7 +167,8 @@ export default {
     AboutGithub: BrandGithubIcon,
     AboutSupport: CoffeeIcon,
     AboutTwitter: BrandTwitterIcon,
-    AboutFacebook: BrandFacebookIcon
+    AboutFacebook: BrandFacebookIcon,
+    AboutReddit: BrandRedditIcon
   },
   props: {
     value: {
