@@ -174,7 +174,7 @@ export default {
         _description: '',
         _values: {
           en: 'English',
-          hu: 'Hungarian'
+          hu: 'Magyar'
         },
         _valueDescription: {
           en: '',

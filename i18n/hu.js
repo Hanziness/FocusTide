@@ -173,7 +173,7 @@ export default {
         _title: 'Nyelv',
         _description: '',
         _values: {
-          en: 'Angol',
+          en: 'English',
           hu: 'Magyar'
         },
         _valueDescription: {
