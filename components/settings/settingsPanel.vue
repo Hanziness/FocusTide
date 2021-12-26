@@ -1,7 +1,7 @@
 <template>
   <section v-show="processedValue" class="settings-panel sm:w-full md:w-1/2 lg:w-2/5">
     <div class="settings-wrapper">
-      <h1 class="title">
+      <h1 class="px-4 text-xl mt-4 mb-2 uppercase font-bold">
         <span>{{ $i18n.t('settings.heading') }}</span>
         <ui-button subtle class="float-right -mt-2 -mr-2" @click="processedValue = false">
           <close-icon :title="$i18n.t('settings.buttons.close')" />
@@ -47,6 +47,7 @@
             <div v-if="activeTab === 2" :key="2" class="settings-tab">
               <settings-text :settings-key="['schedule', 'longPauseInterval']" :min="1" numeric />
               <divider />
+
               <settings-options
                 :settings-key="['schedule', 'lengths']"
                 :custom-value="$store.getters['settings/getActiveSchedulePreset']"
@@ -54,9 +55,13 @@
                 :set-value-on-change="false"
                 :custom-set-function="(v) => { $store.commit('settings/applyPreset', v) }"
               />
-              <settings-time :settings-key="['schedule', 'lengths', 'work']" />
-              <settings-time :settings-key="['schedule', 'lengths', 'shortpause']" />
-              <settings-time :settings-key="['schedule', 'lengths', 'longpause']" />
+              <settings-time :settings-key="['schedule', 'lengths', 'work']" :min-ms="5000" />
+              <settings-time :settings-key="['schedule', 'lengths', 'shortpause']" :min-ms="5000" />
+              <settings-time :settings-key="['schedule', 'lengths', 'longpause']" :min-ms="5000" />
+              <div class="rounded-lg ring-inset ring ring-blue-400 bg-blue-100 dark:bg-gray-700 px-3 py-4 flex flex-row items-center space-x-2">
+                <InfoIcon />
+                <span>The minimum allowed time is 5 seconds</span>
+              </div>
             </div>
 
             <div v-if="activeTab === 3" :key="3" class="settings-tab">
@@ -98,7 +103,7 @@
 </template>
 
 <script>
-import { XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon } from 'vue-tabler-icons'
+import { XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon, InfoCircleIcon } from 'vue-tabler-icons'
 import { timerPresets } from '@/store/settings'
 
 export default {
@@ -115,7 +120,8 @@ export default {
     // ResetIcon: RefreshAlertIcon,
     TabIconGeneral: AdjustmentsIcon,
     TabIconSchedule: AlarmIcon,
-    TabIconVisuals: ArtboardIcon
+    TabIconVisuals: ArtboardIcon,
+    InfoIcon: InfoCircleIcon
   },
   props: {
     value: {
@@ -215,13 +221,9 @@ section.settings-panel {
     @apply bg-white dark:bg-gray-900 dark:text-gray-50;
 
     div.settings-panel-main {
-      @apply px-4 flex-grow overflow-y-auto pb-2;
+      @apply px-4 flex-grow overflow-y-auto py-2;
     }
   }
-}
-
-.title {
-  @apply px-4 text-xl mt-4 mb-3 uppercase font-bold;
 }
 
 div.settings-panel-menubar {

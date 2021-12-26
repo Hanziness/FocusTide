@@ -338,6 +338,7 @@ export default {
     min: 'Value must be at least {min}',
     max: 'Value must be at most {max}',
     time_format: 'Incorrectly formatted time (MM:SS)',
+    min_time: 'The input time is too short',
     undefined: 'Undefined error'
   },
   tasks: {

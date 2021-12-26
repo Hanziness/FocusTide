@@ -1,7 +1,7 @@
 <template>
   <input
     v-model="displayValue"
-    class="form-input w-full text-right"
+    :class="['form-input w-full text-right', { 'ring-yellow-600 focus:ring-yellow-600': $v.internalData.$anyError }]"
     type="text"
   >
 </template>
@@ -50,7 +50,7 @@ export default {
     return {
       /** Internal v-model value (can contain invalid input, unlike the setting
        * value that it corresponds to) */
-      internalData: null,
+      internalData: this.value,
 
       /** Controls whether the input is invalid or not */
       dirty: true
@@ -81,18 +81,11 @@ export default {
      */
     displayValue: {
       get () {
-        if (!this.dirty) {
-          return this.internalData
-        } else {
-          return this.value
-        }
+        return this.internalData
       },
 
       set (newValue) {
         this.internalData = newValue
-
-        // Check if the value needs to be numeric (if so, cast it)
-        if (this.numeric) { this.internalData = Number.parseInt(this.internalData) }
 
         // Force validation
         this.$v.internalData.$touch()

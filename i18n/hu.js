@@ -338,6 +338,7 @@ export default {
     min: 'Az érték legalább {min} legyen',
     max: 'Az érték legfeljebb {max} legyen',
     time_format: 'Hibásan formázott idő (PP:MM)',
+    min_time: 'A bevitt időtartam túl rövid',
     undefined: 'Ismeretlen hiba'
   },
   tasks: {
