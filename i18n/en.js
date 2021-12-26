@@ -160,6 +160,7 @@ export default {
       confirm: 'Reset',
       cancel: 'Cancel'
     },
+    scheduleMinTime: 'The minimum allowed time is 5 seconds',
     values: {
       lang: {
         _title: 'Language',

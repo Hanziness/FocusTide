@@ -160,6 +160,7 @@ export default {
       confirm: 'Visszaállítás',
       cancel: 'Mégsem'
     },
+    scheduleMinTime: 'A legrövidebb megengedett időtartam 5 másodperc',
     values: {
       lang: {
         _title: 'Nyelv',
