@@ -268,7 +268,7 @@ div.settings-tab {
 }
 
 .tab-transition-leave-to {
-  transform: translateY(10px);
+  transform: translateY(-10px);
   opacity: 0;
 }
 
