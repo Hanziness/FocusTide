@@ -4,7 +4,7 @@
     <div class="absolute w-full h-full dark:bg-gray-900" />
 
     <!-- Settings button -->
-    <ui-button subtle class="absolute" style="top: 0.5rem; right: 0.5rem; z-index: 10;" @click="showSettings = true">
+    <ui-button subtle :class="['absolute', { 'pointer-events-none': preview }]" style="top: 0.5rem; right: 0.5rem; z-index: 10;" @click="showSettings = true">
       <client-only>
         <cog-icon class="text-lg" :title="$i18n.t('settings.heading')" />
       </client-only>
@@ -36,19 +36,16 @@
             </transition>
           </lazy-hydrate>
 
-          <lazy-hydrate when-visible>
-            <transition-group name="progress-transition">
-              <timer-progress
-                v-for="(scheduleItem, index) in $store.getters['schedule/getSchedule'].slice(0, 2)"
-                v-show="index === 0 || $store.state.settings.performance.showProgressBar"
-                :key="scheduleItem.id"
-                :colour="$store.getters['schedule/getScheduleColour'][index]"
-                :background="index === 0"
-                :time-elapsed="timeElapsed"
-                :time-original="timeOriginal"
-              />
-            </transition-group>
-          </lazy-hydrate>
+          <transition-group name="progress-transition" tag="div" :duration="1000">
+            <timer-progress
+              v-for="(scheduleItem, index) in progressBarSchedules"
+              :key="scheduleItem.id"
+              :colour="$store.getters['schedule/getScheduleColour'][index]"
+              :background="index === 0"
+              :time-elapsed="timeElapsed"
+              :time-original="timeOriginal"
+            />
+          </transition-group>
 
           <timer-switch
             :time-elapsed="timeElapsed"
@@ -57,7 +54,7 @@
             :timer-widget="$store.state.settings.currentTimer"
             class="grid absolute place-items-center"
           />
-          <timer-controls class="absolute" style="bottom: 2rem;" :can-use-keyboard="!showSettings" />
+          <timer-controls :class="['absolute', { 'pointer-events-none': preview }]" style="bottom: 2rem;" :can-use-keyboard="!showSettings" />
           <todo-list v-show="$store.state.settings.tasks.enabled" class="absolute z-10" style="right: 24px; bottom: 24px;" :editing="[0].includes($store.state.schedule.timerState)" />
         </div>
       </ticker>
@@ -87,6 +84,12 @@ export default {
     TodoList: () => import('@/components/todoList/main.vue')
   },
   layout: 'timer',
+  props: {
+    preview: {
+      type: Boolean,
+      default: false
+    }
+  },
 
   data () {
     return {
@@ -145,6 +148,11 @@ export default {
       return this.$store.getters['schedule/getCurrentItem']
         ? this.$i18n.t('section.' + this.$store.getters['schedule/getCurrentItem'].type).toLowerCase()
         : 'Pomodoro'
+    },
+
+    progressBarSchedules () {
+      const numSchedules = this.$store.state.settings.performance.showProgressBar ? 2 : 1
+      return this.$store.getters['schedule/getSchedule'].slice(0, numSchedules)
     }
   },
 
@@ -177,7 +185,7 @@ html {
 section.timer-section {
   @apply dark:text-gray-50 transition-colors duration-300 ease-in;
 
-  height: 100vh;
+  height: 100%;
   // transition: background-color 300ms ease-in;
 }
 
@@ -197,5 +205,13 @@ section.timer-section {
 .schedule-transition-leave-to {
   transform: translateY(-20px);
   opacity: 0;
+}
+
+.progress-transition-leave-to {
+  @apply transform-gpu translate-x-0;
+}
+
+.progress-transition-enter {
+  @apply transform-gpu -translate-x-full;
 }
 </style>

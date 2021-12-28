@@ -1,5 +1,5 @@
 <template>
-  <div :class="['page', { 'dark': darkMode }]">
+  <div :class="['w-screen, h-screen relative', { 'dark': darkMode }]">
     <nuxt />
     <!-- <portal to="footer">
       <span>&copy; {{ new Date().getFullYear() }}</span>
