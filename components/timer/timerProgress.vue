@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['timer-progress']"
+    :class="['timer-progress', { 'ease-out-expo': background }]"
     :style="{
       'background-color': colour ? colour : $store.getters['schedule/getScheduleColour'][scheduleEntryId],
       'transform': !background ? `translateX(${-100 + progressPercentage}%)` : 'translateX(0%)'
@@ -47,12 +47,20 @@ export default {
 <style lang="scss" scoped>
 // provides a background filling progress bar (parent needs to be position: relative)
 .timer-progress {
-  transition: background-color 200ms ease-in-out, transform 200ms ease-in-out;
+  @apply transform-gpu transition-all duration-500;
+
+  transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
   width: 100%;
   height: 100%;
-  position: fixed;
+  position: absolute;
   display: block;
   top: 0;
   left: 0;
+
+  &.ease-out-expo {
+    @apply duration-1000;
+
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
 }
 </style>
