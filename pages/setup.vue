@@ -69,7 +69,7 @@
           />
         </SetupStep>
 
-        <SetupStep title="Végezetül" description="A beállításokban (fogaskerék ikon a jobb felső sarokban) minden beállítást megtalálsz majd." />
+        <SetupStep :title="$i18n.t('setup.steps.tip.title')" :description="$i18n.t('setup.steps.tip.description')" />
 
         <a href="/timer" :class="['bg-green-600 text-white font-bold text-lg text-center p-2 rounded-lg border border-green-700 uppercase hover:bg-green-700 cursor-pointer m-4 mt-0 flex flex-row items-center justify-center space-x-1', { 'opacity-60 pointer-events-none': completedSteps < 4 }]" role="button">
           <ReadyIcon />

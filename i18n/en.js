@@ -136,6 +136,10 @@ export default {
       theme: {
         title: 'Theme',
         description: 'Control how the app looks.'
+      },
+      tip: {
+        title: 'Tip',
+        description: 'You\'ll find all the settings by clicking on the cog icon in the top right corner.'
       }
     },
     presets: {

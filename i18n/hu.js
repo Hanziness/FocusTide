@@ -136,6 +136,10 @@ export default {
       theme: {
         title: 'Téma',
         description: 'Beállíthatod, hogyan nézzen ki az alkalmazás.'
+      },
+      tip: {
+        title: 'Végezetül',
+        description: 'A jobb felső sarokban lévő fogaskerék ikonra kattintva minden beállítást megtalálsz majd.'
       }
     },
     presets: {
