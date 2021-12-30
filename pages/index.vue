@@ -245,10 +245,10 @@ h2 {
     }
 
     .cta-main {
-      @apply shadow-lg bg-yellow-300 text-black ;
+      @apply shadow-lg bg-amber-300 text-black ;
 
       &:hover {
-        @apply bg-yellow-400;
+        @apply bg-amber-400;
       }
     }
 
@@ -267,7 +267,7 @@ h2 {
 }
 
 .section-03 {
-  @apply text-center bg-yellow-400 py-12 -mt-6;
+  @apply text-center bg-amber-400 py-12 -mt-6;
 
   // & > h1:first-child {
   //   @apply mt-12;
