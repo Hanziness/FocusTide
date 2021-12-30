@@ -69,6 +69,8 @@
           />
         </SetupStep>
 
+        <SetupStep title="Végezetül" description="A beállításokban (fogaskerék ikon a jobb felső sarokban) minden beállítást megtalálsz majd." />
+
         <a href="/timer" :class="['bg-green-600 text-white font-bold text-lg text-center p-2 rounded-lg border border-green-700 uppercase hover:bg-green-700 cursor-pointer m-4 mt-0 flex flex-row items-center justify-center space-x-1', { 'opacity-60 pointer-events-none': completedSteps < 4 }]" role="button">
           <ReadyIcon />
           <span v-text="$i18n.t('setup.startButton')" />
@@ -76,8 +78,8 @@
       </div>
 
       <!-- Column 2: timer preview -->
-      <div class="sticky top-1 rounded-lg w-full h-[420px] overflow-hidden shadow-lg pointer-events-none">
-        <TimerPage preview />
+      <div class="sticky top-1 rounded-lg w-full h-[420px] overflow-hidden shadow-lg">
+        <TimerPage class="pointer-events-none" preview />
         <div class="absolute top-2 left-2 flex flex-row space-x-1 rounded-lg bg-blue-100 text-gray-900 p-2 z-10">
           <InfoIcon />
           <span v-text="$i18n.t('setup.preview')" />
