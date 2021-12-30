@@ -49,6 +49,7 @@ export default defineNuxtConfig({
   ** Global CSS
   */
   css: [
+    '@/assets/tailwind.css',
     // '@/assets/global.scss',
     '@/assets/transitions.scss'
   ],
@@ -71,8 +72,8 @@ export default defineNuxtConfig({
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxt/postcss8',
     // '@aceforth/nuxt-optimized-images',
-    '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
@@ -80,10 +81,6 @@ export default defineNuxtConfig({
     '@nuxtjs/stylelint-module',
     '@nuxtjs/pwa'
   ],
-
-  tailwindcss: {
-    viewer: false
-  },
 
   optimizedImages: {
     optimizeImages: true,
@@ -183,7 +180,15 @@ export default defineNuxtConfig({
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
-    corejs: 3
+    corejs: 3,
+    postcss: {
+      plugins: {
+        'postcss-import': {},
+        'tailwindcss/nesting': {},
+        tailwindcss: {},
+        autoprefixer: {}
+      }
+    }
     // babel: {
     //   presets ({ isServer }) {
     //     const envTargets = {
