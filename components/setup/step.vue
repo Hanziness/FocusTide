@@ -1,6 +1,6 @@
 <template>
   <div :class="['p-4', { 'bg-yellow-100 dark:bg-opacity-30': attention }]">
-    <div :class="['flex flex-row items-center mb-4', { 'text-gray-800 dark:text-gray-100': !attention, 'text-yellow-500 dark:text-yellow-300': attention }]">
+    <div :class="['flex flex-row items-center mb-4', { 'text-gray-800 dark:text-gray-100': !attention, 'text-amber-500 dark:text-yellow-300': attention }]">
       <IconAlert v-show="attention" class="mr-1" />
       <span class="text-2xl tracking-tight font-bold uppercase" v-text="title" />
     </div>
