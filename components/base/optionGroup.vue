@@ -7,6 +7,8 @@
       :active="key === selected"
       :translation-key="translationKey"
       :translation-subkey="key"
+      :custom-title="overrideText.title[key] ? overrideText.title[key] : null"
+      :custom-description="overrideText.description[key] ? overrideText.description[key] : null"
       @click="select(key)"
     />
   </div>
@@ -33,6 +35,16 @@ export default {
     selected: {
       type: String,
       default: ''
+    },
+
+    overrideText: {
+      type: Object,
+      default: () => {
+        return {
+          title: {},
+          description: {}
+        }
+      }
     }
   },
 
