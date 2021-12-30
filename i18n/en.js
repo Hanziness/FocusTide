@@ -114,22 +114,72 @@ export default {
     title: 'Let\'s get you started',
     startButton: 'Let\'s go',
     steps: {
-      preset: 'Choose a preset'
+      language: {
+        title: 'Language'
+      },
+      preset: {
+        title: 'Application preset',
+        description: 'These presets enable certain functions in the app so that you can use it the way you feel comfortable.'
+      },
+      timerpreset: {
+        title: 'Timer length',
+        description: 'Choose a timer preset that you\'d like to work with.'
+      },
+      timerstyle: {
+        title: 'Timer display',
+        description: 'AnotherPomodoro supports three timer styles ranging from seconds-precision to showing only a percentage.'
+      },
+      permissions: {
+        title: 'Permissions',
+        description: 'The app can play a sound and send a notification when a timer expires.'
+      },
+      theme: {
+        title: 'Theme',
+        description: 'Control how the app looks.'
+      },
+      tip: {
+        title: 'Tip',
+        description: 'You\'ll find all the settings by clicking on the cog icon in the top right corner.'
+      }
     },
     presets: {
-      traditional: {
-        title: 'Absolutely traditional',
-        description: 'Typical Pomodoro setup with 25 minutes of work, 5-minute-long pauses and 15-minute-long long breaks. Uses the classic timer.'
+      _values: {
+        minimalist: 'Minimalist',
+        default: 'Default',
+        hardcore: 'Full-fledged'
       },
-      default: {
-        title: 'Default',
-        description: 'A sensible default preset with an approximate timer.'
-      },
-      hardcore: {
-        title: 'Work don\'t look',
-        description: '1-hour cycles with 50 minutes of work and 10 minutes of pause. Uses the percentage timer so you can worry less about the time left.'
+      _valueDescription: {
+        minimalist: 'No distracting items, just a timer in the middle.',
+        default: 'The starter settings. Recommended for first time users.',
+        hardcore: 'Every feature is enabled so you can have everything in front of you.'
       }
-    }
+    },
+    timerpreset: {
+      _values: {
+        default: 'Default',
+        easy: 'Beginner',
+        advanced: 'Advanced',
+        workaholic: 'Workaholic'
+      },
+      _valueDescription: {
+        default: 'The default Pomodoro values.',
+        easy: 'For those who haven\'t yet tried the Pomodoro technique.',
+        advanced: 'Work slightly more effectively.',
+        workaholic: 'For long work sessions.'
+      },
+      description: '{brief} \n {worklength} minutes of work with {splength} minutes short and {lplength} minutes long breaks after every {lpfreq} work sessions.'
+    },
+    theme: {
+      _values: {
+        light: 'Default',
+        dark: 'Dark'
+      },
+      _valueDescription: {
+        light: 'Full of friendly colours',
+        dark: 'Less bright, just as productive'
+      }
+    },
+    preview: 'preview'
   },
   section: {
     work: 'Work',

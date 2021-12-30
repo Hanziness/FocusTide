@@ -114,22 +114,72 @@ export default {
     title: 'Indulás',
     startButton: 'Hajrá',
     steps: {
-      preset: 'Válassz előbeállítást'
+      language: {
+        title: 'Nyelv'
+      },
+      preset: {
+        title: 'Előbeállítás',
+        description: 'Ezek a lehetőségek előre bekapcsolnak bizonyos funkciókat, hogy úgy használhasd az alkalmazást, ahogy kényelmes.'
+      },
+      timerpreset: {
+        title: 'Időzítők hossza',
+        description: 'Válassz egy számodra kényelmes időzítő beállítást.'
+      },
+      timerstyle: {
+        title: 'Időzítő stílusa',
+        description: 'Az AnotherPomodoro háromféle időzítő megjelenést is támogat a másodperc pontosságútól a százalékos megjelenítésig.'
+      },
+      permissions: {
+        title: 'Engedélyek',
+        description: 'Az alkalmazás képes hangot lejátszani és értesítést is küldeni egy-egy időzítő lejártakor. Válaszd ki, hogy mire van szükséged.'
+      },
+      theme: {
+        title: 'Téma',
+        description: 'Beállíthatod, hogyan nézzen ki az alkalmazás.'
+      },
+      tip: {
+        title: 'Végezetül',
+        description: 'A jobb felső sarokban lévő fogaskerék ikonra kattintva minden beállítást megtalálsz majd.'
+      }
     },
     presets: {
-      traditional: {
-        title: 'Abszolút hagyományos',
-        description: 'Tipikus Pomodoro időzítő 25 perc munkával, 5 perces szünetekkel és 15 perces hosszú szünettel. A klasszikus időzítőt használja.'
+      _values: {
+        minimalist: 'Minimalista',
+        default: 'Alapértelmezett',
+        hardcore: 'Maximalista'
       },
-      default: {
-        title: 'Alapértelmezett',
-        description: 'Egy alap beállítás a közelítő időzítővel.'
-      },
-      hardcore: {
-        title: 'Ne nézz, dolgozz',
-        description: 'Órás ciklusok 50 perc munkával és 10 perc szünettel. A százalékos időzítőt használja, így kevésbé kell aggódnod a hátralévő időn.'
+      _valueDescription: {
+        minimalist: 'Semmi elterelő elem, csak egy időzítő középen.',
+        default: 'Az alap beállítások. Ajánlott kezdő felhasználók számára.',
+        hardcore: 'Minden funkció bekapcsolva, így minden dolog előtted lehet.'
       }
-    }
+    },
+    timerpreset: {
+      _values: {
+        default: 'Alapértelmezett',
+        easy: 'Kezdő',
+        advanced: 'Haladó',
+        workaholic: 'Munkamániás'
+      },
+      _valueDescription: {
+        default: 'Az alap Pomodoro idők.',
+        easy: 'Azok számára, akik még nem próbálták a Pomodoro technikát.',
+        advanced: 'Dolgozz kicsit hatékonyabban.',
+        workaholic: 'Hosszú munkamenetekre.'
+      },
+      description: '{brief} \n {worklength} perc munka {splength} perces rövid szünetekkel és {lplength} perces hosszú szünettel minden {lpfreq}. munkamenet után.'
+    },
+    theme: {
+      _values: {
+        light: 'Alapértelmezett',
+        dark: 'Sötét'
+      },
+      _valueDescription: {
+        light: 'Tele barátságos színekkel',
+        dark: 'Kevesebb fényerő, ugyanannyi produktivitás'
+      }
+    },
+    preview: 'előnézet'
   },
   section: {
     work: 'Munka',

@@ -2,12 +2,12 @@
   <button class="select-option" :class="[{ 'active': active }]" @click="$emit('click')">
     <div class="select-option-title">
       <slot name="title">
-        {{ $i18n.t(translationKey + '._values.' + translationSubkey) }}
+        {{ customTitle || $i18n.t(translationKey + '._values.' + translationSubkey) }}
       </slot>
     </div>
     <div class="select-option-description">
       <slot name="description">
-        {{ $i18n.t(translationKey + '._valueDescription.' + translationSubkey) }}
+        {{ customDescription || $i18n.t(translationKey + '._valueDescription.' + translationSubkey) }}
       </slot>
     </div>
   </button>
@@ -29,6 +29,18 @@ export default {
     active: {
       type: Boolean,
       default: false
+    },
+
+    /// Override the auto-translated title
+    customTitle: {
+      type: String,
+      default: null
+    },
+
+    /// Override the auto-translated description
+    customDescription: {
+      type: String,
+      default: null
     }
   }
 }

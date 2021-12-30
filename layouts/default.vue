@@ -1,5 +1,7 @@
 <template>
-  <nuxt />
+  <div :class="[{ 'dark': $store.state.settings.visuals.darkMode }]">
+    <nuxt />
+  </div>
 </template>
 
 <script>

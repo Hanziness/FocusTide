@@ -1,5 +1,5 @@
 <template>
-  <div class="timer-control-panel-basic ">
+  <div class="timer-control-panel-basic text-gray-900 dark:text-gray-100">
     <div
       class="control-button text-lg z-10 lower-z prev"
       :class="[{ 'disabled': $store.getters['schedule/getCurrentTimerState'] === 0 }]"

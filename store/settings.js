@@ -19,6 +19,7 @@ export const timerPresets = {
 }
 
 export const state = () => ({
+  _updated: false,
   lang: undefined,
   visuals: {
     work: {
@@ -178,6 +179,12 @@ export const mutations = {
     } else {
       currentElement[key[key.length - 1]] = value
     }
+  },
+
+  /// Mutation to force hydration after use of `replaceState`
+  _updated (state) {
+    state._updated = true
+    state._updated = false
   }
 }
 
