@@ -1,5 +1,5 @@
 <template>
-  <div class="timer-container flex flex-col justify-center text-center">
+  <div class="timer-container flex flex-col justify-center text-center text-black dark:text-gray-100">
     <transition name="timer-switch" mode="out-in">
       <complete-marker v-if="$store.getters['schedule/getCurrentTimerState'] === 3" :key="'complete'" />
       <timer-traditional v-else-if="timerWidget === 'traditional'" :key="'traditional'" v-bind="timerInfo" />
