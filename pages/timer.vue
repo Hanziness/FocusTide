@@ -1,12 +1,12 @@
 <template>
-  <section class="timer-section">
+  <section :class="['timer-section', {'dark' : $store.state.settings.visuals.darkMode }]">
     <!-- Dark mode background override -->
     <div class="absolute w-full h-full dark:bg-gray-900" />
 
     <!-- Settings button -->
     <ui-button subtle :class="['absolute', { 'pointer-events-none': preview }]" style="top: 0.5rem; right: 0.5rem; z-index: 10;" @click="showSettings = true">
       <client-only>
-        <cog-icon class="text-lg" :title="$i18n.t('settings.heading')" />
+        <cog-icon class="dark:text-gray-200" :title="$i18n.t('settings.heading')" />
       </client-only>
     </ui-button>
     <!-- Settings panel -->
@@ -54,7 +54,7 @@
             :timer-widget="$store.state.settings.currentTimer"
             class="grid absolute place-items-center"
           />
-          <timer-controls :class="['absolute', { 'pointer-events-none': preview }]" style="bottom: 2rem;" :can-use-keyboard="!showSettings" />
+          <timer-controls :class="['absolute', { 'pointer-events-none': preview }]" style="bottom: 2rem;" :can-use-keyboard="!preview && !showSettings" />
           <todo-list v-show="$store.state.settings.tasks.enabled" class="absolute z-10" style="right: 24px; bottom: 24px;" :editing="[0].includes($store.state.schedule.timerState)" />
         </div>
       </ticker>
@@ -98,6 +98,7 @@ export default {
   },
 
   head () {
+    if (this.preview) { return }
     return {
       title: `(${this.remainingTimeString}) ${this.pageTitle}`,
       meta: [{
