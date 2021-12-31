@@ -1,2 +1,23 @@
 @import './transitions/fade.scss';
 @import './transitions/slidein.scss';
+
+.layout-enter-active,
+.layout-leave-active {
+  @apply transition-all duration-1000;
+
+  opacity: 0;
+}
+
+.layout-enter,
+.layout-leave-to {
+  @apply opacity-0;
+
+  clip-path: circle(0%);
+}
+
+.layout-enter-to,
+.layout-leave {
+  @apply opacity-100;
+
+  clip-path: circle(100%);
+}
