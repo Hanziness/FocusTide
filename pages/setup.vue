@@ -1,5 +1,5 @@
 <template>
-  <div class="dark:text-gray-100 dark:bg-gray-900 pb-8">
+  <div class="dark:text-gray-100 dark:bg-gray-900 pb-8 w-screen h-screen">
     <div class="pt-8 pb-20 text-center bg-red-100 dark:bg-opacity-25 text-black dark:text-gray-100">
       <img src="/favicon.png" width="64" height="64" class="inline-block bg-red-200 rounded-lg p-2 mb-4">
       <h1 class="text-5xl font-bold uppercase" v-text="$i18n.t('setup.title')" />
@@ -106,6 +106,11 @@ export default {
     TimerPage,
     InfoIcon: InfoCircleIcon,
     SetupStep
+  },
+
+  transition: {
+    name: 'transition-setup',
+    mode: 'out-in'
   },
 
   data () {
@@ -318,3 +323,26 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.transition-setup-enter-active,
+.transition-setup-leave-active {
+  @apply transition-all duration-500;
+}
+
+.transition-setup-enter {
+  @apply opacity-0 translate-y-4;
+
+  clip-path: circle(0%);
+}
+
+.transition-setup-leave-to {
+  @apply opacity-0 -translate-y-4;
+}
+
+.transition-setup-enter-to {
+  @apply opacity-100 translate-y-0;
+
+  clip-path: circle(75%);
+}
+</style>
