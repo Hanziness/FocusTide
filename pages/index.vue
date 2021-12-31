@@ -14,7 +14,7 @@
 
     <!-- Section 1: intro -->
     <Section class="snap-center bg-gray-100 justify-center flex flex-col overflow-hidden items-center">
-      <Columns class="flex-col xl:flex-row xl:space-x-16 px-4 xl:px-24 pt-12 xl:pt-0">
+      <Columns class="flex-col xl:flex-row xl:space-x-16 px-4 xl:px-24 pt-8 xl:pt-0">
         <template #left>
           <!-- App title and CTAs -->
           <div class="flex flex-col justify-center">
@@ -46,7 +46,16 @@
 
         <!-- App screenshot -->
         <template #right>
-          <img class="aspect-video w-full order-first xl:order-last mb-12 xl:mb-0 max-h-96 rounded-lg shadow-red-300/60 shadow-lg hover:-translate-y-1 transition hover:shadow-xl hover:shadow-red-300/70" src="@/assets/img/screenshots/720p/Timer_Default_2x.png">
+          <div class="overflow-hidden order-first xl:order-last mb-12 xl:mb-0 rounded-lg shadow-red-300/60 shadow-lg hover:-translate-y-1 transition hover:shadow-xl hover:shadow-red-300/70 w-full max-w-2xl xl:max-w-max self-center">
+            <nuxt-img
+              class=""
+              src="/assets/img/screenshots/720p/Timer_Default_2x.png"
+              format="jpg"
+              sizes="sm:760px xl:1600px"
+              quality="80"
+              fit="contain"
+            />
+          </div>
         </template>
       </Columns>
 
