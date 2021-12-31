@@ -1,171 +1,219 @@
 <template>
-  <div>
-    <section class="section section-01">
-      <div class="w-max mx-auto">
-        <h1 class="product-title">
-          Another<b>Pomodoro</b>
-        </h1>
-        <h2 v-text="$i18n.t('index.app_description')" />
-      </div>
+  <div class="overflow-x-hidden snap-y snap-mandatory overflow-y-scroll h-screen">
+    <div ref="top" class="invisible" />
 
-      <!-- CTA -->
-      <div class="cta-container grid-flow-row md:grid-flow-col">
-        <nuxt-link to="/timer">
-          <div
-            class="cta-button cta-main"
-            role="button"
-            v-text="$i18n.t('index.cta.quickstart')"
+    <!-- FAB -->
+    <transition name="fab-transition">
+      <nuxt-link v-show="showFAB" v-slot="{ navigate }" to="/timer" custom>
+        <div class="transition absolute w-full bottom-0 rounded-t-lg xl:w-auto xl:right-6 xl:bottom-4 z-10 xl:rounded-lg text-xl shadow-md px-4 py-3 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 text-black font-bold uppercase cursor-pointer flex flex-row space-x-2 items-center border border-neutral-100" @click="navigate">
+          <nuxt-img
+            src="/favicon.png"
+            width="32"
+            height="32"
+            class=""
+            format="png"
+            quality="95"
           />
-        </nuxt-link>
-        <span class="mx-2" v-text="$i18n.t('index.cta.or')" />
-        <nuxt-link to="/setup">
-          <div class="cta-button cta-secondary" role="button" v-text="$i18n.t('index.cta.configure')" />
-        </nuxt-link>
-      </div>
-    </section>
-
-    <section class="section section-02">
-      <!-- Screenshot -->
-      <div class="container inline-block">
-        <div ref="productImg" :class="['product-img', { 'bottom': !productImgTop }]" />
-        <!-- <img :src="import('@/static/img/Screenshot-Main.png')"> -->
-      </div>
-
-      <div class="-mt-12 features-row-primary md:grid-flow-col">
-        <div v-for="(feature, i) in features" :key="'feature-' + i" class="feature-card">
-          <h3 class="card-title">
-            <span class="icon"><component :is="feature.icon" :class="feature.iconClass" role="none" title="" /></span> {{ $i18n.t('index.features[' + i + '].title') }}
-          </h3>
-          <div class="card-description">
-            {{ $i18n.t('index.features[' + i + '].description') }}
-          </div>
+          <span v-text="$i18n.t('index.launch')" />
         </div>
-      </div>
-    </section>
+      </nuxt-link>
+    </transition>
 
-    <section class="section section-03">
-      <h1 class="section-title mt-4 mb-2">
-        {{ $i18n.t('index.section_03.title') }}
-      </h1>
-
-      <!-- Translations cause SSR vs Client rendering differences -->
-      <client-only>
-        <i18n path="index.section_03.subtitle" tag="div">
-          <b>AnotherPomodoro</b>
-        </i18n>
-      </client-only>
-
-      <div class="schedule-row">
-        <div class="bg-red-100 border-red-400 do-card">
-          <div class="content">
-            <div class="title">
-              {{ $i18n.t('index.section_03.cards[0].title') }} <span class="title-icon" role="none">1</span>
+    <!-- Section 1: intro -->
+    <Section class="snap-center bg-gray-100 justify-center flex flex-col overflow-hidden items-center">
+      <Columns class="flex-col xl:flex-row xl:space-x-16 px-4 xl:px-24 pt-8 xl:pt-0">
+        <template #left>
+          <!-- App title and CTAs -->
+          <div class="flex flex-col justify-center">
+            <div class="flex flex-row items-start mr-16">
+              <!-- App icon -->
+              <div class="mr-4 mt-1 min-w-max min-h-max">
+                <nuxt-img src="/favicon.png" width="68" height="68" class="bg-red-200 rounded-lg p-2" />
+              </div>
+              <!-- App name and slogan -->
+              <div class="flex flex-col">
+                <h1 class="text-3xl md:text-5xl font-bold">
+                  AnotherPomodoro
+                </h1>
+                <div class="text-lg md:text-xl" v-text="$i18n.t('index.app_description')" />
+              </div>
             </div>
-            <div>{{ $i18n.t('index.section_03.cards[0].description') }}</div>
-          </div>
-          <div class="border-red-400 info" v-text="$i18n.t('index.section_03.cards[0].info')" />
-        </div>
-        <div class="bg-yellow-100 border-yellow-400 do-card">
-          <div class="content">
-            <div class="title">
-              {{ $i18n.t('index.section_03.cards[1].title') }} <span class="title-icon" role="none">2</span>
+            <!-- CTAs -->
+            <div class="grid grid-flow-row md:grid-flow-col grid-cols-1 md:grid-cols-2 mt-6 gap-2">
+              <nuxt-link v-slot="{ navigate }" to="/timer" custom>
+                <div class="flex-grow text-center px-6 py-4 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 shadow-lg text-2xl rounded-lg font-bold uppercase cursor-pointer transition-all" role="button" @click="navigate" v-text="$i18n.t('index.cta.quickstart')" />
+              </nuxt-link>
+
+              <nuxt-link v-slot="{ navigate }" to="/setup" custom>
+                <div class="flex-grow text-center px-6 py-4 bg-slate-300 hover:bg-gray-300 text-2xl rounded-lg font-bold uppercase cursor-pointer transition-all shadow-slate-300/0 hover:shadow-slate-300/40 hover:shadow-lg active:shadow-slate-300/60 active:bg-slate-400" role="button" @click="navigate" v-text="$i18n.t('index.cta.configure')" />
+              </nuxt-link>
             </div>
-            <div v-text="$i18n.t('index.section_03.cards[1].description')" />
           </div>
-          <div class="border-yellow-400 info" v-text="$i18n.t('index.section_03.cards[1].info')" />
+        </template>
+
+        <!-- App screenshot -->
+        <template #right>
+          <div class="overflow-hidden order-first xl:order-last mb-12 xl:mb-0 rounded-lg shadow-red-300/60 shadow-lg hover:-translate-y-1 transition hover:shadow-xl hover:shadow-red-300/70 w-full max-w-2xl xl:max-w-max self-center">
+            <nuxt-img
+              class=""
+              src="/assets/img/screenshots/720p/Timer_Default_2x.png"
+              format="jpg"
+              sizes="sm:760px xl:1600px"
+              quality="80"
+              fit="contain"
+            />
+          </div>
+        </template>
+      </Columns>
+
+      <template #after>
+        <div class="flex-grow xl:absolute xl:bottom-4 flex flex-col items-center justify-end">
+          <!-- Source code, support and social buttons -->
+          <div class="flex flex-row space-x-2 mb-4">
+            <SupportButton
+              icon-size="28"
+              type="github"
+              :show-text="false"
+              :default-colours="false"
+              class="p-2 bg-black hover:bg-gray-800 active:bg-gray-900 text-gray-100"
+              utm-tags="?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home"
+            />
+            <SupportButton
+              icon-size="28"
+              type="support"
+              :show-text="false"
+              :default-colours="false"
+              class="p-2 bg-black hover:bg-gray-800 active:bg-gray-900 text-gray-100"
+              utm-tags="?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home"
+            />
+          </div>
+
+          <!-- Scroll indicator -->
+          <ScrollIcon size="42" />
         </div>
-        <div class="bg-blue-100 border-blue-400 do-card">
-          <div class="content">
-            <div class="title">
-              {{ $i18n.t('index.section_03.cards[2].title') }} <span class="title-icon"><icon-repeat role="none" title="" /></span>
-            </div>
-            <div v-text="$i18n.t('index.section_03.cards[2].description')" />
-          </div>
+      </template>
+    </Section>
+
+    <!-- Section 2: about Pomodoro and the app -->
+    <Section class="snap-center bg-sky-100 justify-center flex flex-col overflow-hidden">
+      <div class="mt-8 text-sky-900 flex flex-col items-center">
+        <h2 class="text-5xl font-bold uppercase tracking-tight" v-text="$i18n.t('index.section_whatitdoes.title')" />
+        <div class="mt-2 text-lg xl:text-xl text-center">
+          <i18n path="index.section_whatitdoes.subtitle.main" tag="p">
+            <b>AnotherPomodoro</b>
+          </i18n>
+          <p v-text="$i18n.t('index.section_whatitdoes.subtitle.sub')" />
+        </div>
+
+        <!-- Schedule display imitation -->
+        <div class="rounded-lg bg-slate-800 p-3 flex flex-row space-x-3 shadow-lg shadow-slate-500/20 mt-16">
+          <div :class="['transition duration-500 ring-2 ring-inset ring-transparent w-12 h-12 bg-work rounded-lg', { '!ring-white': section2selectedBox === 1 }]" />
+          <div :class="['transition duration-500 ring-2 ring-inset ring-transparent w-12 h-12 bg-shortpause rounded-lg', { '!ring-white': section2selectedBox === 2 }]" />
+          <div :class="['transition duration-500 ring-2 ring-inset ring-transparent w-12 h-12 bg-longpause rounded-lg', { '!ring-white': section2selectedBox === 3 }]" />
+        </div>
+
+        <!-- Schedule cards -->
+        <div class="mt-4 grid grid-flow-row xl:grid-flow-col xl:auto-cols-auto gap-4 items-start">
+          <ScheduleCard :title="$i18n.t('index.section_whatitdoes.cards[0].title')" :description="$i18n.t('index.section_whatitdoes.cards[0].description')" :duration="$i18n.t('index.section_whatitdoes.cards[0].duration')" dot-class="bg-work" :class="[{ 'shadow-lg shadow-slate-700/30 !bg-slate-600': section2selectedBox === 1 }]" />
+
+          <IconNext class="hidden xl:block self-center" />
+
+          <ScheduleCard :title="$i18n.t('index.section_whatitdoes.cards[1].title')" :description="$i18n.t('index.section_whatitdoes.cards[1].description')" :duration="$i18n.t('index.section_whatitdoes.cards[1].duration')" dot-class="bg-shortpause" :class="[{ 'shadow-lg shadow-slate-700/30 !bg-slate-600': section2selectedBox === 2 }]" />
+
+          <IconNext class="hidden xl:block self-center" />
+          <IconDots class="hidden xl:block self-center" />
+          <IconNext class="hidden xl:block self-center" />
+
+          <ScheduleCard :title="$i18n.t('index.section_whatitdoes.cards[2].title')" :description="$i18n.t('index.section_whatitdoes.cards[2].description')" :duration="$i18n.t('index.section_whatitdoes.cards[2].duration')" dot-class="bg-longpause" :class="[{ 'shadow-lg shadow-slate-700/30 !bg-slate-600': section2selectedBox === 3 }]" />
         </div>
       </div>
+    </Section>
 
-      <i18n path="index.section_03.try_it.base" tag="div">
-        <strong>{{ $i18n.t('index.section_03.try_it.try') }}</strong>
-      </i18n>
+    <!-- Section 3: Features -->
+    <Section class="snap-center bg-amber-50 justify-center items-center flex flex-col overflow-hidden text-center px-4">
+      <h2 class="text-5xl font-bold uppercase tracking-tight text-amber-900" v-text="$i18n.t('index.section_features.title')" />
 
-      <h1 class="section-title my-4" v-text="$i18n.t('index.faq.title')" />
+      <div class="mt-8 grid grid-cols-2 text-lg xl:text-xl xl:grid-cols-4 grid-flow-row gap-4 xl:gap-8 max-w-5xl">
+        <div v-for="(feature, index) in section3.smallFeatures" :key="feature" :class="['transition duration-1000 py-4 px-4 rounded-lg text-gray-900 text-opacity-60', { '!text-gray-100 text-opacity-100 bg-slate-800': section3.activeFeature === index }]" v-text="$i18n.t('index.section_features.list.' + feature)" />
+      </div>
+    </Section>
 
-      <div class="mx-auto faq-container">
-        <details v-for="(question, i) in faq" :key="'faq-' + i">
-          <summary v-text="$i18n.t('index.faq.accordion.' + question.q +'.q')" />
-          <div v-text="$i18n.t('index.faq.accordion.' + question.q + '.a')" />
-          <div v-if="question.hint">
-            <span class="hint" v-text="$i18n.t('index.faq.hint')" />
+    <!-- Section 4: FAQ -->
+    <Section class="snap-center bg-amber-300 justify-center items-center flex flex-col overflow-hidden text-center">
+      <h2 class="text-5xl font-bold uppercase tracking-tight text-black" v-text="$i18n.t('index.faq.title')" />
+
+      <div class="mt-8 px-4 w-full xl:w-[1280px] xl:h-96 h-[36rem] text-left flex flex-col space-y-2">
+        <details v-for="(question, i) in faq" :key="'faq-' + i" class="open:bg-gray-50 bg-gray-100 ring-1 ring-transparent open:ring-gray-400 shadow-slate-400/30 open:shadow-lg rounded-lg p-4 w-full transition text-gray-700 open:text-gray-900" :open="openfaq === i" @click.prevent="openfaq = i">
+          <summary class="font-bold" v-text="$i18n.t('index.faq.accordion.' + question.q +'.q')" />
+          <div class="mt-2" v-text="$i18n.t('index.faq.accordion.' + question.q + '.a')" />
+          <div v-if="question.hint" class="mt-2">
+            <span class="rounded-lg bg-amber-400 text-gray-900 py-1 px-2 font-bold" v-text="$i18n.t('index.faq.hint')" />
             {{ $i18n.t('index.faq.accordion.' + question.q + '.hint') }}
           </div>
         </details>
       </div>
-    </section>
+    </Section>
 
-    <section class="section section-04">
-      <h1 class="section-title" v-text="$i18n.t('index.section_04.title')" />
-      <div class="container feature-list">
-        <div v-for="(feature, i) in smallFeatures" :key="'smallFeature-' + i" v-text="$i18n.t('index.section_04.list.' + feature)" />
-      </div>
-    </section>
+    <!-- Section 5: Support -->
+    <Section class="snap-center bg-stone-100 justify-center items-center flex flex-col overflow-hidden text-center px-4">
+      <h2 class="text-5xl font-bold uppercase tracking-tight text-black leading-tight" v-text="$i18n.t('index.support.title')" />
 
-    <section class="section section-05 ">
-      <h1 class="section-title" v-text="$i18n.t('index.section_05.title')" />
-      <div class="mt-2">
-        {{ $i18n.t('index.section_05.subtitle[0]') }} <br>
-        <i18n path="index.section_05.subtitle[1].base">
-          <b>{{ $i18n.t('index.section_05.subtitle[1].action') }}</b>
+      <div class="mt-3 flex flex-col space-y-1">
+        <p v-text="$i18n.t('index.support.subtitle[0]')" />
+        <i18n path="index.support.subtitle[1].base">
+          <b>{{ $i18n.t('index.support.subtitle[1].action') }}</b>
         </i18n>
       </div>
-      <div class="support-icon-container">
-        <!-- TODO For some reason, data-hint and aria-label are not updated after page render,
-        leaving the tooltips in English regardless of the language selected -->
-        <client-only>
-          <a href="https://github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home_link" class="relative hint-left" rel="noopener" :aria-label="$i18n.t('index.section_05.support.github')">
-            <div class="support-icon text-white bg-gray-900">
-              <icon-github class="m-[3px]" size="36" title="" />
-            </div>
-          </a>
-          <a href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home_link" class="relative hint-right" rel="noopener" :aria-label="$i18n.t('index.section_05.support.buymeacoffee')">
-            <div class="support-icon bg-red-200">
-              <img src="/img/BMC Logo - Black.svg" alt="Buy Me a Coffee! logo" style="width: 42px; height: 42px;">
-            </div>
-          </a>
-        </client-only>
+
+      <div class="mt-8 flex flex-row space-x-2">
+        <SupportButton type="github" default-classes />
+        <SupportButton type="support" default-classes />
       </div>
-      <div class="" v-text="$i18n.t('index.section_05.credits')" />
-      <div class="version-number" v-text="$store.state.version" />
-    </section>
+      <!-- Share links -->
+      <div class="my-2" v-text="$i18n.t('settings.about.share')" />
+      <div class="flex flex-row items-center space-x-2 text-sm">
+        <a href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home" class="rounded-full w-12 h-12 bg-[#1da1f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+          <AboutTwitter size="24" />
+        </a>
+        <a href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#1877f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+          <AboutFacebook size="24" class="translate-x-[-1px]" />
+        </a>
+        <a href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#ff4500] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+          <AboutReddit size="24" />
+        </a>
+      </div>
+    </Section>
   </div>
 </template>
 
 <script>
-import { BulbIcon, CheckIcon, HeartIcon, BrandGithubIcon, RepeatIcon } from 'vue-tabler-icons'
+import { ChevronDownIcon, ChevronRightIcon, DotsIcon, BrandFacebookIcon, BrandTwitterIcon, BrandRedditIcon } from 'vue-tabler-icons'
+import Columns from '@/components/index/columns.vue'
+import Section from '@/components/index/section.vue'
+import ScheduleCard from '@/components/index/scheduleCard.vue'
+
+import SupportButton from '~/components/socialButtons/supportButton.vue'
 
 export default {
-  name: 'PageIndex',
-  components: {
-    IconLightBulb: BulbIcon,
-    IconCheck: CheckIcon,
-    IconOpenSource: HeartIcon,
-    IconGithub: BrandGithubIcon,
-    IconRepeat: RepeatIcon
-  },
+  name: 'PageHome',
+
+  components: { Columns, Section, ScheduleCard, ScrollIcon: ChevronDownIcon, IconNext: ChevronRightIcon, IconDots: DotsIcon, SupportButton, AboutFacebook: BrandFacebookIcon, AboutTwitter: BrandTwitterIcon, AboutReddit: BrandRedditIcon },
 
   data () {
     return {
-      productImgTop: true,
-      productImgIntersection: null,
-      features: [
-        { icon: 'IconLightBulb', iconClass: 'text-yellow-500' },
-        { icon: 'IconCheck', iconClass: 'text-green-600' },
-        { icon: 'IconOpenSource', iconClass: 'text-red-600' }
-      ],
-      scheduleCards: [
-        { bg: 'bg-red-100', border: 'border-red-400', info: true },
-        { bg: 'bg-yellow-100', info: true },
-        { bg: 'bg-blue-100', border: 'border-blue-400', info: false }
-      ],
+      section2: {
+        selectedBoxIndex: 0,
+        selectedBoxOrder: [1, 2, 1, 2, 1, 3],
+        selectedBoxInterval: null
+      },
+      section3: {
+        smallFeatures: [
+          'customization', 'notifications', 'flexible', 'pwa', 'opensource', 'notrackers', 'noads',
+          'clean', 'adaptiveticking', 'localization', 'darkmode', 'more'
+        ],
+        activeFeature: 4,
+        activeFeatureInterval: null
+      },
       faq: [
         { q: 'change_timers' },
         { q: 'will_it_help', hint: true },
@@ -174,271 +222,72 @@ export default {
         { q: 'need_to_know' },
         { q: 'timer_style' }
       ],
-      smallFeatures: [
-        'customization', 'notifications', 'flexible', 'pwa', 'opensource', 'notrackers', 'noads',
-        'clean', 'adaptiveticking', 'localization', 'darkmode', 'more'
-      ]
+      openfaq: 0,
+      scrollObserver: null,
+      showFAB: false
     }
   },
 
   head () {
     return {
-      title: 'AnotherPomodoro'
+      title: 'AnotherPomodoro',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$i18n.t('index.app_description')
+        }
+      ]
+    }
+  },
+
+  computed: {
+    section2selectedBox () {
+      return this.section2.selectedBoxOrder[this.section2.selectedBoxIndex]
     }
   },
 
   mounted () {
-    const thisRef = this
+    // start animations
+    this.selectedBoxInterval = setInterval(() => {
+      this.section2.selectedBoxIndex = this.section2.selectedBoxIndex > 4 ? 0 : this.section2.selectedBoxIndex + 1
+    }, 4000)
 
-    this.productImgIntersection = new IntersectionObserver(
-      function (entries, observer) {
-        // scroll the image to bottom if its top is outside the viewport
-        if (entries[0].boundingClientRect.top < 0) {
-          thisRef.productImgTop = false
-        } else {
-          thisRef.productImgTop = true
-        }
+    this.activeFeatureInterval = setInterval(() => {
+      this.section3.activeFeature = Math.floor(Math.random() * (this.section3.smallFeatures.length - 1))
+    }, 3000)
+
+    // register scroll observer
+    this.scrollObserver = new IntersectionObserver(
+      (entries) => {
+        this.showFAB = !entries[0].isIntersecting
       },
       {
-        threshold: [1]
-        // rootMargin: '60px 0px 0px 0px'
+        root: this.$el,
+        threshold: 1.0
       }
-    )
-
-    this.productImgIntersection.observe(this.$refs.productImg)
+    ).observe(this.$refs.top)
   },
 
   beforeDestroy () {
-    this.productImgIntersection.disconnect()
+    clearInterval(this.selectedBoxInterval)
+    clearInterval(this.activeFeatureInterval)
+    if (this.scrollObserver) {
+      this.scrollObserver.disconnect()
+    }
+  },
+
+  methods: {
+    setIntersecting (value) {
+      this.showFAB = value
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  @apply text-5xl;
-}
-
-h2 {
-  @apply text-xl;
-}
-
-.section {
-  @apply px-4;
-
-  & > h1.section-title {
-    @apply uppercase font-bold;
-  }
-}
-
-.section-01 {
-  @apply relative text-white text-center pt-12 pb-32 bg-gray-900;
-
-  // This would not provide enough contrast with the white text:
-  // background-color: rgb(255, 107, 107);
-
-  & > .cta-container {
-    @apply inline-grid gap-2 auto-cols-max mt-8 items-center;
-
-    .cta-button {
-      @apply text-3xl py-6 px-12 rounded-md inline-block select-none cursor-pointer uppercase font-bold;
-    }
-
-    .cta-main {
-      @apply shadow-lg bg-amber-300 text-black ;
-
-      &:hover {
-        @apply bg-amber-400;
-      }
-    }
-
-    .cta-secondary {
-      @apply bg-gray-100 text-black;
-
-      &:hover {
-        @apply bg-gray-200;
-      }
-    }
-  }
-}
-
-.section-02 {
-  @apply -mt-24 relative text-center;
-}
-
-.section-03 {
-  @apply text-center bg-amber-400 py-12 -mt-6;
-
-  // & > h1:first-child {
-  //   @apply mt-12;
-  // }
-
-  .schedule-row {
-    @apply my-6 inline-grid grid-cols-3 grid-flow-row gap-2 md:gap-4 justify-center max-w-screen-lg;
-  }
-}
-
-.section-04 {
-  @apply text-center bg-blue-600 text-white py-12 -mt-6;
-}
-
-.section-05 {
-  @apply text-center bg-gray-100 pt-12 pb-4;
-
-  .version-number {
-    @apply inline-block rounded-lg bg-gray-900 text-white p-1 px-2 text-sm mt-1 mb-2 select-none;
-  }
-
-  .support-icon-container {
-    @apply my-4 inline-grid auto-cols-max grid-flow-col gap-2;
-
-    .support-icon {
-      @apply p-1 rounded-full block relative z-10;
-    }
-  }
-}
-
-.hint::before {
-  @apply px-4 rounded-full absolute h-full hidden bg-gray-200 top-0 w-max z-0 border border-gray-300 items-center;
-
-  content: attr(aria-label);
-}
-
-.hint:hover::before {
-  @apply grid;
-}
-
-.hint-right::before {
-  @extend .hint, ::before;
-
-  @apply pl-8 rounded-l-none left-1/2;
-}
-
-.hint-left::before {
-  @extend .hint, ::before;
-
-  @apply pr-8 rounded-r-none right-1/2;
-}
-
-.product-img {
-  @apply w-full inline-block;
-
-  height: 500px;
-  background-position-x: center;
-  background-position-y: 10%;
-  background-repeat: no-repeat;
-  background-image: url('~@/assets/img/Screenshot-Main.png');
-  background-size: cover;
-  transition: background-position 300ms ease-in-out;
-
-  &::after {
-    @apply w-full h-full block;
-
-    content: '';
-    background: linear-gradient(transparent 0%, transparent 50%, white 100%);
-  }
-
-  &.bottom {
-    background-position-y: 95%;
-  }
-}
-
-.feature-card {
-  @apply border border-gray-300 border-solid bg-white p-4 shadow-md rounded-lg text-left;
-
-  // max-width: 300px;
-  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
-
-  & > .card-title {
-    @apply text-lg mb-2;
-
-    & > .icon {
-      @apply float-right select-none;
-    }
-  }
-
-  & > .card-description {
-    @apply text-gray-700;
-  }
-
-  &:hover {
-    @apply shadow-xl;
-
-    transform: translateY(-10px);
-  }
-}
-
-.features-row-primary {
-  @apply grid gap-4 ml-auto mr-auto md:grid-flow-col md:grid-cols-3 max-w-full lg:max-w-screen-lg;
-
-  width: max-content;
-}
-
-.faq-container {
-  @apply text-left rounded-lg overflow-hidden border divide-gray-200 divide-solid divide-y-2 max-w-screen-lg;
-
-  & > details {
-    @apply bg-gray-100;
-
-    & > summary {
-      @apply p-3 font-bold cursor-pointer;
-
-      // disable extra outline in Chromium based browsers when item is focused
-      &:focus {
-        outline: none;
-      }
-    }
-
-    & > * {
-      @apply p-3 pt-0;
-    }
-
-    & ul {
-      @apply mt-1 ml-4;
-
-      & > li::before {
-        @apply mr-1;
-
-        content: "-";
-      }
-    }
-
-    // :first-of-type
-    // & > div {
-    //   @apply mt-2;
-    // }
-
-    & span.hint {
-      @apply bg-green-700 rounded-md px-1 text-white font-bold uppercase;
-    }
-
-    & span.emph {
-      @apply text-green-700 font-bold;
-    }
-  }
-}
-
-.feature-list {
-  @apply text-lg mt-4 grid grid-flow-row grid-cols-3 gap-5 ml-auto mr-auto max-w-screen-lg;
-}
-
-.do-card {
-  @apply rounded-lg text-left border-2 grid content-between shadow-md;
-
-  & > .content {
-    @apply p-4;
-
-    & > .title {
-      @apply text-lg font-bold;
-
-      & > .title-icon {
-        @apply float-right ml-4 select-none;
-      }
-    }
-  }
-
-  & > .info {
-    @apply px-4 py-2 italic text-opacity-75 border-t-2;
-  }
+.fab-transition-enter,
+.fab-transition-leave-to {
+  @apply scale-0 opacity-0;
 }
 </style>

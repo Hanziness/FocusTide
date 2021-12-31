@@ -1,6 +1,7 @@
 export default {
   index: {
     app_description: 'Ingyenes Pomodoro alkalmazás közvetlenül a böngésződben',
+    launch: 'Indítás',
     cta: {
       quickstart: 'Gyorsindítás',
       or: 'vagy',
@@ -20,29 +21,29 @@ export default {
         description: 'Nincsenek rejtett követők, bárki megtekintheti és hozzáadhat a forráskódhoz'
       }
     },
-    section_03: {
+    section_whatitdoes: {
       title: 'Mire jó ez?',
-      subtitle: 'Az {0} segít kordában tartani az idődet. Te csak dolgozz vagy pihenj, amikor azt mondja.',
+      subtitle: {
+        main: 'Az {0} segít kordában tartani az idődet.',
+        sub: 'Te csak dolgozz vagy pihenj, amikor azt mondja.'
+      },
       cards: [
         {
           title: 'Munka',
           description: 'Ideje tenni a tennivalót',
-          info: '25 perc'
+          duration: '25 perc'
         },
         {
           title: 'Szünet',
           description: 'Nézz meg egy videót, olvass el egy cikket vagy igyál egy kávét',
-          info: '5-15 perc'
+          duration: '5 perc'
         },
         {
-          title: 'Ismétlés',
-          description: 'Újra! Még egy pár kör és kapsz egy kis plusz pihenőt!'
+          title: 'Hosszú szünet',
+          description: 'Sétálj vagy pihenj egyet',
+          duration: '15 perc'
         }
-      ],
-      try_it: {
-        base: 'Ha úgy érzed, túl sok macskás videót nézel munka helyett, akkor {0}.',
-        try: 'próbáld ki'
-      }
+      ]
     },
     faq: {
       title: 'GYIK',
@@ -76,7 +77,7 @@ export default {
         }
       }
     },
-    section_04: {
+    section_features: {
       title: 'Funkciók',
       list: {
         customization: 'Testreszabható',
@@ -93,7 +94,7 @@ export default {
         more: '... és még több'
       }
     },
-    section_05: {
+    support: {
       title: 'Támogasd a projektet',
       subtitle: {
         0: 'Az AnotherPomodoro hobbiprojektként készült, bárminemű anyagi bevétel szándéka nélkül.',
@@ -102,7 +103,7 @@ export default {
           action: 'támogasd a szerzőt egy kávéval'
         }
       },
-      support: {
+      methods: {
         github: 'Megtekintés GitHubon',
         buymeacoffee: 'Fejlesztő meghívása egy kávéra'
       },
