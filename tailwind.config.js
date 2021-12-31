@@ -15,7 +15,10 @@ module.exports = {
         sans: ['Poppins', 'sans-serif']
       },
       colors: {
-        primary: '#3498db'
+        primary: '#3498db',
+        work: '#FF6B6B',
+        shortpause: '#F4A261',
+        longpause: '#2EC4B6'
       }
     }
   },

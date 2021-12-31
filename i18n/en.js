@@ -1,10 +1,11 @@
 export default {
   index: {
     app_description: 'Free Pomodoro timer right in your browser',
+    launch: 'Launch',
     cta: {
       quickstart: 'Quickstart',
       or: 'or',
-      configure: 'Configure'
+      configure: 'Setup wizard'
     },
     features: {
       0: {
@@ -20,23 +21,27 @@ export default {
         description: 'No hidden trackers, everyone can view and contribute to the code'
       }
     },
-    section_03: {
+    section_whatitdoes: {
       title: 'What does it do?',
-      subtitle: '{0} helps you keep track of your time. Just work or take a break when it says so.',
+      subtitle: {
+        main: '{0} helps you keep track of your time.',
+        sub: 'Just work or take a break when it says so.'
+      },
       cards: [
         {
           title: 'Work',
           description: 'Time to get things done',
-          info: '25 minutes'
+          duration: '25 minutes'
         },
         {
-          title: 'Pause',
+          title: 'Short pause',
           description: 'Watch a video, read an article, drink a coffee',
-          info: '5-15 minutes'
+          duration: '5-15 minutes'
         },
         {
-          title: 'Repeat',
-          description: 'Do it again! A few more rounds and you\'ll get some extra rest!'
+          title: 'Long pause',
+          description: 'Take a nap or go for a walk',
+          duration: '15 minutes'
         }
       ],
       try_it: {
@@ -76,7 +81,7 @@ export default {
         }
       }
     },
-    section_04: {
+    section_features: {
       title: 'Feature list',
       list: {
         customization: 'Customization',
@@ -93,7 +98,7 @@ export default {
         more: '... and more to come'
       }
     },
-    section_05: {
+    support: {
       title: 'Support this project',
       subtitle: {
         0: 'AnotherPomodoro is being developed as a side project with no compensation in mind.',
@@ -102,7 +107,7 @@ export default {
           action: 'do so'
         }
       },
-      support: {
+      method: {
         github: 'View on GitHub',
         buymeacoffee: 'Buy the author a coffee'
       },
