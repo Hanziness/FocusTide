@@ -1,5 +1,5 @@
 <template>
-  <section v-show="visible" :class="['transition-all -m-1 p-1 rounded-lg', { 'disabled': disabled, 'ring ring-yellow-200 bg-yellow-100': isError }]" :disabled="disabled" :aria-disabled="disabled">
+  <section v-show="visible" :class="['transition-all -m-1 p-1 rounded-lg', { 'opacity-50 cursor-default pointer-events-none': disabled, 'ring ring-yellow-200 bg-yellow-100': isError }]" :disabled="disabled" :aria-disabled="disabled">
     <div class="flex flex-row items-center" :class="[(!showDescription || !!$slots['content-main']) ? 'h-10' : 'h-12']">
       <div v-if="!!$slots['icon']" class="w-12 text-left">
         <slot name="icon" />
@@ -97,11 +97,3 @@ export default {
   }
 }
 </script>
-
-<style lang="postcss" scoped>
-.disabled {
-  @apply opacity-50 cursor-default;
-
-  pointer-events: none;
-}
-</style>
