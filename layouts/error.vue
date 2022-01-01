@@ -23,27 +23,27 @@
     <ActionBar class="mt-8">
       <ActionButton v-bind="getRowAndState('reset')" class="text-red-500" text-colours @click="actionReset">
         <IconReset />
-        <p v-text="$i18n.t('errorpage.action.reset')" />
+        <div v-text="$i18n.t('errorpage.action.reset')" />
       </ActionButton>
       <ActionButton v-bind="getRowAndState('reload')" class="text-blue-500" text-colours @click="actionReload">
         <IconReload />
-        <p v-text="$i18n.t('errorpage.action.reload')" />
+        <div v-text="$i18n.t('errorpage.action.reload')" />
       </ActionButton>
       <ActionButton v-bind="getRowAndState('home')" class="text-emerald-500" text-colours href="/">
         <IconHome />
-        <p v-text="$i18n.t('errorpage.action.home')" />
+        <div v-text="$i18n.t('errorpage.action.home')" />
       </ActionButton>
       <ActionButton v-bind="getRowAndState('githubIssue')" class="text-gray-400" text-colours href="https://github.com/Hanziness/AnotherPomodoro/issues?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
         <IconGithub />
-        <p v-text="$i18n.t('errorpage.action.githubIssue')" />
+        <div v-text="$i18n.t('errorpage.action.githubIssue')" />
       </ActionButton>
       <ActionButton v-bind="getRowAndState('githubDiscussion')" class="text-gray-400" text-colours href="https://github.com/Hanziness/AnotherPomodoro/discussions?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
         <IconDiscussion />
-        <p v-text="$i18n.t('errorpage.action.githubDiscussion')" />
+        <div v-text="$i18n.t('errorpage.action.githubDiscussion')" />
       </ActionButton>
       <ActionButton v-bind="getRowAndState('twitter')" class="text-[#1da1f2]" text-colours href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
         <IconTwitter />
-        <p v-text="$i18n.t('errorpage.action.twitter')" />
+        <div v-text="$i18n.t('errorpage.action.twitter')" />
       </ActionButton>
     </ActionBar>
   </div>
