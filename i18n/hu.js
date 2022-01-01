@@ -405,5 +405,28 @@ export default {
     empty: 'Nincs felvett teendő',
     manage: 'Kezelés'
   },
-  ready: 'Kész'
+  ready: 'Kész',
+  errorpage: {
+    title: {
+      crash: 'Összeomlott az alkalmazás',
+      notfound: 'Ilyen oldal nincs',
+      other: 'Valami elromlott'
+    },
+    action: {
+      reset: 'Alaphelyzetbe állítás',
+      reload: 'Oldal újratöltése',
+      home: 'Vissza a kezdőlapra',
+      githubIssue: 'Hiba bejelentése',
+      githubDiscussion: 'Mások megkérdezése a hibáról',
+      twitter: 'Egy barátságos tweet írása'
+    },
+    showError: {
+      main: 'Mutasd a hibaüzenetet!',
+      sub: 'Ha hibajelentést írok vagy másokat kérdezek meg, ezt is megmutatom.'
+    },
+    suggestions: {
+      primary: 'Először próbáld meg ezeket:',
+      secondary: 'vagy ha a fentiek nem segítettek:'
+    }
+  }
 }

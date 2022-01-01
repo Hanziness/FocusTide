@@ -181,6 +181,10 @@ export const mutations = {
     }
   },
 
+  setReset (state, shouldReset) {
+    state.reset = shouldReset
+  },
+
   /// Mutation to force hydration after use of `replaceState`
   _updated (state) {
     state._updated = true

@@ -409,5 +409,28 @@ export default {
     empty: 'No tasks yet',
     manage: 'Manage'
   },
-  ready: 'Done'
+  ready: 'Done',
+  errorpage: {
+    title: {
+      crash: 'The app crashed',
+      notfound: 'That page does not exist',
+      other: 'Something went wrong'
+    },
+    action: {
+      reset: 'Reset the app',
+      reload: 'Reload the page',
+      home: 'Go back to the home page',
+      githubIssue: 'File a bug report',
+      githubDiscussion: 'Ask others if they have the same issue',
+      twitter: 'Write a friendly tweet'
+    },
+    showError: {
+      main: 'Show me the error message!',
+      sub: 'I\'ll use it to report an issue or ask if others experience it, too.'
+    },
+    suggestions: {
+      primary: 'You can',
+      secondary: 'or if those didn\'t help'
+    }
+  }
 }
