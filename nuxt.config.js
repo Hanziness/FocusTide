@@ -73,7 +73,6 @@ export default defineNuxtConfig({
   */
   buildModules: [
     '@nuxt/postcss8',
-    // '@aceforth/nuxt-optimized-images',
     '@nuxtjs/google-fonts',
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
@@ -82,11 +81,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/pwa'
   ],
-
-  optimizedImages: {
-    optimizeImages: true,
-    optimizeImagesInDev: false
-  },
 
   /*
   ** Nuxt.js modules
