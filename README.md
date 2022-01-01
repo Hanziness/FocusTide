@@ -82,7 +82,6 @@ The app itself still does not collect any data (eg. when you're running it on yo
   * [`nuxt/pwa`](https://pwa.nuxtjs.org/) for PWA (Progressive Web Apps) support
   * [`vue-native-notification`](https://github.com/dennisbruner/vue-native-notification) for easier notifications support
   * [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate) for store persistence
-  * [Vue Lazy Hydration](https://github.com/maoberlehner/vue-lazy-hydration) (`vue-lazy-hydration`)
   * [Vuelidate](https://vuelidate.js.org/) for input validation (`vuelidate`)
   * [`@aceforth/nuxt-optimized-images`](https://marquez.co/docs/nuxt-optimized-images) for automatic build-time image optimization
 * [**Tailwind CSS**](https://tailwindcss.com/)

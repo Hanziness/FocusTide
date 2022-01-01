@@ -24,7 +24,6 @@
     "dayjs": "^1.8.32",
     "nuxt-edge": "latest",
     "sass-loader": "^10.0.4",
-    "vue-lazy-hydration": "^2.0.0-beta.4",
     "vue-native-notification": "^1.1.1",
     "vue-tabler-icons": "^1.0",
     "vuelidate": "^0.7.5",

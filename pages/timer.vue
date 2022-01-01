@@ -10,31 +10,27 @@
       </client-only>
     </ui-button>
     <!-- Settings panel -->
-    <lazy-hydrate when-visible>
-      <div>
-        <transition name="transition-fade">
-          <ui-overlay v-if="showSettings" />
-        </transition>
-        <transition name="transition-slidein">
-          <settings-panel v-if="showSettings" v-model="showSettings" class="right-0" />
-        </transition>
-      </div>
-    </lazy-hydrate>
+    <div>
+      <transition name="transition-fade">
+        <ui-overlay v-if="showSettings" />
+      </transition>
+      <transition name="transition-slidein">
+        <settings-panel v-if="showSettings" v-model="showSettings" class="right-0" />
+      </transition>
+    </div>
     <notification-controller>
       <ticker slot-scope="{handleCompletion}" @complete="handleCompletion">
         <div
           slot-scope="{ timerState, timeElapsed, timeOriginal }"
           class="relative w-full h-full flex justify-center"
         >
-          <lazy-hydrate when-visible>
-            <transition name="schedule-transition">
-              <schedule-display
-                v-if="$store.state.settings.schedule.visibility.enabled"
-                class="absolute ml-auto mr-auto"
-                style="top: 2rem;"
-              />
-            </transition>
-          </lazy-hydrate>
+          <transition name="schedule-transition">
+            <schedule-display
+              v-if="$store.state.settings.schedule.visibility.enabled"
+              class="absolute ml-auto mr-auto"
+              style="top: 2rem;"
+            />
+          </transition>
 
           <transition-group name="progress-transition" tag="div" :duration="1000">
             <timer-progress
@@ -63,7 +59,6 @@
 </template>
 
 <script>
-// import LazyHydrate from 'vue-lazy-hydration'
 import { SettingsIcon } from 'vue-tabler-icons'
 
 export default {
@@ -80,7 +75,6 @@ export default {
     UiButton: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/button.vue'),
     UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/overlay.vue'),
     CogIcon: SettingsIcon,
-    LazyHydrate: () => import(/* webpackMode: "eager" */ 'vue-lazy-hydration'),
     TodoList: () => import('@/components/todoList/main.vue')
   },
   layout: 'timer',
