@@ -14,7 +14,7 @@
     ]"
     @click="handleClick"
   >
-    <div :class="['relative flex px-3 py-2 flex-row space-x-1', { 'text-white': textColours && state === 'recommended', 'text-black': textColours && state !== 'recommended' }]">
+    <div :class="['relative flex px-3 py-2 flex-row space-x-1 pointer-events-none', { 'text-white': textColours && state === 'recommended', 'text-black': textColours && state !== 'recommended' }]">
       <slot name="icon" />
       <slot />
     </div>
