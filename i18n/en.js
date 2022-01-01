@@ -430,7 +430,7 @@ export default {
     },
     suggestions: {
       primary: 'You can',
-      secondary: 'Or if those didn\'t help'
+      secondary: 'or if those didn\'t help'
     }
   }
 }
