@@ -99,6 +99,11 @@ export default defineNuxtConfig({
   /** Modules that need to be transpiled */
   transpileDependencies: ['vuex-persist'],
 
+  generate: {
+    // Generate fallback pages (makes error pages work on Netlify, too)
+    fallback: true
+  },
+
   /**
    * PWA module settings
    */
