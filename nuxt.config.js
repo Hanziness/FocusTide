@@ -49,9 +49,8 @@ export default defineNuxtConfig({
   ** Global CSS
   */
   css: [
-    '@/assets/tailwind.css',
-    // '@/assets/global.scss',
-    '@/assets/transitions.scss'
+    '@/assets/scss/tailwind.scss',
+    '@/assets/scss/transitions.scss'
   ],
   /*
   ** Plugins to load before mounting the App
