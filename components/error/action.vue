@@ -7,7 +7,7 @@
     :class="[
       'transition relative overflow-hidden rounded-lg bg-current outline-current before:block before:absolute before:inset-0 before:transition',
       {
-        'outline outline-offset-2 before:bg-black before:bg-opacity-0 before:hover:bg-opacity-10 before:active:bg-opacity-20 cursor-pointer': state === 'recommended',
+        'outline outline-offset-2 before:bg-black before:bg-opacity-0 before:hover:bg-opacity-10 before:active:bg-opacity-20 cursor-pointer mx-1': state === 'recommended',
         'before:bg-slate-100 before:bg-opacity-70 before:hover:bg-opacity-50 before:active:bg-opacity-30 cursor-pointer': state === 'default',
         'opacity-60 cursor-not-allowed': state === 'disabled'
       }
