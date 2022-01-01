@@ -48,15 +48,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.timer-app-bar {
-  position: fixed;
-  width: max-content;
-}
-
-footer.timer-footer {
-  background-color: transparent;
-}
-
 .loading-enter-active {
   @apply transition-all duration-1000;
 }
