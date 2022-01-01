@@ -2,10 +2,17 @@
   <Component
     :is="props.tag"
     :ref="data.ref"
-    :class="['ui-button', { 'subtle': !props.noStyle && props.subtle, 'regular': !props.noStyle && !props.subtle }, data.class, data.staticClass, {
-      'cursor-pointer': !props.disabled,
-      'disabled': props.disabled
-    }]"
+    :class="[
+      'transition-colors',
+      {
+        'bg-transparent rounded-full p-2 hover:bg-gray-200 dark:hover:bg-gray-50 dark:hover:bg-opacity-20 active:bg-gray-400 dark:active:bg-gray-50 dark:active:bg-opacity-40': !props.noStyle && props.subtle,
+        'bg-gray-400 hover:bg-gray-500 active:bg-gray-600 rounded p-4': !props.noStyle && !props.subtle,
+        'cursor-pointer': !props.disabled,
+        'opacity-50': props.disabled
+      },
+      data.staticClass,
+      data.class
+    ]"
     :style="[data.style, data.staticStyle]"
     v-bind="data.attrs"
     :aria-disabled="props.disabled"
@@ -39,42 +46,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.ui-button {
-  transition: background-color 0.1s ease-out;
-}
-
-.ui-button.regular {
-  @apply bg-gray-400 rounded p-4;
-}
-
-.ui-button.regular:hover:not(:disabled) {
-  @apply bg-gray-500;
-  @apply dark:bg-gray-50 dark:bg-opacity-20;
-}
-
-.ui-button.regular:active:not(:disabled) {
-  @apply bg-gray-600;
-}
-
-.ui-button.subtle {
-  @apply bg-transparent rounded-full p-2;
-}
-
-.ui-button.subtle:hover {
-  @apply bg-gray-200;
-  @apply dark:bg-gray-50 dark:bg-opacity-20;
-}
-
-.ui-button.subtle:active {
-  @apply bg-gray-400;
-  @apply dark:bg-gray-50 dark:bg-opacity-40;
-}
-
-.ui-button.disabled {
-  @apply cursor-default;
-
-  opacity: 0.5;
-}
-</style>
