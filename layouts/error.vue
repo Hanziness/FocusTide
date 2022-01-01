@@ -5,6 +5,7 @@
     </div>
     <h1 class="mt-2 text-5xl text-center uppercase font-bold tracking-tighter" v-text="errorHeading.title" />
 
+    <!-- Error description -->
     <div class="mt-8 max-w-screen-lg border-2 border-gray-300 rounded-lg overflow-hidden">
       <transition name="showerror-transition" mode="out-in">
         <div v-if="!showError" class="transition p-4 bg-gray-700 hover:bg-gray-600 active:bg-gray-800 text-gray-100 flex flex-row items-center space-x-4 cursor-pointer" role="button" @click="showError = true">

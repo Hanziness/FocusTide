@@ -54,6 +54,7 @@ export default {
       secondary: 2
     }
 
+    // collect all nodes with a `data-row` attribute
     this.items = []
     this.$refs.items.querySelectorAll('[data-row]').forEach((node) => {
       this.items.push(node)
