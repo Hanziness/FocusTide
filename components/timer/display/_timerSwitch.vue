@@ -1,5 +1,5 @@
 <template>
-  <div class="timer-container flex flex-col justify-center text-center text-black dark:text-gray-100">
+  <div class="w-full h-full relative flex flex-col justify-center text-center text-black dark:text-gray-100 transition-opacity duration-500 select-none" :class="[{ 'opacity-70': !running, 'opacity-100': running }]">
     <transition name="timer-switch" mode="out-in">
       <complete-marker v-if="$store.getters['schedule/getCurrentTimerState'] === 3" :key="'complete'" />
       <timer-traditional v-else-if="timerWidget === 'traditional'" :key="'traditional'" v-bind="timerInfo" />
@@ -43,26 +43,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div.timer-container {
-  @apply w-full h-full;
-
-  z-index: 5;
-  position: relative;
-}
-
-div.timer-display {
-  transition: 300ms ease-in;
-  transition-property: opacity;
-  opacity: 0.7;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-}
-
-div.timer-display.active {
-  opacity: 1;
-}
-
 .timer-switch-enter-active,
 .timer-switch-leave-active {
   transition: opacity 0.5s ease-out;
