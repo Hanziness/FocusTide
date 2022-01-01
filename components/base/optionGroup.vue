@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col md:flex-row select-option-group">
+  <div class="grid grid-flow-row md:grid-flow-col md:auto-cols-fr select-option-group gap-3">
     <option-control
       v-for="(item, key) in values"
       :key="key"
@@ -62,9 +62,3 @@ export default {
   }
 }
 </script>
-
-<style lang="postcss">
-.select-option:not(:last-child) {
-  @apply mr-2;
-}
-</style>
