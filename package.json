@@ -22,7 +22,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/sitemap": "^2.4.0",
     "dayjs": "^1.8.32",
-    "nuxt-edge": "latest",
+    "nuxt-edge": "^2.16.0-27349935.777a4b7f",
     "sass-loader": "^10.0.4",
     "vue-native-notification": "^1.1.1",
     "vue-tabler-icons": "^1.0",
