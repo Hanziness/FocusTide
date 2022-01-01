@@ -1,13 +1,13 @@
 <template>
-  <section v-show="processedValue" class="settings-panel sm:w-full md:w-1/2 lg:w-2/5">
-    <div class="settings-wrapper">
+  <section v-show="processedValue" class="h-full fixed p-0 md:p-4 w-full md:w-1/2 lg:w-2/5 z-40">
+    <div class="flex flex-col h-full rounded-none md:rounded-lg overflow-hidden shadow-lg bg-white dark:bg-gray-900 dark:text-gray-50">
       <h1 class="px-4 text-xl mt-4 mb-2 uppercase font-bold">
         <span>{{ $i18n.t('settings.heading') }}</span>
         <ui-button subtle class="float-right -mt-2 -mr-2" @click="processedValue = false">
           <close-icon :title="$i18n.t('settings.buttons.close')" />
         </ui-button>
       </h1>
-      <div class="settings-panel-main">
+      <div class="px-4 flex-grow overflow-y-auto py-2">
         <div class="w-full">
           <transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
             <div v-if="activeTab === 1" :key="1" class="settings-tab">
@@ -125,19 +125,20 @@
         </div>
       </div>
 
-      <div class="settings-panel-menubar">
-        <div class="tab-header" :class="[{'active': activeTab === 1}]" @click="activeTab = 1">
+      <!-- Tab bar -->
+      <div class="flex-none h-20 flex flex-row p-4">
+        <TabHeader :active="activeTab === 1" @click="activeTab = 1">
           <TabIconGeneral /> <span>{{ $i18n.t('settings.tabs.main') }}</span>
-        </div>
-        <div class="tab-header" :class="[{'active': activeTab === 2}]" @click="activeTab = 2">
+        </TabHeader>
+        <TabHeader :active="activeTab === 2" @click="activeTab = 2">
           <TabIconSchedule /> <span>{{ $i18n.t('settings.tabs.timer') }}</span>
-        </div>
-        <div class="tab-header" :class="[{'active': activeTab === 3}]" @click="activeTab = 3">
+        </TabHeader>
+        <TabHeader :active="activeTab === 3" @click="activeTab = 3">
           <TabIconVisuals /> <span>{{ $i18n.t('settings.tabs.display') }}</span>
-        </div>
-        <div class="tab-header" :class="[{'active': activeTab === 4}]" @click="activeTab = 4">
+        </TabHeader>
+        <TabHeader :active="activeTab === 4" @click="activeTab = 4">
           <TabIconAbout /> <span>{{ $i18n.t('settings.tabs.about') }}</span>
-        </div>
+        </TabHeader>
       </div>
     </div>
   </section>
@@ -146,6 +147,7 @@
 <script>
 import { XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon, InfoCircleIcon, BrandGithubIcon, CoffeeIcon, BrandTwitterIcon, BrandFacebookIcon, BrandRedditIcon } from 'vue-tabler-icons'
 import { timerPresets } from '@/store/settings'
+import TabHeader from '@/components/settings/panel/tabHeader.vue'
 
 export default {
   name: 'SettingsPanel',
@@ -157,6 +159,7 @@ export default {
     SettingsTime: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsTime.vue'),
     SettingsOptions: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsOptions.vue'),
     Divider: () => import(/* webpackMode: "eager" */ '@/components/base/divider.vue'),
+    TabHeader,
     CloseIcon: XIcon,
     // ResetIcon: RefreshAlertIcon,
     TabIconGeneral: AdjustmentsIcon,
@@ -230,73 +233,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
-section.settings-panel {
-  & input {
-    @apply rounded-md border-gray-300 bg-gray-100 focus:bg-white focus:ring-primary;
-    @apply dark:bg-gray-800 dark:focus:bg-gray-600 dark:text-gray-100 dark:border-gray-700;
-    @apply transition-colors;
-  }
-
-  & input[type="checkbox"] {
-    @apply text-primary;
-
-    &:hover {
-      @apply dark:bg-gray-500 bg-gray-200;
-    }
-
-    &:checked {
-      @apply dark:bg-primary dark:border-primary;
-
-      &:hover {
-        background-color: scale-color(#3498db, $lightness: 30%);
-      }
-    }
-  }
-}
-</style>
-
 <style lang="scss" scoped>
-section.settings-panel {
-  @apply h-full fixed w-2/5 p-0 md:p-4;
-
-  z-index: 1001;
-  min-width: calc(min(600px, 100%));
-
-  div.settings-wrapper {
-    @apply flex flex-col h-full rounded-none md:rounded-lg overflow-hidden shadow-lg;
-    @apply bg-white dark:bg-gray-900 dark:text-gray-50;
-
-    div.settings-panel-main {
-      @apply px-4 flex-grow overflow-y-auto py-2;
-    }
-  }
-}
-
-div.settings-panel-menubar {
-  @apply flex-none h-20 flex flex-row p-4;
-}
-
-div.tab-header {
-  @apply flex-1 h-full bg-gray-200 p-2 cursor-pointer text-center flex flex-row space-x-1 items-center justify-center select-none rounded-lg;
-  @apply dark:bg-gray-800;
-
-  transition: border-color 0.2s ease-out;
-  box-sizing: border-box;
-
-  &.active {
-    @apply bg-primary text-white;
-  }
-
-  &:not(:first-of-type) {
-    @apply ml-1;
-  }
-
-  &:not(:last-of-type) {
-    @apply mr-1;
-  }
-}
-
 div.settings-tab {
   @apply grid grid-cols-1 gap-2;
 }
@@ -317,51 +254,5 @@ div.settings-tab {
 .tab-transition-leave-to {
   transform: translateY(-10px);
   opacity: 0;
-}
-
-div.reset-button {
-  @apply w-full p-4 text-black bg-gray-200 text-lg cursor-pointer transition-colors rounded-lg relative;
-  @apply dark:bg-gray-700 dark:text-gray-50;
-
-  &:hover:not(.active) {
-    @apply bg-red-500 text-white;
-    @apply dark:bg-red-700;
-  }
-
-  &:active {
-    @apply bg-red-600 text-white;
-    @apply dark:bg-red-800;
-  }
-
-  &.active {
-    @apply bg-gray-200 text-black dark:bg-gray-600 dark:text-white cursor-default;
-  }
-
-  & .reset-subbutton {
-    @apply m-2 rounded-lg flex justify-center items-center cursor-pointer;
-
-    &:first-child {
-      @apply mr-1 bg-red-600 hover:bg-red-700 text-white;
-    }
-
-    &:last-child {
-      @apply ml-1 bg-white hover:bg-gray-100 text-black;
-    }
-  }
-}
-
-// ===== CLOSE BUTTON =====
-.button-close {
-  @apply p-2 rounded-full -mt-1 -mr-1;
-
-  transition: background-color 200ms ease-out;
-
-  &:hover {
-    @apply bg-gray-200;
-  }
-
-  &:active {
-    @apply bg-gray-400;
-  }
 }
 </style>
