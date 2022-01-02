@@ -1,5 +1,5 @@
-<template>
-  <div class="w-full h-full fixed bg-transparent overflow-hidden z-20 transition-colors duration-300" :style="{ 'background-color': `rgba(0, 0, 0, ${opacity})` }">
+<template functional>
+  <div class="w-full h-full fixed bg-transparent overflow-hidden z-20 transition-colors duration-300" :style="{ 'background-color': `rgba(0, 0, 0, ${props.opacity})` }">
     <slot class="z-30" />
   </div>
 </template>
