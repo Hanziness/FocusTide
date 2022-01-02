@@ -185,6 +185,10 @@ export default {
       },
       description: '{brief} \n {worklength} perc munka {splength} perces rövid szünetekkel és {lplength} perces hosszú szünettel minden {lpfreq}. munkamenet után.'
     },
+    permissions: {
+      audio: 'Hang',
+      notifications: 'Értesítések'
+    },
     theme: {
       _values: {
         light: 'Alapértelmezett',

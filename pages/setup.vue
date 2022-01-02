@@ -51,11 +51,11 @@
           <div class="flex flex-col space-y-1">
             <div class="">
               <input v-model="settingsToApply.permissions.audio" type="checkbox" class="w-5 h-5 rounded">
-              Hang
+              <span v-text="$i18n.t('setup.permissions.audio')" />
             </div>
             <div class="">
               <input :checked="settingsToApply.permissions.notifications && browserNotificationPermission === 'granted'" :disabled="browserNotificationPermission && browserNotificationPermission !== 'granted'" type="checkbox" class="w-5 h-5 rounded" @change="setNotificationPermissions">
-              Értesítések
+              <span v-text="$i18n.t('setup.permissions.notifications')" />
             </div>
           </div>
         </SetupStep>

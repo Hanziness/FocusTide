@@ -189,6 +189,10 @@ export default {
       },
       description: '{brief} \n {worklength} minutes of work with {splength} minutes short and {lplength} minutes long breaks after every {lpfreq} work sessions.'
     },
+    permissions: {
+      audio: 'Audio',
+      notifications: 'Notifications'
+    },
     theme: {
       _values: {
         light: 'Default',
