@@ -1,6 +1,21 @@
 export default {
   index: {
     app_description: 'Free Pomodoro timer right in your browser',
+    alt: {
+      img: {
+        screenshot: 'Screenshot of a timer running in AnotherPomodoro',
+        icon: 'The app\'s icon'
+      },
+      links: {
+        source: 'View on GitHub',
+        support: 'Buy the author a coffee',
+        share: {
+          twitter: 'Follow the app on Twitter',
+          facebook: 'Share the app on Facebook',
+          reddit: 'Share the app on Reddit'
+        }
+      }
+    },
     launch: 'Launch',
     cta: {
       quickstart: 'Quickstart',

@@ -30,7 +30,7 @@
               <div class="flex flex-row items-start mr-16">
                 <!-- App icon -->
                 <div class="mr-4 mt-1 min-w-max min-h-max">
-                  <nuxt-img src="/favicon.png" width="68" height="68" class="bg-red-200 rounded-lg p-2" />
+                  <nuxt-img :alt="$i18n.t('index.alt.img.icon')" src="/favicon.png" width="68" height="68" class="bg-red-200 rounded-lg p-2" />
                 </div>
                 <!-- App name and slogan -->
                 <div class="flex flex-col">
@@ -56,6 +56,7 @@
         <template #right>
           <div :class="['transition-all duration-1000 hover:duration-300 overflow-hidden order-first xl:order-last mb-12 xl:mb-0 rounded-lg shadow-red-300/60 shadow-lg hover:-translate-y-1 hover:shadow-xl hover:shadow-red-300/70 w-full max-w-2xl xl:max-w-max self-center', { 'opacity-0 translate-x-4': !loading.screenshot }]">
             <nuxt-img
+              :alt="$i18n.t('index.alt.img.screenshot')"
               class=""
               width="1600"
               height="900"
@@ -68,11 +69,13 @@
           </div>
         </template>
       </Columns>
+
       <template #after>
         <div class="flex-grow xl:absolute xl:bottom-4 flex flex-col items-center justify-end">
           <!-- Source code, support and social buttons -->
           <div class="flex flex-row space-x-2 mb-4">
             <SupportButton
+              :aria-label="$i18n.t('index.alt.links.source')"
               icon-size="28"
               type="github"
               :show-text="false"
@@ -81,6 +84,7 @@
               utm-tags="?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home"
             />
             <SupportButton
+              :aria-label="$i18n.t('index.alt.links.support')"
               icon-size="28"
               type="support"
               :show-text="false"
@@ -173,13 +177,13 @@
       <!-- Share links -->
       <div class="my-2" v-text="$i18n.t('settings.about.share')" />
       <div class="flex flex-row items-center space-x-2 text-sm">
-        <a href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home" class="rounded-full w-12 h-12 bg-[#1da1f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+        <a :aria-label="$i18n.t('index.alt.links.share.twitter')" href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home" class="rounded-full w-12 h-12 bg-[#1da1f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
           <AboutTwitter size="24" />
         </a>
-        <a href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#1877f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+        <a :aria-label="$i18n.t('index.alt.links.share.facebook')" href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#1877f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
           <AboutFacebook size="24" class="translate-x-[-1px]" />
         </a>
-        <a href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#ff4500] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+        <a :aria-label="$i18n.t('index.alt.links.share.reddit')" href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#ff4500] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
           <AboutReddit size="24" />
         </a>
       </div>
