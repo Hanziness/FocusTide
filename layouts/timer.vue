@@ -1,6 +1,6 @@
 <template>
   <Transition name="loading" mode="in-out" appear duration="1000">
-    <LoadingIndicator v-if="loading" />
+    <SplashScreen v-if="loading" />
     <div v-else :class="['w-screen, h-screen relative', { 'dark': darkMode }]">
       <nuxt />
     </div>
@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import LoadingIndicator from '@/components/timer/loading.vue'
+import SplashScreen from '~/components/timer/splashScreen.vue'
 
 export default {
   name: 'LayoutTimer',
 
   components: {
-    LoadingIndicator
+    SplashScreen
   },
 
   data () {

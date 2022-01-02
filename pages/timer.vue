@@ -71,7 +71,7 @@ export default {
     NotificationController: () => import(/* webpackChunkName: "ticker", webpackMode: "eager" */ '@/components/notifications/notificationController.vue'),
     TimerProgress: () => import(/* webpackChunkName: "progress", webpackPrefetch: true */ '@/components/timer/timerProgress.vue'),
     TimerSwitch: () => import(/* webpackChunkName: "timerSwitch", webpackPrefetch: true */ '@/components/timer/display/_timerSwitch.vue'),
-    TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPrefetch: true */ '@/components/timer/controls/basic.vue'),
+    TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPrefetch: true */ '~/components/timer/controls/contolsBasic.vue'),
     SettingsPanel: () => import(/* webpackChunkName: "settings" */ '@/components/settings/settingsPanel.vue'),
     UiButton: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/button.vue'),
     UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/overlay.vue'),

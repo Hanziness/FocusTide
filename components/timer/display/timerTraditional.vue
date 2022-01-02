@@ -1,7 +1,5 @@
 <template>
-  <div :class="['timer-traditional timer-display', { 'active': running }]">
-    {{ $dayjs.formatMs(timeOriginal - timeElapsed, {}) }}
-  </div>
+  <div :class="['timer-traditional timer-display', { 'active': running }]" v-text="$dayjs.formatMs(timeOriginal - timeElapsed, {})" />
 </template>
 
 <script>
