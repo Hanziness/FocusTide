@@ -14,7 +14,7 @@
 <script>
 export default {
   components: {
-    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/settings/baseSettingsItem.vue'),
+    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '~/components/settings/resolvedSettingsItem.vue'),
     InputText: () => import(/* webpackChunkName: "uibase" */ '@/components/base/inputText.vue')
   },
 

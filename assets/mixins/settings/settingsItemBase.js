@@ -1,8 +1,4 @@
 export default {
-  // components: {
-  //   BaseSettingsItem: () => import('@/components/settings/baseSettingsItem.vue')
-  // },
-
   data () {
     return {
       inputData: '',

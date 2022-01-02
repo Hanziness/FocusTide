@@ -17,7 +17,7 @@ import settingsInputMixin from '@/assets/mixins/settings/settingsItemBase'
 
 export default {
   components: {
-    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/settings/baseSettingsItem.vue')
+    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '~/components/settings/resolvedSettingsItem.vue')
   },
 
   mixins: [settingsInputMixin],
