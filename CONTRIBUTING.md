@@ -14,6 +14,24 @@ The app's most up-to-date development version is on the `develop` branch. **You 
 
 The `preview` branch is for testing production updates early, it is rarely updated -- sometimes the `develop` branch is merged into it before it is merged into `master`.
 
+## Where to discuss what
+
+There are two places to have a chat with people about this software: [the discussions page](https://github.com/Hanziness/AnotherPomodoro/discussions) and [the issues page](https://github.com/Hanziness/AnotherPomodoro/issues).
+
+### Issues
+
+**Only specific problems or discussed new features and improvements should be posted here.**
+
+*If you experienced a problem with the application, **you should report it here with all the necessary details**.*
+
+If you can help solve an issue or you can provide more information about an issue, you can comment it here.
+
+### Discussions
+
+Generally everything that involves questions or feature requests and ideas (so anything that does not necessarily fit into the issues page) can be posted here.
+
+*If you want to see a feature implemented, it's best to post it here.*
+
 ### How to run the app
 
 During development, you'll be running the app using `yarn dev`. This starts a live development server that is exposed at `http://localhost:3000`.
@@ -49,7 +67,9 @@ If you strongly believe that something is not working as intended, please make s
 4. If not, then collect all the necessary steps to reproduce the issue (eg. "1. open the app in private browsing, 2. click here, 3. press this button, 4. the app crashed")
 5. Submit a **detailed** (please!) report of what went wrong (most importantly: what did you expect to happen, what happened instead, how it happened, what was the error (check the console - `CTRL + SHIFT + i`)).
 
-Again, it is most critical that you try to collect everything that could help us diagnose the issue. Please see below.
+Again, it is most critical that you try to collect everything that could help us diagnose the issue.
+
+Please avoid submitting *mega-issues*: if you have found multiple bugs, submit separate issues for them. If you're unsure, you can always [open a discussion](https://github.com/Hanziness/AnotherPomodoro/discussions) or ask if your problem is relevant to an already open issue (in the issue's comment section).
 
 ### b) Feature requests, ideas
 
