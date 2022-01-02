@@ -57,6 +57,8 @@
           <div :class="['transition-all duration-1000 hover:duration-300 overflow-hidden order-first xl:order-last mb-12 xl:mb-0 rounded-lg shadow-red-300/60 shadow-lg hover:-translate-y-1 hover:shadow-xl hover:shadow-red-300/70 w-full max-w-2xl xl:max-w-max self-center', { 'opacity-0 translate-x-4': !loading.screenshot }]">
             <nuxt-img
               class=""
+              width="1600"
+              height="900"
               src="/assets/img/screenshots/720p/Timer_Default_2x.png"
               format="jpg"
               sizes="sm:760px xl:1600px"
