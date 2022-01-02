@@ -7,7 +7,7 @@
       :aria-disabled="!resetEnabled"
       @click="reset"
     >
-      <icon-stop class="transition-opacity duration-300" :class="[{ 'opacity-40': !resetEnabled }]" size="24" :title="$i18n.t('controls.stop')" />
+      <IconStop class="transition-opacity duration-300" :class="[{ 'opacity-40': !resetEnabled }]" size="24" :title="$i18n.t('controls.stop')" />
     </div>
 
     <!-- Play/pause -->
@@ -20,14 +20,14 @@
                 '--percentage': ((progressPercentage * 100) * 0.85 + 10) + '%' }"
       @click="playPause"
     >
-      <transition name="transition-fade" mode="out-in" tag="div" class="">
+      <Transition name="transition-fade" mode="out-in" tag="div" class="">
         <div v-if="$store.getters['schedule/getCurrentTimerState'] !== 1" :key="1" class="relative">
-          <icon-play size="64" stroke-width="1" :title="$i18n.t('controls.start')" />
+          <IconPlay size="64" stroke-width="1" :title="$i18n.t('controls.start')" />
         </div>
         <div v-else :key="2" class="relative">
-          <icon-pause size="64" stroke-width="1" :title="$i18n.t('controls.pause')" />
+          <IconPause size="64" stroke-width="1" :title="$i18n.t('controls.pause')" />
         </div>
-      </transition>
+      </Transition>
     </div>
 
     <!-- Advance -->
@@ -38,7 +38,7 @@
       :aria-disabled="!advanceEnabled"
       @click="advance"
     >
-      <icon-skip-next class="transition-opacity duration-300" :class="[{ 'opacity-40': !advanceEnabled }]" size="24" />
+      <IconSkipNext class="transition-opacity duration-300" :class="[{ 'opacity-40': !advanceEnabled }]" size="24" />
     </div>
   </div>
 </template>

@@ -1,17 +1,17 @@
 <template>
   <div class="rounded-lg bg-gray-800 z-10 shadow-lg select-none overflow-hidden">
-    <transition-group
+    <TransitionGroup
       name="schedule-transition"
       tag="div"
       class="p-4 flex flex-grow-0 flex-row"
     >
-      <schedule-item
+      <ScheduleItem
         v-for="(item, i) in $store.getters['schedule/getSchedule']"
         :key="item.id"
         :data="item"
         :active="i === 0"
       />
-    </transition-group>
+    </TransitionGroup>
     <div v-if="$store.state.settings.schedule.visibility.showSectionType" class="bg-gray-700 text-center text-gray-50 py-2">
       {{ $i18n.t('section.' + $store.getters['schedule/getCurrentItem'].type).toLowerCase() }}
     </div>

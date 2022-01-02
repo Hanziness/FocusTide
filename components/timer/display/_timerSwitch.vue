@@ -1,11 +1,11 @@
 <template>
   <div class="w-full h-full relative flex flex-col justify-center text-center text-black dark:text-gray-100 transition-opacity duration-500 select-none" :class="[{ 'opacity-70': !running, 'opacity-100': running }]">
-    <transition name="timer-switch" mode="out-in">
-      <complete-marker v-if="$store.getters['schedule/getCurrentTimerState'] === 3" :key="'complete'" />
-      <timer-traditional v-else-if="timerWidget === 'traditional'" :key="'traditional'" v-bind="timerInfo" />
-      <timer-approximate v-else-if="timerWidget === 'approximate'" :key="'approximate'" v-bind="timerInfo" />
-      <timer-percentage v-else-if="timerWidget === 'percentage'" :key="'percentage'" v-bind="timerInfo" />
-    </transition>
+    <Transition name="timer-switch" mode="out-in">
+      <CompleteMarker v-if="$store.getters['schedule/getCurrentTimerState'] === 3" :key="'complete'" />
+      <TimerTraditional v-else-if="timerWidget === 'traditional'" :key="'traditional'" v-bind="timerInfo" />
+      <TimerApproximate v-else-if="timerWidget === 'approximate'" :key="'approximate'" v-bind="timerInfo" />
+      <TimerPercentage v-else-if="timerWidget === 'percentage'" :key="'percentage'" v-bind="timerInfo" />
+    </Transition>
   </div>
 </template>
 

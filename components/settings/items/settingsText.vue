@@ -1,8 +1,8 @@
 <template>
   <!-- FIXME try to make sure that the field can be edited even if it results in an errorneous state -->
-  <base-settings-item :settings-key="settingsKey" :disabled="disabled">
+  <BaseSettingsItem :settings-key="settingsKey" :disabled="disabled">
     <template #content-action="{ settingsValue, update, error }">
-      <input-text
+      <InputText
         :value="settingsValue"
         :min="min"
         :max="max"
@@ -12,7 +12,7 @@
         @error="error($event.type, $event.additionalInfo)"
       />
     </template>
-  </base-settings-item>
+  </BaseSettingsItem>
 </template>
 
 <script>

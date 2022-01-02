@@ -4,36 +4,36 @@
     <div class="absolute w-full h-full dark:bg-gray-900" />
 
     <!-- Settings button -->
-    <ui-button subtle :class="['absolute', { 'pointer-events-none': preview }]" style="top: 0.5rem; right: 0.5rem; z-index: 10;" @click="showSettings = true">
+    <UiButton subtle :class="['absolute', { 'pointer-events-none': preview }]" style="top: 0.5rem; right: 0.5rem; z-index: 10;" @click="showSettings = true">
       <client-only>
-        <cog-icon class="dark:text-gray-200" :title="$i18n.t('settings.heading')" />
+        <CogIcon class="dark:text-gray-200" :title="$i18n.t('settings.heading')" />
       </client-only>
-    </ui-button>
+    </UiButton>
     <!-- Settings panel -->
     <div>
-      <transition name="transition-fade">
-        <ui-overlay v-if="showSettings" />
-      </transition>
-      <transition name="transition-slidein">
-        <settings-panel v-if="showSettings" v-model="showSettings" class="right-0" />
-      </transition>
+      <Transition name="transition-fade">
+        <UiOverlay v-if="showSettings" />
+      </Transition>
+      <Transition name="transition-slidein">
+        <SettingsPanel v-if="showSettings" v-model="showSettings" class="right-0" />
+      </Transition>
     </div>
-    <notification-controller>
-      <ticker slot-scope="{handleCompletion}" @complete="handleCompletion">
+    <NotificationController>
+      <Ticker slot-scope="{handleCompletion}" @complete="handleCompletion">
         <div
           slot-scope="{ timerState, timeElapsed, timeOriginal }"
           class="relative w-full h-full flex justify-center"
         >
-          <transition name="schedule-transition">
-            <schedule-display
+          <Transition name="schedule-transition">
+            <ScheduleDisplay
               v-if="$store.state.settings.schedule.visibility.enabled"
               class="absolute ml-auto mr-auto"
               style="top: 2rem;"
             />
-          </transition>
+          </Transition>
 
-          <transition-group name="progress-transition" tag="div" :duration="1000">
-            <timer-progress
+          <TransitionGroup name="progress-transition" tag="div" :duration="1000">
+            <TimerProgress
               v-for="(scheduleItem, index) in progressBarSchedules"
               :key="scheduleItem.id"
               :colour="$store.getters['schedule/getScheduleColour'][index]"
@@ -41,43 +41,46 @@
               :time-elapsed="timeElapsed"
               :time-original="timeOriginal"
             />
-          </transition-group>
+          </TransitionGroup>
 
-          <timer-switch
+          <TimerSwitch
             :time-elapsed="timeElapsed"
             :time-original="timeOriginal"
             :timer-state="timerState"
             :timer-widget="$store.state.settings.currentTimer"
             class="grid absolute place-items-center"
           />
-          <timer-controls :class="['absolute', { 'pointer-events-none': preview }]" style="bottom: 2rem;" :can-use-keyboard="!preview && !showSettings" />
-          <todo-list v-show="$store.state.settings.tasks.enabled" class="absolute z-10" style="right: 24px; bottom: 24px;" :editing="[0].includes($store.state.schedule.timerState)" />
+          <TimerControls :class="['absolute', { 'pointer-events-none': preview }]" style="bottom: 2rem;" :can-use-keyboard="!preview && !showSettings" />
+          <TodoList v-show="$store.state.settings.tasks.enabled" class="absolute z-10" style="right: 24px; bottom: 24px;" :editing="[0].includes($store.state.schedule.timerState)" />
         </div>
-      </ticker>
-    </notification-controller>
+      </Ticker>
+    </NotificationController>
   </section>
 </template>
 
 <script>
 import { SettingsIcon } from 'vue-tabler-icons'
 
+// Static imports:
+
 export default {
   name: 'PageTimer',
   components: {
     Ticker: () => import(/* webpackChunkName: "ticker", webpackMode: "eager" */ '@/components/ticker.vue'),
     ScheduleDisplay: () => import(/* webpackChunkName: "schedule", webpackPrefetch: true */ '@/components/schedule/scheduleDisplay.vue'),
-    NotificationController: () => import(/* webpackChunkName: "notificationController", webpackMode: "eager" */ '@/components/notifications/notificationController.vue'),
+    NotificationController: () => import(/* webpackChunkName: "ticker", webpackMode: "eager" */ '@/components/notifications/notificationController.vue'),
     TimerProgress: () => import(/* webpackChunkName: "progress", webpackPrefetch: true */ '@/components/timer/timerProgress.vue'),
     TimerSwitch: () => import(/* webpackChunkName: "timerSwitch", webpackPrefetch: true */ '@/components/timer/display/_timerSwitch.vue'),
-    // TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPrefetch: true */ '@/components/timer/timerControls.vue'),
     TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPrefetch: true */ '@/components/timer/controls/basic.vue'),
-    SettingsPanel: () => import(/* webpackChunkName: "settings", webpackMode: "eager" */ '@/components/settings/settingsPanel.vue'),
+    SettingsPanel: () => import(/* webpackChunkName: "settings" */ '@/components/settings/settingsPanel.vue'),
     UiButton: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/button.vue'),
     UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/overlay.vue'),
-    CogIcon: SettingsIcon,
-    TodoList: () => import('@/components/todoList/main.vue')
+    TodoList: () => import(/* webpackChunkName: "todo" */ '@/components/todoList/main.vue'),
+    CogIcon: SettingsIcon
   },
+
   layout: 'timer',
+
   props: {
     preview: {
       type: Boolean,
@@ -116,6 +119,7 @@ export default {
       ]
     }
   },
+
   computed: {
     currentColour () {
       const currentState = this.$store.state.events.schedule[0] ? this.$store.state.events.schedule[0]._type : null
@@ -151,22 +155,10 @@ export default {
     }
   },
 
-  beforeCreate () {
-    // this.$store.commit('settings/applyPreset', 'debug')
-    // this.$store.dispatch('events/checkSchedule')
-    // this.$store.dispatch('timer/setNewTimer', this.$store.getters['events/getSchedule'][0]._length)
-  },
-
   mounted () {
-    // this.$store.dispatch('timer/initDefaultSubscribeFunctions')
-
-    const thisRef = this
-    document.addEventListener('visibilitychange', function () {
-      thisRef.$store.commit('settings/registerNewHidden', document.hidden)
-      if (!document.hidden) {
-        // tick if needed
-        // thisRef.$store.dispatch('timer/scheduleNextTick', {}) // tick the timer if document is now visible
-      }
+    // Add visibility change listener for adaptive ticking
+    document.addEventListener('visibilitychange', () => {
+      this.$store.commit('settings/registerNewHidden', document.hidden)
     })
   }
 }

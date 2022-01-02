@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-flow-row md:grid-flow-col md:auto-cols-fr select-option-group gap-3">
-    <option-control
+    <OptionControl
       v-for="(item, key) in values"
       :key="key"
       class="flex-grow"

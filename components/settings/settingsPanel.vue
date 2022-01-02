@@ -3,87 +3,88 @@
     <div class="flex flex-col h-full rounded-none md:rounded-lg overflow-hidden shadow-lg bg-white dark:bg-gray-900 dark:text-gray-50">
       <h1 class="px-4 text-xl mt-4 mb-2 uppercase font-bold">
         <span>{{ $i18n.t('settings.heading') }}</span>
-        <ui-button subtle class="float-right -mt-2 -mr-2" @click="processedValue = false">
-          <close-icon :title="$i18n.t('settings.buttons.close')" />
-        </ui-button>
+        <UiButton subtle class="float-right -mt-2 -mr-2" @click="processedValue = false">
+          <CloseIcon :title="$i18n.t('settings.buttons.close')" />
+        </UiButton>
       </h1>
       <div class="px-4 flex-grow overflow-y-auto py-2">
         <div class="w-full">
-          <transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
+          <Transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
             <div v-if="activeTab === 1" :key="1" class="settings-tab">
-              <settings-options
+              <SettingsOptions
                 :settings-key="['lang']"
                 :values="{'en': 'en', 'hu': 'hu'}"
                 :custom-value="$store.state.settings.lang ? $store.state.settings.lang : $i18n.locale"
               />
-              <divider />
-              <settings-check :settings-key="['adaptiveTicking', 'enabled']" />
-              <settings-check :settings-key="['timerControls', 'enableKeyboardShortcuts']" />
-              <divider />
-              <settings-check :settings-key="['permissions', 'audio']" />
-              <settings-check
+              <Divider />
+              <SettingsCheck :settings-key="['adaptiveTicking', 'enabled']" />
+              <SettingsCheck :settings-key="['timerControls', 'enableKeyboardShortcuts']" />
+              <Divider />
+              <SettingsCheck :settings-key="['permissions', 'audio']" />
+              <SettingsCheck
                 :settings-key="['permissions', 'notifications']"
                 :set-value-on-change="false"
                 :disabled="$store.state.notifications.enabled === false"
                 :custom-set-function="changeNotificationSettings"
               />
 
-              <divider />
+              <Divider />
 
-              <settings-check :settings-key="['tasks', 'enabled']" />
-              <settings-text
+              <SettingsCheck :settings-key="['tasks', 'enabled']" />
+              <SettingsText
                 :settings-key="['tasks', 'maxActiveTasks']"
                 :min="1"
                 numeric
                 :disabled="!$store.state.settings.tasks.enabled"
               />
-              <settings-check :settings-key="['tasks', 'removeCompletedTasks']" :disabled="!$store.state.settings.tasks.enabled" />
+              <SettingsCheck :settings-key="['tasks', 'removeCompletedTasks']" :disabled="!$store.state.settings.tasks.enabled" />
 
-              <divider />
+              <Divider />
 
-              <settings-check :settings-key="['reset']" />
+              <SettingsCheck :settings-key="['reset']" />
             </div>
 
-            <div v-if="activeTab === 2" :key="2" class="settings-tab">
-              <settings-text :settings-key="['schedule', 'longPauseInterval']" :min="1" numeric />
-              <divider />
+            <div v-else-if="activeTab === 2" :key="2" class="settings-tab">
+              <SettingsText :settings-key="['schedule', 'longPauseInterval']" :min="1" numeric />
+              <Divider />
 
-              <settings-options
+              <SettingsOptions
                 :settings-key="['schedule', 'lengths']"
                 :custom-value="$store.getters['settings/getActiveSchedulePreset']"
                 :values="timerPresets"
                 :set-value-on-change="false"
                 :custom-set-function="(v) => { $store.commit('settings/applyPreset', v) }"
               />
-              <settings-time :settings-key="['schedule', 'lengths', 'work']" :min-ms="5000" />
-              <settings-time :settings-key="['schedule', 'lengths', 'shortpause']" :min-ms="5000" />
-              <settings-time :settings-key="['schedule', 'lengths', 'longpause']" :min-ms="5000" />
+              <SettingsTime :settings-key="['schedule', 'lengths', 'work']" :min-ms="5000" />
+              <SettingsTime :settings-key="['schedule', 'lengths', 'shortpause']" :min-ms="5000" />
+              <SettingsTime :settings-key="['schedule', 'lengths', 'longpause']" :min-ms="5000" />
               <div class="rounded-lg ring-inset ring ring-blue-400 bg-blue-100 dark:bg-gray-700 dark:text-gray-100 px-3 py-4 flex flex-row items-center space-x-2">
                 <InfoIcon />
                 <span v-text="$i18n.t('settings.scheduleMinTime')" />
               </div>
             </div>
 
-            <div v-if="activeTab === 3" :key="3" class="settings-tab">
-              <settings-check :settings-key="['visuals', 'darkMode']" />
-              <divider />
-              <settings-options :settings-key="['currentTimer']" :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
-              <divider />
-              <settings-check :settings-key="['schedule', 'visibility', 'enabled']" />
-              <settings-check :settings-key="['schedule', 'visibility', 'showSectionType']" :disabled="!$store.state.settings.schedule.visibility.enabled" />
-              <settings-text
+            <div v-else-if="activeTab === 3" :key="3" class="settings-tab">
+              <SettingsCheck :settings-key="['visuals', 'darkMode']" />
+              <Divider />
+              <SettingsOptions :settings-key="['currentTimer']" :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
+              <Divider />
+              <SettingsCheck :settings-key="['schedule', 'visibility', 'enabled']" />
+              <SettingsCheck :settings-key="['schedule', 'visibility', 'showSectionType']" :disabled="!$store.state.settings.schedule.visibility.enabled" />
+              <SettingsText
                 :settings-key="['schedule', 'numScheduleEntries']"
                 :min="3"
                 :max="10"
                 :disabled="!$store.state.settings.schedule.visibility.enabled"
                 numeric
               />
-              <divider />
-              <settings-check :settings-key="['performance', 'showProgressBar']" />
-              <settings-check :settings-key="['pageTitle', 'useTickEmoji']" />
+              <Divider />
+              <SettingsCheck :settings-key="['performance', 'showProgressBar']" />
+              <SettingsCheck :settings-key="['pageTitle', 'useTickEmoji']" />
               <!-- TODO Audio volume control -->
             </div>
-            <div v-if="activeTab === 4" :key="4" class="settings-tab">
+
+            <div v-else-if="activeTab === 4" :key="4" class="settings-tab">
               <div class="flex flex-col items-center">
                 <img src="/favicon.png" width="64" height="64" class="inline-block bg-red-200 rounded-lg p-2 mb-1">
                 <div>
@@ -121,7 +122,7 @@
                 </div>
               </div>
             </div>
-          </transition>
+          </Transition>
         </div>
       </div>
 

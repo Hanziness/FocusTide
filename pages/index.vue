@@ -3,7 +3,7 @@
     <div ref="top" class="invisible" />
 
     <!-- FAB -->
-    <transition name="fab-transition">
+    <Transition name="fab-transition">
       <nuxt-link v-show="showFAB" v-slot="{ navigate }" to="/timer" custom>
         <div class="transition absolute w-full bottom-0 rounded-t-lg xl:w-auto xl:right-6 xl:bottom-4 z-10 xl:rounded-lg text-xl shadow-md px-4 py-3 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 text-black font-bold uppercase cursor-pointer flex flex-row space-x-2 items-center border border-neutral-100" @click="navigate">
           <nuxt-img
@@ -17,7 +17,7 @@
           <span v-text="$i18n.t('index.launch')" />
         </div>
       </nuxt-link>
-    </transition>
+    </Transition>
 
     <!-- Section 1: intro -->
 
@@ -25,7 +25,7 @@
       <Columns class="flex-col xl:flex-row xl:space-x-16 px-4 xl:px-24 pt-8 xl:pt-0">
         <template #left>
           <!-- App title and CTAs -->
-          <transition name="main-appear" appear>
+          <Transition name="main-appear" appear>
             <div v-show="loading.mainText" class="flex flex-col justify-center">
               <div class="flex flex-row items-start mr-16">
                 <!-- App icon -->
@@ -50,7 +50,7 @@
                 </nuxt-link>
               </div>
             </div>
-          </transition>
+          </Transition>
         </template>
         <!-- App screenshot -->
         <template #right>

@@ -1,14 +1,14 @@
 <template>
-  <base-settings-item :settings-key="settingsKey" :disabled="disabled">
+  <BaseSettingsItem :settings-key="settingsKey" :disabled="disabled">
     <template #content-action="{ settingsValue, update, error }">
-      <input-text
+      <InputText
         :value="msToTimeStr(settingsValue)"
         :custom-validators="{ 'time_format': timeRule, 'min_time': minTimeRule }"
         @input="update(timeStrToMs($event))"
         @error="error($event.type, $event.additionalInfo)"
       />
     </template>
-  </base-settings-item>
+  </BaseSettingsItem>
 </template>
 
 <script>
