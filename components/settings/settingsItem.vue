@@ -12,7 +12,7 @@
 <script>
 export default {
   components: {
-    baseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/settings/baseSettingsItem.vue')
+    baseSettingsItem: () => import(/* webpackMode: "eager" */ '~/components/settings/resolvedSettingsItem.vue')
   },
 
   props: {

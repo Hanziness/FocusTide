@@ -38,7 +38,7 @@ import settingsInputMixin from '@/assets/mixins/settings/settingsItemBase'
 export default {
   components: {
     SettingsResolver: () => import(/* webpackMode: "eager" */ '@/components/settings/renderlessSettingsResolver.vue'),
-    BaseSettingsItemBare: () => import(/* webpackMode: "eager" */ '@/components/settings/baseSettingsItemBare.vue')
+    BaseSettingsItemBare: () => import(/* webpackMode: "eager" */ '~/components/settings/baseSettingsItem.vue')
   },
 
   mixins: [settingsInputMixin],
