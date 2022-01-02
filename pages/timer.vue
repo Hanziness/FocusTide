@@ -100,7 +100,8 @@ export default {
       title: `(${this.remainingTimeString}) ${this.pageTitle}`,
       meta: [{
         hid: 'description',
-        content: 'Jumpstart your Pomodoro sessions with the timer of AnotherPomodoro.'
+        name: 'description',
+        content: 'Jumpstart your Pomodoro sessions AnotherPomodoro.'
       }],
       link: [
         {
