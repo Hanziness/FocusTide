@@ -24,11 +24,15 @@
     "dayjs": "^1.8.32",
     "nuxt-edge": "^2.16.0-27349935.777a4b7f",
     "sass-loader": "^10.0.4",
+    "vue": "^2.6.14",
     "vue-native-notification": "^1.1.1",
+    "vue-server-renderer": "^2.6.14",
     "vue-tabler-icons": "^1.0",
+    "vue-template-compiler": "^2.6.14",
     "vuelidate": "^0.7.5",
     "vuex": "^3.6.2",
-    "vuex-persistedstate": "^3.0.0"
+    "vuex-persistedstate": "^3.0.0",
+    "webpack": "4"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",
@@ -42,7 +46,6 @@
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@tailwindcss/forms": "^0.4.0-alpha.2",
     "autoprefixer": "^10.4.1",
-    "consola": "^2.15.3",
     "core-js": "3",
     "eslint": "^8.6.0",
     "eslint-plugin-nuxt": "^3.1.0",
