@@ -1,18 +1,18 @@
 <template>
-  <div class="timer-control-panel-basic text-gray-900 dark:text-gray-100">
+  <div class="p-2 bg-transparent flex flex-row items-center w-max z-10 mb-4 text-gray-900 dark:text-gray-100">
+    <!-- Reset -->
     <div
-      class="control-button text-lg z-10 lower-z prev"
-      :class="[{ 'disabled': $store.getters['schedule/getCurrentTimerState'] === 0 }]"
-      :aria-disabled="$store.getters['schedule/getCurrentTimerState'] === 0"
+      class="dark:bg-gray-800 bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500 py-3 pr-5 pl-4 rounded-l-lg -mr-2 shadow-md cursor-pointer text-lg transition-colors -z-20"
+      :class="[{ 'pointer-events-none': !resetEnabled }]"
+      :aria-disabled="!resetEnabled"
       @click="reset"
     >
-      <div>
-        <icon-stop size="24" :title="$i18n.t('controls.stop')" />
-      </div>
+      <icon-stop class="transition-opacity duration-300" :class="[{ 'opacity-40': !resetEnabled }]" size="24" :title="$i18n.t('controls.stop')" />
     </div>
 
+    <!-- Play/pause -->
     <div
-      class="control-button -mt-6 -mb-6 rounded-full text-xl shadow-xl p-4 play-button"
+      class="dark:bg-gray-800 bg-gray-200 active:bg-gray-300 dark:active:bg-gray-700 cursor-pointer -mt-6 -mb-6 rounded-full text-xl shadow-xl p-4 play-button relative transition-colors"
       aria-label="button"
       :class="[{ 'active': $store.getters['schedule/getCurrentTimerState'] === 1 }]"
       :style="{ '--next': $store.getters['schedule/nextScheduleColour'],
@@ -30,15 +30,15 @@
       </transition>
     </div>
 
+    <!-- Advance -->
     <div
-      class="control-button text-lg lower-z next"
-      :class="[{ 'disabled': $store.getters['schedule/getCurrentTimerState'] === 1 }]"
-      :aria-disabled="$store.getters['schedule/getCurrentTimerState'] === 1"
+      role="button"
+      class="dark:bg-gray-800 bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500 py-3 pr-4 pl-5 rounded-r-lg -ml-2 shadow-md cursor-pointer text-lg transition-colors -z-20"
+      :class="[{ 'pointer-events-none': !advanceEnabled }]"
+      :aria-disabled="!advanceEnabled"
       @click="advance"
     >
-      <div>
-        <icon-skip-next size="24" :title="$i18n.t('controls.next')" />
-      </div>
+      <icon-skip-next class="transition-opacity duration-300" :class="[{ 'opacity-40': !advanceEnabled }]" size="24" />
     </div>
   </div>
 </template>
@@ -63,6 +63,14 @@ export default {
   computed: {
     progressPercentage () {
       return this.$store.getters['schedule/getCurrentItem'].timeElapsed / this.$store.getters['schedule/getCurrentItem'].length
+    },
+
+    resetEnabled () {
+      return this.$store.getters['schedule/getCurrentTimerState'] !== 0
+    },
+
+    advanceEnabled () {
+      return this.$store.getters['schedule/getCurrentTimerState'] !== 1
     }
   },
 
@@ -96,81 +104,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div.timer-control-panel-basic {
-  @apply p-2 bg-transparent flex flex-row items-center mb-4;
-
-  width: max-content;
-  z-index: 10;
-
-  & > div.control-button:first-child {
-    @apply rounded-l-lg -mr-2;
-  }
-
-  & > div.control-button:last-child {
-    @apply rounded-r-lg -ml-2;
-  }
-
-  & > div.control-button:not(.play-button) {
-    @apply p-3 px-4 shadow-md uppercase;
-  }
-
-  & > div.control-button.prev {
-    @apply pr-5;
-  }
-
-  & > div.control-button.next {
-    @apply pl-5;
-  }
-}
-
-.lower-z {
-  z-index: -2;
-}
-
-div.control-button {
-  @apply bg-gray-200 cursor-pointer;
-  @apply dark:bg-gray-800;
-
-  transition: background-color 200ms ease-out;
-
-  &:not(.play-button):hover {
-    @apply bg-gray-300 dark:bg-gray-600;
-  }
-
-  & > * {
-    transition: opacity 300ms ease-out;
-  }
-
-  &.disabled {
-    pointer-events: none;
-
-    & > * {
-      opacity: 0.4;
-    }
-  }
-}
-
-div.play-button {
-  position: relative;
-}
-
 div.play-button::before,
 div.play-button::after {
-  @apply rounded-full;
+  @apply rounded-full absolute transition-opacity opacity-0 -z-10;
 
   content: '';
-  position: absolute;
   left: -2px;
   top: -2px;
   background: conic-gradient(var(--next) 0%, var(--next) var(--percentage), var(--old) var(--percentage), var(--old) 100%);
   width: calc(100% + 4px);
   height: calc(100% + 4px);
-  z-index: -1;
-  transition: opacity 200ms ease-out;
   animation: spinbg 1s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
   animation-fill-mode: forwards;
   animation-play-state: paused;
-  opacity: 0;
 }
 
 div.play-button::after {
