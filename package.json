@@ -45,6 +45,7 @@
     "@nuxtjs/google-fonts": "^1.0.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@tailwindcss/forms": "^0.4.0-alpha.2",
+    "@vue/runtime-dom": "^3.2.26",
     "autoprefixer": "^10.4.1",
     "core-js": "3",
     "eslint": "^8.6.0",
