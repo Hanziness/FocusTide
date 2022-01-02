@@ -1,10 +1,10 @@
 <template>
-  <transition name="loading" mode="in-out">
+  <Transition name="loading" mode="in-out" appear duration="1000">
     <LoadingIndicator v-if="loading" />
-    <div v-if="!loading" :class="['w-screen, h-screen relative', { 'dark': darkMode }]">
+    <div v-else :class="['w-screen, h-screen relative', { 'dark': darkMode }]">
       <nuxt />
     </div>
-  </transition>
+  </Transition>
 </template>
 
 <script>
@@ -12,9 +12,11 @@ import LoadingIndicator from '@/components/timer/loading.vue'
 
 export default {
   name: 'LayoutTimer',
+
   components: {
     LoadingIndicator
   },
+
   data () {
     return {
       loading: true
@@ -30,26 +32,20 @@ export default {
       return this.$store.state.loading.persist_finished
     }
   },
-  watch: {
-    updateFinished () {
-      this.$forceUpdate()
-    }
-  },
 
   mounted () {
-    if (this.updateFinished) {
-      this.$forceUpdate()
-    }
-
     // hide the spinner
-    this.loading = false
+    this.$nextTick(() => {
+      this.loading = false
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.loading-enter-active {
-  @apply transition-all duration-1000;
+.loading-enter-active,
+.loading-leave-active {
+  @apply transition-all duration-1000 ease-out;
 }
 
 .loading-enter {

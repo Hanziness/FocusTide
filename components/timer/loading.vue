@@ -1,5 +1,5 @@
-<template>
-  <div class="absolute w-full h-full overflow-hidden flex flex-col items-center justify-center bg-gray-800">
+<template functional>
+  <div class="fixed w-full h-full left-0 top-0 overflow-hidden flex flex-col items-center justify-center bg-gray-800">
     <div class="flex flex-row space-x-4">
       <div class="rounded-full w-8 h-8 bg-work flashing anim-timing" />
       <div class="rounded-full w-8 h-8 bg-shortpause flashing anim-delay-1 anim-timing" />
