@@ -26,7 +26,7 @@
         <template #left>
           <!-- App title and CTAs -->
           <Transition name="main-appear" appear>
-            <div v-show="loading.mainText" class="flex flex-col justify-center">
+            <div class="transition-all duration-1000 flex flex-col justify-center" :class="{ 'opacity-0 -translate-x-4': !loading.mainText }">
               <div class="flex flex-row items-start mr-16">
                 <!-- App icon -->
                 <div class="mr-4 mt-1 min-w-max min-h-max">
