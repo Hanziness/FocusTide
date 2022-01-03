@@ -1,17 +1,17 @@
 <template>
-  <section v-show="visible" :class="['transition-all -m-1 p-1 rounded-lg', { 'opacity-50 cursor-default pointer-events-none': disabled, 'ring ring-yellow-200 bg-yellow-100': isError }]" :disabled="disabled" :aria-disabled="disabled">
-    <div class="flex flex-row items-center" :class="[(!showDescription || !!$slots['content-main']) ? 'h-10' : 'h-12']">
+  <div v-show="visible" :class="['transition-all -m-1 p-1 rounded-lg', { 'opacity-50 cursor-default pointer-events-none': disabled, 'ring ring-yellow-200 bg-yellow-100': isError }]" :disabled="disabled" :aria-disabled="disabled">
+    <div class="flex flex-row items-center my-1">
       <div v-if="!!$slots['icon']" class="w-12 text-left">
         <slot name="icon" />
       </div>
-      <div class="flex-grow">
-        <div class="truncate">
+      <div class="flex-grow min-w-0">
+        <div class="">
           <slot name="item-title">
             {{ $i18n.t(translationKey + '._title') }}
           </slot>
         </div>
-        <div v-if="showDescription" class="text-black text-opacity-75 dark:text-gray-50 dark:text-opacity-75 text-sm truncate">
-          <slot name="item-subtitle">
+        <div v-if="showDescription" class="text-black text-opacity-75 dark:text-gray-50 dark:text-opacity-75 text-sm leading-snug">
+          <slot name="item-subtitle" class="break-words">
             {{ $i18n.t(translationKey + '._description') }}
           </slot>
         </div>
@@ -32,7 +32,7 @@
         <span v-text="errorValue" />
       </div>
     </slot>
-  </section>
+  </div>
 </template>
 
 <script>
