@@ -5,7 +5,7 @@
     <!-- FAB -->
     <Transition name="fab-transition">
       <nuxt-link v-show="showFAB" v-slot="{ navigate }" to="/timer" custom>
-        <div class="transition absolute w-full bottom-0 rounded-t-lg xl:w-auto xl:right-6 xl:bottom-4 z-10 xl:rounded-lg text-xl shadow-md px-4 py-3 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 text-black font-bold uppercase cursor-pointer flex flex-row space-x-2 items-center border border-neutral-100" @click="navigate">
+        <div role="button" class="transition absolute w-full bottom-0 rounded-t-lg xl:w-auto xl:right-6 xl:bottom-4 z-10 xl:rounded-lg text-xl shadow-md px-4 py-3 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 text-black font-bold uppercase cursor-pointer flex flex-row space-x-2 items-center border border-neutral-100" @click="navigate">
           <nuxt-img
             src="/favicon.png"
             width="32"
@@ -43,10 +43,10 @@
               <!-- CTAs -->
               <div class="grid grid-flow-row md:grid-flow-col grid-cols-1 md:grid-cols-2 mt-6 gap-2">
                 <nuxt-link v-slot="{ navigate }" to="/timer" custom>
-                  <div class="flex-grow text-center px-6 py-4 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 shadow-lg text-2xl rounded-lg font-bold uppercase cursor-pointer transition-all" role="button" @click="navigate" v-text="$i18n.t('index.cta.quickstart')" />
+                  <div class="flex-grow text-center px-6 py-4 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 shadow-lg text-2xl rounded-lg font-bold uppercase cursor-pointer transition-all" role="button" tabindex="0" @click="navigate" v-text="$i18n.t('index.cta.quickstart')" />
                 </nuxt-link>
                 <nuxt-link v-slot="{ navigate }" to="/setup" custom>
-                  <div class="flex-grow text-center px-6 py-4 bg-slate-300 hover:bg-gray-300 text-2xl rounded-lg font-bold uppercase cursor-pointer transition-all shadow-slate-300/0 hover:shadow-slate-300/40 hover:shadow-lg active:shadow-slate-300/60 active:bg-slate-400" role="button" @click="navigate" v-text="$i18n.t('index.cta.configure')" />
+                  <div class="flex-grow text-center px-6 py-4 bg-slate-300 hover:bg-gray-300 text-2xl rounded-lg font-bold uppercase cursor-pointer transition-all shadow-slate-300/0 hover:shadow-slate-300/40 hover:shadow-lg active:shadow-slate-300/60 active:bg-slate-400" role="button" tabindex="0" @click="navigate" v-text="$i18n.t('index.cta.configure')" />
                 </nuxt-link>
               </div>
             </div>
@@ -82,6 +82,7 @@
               :default-colours="false"
               class="p-2 bg-black hover:bg-gray-800 active:bg-gray-900 text-gray-100"
               utm-tags="?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home"
+              tabindex="0"
             />
             <SupportButton
               :aria-label="$i18n.t('index.alt.links.support')"
@@ -91,6 +92,7 @@
               :default-colours="false"
               class="p-2 bg-black hover:bg-gray-800 active:bg-gray-900 text-gray-100"
               utm-tags="?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home"
+              tabindex="0"
             />
           </div>
           <!-- Scroll indicator -->
