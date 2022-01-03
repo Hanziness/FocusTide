@@ -1,5 +1,5 @@
 <template>
-  <section v-show="processedValue" class="h-full fixed p-0 md:p-4 w-full md:w-1/2 lg:w-2/5 z-40">
+  <section v-show="processedValue" class="h-full fixed p-0 md:p-4 w-full z-40 md:max-w-screen-sm">
     <div class="flex flex-col h-full rounded-none md:rounded-lg overflow-hidden shadow-lg bg-white dark:bg-gray-900 dark:text-gray-50">
       <h1 class="px-4 text-xl mt-4 mb-2 uppercase font-bold">
         <span>{{ $i18n.t('settings.heading') }}</span>
