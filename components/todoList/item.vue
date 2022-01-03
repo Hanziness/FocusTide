@@ -28,7 +28,7 @@
           <IconDelete size="18" class="mr-1" />
         </button>
       </transition>
-      <input :checked="checked" type="checkbox" class="rounded w-5 h-5 mr-1 themed-checkbox dark:bg-gray-300" @input="checked = !checked">
+      <input :checked="checked" type="checkbox" class="rounded w-5 h-5 mr-1 themed-checkbox" @input="checked = !checked">
     </div>
   </div>
 </template>
