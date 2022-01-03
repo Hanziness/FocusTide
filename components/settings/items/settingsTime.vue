@@ -1,20 +1,20 @@
 <template>
-  <base-settings-item :settings-key="settingsKey" :disabled="disabled">
+  <BaseSettingsItem :settings-key="settingsKey" :disabled="disabled">
     <template #content-action="{ settingsValue, update, error }">
-      <input-text
+      <InputText
         :value="msToTimeStr(settingsValue)"
         :custom-validators="{ 'time_format': timeRule, 'min_time': minTimeRule }"
         @input="update(timeStrToMs($event))"
         @error="error($event.type, $event.additionalInfo)"
       />
     </template>
-  </base-settings-item>
+  </BaseSettingsItem>
 </template>
 
 <script>
 export default {
   components: {
-    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/settings/baseSettingsItem.vue'),
+    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '~/components/settings/resolvedSettingsItem.vue'),
     InputText: () => import(/* webpackChunkName: "uibase" */ '@/components/base/inputText.vue')
   },
 

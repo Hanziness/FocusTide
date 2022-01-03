@@ -1,6 +1,6 @@
-<template>
-  <div class="ui-overlay" :style="{ 'background-color': `rgba(0, 0, 0, ${opacity})` }">
-    <slot class="ui-overlay-contents" />
+<template functional>
+  <div class="w-full h-full fixed bg-transparent overflow-hidden z-20 transition-colors duration-300" :style="{ 'background-color': `rgba(0, 0, 0, ${props.opacity})` }">
+    <slot class="z-30" />
   </div>
 </template>
 
@@ -15,16 +15,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-div.ui-overlay {
-  @apply w-full h-full fixed bg-transparent overflow-hidden;
-
-  z-index: 1000;
-  transition: background-color 300ms ease-out;
-}
-
-.ui-overlay-contents {
-  z-index: 1001;
-}
-</style>

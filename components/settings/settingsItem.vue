@@ -1,18 +1,18 @@
 <template>
-  <base-settings-item>
+  <baseSettingsItem>
     <template #item-title>
       {{ $i18n.t(translationKey + '._title') }}
     </template>
     <template #item-subtitle>
       {{ $i18n.t(translationKey + '._description') }}
     </template>
-  </base-settings-item>
+  </baseSettingsItem>
 </template>
 
 <script>
 export default {
   components: {
-    baseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/settings/baseSettingsItem.vue')
+    baseSettingsItem: () => import(/* webpackMode: "eager" */ '~/components/settings/resolvedSettingsItem.vue')
   },
 
   props: {

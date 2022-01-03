@@ -1,5 +1,5 @@
 <template>
-  <div class="dark:text-gray-100 dark:bg-gray-900 pb-8 w-screen h-screen">
+  <div class="dark:text-gray-100 dark:bg-gray-900 pb-8">
     <div class="pt-8 pb-20 text-center bg-red-100 dark:bg-opacity-25 text-black dark:text-gray-100">
       <img src="/favicon.png" width="64" height="64" class="inline-block bg-red-200 rounded-lg p-2 mb-4">
       <h1 class="text-5xl font-bold uppercase" v-text="$i18n.t('setup.title')" />
@@ -8,7 +8,7 @@
       <!-- Column 1: setup panel -->
       <div class="setup-panel bg-gray-100 dark:bg-gray-800 dark:text-gray-100 border border-gray-300 dark:border-gray-600 shadow-xl rounded-lg divide-y divide-gray-300 dark:divide-gray-700 order-last 2xl:max-w-4xl mt-4 2xl:mt-0 2xl:order-first">
         <SetupStep :title="$i18n.t('setup.steps.language.title')">
-          <option-group
+          <OptionGroup
             :selected="settingsToApply.lang"
             :values="{'hu': 'hu', 'en': 'en'}"
             :translation-key="'settings.values.lang'"
@@ -26,7 +26,7 @@
         </SetupStep>
 
         <SetupStep :title="$i18n.t('setup.steps.timerpreset.title')" :description="$i18n.t('setup.steps.timerpreset.description')" :attention="timerpreset === undefined">
-          <option-group
+          <OptionGroup
             :selected="timerpreset"
             :values="{'easy': 'easy', 'default': 'default', 'advanced': 'advanced', 'workaholic': 'workaholic'}"
             translation-key="setup.timerpreset"
@@ -36,7 +36,7 @@
         </SetupStep>
 
         <SetupStep :title="$i18n.t('setup.steps.timerstyle.title')" :description="$i18n.t('setup.steps.timerstyle.description')">
-          <option-group
+          <OptionGroup
             :selected="settingsToApply.currentTimer"
             :values="{'traditional': 'traditional', 'approximate': 'approxmate', 'percentage': 'percentage'}"
             translation-key="settings.values.currentTimer"
@@ -51,17 +51,17 @@
           <div class="flex flex-col space-y-1">
             <div class="">
               <input v-model="settingsToApply.permissions.audio" type="checkbox" class="w-5 h-5 rounded">
-              Hang
+              <span v-text="$i18n.t('setup.permissions.audio')" />
             </div>
             <div class="">
               <input :checked="settingsToApply.permissions.notifications && browserNotificationPermission === 'granted'" :disabled="browserNotificationPermission && browserNotificationPermission !== 'granted'" type="checkbox" class="w-5 h-5 rounded" @change="setNotificationPermissions">
-              Értesítések
+              <span v-text="$i18n.t('setup.permissions.notifications')" />
             </div>
           </div>
         </SetupStep>
 
         <SetupStep :title="$i18n.t('setup.steps.theme.title')" :description="$i18n.t('setup.steps.theme.description')">
-          <option-group
+          <OptionGroup
             :selected="settingsToApply.visuals.darkMode === true ? 'dark' : (settingsToApply.visuals.darkMode === false ? 'light' : null)"
             :values="{ 'light': false, 'dark': true }"
             translation-key="setup.theme"
@@ -102,9 +102,9 @@ export default {
   name: 'PageSetup',
   components: {
     ReadyIcon: CheckIcon,
+    InfoIcon: InfoCircleIcon,
     OptionGroup,
     TimerPage,
-    InfoIcon: InfoCircleIcon,
     SetupStep
   },
 

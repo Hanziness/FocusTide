@@ -1,6 +1,6 @@
 <template>
   <div class="timer-complete-icon">
-    <complete-icon />
+    <CompleteIcon />
   </div>
 </template>
 

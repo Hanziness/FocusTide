@@ -1,9 +1,7 @@
 <template>
-  <div :class="['timer-percentage timer-display', { 'active': running }]">
+  <div class="timer-percentage timer-display" :class="[{ 'active': running }]">
     <transition name="transition-percentage" tag="span" mode="out-in">
-      <span :key="timerValue" class="timer-percentage-value">
-        {{ timerValue }}
-      </span>
+      <span :key="timerValue" class="relative inline-block" v-text="timerValue" />
     </transition>
     <span>%</span>
   </div>
@@ -39,18 +37,18 @@ span.timer-percentage-value {
   display: inline-block;
 }
 
-span.timer-percentage-value.transition-percentage-enter-active,
-span.timer-percentage-value.transition-percentage-leave-active {
+.transition-percentage-enter-active,
+.transition-percentage-leave-active {
   transition: 300ms ease-out;
   transition-property: opacity, transform !important;
 }
 
-span.timer-percentage-value.transition-percentage-enter {
+.transition-percentage-enter {
   opacity: 0 !important;
   transform: translateY(60px);
 }
 
-span.timer-percentage-value.transition-percentage-leave-to {
+.transition-percentage-leave-to {
   opacity: 0 !important;
   transform: translateY(-60px);
 }

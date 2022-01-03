@@ -1,11 +1,11 @@
 <template>
-  <div class="timer-container flex flex-col justify-center text-center text-black dark:text-gray-100">
-    <transition name="timer-switch" mode="out-in">
-      <complete-marker v-if="$store.getters['schedule/getCurrentTimerState'] === 3" :key="'complete'" />
-      <timer-traditional v-else-if="timerWidget === 'traditional'" :key="'traditional'" v-bind="timerInfo" />
-      <timer-approximate v-else-if="timerWidget === 'approximate'" :key="'approximate'" v-bind="timerInfo" />
-      <timer-percentage v-else-if="timerWidget === 'percentage'" :key="'percentage'" v-bind="timerInfo" />
-    </transition>
+  <div class="w-full h-full relative flex flex-col justify-center text-center text-black dark:text-gray-100 transition-opacity duration-500 select-none" :class="[{ 'opacity-70': !running, 'opacity-100': running }]">
+    <Transition name="timer-switch" mode="out-in">
+      <CompleteMarker v-if="$store.getters['schedule/getCurrentTimerState'] === 3" :key="'complete'" />
+      <TimerTraditional v-else-if="timerWidget === 'traditional'" :key="'traditional'" v-bind="timerInfo" />
+      <TimerApproximate v-else-if="timerWidget === 'approximate'" :key="'approximate'" v-bind="timerInfo" />
+      <TimerPercentage v-else-if="timerWidget === 'percentage'" :key="'percentage'" v-bind="timerInfo" />
+    </Transition>
   </div>
 </template>
 
@@ -15,9 +15,9 @@ import TimerMixin from '@/assets/mixins/timerMixin'
 
 export default {
   components: {
-    TimerTraditional: () => import(/* webpackChunkName: "timerTraditional" */ '@/components/timer/display/traditional.vue'),
-    TimerApproximate: () => import(/* webpackChunkName: "timerApproximate" */ '@/components/timer/display/approximate.vue'),
-    TimerPercentage: () => import(/* webpackChunkName: "timerPercentage" */ '@/components/timer/display/percentage.vue'),
+    TimerTraditional: () => import(/* webpackChunkName: "timerTraditional" */ '~/components/timer/display/timerTraditional.vue'),
+    TimerApproximate: () => import(/* webpackChunkName: "timerApproximate" */ '~/components/timer/display/timerApproximate.vue'),
+    TimerPercentage: () => import(/* webpackChunkName: "timerPercentage" */ '~/components/timer/display/timerPercentage.vue'),
     CompleteMarker: () => import(/* webpackMode: "eager" */ '@/components/timer/display/timerComplete.vue')
   },
   mixins: [TimerMixin],
@@ -43,26 +43,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div.timer-container {
-  @apply w-full h-full;
-
-  z-index: 5;
-  position: relative;
-}
-
-div.timer-display {
-  transition: 300ms ease-in;
-  transition-property: opacity;
-  opacity: 0.7;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-}
-
-div.timer-display.active {
-  opacity: 1;
-}
-
 .timer-switch-enter-active,
 .timer-switch-leave-active {
   transition: opacity 0.5s ease-out;

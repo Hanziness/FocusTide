@@ -3,9 +3,9 @@
     <div ref="top" class="invisible" />
 
     <!-- FAB -->
-    <transition name="fab-transition">
+    <Transition name="fab-transition">
       <nuxt-link v-show="showFAB" v-slot="{ navigate }" to="/timer" custom>
-        <div class="transition absolute w-full bottom-0 rounded-t-lg xl:w-auto xl:right-6 xl:bottom-4 z-10 xl:rounded-lg text-xl shadow-md px-4 py-3 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 text-black font-bold uppercase cursor-pointer flex flex-row space-x-2 items-center border border-neutral-100" @click="navigate">
+        <div role="button" class="transition absolute w-full bottom-0 rounded-t-lg xl:w-auto xl:right-6 xl:bottom-4 z-10 xl:rounded-lg text-xl shadow-md px-4 py-3 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 text-black font-bold uppercase cursor-pointer flex flex-row space-x-2 items-center border border-neutral-100" @click="navigate">
           <nuxt-img
             src="/favicon.png"
             width="32"
@@ -17,7 +17,7 @@
           <span v-text="$i18n.t('index.launch')" />
         </div>
       </nuxt-link>
-    </transition>
+    </Transition>
 
     <!-- Section 1: intro -->
 
@@ -25,12 +25,12 @@
       <Columns class="flex-col xl:flex-row xl:space-x-16 px-4 xl:px-24 pt-8 xl:pt-0">
         <template #left>
           <!-- App title and CTAs -->
-          <transition name="main-appear" appear>
-            <div v-show="loading.mainText" class="flex flex-col justify-center">
+          <Transition name="main-appear" appear>
+            <div class="transition-all duration-1000 flex flex-col justify-center" :class="{ 'opacity-0 -translate-x-4': !loading.mainText }">
               <div class="flex flex-row items-start mr-16">
                 <!-- App icon -->
                 <div class="mr-4 mt-1 min-w-max min-h-max">
-                  <nuxt-img src="/favicon.png" width="68" height="68" class="bg-red-200 rounded-lg p-2" />
+                  <nuxt-img :alt="$i18n.t('index.alt.img.icon')" src="/favicon.png" width="68" height="68" class="bg-red-200 rounded-lg p-2" />
                 </div>
                 <!-- App name and slogan -->
                 <div class="flex flex-col">
@@ -43,20 +43,23 @@
               <!-- CTAs -->
               <div class="grid grid-flow-row md:grid-flow-col grid-cols-1 md:grid-cols-2 mt-6 gap-2">
                 <nuxt-link v-slot="{ navigate }" to="/timer" custom>
-                  <div class="flex-grow text-center px-6 py-4 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 shadow-lg text-2xl rounded-lg font-bold uppercase cursor-pointer transition-all" role="button" @click="navigate" v-text="$i18n.t('index.cta.quickstart')" />
+                  <div class="flex-grow text-center px-6 py-4 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 shadow-lg text-2xl rounded-lg font-bold uppercase cursor-pointer transition-all" role="button" tabindex="0" @click="navigate" v-text="$i18n.t('index.cta.quickstart')" />
                 </nuxt-link>
                 <nuxt-link v-slot="{ navigate }" to="/setup" custom>
-                  <div class="flex-grow text-center px-6 py-4 bg-slate-300 hover:bg-gray-300 text-2xl rounded-lg font-bold uppercase cursor-pointer transition-all shadow-slate-300/0 hover:shadow-slate-300/40 hover:shadow-lg active:shadow-slate-300/60 active:bg-slate-400" role="button" @click="navigate" v-text="$i18n.t('index.cta.configure')" />
+                  <div class="flex-grow text-center px-6 py-4 bg-slate-300 hover:bg-gray-300 text-2xl rounded-lg font-bold uppercase cursor-pointer transition-all shadow-slate-300/0 hover:shadow-slate-300/40 hover:shadow-lg active:shadow-slate-300/60 active:bg-slate-400" role="button" tabindex="0" @click="navigate" v-text="$i18n.t('index.cta.configure')" />
                 </nuxt-link>
               </div>
             </div>
-          </transition>
+          </Transition>
         </template>
         <!-- App screenshot -->
         <template #right>
           <div :class="['transition-all duration-1000 hover:duration-300 overflow-hidden order-first xl:order-last mb-12 xl:mb-0 rounded-lg shadow-red-300/60 shadow-lg hover:-translate-y-1 hover:shadow-xl hover:shadow-red-300/70 w-full max-w-2xl xl:max-w-max self-center', { 'opacity-0 translate-x-4': !loading.screenshot }]">
             <nuxt-img
+              :alt="$i18n.t('index.alt.img.screenshot')"
               class=""
+              width="1600"
+              height="900"
               src="/assets/img/screenshots/720p/Timer_Default_2x.png"
               format="jpg"
               sizes="sm:760px xl:1600px"
@@ -66,25 +69,30 @@
           </div>
         </template>
       </Columns>
+
       <template #after>
         <div class="flex-grow xl:absolute xl:bottom-4 flex flex-col items-center justify-end">
           <!-- Source code, support and social buttons -->
           <div class="flex flex-row space-x-2 mb-4">
             <SupportButton
+              :aria-label="$i18n.t('index.alt.links.source')"
               icon-size="28"
               type="github"
               :show-text="false"
               :default-colours="false"
               class="p-2 bg-black hover:bg-gray-800 active:bg-gray-900 text-gray-100"
               utm-tags="?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home"
+              tabindex="0"
             />
             <SupportButton
+              :aria-label="$i18n.t('index.alt.links.support')"
               icon-size="28"
               type="support"
               :show-text="false"
               :default-colours="false"
               class="p-2 bg-black hover:bg-gray-800 active:bg-gray-900 text-gray-100"
               utm-tags="?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home"
+              tabindex="0"
             />
           </div>
           <!-- Scroll indicator -->
@@ -133,7 +141,7 @@
       <h2 class="text-5xl font-bold uppercase tracking-tight text-amber-900" v-text="$i18n.t('index.section_features.title')" />
 
       <div class="mt-8 grid grid-cols-2 text-lg xl:text-xl xl:grid-cols-4 grid-flow-row gap-4 xl:gap-8 max-w-5xl">
-        <div v-for="(feature, index) in section3.smallFeatures" :key="feature" :class="['transition duration-1000 py-4 px-4 rounded-lg text-gray-900 text-opacity-60', { '!text-gray-100 text-opacity-100 bg-slate-800': section3.activeFeature === index }]" v-text="$i18n.t('index.section_features.list.' + feature)" />
+        <div v-for="(feature, index) in section3.smallFeatures" :key="feature" :class="['transition duration-1000 py-4 px-4 rounded-lg text-gray-900 text-opacity-60 flex flex-col justify-center', { '!text-gray-100 text-opacity-100 bg-slate-800': section3.activeFeature === index }]" v-text="$i18n.t('index.section_features.list.' + feature)" />
       </div>
     </Section>
 
@@ -171,16 +179,23 @@
       <!-- Share links -->
       <div class="my-2" v-text="$i18n.t('settings.about.share')" />
       <div class="flex flex-row items-center space-x-2 text-sm">
-        <a href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home" class="rounded-full w-12 h-12 bg-[#1da1f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+        <a :aria-label="$i18n.t('index.alt.links.share.twitter')" href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home" class="rounded-full w-12 h-12 bg-[#1da1f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
           <AboutTwitter size="24" />
         </a>
-        <a href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#1877f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+        <a :aria-label="$i18n.t('index.alt.links.share.facebook')" href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#1877f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
           <AboutFacebook size="24" class="translate-x-[-1px]" />
         </a>
-        <a href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#ff4500] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+        <a :aria-label="$i18n.t('index.alt.links.share.reddit')" href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#ff4500] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
           <AboutReddit size="24" />
         </a>
       </div>
+
+      <template #after>
+        <div class="absolute bottom-4 flex flex-col justify-center items-center">
+          <div class="" v-text="$i18n.t('index.support.credits')" />
+          <div class="mt-1 px-2 py-1 bg-gray-800 text-gray-50 rounded-lg select-none" v-text="$store.state.version" />
+        </div>
+      </template>
     </Section>
   </div>
 </template>
@@ -239,7 +254,8 @@ export default {
           hid: 'description',
           name: 'description',
           content: this.$i18n.t('index.app_description')
-        }
+        },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
       ]
     }
   },

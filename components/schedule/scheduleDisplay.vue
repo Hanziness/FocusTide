@@ -1,18 +1,18 @@
 <template>
   <div class="rounded-lg bg-gray-800 z-10 shadow-lg select-none overflow-hidden">
-    <transition-group
-      name="transition-schedule"
+    <TransitionGroup
+      name="schedule-transition"
       tag="div"
-      class="schedule-container"
+      class="p-4 flex flex-grow-0 flex-row"
     >
-      <schedule-item
+      <ScheduleItem
         v-for="(item, i) in $store.getters['schedule/getSchedule']"
         :key="item.id"
         :data="item"
         :active="i === 0"
       />
-    </transition-group>
-    <div v-if="$store.state.settings.schedule.visibility.showSectionType" class="section-type">
+    </TransitionGroup>
+    <div v-if="$store.state.settings.schedule.visibility.showSectionType" class="bg-gray-700 text-center text-gray-50 py-2">
       {{ $i18n.t('section.' + $store.getters['schedule/getCurrentItem'].type).toLowerCase() }}
     </div>
   </div>
@@ -26,39 +26,22 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-div.schedule-container {
-  @apply p-4 flex flex-grow-0 flex-row overflow-hidden;
-
-  div.schedule-item {
-    &.transition-schedule-enter-active,
-    &.transition-schedule-leave-active,
-    &.transition-schedule-move {
-      transition: 500ms cubic-bezier(0.59, 0.12, 0.34, 0.95);
-      transition-property: opacity, transform;
-    }
-
-    &.transition-schedule-enter {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-
-    &.transition-schedule-enter-to {
-      transform: translateX(0);
-    }
-
-    &.transition-schedule-leave-active {
-      position: absolute;
-    }
-
-    &.transition-schedule-leave-to {
-      opacity: 0 !important;
-      transform: translateX(-50px);
-    }
-  }
+<style lang="scss">
+.schedule-transition-enter-active,
+.schedule-transition-leave-active,
+.schedule-transition-move {
+  @apply transition-all duration-300;
 }
 
-div.section-type {
-  @apply bg-gray-700 text-center text-gray-50 py-2;
+.schedule-transition-enter {
+  @apply opacity-0 translate-x-8;
+}
+
+.schedule-transition-leave-active {
+  position: absolute;
+}
+
+.schedule-transition-leave-to {
+  @apply opacity-0 -translate-x-8;
 }
 </style>

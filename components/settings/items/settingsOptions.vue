@@ -1,15 +1,15 @@
 <template>
-  <base-settings-item :settings-key="settingsKey" :disabled="disabled" :custom-value="customValue" :custom-set-function="customSetFunction">
+  <BaseSettingsItem :settings-key="settingsKey" :disabled="disabled" :custom-value="customValue" :custom-set-function="customSetFunction">
     <template #content-main="{ settingsValue, update, translationKey }">
-      <option-group :translation-key="translationKey" :values="values" :selected="settingsValue" @input="update" />
+      <OptionGroup :translation-key="translationKey" :values="values" :selected="settingsValue" @input="update" />
     </template>
-  </base-settings-item>
+  </BaseSettingsItem>
 </template>
 
 <script>
 export default {
   components: {
-    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '@/components/settings/baseSettingsItem.vue'),
+    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '~/components/settings/resolvedSettingsItem.vue'),
     OptionGroup: () => import(/* webpackChunkName: "uibase" */ '@/components/base/optionGroup.vue')
   },
 

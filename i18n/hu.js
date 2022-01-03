@@ -1,6 +1,21 @@
 export default {
   index: {
     app_description: 'Ingyenes Pomodoro alkalmazás közvetlenül a böngésződben',
+    alt: {
+      img: {
+        screenshot: 'Képernyőkép egy futó időzítőről az AnotherPomodoro alkalmazásban',
+        icon: 'Az alkalmazás ikonja'
+      },
+      links: {
+        source: 'Forráskód megtekintése GitHubon',
+        support: 'Fejlesztő meghívása egy kávéra',
+        share: {
+          twitter: 'Kövesd az alkalmazást Twitteren',
+          facebook: 'Oszd meg Facebookon',
+          reddit: 'Oszd meg Redditen'
+        }
+      }
+    },
     launch: 'Indítás',
     cta: {
       quickstart: 'Gyorsindítás',
@@ -169,6 +184,10 @@ export default {
         workaholic: 'Hosszú munkamenetekre.'
       },
       description: '{brief} \n {worklength} perc munka {splength} perces rövid szünetekkel és {lplength} perces hosszú szünettel minden {lpfreq}. munkamenet után.'
+    },
+    permissions: {
+      audio: 'Hang',
+      notifications: 'Értesítések'
     },
     theme: {
       _values: {

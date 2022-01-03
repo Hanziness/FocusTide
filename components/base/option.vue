@@ -1,13 +1,20 @@
 <template>
-  <button class="select-option" :class="[{ 'active': active }]" @click="$emit('click')">
-    <div class="select-option-title">
+  <button
+    class="px-3 py-4 border border-solid border-gray-300 rounded-lg bg-white text-left dark:bg-gray-800 dark:border-gray-600 basis-0 transition-colors flex flex-col justify-start"
+    :class="[{
+      'bg-primary dark:bg-primary border-transparent dark:border-transparent ring ring-primary ring-offset-2 dark:ring-offset-slate-800 text-white': active,
+      'hover:bg-gray-200 dark:hover:bg-gray-600': !active
+    }]"
+    @click="$emit('click')"
+  >
+    <div class="text-lg" :class="[{'font-bold uppercase': description.length > 0 }]">
       <slot name="title">
-        {{ customTitle || $i18n.t(translationKey + '._values.' + translationSubkey) }}
+        {{ title }}
       </slot>
     </div>
-    <div class="select-option-description">
+    <div v-show="description.length > 0" class="text-sm text-opacity-75">
       <slot name="description">
-        {{ customDescription || $i18n.t(translationKey + '._valueDescription.' + translationSubkey) }}
+        {{ description }}
       </slot>
     </div>
   </button>
@@ -42,33 +49,16 @@ export default {
       type: String,
       default: null
     }
+  },
+
+  computed: {
+    title () {
+      return this.customTitle || this.$i18n.t(this.translationKey + '._values.' + this.translationSubkey)
+    },
+
+    description () {
+      return this.customDescription || this.$i18n.t(this.translationKey + '._valueDescription.' + this.translationSubkey)
+    }
   }
 }
 </script>
-
-<style lang="postcss" scoped>
-.select-option {
-  @apply px-3 py-4 border border-solid border-gray-300 rounded-md bg-white text-left;
-  @apply dark:bg-gray-800 dark:border-gray-600;
-
-  flex-basis: 0;
-  transition: background-color 100ms ease-out, color 100ms ease-out;
-
-  &:hover {
-    @apply bg-gray-200;
-    @apply dark:bg-gray-600;
-  }
-
-  &.active {
-    @apply bg-primary border-transparent shadow text-white;
-  }
-}
-
-.select-option-title {
-  @apply text-lg;
-}
-
-.select-option-description {
-  @apply text-sm text-opacity-75;
-}
-</style>

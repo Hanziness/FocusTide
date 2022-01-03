@@ -49,9 +49,8 @@ export default defineNuxtConfig({
   ** Global CSS
   */
   css: [
-    '@/assets/tailwind.css',
-    // '@/assets/global.scss',
-    '@/assets/transitions.scss'
+    '@/assets/scss/tailwind.scss',
+    '@/assets/scss/transitions.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -73,7 +72,6 @@ export default defineNuxtConfig({
   */
   buildModules: [
     '@nuxt/postcss8',
-    // '@aceforth/nuxt-optimized-images',
     '@nuxtjs/google-fonts',
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
@@ -82,11 +80,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/pwa'
   ],
-
-  optimizedImages: {
-    optimizeImages: true,
-    optimizeImagesInDev: false
-  },
 
   /*
   ** Nuxt.js modules
