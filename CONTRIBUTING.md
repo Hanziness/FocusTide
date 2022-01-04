@@ -1,6 +1,6 @@
-# Contribution guidelines
+# AnotherPomodoro contribution guidelines
 
-**AnotherPomodoro** is not a huge project and as such its guidelines will not be so strict, either. It might also be a great project for beginners and students to implement a new feature or bug fix in.
+**AnotherPomodoro** is not a huge project and as such its guidelines are not so strict, either. It might be a great project for beginners and students to implement new features or bug fixes in.
 
 Still, **before contributing, please read this short guide** to make sure you submit a new issue or pull request the right way!
 
@@ -10,9 +10,9 @@ Still, **before contributing, please read this short guide** to make sure you su
 
 The app's most up-to-date development version is on the `develop` branch. **You should always submit pull requests against `develop`** and you should be working on this branch locally.
 
-**The `master` branch is only updated when a new version is released** as it contains the deployed version of the application (found at https://another-pomodoro.netlify.app).
+**The `prod` branch is only updated when a new version is released** as it contains the deployed version of the application (found at https://another-pomodoro.netlify.app).
 
-The `preview` branch is for testing production updates early, it is rarely updated -- sometimes the `develop` branch is merged into it before it is merged into `master`.
+The `preview` branch is for testing production updates early, it is rarely updated -- sometimes the `develop` branch is merged into it before it is merged into `prod` to test new releases.
 
 ## Where to discuss what
 
