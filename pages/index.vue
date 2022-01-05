@@ -27,7 +27,7 @@
           <!-- App title and CTAs -->
           <Transition name="main-appear" appear>
             <div class="transition-all duration-1000 flex flex-col justify-center" :class="{ 'opacity-0 -translate-x-4': !loading.mainText }">
-              <div class="flex flex-row items-start mr-16">
+              <div class="flex flex-row items-start xl:mr-16">
                 <!-- App icon -->
                 <div class="mr-4 mt-1 min-w-max min-h-max">
                   <nuxt-img :alt="$i18n.t('index.alt.img.icon')" src="/favicon.png" width="68" height="68" class="bg-red-200 rounded-lg p-2" />
@@ -102,7 +102,7 @@
     </Section>
 
     <!-- Section 2: about Pomodoro and the app -->
-    <Section ref="section-2" class="snap-center bg-sky-100 justify-center flex flex-col overflow-hidden">
+    <Section ref="section-2" class="snap-center bg-sky-100 justify-center flex flex-col overflow-hidden px-2">
       <div class="mt-8 text-sky-900 flex flex-col items-center">
         <h2 class="text-5xl font-bold uppercase tracking-tight" v-text="$i18n.t('index.section_whatitdoes.title')" />
         <div class="mt-2 text-lg xl:text-xl text-center">
