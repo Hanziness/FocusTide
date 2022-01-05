@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-x-hidden snap-y snap-mandatory overflow-y-scroll h-screen">
+  <div class="overflow-x-hidden snap-y snap-mandatory overflow-y-scroll h-screen" @wheel.prevent="handleScroll">
     <div ref="top" class="invisible" />
 
     <!-- FAB -->
@@ -21,7 +21,7 @@
 
     <!-- Section 1: intro -->
 
-    <Section class="snap-center bg-gray-100 justify-center flex flex-col overflow-hidden items-center">
+    <Section ref="section-1" class="snap-center bg-gray-100 justify-center flex flex-col overflow-hidden items-center">
       <Columns class="flex-col xl:flex-row xl:space-x-16 px-4 xl:px-24 pt-8 xl:pt-0">
         <template #left>
           <!-- App title and CTAs -->
@@ -102,7 +102,7 @@
     </Section>
 
     <!-- Section 2: about Pomodoro and the app -->
-    <Section class="snap-center bg-sky-100 justify-center flex flex-col overflow-hidden">
+    <Section ref="section-2" class="snap-center bg-sky-100 justify-center flex flex-col overflow-hidden">
       <div class="mt-8 text-sky-900 flex flex-col items-center">
         <h2 class="text-5xl font-bold uppercase tracking-tight" v-text="$i18n.t('index.section_whatitdoes.title')" />
         <div class="mt-2 text-lg xl:text-xl text-center">
@@ -137,7 +137,7 @@
     </Section>
 
     <!-- Section 3: Features -->
-    <Section class="snap-center bg-amber-50 justify-center items-center flex flex-col overflow-hidden text-center px-4">
+    <Section ref="section-3" class="snap-center bg-amber-50 justify-center items-center flex flex-col overflow-hidden text-center px-4">
       <h2 class="text-5xl font-bold uppercase tracking-tight text-amber-900" v-text="$i18n.t('index.section_features.title')" />
 
       <div class="mt-8 grid grid-cols-2 text-lg xl:text-xl xl:grid-cols-4 grid-flow-row gap-4 xl:gap-8 max-w-5xl">
@@ -146,7 +146,7 @@
     </Section>
 
     <!-- Section 4: FAQ -->
-    <Section class="snap-center bg-amber-300 justify-center items-center flex flex-col overflow-hidden text-center">
+    <Section ref="section-4" class="snap-center bg-amber-300 justify-center items-center flex flex-col overflow-hidden text-center">
       <h2 class="text-5xl font-bold uppercase tracking-tight text-black" v-text="$i18n.t('index.faq.title')" />
 
       <div class="mt-8 px-4 w-full xl:w-[1280px] xl:h-96 h-[36rem] text-left flex flex-col space-y-2">
@@ -162,7 +162,7 @@
     </Section>
 
     <!-- Section 5: Support -->
-    <Section class="snap-center bg-stone-100 justify-center items-center flex flex-col overflow-hidden text-center px-4">
+    <Section ref="section-5" class="snap-center bg-stone-100 justify-center items-center flex flex-col overflow-hidden text-center px-4">
       <h2 class="text-5xl font-bold uppercase tracking-tight text-black leading-tight" v-text="$i18n.t('index.support.title')" />
 
       <div class="mt-3 flex flex-col space-y-1">
@@ -219,6 +219,12 @@ export default {
         mainText: false,
         screenshot: false
       },
+      currentSection: 0,
+      scroll: {
+        sections: [],
+        sectionObserver: null,
+        fabObserver: null
+      },
       section2: {
         selectedBoxIndex: 0,
         selectedBoxOrder: [1, 2, 1, 2, 1, 3],
@@ -241,7 +247,6 @@ export default {
         { q: 'timer_style' }
       ],
       openfaq: 0,
-      scrollObserver: null,
       showFAB: false
     }
   },
@@ -266,11 +271,48 @@ export default {
     }
   },
 
+  watch: {
+    currentSection (newValue) {
+      if (this.scroll.sections[newValue]) {
+        this.scroll.sections[newValue].scrollIntoView({
+          behavior: 'smooth'
+        })
+      }
+    }
+  },
+
   mounted () {
+    const sectionKeys = Object.keys(this.$refs).filter(key => key.startsWith('section-'))
+
+    for (const key of sectionKeys) {
+      this.$refs[key].dataset.scrollkey = this.scroll.sections.length
+      this.scroll.sections.push(this.$refs[key])
+    }
+
+    this.scroll.sectionObserver = new IntersectionObserver((entries) => {
+      // Find section that was scrolled into view
+      for (const item of entries) {
+        if (item.isIntersecting) {
+          this.currentSection = Number.parseInt(item.target.dataset.scrollkey)
+          break
+        }
+      }
+    }, {
+      root: this.$el,
+      threshold: 0.1
+    })
+
+    // Register the scroll observer for all sections
+    for (const section of this.scroll.sections) {
+      this.scroll.sectionObserver.observe(section)
+    }
+
     this.$nextTick(() => {
+      // Float in the app title and icon
       this.loading.mainText = true
 
       setTimeout(() => {
+        // Float in the app screenshot
         this.loading.screenshot = true
       }, 1000)
     })
@@ -284,8 +326,8 @@ export default {
       this.section3.activeFeature = Math.floor(Math.random() * (this.section3.smallFeatures.length - 1))
     }, 3000)
 
-    // register scroll observer
-    this.scrollObserver = new IntersectionObserver(
+    // register FAB scroll observer
+    this.scroll.fabObserver = new IntersectionObserver(
       (entries) => {
         this.showFAB = !entries[0].isIntersecting
       },
@@ -299,14 +341,28 @@ export default {
   beforeDestroy () {
     clearInterval(this.selectedBoxInterval)
     clearInterval(this.activeFeatureInterval)
-    if (this.scrollObserver) {
-      this.scrollObserver.disconnect()
+    if (this.scroll.fabObserver) {
+      this.scroll.fabObserver.disconnect()
+    }
+
+    if (this.scroll.sectionObserver) {
+      this.scroll.sectionObserver.disconnect()
     }
   },
 
   methods: {
     setIntersecting (value) {
       this.showFAB = value
+    },
+
+    handleScroll (event) {
+      if (event.deltaY > 0) {
+        // scroll downwards
+        this.currentSection = Math.min(this.currentSection + 1, this.scroll.sections.length - 1)
+      } else if (event.deltaY < 0) {
+        // scroll upwards
+        this.currentSection = Math.max(this.currentSection - 1, 0)
+      }
     }
   }
 }
