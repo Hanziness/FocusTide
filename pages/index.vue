@@ -191,7 +191,7 @@
       </div>
 
       <template #after>
-        <div class="absolute bottom-4 flex flex-col justify-center items-center">
+        <div class="absolute bottom-20 xl:bottom-4 flex flex-col justify-center items-center">
           <div class="" v-text="$i18n.t('index.support.credits')" />
           <div class="mt-1 px-2 py-1 bg-gray-800 text-gray-50 rounded-lg select-none" v-text="$store.state.version" />
         </div>
