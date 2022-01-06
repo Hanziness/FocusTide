@@ -1,5 +1,5 @@
 <template>
-  <div :class="['timer-traditional timer-display', { 'active': running }]" v-text="$dayjs.formatMs(timeOriginal - timeElapsed, {})" />
+  <div :class="['timer-traditional font-bold text-7xl lg:text-[14rem] timer-display', { 'active': running }]" v-text="$dayjs.formatMs(timeOriginal - timeElapsed, {})" />
 </template>
 
 <script>
@@ -15,8 +15,6 @@ export default {
 
 .timer-traditional {
   font-family: 'Source Sans Pro', monospace;
-  font-size: 20vw;
-  font-weight: 700;
   font-variant-numeric: tabular-nums;
   font-feature-settings: "lnum" on;
   letter-spacing: 0.5rem;

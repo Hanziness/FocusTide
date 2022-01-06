@@ -1,5 +1,5 @@
 <template>
-  <div class="timer-percentage timer-display" :class="[{ 'active': running }]">
+  <div class="timer-percentage select-none text-8xl md:text-[14rem] font-bold timer-display" :class="[{ 'active': running }]">
     <transition name="transition-percentage" tag="span" mode="out-in">
       <span :key="timerValue" class="relative inline-block" v-text="timerValue" />
     </transition>
@@ -27,16 +27,8 @@ export default {
 @import '@/assets/scss/SourceSansPro_Numbers.scss';
 
 div.timer-percentage {
-  font-size: 40vh;
-  font-weight: 700;
   font-family: 'Source Sans Pro', monospace;
 }
-
-span.timer-percentage-value {
-  position: relative;
-  display: inline-block;
-}
-
 .transition-percentage-enter-active,
 .transition-percentage-leave-active {
   transition: 300ms ease-out;

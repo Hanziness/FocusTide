@@ -1,5 +1,5 @@
 <template>
-  <div :class="['timer-display', { 'active': running }]">
+  <div :class="['timer-display select-none text-3xl md:text-7xl xl:text-9xl', { 'active': running }]">
     <transition name="transition-approximate-up" mode="out-in">
       <div :key="value" class="timer-approximate">
         {{ value }}
@@ -25,11 +25,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div.timer-approximate {
-  user-select: none;
-  font-size: 8vw;
-}
-
 div.timer-approximate.transition-approximate-up-enter-active,
 div.timer-approximate.transition-approximate-up-leave-active {
   transition: 300ms ease-out;
