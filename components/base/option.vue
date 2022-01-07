@@ -2,7 +2,7 @@
   <button
     class="px-3 py-4 border border-solid border-gray-300 rounded-lg bg-white text-left dark:bg-gray-800 dark:border-gray-600 basis-0 transition-colors flex flex-col justify-start"
     :class="[{
-      'bg-primary dark:bg-primary border-transparent dark:border-transparent ring ring-primary ring-offset-2 dark:ring-offset-slate-800 text-white': active,
+      'bg-primary dark:bg-primary border-transparent dark:border-transparent ring ring-primary ring-offset-2 dark:ring-offset-slate-800 text-primary-font dark:text-primary-font': active,
       'hover:bg-gray-200 dark:hover:bg-gray-600': !active
     }]"
     @click="$emit('click')"

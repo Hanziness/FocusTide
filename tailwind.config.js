@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   content: [
     './components/**/*.{vue,js}',
@@ -15,7 +17,8 @@ module.exports = {
         sans: ['Poppins', 'sans-serif']
       },
       colors: {
-        primary: '#3498db',
+        primary: colors.red[400],
+        'primary-font': colors.black,
         work: '#FF6B6B',
         shortpause: '#F4A261',
         longpause: '#2EC4B6'
