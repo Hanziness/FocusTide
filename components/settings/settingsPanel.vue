@@ -58,7 +58,7 @@
               <SettingsTime :settings-key="['schedule', 'lengths', 'work']" :min-ms="5000" />
               <SettingsTime :settings-key="['schedule', 'lengths', 'shortpause']" :min-ms="5000" />
               <SettingsTime :settings-key="['schedule', 'lengths', 'longpause']" :min-ms="5000" />
-              <div class="rounded-lg ring-inset ring ring-blue-400 bg-blue-100 dark:bg-gray-700 dark:text-gray-100 px-3 py-4 flex flex-row items-center space-x-2">
+              <div class="rounded-lg ring-inset ring ring-primary bg-primary/20 dark:bg-gray-700 dark:text-gray-100 px-3 py-4 flex flex-row items-center space-x-2">
                 <InfoIcon />
                 <span v-text="$i18n.t('settings.scheduleMinTime')" />
               </div>
