@@ -5,7 +5,7 @@
     <!-- FAB -->
     <Transition name="fab-transition">
       <nuxt-link v-show="showFAB" v-slot="{ navigate }" to="/timer" custom>
-        <div role="button" class="transition absolute w-full bottom-0 rounded-t-lg xl:w-auto xl:right-6 xl:bottom-4 z-10 xl:rounded-lg text-xl shadow-md px-4 py-3 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 text-black font-bold uppercase cursor-pointer flex flex-row space-x-2 items-center border border-neutral-100" @click="navigate">
+        <div role="button" tabindex="0" class="transition absolute w-full bottom-0 rounded-t-lg xl:w-auto xl:right-6 xl:bottom-4 z-10 xl:rounded-lg text-xl shadow-md px-4 py-3 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 text-black font-bold uppercase cursor-pointer flex flex-row space-x-2 items-center border border-neutral-100" @click="navigate">
           <nuxt-img
             src="/favicon.png"
             width="32"
@@ -141,7 +141,7 @@
       <h2 class="text-5xl font-bold uppercase tracking-tight text-amber-900" v-text="$i18n.t('index.section_features.title')" />
 
       <div class="mt-8 grid grid-cols-2 text-lg xl:text-xl xl:grid-cols-4 grid-flow-row gap-4 xl:gap-8 max-w-5xl">
-        <div v-for="(feature, index) in section3.smallFeatures" :key="feature" :class="['transition duration-1000 py-4 px-4 rounded-lg text-gray-900 text-opacity-60 flex flex-col justify-center', { '!text-gray-100 text-opacity-100 bg-slate-800': section3.activeFeature === index }]" v-text="$i18n.t('index.section_features.list.' + feature)" />
+        <div v-for="(feature, index) in section3.smallFeatures" :key="feature" :class="['transition duration-1000 py-4 px-4 rounded-lg text-gray-900 text-opacity-80 flex flex-col justify-center', { '!text-gray-100 text-opacity-100 bg-slate-800': section3.activeFeature === index }]" v-text="$i18n.t('index.section_features.list.' + feature)" />
       </div>
     </Section>
 
@@ -151,7 +151,7 @@
 
       <div class="mt-8 px-4 w-full xl:w-[1280px] xl:h-96 h-[36rem] text-left flex flex-col space-y-2">
         <details v-for="(question, i) in faq" :key="'faq-' + i" class="open:bg-gray-50 bg-gray-100 ring-1 ring-transparent open:ring-gray-400 shadow-slate-400/30 open:shadow-lg rounded-lg p-4 w-full transition text-gray-700 open:text-gray-900" :open="openfaq === i" @click.prevent="openfaq = i">
-          <summary class="font-bold" v-text="$i18n.t('index.faq.accordion.' + question.q +'.q')" />
+          <summary class="font-bold cursor-pointer" v-text="$i18n.t('index.faq.accordion.' + question.q +'.q')" />
           <div class="mt-2" v-text="$i18n.t('index.faq.accordion.' + question.q + '.a')" />
           <div v-if="question.hint" class="mt-2">
             <span class="rounded-lg bg-amber-400 text-gray-900 py-1 px-2 font-bold" v-text="$i18n.t('index.faq.hint')" />

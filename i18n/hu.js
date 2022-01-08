@@ -208,10 +208,9 @@ export default {
     wait: 'Várakozás'
   },
   controls: {
-    start: 'Időzítő indítása',
-    pause: 'Időzítő szünetelése',
-    stop: 'Időzítő visszaállítása',
-    next: 'Következő szakasz'
+    play: 'Időzítő indítása vagy szünetelése',
+    stop: 'Időzítő megállítása',
+    advance: 'Ugrás a következő szakaszra'
   },
   settings: {
     heading: 'Beállítások',
