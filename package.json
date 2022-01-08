@@ -1,6 +1,6 @@
 {
-  "name": "pomodoro-app",
-  "description": "Free and open-source Pomodoro app for everyone, right from your browser!",
+  "name": "another-pomodoro",
+  "description": "Free and open-source productivity timer, right from your browser. Built to be simple.",
   "version": "0.11.0",
   "private": true,
   "scripts": {
