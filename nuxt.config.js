@@ -30,16 +30,17 @@ export default defineNuxtConfig({
   */
   head: {
     titleTemplate: '%s',
-    title: process.env.npm_package_name || '',
+    title: 'AnotherPomodoro',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
-      { hid: 'keywords', name: 'keywords', content: 'pomodoro app, pomodoro, free, productivity tool, app, open-source, online timer, countdown timer, focus timer, pomodoro clock, no ads' },
+      { hid: 'keywords', name: 'keywords', content: 'pomodoro app, pomodoro, free, productivity tool, app, open-source, online timer, countdown timer, focus timer, pomodoro clock, no ads, productivity timer, todo list, task management, tomato timer, pwa' },
       { hid: 'twitter:title', name: 'twitter:title', content: 'AnotherPomodoro' },
       { hid: 'twitter:description', name: 'twitter:description', content: process.env.npm_package_description || '' },
-      { hid: 'twitter:image', name: 'twitter:image', content: '/img/ogImage.jpg' },
-      { hid: 'og:image', property: 'og:image', content: '/img/ogImage.jpg' }
+      { hid: 'twitter:image', name: 'twitter:image', content: '/img/ogImage.png' },
+      { hid: 'og:image', property: 'og:image', content: '/img/ogImage.png' },
+      { hid: 'og:image:url', property: 'og:image:url', content: '/img/ogImage.png' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

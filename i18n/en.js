@@ -212,10 +212,9 @@ export default {
     wait: 'Waiting'
   },
   controls: {
-    start: 'Start timer',
-    pause: 'Pause timer',
+    play: 'Start or pause the timer',
     stop: 'Reset timer',
-    next: 'Go to next section'
+    advance: 'Go to next section'
   },
   settings: {
     heading: 'Settings',

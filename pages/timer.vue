@@ -4,10 +4,8 @@
     <div class="absolute w-full h-full dark:bg-gray-900" />
 
     <!-- Settings button -->
-    <UiButton subtle :class="['absolute', { 'pointer-events-none': preview }]" style="top: 0.5rem; right: 0.5rem; z-index: 10;" @click="showSettings = true">
-      <client-only>
-        <CogIcon class="dark:text-gray-200" :title="$i18n.t('settings.heading')" />
-      </client-only>
+    <UiButton :aria-label="$i18n.t('settings.heading')" subtle :class="['absolute', { 'pointer-events-none': preview }]" style="top: 0.5rem; right: 0.5rem; z-index: 10;" @click="showSettings = true">
+      <CogIcon class="dark:text-gray-200" :aria-label="$i18n.t('settings.heading')" />
     </UiButton>
     <!-- Settings panel -->
     <div>
@@ -101,7 +99,7 @@ export default {
       meta: [{
         hid: 'description',
         name: 'description',
-        content: 'Jumpstart your Pomodoro sessions AnotherPomodoro.'
+        content: 'Jumpstart your productivity sessions with AnotherPomodoro. Start your timer session on this page, or check the home page for a guided tour!'
       }],
       link: [
         {

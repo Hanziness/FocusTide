@@ -221,7 +221,8 @@ export default {
       title: `AnotherPomodoro: ${this.$i18n.t('setup.head').toLowerCase()}`,
       meta: [{
         hid: 'description',
-        content: 'Set up AnotherPomdoro for first use using this setup page.'
+        name: 'description',
+        content: 'Set up AnotherPomdoro for first use using this setup page. You can customize the theme, the timers, pauses and the features of the app.'
       }]
     }
   },

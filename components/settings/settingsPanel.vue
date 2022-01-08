@@ -3,8 +3,8 @@
     <div class="flex flex-col h-full rounded-none md:rounded-lg overflow-hidden shadow-lg bg-white dark:bg-gray-900 dark:text-gray-50">
       <h1 class="px-4 text-xl mt-4 mb-2 uppercase font-bold">
         <span>{{ $i18n.t('settings.heading') }}</span>
-        <UiButton subtle class="float-right -mt-2 -mr-2" @click="processedValue = false">
-          <CloseIcon :title="$i18n.t('settings.buttons.close')" />
+        <UiButton :aria-label="$i18n.t('settings.buttons.close')" subtle class="float-right -mt-2 -mr-2" tabindex="0" @click="processedValue = false">
+          <CloseIcon :aria-label="$i18n.t('settings.buttons.close')" />
         </UiButton>
       </h1>
       <div class="px-4 flex-grow overflow-y-auto py-2">
@@ -110,13 +110,13 @@
                   <div class="my-2" v-text="$i18n.t('settings.about.share')" />
                   <div class="flex flex-row items-center space-x-2 text-sm">
                     <a href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="rounded-full w-12 h-12 bg-[#1da1f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
-                      <AboutTwitter size="24" />
+                      <AboutTwitter :aria-label="$i18n.t('index.alt.links.share.twitter')" size="24" />
                     </a>
                     <a href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#1877f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
-                      <AboutFacebook size="24" class="translate-x-[-1px]" />
+                      <AboutFacebook :aria-label="$i18n.t('index.alt.links.share.facebook')" size="24" class="translate-x-[-1px]" />
                     </a>
                     <a href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#ff4500] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
-                      <AboutReddit size="24" />
+                      <AboutReddit :aria-label="$i18n.t('index.alt.links.share.reddit')" size="24" />
                     </a>
                   </div>
                 </div>
@@ -130,22 +130,22 @@
       <div class="flex-none h-20 flex flex-row p-4">
         <TabHeader :active="activeTab === 1" :text="$i18n.t('settings.tabs.main')" @click="activeTab = 1">
           <template #icon>
-            <TabIconGeneral />
+            <TabIconGeneral role="presentation" />
           </template>
         </TabHeader>
         <TabHeader :active="activeTab === 2" :text="$i18n.t('settings.tabs.timer')" @click="activeTab = 2">
           <template #icon>
-            <TabIconSchedule />
+            <TabIconSchedule role="presentation" />
           </template>
         </TabHeader>
         <TabHeader :active="activeTab === 3" :text="$i18n.t('settings.tabs.display')" @click="activeTab = 3">
           <template #icon>
-            <TabIconVisuals />
+            <TabIconVisuals role="presentation" />
           </template>
         </TabHeader>
         <TabHeader :active="activeTab === 4" :text="$i18n.t('settings.tabs.about')" @click="activeTab = 4">
           <template #icon>
-            <TabIconAbout />
+            <TabIconAbout role="presentation" />
           </template>
         </TabHeader>
       </div>
