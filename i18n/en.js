@@ -174,21 +174,6 @@ export default {
         hardcore: 'Every feature is enabled so you can have everything in front of you.'
       }
     },
-    timerpreset: {
-      _values: {
-        default: 'Default',
-        easy: 'Beginner',
-        advanced: 'Advanced',
-        workaholic: 'Workaholic'
-      },
-      _valueDescription: {
-        default: 'The default Pomodoro values.',
-        easy: 'For those who haven\'t yet tried the Pomodoro technique.',
-        advanced: 'Work slightly more effectively.',
-        workaholic: 'For long work sessions.'
-      },
-      description: '{brief} \n {worklength} minutes of work with {splength} minutes short and {lplength} minutes long breaks after every {lpfreq} work sessions.'
-    },
     permissions: {
       audio: 'Audio',
       notifications: 'Notifications'
@@ -450,5 +435,21 @@ export default {
       primary: 'You can',
       secondary: 'or if those didn\'t help'
     }
+  },
+
+  timerpreset: {
+    _values: {
+      default: 'Default',
+      easy: 'Beginner',
+      advanced: 'Advanced',
+      workaholic: 'Workaholic'
+    },
+    _valueDescription: {
+      default: 'The default Pomodoro values.',
+      easy: 'For those who haven\'t yet tried the Pomodoro technique.',
+      advanced: 'Work slightly more effectively.',
+      workaholic: 'For long work sessions.'
+    },
+    description: '{brief} \n {worklength} minutes of work with {splength} minutes short and {lplength} minutes long breaks after every {lpfreq} work sessions.'
   }
 }

@@ -29,7 +29,7 @@
           <OptionGroup
             :selected="timerpreset"
             :values="{'easy': 'easy', 'default': 'default', 'advanced': 'advanced', 'workaholic': 'workaholic'}"
-            translation-key="setup.timerpreset"
+            translation-key="timerpreset"
             :override-text="timerPresetCustomTexts"
             @input="timerpreset = $event"
           />
@@ -252,8 +252,8 @@ export default {
       for (const key in this.presetTimers) {
         if (Object.hasOwnProperty.call(this.presetTimers, key)) {
           const preset = this.presetTimers[key]
-          customText.description[key] = this.$i18n.t('setup.timerpreset.description', {
-            brief: this.$i18n.t('setup.timerpreset._valueDescription.' + key),
+          customText.description[key] = this.$i18n.t('timerpreset.description', {
+            brief: this.$i18n.t('timerpreset._valueDescription.' + key),
             worklength: preset.lengths.work / 60000,
             splength: preset.lengths.shortpause / 60000,
             lplength: preset.lengths.longpause / 60000,
