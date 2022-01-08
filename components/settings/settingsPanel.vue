@@ -51,6 +51,7 @@
               <SettingsOptions
                 :settings-key="['schedule', 'lengths']"
                 :custom-value="$store.getters['settings/getActiveSchedulePreset']"
+                override-translation-key="timerpreset"
                 :values="timerPresets"
                 :set-value-on-change="false"
                 :custom-set-function="(v) => { $store.commit('settings/applyPreset', v) }"
@@ -155,8 +156,8 @@
 
 <script>
 import { XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon, InfoCircleIcon, BrandGithubIcon, CoffeeIcon, BrandTwitterIcon, BrandFacebookIcon, BrandRedditIcon } from 'vue-tabler-icons'
-import { timerPresets } from '@/store/settings'
 import TabHeader from '@/components/settings/panel/tabHeader.vue'
+import presetTimers from '@/assets/settings/timerPresets'
 
 export default {
   name: 'SettingsPanel',
@@ -193,7 +194,7 @@ export default {
     return {
       activeTab: 1,
       resetConfirm: false,
-      timerPresets
+      timerPresets: presetTimers
     }
   },
 
