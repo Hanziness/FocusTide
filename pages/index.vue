@@ -254,12 +254,7 @@ export default {
   head () {
     return {
       title: 'AnotherPomodoro',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$i18n.t('index.app_description')
-        },
+      link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
       ]
     }

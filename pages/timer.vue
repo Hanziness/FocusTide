@@ -101,7 +101,7 @@ export default {
       meta: [{
         hid: 'description',
         name: 'description',
-        content: 'Jumpstart your Pomodoro sessions AnotherPomodoro.'
+        content: 'Jumpstart your productivity sessions with AnotherPomodoro. Start your timer session on this page, or check the home page for a guided tour!'
       }],
       link: [
         {
