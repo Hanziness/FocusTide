@@ -97,6 +97,7 @@ import OptionGroup from '~/components/base/optionGroup.vue'
 import TimerPage from '@/pages/timer.vue'
 import { mergeDeep } from '@/assets/utils/mergeDeep'
 import SetupStep from '@/components/setup/step.vue'
+import presetTimers from '@/assets/settings/timerPresets'
 
 export default {
   name: 'PageSetup',
@@ -179,40 +180,7 @@ export default {
           }
         }
       },
-      presetTimers: {
-        default: {
-          lengths: {
-            work: 25 * 60 * 1000, // 25 minutes
-            shortpause: 5 * 60 * 1000, // 5 minutes
-            longpause: 15 * 60 * 1000 // 15 minutes
-          },
-          longPauseInterval: 3 // every 3rd pause is a long one
-        },
-        easy: {
-          lengths: {
-            work: 15 * 60 * 1000, // 15 minutes
-            shortpause: 5 * 60 * 1000, // 5 minutes
-            longpause: 15 * 60 * 1000 // 15 minutes
-          },
-          longPauseInterval: 2 // every 2nd pause is a long one
-        },
-        advanced: {
-          lengths: {
-            work: 40 * 60 * 1000, // 40 minutes
-            shortpause: 10 * 60 * 1000, // 10 minutes
-            longpause: 30 * 60 * 1000 // 30 minutes
-          },
-          longPauseInterval: 3 // every 3rd pause is a long one
-        },
-        workaholic: {
-          lengths: {
-            work: 50 * 60 * 1000, // 50 minutes
-            shortpause: 10 * 60 * 1000, // 5 minutes
-            longpause: 30 * 60 * 1000 // 20 minutes
-          },
-          longPauseInterval: 3 // every 3rd pause is a long one
-        }
-      }
+      presetTimers
     }
   },
 
