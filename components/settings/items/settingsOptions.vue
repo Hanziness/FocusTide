@@ -1,7 +1,7 @@
 <template>
   <BaseSettingsItem :settings-key="settingsKey" :disabled="disabled" :custom-value="customValue" :custom-set-function="customSetFunction">
     <template #content-main="{ settingsValue, update, translationKey }">
-      <OptionGroup :translation-key="translationKey" :values="values" :selected="settingsValue" @input="update" />
+      <OptionGroup :translation-key="overrideTranslationKey ? overrideTranslationKey : translationKey" :values="values" :selected="settingsValue" @input="update" />
     </template>
   </BaseSettingsItem>
 </template>
@@ -38,6 +38,11 @@ export default {
     customSetFunction: {
       type: Function,
       default: undefined
+    },
+
+    overrideTranslationKey: {
+      type: String,
+      default: null
     }
   },
 
