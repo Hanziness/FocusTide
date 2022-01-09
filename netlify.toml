@@ -1,3 +1,17 @@
+# Domain redirects
+[[redirects]]
+  from = "http://another-pomodoro.netlify.app/*"
+  to = "https://another-pomodoro.app/*"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://another-pomodoro.netlify.app/*"
+  to = "https://another-pomodoro.app/*"
+  status = 301
+  force = true
+
+# Proxying for third-party scripts
 [[redirects]]
   from = "/bee.js"
   to = "https://cdn.splitbee.io/sb.js"
