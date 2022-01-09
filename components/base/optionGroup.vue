@@ -1,9 +1,9 @@
 <template>
-  <div class="grid grid-flow-row md:grid-flow-col md:auto-cols-fr select-option-group gap-3">
+  <div class="grid grid-flow-row select-option-group gap-3" :class="[Object.keys(values).length > 3 ? 'md:grid-flow-row md:grid-cols-3' : 'md:grid-flow-col md:auto-cols-auto']">
     <OptionControl
       v-for="(item, key) in values"
       :key="key"
-      class="flex-grow"
+      class="min-w-fit"
       :active="key === selected"
       :translation-key="translationKey"
       :translation-subkey="key"

@@ -1,4 +1,5 @@
 import TickMultipliers from '@/assets/settings/adaptiveTickingMultipliers'
+import timerPresets from '@/assets/settings/timerPresets'
 
 export const AvailableTimers = {
   TIMER_TRADITIONAL: 'traditional',
@@ -8,14 +9,6 @@ export const AvailableTimers = {
 
 export const AvailableSoundSets = {
   SOUNDSET_MUSICAL: 'musical'
-}
-
-export const timerPresets = {
-  default: {
-    work: 25 * 60 * 1000, // 25 minutes
-    shortpause: 5 * 60 * 1000, // 5 minutes
-    longpause: 15 * 60 * 1000 // 15 minutes
-  }
 }
 
 export const state = () => ({
@@ -93,7 +86,7 @@ export const getters = {
 
   getActiveSchedulePreset (state) {
     for (const key in timerPresets) {
-      if (JSON.stringify(timerPresets[key]) === JSON.stringify(state.schedule.lengths)) {
+      if (JSON.stringify(timerPresets[key].lengths) === JSON.stringify(state.schedule.lengths)) {
         return key
       }
     }
@@ -129,7 +122,7 @@ export const mutations = {
 
   applyPreset (state, id) {
     if (timerPresets[id]) {
-      state.schedule.lengths = Object.assign({}, timerPresets[id])
+      state.schedule.lengths = Object.assign({}, timerPresets[id].lengths)
     }
   },
 

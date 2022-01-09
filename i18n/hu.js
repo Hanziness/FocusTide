@@ -170,21 +170,7 @@ export default {
         hardcore: 'Minden funkció bekapcsolva, így minden dolog előtted lehet.'
       }
     },
-    timerpreset: {
-      _values: {
-        default: 'Alapértelmezett',
-        easy: 'Kezdő',
-        advanced: 'Haladó',
-        workaholic: 'Munkamániás'
-      },
-      _valueDescription: {
-        default: 'Az alap Pomodoro idők.',
-        easy: 'Azok számára, akik még nem próbálták a Pomodoro technikát.',
-        advanced: 'Dolgozz kicsit hatékonyabban.',
-        workaholic: 'Hosszú munkamenetekre.'
-      },
-      description: '{brief} \n {worklength} perc munka {splength} perces rövid szünetekkel és {lplength} perces hosszú szünettel minden {lpfreq}. munkamenet után.'
-    },
+
     permissions: {
       audio: 'Hang',
       notifications: 'Értesítések'
@@ -446,5 +432,21 @@ export default {
       primary: 'Először próbáld meg ezeket:',
       secondary: 'vagy ha a fentiek nem segítettek:'
     }
+  },
+
+  timerpreset: {
+    _values: {
+      default: 'Alapértelmezett',
+      easy: 'Kezdő',
+      advanced: 'Haladó',
+      workaholic: 'Munkamániás'
+    },
+    _valueDescription: {
+      default: 'Az alap Pomodoro idők.',
+      easy: 'Azok számára, akik még nem próbálták a Pomodoro technikát.',
+      advanced: 'Dolgozz kicsit hatékonyabban.',
+      workaholic: 'Hosszú munkamenetekre.'
+    },
+    description: '{brief} \n {worklength} perc munka {splength} perces rövid szünetekkel és {lplength} perces hosszú szünettel minden {lpfreq}. munkamenet után.'
   }
 }
