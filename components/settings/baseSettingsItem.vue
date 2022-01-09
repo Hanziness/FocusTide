@@ -23,7 +23,7 @@
     </div>
 
     <!-- Content to show below the title and description -->
-    <div class="">
+    <div class="flex flex-col w-full">
       <slot name="content-main" :settingsValue="settingsValue" />
     </div>
     <slot name="content-error" :errorValue="errorValue">
