@@ -160,7 +160,7 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    hostname: process.env.hostname ? process.env.hostname : 'https://another-pomodoro.netlify.app'
+    hostname: process.env.URL ? process.env.URL : 'https://another-pomodoro.netlify.app'
   },
 
   /*
