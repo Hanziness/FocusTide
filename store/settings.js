@@ -86,7 +86,7 @@ export const getters = {
 
   getActiveSchedulePreset (state) {
     for (const key in timerPresets) {
-      if (JSON.stringify(timerPresets[key]) === JSON.stringify(state.schedule.lengths)) {
+      if (JSON.stringify(timerPresets[key].lengths) === JSON.stringify(state.schedule.lengths)) {
         return key
       }
     }
@@ -122,7 +122,7 @@ export const mutations = {
 
   applyPreset (state, id) {
     if (timerPresets[id]) {
-      state.schedule.lengths = Object.assign({}, timerPresets[id])
+      state.schedule.lengths = Object.assign({}, timerPresets[id].lengths)
     }
   },
 
