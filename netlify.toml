@@ -1,0 +1,9 @@
+[[redirects]]
+  from = "/bee.js"
+  to = "https://cdn.splitbee.io/sb.js"
+  status = 200
+
+[[redirects]]
+  from = "/_hive/*"
+  to  = "https://hive.splitbee.io/:splat"
+  status = 200
