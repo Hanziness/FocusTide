@@ -229,10 +229,12 @@ export default {
         _description: '',
         _values: {
           en: 'English',
+          hr: 'Hrvatski',
           hu: 'Magyar'
         },
         _valueDescription: {
           en: '',
+          hr: '',
           hu: ''
         }
       },
