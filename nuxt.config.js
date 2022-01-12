@@ -108,7 +108,7 @@ export default defineNuxtConfig({
       name: 'AnotherPomodoro',
       author: 'Imre Gera',
       description: 'Modern and customisable productivity timer, right in your browser!',
-      theme_color: '#FCA5A5',
+      theme_color: '#F87171',
       lang: 'en',
       twitterCard: 'summary_large_image'
     },
