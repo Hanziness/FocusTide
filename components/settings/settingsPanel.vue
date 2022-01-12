@@ -87,7 +87,7 @@
 
             <div v-else-if="activeTab === 4" :key="4" class="settings-tab">
               <div class="flex flex-col items-center">
-                <img src="/favicon.png" width="64" height="64" class="inline-block bg-red-200 rounded-lg p-2 mb-1">
+                <img src="/favicon.svg" width="64" height="64" class="inline-block bg-red-200 rounded-lg p-2 mb-1">
                 <div>
                   <div class="font-bold text-2xl inline-block">
                     AnotherPomodoro

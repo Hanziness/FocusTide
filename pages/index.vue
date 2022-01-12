@@ -6,14 +6,7 @@
     <Transition name="fab-transition">
       <nuxt-link v-show="showFAB" v-slot="{ navigate }" to="/timer" custom>
         <div role="button" tabindex="0" class="transition absolute w-full bottom-0 rounded-t-lg xl:w-auto xl:right-6 xl:bottom-4 z-10 xl:rounded-lg text-xl shadow-md px-4 py-3 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 text-black font-bold uppercase cursor-pointer flex flex-row space-x-2 items-center border border-neutral-100" @click="navigate">
-          <nuxt-img
-            src="/favicon.png"
-            width="32"
-            height="32"
-            class=""
-            format="png"
-            quality="95"
-          />
+          <img src="/favicon.svg" width="32" height="32" role="presentation">
           <span v-text="$i18n.t('index.launch')" />
         </div>
       </nuxt-link>
@@ -30,7 +23,7 @@
               <div class="flex flex-row items-start xl:mr-16">
                 <!-- App icon -->
                 <div class="mr-4 mt-1 min-w-max min-h-max">
-                  <nuxt-img :alt="$i18n.t('index.alt.img.icon')" src="/favicon.png" width="68" height="68" class="bg-red-200 rounded-lg p-2" />
+                  <img src="/favicon.svg" width="68" height="68" class="bg-red-200 rounded-lg p-2" role="presentation">
                 </div>
                 <!-- App name and slogan -->
                 <div class="flex flex-col">
