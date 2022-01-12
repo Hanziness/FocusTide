@@ -40,10 +40,12 @@ export default defineNuxtConfig({
       { hid: 'twitter:description', name: 'twitter:description', content: process.env.npm_package_description || '' },
       { hid: 'twitter:image', name: 'twitter:image', content: '/img/ogImage.png' },
       { hid: 'og:image', property: 'og:image', content: '/img/ogImage.png' },
-      { hid: 'og:image:url', property: 'og:image:url', content: '/img/ogImage.png' }
+      { hid: 'og:image:url', property: 'og:image:url', content: '/img/ogImage.png' },
+      { hid: 'og:url', property: 'og:url', content: process.env.URL ? process.env.URL : 'https://another-pomodoro.netlify.app' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', href: '/favicon.svg' }
+      // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   /*
@@ -105,14 +107,15 @@ export default defineNuxtConfig({
     meta: {
       name: 'AnotherPomodoro',
       author: 'Imre Gera',
-      description: 'Free and open-source Pomodoro app for everyone, right from your browser!',
-      theme_color: '#FF6B6B',
+      description: 'Modern and customisable productivity timer, right in your browser!',
+      theme_color: '#F87171',
       lang: 'en',
       twitterCard: 'summary_large_image'
     },
     icon: {
       fileName: 'icon.png',
-      purpose: ['maskable', 'any']
+      purpose: ['maskable', 'any'],
+      plugin: false
     },
     manifest: {
       name: 'AnotherPomodoro - free & modern Pomodoro app',
