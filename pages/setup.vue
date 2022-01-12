@@ -10,8 +10,8 @@
         <SetupStep :title="$i18n.t('setup.steps.language.title')">
           <OptionGroup
             :selected="settingsToApply.lang"
-            :values="{'hu': 'hu', 'en': 'en'}"
-            :translation-key="'settings.values.lang'"
+            :values="languages"
+            :override-text="{ title: languages, description: null }"
             @input="settingsToApply.lang = $event"
           />
         </SetupStep>
@@ -97,7 +97,9 @@ import OptionGroup from '~/components/base/optionGroup.vue'
 import TimerPage from '@/pages/timer.vue'
 import { mergeDeep } from '@/assets/utils/mergeDeep'
 import SetupStep from '@/components/setup/step.vue'
+
 import presetTimers from '@/assets/settings/timerPresets'
+import languages from '@/assets/languages'
 
 export default {
   name: 'PageSetup',
@@ -180,7 +182,8 @@ export default {
           }
         }
       },
-      presetTimers
+      presetTimers,
+      languages
     }
   },
 
