@@ -226,15 +226,7 @@ export default {
     values: {
       lang: {
         _title: 'Nyelv',
-        _description: '',
-        _values: {
-          en: 'English',
-          hu: 'Magyar'
-        },
-        _valueDescription: {
-          en: '',
-          hu: ''
-        }
+        _description: ''
       },
       eventLoggingEnabled: {
         _title: 'Eseménynaplózás engedélyezése',
