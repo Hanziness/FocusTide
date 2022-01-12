@@ -53,11 +53,11 @@ export default {
 
   computed: {
     title () {
-      return this.customTitle || this.$i18n.t(this.translationKey + '._values.' + this.translationSubkey)
+      return typeof this.customTitle === 'string' ? this.customTitle : this.$i18n.t(this.translationKey + '._values.' + this.translationSubkey)
     },
 
     description () {
-      return this.customDescription || this.$i18n.t(this.translationKey + '._valueDescription.' + this.translationSubkey)
+      return typeof this.customDescription === 'string' ? this.customDescription : this.$i18n.t(this.translationKey + '._valueDescription.' + this.translationSubkey)
     }
   }
 }
