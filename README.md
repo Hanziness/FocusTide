@@ -2,6 +2,8 @@
 
 Free and open-source Pomodoro application, right in your browser.
 
+[<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="210">](https://www.buymeacoffee.com/imreg?utm_source=github&utm_medium=web&utm_content=readme)
+
 ![Netlify Status](https://api.netlify.com/api/v1/badges/7cb2b7fb-cacd-4acf-803b-8af9dad9f2a8/deploy-status)
 
 ![Screenshot of the application showing a work section.](./static/assets/img/ProductImg_Default.png)
@@ -49,7 +51,7 @@ Here's the looong list of features this app includes.
   * control your timer using the keyboard
   * dark and light themes
   * ... and more to come in the future!
-* 📑 **Clean to-do list**
+* ✅ **Clean to-do list**
   * set separate tasks for work, pause and long pause sections
   * only shows your top relevant tasks while the timer is running
   * automatically remove completed tasks at the end of each session
@@ -79,6 +81,8 @@ The app itself still does not collect any data (eg. when you're running it on yo
 ![The percentage timer with the revamped to-do list](./static/assets/img/ProductImg_Percentage.png)
 ## 🏗 If you're a developer
 
+This is an open-source project that welcomes contributions. Please check the [**contribution guidelines**](./CONTRIBUTING.md) before opening issues, discussions or pull requests!
+
 ### ❤ Technologies, packages used
 
 * [**NuxtJS**](https://nuxtjs.org/) (and thus [**VueJS**](https://vuejs.org/))
@@ -107,3 +111,9 @@ $ yarn dev
 # generate the final static site
 $ yarn generate
 ```
+
+## ☕ Support the project
+
+If you like this project or it has helped you, please consider buying the maintainer a coffee. You won't be annoyed to do so while using the app!
+
+[<p align="center"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="256"></p>](https://www.buymeacoffee.com/imreg?utm_source=github&utm_medium=web&utm_content=readme)
