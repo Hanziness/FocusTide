@@ -114,6 +114,6 @@ $ yarn generate
 
 ## ☕ Support the project
 
-If this project has helped you, please consider buying the maintainer a coffee. You won't be annoyed to do so while using the app!
+If you like this project or it has helped you, please consider buying the maintainer a coffee. You won't be annoyed to do so while using the app!
 
 [<p align="center"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="256"></p>](https://www.buymeacoffee.com/imreg?utm_source=github&utm_medium=web&utm_content=readme)
