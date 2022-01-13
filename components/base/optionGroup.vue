@@ -7,8 +7,8 @@
       :active="key === selected"
       :translation-key="translationKey"
       :translation-subkey="key"
-      :custom-title="overrideText.title[key] ? overrideText.title[key] : null"
-      :custom-description="overrideText.description[key] ? overrideText.description[key] : null"
+      :custom-title="overrideText.title == null ? '' : (overrideText.title[key] ? overrideText.title[key] : null)"
+      :custom-description="overrideText.description == null ? '' : (overrideText.description[key] ? overrideText.description[key] : null)"
       @click="select(key)"
     />
   </div>

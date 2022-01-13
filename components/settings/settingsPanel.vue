@@ -11,10 +11,11 @@
         <div class="w-full">
           <Transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
             <div v-if="activeTab === 1" :key="1" class="settings-tab">
-              <SettingsOptions
-                :settings-key="['lang']"
-                :values="{'en': 'en', 'hu': 'hu'}"
-                :custom-value="$store.state.settings.lang ? $store.state.settings.lang : $i18n.locale"
+              <OptionGroup
+                :values="$languages"
+                :selected="$store.state.settings.lang"
+                :override-text="{ title: $languages, description: null }"
+                @input="$store.commit('settings/SET', { key: ['lang'], value: $event })"
               />
               <Divider />
               <SettingsCheck :settings-key="['adaptiveTicking', 'enabled']" />
@@ -156,7 +157,10 @@
 
 <script>
 import { XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon, InfoCircleIcon, BrandGithubIcon, CoffeeIcon, BrandTwitterIcon, BrandFacebookIcon, BrandRedditIcon } from 'vue-tabler-icons'
+
+import OptionGroup from '@/components/base/optionGroup.vue'
 import TabHeader from '@/components/settings/panel/tabHeader.vue'
+
 import presetTimers from '@/assets/settings/timerPresets'
 
 export default {
@@ -169,6 +173,7 @@ export default {
     SettingsTime: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsTime.vue'),
     SettingsOptions: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsOptions.vue'),
     Divider: () => import(/* webpackMode: "eager" */ '@/components/base/divider.vue'),
+    OptionGroup,
     TabHeader,
     CloseIcon: XIcon,
     // ResetIcon: RefreshAlertIcon,
