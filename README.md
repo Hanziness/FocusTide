@@ -2,6 +2,8 @@
 
 Free and open-source Pomodoro application, right in your browser.
 
+[<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="210">](https://www.buymeacoffee.com/imreg?utm_source=github&utm_medium=web&utm_content=readme)
+
 ![Netlify Status](https://api.netlify.com/api/v1/badges/7cb2b7fb-cacd-4acf-803b-8af9dad9f2a8/deploy-status)
 
 ![Screenshot of the application showing a work section.](./static/assets/img/ProductImg_Default.png)
@@ -109,3 +111,9 @@ $ yarn dev
 # generate the final static site
 $ yarn generate
 ```
+
+## ☕ Support the project
+
+If you think this project is project is worth supporting, please consider buying the maintainer a coffee. You won't be annoyed to do so while using the app!
+
+[<p align="center"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="256"></p>](https://www.buymeacoffee.com/imreg?utm_source=github&utm_medium=web&utm_content=readme)
