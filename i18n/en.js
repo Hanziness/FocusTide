@@ -58,11 +58,7 @@ export default {
           description: 'Take a nap or go for a walk',
           duration: '15 minutes'
         }
-      ],
-      try_it: {
-        base: 'If you watch too many videos of cats while you should be working instead, then {0}.',
-        try: 'give it a try'
-      }
+      ]
     },
     faq: {
       title: 'FAQ',
@@ -121,10 +117,6 @@ export default {
           base: 'If you feel that this is a project worth supporting, please {0}.',
           action: 'do so'
         }
-      },
-      method: {
-        github: 'View on GitHub',
-        buymeacoffee: 'Buy the author a coffee'
       },
       credits: 'Made with ❤ by Imre Gera'
     }
