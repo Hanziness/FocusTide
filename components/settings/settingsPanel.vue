@@ -12,9 +12,9 @@
           <Transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
             <div v-if="activeTab === 1" :key="1" class="settings-tab">
               <OptionGroup
-                :values="languages"
+                :values="$languages"
                 :selected="$store.state.settings.lang"
-                :override-text="{ title: languages, description: null }"
+                :override-text="{ title: $languages, description: null }"
                 @input="$store.commit('settings/SET', { key: ['lang'], value: $event })"
               />
               <Divider />
@@ -162,7 +162,6 @@ import OptionGroup from '@/components/base/optionGroup.vue'
 import TabHeader from '@/components/settings/panel/tabHeader.vue'
 
 import presetTimers from '@/assets/settings/timerPresets'
-import languages from '@/assets/languages'
 
 export default {
   name: 'SettingsPanel',
@@ -200,8 +199,7 @@ export default {
     return {
       activeTab: 1,
       resetConfirm: false,
-      timerPresets: presetTimers,
-      languages
+      timerPresets: presetTimers
     }
   },
 
