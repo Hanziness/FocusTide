@@ -51,7 +51,7 @@ Here's the looong list of features this app includes.
   * control your timer using the keyboard
   * dark and light themes
   * ... and more to come in the future!
-* 📑 **Clean to-do list**
+* ✅ **Clean to-do list**
   * set separate tasks for work, pause and long pause sections
   * only shows your top relevant tasks while the timer is running
   * automatically remove completed tasks at the end of each session
