@@ -97,7 +97,7 @@ While we also accept translations submitted to the app, currently they are store
 2. Copy `i18n/en.js` (to eg. `i18n/hu.js`, if you would be making the Hungarian translation) and translate the strings to your chosen language.
 3. Add your language to `nuxt.config.js` (in the `i18n.locales` array). Please make sure to *use the app* as some translations might end up out-of-context if translated blindly. The entry for English translations (stored in `i18n/en.js`) look like this:
 
-```json
+```
 { code: 'en', name: 'English', iso: 'en-US', file: 'en.js' }
 ```
 
