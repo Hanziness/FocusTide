@@ -248,7 +248,7 @@ export default {
     return {
       title: 'AnotherPomodoro',
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
+        { rel: 'icon', href: '/favicon.svg' }
       ]
     }
   },

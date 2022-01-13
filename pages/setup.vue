@@ -1,7 +1,7 @@
 <template>
   <div class="dark:text-gray-100 dark:bg-gray-900 pb-8">
     <div class="pt-8 pb-20 text-center bg-red-100 dark:bg-opacity-25 text-black dark:text-gray-100">
-      <img src="/favicon.png" width="64" height="64" class="inline-block bg-red-200 rounded-lg p-2 mb-4">
+      <img src="/favicon.svg" width="64" height="64" class="inline-block bg-red-200 rounded-lg p-2 mb-4">
       <h1 class="text-5xl font-bold uppercase" v-text="$i18n.t('setup.title')" />
     </div>
     <div class="flex 2xl:flex-row flex-col 2xl:space-x-4 mx-auto px-12 -mt-8">
