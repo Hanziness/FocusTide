@@ -79,6 +79,8 @@ The app itself still does not collect any data (eg. when you're running it on yo
 ![The percentage timer with the revamped to-do list](./static/assets/img/ProductImg_Percentage.png)
 ## 🏗 If you're a developer
 
+This is an open-source project that welcomes contributions. Please check the [**contribution guidelines**](./CONTRIBUTING.md) before opening issues, discussions or pull requests!
+
 ### ❤ Technologies, packages used
 
 * [**NuxtJS**](https://nuxtjs.org/) (and thus [**VueJS**](https://vuejs.org/))
