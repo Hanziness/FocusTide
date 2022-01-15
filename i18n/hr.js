@@ -39,8 +39,8 @@ export default {
     section_whatitdoes: {
       title: 'Što radi?',
       subtitle: {
-        main: '{0} ti pomaže pratiti vrijeme.',
-        sub: 'Radi ili se odmori kad ti to kaže.'
+        main: '{0} pomaže pratiti vrijeme.',
+        sub: 'Radi ili se odmaraj kad ti to kaže.'
       },
       cards: [
         {
@@ -55,7 +55,7 @@ export default {
         },
         {
           title: 'Duga pauza',
-          description: 'Odrijemaj ili idi u šetnju',
+          description: 'Odrijemaj ili prošetaj',
           duration: '15 minuta'
         }
       ]
@@ -79,7 +79,7 @@ export default {
         },
         remember_settings: {
           q: 'Kako će onda zapamtiti moje postavke?',
-          a: 'Ovisi o tvom preglednik. Ako izbrišeš podatke preglednika, postavke programa će se također će se obnoviti na standardne vrijednosti.',
+          a: 'Ovisi o tvom pregledniku. Ako izbrišeš podatke preglednika, postavke programa će se također će se obnoviti na standardne vrijednosti.',
           hint: 'Ako želiš zadržati svoje postavke, nemoj koristiti program u privatnom načinu pregledavanja (inkognito).'
         },
         need_to_know: {
@@ -102,7 +102,7 @@ export default {
         opensource: 'Otvoren kod',
         notrackers: 'Bez programa za praćenje',
         noads: 'Bez reklama i skočnih prozora',
-        clean: 'Clean design',
+        clean: 'Jednostavan dizajn',
         adaptiveticking: 'Adaptivno otkucavanje',
         localization: 'Višejezičnost',
         darkmode: 'Tamni modus',
@@ -135,7 +135,7 @@ export default {
       },
       timerpreset: {
         title: 'Trajanje timera',
-        description: 'Odaberi unaprijed postavljenu postavku timera s kojom želiš raditi.'
+        description: 'Odaberi unaprijed postavljeni timer s kojim želiš raditi.'
       },
       timerstyle: {
         title: 'Prikaz timera',
@@ -161,7 +161,7 @@ export default {
         hardcore: 'Potpune'
       },
       _valueDescription: {
-        minimalist: 'Bez elemenata koje ometaju, samo timer u sredini.',
+        minimalist: 'Bez elemenata koji ometaju, samo timer u sredini.',
         default: 'Početne postavke. Preporučuje se korisnicima koji program koriste po prvi puta.',
         hardcore: 'Sve funkcije su aktivirane tako da su nadohvat ruke.'
       }
@@ -196,7 +196,7 @@ export default {
   settings: {
     heading: 'Postavke',
     tabs: {
-      main: 'Glavne',
+      main: 'Opće',
       timer: 'Raspored',
       display: 'Prikaz',
       audio: 'Zvuk',
@@ -211,7 +211,7 @@ export default {
       confirm: 'Resetiraj',
       cancel: 'Odustani'
     },
-    scheduleMinTime: 'Najmanje dozvoljeno vrijeme je 5 sekundi',
+    scheduleMinTime: 'Najkraće dozvoljeno vrijeme je 5 sekundi',
     about: {
       madeby: 'Autor: Imre Gera',
       source: 'Izvorni kod',
@@ -262,7 +262,7 @@ export default {
             _description: ''
           },
           showSectionType: {
-            _title: 'Prikaži vrtu odjeljka u rasporedu',
+            _title: 'Prikaži vrstu odjeljka u rasporedu',
             _description: 'Prikazuje trenutačnu vrstu odjeljka ispod rasporeda'
           }
         },
@@ -306,7 +306,7 @@ export default {
         },
         notifications: {
           _title: 'Dozvole za obavijesti',
-          _description: 'Dozvoli programu slati obavijeti kad je jedan odjeljak gotov'
+          _description: 'Dozvoli programu slati obavijesti kad je jedan odjeljak gotov'
         }
       },
       audio: {
@@ -341,24 +341,24 @@ export default {
           _description: 'Vidjet ćeš najviše ovoliko aktivnih zadataka'
         },
         removeCompletedTasks: {
-          _title: 'Ukloni dovršene zadatke',
-          _description: 'Dovršeni zadaci će se ukloniti kad započne novi odjeljak'
+          _title: 'Ukloni završene zadatke',
+          _description: 'Završeni zadaci će se ukloniti kad započne novi odjeljak'
         }
       },
       pageTitle: {
         useTickEmoji: {
-          _title: 'Koriti kvačicu u naslovu',
-          _description: 'Prikaži ✔ umjeto „gotovo”'
+          _title: 'Koristi kvačicu u naslovu',
+          _description: 'Prikaži ✔ umjesto „Gotovo”'
         }
       },
       visuals: {
         darkMode: {
           _title: 'Aktiviraj tamni modus',
-          _description: 'Tamnija, jednaka produktivnost'
+          _description: 'Tamniji izgled, jednaka produktivnost'
         }
       },
       reset: {
-        _title: 'Resetiraj postvke',
+        _title: 'Resetiraj postavke',
         _description: 'Sve postavke će se resetirati nakon ponovnog učitavanja programa'
       }
     }
@@ -377,7 +377,7 @@ export default {
     },
     longpause: {
       title: 'Konačno! Više slobodnog vremena!',
-      body: 'Nakon ovoliko rada, zaslužuješ dužu pauzu.'
+      body: 'Nakon ovoliko rada zaslužuješ dužu pauzu.'
     }
   },
   error: {
@@ -386,7 +386,7 @@ export default {
     required: 'Ovo se polje mora ispuniti',
     numeric: 'Vrijednost mora biti broj',
     min: 'Vrijednost mora biti barem {min}',
-    max: 'Vrijednost mora biti najviše {max}',
+    max: 'Vrijednost ne smije biti veća od {max}',
     time_format: 'Neispravno formatirano vrijeme (MM:SS)',
     min_time: 'Unos vremena je prekratak',
     undefined: 'Nedefinirana greška'
@@ -399,7 +399,7 @@ export default {
   ready: 'Gotovo',
   errorpage: {
     title: {
-      crash: 'Pregram je prekinuo rad',
+      crash: 'Program je prekinuo rad',
       notfound: 'Ta stranica ne postoji',
       other: 'Dogodila se greška'
     },
@@ -423,15 +423,15 @@ export default {
 
     timerpreset: {
       _values: {
-        default: 'Standardne',
-        easy: 'Početničke',
-        advanced: 'Napredne',
-        workaholic: 'Radoholičarske'
+        default: 'Standardni',
+        easy: 'Početnički',
+        advanced: 'Napredni',
+        workaholic: 'Radoholičarski'
       },
       _valueDescription: {
         default: 'Standardne Pomodoro vrijednosti.',
         easy: 'Za one koji još nisu isprobali Pomodoro tehniku.',
-        advanced: 'Radi malo učinkovitije.',
+        advanced: 'Za učinkovitiji rad.',
         workaholic: 'Za duge radne sesije.'
       },
       description: '{brief} \n {worklength} min rada s {splength} min kratkih {lplength} min dugih pauza nakon svakih {lpfreq} radnih sesija.'
