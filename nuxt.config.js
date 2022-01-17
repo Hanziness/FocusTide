@@ -96,6 +96,12 @@ export default defineNuxtConfig({
   /** Modules that need to be transpiled */
   transpileDependencies: ['vuex-persist'],
 
+  /** ESLint module settings */
+  eslint: {
+    // Caching is disabled to prevent constant Nuxt rebuilds when there are warnings
+    cache: false
+  },
+
   generate: {
     // Generate fallback pages (makes error pages work on Netlify, too)
     fallback: true
