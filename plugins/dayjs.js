@@ -7,6 +7,7 @@ import { AvailableTimers } from '@/store/settings'
 // English and Hungarian locales
 import(/* webpackChunkName: "dayjsLocales", webpackMode: "eager" */ 'dayjs/locale/en.js')
 import(/* webpackChunkName: "dayjsLocales", webpackMode: "eager" */ 'dayjs/locale/hu.js')
+import(/* webpackChunkName: "dayjsLocales", webpackMode: "eager" */ 'dayjs/locale/hr.js')
 
 dayjs.extend(utc)
 dayjs.extend(dayjsrelativetime)
