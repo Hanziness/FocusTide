@@ -21,3 +21,8 @@
   from = "/_hive/*"
   to  = "https://hive.splitbee.io/:splat"
   status = 200
+
+[[redirects]]
+  from = "/fa.js"
+  to = "https://fairdatacenter.de/cdn/fair.js"
+  status = 200
