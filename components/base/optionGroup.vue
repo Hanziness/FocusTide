@@ -3,7 +3,7 @@
     <OptionControl
       v-for="(item, key) in values"
       :key="key"
-      class="min-w-fit"
+      class="min-w-0"
       :active="key === selected"
       :translation-key="translationKey"
       :translation-subkey="key"
