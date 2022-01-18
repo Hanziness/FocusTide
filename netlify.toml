@@ -29,5 +29,5 @@
 
 [[redirects]]
   from = "/plausible.js"
-  to = "https://plausible.io/js/plausible.js"
+  to = "https://plausible.io/js/plausible.outbound-links.js"
   status = 200
