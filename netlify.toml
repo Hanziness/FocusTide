@@ -26,3 +26,8 @@
   from = "/fa.js"
   to = "https://fairdatacenter.de/cdn/fair.js"
   status = 200
+
+[[redirects]]
+  from = "/plausible.js"
+  to = "https://plausible.io/js/plausible.js"
+  status = 200
