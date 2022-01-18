@@ -31,3 +31,8 @@
   from = "/plausible.js"
   to = "https://plausible.io/js/plausible.outbound-links.js"
   status = 200
+
+[[redirects]]
+  from = "/plausible-api"
+  to = "https://plausible.io/api/event"
+  status = 202
