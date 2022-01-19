@@ -2,6 +2,61 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/Hanziness/AnotherPomodoro/compare/v0.11.0...v1.0.0) (2022-01-19)
+
+
+### Features
+
+* Add Netlify config ([#148](https://github.com/Hanziness/AnotherPomodoro/issues/148)) ([e816813](https://github.com/Hanziness/AnotherPomodoro/commit/e8168134609bb341ce57084c841ebe2c517a6b8a))
+* Add page transitions ([#129](https://github.com/Hanziness/AnotherPomodoro/issues/129)) ([9310c3a](https://github.com/Hanziness/AnotherPomodoro/commit/9310c3a82c99454c40a9c9a83a9e7f93ba6007e5))
+* Friendlier error pages ([#130](https://github.com/Hanziness/AnotherPomodoro/issues/130)) ([7c746e4](https://github.com/Hanziness/AnotherPomodoro/commit/7c746e483a7f2ee082bec707522b6acc4bfcea18))
+* Improved SEO and accessibility ([#146](https://github.com/Hanziness/AnotherPomodoro/issues/146)) ([6f39966](https://github.com/Hanziness/AnotherPomodoro/commit/6f39966df5629084b05fbf377b38d5edd0737bfd))
+* Improved site and PWA icons ([#150](https://github.com/Hanziness/AnotherPomodoro/issues/150)) ([337966b](https://github.com/Hanziness/AnotherPomodoro/commit/337966b9ab0d2e1d079ca9d50251ef10f14c3612))
+* **settings:** Revamp settings panel ([#119](https://github.com/Hanziness/AnotherPomodoro/issues/119)) ([dd8c57d](https://github.com/Hanziness/AnotherPomodoro/commit/dd8c57d6389665a4a9bc5bc5b4fef6ef509f3674))
+* **setup:** Redesigned setup page ([#122](https://github.com/Hanziness/AnotherPomodoro/issues/122)) ([7e5495f](https://github.com/Hanziness/AnotherPomodoro/commit/7e5495fa2055b3b518ee81af6f50b695a365dac2))
+* Start next section using the start button ([#109](https://github.com/Hanziness/AnotherPomodoro/issues/109)) ([b6b56d1](https://github.com/Hanziness/AnotherPomodoro/commit/b6b56d132c7a2f09a5fdadf4031d4d9cdfecefa2))
+
+
+### Bug Fixes
+
+* Add missing dark theme to to-do list ([#115](https://github.com/Hanziness/AnotherPomodoro/issues/115)) ([95ff07f](https://github.com/Hanziness/AnotherPomodoro/commit/95ff07f9558783b52f86d1819c876a101c50d864))
+* **error:** Add space around recommended actions ([f795d1a](https://github.com/Hanziness/AnotherPomodoro/commit/f795d1a0ed3c4cca132d2e19e9f1fee28c0735b1)), closes [#126](https://github.com/Hanziness/AnotherPomodoro/issues/126)
+* **mobile:** Update layout to better fit mobile devices ([#144](https://github.com/Hanziness/AnotherPomodoro/issues/144)) ([c0d2bcc](https://github.com/Hanziness/AnotherPomodoro/commit/c0d2bcc592e44ea95bfe0a3e561ea520a1e3ac45))
+* Progress bar only shows when settings allow it ([a7c6dda](https://github.com/Hanziness/AnotherPomodoro/commit/a7c6dda4d0e8b43a180824081454389eb24861a2))
+* Progress bars transition seamlessly between sections ([#113](https://github.com/Hanziness/AnotherPomodoro/issues/113)) ([0e219af](https://github.com/Hanziness/AnotherPomodoro/commit/0e219af4a25781fcc3a6003fe71725ef61bf3152))
+* **settings:** Disable "remove completed tasks" setting if tasks are disabled ([7d078a6](https://github.com/Hanziness/AnotherPomodoro/commit/7d078a6082b57de558b934903997a09a311107c4))
+* **settings:** Grid items won't overflow ([#162](https://github.com/Hanziness/AnotherPomodoro/issues/162)) ([6fa7884](https://github.com/Hanziness/AnotherPomodoro/commit/6fa7884668ddeb8019b79d7c49bd5a410d35fb81))
+* **tasks:** Drag rings in todo list are now visible again ([62e335f](https://github.com/Hanziness/AnotherPomodoro/commit/62e335f072594cd16a1c0f5d9ed11ec7ffa4ba6c))
+* Timer now properly resets on manual advance ([#117](https://github.com/Hanziness/AnotherPomodoro/issues/117)) ([3a99b03](https://github.com/Hanziness/AnotherPomodoro/commit/3a99b0352cb6e7bc01b0272c8792702c0aa3157b))
+
+
+### Refactors
+
+* **i18n:** Make adding localisations easier ([#152](https://github.com/Hanziness/AnotherPomodoro/issues/152)) ([44c1aed](https://github.com/Hanziness/AnotherPomodoro/commit/44c1aed9d08e23340aff16d7d82f2800b381e98a))
+* Major refactoring and bugfixing before release ([#133](https://github.com/Hanziness/AnotherPomodoro/issues/133)) ([e997c03](https://github.com/Hanziness/AnotherPomodoro/commit/e997c03aea55a01059a31e35ed20f5214401cd03))
+* Make settings panel floating ([#105](https://github.com/Hanziness/AnotherPomodoro/issues/105)) ([722292e](https://github.com/Hanziness/AnotherPomodoro/commit/722292ed0ccd10aed4bd072b64b53ff21dc2f913))
+* Make settings panel tabs rounded ([#106](https://github.com/Hanziness/AnotherPomodoro/issues/106)) ([472b8ea](https://github.com/Hanziness/AnotherPomodoro/commit/472b8ea9bc90f04d3a3c16da40d3460d129f562c))
+* Manually handle scrolling on the home page ([#140](https://github.com/Hanziness/AnotherPomodoro/issues/140)) ([fcb1e6d](https://github.com/Hanziness/AnotherPomodoro/commit/fcb1e6d1d097bdc082730d0962b5e419fba8ce0b))
+* Redesigned home page ([#127](https://github.com/Hanziness/AnotherPomodoro/issues/127)) ([e8763f1](https://github.com/Hanziness/AnotherPomodoro/commit/e8763f132413241cee60e33bac756134d20106a8))
+* Replace Material Design icons with Tabler Icons ([#112](https://github.com/Hanziness/AnotherPomodoro/issues/112)) ([afa2d41](https://github.com/Hanziness/AnotherPomodoro/commit/afa2d41b3ff77436bf5c71bd689944db09fd4dea))
+* Rewrite task list ([#111](https://github.com/Hanziness/AnotherPomodoro/issues/111)) ([ce96980](https://github.com/Hanziness/AnotherPomodoro/commit/ce96980be9662342fdf0fb1a58043d61761a1e27))
+* **settings:** Make the setup page's new timer presets available on the settings panel, too ([#147](https://github.com/Hanziness/AnotherPomodoro/issues/147)) ([1c62b1e](https://github.com/Hanziness/AnotherPomodoro/commit/1c62b1e4626fc7fd4b8708d9f1015105137d8e08))
+* **theme:** Change accent color so it better matches branding ([#145](https://github.com/Hanziness/AnotherPomodoro/issues/145)) ([e197303](https://github.com/Hanziness/AnotherPomodoro/commit/e19730368ea560c6d191b8bc72bc6587a8b058ee))
+* Ugrade to Tailwind CSS 3 ([#123](https://github.com/Hanziness/AnotherPomodoro/issues/123)) ([c7004ba](https://github.com/Hanziness/AnotherPomodoro/commit/c7004bade1a5512ed1ada2db5e405d2de8c4e6da))
+
+
+### Documentation
+
+* **README:** Update README and fix contrubtion guidelines code highlight ([#154](https://github.com/Hanziness/AnotherPomodoro/issues/154)) ([2ae78e7](https://github.com/Hanziness/AnotherPomodoro/commit/2ae78e765f25935eb97749e69b53d8dff9a16b44))
+* Update license to MIT ([#136](https://github.com/Hanziness/AnotherPomodoro/issues/136)) ([991396a](https://github.com/Hanziness/AnotherPomodoro/commit/991396ae0910ac78b1d96fbb575b87c2f57b1e5d))
+
+
+### Localizations
+
+* Add Croatian translation ([#155](https://github.com/Hanziness/AnotherPomodoro/issues/155)) ([8577cff](https://github.com/Hanziness/AnotherPomodoro/commit/8577cffd022571caedd0792ceeb3d7d12a83bfc6))
+* Add Croatian translations to day.js ([#160](https://github.com/Hanziness/AnotherPomodoro/issues/160)) ([fc796ca](https://github.com/Hanziness/AnotherPomodoro/commit/fc796ca63af52e244beccdb36521e74b792b7f10))
+* Update Croatian translations ([#157](https://github.com/Hanziness/AnotherPomodoro/issues/157)) ([2002a9f](https://github.com/Hanziness/AnotherPomodoro/commit/2002a9f85caaa7cf4390da791a5f0e3d1ffa093b))
+
 ## [0.11.0](https://github.com/Hanziness/AnotherPomodoro/compare/v0.9.7...v0.11.0) (2021-10-15)
 
 
