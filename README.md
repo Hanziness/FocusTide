@@ -116,4 +116,6 @@ $ yarn generate
 
 If you like this project or it has helped you, please consider buying the maintainer a coffee. You won't be annoyed to do so while using the app!
 
-[<p align="center"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="256"></p>](https://www.buymeacoffee.com/imreg?utm_source=github&utm_medium=web&utm_content=readme)
+<p align="center"><a href="https://www.producthunt.com/posts/anotherpomodoro?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-anotherpomodoro" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=327185&theme=light" alt="AnotherPomodoro - Modern & customizable productivity timer | Product Hunt" width="250" height="54" /></a></p>
+
+[<p align="center"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="250"></p>](https://www.buymeacoffee.com/imreg?utm_source=github&utm_medium=web&utm_content=readme)
