@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/Hanziness/AnotherPomodoro/compare/v1.0.0...v1.0.1) (2022-01-20)
+
+
+### Bug Fixes
+
+* **home:** Fix DOMException in Firefox caused by i18n component interpolation ([#171](https://github.com/Hanziness/AnotherPomodoro/issues/171)) ([6017f5e](https://github.com/Hanziness/AnotherPomodoro/commit/6017f5e3e3641af208c84409e9dd766b2b67c73e))
+
 ## [1.0.0](https://github.com/Hanziness/AnotherPomodoro/compare/v0.11.0...v1.0.0) (2022-01-19)
 
 
