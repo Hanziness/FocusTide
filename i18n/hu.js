@@ -39,7 +39,7 @@ export default {
     section_whatitdoes: {
       title: 'Mire jó ez?',
       subtitle: {
-        main: 'Az {0} segít kordában tartani az idődet.',
+        main: 'Az AnotherPomodoro segít kordában tartani az idődet.',
         sub: 'Te csak dolgozz vagy pihenj, amikor azt mondja.'
       },
       cards: [

@@ -39,7 +39,7 @@ export default {
     section_whatitdoes: {
       title: 'Što radi?',
       subtitle: {
-        main: '{0} pomaže pratiti vrijeme.',
+        main: 'AnotherPomodoro pomaže pratiti vrijeme.',
         sub: 'Radi ili se odmaraj kad ti to kaže.'
       },
       cards: [
@@ -221,7 +221,7 @@ export default {
     values: {
       lang: {
         _title: 'Jezik',
-        _description: '',
+        _description: ''
       },
       eventLoggingEnabled: {
         _title: 'Aktiviraj zapisivanje događaja u dnevnik',
@@ -421,19 +421,19 @@ export default {
     }
   },
 
-    timerpreset: {
-      _values: {
-        default: 'Standardni',
-        easy: 'Početnički',
-        advanced: 'Napredni',
-        workaholic: 'Radoholičarski'
-      },
-      _valueDescription: {
-        default: 'Standardne Pomodoro vrijednosti.',
-        easy: 'Za one koji još nisu isprobali Pomodoro tehniku.',
-        advanced: 'Za učinkovitiji rad.',
-        workaholic: 'Za duge radne sesije.'
-      },
-      description: '{brief} \n {worklength} min rada s {splength} min kratkih {lplength} min dugih pauza nakon svakih {lpfreq} radnih sesija.'
+  timerpreset: {
+    _values: {
+      default: 'Standardni',
+      easy: 'Početnički',
+      advanced: 'Napredni',
+      workaholic: 'Radoholičarski'
+    },
+    _valueDescription: {
+      default: 'Standardne Pomodoro vrijednosti.',
+      easy: 'Za one koji još nisu isprobali Pomodoro tehniku.',
+      advanced: 'Za učinkovitiji rad.',
+      workaholic: 'Za duge radne sesije.'
+    },
+    description: '{brief} \n {worklength} min rada s {splength} min kratkih {lplength} min dugih pauza nakon svakih {lpfreq} radnih sesija.'
   }
 }

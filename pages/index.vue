@@ -18,32 +18,30 @@
       <Columns class="flex-col xl:flex-row xl:space-x-16 px-4 xl:px-24 pt-8 xl:pt-0">
         <template #left>
           <!-- App title and CTAs -->
-          <Transition name="main-appear" appear>
-            <div class="transition-all duration-1000 flex flex-col justify-center" :class="{ 'opacity-0 -translate-x-4': !loading.mainText }">
-              <div class="flex flex-row items-start xl:mr-16">
-                <!-- App icon -->
-                <div class="mr-4 mt-1 min-w-max min-h-max">
-                  <img src="/favicon.svg" width="68" height="68" class="bg-red-200 rounded-lg p-2" role="presentation">
-                </div>
-                <!-- App name and slogan -->
-                <div class="flex flex-col">
-                  <h1 class="text-3xl md:text-5xl font-bold">
-                    AnotherPomodoro
-                  </h1>
-                  <div class="text-lg md:text-xl" v-text="$i18n.t('index.app_description')" />
-                </div>
+          <div class="transition-all duration-1000 flex flex-col justify-center" :class="{ 'opacity-0 -translate-x-4': !loading.mainText }">
+            <div class="flex flex-row items-start xl:mr-16">
+              <!-- App icon -->
+              <div class="mr-4 mt-1 min-w-max min-h-max">
+                <img src="/favicon.svg" width="68" height="68" class="bg-red-200 rounded-lg p-2" role="presentation">
               </div>
-              <!-- CTAs -->
-              <div class="grid grid-flow-row md:grid-flow-col grid-cols-1 md:grid-cols-2 mt-6 gap-2">
-                <nuxt-link v-slot="{ navigate }" to="/timer" custom>
-                  <div class="flex-grow text-center px-6 py-4 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 shadow-lg text-2xl rounded-lg font-bold uppercase cursor-pointer transition-all" role="button" tabindex="0" @click="navigate" v-text="$i18n.t('index.cta.quickstart')" />
-                </nuxt-link>
-                <nuxt-link v-slot="{ navigate }" to="/setup" custom>
-                  <div class="flex-grow text-center px-6 py-4 bg-slate-300 hover:bg-gray-300 text-2xl rounded-lg font-bold uppercase cursor-pointer transition-all shadow-slate-300/0 hover:shadow-slate-300/40 hover:shadow-lg active:shadow-slate-300/60 active:bg-slate-400" role="button" tabindex="0" @click="navigate" v-text="$i18n.t('index.cta.configure')" />
-                </nuxt-link>
+              <!-- App name and slogan -->
+              <div class="flex flex-col">
+                <h1 class="text-3xl md:text-5xl font-bold">
+                  AnotherPomodoro
+                </h1>
+                <div class="text-lg md:text-xl" v-text="$i18n.t('index.app_description')" />
               </div>
             </div>
-          </Transition>
+            <!-- CTAs -->
+            <div class="grid grid-flow-row md:grid-flow-col grid-cols-1 md:grid-cols-2 mt-6 gap-2">
+              <nuxt-link v-slot="{ navigate }" to="/timer" custom>
+                <div class="flex-grow text-center px-6 py-4 bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 shadow-lg text-2xl rounded-lg font-bold uppercase cursor-pointer transition-all" role="button" tabindex="0" @click="navigate" v-text="$i18n.t('index.cta.quickstart')" />
+              </nuxt-link>
+              <nuxt-link v-slot="{ navigate }" to="/setup" custom>
+                <div class="flex-grow text-center px-6 py-4 bg-slate-300 hover:bg-gray-300 text-2xl rounded-lg font-bold uppercase cursor-pointer transition-all shadow-slate-300/0 hover:shadow-slate-300/40 hover:shadow-lg active:shadow-slate-300/60 active:bg-slate-400" role="button" tabindex="0" @click="navigate" v-text="$i18n.t('index.cta.configure')" />
+              </nuxt-link>
+            </div>
+          </div>
         </template>
         <!-- App screenshot -->
         <template #right>
@@ -99,9 +97,7 @@
       <div class="mt-8 text-sky-900 flex flex-col items-center">
         <h2 class="text-5xl font-bold uppercase tracking-tight" v-text="$i18n.t('index.section_whatitdoes.title')" />
         <div class="mt-2 text-lg xl:text-xl text-center">
-          <i18n path="index.section_whatitdoes.subtitle.main" tag="p">
-            <b>AnotherPomodoro</b>
-          </i18n>
+          <p class="font-bold" v-text="$i18n.t('index.section_whatitdoes.subtitle.main')" />
           <p v-text="$i18n.t('index.section_whatitdoes.subtitle.sub')" />
         </div>
 
