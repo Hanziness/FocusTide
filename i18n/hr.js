@@ -1,6 +1,6 @@
 export default {
   index: {
-    app_description: 'Besplatni Pomodoro izravno u tvom pregledniku',
+    app_description: 'Besplatni Pomodoro timer izravno u tvom pregledniku',
     alt: {
       img: {
         screenshot: 'Slika pokrenutog timera u programu AnotherPomodoro',
@@ -20,7 +20,7 @@ export default {
     cta: {
       quickstart: 'Pokreni',
       or: 'ili',
-      configure: 'Postavi čarobnjaka'
+      configure: 'Postavke'
     },
     features: {
       0: {
@@ -70,32 +70,32 @@ export default {
         },
         will_it_help: {
           q: 'Hoće li mi ovaj program pomoći?',
-          a: 'Ovosi o tebi. Ovaj se program trudi stvoriti motivirajuće okruženje svojim čistim dizajnom i fleksibilnošću, ali ovisi o tebi hoćeš li slijediti raspored koji predlaže.',
-          hint: 'Ako ne možeš raditi 25 minuta zaredom ili ako je pauza od 5 minuta prekratka, prilagodi postavke. Nemoj odustati, slijedi laganiji raspored i pooštri ga iz dana u dan.'
+          a: 'Ovosi o tebi. Ovaj se program trudi stvoriti motivirajuće okruženje svojim jednostavnim dizajnom i fleksibilnošću, ali o tebi ovisi hoćeš li slijediti raspored koji ti predlaže.',
+          hint: 'Ako ti je 25 minuta neprekidnog rada previše ili ako ti je pauza od 5 minuta prekratka, prilagodi postavke. Nemoj odustati, počni s laganijim rasporedom i pooštri ga iz dana u dan.'
         },
         data_collection: {
-          q: 'Je li program sakuplja podatke?',
+          q: 'Je li program prikuplja podatke?',
           a: 'Ne! Program radi samo u tvom pregledniku, nikakvi se podaci ne prikupljaju niti šalju!'
         },
         remember_settings: {
           q: 'Kako će onda zapamtiti moje postavke?',
-          a: 'Ovisi o tvom pregledniku. Ako izbrišeš podatke preglednika, postavke programa će se također će se obnoviti na standardne vrijednosti.',
-          hint: 'Ako želiš zadržati svoje postavke, nemoj koristiti program u privatnom načinu pregledavanja (inkognito).'
+          a: 'Ovisi o tvom pregledniku. Ako izbrišeš podatke preglednika, postavke programa će se također obnoviti na standardne vrijednosti.',
+          hint: 'Ako želiš zadržati svoje postavke, nemoj koristiti program u privatnom načinu pregledavanja.'
         },
         need_to_know: {
           q: 'Što moram znati za korištenje ovog programa?',
-          a: 'Apsolutno ništa. Ako ne želiš ulaziti u postavke, jednostavno pokreni timer i pazi na zvučni signal kad završi. Kad je gotov, pokreni sljedeći timer kad si spreman/na. Za korištenje ovog timera nije potrebno nikakvo znanje, samo pazi na preostalo vrijeme!'
+          a: 'Apsolutno ništa. Ako ne želiš mijenjati postavke, jednostavno pokreni timer i pazi na zvučni signal kad timer završi. Kad završi, pokreni sljedeći timer kad si spreman/na. Za korištenje ovog timera nije potrebno nikakvo znanje, samo pazi na preostalo vrijeme!'
         },
         timer_style: {
           q: 'Koji timer koristiti?',
-          a: 'To ovisi o tome kako želiš da se prikazuje timer. Tradicionalno se prikazuje kao „12:34” (sekunde-preciznost), približno kao „13 minuta”, a postotak kao „50 %”.'
+          a: 'To ovisi odabranom načinu prikaza: Tradicionalno u obliku „12:34”, približno u obliku „13 minuta”, postotak u obliku „50 %”.'
         }
       }
     },
     section_features: {
-      title: 'Popis značajki',
+      title: 'Značajke',
       list: {
-        customization: 'Prilagođavanje',
+        customization: 'Mogućnost prilagođavanja',
         notifications: 'Zvuk i obavijesti',
         flexible: 'Fleksibilnost',
         pwa: 'Bezmrežni rad',
@@ -112,7 +112,7 @@ export default {
     support: {
       title: 'Podrži ovaj projekt',
       subtitle: {
-        0: 'AnotherPomodoro se razvija kao sporedni projekt bez naknade.',
+        0: 'AnotherPomodoro se razvija iz zabave, a ne radi zarade.',
         1: {
           base: 'Ako smatraš da je ovaj projekt vrijedan podrške, {0}.',
           action: 'podrži ga'
@@ -123,8 +123,8 @@ export default {
   },
   setup: {
     head: 'Postavljanje',
-    title: 'Postavimo najbitnije',
-    startButton: 'Krenimo',
+    title: 'Postavke',
+    startButton: 'Kreni',
     steps: {
       language: {
         title: 'Jezik'
@@ -143,7 +143,7 @@ export default {
       },
       permissions: {
         title: 'Dozvole',
-        description: 'Program može odsvirati zvuk i poslati obavijest kad timer istekne.'
+        description: 'Omogućuju programu odsvirati zvuk i poslati obavijest kad timer istekne.'
       },
       theme: {
         title: 'Tema',
@@ -162,8 +162,8 @@ export default {
       },
       _valueDescription: {
         minimalist: 'Bez elemenata koji ometaju, samo timer u sredini.',
-        default: 'Početne postavke. Preporučuje se korisnicima koji program koriste po prvi puta.',
-        hardcore: 'Sve funkcije su aktivirane tako da su nadohvat ruke.'
+        default: 'Standardne postavke. Preporučuje se korisnicima koji program koriste po prvi put.',
+        hardcore: 'Sve funkcije su aktivirane i prikazuju se u prozoru.'
       }
     },
     permissions: {
@@ -176,11 +176,11 @@ export default {
         dark: 'Tamna'
       },
       _valueDescription: {
-        light: 'Puno prijatnih boja',
-        dark: 'Tamnija, jednaka produktivnost'
+        light: 'Razne prijatne boje',
+        dark: 'Tamniji izgled, jednaka produktivnost'
       }
     },
-    preview: 'pregledaj'
+    preview: 'pregled'
   },
   section: {
     work: 'Rad',
@@ -267,7 +267,7 @@ export default {
           }
         },
         lengths: {
-          _title: 'Unaprijed postavljen raspored',
+          _title: 'Unaprijed postavljeni raspored',
           _description: '',
           _values: {
             default: 'Standardni',
@@ -296,7 +296,7 @@ export default {
       performance: {
         showProgressBar: {
           _title: 'Prikaži traku napredovanja',
-          _description: 'Prikaži napredovanje iza timera'
+          _description: 'Prikaži napredovanje u pozadini timera'
         }
       },
       permissions: {
@@ -315,10 +315,10 @@ export default {
           _description: ''
         },
         soundSet: {
-          _title: 'Postaljen zvuk',
-          _description: 'Korišteni zvukovi za obavijesti',
+          _title: 'Skup zvukova',
+          _description: 'Zvukovi za obavijesti',
           _values: {
-            musical: 'Glazba'
+            musical: 'Glazbeni'
           },
           _valueDescription: {
             musical: 'Standardni zvukovi'
@@ -365,7 +365,7 @@ export default {
   },
   notification: {
     action: {
-      ready: 'Krenimo!'
+      ready: 'Kreni!'
     },
     work: {
       title: 'Vrijeme je da se vratiš na rad!',
@@ -377,7 +377,7 @@ export default {
     },
     longpause: {
       title: 'Konačno! Više slobodnog vremena!',
-      body: 'Nakon ovoliko rada zaslužuješ dužu pauzu.'
+      body: 'Nakon tako dugog rada zaslužuješ dužu pauzu.'
     }
   },
   error: {
@@ -388,7 +388,7 @@ export default {
     min: 'Vrijednost mora biti barem {min}',
     max: 'Vrijednost ne smije biti veća od {max}',
     time_format: 'Neispravno formatirano vrijeme (MM:SS)',
-    min_time: 'Unos vremena je prekratak',
+    min_time: 'Upisano vrijeme je prekratko',
     undefined: 'Nedefinirana greška'
   },
   tasks: {
@@ -409,7 +409,7 @@ export default {
       home: 'Vrati se na početnu stranicu',
       githubIssue: 'Pošalji izvještaj o grešci',
       githubDiscussion: 'Pitaj druge imaju li isti problem',
-      twitter: 'Napišite prijateljsku poruku'
+      twitter: 'Napiši prijateljsku poruku'
     },
     showError: {
       main: 'Prikaži mi poruku greške!',
@@ -434,6 +434,6 @@ export default {
         advanced: 'Za učinkovitiji rad.',
         workaholic: 'Za duge radne sesije.'
       },
-      description: '{brief} \n {worklength} min rada s {splength} min kratkih {lplength} min dugih pauza nakon svakih {lpfreq} radnih sesija.'
+      description: '{brief} \n {worklength} min rada s {splength} min kratkih i {lplength} min dugih pauza nakon svakih {lpfreq} radnih sesija.'
   }
 }
