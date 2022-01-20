@@ -39,7 +39,7 @@ export default {
     section_whatitdoes: {
       title: 'What does it do?',
       subtitle: {
-        main: 'AnotherPomodoro helps you keep track of your time.',
+        main: '{0} helps you keep track of your time.',
         sub: 'Just work or take a break when it says so.'
       },
       cards: [

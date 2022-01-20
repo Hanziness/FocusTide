@@ -39,7 +39,7 @@ export default {
     section_whatitdoes: {
       title: 'Što radi?',
       subtitle: {
-        main: 'AnotherPomodoro pomaže pratiti vrijeme.',
+        main: '{0} pomaže pratiti vrijeme.',
         sub: 'Radi ili se odmaraj kad ti to kaže.'
       },
       cards: [

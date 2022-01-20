@@ -97,7 +97,11 @@
       <div class="mt-8 text-sky-900 flex flex-col items-center">
         <h2 class="text-5xl font-bold uppercase tracking-tight" v-text="$i18n.t('index.section_whatitdoes.title')" />
         <div class="mt-2 text-lg xl:text-xl text-center">
-          <p class="font-bold" v-text="$i18n.t('index.section_whatitdoes.subtitle.main')" />
+          <client-only>
+            <i18n path="index.section_whatitdoes.subtitle.main" tag="p">
+              <b>AnotherPomodoro</b>
+            </i18n>
+          </client-only>
           <p v-text="$i18n.t('index.section_whatitdoes.subtitle.sub')" />
         </div>
 
