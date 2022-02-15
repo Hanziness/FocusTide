@@ -200,24 +200,14 @@ export default defineNuxtConfig({
         autoprefixer: {}
       }
     }
-    // babel: {
-    //   presets ({ isServer }) {
-    //     const envTargets = {
-    //       client: { browsers: ['last 2 versions'] },
-    //       server: { node: 'current' }
-    //     }
-    //     const env = isServer ? 'server' : 'client'
-
-    //     return [
-    //       [
-    //         '@nuxt/babel-preset-app',
-    //         {
-    //           targets: envTargets[env],
-    //           corejs: { version: 3 }
-    //         }
-    //       ]
-    //     ]
-    //   }
-    // }
+  },
+  watchers: {
+    chokidar: {
+      ignoreInitial: true,
+      ignored: ['**/node_modules', '**/.git', '**/.nuxt']
+    },
+    webpack: {
+      ignored: ['**/node_modules', '**/.git', '**/.nuxt']
+    }
   }
 })
