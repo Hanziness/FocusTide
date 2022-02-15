@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['flex flex-row gap-0 text-[14rem] timer-display relative', { 'active': running }]"
+    :class="['flex flex-row gap-0 md:text-[14rem] text-[9rem] leading-none timer-display relative', { 'active': running }]"
   >
     <transition-group
       name="transition-traditional"
@@ -11,21 +11,21 @@
       leave-active-class="duration-300 absolute"
       leave-to-class="opacity-0"
       move-class="duration-500"
-      class="flex flex-row"
+      class="flex flex-col items-center md:flex-row"
       tag="div"
     >
       <div
         v-for="key in timeLeftStructured.displayKeys"
         :key="key"
-        class="transition"
-        :class="{ 'font-bold': key !== 'minutes', 'text-9xl self-start': key === 'seconds', 'mr-4': key === 'hours' }"
+        class="transition flex flex-row"
+        :class="{ 'font-bold': key === 'minutes', 'md:text-9xl md:self-start': key === 'seconds', 'md:mr-4': key === 'hours' }"
         tag="div"
       >
         <span
           v-for="(char, idx) in timeLeftStructured.str[key].padStart(2, '0')"
           :key="`${key}-${idx}`"
-          class="inline-block w-[1ch]"
-          :class="{ 'text-right': idx === 0, 'text-left': idx === 1 }"
+          class="w-[1ch]"
+          :class="{ 'md:text-right text-center': idx === 0, 'md:text-left text-center': idx === 1 }"
           v-text="char"
         />
       </div>
