@@ -14,10 +14,9 @@ export default {
   mixins: [TimerMixin],
   computed: {
     timerValue () {
-      return this.$dayjs.formatPercentage(this.timeOriginal - this.timeElapsed, {
-        total: this.timeOriginal,
-        addPercentage: false
-      })
+      const completeRounded = Math.round((this.timeOriginal - this.timeElapsed) / 1000)
+      const totalRounded = Math.round(this.timeOriginal / 1000)
+      return Math.round(((totalRounded - completeRounded) / totalRounded) * 100)
     }
   }
 }
