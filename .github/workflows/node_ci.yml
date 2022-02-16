@@ -1,6 +1,6 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them and build the source code when PRs are submitted against `develop` or when new tags (releases) are pushed.
 
-name: NodeJS CI
+name: CI
 
 on:
   pull_request:
