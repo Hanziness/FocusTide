@@ -1,0 +1,27 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them and build the source code when PRs are submitted against `develop` or when new tags (releases) are pushed.
+
+name: NodeJS CI
+
+on:
+  pull_request:
+    branches: [ develop ]
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    name: Build (Node 14)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+        architecture: 'x64'
+        cache: 'yarn'
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+    - name: Build app
+      run: yarn generate:modern
