@@ -1,8 +1,13 @@
 <template>
-  <div :class="['timer-display select-none text-3xl md:text-7xl xl:text-9xl', { 'active': running }]">
+  <div :class="['timer-display select-none flex flex-row gap-2 items-center leading-none', { 'active': running }]">
     <transition name="transition-approximate-up" mode="out-in">
-      <div :key="value" class="timer-approximate">
-        {{ value }}
+      <div :key="time.value" :style="{ '--ch': Math.ceil(Math.log10(time.value + 1)) }" class="text-9xl xl:text-[12rem] font-bold text-right time-value">
+        {{ time.value }}
+      </div>
+    </transition>
+    <transition name="transition-approximate-up" mode="out-in">
+      <div :key="time.string" class="text-5xl xl:text-7xl">
+        {{ time.string }}
       </div>
     </transition>
   </div>
@@ -14,29 +19,45 @@ import TimerMixin from '@/assets/mixins/timerMixin'
 export default {
   mixins: [TimerMixin],
   computed: {
-    value () {
-      const lang = this.$store.state.settings.lang
-      return this.$dayjs.formatRelative(this.timeOriginal - this.timeElapsed, {
-        lang
-      })
+    time () {
+      const remainingMinutes = (this.timeOriginal - this.timeElapsed) / (1000 * 60)
+
+      const timeObject = {
+        value: 0,
+        string: null
+      }
+
+      if (remainingMinutes > 59) {
+        timeObject.value = Math.round(remainingMinutes / 60)
+        timeObject.string = this.$i18n.tc('timer.approximate.hours', timeObject.value)
+      } else {
+        timeObject.value = Math.ceil(remainingMinutes)
+        timeObject.string = this.$i18n.tc('timer.approximate.minutes', timeObject.value)
+      }
+
+      return timeObject
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-div.timer-approximate.transition-approximate-up-enter-active,
-div.timer-approximate.transition-approximate-up-leave-active {
+div.time-value {
+  width: calc(var(--ch) * 1ch);
+}
+
+.transition-approximate-up-enter-active,
+.transition-approximate-up-leave-active {
   transition: 300ms ease-out;
   transition-property: opacity, transform;
 }
 
-div.timer-approximate.transition-approximate-up-enter {
+.transition-approximate-up-enter {
   opacity: 0 !important;
   transform: translateY(30px) !important;
 }
 
-div.timer-approximate.transition-approximate-up-leave-to {
+.transition-approximate-up-leave-to {
   opacity: 0 !important;
   transform: translateY(-30px) !important;
 }

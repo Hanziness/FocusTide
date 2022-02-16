@@ -193,6 +193,12 @@ export default {
     stop: 'Reset timer',
     advance: 'Go to next section'
   },
+  timer: {
+    approximate: {
+      hours: 'hour | hours',
+      minutes: 'minute | minutes'
+    }
+  },
   settings: {
     heading: 'Settings',
     tabs: {
