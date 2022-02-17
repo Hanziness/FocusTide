@@ -6,7 +6,7 @@
       </div>
     </transition>
     <transition name="transition-approximate-up" mode="out-in">
-      <div :key="time.string" class="text-5xl xl:text-7xl">
+      <div :key="time.string" class="text-3xl xl:text-7xl">
         {{ time.string }}
       </div>
     </transition>

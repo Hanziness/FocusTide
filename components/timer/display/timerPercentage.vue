@@ -1,9 +1,9 @@
 <template>
-  <div class="timer-percentage select-none text-8xl md:text-[14rem] font-bold timer-display" :class="[{ 'active': running }]">
+  <div class="timer-percentage select-none timer-display flex flex-row items-center gap-4" :class="[{ 'active': running }]">
     <transition name="transition-percentage" tag="span" mode="out-in">
-      <span :key="timerValue" class="relative inline-block" v-text="timerValue" />
+      <span :key="timerValue" class="relative inline-block text-9xl md:text-[14rem] font-bold" v-text="timerValue" />
     </transition>
-    <span>%</span>
+    <span class="text-4xl md:text-8xl">%</span>
   </div>
 </template>
 
