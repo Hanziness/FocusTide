@@ -2,9 +2,9 @@
   <div class="w-full h-full relative flex flex-col justify-center text-center text-black dark:text-gray-100 transition-opacity duration-500 select-none" :class="[{ 'opacity-70': !running, 'opacity-100': running }]">
     <Transition name="timer-switch" mode="out-in">
       <CompleteMarker v-if="$store.getters['schedule/getCurrentTimerState'] === 3" :key="'complete'" />
-      <TimerTraditional v-else-if="timerWidget === 'traditional'" :key="'traditional'" v-bind="timerInfo" />
-      <TimerApproximate v-else-if="timerWidget === 'approximate'" :key="'approximate'" v-bind="timerInfo" />
-      <TimerPercentage v-else-if="timerWidget === 'percentage'" :key="'percentage'" v-bind="timerInfo" />
+      <TimerTraditional v-else-if="timerWidget === 'traditional'" v-bind="timerInfo" :key="'traditional'" @tick="$emit('tick', $event)" />
+      <TimerApproximate v-else-if="timerWidget === 'approximate'" v-bind="timerInfo" :key="'approximate'" @tick="$emit('tick', $event)" />
+      <TimerPercentage v-else-if="timerWidget === 'percentage'" v-bind="timerInfo" :key="'percentage'" @tick="$emit('tick', $event)" />
     </Transition>
   </div>
 </template>

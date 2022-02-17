@@ -22,7 +22,7 @@
         tag="div"
       >
         <span
-          v-for="(char, idx) in timeLeftStructured.str[key].padStart(2, '0')"
+          v-for="(char, idx) in timeLeftStructured.num[key].toString().padStart(2, '0')"
           :key="`${key}-${idx}`"
           class="w-[1ch]"
           :class="{ 'md:text-right text-center': idx === 0, 'md:text-left text-center': idx === 1 }"
@@ -47,9 +47,15 @@ export default {
 
       const returnObject = {
         num: { hours, minutes, seconds },
-        str: { hours: hours.toString(), minutes: minutes.toString(), seconds: seconds.toString() },
         displayKeys: ['hours', 'minutes', 'seconds'].filter(value => value !== 'hours' || hours > 0)
       }
+
+      this.$emit(
+        'tick',
+        returnObject.displayKeys
+          .map(key => returnObject.num[key].toString().padStart(2, '0'))
+          .join(':')
+      )
       return returnObject
     }
   }

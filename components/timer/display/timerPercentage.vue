@@ -16,7 +16,10 @@ export default {
     timerValue () {
       const completeRounded = Math.round((this.timeOriginal - this.timeElapsed) / 1000)
       const totalRounded = Math.round(this.timeOriginal / 1000)
-      return Math.round(((totalRounded - completeRounded) / totalRounded) * 100)
+      const percentageValue = Math.round(((totalRounded - completeRounded) / totalRounded) * 100)
+
+      this.$emit('tick', `${percentageValue}%`)
+      return percentageValue
     }
   }
 }

@@ -26,7 +26,6 @@ export default {
         value: 0,
         string: null
       }
-
       if (remainingMinutes > 59) {
         timeObject.value = Math.round(remainingMinutes / 60)
         timeObject.string = this.$i18n.tc('timer.approximate.hours', timeObject.value)
@@ -35,6 +34,7 @@ export default {
         timeObject.string = this.$i18n.tc('timer.approximate.minutes', timeObject.value)
       }
 
+      this.$emit('tick', `${timeObject.value} ${timeObject.string}`)
       return timeObject
     }
   }
