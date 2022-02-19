@@ -125,16 +125,10 @@ export default {
     },
 
     msToTimeStr (value) {
-      let seconds = Math.round(value / 1000) % 60
+      const seconds = (Math.round(value / 1000) % 60).toString().padStart(2, '0')
       const minutes = '' + ((Math.round(value / 1000) - seconds) / 60)
 
-      if (seconds < 10) {
-        seconds = '0' + seconds
-      } else {
-        seconds = '' + seconds
-      }
-
-      return minutes + ':' + seconds
+      return `${minutes}:${seconds}`
     }
   }
 }
