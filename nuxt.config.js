@@ -179,7 +179,6 @@ export default defineNuxtConfig({
   googleFonts: {
     families: {
       Poppins: [400, 700]
-      // 'Source Sans Pro': [700]
     },
     display: 'swap'
     // download: true
