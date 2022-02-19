@@ -1,7 +1,12 @@
 <template>
   <div class="timer-percentage select-none timer-display flex flex-row items-center gap-4" :class="[{ 'active': running }]">
     <transition name="transition-percentage" tag="span" mode="out-in">
-      <span :key="timerValue" class="relative inline-block text-9xl md:text-[14rem] font-bold" v-text="timerValue" />
+      <span
+        :key="timerValue"
+        :style="{ 'width': `${Math.max(1, Math.ceil(Math.log10(timerValue + 1)))}ch` }"
+        class="relative inline-block text-9xl md:text-[14rem] font-bold"
+        v-text="timerValue"
+      />
     </transition>
     <span class="text-4xl md:text-8xl">%</span>
   </div>
@@ -26,11 +31,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/SourceSansPro_Numbers.scss';
-
-div.timer-percentage {
-  font-family: 'Source Sans Pro', monospace;
-}
 .transition-percentage-enter-active,
 .transition-percentage-leave-active {
   transition: 300ms ease-out;
