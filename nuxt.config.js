@@ -60,7 +60,6 @@ export default defineNuxtConfig({
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '@/plugins/dayjs.js',
     '@/plugins/i18nlanguages.js',
     { src: '@/plugins/notifications.client.js', ssr: false },
     { src: '@/plugins/vuex-persist.client.js', ssr: false },
@@ -180,7 +179,6 @@ export default defineNuxtConfig({
   googleFonts: {
     families: {
       Poppins: [400, 700]
-      // 'Source Sans Pro': [700]
     },
     display: 'swap'
     // download: true

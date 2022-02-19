@@ -21,7 +21,6 @@
     "@nuxtjs/i18n": "^7.0.3",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/sitemap": "^2.4.0",
-    "dayjs": "^1.8.32",
     "nuxt-edge": "^2.16.0-27349935.777a4b7f",
     "sass-loader": "^10.0.4",
     "vue": "^2.6.14",

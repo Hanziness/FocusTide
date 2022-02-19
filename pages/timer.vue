@@ -47,6 +47,7 @@
             :timer-state="timerState"
             :timer-widget="$store.state.settings.currentTimer"
             class="grid absolute place-items-center"
+            @tick="timeString = $event"
           />
           <TimerControls :class="['absolute', { 'pointer-events-none': preview }]" style="bottom: 2rem;" :can-use-keyboard="!preview && !showSettings" />
           <TodoList v-show="$store.state.settings.tasks.enabled" class="absolute z-10" style="right: 24px; bottom: 24px;" :editing="[0].includes($store.state.schedule.timerState)" />
@@ -88,14 +89,15 @@ export default {
 
   data () {
     return {
-      showSettings: false
+      showSettings: false,
+      timeString: ''
     }
   },
 
   head () {
     if (this.preview) { return }
     return {
-      title: `(${this.remainingTimeString}) ${this.pageTitle}`,
+      title: (this.remainingTimeString ? `(${this.remainingTimeString}) ` : '') + this.pageTitle,
       meta: [{
         hid: 'description',
         name: 'description',
@@ -134,12 +136,7 @@ export default {
         return this.$store.state.settings.pageTitle.useTickEmoji ? '✔' : this.$i18n.t('ready').toLowerCase()
       }
 
-      const currentScheduleItem = this.$store.getters['schedule/getCurrentItem']
-      return this.$dayjs.getFormattedTime(
-        currentScheduleItem.length - currentScheduleItem.timeElapsed,
-        this.$store.state.settings.currentTimer,
-        { total: currentScheduleItem.length, lang: this.$store.state.settings.lang }
-      )
+      return this.timeString
     },
 
     pageTitle () {

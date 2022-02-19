@@ -198,6 +198,12 @@ export default {
     stop: 'Időzítő megállítása',
     advance: 'Ugrás a következő szakaszra'
   },
+  timer: {
+    approximate: {
+      hours: 'óra | óra',
+      minutes: 'perc | perc'
+    }
+  },
   settings: {
     heading: 'Beállítások',
     tabs: {
