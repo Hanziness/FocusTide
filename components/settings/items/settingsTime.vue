@@ -90,8 +90,8 @@ export default {
       }
 
       const errorAdditionalInfo = {
-        min: this.$dayjs.formatMs(this.minMs, { format: 'mm:ss' }),
-        max: this.$dayjs.formatMs(this.maxMs, { format: 'mm:ss' })
+        min: this.msToTimeStr(this.minMs),
+        max: this.msToTimeStr(this.maxMs)
       }
 
       const valueInMs = this.timeStrToMs(newValue)
