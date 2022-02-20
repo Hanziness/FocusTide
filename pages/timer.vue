@@ -3,10 +3,6 @@
     <!-- Dark mode background override -->
     <div class="absolute w-full h-full dark:bg-gray-900" />
 
-    <!-- Settings button -->
-    <UiButton :aria-label="$i18n.t('settings.heading')" subtle :class="['absolute', { 'pointer-events-none': preview }]" style="top: 0.5rem; right: 0.5rem; z-index: 10;" @click="showSettings = true">
-      <CogIcon class="dark:text-gray-200" :aria-label="$i18n.t('settings.heading')" />
-    </UiButton>
     <!-- Settings panel -->
     <div>
       <Transition name="transition-fade">
@@ -23,11 +19,26 @@
           class="relative w-full h-full flex justify-center"
         >
           <Transition name="schedule-transition">
-            <ScheduleDisplay
-              v-if="$store.state.settings.schedule.visibility.enabled"
-              class="absolute ml-auto mr-auto"
-              style="top: 2rem;"
-            />
+            <!-- TODO Not good: settings button disappears with schedule -->
+            <div v-if="$store.state.settings.schedule.visibility.enabled" class="absolute ml-auto mr-auto md:top-8 top-0 z-10 flex flex-col bg-gray-800 md:rounded-lg overflow-hidden shadow-lg w-full md:w-auto max-w-full">
+              <div class="flex">
+                <ScheduleDisplay />
+                <!-- Settings button -->
+                <div class="flex flex-column items-center">
+                  <button
+                    :aria-label="$i18n.t('settings.heading')"
+                    class="rounded-full p-3 mr-3 text-gray-200 hover:bg-slate-200 hover:bg-opacity-30 active:bg-opacity-50 transition"
+                    :class="{ 'pointer-events-none': preview }"
+                    @click="showSettings = true"
+                  >
+                    <CogIcon :aria-label="$i18n.t('settings.heading')" />
+                  </button>
+                </div>
+              </div>
+              <div v-if="$store.state.settings.schedule.visibility.showSectionType" class="bg-gray-700 text-center text-gray-50 py-2 select-none">
+                {{ $i18n.t('section.' + $store.getters['schedule/getCurrentItem'].type).toLowerCase() }}
+              </div>
+            </div>
           </Transition>
 
           <TransitionGroup name="progress-transition" tag="div" :duration="1000">
@@ -72,7 +83,6 @@ export default {
     TimerSwitch: () => import(/* webpackChunkName: "timerSwitch", webpackPrefetch: true */ '@/components/timer/display/_timerSwitch.vue'),
     TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPrefetch: true */ '~/components/timer/controls/contolsBasic.vue'),
     SettingsPanel: () => import(/* webpackChunkName: "settings" */ '@/components/settings/settingsPanel.vue'),
-    UiButton: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/button.vue'),
     UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/overlay.vue'),
     TodoList: () => import(/* webpackChunkName: "todo" */ '@/components/todoList/main.vue'),
     CogIcon: SettingsIcon
