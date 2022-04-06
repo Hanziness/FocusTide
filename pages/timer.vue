@@ -18,14 +18,13 @@
           slot-scope="{ timerState, timeElapsed, timeOriginal }"
           class="relative flex flex-col items-center justify-center w-full h-full"
         >
-          <!-- TODO Not good: settings button disappears with schedule -->
           <div class="z-10 flex flex-row w-full">
             <div
               class="md:w-auto flex flex-col overflow-hidden transition-all duration-300 bg-gray-800 shadow-lg"
-              :class="[$store.state.settings.schedule.visibility.enabled ? 'mt-0 md:mt-3 md:rounded-lg w-full max-w-full mx-auto self-center pr-3' : 'ml-auto p-2 rounded-l-lg mt-3']"
+              :class="[$store.state.settings.schedule.visibility.enabled ? 'mt-0 md:mt-3 md:rounded-lg w-full max-w-full mx-auto self-center px-3' : 'ml-auto p-2 rounded-l-lg mt-3']"
             >
-              <div class="flex flex-row">
-                <ScheduleDisplay v-show="$store.state.settings.schedule.visibility.enabled" />
+              <div class="flex flex-row gap-2">
+                <ScheduleDisplay v-show="$store.state.settings.schedule.visibility.enabled" class="px-0" />
                 <!-- Settings button -->
                 <div class="flex-column flex items-center">
                   <button
