@@ -1,9 +1,9 @@
 <template>
-  <div class="rounded-lg bg-gray-800 z-10 shadow-lg select-none overflow-hidden">
+  <div class="select-none overflow-hidden w-full p-4">
     <TransitionGroup
       name="schedule-transition"
       tag="div"
-      class="p-4 flex flex-grow-0 flex-row"
+      class="flex flex-grow-0 flex-row justify-center relative"
     >
       <ScheduleItem
         v-for="(item, i) in $store.getters['schedule/getSchedule']"
@@ -12,9 +12,6 @@
         :active="i === 0"
       />
     </TransitionGroup>
-    <div v-if="$store.state.settings.schedule.visibility.showSectionType" class="bg-gray-700 text-center text-gray-50 py-2">
-      {{ $i18n.t('section.' + $store.getters['schedule/getCurrentItem'].type).toLowerCase() }}
-    </div>
   </div>
 </template>
 

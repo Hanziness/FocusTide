@@ -1,9 +1,9 @@
 <template>
-  <div class="p-2 bg-transparent flex flex-row items-center w-max z-10 mb-4 text-gray-900 dark:text-gray-100">
+  <div class="w-max dark:text-gray-100 z-10 flex flex-row items-center p-2 mb-4 text-gray-900 bg-transparent">
     <!-- Reset -->
     <div
       role="button"
-      class="dark:bg-gray-800 bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500 py-3 pr-5 pl-4 rounded-l-lg -mr-2 shadow-md cursor-pointer text-lg transition-colors -z-20"
+      class="dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500 -z-20 py-3 pl-4 pr-5 -mr-2 text-lg transition-colors bg-gray-200 rounded-l-lg shadow-md cursor-pointer"
       :class="[{ 'pointer-events-none': !resetEnabled }]"
       :aria-disabled="!resetEnabled"
       :aria-label="$i18n.t('controls.stop')"
@@ -15,7 +15,7 @@
 
     <!-- Play/pause -->
     <div
-      class="dark:bg-gray-800 bg-gray-200 active:bg-gray-300 dark:active:bg-gray-700 cursor-pointer -mt-6 -mb-6 rounded-full text-xl shadow-xl p-4 play-button relative transition-colors"
+      class="dark:bg-gray-800 active:bg-gray-300 dark:active:bg-gray-700 play-button relative p-4 text-xl transition-colors bg-gray-200 rounded-full shadow-xl cursor-pointer"
       role="button"
       :aria-label="$i18n.t('controls.play')"
       tabindex="0"
@@ -40,7 +40,7 @@
       role="button"
       :aria-label="$i18n.t('controls.advance')"
       :aria-disabled="!advanceEnabled"
-      class="dark:bg-gray-800 bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500 py-3 pr-4 pl-5 rounded-r-lg -ml-2 shadow-md cursor-pointer text-lg transition-colors -z-20"
+      class="dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500 -z-20 py-3 pl-5 pr-4 -ml-2 text-lg transition-colors bg-gray-200 rounded-r-lg shadow-md cursor-pointer"
       :class="[{ 'pointer-events-none': !advanceEnabled }]"
       tabindex="0"
       @click="advance"

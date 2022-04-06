@@ -1,12 +1,8 @@
 <template>
   <section :class="['timer-section', {'dark' : $store.state.settings.visuals.darkMode }]">
     <!-- Dark mode background override -->
-    <div class="absolute w-full h-full dark:bg-gray-900" />
+    <div class="dark:bg-gray-900 absolute w-full h-full" />
 
-    <!-- Settings button -->
-    <UiButton :aria-label="$i18n.t('settings.heading')" subtle :class="['absolute', { 'pointer-events-none': preview }]" style="top: 0.5rem; right: 0.5rem; z-index: 10;" @click="showSettings = true">
-      <CogIcon class="dark:text-gray-200" :aria-label="$i18n.t('settings.heading')" />
-    </UiButton>
     <!-- Settings panel -->
     <div>
       <Transition name="transition-fade">
@@ -20,15 +16,32 @@
       <Ticker slot-scope="{handleCompletion}" @complete="handleCompletion">
         <div
           slot-scope="{ timerState, timeElapsed, timeOriginal }"
-          class="relative w-full h-full flex justify-center"
+          class="relative flex flex-col items-center justify-center w-full h-full"
         >
-          <Transition name="schedule-transition">
-            <ScheduleDisplay
-              v-if="$store.state.settings.schedule.visibility.enabled"
-              class="absolute ml-auto mr-auto"
-              style="top: 2rem;"
-            />
-          </Transition>
+          <div class="z-10 flex flex-row w-full">
+            <div
+              class="md:w-auto flex flex-col overflow-hidden transition-all duration-300 bg-gray-800 shadow-lg"
+              :class="[$store.state.settings.schedule.visibility.enabled ? 'mt-0 md:mt-3 md:rounded-lg w-full max-w-full mx-auto self-center' : 'ml-auto p-2 rounded-l-lg mt-3']"
+            >
+              <div class="flex flex-row gap-3" :class="[$store.state.settings.schedule.visibility.enabled ? 'px-3' : '']">
+                <ScheduleDisplay v-show="$store.state.settings.schedule.visibility.enabled" class="px-0" />
+                <!-- Settings button -->
+                <div class="flex-column flex items-center">
+                  <button
+                    :aria-label="$i18n.t('settings.heading')"
+                    class="hover:bg-slate-200 hover:bg-opacity-30 active:bg-opacity-50 p-3 text-gray-200 transition rounded-full"
+                    :class="{ 'pointer-events-none': preview }"
+                    @click="showSettings = true"
+                  >
+                    <CogIcon :aria-label="$i18n.t('settings.heading')" />
+                  </button>
+                </div>
+              </div>
+              <div v-if="$store.state.settings.schedule.visibility.enabled && $store.state.settings.schedule.visibility.showSectionType" class="text-gray-50 py-2 text-center bg-gray-700 select-none">
+                {{ $i18n.t('section.' + $store.getters['schedule/getCurrentItem'].type).toLowerCase() }}
+              </div>
+            </div>
+          </div>
 
           <TransitionGroup name="progress-transition" tag="div" :duration="1000">
             <TimerProgress
@@ -46,10 +59,10 @@
             :time-original="timeOriginal"
             :timer-state="timerState"
             :timer-widget="$store.state.settings.currentTimer"
-            class="grid absolute place-items-center"
+            class="place-items-center absolute grid"
             @tick="timeString = $event"
           />
-          <TimerControls :class="['absolute', { 'pointer-events-none': preview }]" style="bottom: 2rem;" :can-use-keyboard="!preview && !showSettings" />
+          <TimerControls class="mb-4" :class="[{ 'pointer-events-none': preview }]" :can-use-keyboard="!preview && !showSettings" />
           <TodoList v-show="$store.state.settings.tasks.enabled" class="absolute z-10" style="right: 24px; bottom: 24px;" :editing="[0].includes($store.state.schedule.timerState)" />
         </div>
       </Ticker>
@@ -72,7 +85,6 @@ export default {
     TimerSwitch: () => import(/* webpackChunkName: "timerSwitch", webpackPrefetch: true */ '@/components/timer/display/_timerSwitch.vue'),
     TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPrefetch: true */ '~/components/timer/controls/contolsBasic.vue'),
     SettingsPanel: () => import(/* webpackChunkName: "settings" */ '@/components/settings/settingsPanel.vue'),
-    UiButton: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/button.vue'),
     UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/overlay.vue'),
     TodoList: () => import(/* webpackChunkName: "todo" */ '@/components/todoList/main.vue'),
     CogIcon: SettingsIcon
