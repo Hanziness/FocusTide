@@ -212,10 +212,7 @@ export default {
         mainText: false,
         screenshot: false
       },
-      currentSection: 0,
       scroll: {
-        sections: [],
-        sectionObserver: null,
         fabObserver: null
       },
       section2: {
@@ -259,42 +256,7 @@ export default {
     }
   },
 
-  watch: {
-    currentSection (newValue) {
-      if (this.scroll.sections[newValue]) {
-        this.scroll.sections[newValue].scrollIntoView({
-          behavior: 'smooth'
-        })
-      }
-    }
-  },
-
   mounted () {
-    const sectionKeys = Object.keys(this.$refs).filter(key => key.startsWith('section-'))
-
-    for (const key of sectionKeys) {
-      this.$refs[key].dataset.scrollkey = this.scroll.sections.length
-      this.scroll.sections.push(this.$refs[key])
-    }
-
-    // this.scroll.sectionObserver = new IntersectionObserver((entries) => {
-    //   // Find section that was scrolled into view
-    //   for (const item of entries) {
-    //     if (item.isIntersecting) {
-    //       this.currentSection = Number.parseInt(item.target.dataset.scrollkey)
-    //       break
-    //     }
-    //   }
-    // }, {
-    //   root: this.$el,
-    //   threshold: 0.1
-    // })
-
-    // // Register the scroll observer for all sections
-    // for (const section of this.scroll.sections) {
-    //   this.scroll.sectionObserver.observe(section)
-    // }
-
     this.$nextTick(() => {
       // Float in the app title and icon
       this.loading.mainText = true
@@ -332,25 +294,11 @@ export default {
     if (this.scroll.fabObserver) {
       this.scroll.fabObserver.disconnect()
     }
-
-    if (this.scroll.sectionObserver) {
-      this.scroll.sectionObserver.disconnect()
-    }
   },
 
   methods: {
     setIntersecting (value) {
       this.showFAB = value
-    },
-
-    handleScroll (event) {
-      if (event.deltaY > 0) {
-        // scroll downwards
-        this.currentSection = Math.min(this.currentSection + 1, this.scroll.sections.length - 1)
-      } else if (event.deltaY < 0) {
-        // scroll upwards
-        this.currentSection = Math.max(this.currentSection - 1, 0)
-      }
     }
   }
 }
