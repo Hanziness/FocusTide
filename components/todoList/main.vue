@@ -1,18 +1,21 @@
 <template>
-  <div class="px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 shadow-lg border border-gray-400 border-opacity-20 w-96" @keyup.stop="">
-    <div class="flex flex-row items-center">
-      <p class="uppercase text-xl text-gray-800 dark:text-gray-100 font-bold tracking-tighter" v-text="$i18n.t('tasks.title')" />
-      <div class="flex-grow" />
-      <button v-show="!$store.getters['schedule/isRunning']" :class="['px-2 py-1 text-xs rounded-lg border border-yellow-300 dark:border-opacity-50 dark:text-yellow-100 text-yellow-800 transition-colors', { 'bg-yellow-200 dark:bg-opacity-40': manageMode, 'bg-yellow-50 dark:bg-opacity-10': !manageMode }]" @click="manageMode = !manageMode">
+  <div class="bg-gray-50 dark:bg-gray-800 border-opacity-20 md:border md:py-3 px-4 py-4 border-gray-400 shadow-lg" @keyup.stop="">
+    <div class="relative flex flex-row items-center justify-center h-10">
+      <p class="dark:text-gray-100 text-xl font-bold tracking-tighter text-gray-800 uppercase" v-text="$i18n.t('tasks.title')" />
+      <!-- <div class="flex-grow" /> -->
+      <!-- <button v-show="!$store.getters['schedule/isRunning']" :class="['px-2 py-1 text-xs rounded-lg border border-yellow-300 dark:border-opacity-50 dark:text-yellow-100 text-yellow-800 transition-colors', { 'bg-yellow-200 dark:bg-opacity-40': manageMode, 'bg-yellow-50 dark:bg-opacity-10': !manageMode }]" @click="manageMode = !manageMode">
         <IconManage class="inline translate-y-[-0.1rem]" size="16" />
         <span v-text="$i18n.t('tasks.manage')" />
+      </button> -->
+      <button class="hover:bg-gray-300 active:bg-gray-400 absolute right-0 float-right p-2 transition-all rounded-full" @click="$emit('hide')">
+        <XIcon />
       </button>
     </div>
-    <div v-show="displayedTasks.length < 1" key="notask" class="italic text-black dark:text-gray-200 text-opacity-70 mt-3" v-text="$i18n.t('tasks.empty')" />
+    <div v-show="displayedTasks.length < 1" key="notask" class="dark:text-gray-200 text-opacity-70 mt-3 italic text-black" v-text="$i18n.t('tasks.empty')" />
     <transition-group
       tag="div"
       name="transition-item"
-      class="flex flex-col space-y-2 mt-2 py-1 -mx-2 px-2 max-h-64 overflow-y-auto overflow-x-hidden"
+      class="max-h-64 flex flex-col px-2 py-1 mt-2 -mx-2 space-y-2 overflow-x-hidden overflow-y-auto"
       @drop.prevent="itemDropped($event, 1)"
     >
       <TaskItem
@@ -21,6 +24,7 @@
         :manage="!$store.getters['schedule/isRunning'] && manageMode"
         :item="task"
         :droptarget="task === dropTarget"
+        moveable
         @input="$store.commit('tasklist/toggleComplete', { item: task })"
         @delete="$store.commit('tasklist/delete', { item: task })"
         @dropstart="draggedItem = task, dragging = true"
@@ -33,15 +37,17 @@
 </template>
 
 <script>
-import { EditIcon } from 'vue-tabler-icons'
+// import { EditIcon } from 'vue-tabler-icons'
+import { XIcon } from 'vue-tabler-icons'
+
 import TaskItem from '@/components/todoList/item.vue'
 import TaskAdd from '@/components/todoList/addTask.vue'
 
 export default {
-  components: { TaskItem, TaskAdd, IconManage: EditIcon },
+  components: { TaskItem, TaskAdd, XIcon /* IconManage: EditIcon */ },
   data () {
     return {
-      manageMode: false,
+      manageMode: true,
 
       /** Is a task being dragged to another place? */
       dragging: false,
