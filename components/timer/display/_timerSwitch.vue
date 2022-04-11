@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full relative flex flex-col justify-center text-center text-black dark:text-gray-100 transition-opacity duration-500 select-none" :class="[{ 'opacity-70': !running, 'opacity-100': running }]">
+  <div class="dark:text-gray-100 relative flex flex-col justify-center text-center text-black transition-opacity duration-500 select-none" :class="[{ 'opacity-70': !running, 'opacity-100': running }]">
     <Transition name="timer-switch" mode="out-in">
       <CompleteMarker v-if="$store.getters['schedule/getCurrentTimerState'] === 3" :key="'complete'" />
       <TimerTraditional v-else-if="timerWidget === 'traditional'" v-bind="timerInfo" :key="'traditional'" @tick="$emit('tick', $event)" />
