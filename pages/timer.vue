@@ -75,7 +75,7 @@
             </button>
           </div>
           <transition enter-class="translate-y-full" enter-active-class="duration-300 ease-out" leave-to-class="translate-y-full" leave-active-class="duration-150 ease-in">
-            <TodoList v-show="$store.state.settings.tasks.enabled && showTodoManager" class="rounded-t-xl xl:right-4 absolute bottom-0 z-10 w-full max-w-lg transition-all" :editing="[0].includes($store.state.schedule.timerState)" @hide="showTodoManager = false" />
+            <TodoList v-show="$store.state.settings.tasks.enabled && showTodoManager" class="rounded-t-xl xl:right-4 xl:pb-8 absolute bottom-0 z-10 w-full max-w-lg transition-all" :editing="[0].includes($store.state.schedule.timerState)" @hide="showTodoManager = false" />
           </transition>
         </div>
       </Ticker>
