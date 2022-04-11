@@ -10,7 +10,7 @@
     @dragend="dragged = false, $emit('dropfinish', item)"
     @dragenter="$emit('droptarget', item)"
   >
-    <div :class="['absolute left-0 h-full -my-2 mr-2 self-stretch themed-bg transition-all duration-75 text-white flex flex-row items-center flex-shrink-0', showReorder ? 'w-6' : 'w-0']">
+    <div :class="['absolute left-0 top-0 h-full self-stretch themed-bg transition-all duration-75 text-white flex flex-row items-center flex-shrink-0', showReorder ? 'w-6' : 'w-0']">
       <span v-show="showReorder">
         <IconMenu size="16" />
       </span>
@@ -28,7 +28,7 @@
           <IconDelete size="18" class="mr-1" />
         </button>
       </transition>
-      <input :checked="checked" type="checkbox" class="themed-checkbox w-5 h-5 mr-1 rounded" @input="checked = !checked">
+      <input :checked="checked" type="checkbox" class="themed-checkbox md:w-5 md:h-5 w-6 h-6 mr-1 rounded" @input="checked = !checked">
     </div>
   </div>
 </template>
