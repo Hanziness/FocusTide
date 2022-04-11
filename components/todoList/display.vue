@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full max-w-sm gap-2 px-4">
+  <transition-group class="flex flex-col w-full max-w-sm gap-2 px-4" enter-class="translate-y-2 opacity-0" enter-active-class="transition" leave-to-class="-translate-y-2 opacity-0" leave-active-class="transition">
     <TaskItem
       v-for="task in tasks"
       :key="task.section + '-' + task.title"
@@ -10,7 +10,7 @@
       @input="$store.commit('tasklist/toggleComplete', { item: task })"
       @delete="$store.commit('tasklist/delete', { item: task })"
     />
-  </div>
+  </transition-group>
 </template>
 
 <script>
