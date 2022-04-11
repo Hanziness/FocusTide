@@ -15,20 +15,20 @@
         <IconMenu size="16" />
       </span>
     </div>
-    <div class="flex flex-col select-none mr-7 transition-all duration-75 min-w-0" :class="[showReorder ? 'translate-x-6' : 'translate-x-0']">
+    <div class="mr-7 flex flex-col min-w-0 transition-all duration-75 select-none" :class="[showReorder ? 'translate-x-6' : 'translate-x-0']">
       <span class="break-words">{{ item.title }}</span>
       <!-- <span class="text-sm">Description</span> -->
     </div>
 
     <span class="flex-grow" />
 
-    <div class="flex-shrink-0 flex flex-row items-center space-x-1">
+    <div class="flex flex-row items-center flex-shrink-0 space-x-1">
       <transition name="slidein">
         <button v-show="manage" class="transition-all duration-100" @click="$emit('delete')">
           <IconDelete size="18" class="mr-1" />
         </button>
       </transition>
-      <input :checked="checked" type="checkbox" class="rounded w-5 h-5 mr-1 themed-checkbox" @input="checked = !checked">
+      <input :checked="checked" type="checkbox" class="themed-checkbox w-5 h-5 mr-1 rounded" @input="checked = !checked">
     </div>
   </div>
 </template>
@@ -52,6 +52,10 @@ export default {
     droptarget: {
       type: Boolean,
       default: false
+    },
+    moveable: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -71,7 +75,7 @@ export default {
     },
     showReorder: {
       get () {
-        return this.hovering
+        return this.moveable && this.hovering
       }
     }
   },
