@@ -68,11 +68,11 @@
           </div>
 
           <div class="relative flex flex-row items-center justify-center w-full gap-2 mb-4">
+            <TimerControls :class="[{ 'pointer-events-none': preview }]" :can-use-keyboard="!preview && !showSettings" />
+
             <button v-show="$store.state.settings.tasks.enabled" class="right-4 dark:bg-gray-700 sm:absolute p-4 transition-all bg-gray-200 rounded-full shadow-md" :class="{'scale-0': showTodoManager}" @click="showTodoManager = true">
               <ListCheckIcon />
             </button>
-
-            <TimerControls :class="[{ 'pointer-events-none': preview }]" :can-use-keyboard="!preview && !showSettings" />
           </div>
           <transition enter-class="translate-y-full" enter-active-class="duration-300 ease-out" leave-to-class="translate-y-full" leave-active-class="duration-150 ease-in">
             <TodoList v-show="$store.state.settings.tasks.enabled && showTodoManager" class="rounded-t-xl xl:right-4 absolute bottom-0 z-10 w-full max-w-lg transition-all" :editing="[0].includes($store.state.schedule.timerState)" @hide="showTodoManager = false" />
