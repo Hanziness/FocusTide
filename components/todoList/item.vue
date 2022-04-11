@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['relative bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 hover:shadow-sm rounded-md border-l-8 themed-border px-2 py-2 transition-all duration-200 flex flex-row items-center', { 'opacity-50 line-through italic': item.state === 2, 'cursor-move': showReorder, 'ring themed-ring': dragged || droptarget }]"
+    :class="['relative bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 hover:shadow-sm rounded-md border-l-8 themed-border px-2 py-3 md:py-2 transition-all duration-200 flex flex-row items-center', { 'opacity-50 line-through italic': item.state === 2, 'cursor-move': showReorder, 'ring themed-ring': dragged || droptarget }]"
     :style="{ '--theme': $store.state.settings.visuals[item.section].colour }"
     draggable
     @mouseenter="hovering = true"
