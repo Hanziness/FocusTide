@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col w-full max-w-sm gap-2 px-4">
     <TaskItem
       v-for="task in tasks"
       :key="task.section + '-' + task.title"
