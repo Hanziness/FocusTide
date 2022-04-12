@@ -115,7 +115,7 @@ export default {
   data () {
     return {
       showSettings: false,
-      showTodoManager: true,
+      showTodoManager: false,
       timeString: ''
     }
   },
