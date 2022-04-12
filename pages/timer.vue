@@ -54,16 +54,28 @@
             />
           </TransitionGroup>
 
-          <TimerSwitch
-            :time-elapsed="timeElapsed"
-            :time-original="timeOriginal"
-            :timer-state="timerState"
-            :timer-widget="$store.state.settings.currentTimer"
-            class="place-items-center absolute grid"
-            @tick="timeString = $event"
-          />
-          <TimerControls class="mb-4" :class="[{ 'pointer-events-none': preview }]" :can-use-keyboard="!preview && !showSettings" />
-          <TodoList v-show="$store.state.settings.tasks.enabled" class="absolute z-10" style="right: 24px; bottom: 24px;" :editing="[0].includes($store.state.schedule.timerState)" />
+          <div class="flex flex-col items-center justify-center w-full h-full gap-2">
+            <TimerSwitch
+              key="timerswitch"
+              :time-elapsed="timeElapsed"
+              :time-original="timeOriginal"
+              :timer-state="timerState"
+              :timer-widget="$store.state.settings.currentTimer"
+              class="place-items-center absolute grid"
+              @tick="timeString = $event"
+            />
+          </div>
+
+          <div class="relative flex flex-row items-center justify-center w-full gap-2 mb-4">
+            <TimerControls :class="[{ 'pointer-events-none': preview }]" :can-use-keyboard="!preview && !showSettings" />
+
+            <button v-show="$store.state.settings.tasks.enabled" class="right-4 dark:bg-gray-700 sm:absolute p-4 transition-all bg-gray-200 rounded-full shadow-md" :class="{'scale-0': showTodoManager}" @click="showTodoManager = true">
+              <ListCheckIcon />
+            </button>
+          </div>
+          <transition enter-class="translate-y-full" enter-active-class="duration-300 ease-out" leave-to-class="translate-y-full" leave-active-class="duration-150 ease-in">
+            <TodoList v-show="$store.state.settings.tasks.enabled && showTodoManager" class="rounded-t-xl xl:right-4 xl:pb-8 fixed bottom-0 z-10 w-full max-w-lg transition-all" :editing="[0].includes($store.state.schedule.timerState)" @hide="showTodoManager = false" />
+          </transition>
         </div>
       </Ticker>
     </NotificationController>
@@ -71,7 +83,7 @@
 </template>
 
 <script>
-import { SettingsIcon } from 'vue-tabler-icons'
+import { SettingsIcon, ListCheckIcon } from 'vue-tabler-icons'
 
 // Static imports:
 
@@ -87,7 +99,8 @@ export default {
     SettingsPanel: () => import(/* webpackChunkName: "settings" */ '@/components/settings/settingsPanel.vue'),
     UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/overlay.vue'),
     TodoList: () => import(/* webpackChunkName: "todo" */ '@/components/todoList/main.vue'),
-    CogIcon: SettingsIcon
+    CogIcon: SettingsIcon,
+    ListCheckIcon
   },
 
   layout: 'timer',
@@ -102,6 +115,7 @@ export default {
   data () {
     return {
       showSettings: false,
+      showTodoManager: false,
       timeString: ''
     }
   },

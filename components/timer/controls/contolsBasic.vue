@@ -1,5 +1,5 @@
 <template>
-  <div class="w-max dark:text-gray-100 z-10 flex flex-row items-center p-2 mb-4 text-gray-900 bg-transparent">
+  <div class="w-max dark:text-gray-100 z-10 flex flex-row items-center p-2 text-gray-900 bg-transparent">
     <!-- Reset -->
     <div
       role="button"
