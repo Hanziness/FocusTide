@@ -54,7 +54,7 @@
             />
           </TransitionGroup>
 
-          <div class="flex flex-col items-center justify-center w-full h-full gap-4">
+          <div class="flex flex-col items-center justify-center w-full h-full gap-2">
             <TimerSwitch
               key="timerswitch"
               :time-elapsed="timeElapsed"
@@ -64,7 +64,6 @@
               class="place-items-center absolute grid"
               @tick="timeString = $event"
             />
-            <TodoDisplay v-show="$store.state.settings.tasks.enabled" key="display" class="z-10 max-w-md mx-8" />
           </div>
 
           <div class="relative flex flex-row items-center justify-center w-full gap-2 mb-4">
@@ -100,7 +99,6 @@ export default {
     SettingsPanel: () => import(/* webpackChunkName: "settings" */ '@/components/settings/settingsPanel.vue'),
     UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/overlay.vue'),
     TodoList: () => import(/* webpackChunkName: "todo" */ '@/components/todoList/main.vue'),
-    TodoDisplay: () => import(/* webpackChunkName: "todo" */ '@/components/todoList/display.vue'),
     CogIcon: SettingsIcon,
     ListCheckIcon
   },
