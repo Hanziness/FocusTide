@@ -1,6 +1,13 @@
 <template>
-  <div class="flex flex-row space-x-2 rounded-xl bg-gray-100 dark:bg-gray-700 py-4 pl-4 pr-2 focus-within:bg-white dark:focus-within:bg-gray-600 focus-within:shadow-lg shadow-sm transition-all duration-500 focus-within:duration-200 items-center" :style="{ '--theme': $store.getters['schedule/currentScheduleColour'] }">
-    <input v-model="taskTitle" type="text" required class="block min-w-0 bg-transparent dark:bg-transparent border-none rounded-full focus:ring-transparent focus:ring-offset-0 dark:focus:bg-transparent peer flex-grow p-0" @keyup="checkEnter">
+  <div class="rounded-xl dark:bg-gray-700 focus-within:bg-white dark:focus-within:bg-gray-600 focus-within:shadow-lg focus-within:duration-200 flex flex-row items-center py-4 pl-4 pr-2 space-x-2 transition-all duration-500 bg-gray-100 shadow-sm" :style="{ '--theme': $store.getters['schedule/currentScheduleColour'] }">
+    <input
+      v-model="taskTitle"
+      type="text"
+      required
+      class="dark:bg-transparent focus:ring-transparent focus:ring-offset-0 dark:focus:bg-transparent peer flex-grow block min-w-0 p-0 bg-transparent border-none rounded-full"
+      :placeholder="$i18n.t('tasks.addPlaceholder')"
+      @keyup="checkEnter"
+    >
     <button :class="['rounded-lg bg-theme bg-opacity-80 hover:bg-opacity-100 text-white px-3 py-2 -my-3 transition-all', { 'bg-gray-200 opacity-60 dark:opacity-30 pointer-events-none': !valid }]" @click="addTask">
       <CornerDownLeftIcon size="24" />
     </button>

@@ -400,7 +400,8 @@ export default {
   tasks: {
     title: 'Tasks',
     empty: 'No tasks yet',
-    manage: 'Manage'
+    manage: 'Manage',
+    addPlaceholder: 'Enter something you need to do'
   },
   ready: 'Done',
   errorpage: {
