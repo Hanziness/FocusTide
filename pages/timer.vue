@@ -1,5 +1,5 @@
 <template>
-  <section :class="['timer-section', {'dark' : $store.state.settings.visuals.darkMode }]">
+  <section class="dark:text-gray-50 h-full overflow-hidden transition-colors duration-300 ease-in" :class="[{'dark' : $store.state.settings.visuals.darkMode }]">
     <!-- Dark mode background override -->
     <div class="dark:bg-gray-900 absolute w-full h-full" />
 
@@ -187,17 +187,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-html {
-  @apply overflow-hidden;
-}
-
-section.timer-section {
-  @apply dark:text-gray-50 transition-colors duration-300 ease-in;
-
-  height: 100%;
-  // transition: background-color 300ms ease-in;
-}
-
 .timer-background {
   transition: 300ms ease-in;
   transition-property: background-color;
