@@ -4,7 +4,7 @@
       v-model="taskTitle"
       type="text"
       required
-      class="dark:bg-transparent focus:ring-transparent focus:ring-offset-0 dark:focus:bg-transparent peer flex-grow block min-w-0 p-0 bg-transparent border-none rounded-full"
+      class="dark:bg-transparent focus:ring-transparent focus:ring-offset-0 dark:focus:bg-transparent peer flex-grow block min-w-0 p-0 bg-transparent border-none"
       :placeholder="$i18n.t('tasks.addPlaceholder')"
       @keyup="checkEnter"
     >
