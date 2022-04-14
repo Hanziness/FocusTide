@@ -405,7 +405,8 @@ export default {
   tasks: {
     title: 'Feladatok',
     empty: 'Nincs felvett teendő',
-    manage: 'Kezelés'
+    manage: 'Kezelés',
+    addPlaceholder: 'Írj be egy új teendőt'
   },
   ready: 'Kész',
   errorpage: {
