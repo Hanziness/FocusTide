@@ -53,7 +53,8 @@ export default defineNuxtConfig({
   */
   css: [
     '@/assets/scss/tailwind.scss',
-    '@/assets/scss/transitions.scss'
+    '@/assets/scss/transitions.scss',
+    '@/assets/css/disable_tap_highlight.css'
   ],
   /*
   ** Plugins to load before mounting the App
