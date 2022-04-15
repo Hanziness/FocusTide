@@ -213,3 +213,9 @@ export default {
   @apply transform-gpu -translate-x-full;
 }
 </style>
+
+<style>
+body {
+  overscroll-behavior-y: contain;
+}
+</style>
