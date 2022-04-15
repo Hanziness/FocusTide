@@ -129,7 +129,8 @@ export default defineNuxtConfig({
       short_name: 'AnotherPomodoro',
       start_url: '/timer?standalone=true',
       orientation: 'any',
-      categories: ['productivity', 'utilities']
+      categories: ['productivity', 'utilities'],
+      display: 'standalone'
     }
   },
 
