@@ -2,7 +2,9 @@
 // import { join } from 'path'
 
 import fs from 'fs'
+import path from 'path'
 import { defineNuxtConfig } from '@nuxt/bridge'
+import workbox from 'workbox-webpack-plugin'
 
 const packageJson = fs.readFileSync('./package.json')
 const version = JSON.parse(packageJson).version || 0
@@ -61,6 +63,7 @@ export default defineNuxtConfig({
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    { src: '@/plugins/add-service-worker.client.js', mode: 'client' },
     '@/plugins/i18nlanguages.js',
     { src: '@/plugins/notifications.client.js', ssr: false },
     { src: '@/plugins/vuex-persist.client.js', ssr: false },
@@ -131,7 +134,12 @@ export default defineNuxtConfig({
       orientation: 'any',
       categories: ['productivity', 'utilities'],
       display: 'standalone'
-    }
+    },
+    workbox: process.env.NEW_SERVICE_WORKER
+      ? false
+      : {
+          preCaching: ['/favicon.svg']
+        }
   },
 
   /**
@@ -200,6 +208,32 @@ export default defineNuxtConfig({
         'tailwindcss/nesting': {},
         tailwindcss: {},
         autoprefixer: {}
+      }
+    },
+
+    extend (config, { isDev, isClient }) {
+      if (process.env.NEW_SERVICE_WORKER && !isDev && isClient) {
+        console.info('Adding custom service worker generator') // eslint-disable-line no-console
+        config.plugins.push(
+          new workbox.GenerateSW({
+            cleanupOutdatedCaches: true,
+            clientsClaim: true,
+            navigationPreload: true,
+            runtimeCaching: [{
+              urlPattern: '/_nuxt/.*',
+              handler: 'CacheFirst'
+            },
+            {
+              urlPattern: '/.*',
+              handler: 'NetworkFirst'
+            }],
+            chunks: ['pages/timer', 'settings'],
+            skipWaiting: true,
+            // swDest: 'sw/service-worker.js'
+            swDest: path.resolve(__dirname, 'static', 'service-worker.js'),
+            sourcemap: false
+          })
+        )
       }
     }
   },
