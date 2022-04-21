@@ -5,7 +5,7 @@
     <!-- FAB -->
     <Transition name="fab-transition">
       <nuxt-link v-show="showFAB" v-slot="{ navigate }" to="/timer" custom>
-        <div role="button" tabindex="0" class="xl:w-auto xl:right-6 xl:bottom-4 xl:rounded-lg bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 border-neutral-100 fixed bottom-0 z-10 flex flex-row items-center w-full px-4 py-3 space-x-2 text-xl font-bold text-black uppercase transition border rounded-t-lg shadow-md cursor-pointer" @click="navigate">
+        <div role="button" tabindex="0" class="xl:w-auto xl:right-6 xl:bottom-4 xl:rounded-lg bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 border-neutral-100 fixed bottom-0 z-10 flex flex-row items-center w-full px-4 py-3 space-x-2 text-xl font-bold text-black uppercase transition border rounded-t-lg shadow-md cursor-pointer select-none" @click="navigate">
           <img src="/favicon.svg" width="32" height="32" role="presentation">
           <span v-text="$i18n.t('index.launch')" />
         </div>
@@ -35,10 +35,10 @@
             <!-- CTAs -->
             <div class="md:grid-flow-col md:grid-cols-2 grid grid-flow-row grid-cols-1 gap-2 mt-6">
               <nuxt-link v-slot="{ navigate }" to="/timer" custom>
-                <div class="bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 flex-grow px-6 py-4 text-2xl font-bold text-center uppercase transition-all rounded-lg shadow-lg cursor-pointer" role="button" tabindex="0" @click="navigate" v-text="$i18n.t('index.cta.quickstart')" />
+                <div class="bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 flex-grow px-6 py-4 text-2xl font-bold text-center uppercase transition-all rounded-lg shadow-lg cursor-pointer select-none" role="button" tabindex="0" @click="navigate" v-text="$i18n.t('index.cta.quickstart')" />
               </nuxt-link>
               <nuxt-link v-slot="{ navigate }" to="/setup" custom>
-                <div class="bg-slate-300 hover:bg-gray-300 shadow-slate-300/0 hover:shadow-slate-300/40 hover:shadow-lg active:shadow-slate-300/60 active:bg-slate-400 flex-grow px-6 py-4 text-2xl font-bold text-center uppercase transition-all rounded-lg cursor-pointer" role="button" tabindex="0" @click="navigate" v-text="$i18n.t('index.cta.configure')" />
+                <div class="bg-slate-300 hover:bg-gray-300 shadow-slate-300/0 hover:shadow-slate-300/40 hover:shadow-lg active:shadow-slate-300/60 active:bg-slate-400 flex-grow px-6 py-4 text-2xl font-bold text-center uppercase transition-all rounded-lg cursor-pointer select-none" role="button" tabindex="0" @click="navigate" v-text="$i18n.t('index.cta.configure')" />
               </nuxt-link>
             </div>
           </div>
