@@ -5,7 +5,7 @@
     <!-- FAB -->
     <Transition name="fab-transition">
       <nuxt-link v-show="showFAB" v-slot="{ navigate }" to="/timer" custom>
-        <div role="button" tabindex="0" class="xl:w-auto xl:right-6 xl:bottom-4 xl:rounded-lg bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 border-neutral-100 absolute bottom-0 z-10 flex flex-row items-center w-full px-4 py-3 space-x-2 text-xl font-bold text-black uppercase transition border rounded-t-lg shadow-md cursor-pointer" @click="navigate">
+        <div role="button" tabindex="0" class="xl:w-auto xl:right-6 xl:bottom-4 xl:rounded-lg bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 border-neutral-100 fixed bottom-0 z-10 flex flex-row items-center w-full px-4 py-3 space-x-2 text-xl font-bold text-black uppercase transition border rounded-t-lg shadow-md cursor-pointer" @click="navigate">
           <img src="/favicon.svg" width="32" height="32" role="presentation">
           <span v-text="$i18n.t('index.launch')" />
         </div>
@@ -14,14 +14,14 @@
 
     <!-- Section 1: intro -->
 
-    <Section ref="section-1" class="snap-center flex flex-col items-center justify-center overflow-hidden bg-gray-100">
-      <Columns class="xl:flex-row xl:space-x-16 xl:px-24 xl:pt-0 flex-col px-4 pt-8">
+    <Section ref="section-1" class="snap-center flex flex-col items-center justify-center px-4 overflow-hidden bg-gray-100">
+      <Columns class="xl:flex-row xl:space-x-16 xl:px-24 xl:pt-0 flex-col gap-8 px-4 pt-8">
         <template #left>
           <!-- App title and CTAs -->
           <div class="flex flex-col justify-center transition-all duration-1000" :class="{ 'opacity-0 -translate-x-4': !loading.mainText }">
-            <div class="xl:mr-16 flex flex-row items-start">
+            <div class="xl:mr-16 md:flex-row md:gap-4 flex flex-col items-start gap-2">
               <!-- App icon -->
-              <div class="min-w-max min-h-max mt-1 mr-4">
+              <div class="aspect-square min-w-fit md:mt-1">
                 <img src="/favicon.svg" width="68" height="68" class="p-2 bg-red-200 rounded-lg" role="presentation">
               </div>
               <!-- App name and slogan -->
@@ -45,7 +45,7 @@
         </template>
         <!-- App screenshot -->
         <template #right>
-          <div :class="['transition-all duration-1000 hover:duration-300 overflow-hidden order-first xl:order-last mb-12 xl:mb-0 rounded-lg shadow-red-300/60 shadow-lg hover:-translate-y-1 hover:shadow-xl hover:shadow-red-300/70 w-full max-w-2xl xl:max-w-max self-center', { 'opacity-0 translate-x-4': !loading.screenshot }]">
+          <div :class="['transition-all duration-1000 hover:duration-300 overflow-hidden order-first xl:order-last rounded-lg shadow-red-300/60 shadow-lg hover:-translate-y-1 hover:shadow-xl hover:shadow-red-300/70 w-full max-w-2xl xl:max-w-max self-center', { 'opacity-0 translate-x-4': !loading.screenshot }]">
             <nuxt-img
               :alt="$i18n.t('index.alt.img.screenshot')"
               class=""
@@ -62,7 +62,7 @@
       </Columns>
 
       <template #after>
-        <div class="xl:absolute xl:bottom-4 flex flex-col items-center justify-end flex-grow">
+        <div class="xl:absolute xl:bottom-4 flex flex-col items-center justify-end flex-grow mb-16">
           <!-- Source code, support and social buttons -->
           <div class="flex flex-row mb-4 space-x-2">
             <SupportButton
@@ -93,8 +93,8 @@
     </Section>
 
     <!-- Section 2: about Pomodoro and the app -->
-    <Section ref="section-2" class="snap-center bg-sky-100 flex flex-col justify-center px-2 overflow-hidden">
-      <div class="text-sky-900 flex flex-col items-center mt-8">
+    <Section ref="section-2" class="snap-center bg-sky-100 flex flex-col justify-center px-4 overflow-hidden">
+      <div class="text-sky-900 flex flex-col items-center">
         <h2 class="text-5xl font-bold tracking-tight uppercase" v-text="$i18n.t('index.section_whatitdoes.title')" />
         <div class="xl:text-xl mt-2 text-lg text-center">
           <client-only>
@@ -130,7 +130,7 @@
     </Section>
 
     <!-- Section 3: Features -->
-    <Section ref="section-3" class="snap-center bg-amber-50 flex flex-col items-center justify-center px-4 overflow-hidden text-center">
+    <Section ref="section-3" class="snap-center bg-amber-50 flex flex-col items-center justify-start px-4 py-6 overflow-hidden text-center">
       <h2 class="text-amber-900 text-5xl font-bold tracking-tight uppercase" v-text="$i18n.t('index.section_features.title')" />
 
       <div class="xl:text-xl xl:grid-cols-4 xl:gap-8 grid max-w-5xl grid-flow-row grid-cols-2 gap-4 mt-8 text-lg">
@@ -155,7 +155,7 @@
     </Section>
 
     <!-- Section 5: Support -->
-    <Section ref="section-5" class="snap-center bg-stone-100 flex flex-col items-center justify-center px-4 overflow-hidden text-center">
+    <Section ref="section-5" class="snap-center bg-stone-100 flex flex-col items-center justify-start px-4 py-8 overflow-hidden text-center">
       <h2 class="text-5xl font-bold leading-tight tracking-tight text-black uppercase" v-text="$i18n.t('index.support.title')" />
 
       <div class="flex flex-col mt-3 space-y-1">
@@ -184,7 +184,7 @@
       </div>
 
       <template #after>
-        <div class="bottom-20 xl:bottom-4 absolute flex flex-col items-center justify-center">
+        <div class="flex flex-col items-center justify-end flex-grow mb-16">
           <div class="" v-text="$i18n.t('index.support.credits')" />
           <div class="text-gray-50 px-2 py-1 mt-1 bg-gray-800 rounded-lg select-none" v-text="$store.state.version" />
         </div>
