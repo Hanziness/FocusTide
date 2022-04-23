@@ -128,7 +128,7 @@ export default defineNuxtConfig({
       plugin: false
     },
     manifest: {
-      name: 'AnotherPomodoro - free & modern Pomodoro app',
+      name: 'AnotherPomodoro: modern & simple Pomodoro app',
       short_name: 'AnotherPomodoro',
       start_url: '/timer?standalone=true',
       orientation: 'any',
