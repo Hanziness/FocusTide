@@ -33,7 +33,7 @@ export default defineNuxtConfig({
     title: 'AnotherPomodoro',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
       { hid: 'keywords', name: 'keywords', content: 'pomodoro app, pomodoro, free, productivity tool, app, open-source, online timer, countdown timer, focus timer, pomodoro clock, no ads, productivity timer, todo list, task management, tomato timer, pwa' },
       { hid: 'twitter:title', name: 'twitter:title', content: 'AnotherPomodoro' },
@@ -53,7 +53,8 @@ export default defineNuxtConfig({
   */
   css: [
     '@/assets/scss/tailwind.scss',
-    '@/assets/scss/transitions.scss'
+    '@/assets/scss/transitions.scss',
+    '@/assets/css/disable_tap_highlight.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -124,9 +125,51 @@ export default defineNuxtConfig({
       plugin: false
     },
     manifest: {
-      name: 'AnotherPomodoro - free & modern Pomodoro app',
+      name: 'AnotherPomodoro: modern & simple Pomodoro app',
       short_name: 'AnotherPomodoro',
-      start_url: '/timer?standalone=true'
+      start_url: '/timer?standalone=true',
+      orientation: 'any',
+      categories: ['productivity', 'utilities'],
+      display: 'standalone',
+      shortcuts: [],
+      lang: 'en-US',
+      screenshots: [
+        {
+          src: '/assets/img/screenshots/stores/mobile_0.jpg',
+          sizes: '1520x3040',
+          type: 'image/jpg',
+          platform: 'narrow',
+          label: 'A pomodoro timer running in the app'
+        },
+        {
+          src: '/assets/img/screenshots/stores/mobile_1.jpg',
+          sizes: '1520x3040',
+          type: 'image/jpg',
+          platform: 'narrow',
+          label: 'AnotherPomdoro comes with a built-in to-do manager'
+        },
+        {
+          src: '/assets/img/screenshots/stores/mobile_2.jpg',
+          sizes: '1520x3040',
+          type: 'image/jpg',
+          platform: 'narrow',
+          label: 'The timer is fully customizable: the timer\'s looks, the schedules and there\'s also a dark mode.'
+        },
+        {
+          src: '/assets/img/screenshots/stores/mobile_3.jpg',
+          sizes: '1520x3040',
+          type: 'image/jpg',
+          platform: 'narrow',
+          label: 'Every feature is optional in AnotherPomodoro. If all you need is a simple timer, it can do that, too.'
+        },
+        {
+          src: '/assets/img/screenshots/stores/mobile_4.jpg',
+          sizes: '1520x3040',
+          type: 'image/jpg',
+          platform: 'narrow',
+          label: 'Two screenshots showing the "approximate" and "percentage" timer styles.'
+        }
+      ]
     }
   },
 
