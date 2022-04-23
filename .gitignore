@@ -91,7 +91,3 @@ sw.*
 
 # Nuxt 3 build output
 .output
-
-# Ignore generated service worker
-static/service-worker.js*
-static/workbox-*
