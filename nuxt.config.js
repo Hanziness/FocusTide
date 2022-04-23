@@ -134,6 +134,7 @@ export default defineNuxtConfig({
       orientation: 'any',
       categories: ['productivity', 'utilities'],
       display: 'standalone',
+      shortcuts: [],
       screenshots: [
         {
           src: '/assets/img/screenshots/stores/mobile_0.jpg',
