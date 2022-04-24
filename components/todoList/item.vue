@@ -1,7 +1,7 @@
 <template>
   <div
     class="hover:shadow-sm themed-border md:py-2 relative flex flex-row items-center px-2 py-3 transition-all duration-200 border-l-8 rounded-md"
-    :class="[{ 'opacity-50 line-through italic': item.state === 2, 'cursor-move': showReorder, 'ring themed-ring': dragged || droptarget, 'themed-bg': manage && editing }, manage && editing ? 'themed-bg' : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200']"
+    :class="[{ 'opacity-50 line-through italic': item.state === 2, 'cursor-move': showReorder, 'ring themed-ring': dragged || droptarget, 'themed-bg !text-white': manage && editing }, manage && editing ? 'themed-bg' : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200']"
     :style="{ '--theme': $store.state.settings.visuals[item.section].colour }"
     draggable
     @mouseenter="hovering = true"
