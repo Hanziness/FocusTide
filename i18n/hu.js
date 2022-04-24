@@ -71,7 +71,7 @@ export default {
         will_it_help: {
           q: 'Segíteni fog rajtam ez az alkalmazás?',
           a: 'Ez rajtad áll. Az alkalmazás mindent megtesz, hogy egy motiváló környezetet teremtsen a letisztult megjelenésével, de tőled függ, hogy követed-e a menetrendet.',
-          hint: 'Ha úgy érzed, nem tudsz 25 percig egyfolytában dolgozni vagy rövid az 5 perces szünet, állítsd át az időzítőket valami könyelmesebbre. Ne add fel, kövess egy lazább menetrendet és napról-napra szigoríts rajta egy kicsit.'
+          hint: 'Ha úgy érzed, nem tudsz 25 percig egyfolytában dolgozni vagy rövid az 5 perces szünet, állítsd át az időzítőket valami kényelmesebbre. Ne add fel, kövess egy lazább menetrendet és napról-napra szigoríts rajta egy kicsit.'
         },
         data_collection: {
           q: 'Gyűjt az alkalmazás bármilyen adatot?',
@@ -118,10 +118,6 @@ export default {
           action: 'támogasd a szerzőt egy kávéval'
         }
       },
-      methods: {
-        github: 'Megtekintés GitHubon',
-        buymeacoffee: 'Fejlesztő meghívása egy kávéra'
-      },
       credits: '❤ Szeretettel készítette: Gera Imre'
     }
   },
@@ -130,9 +126,7 @@ export default {
     title: 'Indulás',
     startButton: 'Hajrá',
     steps: {
-      language: {
-        title: 'Nyelv'
-      },
+      language: { title: 'Nyelv' },
       preset: {
         title: 'Előbeállítás',
         description: 'Ezek a lehetőségek előre bekapcsolnak bizonyos funkciókat, hogy úgy használhasd az alkalmazást, ahogy kényelmes.'
@@ -170,7 +164,6 @@ export default {
         hardcore: 'Minden funkció bekapcsolva, így minden dolog előtted lehet.'
       }
     },
-
     permissions: {
       audio: 'Hang',
       notifications: 'Értesítések'
@@ -282,7 +275,7 @@ export default {
           _description: '',
           _values: {
             default: 'Alapértelmezett',
-            debug: 'Debug',
+            debug: 'Hibakeresés',
             custom: 'Egyedi'
           },
           _valueDescription: {
@@ -328,12 +321,8 @@ export default {
         soundSet: {
           _title: 'Hangkészlet',
           _description: 'Az értesítésekhez használt hangok',
-          _values: {
-            musical: 'Zenés'
-          },
-          _valueDescription: {
-            musical: 'Az alapértelmezett hangok'
-          }
+          _values: { musical: 'Zenés' },
+          _valueDescription: { musical: 'Az alapértelmezett hangok' }
         }
       },
       timerControls: {
@@ -375,9 +364,7 @@ export default {
     }
   },
   notification: {
-    action: {
-      ready: 'Gyerünk!'
-    },
+    action: { ready: 'Gyerünk!' },
     work: {
       title: 'Ideje újra dolgozni!',
       body: 'Vége a szünetnek. Dolgozz egy kicsit, majd pihenj megint.'
@@ -432,7 +419,6 @@ export default {
       secondary: 'vagy ha a fentiek nem segítettek:'
     }
   },
-
   timerpreset: {
     _values: {
       default: 'Alapértelmezett',
@@ -448,4 +434,4 @@ export default {
     },
     description: '{brief} \n {worklength} perc munka {splength} perces rövid szünetekkel és {lplength} perces hosszú szünettel minden {lpfreq}. munkamenet után.'
   }
-}
+};
