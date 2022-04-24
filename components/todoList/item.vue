@@ -32,10 +32,10 @@
 
     <span class="flex-grow" />
 
-    <div class="flex flex-row items-center flex-shrink-0 space-x-1">
+    <div class="md:gap-3 flex flex-row items-center flex-shrink-0 gap-4">
       <transition name="slidein">
-        <button v-show="manage" class="transition-all duration-100" @click="$emit('delete')">
-          <IconDelete size="18" class="mr-1" />
+        <button v-show="manage" class="hover:bg-slate-900 dark:hover:bg-slate-100 hover:bg-opacity-10 dark:hover:bg-opacity-20 md:p-2 md:-m-2 p-3 -m-3 transition-all duration-100 rounded-full" @click="$emit('delete')">
+          <IconDelete size="18" />
         </button>
       </transition>
       <input :checked="checked" type="checkbox" class="themed-checkbox md:w-5 md:h-5 w-6 h-6 mr-1 rounded" @input="checked = !checked">
