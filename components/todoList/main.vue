@@ -7,7 +7,7 @@
         <IconManage class="inline translate-y-[-0.1rem]" size="16" />
         <span v-text="$i18n.t('tasks.manage')" />
       </button> -->
-      <button class="hover:bg-gray-300 active:bg-gray-400 absolute right-0 float-right p-2 transition-all rounded-full" @click="$emit('hide')">
+      <button class="hover:bg-gray-300 dark:hover:bg-gray-700 active:bg-gray-400 absolute right-0 float-right p-2 transition-all rounded-full" @click="$emit('hide')">
         <XIcon />
       </button>
     </div>
@@ -20,12 +20,13 @@
     >
       <TaskItem
         v-for="task in displayedTasks"
-        :key="task.section + '-' + task.title"
+        :key="task.id"
         :manage="!$store.getters['schedule/isRunning'] && manageMode"
         :item="task"
         :droptarget="task === dropTarget"
         moveable
         @input="$store.commit('tasklist/toggleComplete', { item: task })"
+        @update="newTitle => $store.commit('tasklist/editTitle', { id: task.id, newTitle })"
         @delete="$store.commit('tasklist/delete', { item: task })"
         @dropstart="draggedItem = task, dragging = true"
         @dropfinish="handleDrop"

@@ -26,7 +26,8 @@ export const mutations = {
       priority,
       section,
       state,
-      keepOnScreen: false
+      keepOnScreen: false,
+      id: currentState.tasks.reduce((lastMax, currentItem) => Math.max(currentItem.id ?? 0, lastMax), -1) + 1
     }
 
     currentState.tasks.push(newTask)
@@ -71,5 +72,13 @@ export const mutations = {
     if (oldIndex < 0 || newIndex >= state.tasks.length) { return }
 
     state.tasks.splice(newIndex, 0, state.tasks.splice(oldIndex, 1)[0])
+  },
+
+  editTitle (state, { id, newTitle }) {
+    const taskIndex = state.tasks.findIndex(item => item.id === id)
+
+    if (taskIndex < 0) { return }
+
+    state.tasks[taskIndex].title = newTitle
   }
 }

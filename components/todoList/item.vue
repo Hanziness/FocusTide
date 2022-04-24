@@ -1,6 +1,7 @@
 <template>
   <div
-    :class="['relative bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 hover:shadow-sm rounded-md border-l-8 themed-border px-2 py-3 md:py-2 transition-all duration-200 flex flex-row items-center', { 'opacity-50 line-through italic': item.state === 2, 'cursor-move': showReorder, 'ring themed-ring': dragged || droptarget }]"
+    class="hover:shadow-sm themed-border md:py-2 relative flex flex-row items-center px-2 py-3 transition-all duration-200 border-l-8 rounded-md"
+    :class="[{ 'opacity-50 line-through italic': item.state === 2, 'cursor-move': showReorder, 'ring themed-ring': dragged || droptarget, 'themed-bg !text-white': manage && editing }, manage && editing ? 'themed-bg' : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200']"
     :style="{ '--theme': $store.state.settings.visuals[item.section].colour }"
     draggable
     @mouseenter="hovering = true"
@@ -12,20 +13,29 @@
   >
     <div :class="['absolute left-0 top-0 h-full self-stretch themed-bg transition-all duration-75 text-white flex flex-row items-center flex-shrink-0', showReorder ? 'w-6' : 'w-0']">
       <span v-show="showReorder">
-        <IconMenu size="16" />
+        <IconEditing v-if="manage && editing" size="16" />
+        <IconMenu v-else size="16" />
       </span>
     </div>
-    <div class="mr-7 flex flex-col min-w-0 transition-all duration-75 select-none" :class="[showReorder ? 'translate-x-6' : 'translate-x-0']">
-      <span class="break-words">{{ item.title }}</span>
+    <div class="mr-7 flex flex-col flex-grow w-full min-w-0 py-2 -my-2 transition-all duration-75 select-none" :class="[showReorder ? 'translate-x-6' : 'translate-x-0']" @click="editing = true">
+      <input
+        v-if="manage && editing"
+        ref="editbox"
+        v-model="displayedTitle"
+        class="py-2 pl-1 -my-2 -ml-1 text-white bg-transparent outline-none"
+        @blur="editing = false, handleEdit(displayedTitle)"
+        @keyup.enter.exact="editing = false, handleEdit(displayedTitle)"
+      >
+      <span v-else class="break-words">{{ item.title }}</span>
       <!-- <span class="text-sm">Description</span> -->
     </div>
 
     <span class="flex-grow" />
 
-    <div class="flex flex-row items-center flex-shrink-0 space-x-1">
+    <div class="md:gap-3 flex flex-row items-center flex-shrink-0 gap-4">
       <transition name="slidein">
-        <button v-show="manage" class="transition-all duration-100" @click="$emit('delete')">
-          <IconDelete size="18" class="mr-1" />
+        <button v-show="manage" class="hover:bg-slate-900 dark:hover:bg-slate-100 hover:bg-opacity-10 dark:hover:bg-opacity-20 md:p-2 md:-m-2 p-3 -m-3 transition-all duration-100 rounded-full" @click="$emit('delete')">
+          <IconDelete size="18" />
         </button>
       </transition>
       <input :checked="checked" type="checkbox" class="themed-checkbox md:w-5 md:h-5 w-6 h-6 mr-1 rounded" @input="checked = !checked">
@@ -34,11 +44,11 @@
 </template>
 
 <script>
-import { MenuIcon, EraserIcon } from 'vue-tabler-icons'
+import { MenuIcon, TrashIcon, PencilIcon } from 'vue-tabler-icons'
 import { taskState } from '@/store/tasklist'
 
 export default {
-  components: { IconMenu: MenuIcon, IconDelete: EraserIcon },
+  components: { IconMenu: MenuIcon, IconDelete: TrashIcon, IconEditing: PencilIcon },
   props: {
     item: {
       type: Object,
@@ -61,7 +71,9 @@ export default {
   data () {
     return {
       hovering: false,
-      dragged: false
+      dragged: false,
+      editing: false,
+      editedTitle: null
     }
   },
   computed: {
@@ -75,7 +87,30 @@ export default {
     },
     showReorder: {
       get () {
-        return this.moveable && this.hovering
+        return this.editing || (this.moveable && this.hovering)
+      }
+    },
+    valid: {
+      get () {
+        return !this.$store.state.tasklist.tasks.some(task => task.id !== this.item.id && task.title === this.displayedTitle && task.section === this.item.section)
+      }
+    },
+    displayedTitle: {
+      get () {
+        return this.editedTitle ?? this.item.title
+      },
+      set (newValue) {
+        this.editedTitle = newValue
+      }
+    }
+  },
+  watch: {
+    editing (newValue) {
+      if (newValue) {
+        // only focus on <input> in the next tick (when it is rendered)
+        this.$nextTick(() => {
+          this.$refs.editbox?.focus()
+        })
       }
     }
   },
@@ -86,6 +121,13 @@ export default {
       evt.dataTransfer.setData('source.title', item.title)
       evt.dataTransfer.setData('source.section', item.section)
       this.dragged = true
+    },
+
+    handleEdit (newValue) {
+      if (this.valid && this.item.title !== this.displayedTitle) {
+        this.$emit('update', newValue)
+      }
+      this.editedTitle = null
     }
   }
 }
