@@ -7,7 +7,7 @@
         <IconManage class="inline translate-y-[-0.1rem]" size="16" />
         <span v-text="$i18n.t('tasks.manage')" />
       </button> -->
-      <button class="hover:bg-gray-300 active:bg-gray-400 absolute right-0 float-right p-2 transition-all rounded-full" @click="$emit('hide')">
+      <button class="hover:bg-gray-300 dark:hover:bg-gray-700 active:bg-gray-400 absolute right-0 float-right p-2 transition-all rounded-full" @click="$emit('hide')">
         <XIcon />
       </button>
     </div>
