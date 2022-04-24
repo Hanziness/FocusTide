@@ -26,6 +26,7 @@
         :droptarget="task === dropTarget"
         moveable
         @input="$store.commit('tasklist/toggleComplete', { item: task })"
+        @update="newTitle => $store.commit('tasklist/editTitle', { id: task.id, newTitle })"
         @delete="$store.commit('tasklist/delete', { item: task })"
         @dropstart="draggedItem = task, dragging = true"
         @dropfinish="handleDrop"

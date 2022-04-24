@@ -12,11 +12,19 @@
   >
     <div :class="['absolute left-0 top-0 h-full self-stretch themed-bg transition-all duration-75 text-white flex flex-row items-center flex-shrink-0', showReorder ? 'w-6' : 'w-0']">
       <span v-show="showReorder">
-        <IconMenu size="16" />
+        <IconEditing v-if="manage && editing" size="16" />
+        <IconMenu v-else size="16" />
       </span>
     </div>
-    <div class="mr-7 flex flex-col min-w-0 transition-all duration-75 select-none" :class="[showReorder ? 'translate-x-6' : 'translate-x-0']">
-      <span class="break-words">{{ item.title }}</span>
+    <div class="mr-7 flex flex-col flex-grow w-full min-w-0 py-2 -my-2 transition-all duration-75 select-none" :class="[showReorder ? 'translate-x-6' : 'translate-x-0']" @click="editing = true">
+      <input
+        v-if="manage && editing"
+        ref="editbox"
+        v-model="displayedTitle"
+        class="break-words bg-transparent"
+        @blur="editing = false, handleEdit(displayedTitle)"
+      >
+      <span v-else class="break-words">{{ item.title }}</span>
       <!-- <span class="text-sm">Description</span> -->
     </div>
 
@@ -34,11 +42,11 @@
 </template>
 
 <script>
-import { MenuIcon, EraserIcon } from 'vue-tabler-icons'
+import { MenuIcon, EraserIcon, PencilIcon } from 'vue-tabler-icons'
 import { taskState } from '@/store/tasklist'
 
 export default {
-  components: { IconMenu: MenuIcon, IconDelete: EraserIcon },
+  components: { IconMenu: MenuIcon, IconDelete: EraserIcon, IconEditing: PencilIcon },
   props: {
     item: {
       type: Object,
@@ -61,7 +69,9 @@ export default {
   data () {
     return {
       hovering: false,
-      dragged: false
+      dragged: false,
+      editing: true,
+      editedTitle: null
     }
   },
   computed: {
@@ -77,6 +87,29 @@ export default {
       get () {
         return this.moveable && this.hovering
       }
+    },
+    valid: {
+      get () {
+        return !this.$store.state.tasklist.tasks.some(task => task.id !== this.item.id && task.title === this.item.title && task.section === this.item.section)
+      }
+    },
+    displayedTitle: {
+      get () {
+        return this.editedTitle ?? this.item.title
+      },
+      set (newValue) {
+        this.editedTitle = newValue
+      }
+    }
+  },
+  watch: {
+    editing (newValue) {
+      if (newValue) {
+        this.$nextTick(() => {
+          console.log(`Editing -> focus on ${this.$refs.editbox}`)
+          this.$refs.editbox?.focus()
+        })
+      }
     }
   },
   methods: {
@@ -86,6 +119,13 @@ export default {
       evt.dataTransfer.setData('source.title', item.title)
       evt.dataTransfer.setData('source.section', item.section)
       this.dragged = true
+    },
+
+    handleEdit (newValue) {
+      if (this.valid) {
+        console.log(`Updated task to ${newValue}`)
+        this.$emit('update', newValue)
+      }
     }
   }
 }
