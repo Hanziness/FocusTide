@@ -72,5 +72,13 @@ export const mutations = {
     if (oldIndex < 0 || newIndex >= state.tasks.length) { return }
 
     state.tasks.splice(newIndex, 0, state.tasks.splice(oldIndex, 1)[0])
+  },
+
+  editTitle (state, { id, newTitle }) {
+    const taskIndex = state.tasks.findIndex(item => item.id === id)
+
+    if (taskIndex < 0) { return }
+
+    state.tasks[taskIndex].title = newTitle
   }
 }
