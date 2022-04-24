@@ -26,7 +26,8 @@ export const mutations = {
       priority,
       section,
       state,
-      keepOnScreen: false
+      keepOnScreen: false,
+      id: currentState.tasks.reduce((lastMax, currentItem) => Math.max(currentItem.id ?? 0, lastMax), -1) + 1
     }
 
     currentState.tasks.push(newTask)
