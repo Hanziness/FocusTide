@@ -44,11 +44,11 @@
 </template>
 
 <script>
-import { MenuIcon, EraserIcon, PencilIcon } from 'vue-tabler-icons'
+import { MenuIcon, TrashIcon, PencilIcon } from 'vue-tabler-icons'
 import { taskState } from '@/store/tasklist'
 
 export default {
-  components: { IconMenu: MenuIcon, IconDelete: EraserIcon, IconEditing: PencilIcon },
+  components: { IconMenu: MenuIcon, IconDelete: TrashIcon, IconEditing: PencilIcon },
   props: {
     item: {
       type: Object,
