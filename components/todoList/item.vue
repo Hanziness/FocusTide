@@ -108,7 +108,6 @@ export default {
     editing (newValue) {
       if (newValue) {
         this.$nextTick(() => {
-          console.log(`Editing -> focus on ${this.$refs.editbox}`)
           this.$refs.editbox?.focus()
         })
       }
@@ -125,7 +124,6 @@ export default {
 
     handleEdit (newValue) {
       if (this.valid && this.item.title !== this.displayedTitle) {
-        console.log(`Updated task to ${newValue}`)
         this.$emit('update', newValue)
       }
       this.editedTitle = null
