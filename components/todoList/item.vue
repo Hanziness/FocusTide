@@ -107,6 +107,7 @@ export default {
   watch: {
     editing (newValue) {
       if (newValue) {
+        // only focus on <input> in the next tick (when it is rendered)
         this.$nextTick(() => {
           this.$refs.editbox?.focus()
         })
