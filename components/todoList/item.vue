@@ -22,7 +22,7 @@
         v-if="manage && editing"
         ref="editbox"
         v-model="displayedTitle"
-        class="py-2 pl-1 -my-2 -ml-1 bg-transparent outline-none"
+        class="py-2 pl-1 -my-2 -ml-1 text-white bg-transparent outline-none"
         @blur="editing = false, handleEdit(displayedTitle)"
         @keyup.enter.exact="editing = false, handleEdit(displayedTitle)"
       >
