@@ -20,7 +20,7 @@
     >
       <TaskItem
         v-for="task in displayedTasks"
-        :key="task.section + '-' + task.title"
+        :key="task.id"
         :manage="!$store.getters['schedule/isRunning'] && manageMode"
         :item="task"
         :droptarget="task === dropTarget"

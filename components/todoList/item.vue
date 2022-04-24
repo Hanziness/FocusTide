@@ -1,6 +1,7 @@
 <template>
   <div
-    :class="['relative bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 hover:shadow-sm rounded-md border-l-8 themed-border px-2 py-3 md:py-2 transition-all duration-200 flex flex-row items-center', { 'opacity-50 line-through italic': item.state === 2, 'cursor-move': showReorder, 'ring themed-ring': dragged || droptarget }]"
+    class="hover:shadow-sm themed-border md:py-2 relative flex flex-row items-center px-2 py-3 transition-all duration-200 border-l-8 rounded-md"
+    :class="[{ 'opacity-50 line-through italic': item.state === 2, 'cursor-move': showReorder, 'ring themed-ring': dragged || droptarget, 'themed-bg': manage && editing }, manage && editing ? 'themed-bg' : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200']"
     :style="{ '--theme': $store.state.settings.visuals[item.section].colour }"
     draggable
     @mouseenter="hovering = true"
@@ -21,8 +22,9 @@
         v-if="manage && editing"
         ref="editbox"
         v-model="displayedTitle"
-        class="break-words bg-transparent"
+        class="py-2 pl-1 -my-2 -ml-1 bg-transparent outline-none"
         @blur="editing = false, handleEdit(displayedTitle)"
+        @keyup.enter.exact="editing = false, handleEdit(displayedTitle)"
       >
       <span v-else class="break-words">{{ item.title }}</span>
       <!-- <span class="text-sm">Description</span> -->
@@ -70,7 +72,7 @@ export default {
     return {
       hovering: false,
       dragged: false,
-      editing: true,
+      editing: false,
       editedTitle: null
     }
   },
@@ -85,12 +87,12 @@ export default {
     },
     showReorder: {
       get () {
-        return this.moveable && this.hovering
+        return this.editing || (this.moveable && this.hovering)
       }
     },
     valid: {
       get () {
-        return !this.$store.state.tasklist.tasks.some(task => task.id !== this.item.id && task.title === this.item.title && task.section === this.item.section)
+        return !this.$store.state.tasklist.tasks.some(task => task.id !== this.item.id && task.title === this.displayedTitle && task.section === this.item.section)
       }
     },
     displayedTitle: {
@@ -122,10 +124,11 @@ export default {
     },
 
     handleEdit (newValue) {
-      if (this.valid) {
+      if (this.valid && this.item.title !== this.displayedTitle) {
         console.log(`Updated task to ${newValue}`)
         this.$emit('update', newValue)
       }
+      this.editedTitle = null
     }
   }
 }
