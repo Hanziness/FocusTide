@@ -1,12 +1,12 @@
 <template>
   <div class="dark:text-gray-100 dark:bg-gray-900 pb-8">
-    <div class="pt-8 pb-20 text-center bg-red-100 dark:bg-opacity-25 text-black dark:text-gray-100">
-      <img src="/favicon.svg" width="64" height="64" class="inline-block bg-red-200 rounded-lg p-2 mb-4">
+    <div class="dark:bg-opacity-25 dark:text-gray-100 pt-8 pb-20 text-center text-black bg-red-100">
+      <img src="/favicon.svg" width="64" height="64" class="inline-block p-2 mb-4 bg-red-200 rounded-lg">
       <h1 class="text-5xl font-bold uppercase" v-text="$i18n.t('setup.title')" />
     </div>
-    <div class="flex 2xl:flex-row flex-col 2xl:space-x-4 mx-auto px-12 -mt-8">
+    <div class="2xl:flex-row 2xl:space-x-4 flex flex-col px-12 mx-auto -mt-8">
       <!-- Column 1: setup panel -->
-      <div class="setup-panel bg-gray-100 dark:bg-gray-800 dark:text-gray-100 border border-gray-300 dark:border-gray-600 shadow-xl rounded-lg divide-y divide-gray-300 dark:divide-gray-700 order-last 2xl:max-w-4xl mt-4 2xl:mt-0 2xl:order-first">
+      <div class="setup-panel dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:divide-gray-700 2xl:max-w-4xl 2xl:mt-0 2xl:order-first order-last mt-4 bg-gray-100 border border-gray-300 divide-y divide-gray-300 rounded-lg shadow-xl">
         <SetupStep :title="$i18n.t('setup.steps.language.title')">
           <OptionGroup
             :selected="settingsToApply.lang"
@@ -80,7 +80,7 @@
       <!-- Column 2: timer preview -->
       <div class="sticky top-1 rounded-lg w-full h-[420px] overflow-hidden shadow-lg">
         <TimerPage class="pointer-events-none" preview />
-        <div class="absolute top-2 left-2 flex flex-row space-x-1 rounded-lg bg-blue-100 text-gray-900 p-2 z-10">
+        <div class="top-2 left-2 absolute z-10 flex flex-row p-2 space-x-1 text-gray-900 bg-blue-100 rounded-lg">
           <InfoIcon />
           <span v-text="$i18n.t('setup.preview')" />
         </div>
@@ -91,8 +91,9 @@
 
 <script>
 import { CheckIcon, InfoCircleIcon } from 'vue-tabler-icons'
+import { mapStores } from 'pinia'
 import { getNotificationPermissions } from '@/assets/utils/notifications'
-import { AvailableTimers } from '@/store/settings'
+import { AvailableTimers, useSettings } from '@/stores/settings'
 import OptionGroup from '~/components/base/optionGroup.vue'
 import TimerPage from '@/pages/timer.vue'
 import { mergeDeep } from '@/assets/utils/mergeDeep'
@@ -116,22 +117,23 @@ export default {
   },
 
   data () {
+    const settingsStore = useSettings()
     return {
       step: 0,
       browserNotificationPermission: null,
       mainpreset: undefined,
       timerpreset: undefined,
-      originalAppState: JSON.parse(JSON.stringify(this.$store.state.settings)),
+      originalAppState: settingsStore.$state,
       settingsToApply: {
         lang: this.$i18n.locale,
         permissions: {
-          audio: this.$store.state.settings.permissions.audio,
-          notifications: this.$store.state.settings.permissions.notifications
+          audio: settingsStore.permissions.audio,
+          notifications: settingsStore.permissions.notifications
         },
         visuals: {
-          darkMode: this.$store.state.settings.visuals.darkMode
+          darkMode: settingsStore.visuals.darkMode
         },
-        currentTimer: this.$store.state.settings.currentTimer
+        currentTimer: settingsStore.currentTimer
       },
       presets: {
         minimalist: {
@@ -197,6 +199,8 @@ export default {
   },
 
   computed: {
+    ...mapStores(useSettings),
+
     completedSteps () {
       let completed = 0
 
@@ -238,16 +242,10 @@ export default {
   watch: {
     newSettings: {
       handler () {
-        this.$store.replaceState(
-          Object.assign(
-            {},
-            this.$store.state,
-            {
-              settings: mergeDeep(this.$store.state.settings, this.newSettings)
-            }
-          )
-        )
-        this.$store.commit('settings/_updated')
+        this.settingsStore.$reset()
+        this.settingsStore.$patch(Object.assign(
+          {}, mergeDeep(this.settingsStore.$state, this.newSettings)
+        ))
       },
       deep: true
     },
@@ -276,7 +274,7 @@ export default {
         ...this.presets[this.mainpreset].settings
       }
 
-      this.$store.commit('settings/mergeSettings', finalOptions)
+      this.settingsStore.$patch(finalOptions)
 
       this.$router.push('/timer')
     },

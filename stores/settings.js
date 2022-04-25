@@ -167,7 +167,7 @@ export const useSettings = defineStore('settings', {
        */
 
       // find parent object
-      let currentElement = this
+      let currentElement = this.$state
       for (let index = 0; index < key.length - 1; index++) {
         currentElement = currentElement[key[index]]
       }

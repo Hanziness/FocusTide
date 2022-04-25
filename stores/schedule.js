@@ -3,7 +3,7 @@ import { useSettings } from './settings'
 
 export const useSchedule = defineStore('schedule', {
   state: () => ({
-    items: [],
+    items: createScheduleSeries(10),
     timerState: TIMERSTATE.STOPPED
   }),
 
@@ -35,17 +35,19 @@ export const useSchedule = defineStore('schedule', {
       const numEntities = settings.schedule.numScheduleEntries
       const scheduleTypes = this.scheduleTypes
 
-      const returnArray = state.items.length === 0 ? [] : JSON.parse(JSON.stringify(state.items))
+      const returnArray = state.items.length === 0 ? [] : state.items
 
       // add or remove entries if needed
       if (numEntities < returnArray.length) {
         // remove last few entities
         returnArray.splice(numEntities, returnArray.length - numEntities)
-      } else if (returnArray.length === 0) {
-        returnArray.push(createScheduleEntry(0))
       } else if (numEntities > returnArray.length) {
         // add remaining entities
-        for (let i = 0; i < numEntities - returnArray.length; i++) {
+        if (returnArray.length === 0) {
+          returnArray.push(createScheduleEntry(0))
+        }
+
+        for (let i = 1; i < numEntities - returnArray.length; i++) {
           returnArray.push(createScheduleEntry(returnArray[returnArray.length - 1].id + 1))
         }
       }
@@ -80,14 +82,14 @@ export const useSchedule = defineStore('schedule', {
     },
 
     // VISUALS
-    currentScheduleColour: (state) => {
+    currentScheduleColour () {
       const settings = useSettings()
-      return settings.visuals[state.getCurrentItem.type].colour
+      return settings.visuals[this.getCurrentItem.type].colour
     },
 
-    nextScheduleColour: (state) => {
+    nextScheduleColour (state) {
       const settings = useSettings()
-      const nextState = state.getSchedule[1].type
+      const nextState = this.getSchedule[1].type
       if (nextState) {
         return settings.visuals[nextState].colour
       } else {
@@ -95,13 +97,44 @@ export const useSchedule = defineStore('schedule', {
       }
     },
 
-    getScheduleColour: (state) => {
+    getScheduleColour (state) {
       const settings = useSettings()
       const colours = []
-      for (const item of state.getSchedule) {
+      for (const item of this.getSchedule) {
         colours.push(settings.visuals[item.type].colour)
       }
       return colours
+    }
+  },
+
+  actions: {
+    /** Advances the schedule by removing the first item and adding a new one to the end */
+    advance () {
+      this.items = this.items.slice(1)
+      this.items.push(createScheduleEntry(this.items.slice(-1).pop().id + 1))
+    },
+
+    /** Allows locking information on a schedule item (so the getter will not override it) */
+    lockInfo ({ index = 0, length = undefined, type = undefined }) {
+      console.log(this.items)
+      if (index <= this.items.length) {
+        this.items[index].length = length
+        this.items[index].type = type
+      }
+    },
+
+    /** Updates elapsed time on the first schedule entry */
+    updateTime (timeElapsed) {
+      this.items[0].timeElapsed = timeElapsed
+    },
+
+    updateTimerState (newState) {
+      this.timerState = newState
+    },
+
+    /** Mutation to generate an initial schedule state */
+    initSchedule (numEntries) {
+      this.items = createScheduleSeries(numEntries)
     }
   }
 })
@@ -135,4 +168,13 @@ function createScheduleEntry (id) {
     length: undefined,
     type: undefined
   }
+}
+
+function createScheduleSeries (numEntries) {
+  const items = []
+  for (let i = 0; i < numEntries; i++) {
+    items.push(createScheduleEntry(i))
+  }
+
+  return items
 }

@@ -1,6 +1,6 @@
 
 <script>
-import { mapStores, mapState } from 'pinia'
+import { mapStores, mapState, mapWritableState } from 'pinia'
 import { TIMERSTATE, TimerState, useSchedule } from '@/stores/schedule'
 import { useSettings } from '~/stores/settings'
 import { useTasklist } from '~/stores/tasklist'
@@ -19,13 +19,14 @@ export default {
   computed: {
     ...mapState(useSchedule, {
       timeOriginal: store => store.getCurrentItem.length,
-      scheduleId: store => store.getCurrentItem.id,
-      timerState: 'getCurrentTimerState'
+      scheduleId: store => store.getCurrentItem.id
     }),
 
     ...mapState(useSettings, {
       adaptiveTickRate: 'getAdaptiveTickRate'
     }),
+
+    ...mapWritableState(useSchedule, ['timerState']),
 
     timeRemaining () {
       return this.timeOriginal - this.timeElapsed
@@ -165,6 +166,10 @@ export default {
 
     /** Starts or resumes the timer */
     startTimer () {
+      this.scheduleStore.lockInfo({
+        length: this.timeOriginal,
+        type: this.scheduleStore.getCurrentItem.type
+      })
       this.scheduleNextTick({ decrement: false })
     },
 
@@ -173,6 +178,10 @@ export default {
       this.timerTick({ nextState: stop ? TimerState.RESET : TimerState.PAUSED })
 
       if (stop) {
+        this.scheduleStore.lockInfo({
+          length: undefined,
+          type: undefined
+        })
         this.resetTimer()
       }
     },

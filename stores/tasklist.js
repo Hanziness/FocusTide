@@ -53,7 +53,7 @@ export const useTasklist = defineStore('tasklist', {
       }
     },
 
-    delete ({ item }) {
+    deleteTask ({ item }) {
       const itemIndex = this.tasks.indexOf(item)
       if (itemIndex >= 0) {
         this.tasks.splice(itemIndex, 1)

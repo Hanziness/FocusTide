@@ -19,14 +19,14 @@
       role="button"
       :aria-label="$i18n.t('controls.play')"
       tabindex="0"
-      :class="[{ 'active': $store.getters['schedule/getCurrentTimerState'] === 1 }]"
-      :style="{ '--next': $store.getters['schedule/nextScheduleColour'],
-                '--old': $store.getters['schedule/currentScheduleColour'],
+      :class="[{ 'active': scheduleStore.getCurrentTimerState === 1 }]"
+      :style="{ '--next': scheduleStore.nextScheduleColour,
+                '--old': scheduleStore.currentScheduleColour,
                 '--percentage': ((progressPercentage * 100) * 0.85 + 10) + '%' }"
       @click="playPause"
     >
       <Transition name="transition-fade" mode="out-in" tag="div" class="">
-        <div v-if="$store.getters['schedule/getCurrentTimerState'] !== 1" :key="1" class="relative">
+        <div v-if="scheduleStore.getCurrentTimerState !== 1" :key="1" class="relative">
           <IconPlay :aria-label="$i18n.t('controls.play')" size="64" stroke-width="1" />
         </div>
         <div v-else :key="2" class="relative">
@@ -52,9 +52,11 @@
 
 <script>
 import { PlayerPlayIcon, PlayerPauseIcon, PlayerStopIcon, PlayerSkipForwardIcon } from 'vue-tabler-icons'
+import { mapStores } from 'pinia'
 import KeyboardListener from '@/assets/mixins/keyboardListener'
 
-import { TimerState } from '@/stores/schedule'
+import { TimerState, useSchedule } from '@/stores/schedule'
+import { useSettings } from '~/stores/settings'
 
 export default {
   components: {
@@ -68,22 +70,24 @@ export default {
   mixins: [KeyboardListener],
 
   computed: {
+    ...mapStores(useSettings, useSchedule),
+
     progressPercentage () {
-      return this.$store.getters['schedule/getCurrentItem'].timeElapsed / this.$store.getters['schedule/getCurrentItem'].length
+      return this.scheduleStore.getCurrentItem.timeElapsed / this.scheduleStore.getCurrentItem.length
     },
 
     resetEnabled () {
-      return this.$store.getters['schedule/getCurrentTimerState'] !== 0
+      return this.scheduleStore.getCurrentTimerState !== 0
     },
 
     advanceEnabled () {
-      return this.$store.getters['schedule/getCurrentTimerState'] !== 1
+      return this.scheduleStore.getCurrentTimerState !== 1
     }
   },
 
   methods: {
     mixin_keyboardListener_handleKeyUp (e) {
-      if (!this.canUseKeyboard || !this.$store.state.settings.timerControls.enableKeyboardShortcuts) { return }
+      if (!this.canUseKeyboard || !this.settingsStore.timerControls.enableKeyboardShortcuts) { return }
       if (e.code.toLowerCase() === 'space') {
         this.playPause()
       }
@@ -91,20 +95,20 @@ export default {
 
     playPause () {
       // move to next section if timer is completed
-      if (this.$store.getters['schedule/getCurrentTimerState'] === TimerState.COMPLETED) {
+      if (this.scheduleStore.getCurrentTimerState === TimerState.COMPLETED) {
         this.advance()
-        this.$store.commit('schedule/updateTimerState', TimerState.TICKING)
+        this.scheduleStore.timerState = TimerState.TICKING
       } else {
-        this.$store.commit('schedule/updateTimerState', this.$store.getters['schedule/getCurrentTimerState'] !== TimerState.TICKING ? TimerState.TICKING : TimerState.PAUSED)
+        this.scheduleStore.timerState = this.scheduleStore.getCurrentTimerState !== TimerState.TICKING ? TimerState.TICKING : TimerState.PAUSED
       }
     },
 
     reset () {
-      this.$store.commit('schedule/updateTimerState', TimerState.RESET)
+      this.scheduleStore.timerState = TimerState.RESET
     },
 
     advance () {
-      this.$store.commit('schedule/advance')
+      this.scheduleStore.advance()
     }
   }
 }

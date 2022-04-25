@@ -1,21 +1,21 @@
 <template>
-  <div class="w-screen h-screen flex flex-col items-center justify-center bg-gray-900 text-gray-100 p-6">
+  <div class="flex flex-col items-center justify-center w-screen h-screen p-6 text-gray-100 bg-gray-900">
     <div>
       <component :is="errorHeading.icon" size="128" stroke-width="1.25" />
     </div>
-    <h1 class="mt-2 text-5xl text-center uppercase font-bold tracking-tighter" v-text="errorHeading.title" />
+    <h1 class="mt-2 text-5xl font-bold tracking-tighter text-center uppercase" v-text="errorHeading.title" />
 
     <!-- Error description -->
-    <div class="mt-8 max-w-screen-lg border-2 border-gray-300 rounded-lg overflow-hidden">
+    <div class="max-w-screen-lg mt-8 overflow-hidden border-2 border-gray-300 rounded-lg">
       <transition name="showerror-transition" mode="out-in">
-        <div v-if="!showError" class="transition p-4 bg-gray-700 hover:bg-gray-600 active:bg-gray-800 text-gray-100 flex flex-row items-center space-x-4 cursor-pointer" role="button" @click="showError = true">
+        <div v-if="!showError" class="hover:bg-gray-600 active:bg-gray-800 flex flex-row items-center p-4 space-x-4 text-gray-100 transition bg-gray-700 cursor-pointer" role="button" @click="showError = true">
           <IconShowError size="42" />
           <div>
             <div class="font-bold" v-text="$i18n.t('errorpage.showError.main')" />
             <div v-text="$i18n.t('errorpage.showError.sub')" />
           </div>
         </div>
-        <pre v-if="showError" class="p-4 overflow-y-scroll max-h-56" v-text="fullError" />
+        <pre v-if="showError" class="max-h-56 p-4 overflow-y-scroll" v-text="fullError" />
       </transition>
     </div>
 
@@ -51,8 +51,10 @@
 
 <script>
 import { MoodSadIcon, RoadSignIcon, MoodConfuzedIcon, RefreshAlertIcon, RefreshIcon, HomeIcon, BrandGithubIcon, BrandTwitterIcon, MessagesIcon, BugIcon } from 'vue-tabler-icons'
+import { mapActions } from 'pinia'
 import ActionButton from '@/components/error/action.vue'
 import ActionBar from '@/components/error/actionBar.vue'
+import { useSettings } from '~/stores/settings'
 
 const actionType = {
   RECOMMEND: 'recommended',
@@ -171,6 +173,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(useSettings, ['setReset']),
+
     getRowAndState (action) {
       let row = 'hidden'
       let state = 'disabled'
@@ -199,7 +203,7 @@ export default {
 
     /// Ask settings to reset and navigate back to the home page
     actionReset () {
-      this.$store.commit('settings/setReset', true)
+      this.setReset(true)
       location.assign('/')
     },
 

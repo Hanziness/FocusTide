@@ -1,12 +1,12 @@
 <template>
-  <div class="select-none overflow-hidden w-full p-4">
+  <div class="w-full p-4 overflow-hidden select-none">
     <TransitionGroup
       name="schedule-transition"
       tag="div"
-      class="flex flex-grow-0 flex-row justify-center relative"
+      class="relative flex flex-row justify-center flex-grow-0"
     >
       <ScheduleItem
-        v-for="(item, i) in $store.getters['schedule/getSchedule']"
+        v-for="(item, i) in getSchedule"
         :key="item.id"
         :data="item"
         :active="i === 0"
@@ -16,9 +16,15 @@
 </template>
 
 <script>
+import { mapState } from 'pinia'
+import { useSchedule } from '~/stores/schedule'
 export default {
   components: {
     ScheduleItem: () => import(/* webpackMode: "eager" */ '@/components/schedule/scheduleItem.vue')
+  },
+
+  computed: {
+    ...mapState(useSchedule, ['getSchedule'])
   }
 }
 </script>

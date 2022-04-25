@@ -1,4 +1,6 @@
 <script>
+import { mapStores } from 'pinia'
+import { useSettings } from '~/stores/settings'
 // import Error from '@/assets/errors'
 
 export default {
@@ -34,6 +36,8 @@ export default {
   },
 
   computed: {
+    ...mapStores(useSettings),
+
     /**
      * Computed property responsible for getting and setting the appropriate
      * store state variable.
@@ -47,7 +51,7 @@ export default {
         if (this.customSetFunction) {
           this.customSetFunction(newValue, this.settingsKey)
         } else {
-          this.$store.commit('settings/SET', { key: this.settingsKey, value: newValue })
+          this.settingsStore.SET({ key: this.settingsKey, value: newValue })
         }
       }
     },
@@ -64,7 +68,7 @@ export default {
     /** Resolves key array into value */
     resolveKeys (keys, parent = false) {
       const maxIndex = parent ? keys.length - 1 : keys.length
-      let currentValue = this.$store.state.settings
+      let currentValue = this.settingsStore.$state
       for (let index = 0; index < maxIndex; index++) {
         currentValue = currentValue ? currentValue[keys[index]] : null
       }

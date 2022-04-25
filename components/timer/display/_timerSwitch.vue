@@ -1,7 +1,7 @@
 <template>
   <div class="dark:text-gray-100 relative flex flex-col justify-center text-center text-black transition-opacity duration-500 select-none" :class="[{ 'opacity-70': !running, 'opacity-100': running }]">
     <Transition name="timer-switch" mode="out-in">
-      <CompleteMarker v-if="$store.getters['schedule/getCurrentTimerState'] === 3" :key="'complete'" />
+      <CompleteMarker v-if="getCurrentTimerState === 3" :key="'complete'" />
       <TimerTraditional v-else-if="timerWidget === 'traditional'" v-bind="timerInfo" :key="'traditional'" @tick="$emit('tick', $event)" />
       <TimerApproximate v-else-if="timerWidget === 'approximate'" v-bind="timerInfo" :key="'approximate'" @tick="$emit('tick', $event)" />
       <TimerPercentage v-else-if="timerWidget === 'percentage'" v-bind="timerInfo" :key="'percentage'" @tick="$emit('tick', $event)" />
@@ -10,8 +10,10 @@
 </template>
 
 <script>
+import { mapState } from 'pinia'
 import { AvailableTimers } from '@/stores/settings'
 import TimerMixin from '@/assets/mixins/timerMixin'
+import { useSchedule } from '~/stores/schedule'
 
 export default {
   components: {
@@ -37,7 +39,9 @@ export default {
         timeOriginal: this.timeOriginal,
         timerState: this.timerState
       }
-    }
+    },
+
+    ...mapState(useSchedule, ['getCurrentTimerState'])
   }
 }
 </script>
