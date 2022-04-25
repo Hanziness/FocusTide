@@ -62,9 +62,9 @@ export default defineNuxtConfig({
   */
   plugins: [
     '@/plugins/i18nlanguages.js',
-    { src: '@/plugins/notifications.client.js', ssr: false },
-    { src: '@/plugins/vuex-persist.client.js', ssr: false },
-    { src: '@/plugins/i18nwatcher.client.js', ssr: false }
+    { src: '@/plugins/notifications.client.js', ssr: false }
+    // { src: '@/plugins/vuex-persist.client.js', ssr: false },
+    // { src: '@/plugins/i18nwatcher.client.js', ssr: false }
   ],
   /*
   ** Auto import components
