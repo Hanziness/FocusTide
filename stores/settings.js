@@ -12,7 +12,7 @@ export const AvailableSoundSets = {
   SOUNDSET_MUSICAL: 'musical'
 }
 
-export default defineStore('settings', {
+export const useSettings = defineStore('settings', {
   state: () => ({
     _updated: false,
     lang: undefined,

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export default defineStore('loading', {
+export const useLoading = defineStore('loading', {
   state: () => ({
     persist_finished: false
   }),

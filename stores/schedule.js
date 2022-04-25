@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import useSettings from './settings'
 
-export default defineStore('schedule', {
+export const useSchedule = defineStore('schedule', {
   state: () => ({
     items: [],
     timerState: TIMERSTATE.STOPPED

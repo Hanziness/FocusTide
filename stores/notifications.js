@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export default defineStore('notifications', {
+export const useNotifications = defineStore('notifications', {
   state: () => ({
     enabled: undefined
   }),

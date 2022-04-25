@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export default defineStore('events', {
+export const useEvents = defineStore('events', {
   state: () => ({
     eventList: []
   }),
