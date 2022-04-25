@@ -32,8 +32,6 @@
     "vue-tabler-icons": "^1.0",
     "vue-template-compiler": "^2.6.14",
     "vuelidate": "^0.7.5",
-    "vuex": "^3.6.2",
-    "vuex-persistedstate": "^3.0.0",
     "webpack": "4"
   },
   "devDependencies": {
