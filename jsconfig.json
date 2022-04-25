@@ -2,6 +2,10 @@
   "compilerOptions": {
     "noEmit": true,
     "strict": true,
+    "types": [
+      "@types/node",
+      "@pinia/nuxt"
+    ],
     "baseUrl": ".",
     "paths": {
       "~/*": ["./*"],

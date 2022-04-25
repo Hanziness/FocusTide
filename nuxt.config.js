@@ -81,6 +81,8 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/composition-api/module',
+    '@pinia/nuxt',
     '@nuxt/image',
     '@nuxtjs/pwa'
   ],
