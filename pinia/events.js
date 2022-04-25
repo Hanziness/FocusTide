@@ -1,3 +1,17 @@
+import { defineStore } from 'pinia'
+
+export default defineStore('events', {
+  state: () => ({
+    eventList: []
+  }),
+
+  actions: {
+    recordUserEvent (eventType) {
+      this.eventList.push(new UserEvent(new Date(), eventType))
+    }
+  }
+})
+
 export const state = () => ({
   eventList: []
 })
@@ -19,18 +33,4 @@ export const UserEventType = {
   SCHEDULE_ADVANCE_MANUAL: 'schedule.advmanual',
   SCHEDULE_ADVANCE_AUTO: 'schedule.advauto',
   OTHER: 'other'
-}
-
-export const mutations = {
-  recordUserEvent (state, eventType = UserEventType.OTHER) {
-    state.eventList.push(new UserEvent(new Date(), eventType))
-  }
-}
-
-export const actions = {
-  recordUserEvent ({ rootState, commit }, eventType = UserEventType.OTHER) {
-    if (rootState.settings.eventLoggingEnabled) {
-      commit('recordUserEvent', eventType)
-    }
-  }
 }
