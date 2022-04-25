@@ -1,7 +1,6 @@
 
 <script>
-import { mapStores } from 'pinia'
-import { mapState } from 'vuex'
+import { mapStores, mapState } from 'pinia'
 import { TIMERSTATE, TimerState, useSchedule } from '@/stores/schedule'
 import { useSettings } from '~/stores/settings'
 import { useTasklist } from '~/stores/tasklist'
