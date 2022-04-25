@@ -8,7 +8,10 @@
 </template>
 
 <script>
+import { mapState } from 'pinia'
 import SplashScreen from '~/components/timer/splashScreen.vue'
+import { useSettings } from '~/stores/settings'
+import { useLoading } from '~/stores/loading'
 
 export default {
   name: 'LayoutTimer',
@@ -24,13 +27,13 @@ export default {
   },
 
   computed: {
-    darkMode () {
-      return this.$store.state.settings.visuals.darkMode
-    },
+    ...mapState(useSettings, {
+      darkMode: store => store.visuals.darkMode
+    }),
 
-    updateFinished () {
-      return this.$store.state.loading.persist_finished
-    }
+    ...mapState(useLoading, {
+      updateFinished: 'persist_finished'
+    })
   },
 
   mounted () {
