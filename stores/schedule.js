@@ -30,10 +30,10 @@ export const useSchedule = defineStore('schedule', {
     },
 
     /** Getter to retrieve schedule with all necessary information filled in */
-    getSchedule: (state) => {
+    getSchedule (state) {
       const settings = useSettings()
       const numEntities = settings.schedule.numScheduleEntries
-      const scheduleTypes = state.scheduleTypes
+      const scheduleTypes = this.scheduleTypes
 
       const returnArray = state.items.length === 0 ? [] : JSON.parse(JSON.stringify(state.items))
 
@@ -67,8 +67,8 @@ export const useSchedule = defineStore('schedule', {
       return returnArray
     },
 
-    getCurrentItem: (state) => {
-      return state.getSchedule[0]
+    getCurrentItem () {
+      return this.getSchedule[0]
     },
 
     getCurrentTimerState: (state) => {
