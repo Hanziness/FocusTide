@@ -8,7 +8,7 @@ export const useSchedule = defineStore('schedule', {
   }),
 
   getters: {
-    scheduleTypes: (state) => {
+    scheduleTypes: () => {
       const settings = useSettings()
 
       const numEntriesInABlock = 2 * (settings.schedule.longPauseInterval)
@@ -30,10 +30,10 @@ export const useSchedule = defineStore('schedule', {
     },
 
     /** Getter to retrieve schedule with all necessary information filled in */
-    getSchedule (state) {
+    getSchedule: (state) => {
       const settings = useSettings()
       const numEntities = settings.schedule.numScheduleEntries
-      const scheduleTypes = this.scheduleTypes
+      const scheduleTypes = state.scheduleTypes
 
       const returnArray = state.items.length === 0 ? [] : JSON.parse(JSON.stringify(state.items))
 
@@ -41,6 +41,8 @@ export const useSchedule = defineStore('schedule', {
       if (numEntities < returnArray.length) {
         // remove last few entities
         returnArray.splice(numEntities, returnArray.length - numEntities)
+      } else if (returnArray.length === 0) {
+        returnArray.push(createScheduleEntry(0))
       } else if (numEntities > returnArray.length) {
         // add remaining entities
         for (let i = 0; i < numEntities - returnArray.length; i++) {
@@ -65,27 +67,27 @@ export const useSchedule = defineStore('schedule', {
       return returnArray
     },
 
-    getCurrentItem (state) {
-      return this.getSchedule[0]
+    getCurrentItem: (state) => {
+      return state.getSchedule[0]
     },
 
-    getCurrentTimerState (state) {
+    getCurrentTimerState: (state) => {
       return state.timerState
     },
 
-    isRunning (state) {
+    isRunning: (state) => {
       return [TIMERSTATE.RUNNING, TIMERSTATE.PAUSED].includes(state.timerState)
     },
 
     // VISUALS
-    currentScheduleColour (state) {
+    currentScheduleColour: (state) => {
       const settings = useSettings()
-      return settings.visuals[this.getCurrentItem.type].colour
+      return settings.visuals[state.getCurrentItem.type].colour
     },
 
-    nextScheduleColour (state) {
+    nextScheduleColour: (state) => {
       const settings = useSettings()
-      const nextState = this.getSchedule[1].type
+      const nextState = state.getSchedule[1].type
       if (nextState) {
         return settings.visuals[nextState].colour
       } else {
@@ -93,10 +95,10 @@ export const useSchedule = defineStore('schedule', {
       }
     },
 
-    getScheduleColour (state) {
+    getScheduleColour: (state) => {
       const settings = useSettings()
       const colours = []
-      for (const item of this.getSchedule) {
+      for (const item of state.getSchedule) {
         colours.push(settings.visuals[item.type].colour)
       }
       return colours
