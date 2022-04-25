@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import useSettings from './settings'
+import { useSettings } from './settings'
 
 export const useSchedule = defineStore('schedule', {
   state: () => ({
