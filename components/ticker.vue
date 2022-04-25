@@ -1,6 +1,6 @@
 
 <script>
-import { TIMERSTATE, TimerState } from '@/store/schedule'
+import { TIMERSTATE, TimerState } from '@/stores/schedule'
 
 export default {
   data () {

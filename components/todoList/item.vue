@@ -45,7 +45,7 @@
 
 <script>
 import { MenuIcon, TrashIcon, PencilIcon } from 'vue-tabler-icons'
-import { taskState } from '@/store/tasklist'
+import { taskState } from '@/stores/tasklist'
 
 export default {
   components: { IconMenu: MenuIcon, IconDelete: TrashIcon, IconEditing: PencilIcon },

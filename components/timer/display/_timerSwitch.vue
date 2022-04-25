@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { AvailableTimers } from '@/store/settings'
+import { AvailableTimers } from '@/stores/settings'
 import TimerMixin from '@/assets/mixins/timerMixin'
 
 export default {

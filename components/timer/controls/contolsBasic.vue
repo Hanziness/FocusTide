@@ -54,7 +54,7 @@
 import { PlayerPlayIcon, PlayerPauseIcon, PlayerStopIcon, PlayerSkipForwardIcon } from 'vue-tabler-icons'
 import KeyboardListener from '@/assets/mixins/keyboardListener'
 
-import { TimerState } from '@/store/schedule'
+import { TimerState } from '@/stores/schedule'
 
 export default {
   components: {

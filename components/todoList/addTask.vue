@@ -18,7 +18,7 @@
 
 <script>
 import { CornerDownLeftIcon } from 'vue-tabler-icons'
-import { taskState } from '@/store/tasklist.js'
+import { taskState } from '@/stores/tasklist.js'
 
 export default {
   components: { CornerDownLeftIcon },
