@@ -32,10 +32,11 @@ export const useSchedule = defineStore('schedule', {
     /** Getter to retrieve schedule with all necessary information filled in */
     getSchedule (state) {
       const settings = useSettings()
-      const numEntities = settings.schedule.numScheduleEntries
+      const scheduleSettings = settings.schedule
+      const numEntities = scheduleSettings.numScheduleEntries
       const scheduleTypes = this.scheduleTypes
 
-      const returnArray = state.items.length === 0 ? [] : state.items
+      const returnArray = state.items.length === 0 ? [] : JSON.parse(JSON.stringify(state.items))
 
       // add or remove entries if needed
       if (numEntities < returnArray.length) {
@@ -116,7 +117,6 @@ export const useSchedule = defineStore('schedule', {
 
     /** Allows locking information on a schedule item (so the getter will not override it) */
     lockInfo ({ index = 0, length = undefined, type = undefined }) {
-      console.log(this.items)
       if (index <= this.items.length) {
         this.items[index].length = length
         this.items[index].type = type
