@@ -14,8 +14,6 @@ const NuxtI18nWatcherPlugin = ({ app, $pinia }) => {
         })
       }
     })
-  } else {
-    console.warn('No i18n module found')
   }
 }
 
