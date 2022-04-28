@@ -15,7 +15,7 @@
                 :values="$languages"
                 :selected="settingsStore.lang"
                 :override-text="{ title: $languages, description: null }"
-                @input="settingsStore.lang = $event"
+                @input="(event) => { settingsStore.lang = event }"
               />
               <Divider />
               <SettingsCheck :settings-key="['adaptiveTicking', 'enabled']" />
