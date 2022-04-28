@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-xl dark:bg-gray-700 focus-within:bg-white dark:focus-within:bg-gray-600 focus-within:shadow-lg focus-within:duration-200 flex flex-row items-center py-4 pl-4 pr-2 space-x-2 transition-all duration-500 bg-gray-100 shadow-sm" :style="{ '--theme': $store.getters['schedule/currentScheduleColour'] }">
+  <div class="rounded-xl dark:bg-gray-700 focus-within:bg-white dark:focus-within:bg-gray-600 focus-within:shadow-lg focus-within:duration-200 flex flex-row items-center py-4 pl-4 pr-2 space-x-2 transition-all duration-500 bg-gray-100 shadow-sm" :style="{ '--theme': currentScheduleColour }">
     <input
       ref="addtask_input"
       :value="taskTitle"
@@ -18,7 +18,9 @@
 
 <script>
 import { CornerDownLeftIcon } from 'vue-tabler-icons'
-import { taskState } from '@/store/tasklist.js'
+import { mapActions, mapState } from 'pinia'
+import { taskState, useTasklist } from '@/stores/tasklist.js'
+import { useSchedule } from '~/stores/schedule'
 
 export default {
   components: { CornerDownLeftIcon },
@@ -32,6 +34,11 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState(useTasklist, ['tasks']),
+    ...mapState(useSchedule, ['getCurrentItem', 'currentScheduleColour'])
+  },
+
   watch: {
     taskTitle (newValue) {
       if (newValue.length < 1) {
@@ -39,8 +46,8 @@ export default {
         return
       }
 
-      const matchingTasks = this.$store.state.tasklist.tasks.filter(
-        task => task.title === newValue && task.section === this.$store.getters['schedule/getCurrentItem'].type
+      const matchingTasks = this.tasks.filter(
+        task => task.title === newValue && task.section === this.getCurrentItem.type
       )
 
       this.valid = matchingTasks.length === 0
@@ -48,8 +55,10 @@ export default {
   },
 
   methods: {
+    ...mapActions(useTasklist, ['newTask']),
+
     addTask () {
-      this.$store.commit('tasklist/newTask', { title: this.taskTitle, section: this.$store.getters['schedule/getCurrentItem'].type, state: this.taskState })
+      this.newTask({ title: this.taskTitle, section: this.getCurrentItem.type, state: this.taskState })
       this.taskTitle = ''
       this.$refs.addtask_input.focus()
     },

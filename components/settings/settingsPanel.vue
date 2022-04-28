@@ -1,21 +1,21 @@
 <template>
-  <section v-show="processedValue" class="h-full fixed p-0 md:p-4 w-full z-40 md:max-w-screen-sm">
-    <div class="flex flex-col h-full rounded-none md:rounded-lg overflow-hidden shadow-lg bg-white dark:bg-gray-900 dark:text-gray-50">
-      <h1 class="px-4 text-xl mt-4 mb-2 uppercase font-bold">
+  <section v-show="processedValue" class="md:p-4 md:max-w-screen-sm fixed z-40 w-full h-full p-0">
+    <div class="md:rounded-lg dark:bg-gray-900 dark:text-gray-50 flex flex-col h-full overflow-hidden bg-white rounded-none shadow-lg">
+      <h1 class="px-4 mt-4 mb-2 text-xl font-bold uppercase">
         <span>{{ $i18n.t('settings.heading') }}</span>
         <UiButton :aria-label="$i18n.t('settings.buttons.close')" subtle class="float-right -mt-2 -mr-2" tabindex="0" @click="processedValue = false">
           <CloseIcon :aria-label="$i18n.t('settings.buttons.close')" />
         </UiButton>
       </h1>
-      <div class="px-4 flex-grow overflow-y-auto py-2">
+      <div class="flex-grow px-4 py-2 overflow-y-auto">
         <div class="w-full">
-          <Transition tag="div" name="tab-transition" mode="out-in" class="overflow-hidden w-full relative">
+          <Transition tag="div" name="tab-transition" mode="out-in" class="relative w-full overflow-hidden">
             <div v-if="activeTab === 1" :key="1" class="settings-tab">
               <OptionGroup
                 :values="$languages"
-                :selected="$store.state.settings.lang"
+                :selected="settingsStore.lang"
                 :override-text="{ title: $languages, description: null }"
-                @input="$store.commit('settings/SET', { key: ['lang'], value: $event })"
+                @input="(event) => { settingsStore.lang = event }"
               />
               <Divider />
               <SettingsCheck :settings-key="['adaptiveTicking', 'enabled']" />
@@ -25,7 +25,7 @@
               <SettingsCheck
                 :settings-key="['permissions', 'notifications']"
                 :set-value-on-change="false"
-                :disabled="$store.state.notifications.enabled === false"
+                :disabled="notificationsEnabled === false"
                 :custom-set-function="changeNotificationSettings"
               />
 
@@ -36,9 +36,9 @@
                 :settings-key="['tasks', 'maxActiveTasks']"
                 :min="1"
                 numeric
-                :disabled="!$store.state.settings.tasks.enabled"
+                :disabled="!settingsStore.tasks.enabled"
               />
-              <SettingsCheck :settings-key="['tasks', 'removeCompletedTasks']" :disabled="!$store.state.settings.tasks.enabled" />
+              <SettingsCheck :settings-key="['tasks', 'removeCompletedTasks']" :disabled="!settingsStore.tasks.enabled" />
 
               <Divider />
 
@@ -51,16 +51,16 @@
 
               <SettingsOptions
                 :settings-key="['schedule', 'lengths']"
-                :custom-value="$store.getters['settings/getActiveSchedulePreset']"
+                :custom-value="settingsStore.getActiveSchedulePreset"
                 override-translation-key="timerpreset"
                 :values="timerPresets"
                 :set-value-on-change="false"
-                :custom-set-function="(v) => { $store.commit('settings/applyPreset', v) }"
+                :custom-set-function="(v) => { settingsStore.applyPreset(v) }"
               />
               <SettingsTime :settings-key="['schedule', 'lengths', 'work']" :min-ms="5000" />
               <SettingsTime :settings-key="['schedule', 'lengths', 'shortpause']" :min-ms="5000" />
               <SettingsTime :settings-key="['schedule', 'lengths', 'longpause']" :min-ms="5000" />
-              <div class="rounded-lg ring-inset ring ring-primary bg-primary/20 dark:bg-gray-700 dark:text-gray-100 px-3 py-4 flex flex-row items-center space-x-2">
+              <div class="ring-inset ring ring-primary bg-primary/20 dark:bg-gray-700 dark:text-gray-100 flex flex-row items-center px-3 py-4 space-x-2 rounded-lg">
                 <InfoIcon />
                 <span v-text="$i18n.t('settings.scheduleMinTime')" />
               </div>
@@ -72,12 +72,12 @@
               <SettingsOptions :settings-key="['currentTimer']" :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
               <Divider />
               <SettingsCheck :settings-key="['schedule', 'visibility', 'enabled']" />
-              <SettingsCheck :settings-key="['schedule', 'visibility', 'showSectionType']" :disabled="!$store.state.settings.schedule.visibility.enabled" />
+              <SettingsCheck :settings-key="['schedule', 'visibility', 'showSectionType']" :disabled="!settingsStore.schedule.visibility.enabled" />
               <SettingsText
                 :settings-key="['schedule', 'numScheduleEntries']"
                 :min="3"
                 :max="10"
-                :disabled="!$store.state.settings.schedule.visibility.enabled"
+                :disabled="!settingsStore.schedule.visibility.enabled"
                 numeric
               />
               <Divider />
@@ -88,22 +88,22 @@
 
             <div v-else-if="activeTab === 4" :key="4" class="settings-tab">
               <div class="flex flex-col items-center">
-                <img src="/favicon.svg" width="64" height="64" class="inline-block bg-red-200 rounded-lg p-2 mb-1">
+                <img src="/favicon.svg" width="64" height="64" class="inline-block p-2 mb-1 bg-red-200 rounded-lg">
                 <div>
-                  <div class="font-bold text-2xl inline-block">
+                  <div class="inline-block text-2xl font-bold">
                     AnotherPomodoro
                   </div>
-                  <sup class="text-base" v-text="$store.state.version" />
+                  <sup class="text-base" v-text="version" />
                 </div>
                 <div v-text="$i18n.t('settings.about.madeby')" />
-                <div class="mt-8 flex flex-col justify-center items-center">
+                <div class="flex flex-col items-center justify-center mt-8">
                   <!-- Support links -->
-                  <div class="mt-3 flex flex-row space-x-2 text-center">
-                    <a href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="rounded-full bg-black hover:bg-gray-700 active:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:active:bg-gray-800 text-white flex flex-row items-center px-4 py-2 space-x-1 transition-colors">
+                  <div class="flex flex-row mt-3 space-x-2 text-center">
+                    <a href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="hover:bg-gray-700 active:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:active:bg-gray-800 flex flex-row items-center px-4 py-2 space-x-1 text-white transition-colors bg-black rounded-full">
                       <AboutGithub />
                       <span v-text="$i18n.t('settings.about.source')" />
                     </a>
-                    <a href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="rounded-full bg-yellow-300 hover:bg-yellow-200 active:bg-yellow-400 text-black flex flex-row items-center px-4 py-2 space-x-1 transition-colors">
+                    <a href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="hover:bg-yellow-200 active:bg-yellow-400 flex flex-row items-center px-4 py-2 space-x-1 text-black transition-colors bg-yellow-300 rounded-full">
                       <AboutSupport />
                       <span v-text="$i18n.t('settings.about.support')" />
                     </a>
@@ -129,7 +129,7 @@
       </div>
 
       <!-- Tab bar -->
-      <div class="flex-none h-20 flex flex-row p-4">
+      <div class="flex flex-row flex-none h-20 p-4">
         <TabHeader :active="activeTab === 1" :text="$i18n.t('settings.tabs.main')" @click="activeTab = 1">
           <template #icon>
             <TabIconGeneral role="presentation" />
@@ -158,10 +158,14 @@
 <script>
 import { XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon, InfoCircleIcon, BrandGithubIcon, CoffeeIcon, BrandTwitterIcon, BrandFacebookIcon, BrandRedditIcon } from 'vue-tabler-icons'
 
+import { mapActions, mapState, mapStores } from 'pinia'
 import OptionGroup from '@/components/base/optionGroup.vue'
 import TabHeader from '@/components/settings/panel/tabHeader.vue'
 
 import presetTimers from '@/assets/settings/timerPresets'
+import { useSettings } from '~/stores/settings'
+import { useNotifications } from '~/stores/notifications'
+import { useMain } from '~/stores'
 
 export default {
   name: 'SettingsPanel',
@@ -204,6 +208,12 @@ export default {
   },
 
   computed: {
+    ...mapStores(useSettings),
+    ...mapState(useMain, ['version']),
+    ...mapState(useNotifications, {
+      notificationsEnabled: 'enabled'
+    }),
+
     processedValue: {
       get () { return this.value },
       set (newValue) { this.$emit('input', newValue) }
@@ -211,38 +221,35 @@ export default {
 
     notificationPermission: {
       get () {
-        return Notification ? (Notification.permission === 'granted' && this.$store.state.settings.permissions.notifications) : false
+        return Notification ? (Notification.permission === 'granted' && this.settingsStore.permissions.notifications) : false
       },
       set (newValue) {
         if (Notification.permission === 'default') {
           const thisRef = this
           this.$notification.requestPermission().then((newValue) => {
             if (newValue === 'granted') {
-              thisRef.$store.commit('settings/SET', { key: ['permissions', 'notifications'], value: true })
+              thisRef.settingsStore.SET({ key: ['permissions', 'notifications'], value: true })
             } else {
               thisRef.notificationsBlocked = true
-              thisRef.$store.commit('settings/SET', { key: ['permissions', 'notifications'], value: false })
+              thisRef.settingsStore.SET({ key: ['permissions', 'notifications'], value: false })
             }
 
-            thisRef.$store.commit('notifications/updateEnabled', newValue === 'granted')
+            thisRef.updateNotificationsEnabled(newValue === 'granted')
           })
         } else if (Notification.permission === 'granted') {
-          this.$store.commit('settings/SET', { key: ['permissions', 'notifications'], value: newValue })
+          this.settingsStore.SET({ key: ['permissions', 'notifications'], value: newValue })
         }
       }
     }
   },
 
   methods: {
+    ...mapActions(useNotifications, {
+      updateNotificationsEnabled: 'updateEnabled'
+    }),
+
     changeNotificationSettings (newValue) {
       this.notificationPermission = newValue
-    },
-
-    triggerSettingsReset () {
-      this.$store.dispatch('settings/resetSettings')
-      window.localStorage.clear()
-      // this.$router.go()
-      window.location.reload()
     }
   }
 }

@@ -1,18 +1,20 @@
 <template>
   <div
-    class="transform-gpu transition-all duration-500 absolute w-full h-full block top-0 left-0"
+    class="transform-gpu absolute top-0 left-0 block w-full h-full transition-all duration-500"
     :class="[{ 'ease-out-expo': background }]"
     :style="{
-      'background-color': colour ? colour : $store.getters['schedule/getScheduleColour'][scheduleEntryId],
+      'background-color': colour ? colour : getScheduleColour[scheduleEntryId],
       'transform': !background ? `translateX(${-100 + progressPercentage}%)` : 'translateX(0%)'
     }"
   >
     <!-- Dark mode background override -->
-    <div class="absolute w-full h-full invisible dark:visible bg-gray-600 mix-blend-multiply" />
+    <div class="dark:visible mix-blend-multiply absolute invisible w-full h-full bg-gray-600" />
   </div>
 </template>
 
 <script>
+import { mapState } from 'pinia'
+import { useSchedule } from '~/stores/schedule'
 export default {
   props: {
     timeElapsed: {
@@ -38,6 +40,8 @@ export default {
   },
 
   computed: {
+    ...mapState(useSchedule, ['getScheduleColour']),
+
     progressPercentage () {
       return (this.timeElapsed / this.timeOriginal) * 100
     }

@@ -1,6 +1,9 @@
 
 <script>
-import { TIMERSTATE, TimerState } from '@/store/schedule'
+import { mapStores, mapState, mapWritableState } from 'pinia'
+import { TIMERSTATE, TimerState, useSchedule } from '@/stores/schedule'
+import { useSettings } from '~/stores/settings'
+import { useTasklist } from '~/stores/tasklist'
 
 export default {
   data () {
@@ -14,31 +17,22 @@ export default {
   },
 
   computed: {
-    timeOriginal () {
-      return this.$store.getters['schedule/getCurrentItem'].length
-    },
+    ...mapState(useSchedule, {
+      timeOriginal: store => store.getCurrentItem.length,
+      scheduleId: store => store.getCurrentItem.id
+    }),
+
+    ...mapState(useSettings, {
+      adaptiveTickRate: 'getAdaptiveTickRate'
+    }),
+
+    ...mapWritableState(useSchedule, ['timerState']),
 
     timeRemaining () {
       return this.timeOriginal - this.timeElapsed
     },
 
-    /** Allows detecting advances in schedule */
-    scheduleId () {
-      return this.$store.getters['schedule/getCurrentItem'].id
-    },
-
-    adaptiveTickRate () {
-      return this.$store.getters['settings/getAdaptiveTickRate']
-    },
-
-    timerState: {
-      get () {
-        return this.$store.getters['schedule/getCurrentTimerState']
-      },
-      set (newValue) {
-        this.$store.commit('schedule/updateTimerState', newValue)
-      }
-    }
+    ...mapStores(useSettings, useSchedule, useTasklist)
   },
 
   watch: {
@@ -47,8 +41,8 @@ export default {
       if (newValue !== oldValue) {
         this.resetTimer()
 
-        if (this.$store.state.settings.tasks.removeCompletedTasks) {
-          this.$store.commit('tasklist/removeCompleted')
+        if (this.settingsStore.tasks.removeCompletedTasks) {
+          this.tasklistStore.removeCompleted()
         }
       }
     },
@@ -86,7 +80,7 @@ export default {
   methods: {
     /** Resets the remaining time to the original value, resetting the timer to 0% */
     resetTimer () {
-      const currentTimerState = this.$store.getters['schedule/getCurrentTimerState']
+      const currentTimerState = this.scheduleStore.getCurrentTimerState
       const nextState = currentTimerState === TIMERSTATE.RUNNING ? currentTimerState : TIMERSTATE.STOPPED
       this.timeElapsed = 0
       this.timerTick({ nextState, decrement: false })
@@ -114,7 +108,7 @@ export default {
 
       if (this.timerState === TimerState.TICKING) {
         // check adaptive ticking settings
-        let nextTickMs = this.$store.getters['settings/getAdaptiveTickRate']
+        let nextTickMs = this.settingsStore.getAdaptiveTickRate
 
         // schedule next tick
         if (Math.abs(nextTickMs - this.nextTickDelta) > 50) {
@@ -168,14 +162,13 @@ export default {
       }
 
       this.$emit('tick', this.timeElapsed)
-      this.$store.commit('schedule/updateTime', this.timeElapsed)
     },
 
     /** Starts or resumes the timer */
     startTimer () {
-      this.$store.commit('schedule/lockInfo', {
+      this.scheduleStore.lockInfo({
         length: this.timeOriginal,
-        type: this.$store.getters['schedule/getCurrentItem'].type
+        type: this.scheduleStore.getCurrentItem.type
       })
       this.scheduleNextTick({ decrement: false })
     },
@@ -185,8 +178,7 @@ export default {
       this.timerTick({ nextState: stop ? TimerState.RESET : TimerState.PAUSED })
 
       if (stop) {
-        // remove info lock on schedule entry
-        this.$store.commit('schedule/lockInfo', {
+        this.scheduleStore.lockInfo({
           length: undefined,
           type: undefined
         })
@@ -198,11 +190,6 @@ export default {
     setNewTimer (newTimerMs) {
       this.pauseOrStopTimer(true)
       this.setTimes(newTimerMs)
-    },
-
-    /** Automatically resets the timer from the schedule */
-    getTimerFromSchedule ({ rootState, dispatch, rootGetters }) {
-      this.setNewTimer(rootGetters['events/getSchedule'][0]._length)
     }
   },
 

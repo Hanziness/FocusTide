@@ -62,9 +62,9 @@ export default defineNuxtConfig({
   */
   plugins: [
     '@/plugins/i18nlanguages.js',
-    { src: '@/plugins/notifications.client.js', ssr: false },
-    { src: '@/plugins/vuex-persist.client.js', ssr: false },
-    { src: '@/plugins/i18nwatcher.client.js', ssr: false }
+    '@/plugins/notifications.client.js',
+    '@/plugins/store-persist.client.js',
+    '@/plugins/store-i18n-watch.client.js'
   ],
   /*
   ** Auto import components
@@ -81,6 +81,8 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/composition-api/module',
+    '@pinia/nuxt',
     '@nuxt/image',
     '@nuxtjs/pwa'
   ],

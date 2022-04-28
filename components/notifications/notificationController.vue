@@ -1,4 +1,9 @@
 <script>
+import { mapStores } from 'pinia'
+import { useSettings } from '~/stores/settings'
+import { useSchedule } from '~/stores/schedule'
+import { useNotifications } from '~/stores/notifications'
+
 export default {
   data () {
     return {
@@ -7,77 +12,56 @@ export default {
         work: null,
         shortpause: null,
         longpause: null
-      },
-      storeUnwatch: {
-        volume: null,
-        soundSet: null,
-        timerState: null
       }
     }
+  },
+
+  computed: {
+    ...mapStores(useSettings, useSchedule, useNotifications)
   },
 
   created () {
-    // volume watcher
-    this.storeUnwatch.volume = this.$store.watch(
-      state => state.settings.audio.volume,
-      (newValue) => {
-        // update volume of sounds
-        for (const key in this.sounds) {
-          this.sounds[key].source.volume = newValue
-        }
-      }
-    )
+    // // sound set watcher
+    // this.storeUnwatch.soundSet = this.$store.watch(
+    //   state => state.settings.audio.soundSet,
+    //   (newValue) => {
+    //     // load new sound set
+    //     this.loadSoundSet(newValue)
+    //   }
+    // )
 
-    // sound set watcher
-    this.storeUnwatch.soundSet = this.$store.watch(
-      state => state.settings.audio.soundSet,
-      (newValue) => {
-        // load new sound set
-        this.loadSoundSet(newValue)
-      }
-    )
-
-    this.storeUnwatch.timerState = this.$store.watch(
-      state => state.schedule.timerState,
-      (newValue) => {
-        // update volume of sounds
-        if (newValue === 1) {
-          this.loadSoundSet(this.$store.state.settings.audio.soundSet)
-        }
-      }
-    )
-  },
-
-  beforeDestroy () {
-    // de-register store watchers
-    for (const key in this.storeUnwatch) {
-      if (this.storeUnwatch[key]) {
-        this.storeUnwatch[key]()
-      }
-    }
+    // this.storeUnwatch.timerState = this.$store.watch(
+    //   state => state.schedule.timerState,
+    //   (newValue) => {
+    //     // update volume of sounds
+    //     if (newValue === 1) {
+    //       this.loadSoundSet(this.$store.state.settings.audio.soundSet)
+    //     }
+    //   }
+    // )
   },
 
   mounted () {
     // check if timer is already running
-    if (this.$store.state.schedule.timerState === 1) {
+    if (this.scheduleStore.timerState === 1) {
       this.loadSoundSet()
     }
 
     // Check Visibility and register in store
     if (window && window.document && 'hidden' in window.document) {
-      const storeRef = this.$store
+      const settingsStore = this.settingsStore
       window.document.addEventListener('visibilitychange', () => {
-        storeRef.commit('settings/registerNewHidden', window.document.hidden)
+        settingsStore.registerNewHidden(window.document.hidden)
       }, false)
 
       // Commit this information immediately to make sure it's up to date
-      storeRef.commit('settings/registerNewHidden', window.document.hidden)
+      this.settingsStore.registerNewHidden(window.document.hidden)
     } else {
-      this.$store.commit('settings/registerNewHidden', null)
+      this.settingsStore.registerNewHidden(null)
     }
 
     // Check permissions
-    this.$store.commit('notifications/updateEnabled')
+    this.notificationsStore.updateEnabled()
   },
 
   methods: {
@@ -85,7 +69,7 @@ export default {
      * Load a sound set into memory
      * @param {String} setName Name of the sound set to load
      */
-    loadSoundSet (setName = this.$store.state.settings.audio.soundSet) {
+    loadSoundSet (setName = this.settingsStore.audio.soundSet) {
       if (this.currentSoundSet === setName) { return }
 
       try {
@@ -117,7 +101,8 @@ export default {
         this.loadSoundSet()
       }
 
-      if (this.sounds[key] && this.$store.state.settings.permissions.audio) {
+      if (this.sounds[key] && this.settingsStore.permissions.audio) {
+        this.sounds[key].source.volume = this.settingsStore.audio.volume
         this.sounds[key].source.play()
       }
     },
@@ -128,7 +113,7 @@ export default {
      */
     showNotification (nextState) {
       // TODO Firefox does not support actions
-      if (window.Notification.permission !== 'granted' || this.$store.state.settings.permissions.notifications !== true) { return }
+      if (window.Notification.permission !== 'granted' || this.settingsStore.permissions.notifications !== true) { return }
       const notificationActions = []
       if (nextState === 'work') {
         notificationActions.push({
@@ -153,7 +138,7 @@ export default {
     },
 
     handleCompletion (nextType = undefined) {
-      const nextScheduleType = nextType || this.$store.getters['schedule/getSchedule'][1].type
+      const nextScheduleType = nextType || this.scheduleStore.getSchedule[1].type
       this.playSound(nextScheduleType)
       this.showNotification(nextScheduleType)
     }

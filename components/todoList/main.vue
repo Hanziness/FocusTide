@@ -2,11 +2,6 @@
   <div class="bg-gray-50 dark:bg-gray-800 border-opacity-20 md:border md:py-3 px-4 py-4 border-gray-400 shadow-lg" @keyup.stop="">
     <div class="relative flex flex-row items-center justify-center h-10">
       <p class="dark:text-gray-100 text-xl font-bold tracking-tighter text-gray-800 uppercase" v-text="$i18n.t('tasks.title')" />
-      <!-- <div class="flex-grow" /> -->
-      <!-- <button v-show="!$store.getters['schedule/isRunning']" :class="['px-2 py-1 text-xs rounded-lg border border-yellow-300 dark:border-opacity-50 dark:text-yellow-100 text-yellow-800 transition-colors', { 'bg-yellow-200 dark:bg-opacity-40': manageMode, 'bg-yellow-50 dark:bg-opacity-10': !manageMode }]" @click="manageMode = !manageMode">
-        <IconManage class="inline translate-y-[-0.1rem]" size="16" />
-        <span v-text="$i18n.t('tasks.manage')" />
-      </button> -->
       <button class="hover:bg-gray-300 dark:hover:bg-gray-700 active:bg-gray-400 absolute right-0 float-right p-2 transition-all rounded-full" @click="$emit('hide')">
         <XIcon />
       </button>
@@ -21,13 +16,13 @@
       <TaskItem
         v-for="task in displayedTasks"
         :key="task.id"
-        :manage="!$store.getters['schedule/isRunning'] && manageMode"
+        :manage="!scheduleStore.isRunning && manageMode"
         :item="task"
         :droptarget="task === dropTarget"
         moveable
-        @input="$store.commit('tasklist/toggleComplete', { item: task })"
-        @update="newTitle => $store.commit('tasklist/editTitle', { id: task.id, newTitle })"
-        @delete="$store.commit('tasklist/delete', { item: task })"
+        @input="tasklistStore.toggleComplete({ item: task })"
+        @update="newTitle => tasklistStore.editTitle({ id: task.id, newTitle })"
+        @delete="tasklistStore.deleteTask({ item: task })"
         @dropstart="draggedItem = task, dragging = true"
         @dropfinish="handleDrop"
         @droptarget="updateDropTarget"
@@ -41,8 +36,12 @@
 // import { EditIcon } from 'vue-tabler-icons'
 import { XIcon } from 'vue-tabler-icons'
 
+import { mapStores } from 'pinia'
 import TaskItem from '@/components/todoList/item.vue'
 import TaskAdd from '@/components/todoList/addTask.vue'
+import { useSettings } from '~/stores/settings'
+import { useSchedule } from '~/stores/schedule'
+import { useTasklist } from '~/stores/tasklist'
 
 export default {
   components: { TaskItem, TaskAdd, XIcon /* IconManage: EditIcon */ },
@@ -59,18 +58,20 @@ export default {
     }
   },
   computed: {
+    ...mapStores(useSettings, useSchedule, useTasklist),
+
     displayedTasks: {
       get () {
-        let tasks = this.$store.getters['tasklist/sortedTasks']
+        let tasks = this.tasklistStore.sortedTasks
 
         // only return tasks from the current section type if the timer is running
-        if (this.$store.getters['schedule/isRunning']) {
+        if (this.scheduleStore.isRunning) {
           tasks = tasks
-            .filter(task => task.section === this.$store.getters['schedule/getCurrentItem'].type)
+            .filter(task => task.section === this.scheduleStore.getCurrentItem.type)
 
           // only show first few tasks in this section (according to settings)
-          if (this.$store.state.settings.tasks.maxActiveTasks > 0) {
-            tasks = tasks.slice(0, this.$store.state.settings.tasks.maxActiveTasks)
+          if (this.settingsStore.tasks.maxActiveTasks > 0) {
+            tasks = tasks.slice(0, this.settingsStore.tasks.maxActiveTasks)
           }
         }
 
@@ -85,8 +86,8 @@ export default {
 
     handleDrop () {
       // move `draggedItem` around `dropTarget`
-      const newIndex = this.$store.state.tasklist.tasks.indexOf(this.dropTarget)
-      this.$store.commit('tasklist/moveItem', { item: this.draggedItem, newIndex })
+      const newIndex = this.tasklistStore.tasks.indexOf(this.dropTarget)
+      this.tasklistStore.moveItem({ item: this.draggedItem, newIndex })
 
       // reset drag-and-drop variables
       this.draggedItem = null

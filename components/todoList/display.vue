@@ -7,24 +7,34 @@
       :draggable="false"
       :item="task"
       class="!border-l-0"
-      @input="$store.commit('tasklist/toggleComplete', { item: task })"
-      @delete="$store.commit('tasklist/delete', { item: task })"
+      @input="tasklistStore.toggleComplete({ item: task })"
+      @delete="tasklistStore.deleteTask({ item: task })"
     />
   </transition-group>
 </template>
 
 <script>
+import { mapState, mapStores } from 'pinia'
 import Item from './item.vue'
+import { useTasklist } from '~/stores/tasklist'
+import { useSettings } from '~/stores/settings'
+import { useSchedule } from '~/stores/schedule'
 export default {
   components: { TaskItem: Item },
   computed: {
+    ...mapStores(useTasklist),
+    ...mapState(useSettings, {
+      maxActiveTasks: store => store.tasks.maxActiveTasks
+    }),
+    ...mapState(useSchedule, ['getCurrentItem']),
+
     tasks: {
       get () {
-        let tasks = this.$store.getters['tasklist/sortedTasks']
-          .filter(task => task.section === this.$store.getters['schedule/getCurrentItem'].type)
+        let tasks = this.tasklistStore.sortedTasks
+          .filter(task => task.section === this.getCurrentItem.type)
 
-        if (this.$store.state.settings.tasks.maxActiveTasks > 0) {
-          tasks = tasks.slice(0, this.$store.state.settings.tasks.maxActiveTasks)
+        if (this.maxActiveTasks > 0) {
+          tasks = tasks.slice(0, this.maxActiveTasks)
         }
 
         return tasks

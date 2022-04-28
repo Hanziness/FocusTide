@@ -6,12 +6,14 @@
       { 'shadow-sm opacity-40': !active }
     ]"
     :style="[
-      { 'background-color': $store.state.settings.visuals[data.type].colour }
+      { 'background-color': visuals[data.type].colour }
     ]"
   />
 </template>
 
 <script>
+import { mapState } from 'pinia'
+import { useSettings } from '~/stores/settings'
 export default {
   props: {
     data: {
@@ -22,6 +24,10 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+
+  computed: {
+    ...mapState(useSettings, ['visuals'])
   }
 }
 </script>

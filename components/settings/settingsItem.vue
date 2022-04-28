@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { mapStores } from 'pinia'
+import { useSettings } from '~/stores/settings'
 export default {
   components: {
     baseSettingsItem: () => import(/* webpackMode: "eager" */ '~/components/settings/resolvedSettingsItem.vue')
@@ -82,6 +84,8 @@ export default {
   },
 
   computed: {
+    ...mapStores(useSettings),
+
     /** Returns the translation key used for i18n */
     translationKey: {
       get () {
@@ -100,7 +104,7 @@ export default {
       },
       set (newValue) {
         if (this.setValueOnChange) {
-          this.$store.commit('settings/SET', { key: this.settingsKey, value: newValue })
+          this.settingsStore.SET({ key: this.settingsKey, value: newValue })
         } else {
           this.$emit('change', newValue)
         }
@@ -118,7 +122,7 @@ export default {
     /** Resolves key array into value */
     resolveKeys (keys, parent = false) {
       const maxIndex = parent ? keys.length - 1 : keys.length
-      let currentValue = this.$store.state.settings
+      let currentValue = this.settingsStore.$state
       for (let index = 0; index < maxIndex; index++) {
         currentValue = currentValue ? currentValue[keys[index]] : null
       }

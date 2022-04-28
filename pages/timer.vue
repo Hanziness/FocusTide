@@ -1,5 +1,5 @@
 <template>
-  <section class="dark:text-gray-50 h-full overflow-hidden transition-colors duration-300 ease-in" :class="[{'dark' : $store.state.settings.visuals.darkMode }]">
+  <section class="dark:text-gray-50 h-full overflow-hidden transition-colors duration-300 ease-in" :class="[{'dark' : settingsStore.visuals.darkMode }]">
     <!-- Dark mode background override -->
     <div class="dark:bg-gray-900 absolute w-full h-full" />
 
@@ -21,10 +21,10 @@
           <div class="z-10 flex flex-row w-full">
             <div
               class="md:w-auto flex flex-col overflow-hidden transition-all duration-300 bg-gray-800 shadow-lg"
-              :class="[$store.state.settings.schedule.visibility.enabled ? 'mt-0 md:mt-3 md:rounded-lg w-full max-w-full mx-auto self-center' : 'ml-auto p-2 rounded-l-lg mt-3']"
+              :class="[settingsStore.schedule.visibility.enabled ? 'mt-0 md:mt-3 md:rounded-lg w-full max-w-full mx-auto self-center' : 'ml-auto p-2 rounded-l-lg mt-3']"
             >
-              <div class="flex flex-row gap-3" :class="[$store.state.settings.schedule.visibility.enabled ? 'px-3' : '']">
-                <ScheduleDisplay v-show="$store.state.settings.schedule.visibility.enabled" class="px-0" />
+              <div class="flex flex-row gap-3" :class="[settingsStore.schedule.visibility.enabled ? 'px-3' : '']">
+                <ScheduleDisplay v-show="settingsStore.schedule.visibility.enabled" class="px-0" />
                 <!-- Settings button -->
                 <div class="flex-column flex items-center">
                   <button
@@ -37,8 +37,8 @@
                   </button>
                 </div>
               </div>
-              <div v-if="$store.state.settings.schedule.visibility.enabled && $store.state.settings.schedule.visibility.showSectionType" class="text-gray-50 py-2 text-center bg-gray-700 select-none">
-                {{ $i18n.t('section.' + $store.getters['schedule/getCurrentItem'].type).toLowerCase() }}
+              <div v-if="settingsStore.schedule.visibility.enabled && settingsStore.schedule.visibility.showSectionType" class="text-gray-50 py-2 text-center bg-gray-700 select-none">
+                {{ $i18n.t('section.' + scheduleStore.getCurrentItem.type).toLowerCase() }}
               </div>
             </div>
           </div>
@@ -47,7 +47,7 @@
             <TimerProgress
               v-for="(scheduleItem, index) in progressBarSchedules"
               :key="scheduleItem.id"
-              :colour="$store.getters['schedule/getScheduleColour'][index]"
+              :colour="scheduleStore.getScheduleColour[index]"
               :background="index === 0"
               :time-elapsed="timeElapsed"
               :time-original="timeOriginal"
@@ -60,7 +60,7 @@
               :time-elapsed="timeElapsed"
               :time-original="timeOriginal"
               :timer-state="timerState"
-              :timer-widget="$store.state.settings.currentTimer"
+              :timer-widget="settingsStore.currentTimer"
               class="place-items-center absolute grid"
               @tick="timeString = $event"
             />
@@ -69,12 +69,12 @@
           <div class="relative flex flex-row items-center justify-center w-full gap-2 mb-4">
             <TimerControls :class="[{ 'pointer-events-none': preview }]" :can-use-keyboard="!preview && !showSettings" />
 
-            <button v-show="$store.state.settings.tasks.enabled" class="right-4 dark:bg-gray-700 sm:absolute p-4 transition-all bg-gray-200 rounded-full shadow-md" :class="{'scale-0': showTodoManager}" @click="showTodoManager = true">
+            <button v-show="settingsStore.tasks.enabled" class="right-4 dark:bg-gray-700 sm:absolute p-4 transition-all bg-gray-200 rounded-full shadow-md" :class="{'scale-0': showTodoManager}" @click="showTodoManager = true">
               <ListCheckIcon />
             </button>
           </div>
           <transition enter-class="translate-y-full" enter-active-class="duration-300 ease-out" leave-to-class="translate-y-full" leave-active-class="duration-150 ease-in">
-            <TodoList v-show="$store.state.settings.tasks.enabled && showTodoManager" class="rounded-t-xl xl:right-4 xl:pb-8 fixed bottom-0 z-10 w-full max-w-lg transition-all" :editing="[0].includes($store.state.schedule.timerState)" @hide="showTodoManager = false" />
+            <TodoList v-show="settingsStore.tasks.enabled && showTodoManager" class="rounded-t-xl xl:right-4 xl:pb-8 fixed bottom-0 z-10 w-full max-w-lg transition-all" :editing="[0].includes(scheduleStore.timerState)" @hide="showTodoManager = false" />
           </transition>
         </div>
       </Ticker>
@@ -83,7 +83,11 @@
 </template>
 
 <script>
+import { mapStores } from 'pinia'
 import { SettingsIcon, ListCheckIcon } from 'vue-tabler-icons'
+import { useSchedule } from '~/stores/schedule'
+import { useSettings } from '~/stores/settings'
+import { useEvents } from '@/stores/events'
 
 // Static imports:
 
@@ -139,7 +143,7 @@ export default {
                   height="32"
                   viewBox="0 0 32 32"
                   fill="none"
-                  style="color: ${this.$store.getters['schedule/currentScheduleColour']};"
+                  style="color: ${this.scheduleStore.currentScheduleColour};"
                   xmlns="http://www.w3.org/2000/svg"
                 ><circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`
         }
@@ -149,38 +153,40 @@ export default {
 
   computed: {
     currentColour () {
-      const currentState = this.$store.state.events.schedule[0] ? this.$store.state.events.schedule[0]._type : null
+      const currentState = this.scheduleStore.items[0]?.type
       if (currentState) {
-        return this.$store.state.settings.visuals[currentState].colour
+        return this.settingsStore.visuals[currentState].colour
       } else {
         return ''
       }
     },
 
     remainingTimeString () {
-      if (this.$store.getters['schedule/getCurrentTimerState'] === 3) {
-        return this.$store.state.settings.pageTitle.useTickEmoji ? '✔' : this.$i18n.t('ready').toLowerCase()
+      if (this.scheduleStore.getCurrentTimerState === 3) {
+        return this.settingsStore.pageTitle.useTickEmoji ? '✔' : this.$i18n.t('ready').toLowerCase()
       }
 
       return this.timeString
     },
 
     pageTitle () {
-      return this.$store.getters['schedule/getCurrentItem']
-        ? this.$i18n.t('section.' + this.$store.getters['schedule/getCurrentItem'].type).toLowerCase()
+      return this.scheduleStore.getCurrentItem
+        ? this.$i18n.t('section.' + this.scheduleStore.getCurrentItem.type).toLowerCase()
         : 'Pomodoro'
     },
 
     progressBarSchedules () {
-      const numSchedules = this.$store.state.settings.performance.showProgressBar ? 2 : 1
-      return this.$store.getters['schedule/getSchedule'].slice(0, numSchedules)
-    }
+      const numSchedules = this.settingsStore.performance.showProgressBar ? 2 : 1
+      return this.scheduleStore.getSchedule.slice(0, numSchedules)
+    },
+
+    ...mapStores(useSettings, useSchedule, useEvents)
   },
 
   mounted () {
     // Add visibility change listener for adaptive ticking
     document.addEventListener('visibilitychange', () => {
-      this.$store.commit('settings/registerNewHidden', document.hidden)
+      this.settingsStore.registerNewHidden(document.hidden)
     })
   }
 }

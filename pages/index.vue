@@ -186,7 +186,7 @@
       <template #after>
         <div class="flex flex-col items-center justify-end flex-grow mb-16">
           <div class="" v-text="$i18n.t('index.support.credits')" />
-          <div class="text-gray-50 px-2 py-1 mt-1 bg-gray-800 rounded-lg select-none" v-text="$store.state.version" />
+          <div class="text-gray-50 px-2 py-1 mt-1 bg-gray-800 rounded-lg select-none" v-text="version" />
         </div>
       </template>
     </Section>
@@ -195,11 +195,13 @@
 
 <script>
 import { ChevronDownIcon, ChevronRightIcon, DotsIcon, BrandFacebookIcon, BrandTwitterIcon, BrandRedditIcon } from 'vue-tabler-icons'
+import { mapState } from 'pinia'
 import Columns from '@/components/index/columns.vue'
 import Section from '@/components/index/section.vue'
 import ScheduleCard from '@/components/index/scheduleCard.vue'
 
 import SupportButton from '~/components/socialButtons/supportButton.vue'
+import { useMain } from '@/stores/index'
 
 export default {
   name: 'PageHome',
@@ -253,7 +255,8 @@ export default {
   computed: {
     section2selectedBox () {
       return this.section2.selectedBoxOrder[this.section2.selectedBoxIndex]
-    }
+    },
+    ...mapState(useMain, ['version'])
   },
 
   mounted () {

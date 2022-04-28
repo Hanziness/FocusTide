@@ -18,10 +18,13 @@
     "release": "standard-version"
   },
   "dependencies": {
+    "@nuxtjs/composition-api": "^0.32.0",
     "@nuxtjs/i18n": "^7.0.3",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/sitemap": "^2.4.0",
+    "@pinia/nuxt": "^0.1.8",
     "nuxt-edge": "^2.16.0-27349935.777a4b7f",
+    "pinia": "^2.0.13",
     "sass-loader": "^10.0.4",
     "vue": "^2.6.14",
     "vue-native-notification": "^1.1.1",
@@ -29,8 +32,6 @@
     "vue-tabler-icons": "^1.0",
     "vue-template-compiler": "^2.6.14",
     "vuelidate": "^0.7.5",
-    "vuex": "^3.6.2",
-    "vuex-persistedstate": "^3.0.0",
     "webpack": "4"
   },
   "devDependencies": {

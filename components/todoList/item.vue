@@ -2,7 +2,7 @@
   <div
     class="hover:shadow-sm themed-border md:py-2 relative flex flex-row items-center px-2 py-3 transition-all duration-200 border-l-8 rounded-md"
     :class="[{ 'opacity-50 line-through italic': item.state === 2, 'cursor-move': showReorder, 'ring themed-ring': dragged || droptarget, 'themed-bg !text-white': manage && editing }, manage && editing ? 'themed-bg' : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200']"
-    :style="{ '--theme': $store.state.settings.visuals[item.section].colour }"
+    :style="{ '--theme': visuals[item.section].colour }"
     draggable
     @mouseenter="hovering = true"
     @mouseleave="hovering = false"
@@ -45,7 +45,9 @@
 
 <script>
 import { MenuIcon, TrashIcon, PencilIcon } from 'vue-tabler-icons'
-import { taskState } from '@/store/tasklist'
+import { mapState } from 'pinia'
+import { taskState, useTasklist } from '@/stores/tasklist'
+import { useSettings } from '~/stores/settings'
 
 export default {
   components: { IconMenu: MenuIcon, IconDelete: TrashIcon, IconEditing: PencilIcon },
@@ -77,6 +79,9 @@ export default {
     }
   },
   computed: {
+    ...mapState(useTasklist, ['tasks']),
+    ...mapState(useSettings, ['visuals']),
+
     checked: {
       get () {
         return this.item.state === taskState.complete
@@ -92,7 +97,7 @@ export default {
     },
     valid: {
       get () {
-        return !this.$store.state.tasklist.tasks.some(task => task.id !== this.item.id && task.title === this.displayedTitle && task.section === this.item.section)
+        return !this.tasks.some(task => task.id !== this.item.id && task.title === this.displayedTitle && task.section === this.item.section)
       }
     },
     displayedTitle: {
