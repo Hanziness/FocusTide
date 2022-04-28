@@ -3,9 +3,78 @@
 
 import fs from 'fs'
 import { defineNuxtConfig } from '@nuxt/bridge'
+import { IconResizerWebpackPlugin } from './assets/build/icon_resize'
 
 const packageJson = fs.readFileSync('./package.json')
 const version = JSON.parse(packageJson).version || 0
+
+const iconConfig = {
+  sizes: [64, 120, 144, 152, 192, 384, 512],
+  variants: [
+    {
+      src: '/static/icon.png',
+      prefix: 'icon-maskable-',
+      purpose: 'maskable'
+    },
+    {
+      src: '/static/icon_monochrome.png',
+      prefix: 'icon-monochrome-',
+      purpose: 'monochrome'
+    },
+    {
+      src: '/static/favicon.png',
+      prefix: 'icon-base-',
+      purpose: 'any'
+    }
+  ]
+}
+
+const screenshots = [
+  {
+    src: '/assets/img/screenshots/stores/mobile_0.jpg',
+    sizes: '1520x3040',
+    type: 'image/jpg',
+    platform: 'narrow',
+    label: 'A pomodoro timer running in the app'
+  },
+  {
+    src: '/assets/img/screenshots/stores/mobile_1.jpg',
+    sizes: '1520x3040',
+    type: 'image/jpg',
+    platform: 'narrow',
+    label: 'AnotherPomdoro comes with a built-in to-do manager'
+  },
+  {
+    src: '/assets/img/screenshots/stores/mobile_2.jpg',
+    sizes: '1520x3040',
+    type: 'image/jpg',
+    platform: 'narrow',
+    label: 'The timer is fully customizable: the timer\'s looks, the schedules and there\'s also a dark mode.'
+  },
+  {
+    src: '/assets/img/screenshots/stores/mobile_3.jpg',
+    sizes: '1520x3040',
+    type: 'image/jpg',
+    platform: 'narrow',
+    label: 'Every feature is optional in AnotherPomodoro. If all you need is a simple timer, it can do that, too.'
+  },
+  {
+    src: '/assets/img/screenshots/stores/mobile_4.jpg',
+    sizes: '1520x3040',
+    type: 'image/jpg',
+    platform: 'narrow',
+    label: 'Two screenshots showing the "approximate" and "percentage" timer styles.'
+  }
+]
+
+let pwaIcons = []
+for (const iconVariant of iconConfig.variants) {
+  pwaIcons = pwaIcons.concat(iconConfig.sizes.map(size => ({
+    src: `/_nuxt/icons/${iconVariant.prefix}${size}.png`,
+    sizes: `${size}x${size}`,
+    purpose: iconVariant.purpose
+  })))
+}
 
 export default defineNuxtConfig({
   /*
@@ -121,11 +190,7 @@ export default defineNuxtConfig({
       lang: 'en',
       twitterCard: 'summary_large_image'
     },
-    icon: {
-      fileName: 'icon.png',
-      purpose: ['maskable', 'any'],
-      plugin: false
-    },
+    icon: false,
     manifest: {
       name: 'AnotherPomodoro: modern & simple Pomodoro app',
       short_name: 'AnotherPomodoro',
@@ -135,43 +200,8 @@ export default defineNuxtConfig({
       display: 'standalone',
       shortcuts: [],
       lang: 'en-US',
-      screenshots: [
-        {
-          src: '/assets/img/screenshots/stores/mobile_0.jpg',
-          sizes: '1520x3040',
-          type: 'image/jpg',
-          platform: 'narrow',
-          label: 'A pomodoro timer running in the app'
-        },
-        {
-          src: '/assets/img/screenshots/stores/mobile_1.jpg',
-          sizes: '1520x3040',
-          type: 'image/jpg',
-          platform: 'narrow',
-          label: 'AnotherPomdoro comes with a built-in to-do manager'
-        },
-        {
-          src: '/assets/img/screenshots/stores/mobile_2.jpg',
-          sizes: '1520x3040',
-          type: 'image/jpg',
-          platform: 'narrow',
-          label: 'The timer is fully customizable: the timer\'s looks, the schedules and there\'s also a dark mode.'
-        },
-        {
-          src: '/assets/img/screenshots/stores/mobile_3.jpg',
-          sizes: '1520x3040',
-          type: 'image/jpg',
-          platform: 'narrow',
-          label: 'Every feature is optional in AnotherPomodoro. If all you need is a simple timer, it can do that, too.'
-        },
-        {
-          src: '/assets/img/screenshots/stores/mobile_4.jpg',
-          sizes: '1520x3040',
-          type: 'image/jpg',
-          platform: 'narrow',
-          label: 'Two screenshots showing the "approximate" and "percentage" timer styles.'
-        }
-      ]
+      screenshots,
+      icons: pwaIcons
     }
   },
 
@@ -242,7 +272,14 @@ export default defineNuxtConfig({
         tailwindcss: {},
         autoprefixer: {}
       }
-    }
+    },
+    plugins: [].concat(iconConfig.variants.map((icon) => {
+      return new IconResizerWebpackPlugin({
+        sizes: iconConfig.sizes,
+        src: icon.src,
+        prefix: icon.prefix
+      })
+    }))
   },
   watchers: {
     chokidar: {
