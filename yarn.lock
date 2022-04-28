@@ -8651,7 +8651,7 @@ nuxi@^0.10.1:
   dependencies:
     nuxi-edge latest
 
-nuxt-edge@^2.16.0-27349935.777a4b7f:
+nuxt-edge@latest:
   version "2.16.0-27358576.777a4b7f"
   resolved "https://registry.yarnpkg.com/nuxt-edge/-/nuxt-edge-2.16.0-27358576.777a4b7f.tgz#915edaf69657d8959270caf85153715b44ab3645"
   integrity sha512-cXgbo4MrXxh6YJSB1wEKod34QrH+6kJ1VoLTe1znRktWJZU3o+FDlDg6IRUf9NgcUSTdcp+Z7ZzyORCytUYNjQ==
