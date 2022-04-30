@@ -1,6 +1,6 @@
 const NuxtI18nWatcherPlugin = ({ app, $pinia }) => {
   if (app.i18n) {
-    $pinia.use(({ store }) => {
+    const PiniaI18nPlugin = ({ store }) => {
       // if settings.lang changes, update app locale
       if (store.$id === 'settings') {
         if (!store.$state.lang && app.i18n.locale) {
@@ -18,7 +18,9 @@ const NuxtI18nWatcherPlugin = ({ app, $pinia }) => {
         changeSubscription()
         app.router.afterEach(changeSubscription)
       }
-    })
+    }
+
+    $pinia.use(PiniaI18nPlugin)
   }
 }
 
