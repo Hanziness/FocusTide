@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/Hanziness/AnotherPomodoro/compare/v1.0.1...v1.1.1) (2022-05-01)
+
+
+### Features
+
+* **pwa:** Generate multiple icon variants during build ([#207](https://github.com/Hanziness/AnotherPomodoro/issues/207)) ([aabd43a](https://github.com/Hanziness/AnotherPomodoro/commit/aabd43a1acf7615bb4ec265db5e8f6434e890479))
+* **pwa:** Improve mobile PWA experience ([#204](https://github.com/Hanziness/AnotherPomodoro/issues/204)) ([94188b6](https://github.com/Hanziness/AnotherPomodoro/commit/94188b6c5354f8b9c87b2ee512b207b24d254a7e))
+* **schedule:** The settings button and the schedule are now integrated ([#197](https://github.com/Hanziness/AnotherPomodoro/issues/197)) ([182a328](https://github.com/Hanziness/AnotherPomodoro/commit/182a3284a0a3c03cd4c1fc344b53ad7ff3e88d2b))
+* **tasks:** Add placeholder text to new task field ([#201](https://github.com/Hanziness/AnotherPomodoro/issues/201)) ([5dce404](https://github.com/Hanziness/AnotherPomodoro/commit/5dce4042f13358092910420000924a9891b2e663))
+* **tasks:** Editable task titles ([#205](https://github.com/Hanziness/AnotherPomodoro/issues/205)) ([16c1f83](https://github.com/Hanziness/AnotherPomodoro/commit/16c1f83f8d44962bc8c71a24e65d1ea524518e8b))
+* **tasks:** Make tasks panel responsive ([#200](https://github.com/Hanziness/AnotherPomodoro/issues/200)) ([55996a5](https://github.com/Hanziness/AnotherPomodoro/commit/55996a5bd580b44780645cf972c31f8e321e913b))
+* **timers:** Redesign timers and remove dependency on day.js ([#186](https://github.com/Hanziness/AnotherPomodoro/issues/186)) ([cdd7093](https://github.com/Hanziness/AnotherPomodoro/commit/cdd7093731a7d341bbac50990e628a63734fdc4d))
+
+
+### Bug Fixes
+
+* **dev:** Exclude node_modules, git folders and nuxt cache from watch ([#181](https://github.com/Hanziness/AnotherPomodoro/issues/181)) ([7c63ccc](https://github.com/Hanziness/AnotherPomodoro/commit/7c63ccc18c185aa0be201828017db12321e2db4e))
+* Fix store plugins not working on navigation ([#210](https://github.com/Hanziness/AnotherPomodoro/issues/210)) ([10ebae0](https://github.com/Hanziness/AnotherPomodoro/commit/10ebae0f267ec7b64d99ee82961f0ba67aff3a23))
+* **home:** Relax scroll snap behaviour on home page ([#198](https://github.com/Hanziness/AnotherPomodoro/issues/198)) ([81c85f7](https://github.com/Hanziness/AnotherPomodoro/commit/81c85f7ef14c83dfcad67b43c6bf5b65debc84f6))
+* **home:** Update alignment and remove snapping ([#217](https://github.com/Hanziness/AnotherPomodoro/issues/217)) ([f779fd1](https://github.com/Hanziness/AnotherPomodoro/commit/f779fd15fb685570dd506d4ed5a223450e044653))
+* Make persistence work across navigation ([df00dd7](https://github.com/Hanziness/AnotherPomodoro/commit/df00dd7fa475eda521705a1372f7d8929e61ceb2))
+
+
+### Refactors
+
+* Migrate state management to Pinia ([#208](https://github.com/Hanziness/AnotherPomodoro/issues/208)) ([6723c18](https://github.com/Hanziness/AnotherPomodoro/commit/6723c184c07a5294b60696757ce938606e4a62c3))
+* Temporarily disable setup page ([#212](https://github.com/Hanziness/AnotherPomodoro/issues/212)) ([4daa9be](https://github.com/Hanziness/AnotherPomodoro/commit/4daa9beb6fae95276d860c938ee64451afb38c75))
+
 ## [1.1.0](https://github.com/Hanziness/AnotherPomodoro/compare/v1.1.0-preview.0...v1.1.0) (2022-05-01)
 
 ## [1.1.0-preview.0](https://github.com/Hanziness/AnotherPomodoro/compare/v1.0.1...v1.1.0-preview.0) (2022-05-01)
