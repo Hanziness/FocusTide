@@ -22,8 +22,7 @@ const PiniaNuxtPersistencePlugin = ({ app, $pinia }) => {
         restoreStore(store)
       }
 
-      // `afterEach` is used as a workaround to Pinia subscribers disappearing on navigation
-      app.router.afterEach(() => {
+      const changeSubscription = () => {
         // Subscribe to changes and persist them
         const unsubscribe = store.$subscribe(() => {
           try {
@@ -48,7 +47,11 @@ const PiniaNuxtPersistencePlugin = ({ app, $pinia }) => {
             unsubscribe()
           }
         })
-      })
+      }
+
+      // `afterEach` is used as a workaround to Pinia subscribers disappearing on navigation
+      changeSubscription()
+      app.router.afterEach(changeSubscription)
     }
   }
 
