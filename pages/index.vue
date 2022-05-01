@@ -1,5 +1,5 @@
 <template>
-  <div class="snap-y snap-proximity h-screen overflow-x-hidden overflow-y-scroll">
+  <div class="h-screen overflow-x-hidden overflow-y-scroll">
     <div ref="top" class="invisible" />
 
     <!-- FAB -->
@@ -14,7 +14,7 @@
 
     <!-- Section 1: intro -->
 
-    <Section ref="section-1" class="snap-center h-[95vh] flex flex-col items-center justify-center px-4 overflow-hidden bg-gray-100">
+    <Section ref="section-1" class="h-[95vh] flex flex-col items-center justify-center px-4 overflow-hidden bg-gray-100">
       <Columns class="xl:flex-row xl:space-x-16 xl:px-24 xl:pt-0 flex-col gap-8 px-4 pt-8">
         <template #left>
           <!-- App title and CTAs -->
@@ -45,7 +45,7 @@
         </template>
         <!-- App screenshot -->
         <template #right>
-          <div :class="['transition-all duration-1000 hover:duration-300 overflow-hidden order-first xl:order-last rounded-lg shadow-red-300/60 shadow-lg hover:-translate-y-1 hover:shadow-xl hover:shadow-red-300/70 w-full max-w-2xl xl:max-w-max self-center', { 'opacity-0 translate-x-4': !loading.screenshot }]">
+          <div :class="['transition-all duration-1000 hover:duration-300 overflow-hidden order-first xl:order-last rounded-lg shadow-red-300/60 shadow-lg hover:-translate-y-1 hover:shadow-xl hover:shadow-red-300/70 w-full max-w-2xl xl:max-w-3xl self-center', { 'opacity-0 translate-x-4': !loading.screenshot }]">
             <nuxt-img
               :alt="$i18n.t('index.alt.img.screenshot')"
               class=""
@@ -62,7 +62,7 @@
       </Columns>
 
       <template #after>
-        <div class="xl:absolute xl:bottom-4 flex flex-col items-center justify-end flex-grow mb-16">
+        <div class="xl:absolute xl:bottom-4 flex flex-col items-center justify-end flex-grow mb-8">
           <!-- Source code, support and social buttons -->
           <div class="flex flex-row mb-4 space-x-2">
             <SupportButton
@@ -93,7 +93,7 @@
     </Section>
 
     <!-- Section 2: about Pomodoro and the app -->
-    <Section ref="section-2" class="snap-center bg-sky-100 py-36 flex flex-col justify-center px-4 overflow-hidden">
+    <Section ref="section-2" class="bg-sky-100 py-36 flex flex-col justify-center px-4 overflow-hidden">
       <div class="text-sky-900 flex flex-col items-center">
         <h2 class="text-5xl font-bold tracking-tight uppercase" v-text="$i18n.t('index.section_whatitdoes.title')" />
         <div class="xl:text-xl mt-2 text-lg text-center">
@@ -130,7 +130,7 @@
     </Section>
 
     <!-- Section 3: Features -->
-    <Section ref="section-3" class="snap-center bg-amber-50 md:justify-center py-36 flex flex-col items-center justify-start px-4 overflow-hidden text-center">
+    <Section ref="section-3" class="bg-amber-50 md:justify-center py-36 flex flex-col items-center justify-start px-4 overflow-hidden text-center">
       <h2 class="text-amber-900 text-5xl font-bold tracking-tight uppercase" v-text="$i18n.t('index.section_features.title')" />
 
       <div class="xl:text-xl xl:grid-cols-4 xl:gap-8 grid max-w-5xl grid-flow-row grid-cols-2 gap-4 mt-8 text-lg">
@@ -139,7 +139,7 @@
     </Section>
 
     <!-- Section 4: FAQ -->
-    <Section ref="section-4" class="snap-start bg-amber-300 py-36 flex flex-col items-center justify-center overflow-hidden text-center">
+    <Section ref="section-4" class="bg-amber-300 py-36 flex flex-col items-center justify-center overflow-hidden text-center">
       <h2 class="text-5xl font-bold tracking-tight text-black uppercase" v-text="$i18n.t('index.faq.title')" />
 
       <div class="mt-8 px-4 w-full xl:w-[1280px] text-left flex flex-col space-y-2">
@@ -155,9 +155,9 @@
     </Section>
 
     <!-- Section 5: Support -->
-    <Section ref="section-5" class="snap-center md:justify-center bg-stone-100 py-36 flex flex-col items-center justify-start px-4 overflow-hidden text-center">
+    <Section ref="section-5" class="md:justify-center bg-stone-100 py-36 flex flex-col items-center justify-start px-4 overflow-hidden text-center">
       <h2 class="text-5xl font-bold leading-tight tracking-tight text-black uppercase" v-text="$i18n.t('index.support.title')" />
-      <div class="flex flex-col mt-3 space-y-1">
+      <div class="flex flex-col mt-4 space-y-1">
         <p v-text="$i18n.t('index.support.subtitle[0]')" />
         <i18n path="index.support.subtitle[1].base">
           <b>{{ $i18n.t('index.support.subtitle[1].action') }}</b>
@@ -168,7 +168,7 @@
         <SupportButton type="support" default-classes />
       </div>
       <!-- Share links -->
-      <div class="my-2" v-text="$i18n.t('settings.about.share')" />
+      <div class="my-3" v-text="$i18n.t('settings.about.share')" />
       <div class="flex flex-row items-center space-x-2 text-sm">
         <a :aria-label="$i18n.t('index.alt.links.share.twitter')" href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=home" class="rounded-full w-12 h-12 bg-[#1da1f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
           <AboutTwitter size="24" />
