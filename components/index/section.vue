@@ -1,5 +1,5 @@
 <template functional>
-  <div :ref="data.ref" class="h-screen w-screen relative" :class="[data.class, data.staticClass]">
+  <div :ref="data.ref" class="relative w-screen" :class="[data.class, data.staticClass]">
     <slot name="before" />
     <slot />
     <slot name="after" />
