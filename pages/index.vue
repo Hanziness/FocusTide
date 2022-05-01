@@ -14,7 +14,7 @@
 
     <!-- Section 1: intro -->
 
-    <Section ref="section-1" class="snap-center flex flex-col items-center justify-center px-4 overflow-hidden bg-gray-100">
+    <Section ref="section-1" class="snap-center h-[95vh] flex flex-col items-center justify-center px-4 overflow-hidden bg-gray-100">
       <Columns class="xl:flex-row xl:space-x-16 xl:px-24 xl:pt-0 flex-col gap-8 px-4 pt-8">
         <template #left>
           <!-- App title and CTAs -->
@@ -93,7 +93,7 @@
     </Section>
 
     <!-- Section 2: about Pomodoro and the app -->
-    <Section ref="section-2" class="snap-center bg-sky-100 flex flex-col justify-center px-4 overflow-hidden">
+    <Section ref="section-2" class="snap-center bg-sky-100 py-36 flex flex-col justify-center px-4 overflow-hidden">
       <div class="text-sky-900 flex flex-col items-center">
         <h2 class="text-5xl font-bold tracking-tight uppercase" v-text="$i18n.t('index.section_whatitdoes.title')" />
         <div class="xl:text-xl mt-2 text-lg text-center">
@@ -130,7 +130,7 @@
     </Section>
 
     <!-- Section 3: Features -->
-    <Section ref="section-3" class="snap-center bg-amber-50 flex flex-col items-center justify-start px-4 py-6 overflow-hidden text-center">
+    <Section ref="section-3" class="snap-center bg-amber-50 md:justify-center py-36 flex flex-col items-center justify-start px-4 overflow-hidden text-center">
       <h2 class="text-amber-900 text-5xl font-bold tracking-tight uppercase" v-text="$i18n.t('index.section_features.title')" />
 
       <div class="xl:text-xl xl:grid-cols-4 xl:gap-8 grid max-w-5xl grid-flow-row grid-cols-2 gap-4 mt-8 text-lg">
@@ -139,10 +139,10 @@
     </Section>
 
     <!-- Section 4: FAQ -->
-    <Section ref="section-4" class="snap-center bg-amber-300 flex flex-col items-center justify-center overflow-hidden text-center">
+    <Section ref="section-4" class="snap-start bg-amber-300 py-36 flex flex-col items-center justify-center overflow-hidden text-center">
       <h2 class="text-5xl font-bold tracking-tight text-black uppercase" v-text="$i18n.t('index.faq.title')" />
 
-      <div class="mt-8 px-4 w-full xl:w-[1280px] xl:h-96 h-[36rem] text-left flex flex-col space-y-2">
+      <div class="mt-8 px-4 w-full xl:w-[1280px] text-left flex flex-col space-y-2">
         <details v-for="(question, i) in faq" :key="'faq-' + i" class="open:bg-gray-50 ring-1 ring-transparent open:ring-gray-400 shadow-slate-400/30 open:shadow-lg open:text-gray-900 w-full p-4 text-gray-700 transition bg-gray-100 rounded-lg" :open="openfaq === i" @click.prevent="openfaq = i">
           <summary class="font-bold cursor-pointer" v-text="$i18n.t('index.faq.accordion.' + question.q +'.q')" />
           <div class="mt-2" v-text="$i18n.t('index.faq.accordion.' + question.q + '.a')" />
@@ -155,16 +155,14 @@
     </Section>
 
     <!-- Section 5: Support -->
-    <Section ref="section-5" class="snap-center bg-stone-100 flex flex-col items-center justify-start px-4 py-8 overflow-hidden text-center">
+    <Section ref="section-5" class="snap-center md:justify-center bg-stone-100 py-36 flex flex-col items-center justify-start px-4 overflow-hidden text-center">
       <h2 class="text-5xl font-bold leading-tight tracking-tight text-black uppercase" v-text="$i18n.t('index.support.title')" />
-
       <div class="flex flex-col mt-3 space-y-1">
         <p v-text="$i18n.t('index.support.subtitle[0]')" />
         <i18n path="index.support.subtitle[1].base">
           <b>{{ $i18n.t('index.support.subtitle[1].action') }}</b>
         </i18n>
       </div>
-
       <div class="flex flex-row mt-8 space-x-2">
         <SupportButton type="github" default-classes />
         <SupportButton type="support" default-classes />
@@ -184,7 +182,7 @@
       </div>
 
       <template #after>
-        <div class="flex flex-col items-center justify-end flex-grow mb-16">
+        <div class="flex flex-col items-center justify-end mt-32">
           <div class="" v-text="$i18n.t('index.support.credits')" />
           <div class="text-gray-50 px-2 py-1 mt-1 bg-gray-800 rounded-lg select-none" v-text="version" />
         </div>
