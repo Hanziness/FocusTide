@@ -33,13 +33,13 @@
               </div>
             </div>
             <!-- CTAs -->
-            <div class="md:grid-flow-col md:grid-cols-2 grid grid-flow-row grid-cols-1 gap-2 mt-6">
+            <div class="md:grid-flow-col grid grid-flow-row grid-cols-1 gap-2 mt-6">
               <nuxt-link v-slot="{ navigate }" to="/timer" custom>
                 <div class="bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 flex-grow px-6 py-4 text-2xl font-bold text-center uppercase transition-all rounded-lg shadow-lg cursor-pointer select-none" role="button" tabindex="0" @click="navigate" v-text="$i18n.t('index.cta.quickstart')" />
               </nuxt-link>
-              <nuxt-link v-slot="{ navigate }" to="/setup" custom>
+              <!-- <nuxt-link v-slot="{ navigate }" to="/setup" custom>
                 <div class="bg-slate-300 hover:bg-gray-300 shadow-slate-300/0 hover:shadow-slate-300/40 hover:shadow-lg active:shadow-slate-300/60 active:bg-slate-400 flex-grow px-6 py-4 text-2xl font-bold text-center uppercase transition-all rounded-lg cursor-pointer select-none" role="button" tabindex="0" @click="navigate" v-text="$i18n.t('index.cta.configure')" />
-              </nuxt-link>
+              </nuxt-link> -->
             </div>
           </div>
         </template>
