@@ -1,6 +1,6 @@
 import { useMain, flags } from '@/stores/index'
 
-const persistStores = ['settings', 'tasklist']
+const persistStores = ['settings', 'tasklist', 'tutorials']
 const storeResetKey = '--reset-store'
 
 /** Get the persistence key of the store by its ID */
