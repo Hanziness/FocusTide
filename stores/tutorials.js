@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useTutorials = defineStore('tutorials', {
   state: () => ({
-    openTutorials: ['pwa_installed']
+    openTutorials: []
   }),
 
   getters: {
