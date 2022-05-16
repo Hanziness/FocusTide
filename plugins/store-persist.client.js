@@ -1,3 +1,5 @@
+import { useMain, flags } from '@/stores/index'
+
 const persistStores = ['settings', 'tasklist']
 const storeResetKey = '--reset-store'
 
@@ -10,6 +12,10 @@ function restoreStore (store) {
 
   if (stateToRestore !== null) {
     store.$patch(stateToRestore)
+
+    console.log(`Restoring ${store.$id}`)
+    const mainStore = useMain()
+    mainStore.registerFlag(flags.STORE_RESTORED)
   }
 }
 
@@ -17,6 +23,7 @@ const PiniaNuxtPersistencePlugin = ({ app, $pinia }) => {
   const PiniaPersistPlugin = ({ store }) => {
     if (persistStores.includes(store.$id)) {
       const restore = localStorage.getItem(storeResetKey) == null
+
       // Restore the store first
       if (restore) {
         restoreStore(store)
