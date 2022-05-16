@@ -1,7 +1,7 @@
 <template>
-  <section class="dark:text-gray-50 h-full overflow-hidden transition-colors duration-300 ease-in" :class="[{'dark' : settingsStore.visuals.darkMode }]">
+  <section class="h-full overflow-hidden transition-colors duration-300 ease-in dark:text-gray-50" :class="[{'dark' : settingsStore.visuals.darkMode }]">
     <!-- Dark mode background override -->
-    <div class="dark:bg-gray-900 absolute w-full h-full" />
+    <div class="absolute w-full h-full dark:bg-gray-900" />
 
     <!-- Settings panel -->
     <div>
@@ -20,16 +20,16 @@
         >
           <div class="z-10 flex flex-row w-full">
             <div
-              class="md:w-auto flex flex-col overflow-hidden transition-all duration-300 bg-gray-800 shadow-lg"
+              class="flex flex-col overflow-hidden transition-all duration-300 bg-gray-800 shadow-lg md:w-auto"
               :class="[settingsStore.schedule.visibility.enabled ? 'mt-0 md:mt-3 md:rounded-lg w-full max-w-full mx-auto self-center' : 'ml-auto p-2 rounded-l-lg mt-3']"
             >
               <div class="flex flex-row gap-3" :class="[settingsStore.schedule.visibility.enabled ? 'px-3' : '']">
                 <ScheduleDisplay v-show="settingsStore.schedule.visibility.enabled" class="px-0" />
                 <!-- Settings button -->
-                <div class="flex-column flex items-center">
+                <div class="flex items-center flex-column">
                   <button
                     :aria-label="$i18n.t('settings.heading')"
-                    class="hover:bg-slate-200 hover:bg-opacity-30 active:bg-opacity-50 p-3 text-gray-200 transition rounded-full"
+                    class="p-3 text-gray-200 transition rounded-full hover:bg-slate-200 hover:bg-opacity-30 active:bg-opacity-50"
                     :class="{ 'pointer-events-none': preview }"
                     @click="showSettings = true"
                   >
@@ -37,7 +37,7 @@
                   </button>
                 </div>
               </div>
-              <div v-if="settingsStore.schedule.visibility.enabled && settingsStore.schedule.visibility.showSectionType" class="text-gray-50 py-2 text-center bg-gray-700 select-none">
+              <div v-if="settingsStore.schedule.visibility.enabled && settingsStore.schedule.visibility.showSectionType" class="py-2 text-center bg-gray-700 select-none text-gray-50">
                 {{ $i18n.t('section.' + scheduleStore.getCurrentItem.type).toLowerCase() }}
               </div>
             </div>
@@ -61,7 +61,7 @@
               :time-original="timeOriginal"
               :timer-state="timerState"
               :timer-widget="settingsStore.currentTimer"
-              class="place-items-center absolute grid"
+              class="absolute grid place-items-center"
               @tick="timeString = $event"
             />
           </div>
@@ -69,16 +69,17 @@
           <div class="relative flex flex-row items-center justify-center w-full gap-2 mb-4">
             <TimerControls :class="[{ 'pointer-events-none': preview }]" :can-use-keyboard="!preview && !showSettings" />
 
-            <button v-show="settingsStore.tasks.enabled" class="right-4 dark:bg-gray-700 sm:absolute p-4 transition-all bg-gray-200 rounded-full shadow-md" :class="{'scale-0': showTodoManager}" @click="showTodoManager = true">
+            <button v-show="settingsStore.tasks.enabled" class="p-4 transition-all bg-gray-200 rounded-full shadow-md right-4 dark:bg-gray-700 sm:absolute" :class="{'scale-0': showTodoManager}" @click="showTodoManager = true">
               <ListCheckIcon />
             </button>
           </div>
           <transition enter-class="translate-y-full" enter-active-class="duration-300 ease-out" leave-to-class="translate-y-full" leave-active-class="duration-150 ease-in">
-            <TodoList v-show="settingsStore.tasks.enabled && showTodoManager" class="rounded-t-xl xl:right-4 xl:pb-8 fixed bottom-0 z-10 w-full max-w-lg transition-all" :editing="[0].includes(scheduleStore.timerState)" @hide="showTodoManager = false" />
+            <TodoList v-show="settingsStore.tasks.enabled && showTodoManager" class="fixed bottom-0 z-10 w-full max-w-lg transition-all rounded-t-xl xl:right-4 xl:pb-8" :editing="[0].includes(scheduleStore.timerState)" @hide="showTodoManager = false" />
           </transition>
         </div>
       </Ticker>
     </NotificationController>
+    <TutorialView />
   </section>
 </template>
 
@@ -88,6 +89,7 @@ import { SettingsIcon, ListCheckIcon } from 'vue-tabler-icons'
 import { useSchedule } from '~/stores/schedule'
 import { useSettings } from '~/stores/settings'
 import { useEvents } from '@/stores/events'
+import TutorialView from '@/components/tutorial/_tutorialView.vue'
 
 // Static imports:
 
@@ -104,7 +106,8 @@ export default {
     UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/overlay.vue'),
     TodoList: () => import(/* webpackChunkName: "todo" */ '@/components/todoList/main.vue'),
     CogIcon: SettingsIcon,
-    ListCheckIcon
+    ListCheckIcon,
+    TutorialView
   },
 
   layout: 'timer',
