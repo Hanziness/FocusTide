@@ -20,17 +20,14 @@
 
 <script>
 import { mapActions, mapState } from 'pinia'
-import PwaInstalled from './pwaInstalled.vue'
 import tutorialOnboarding from './tutorialOnboarding.vue'
 import { useTutorials } from '~/stores/tutorials'
 import { useMain, flags } from '@/stores/index'
 
 export default {
-  components: { PwaInstalled },
   data () {
     return {
       tutorial: {
-        pwa_installed: PwaInstalled,
         onboarding: tutorialOnboarding
       },
       enableComponent: false
