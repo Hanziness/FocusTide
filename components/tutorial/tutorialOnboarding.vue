@@ -41,7 +41,7 @@
           <p>If this project helped you, consider inviting the author to a coffee. You can find the support button in the settings menu, too.</p>
         </div>
       </transition>
-      <div class="flex-grow" />
+      <div class="flex-grow h-4" />
       <div class="flex flex-col gap-2 mt-4 md:flex-row">
         <button class="flex-grow w-full py-2 transition border-2 rounded-full text-work border-work hover:bg-work hover:text-white" @click="$emit('close')">
           Close
