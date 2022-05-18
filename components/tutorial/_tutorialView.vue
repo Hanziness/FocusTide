@@ -30,6 +30,8 @@ export default {
       tutorial: {
         onboarding: tutorialOnboarding
       },
+
+      /** Controls whether the darkening backdrop is shown */
       enableComponent: false
     }
   },
@@ -41,6 +43,7 @@ export default {
 
   watch: {
     currentTutorial (newValue) {
+      // if a tutorial is to be shown, enable the backdrop
       if (newValue !== null) {
         this.enableComponent = true
       }
