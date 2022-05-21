@@ -6,39 +6,29 @@
         <div v-if="page === 0" key="page-index" class="flex flex-col">
           <div class="flex flex-col items-center gap-2 mb-2 text-center">
             <img src="/favicon.svg" class="p-3 bg-work bg-opacity-20 rounded-xl" width="72">
-            <h2 class="mt-2 text-xl font-bold uppercase">
-              Welcome to AnotherPomodoro!
-            </h2>
-            <p>Take a quick look around on how to use the app effectively.</p>
+            <h2 class="mt-2 text-xl font-bold uppercase" v-text="$i18n.t('tutorials.onboarding.pages.0.title')" />
+            <p v-text="$i18n.t('tutorials.onboarding.pages.0.text')" />
           </div>
         </div>
         <div v-if="page === 1" key="tutorial-1" class="flex flex-col items-center gap-2 text-center">
           <ClockIcon size="72" class="p-3 bg-work bg-opacity-20 rounded-xl" />
-          <h2 class="mt-2 text-xl font-bold uppercase text-work">
-            Follow the clock
-          </h2>
-          <p>Work or take a break until the timer runs out. Then proceed with your next timer.</p>
+          <h2 class="mt-2 text-xl font-bold uppercase text-work" v-text="$i18n.t('tutorials.onboarding.pages.1.title')" />
+          <p v-text="$i18n.t('tutorials.onboarding.pages.1.text')" />
         </div>
         <div v-if="page === 2" key="tutorial-2" class="flex flex-col items-center gap-2 text-center">
           <MugIcon size="72" class="p-3 bg-shortpause bg-opacity-20 rounded-xl" />
-          <h2 class="mt-2 text-xl font-bold uppercase text-shortpause">
-            Rest regularly
-          </h2>
-          <p>Every few breaks you get more time to rest. Make good use of it.</p>
+          <h2 class="mt-2 text-xl font-bold uppercase text-shortpause" v-text="$i18n.t('tutorials.onboarding.pages.2.title')" />
+          <p v-text="$i18n.t('tutorials.onboarding.pages.2.text')" />
         </div>
         <div v-if="page === 3" key="tutorial-3" class="flex flex-col items-center gap-2 text-center">
           <SettingsIcon size="72" class="p-3 bg-longpause bg-opacity-20 rounded-xl" />
-          <h2 class="mt-2 text-xl font-bold uppercase text-longpause">
-            Stay flexible
-          </h2>
-          <p>Set your own timers, use the task list and notifications to your advantage. Check out the settings menu for more opportunities!</p>
+          <h2 class="mt-2 text-xl font-bold uppercase text-longpause" v-text="$i18n.t('tutorials.onboarding.pages.3.title')" />
+          <p v-text="$i18n.t('tutorials.onboarding.pages.3.text')" />
         </div>
         <div v-if="page === 4" key="tutorial-4" class="flex flex-col items-center gap-2 text-center">
           <HeartIcon size="72" class="p-3 text-black bg-amber-400 rounded-xl" />
-          <h2 class="mt-2 text-xl font-bold uppercase text-amber-500">
-            Support the project
-          </h2>
-          <p>If this project helped you, consider inviting the author to a coffee. You can find the support button in the settings menu, too.</p>
+          <h2 class="mt-2 text-xl font-bold uppercase text-amber-500" v-text="$i18n.t('tutorials.onboarding.pages.support.title')" />
+          <p v-text="$i18n.t('tutorials.onboarding.pages.support.text')" />
         </div>
       </transition>
       <div class="flex-grow h-4" />

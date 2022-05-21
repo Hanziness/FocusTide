@@ -442,5 +442,37 @@ export default {
       workaholic: 'For long work sessions.'
     },
     description: '{brief} \n {worklength} minutes of work with {splength} minutes short and {lplength} minutes long breaks after every {lpfreq} work sessions.'
+  },
+  tutorials: {
+    onboarding: {
+      pages: {
+        0: {
+          title: 'Welcome to AnotherPomodoro!',
+          text: 'Take a quick look around on how to use the app effectively.'
+        },
+        1: {
+          title: 'Follow the clock',
+          text: 'Work or take a break until the timer runs out. Then proceed with your next timer.'
+        },
+        2: {
+          title: 'Rest regularly',
+          text: 'Every few breaks you get more time to rest. Make good use of it.'
+        },
+        3: {
+          title: 'Stay flexible',
+          text: 'Set your own timers, use the task list and notifications to your advantage. Check out the settings menu for more opportunities!'
+        },
+        support: {
+          title: 'Support the project',
+          text: 'If this project helped you, consider inviting the author to a coffee. You can find the support button in the settings menu, too.'
+        }
+      },
+      buttons: {
+        close: 'Close',
+        start: 'Start tutorial',
+        next: 'Next',
+        support: 'Support the project'
+      }
+    }
   }
 }
