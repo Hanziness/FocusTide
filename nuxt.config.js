@@ -3,7 +3,6 @@
 
 import fs from 'fs'
 import { defineNuxtConfig } from '@nuxt/bridge'
-import { IconResizerWebpackPlugin } from './assets/build/icon_resize'
 
 const packageJson = fs.readFileSync('./package.json')
 const version = JSON.parse(packageJson).version || 0
@@ -144,6 +143,11 @@ export default defineNuxtConfig({
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    ['~/modules/build/icon_resize', iconConfig.variants.map(icon => ({
+      sizes: iconConfig.sizes,
+      src: icon.src,
+      prefix: icon.prefix
+    }))],
     '@nuxt/postcss8',
     '@nuxtjs/google-fonts',
     // Doc: https://github.com/nuxt-community/eslint-module
@@ -272,14 +276,7 @@ export default defineNuxtConfig({
         tailwindcss: {},
         autoprefixer: {}
       }
-    },
-    plugins: [].concat(iconConfig.variants.map((icon) => {
-      return new IconResizerWebpackPlugin({
-        sizes: iconConfig.sizes,
-        src: icon.src,
-        prefix: icon.prefix
-      })
-    }))
+    }
   },
   watchers: {
     chokidar: {
