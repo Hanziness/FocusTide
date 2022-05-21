@@ -1,21 +1,24 @@
 import { defineStore } from 'pinia'
 
+export const flags = {
+  STORE_RESTORED: 'store_restored'
+}
+
 export const useMain = defineStore('main', {
   state: () => ({
-    version: process.env.PACKAGE_VERSION
-  })
-})
+    version: process.env.PACKAGE_VERSION,
+    flags: []
+  }),
 
-// export const {
-//   state () {
-//     return {
-//       version: process.env.PACKAGE_VERSION
-//     }
-//   },
-//   actions: {
-//     nuxtServerInit ({ commit }) {
-//       // initialize with 10 entries, no need for phantom entries then
-//       commit('schedule/initSchedule', 10)
-//     }
-//   }
-// }
+  getters: {
+    isFlagActive: state => flag => state.flags.includes(flag)
+  },
+
+  actions: {
+    registerFlag (flag) {
+      if (!this.flags.includes(flag)) {
+        this.flags.push(flag)
+      }
+    }
+  }
+})
