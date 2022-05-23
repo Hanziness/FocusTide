@@ -217,6 +217,14 @@
       "confirm": "Reset",
       "cancel": "Cancel"
     },
+    "manage": {
+      "heading": "Manage settings",
+      "description": "Download the current settings or load them from a file",
+      "buttons": {
+        "save": "Save",
+        "load": "Load"
+      }
+    },
     "scheduleMinTime": "The minimum allowed time is 5 seconds",
     "about": {
       "madeby": "Made by Imre Gera",

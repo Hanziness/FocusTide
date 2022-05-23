@@ -1,18 +1,23 @@
 <template>
-  <Button @click="openFileDialog">
+  <button class="px-6 py-3 transition border-2 border-red-400 rounded-full select-none dark:shadow-none hover:bg-red-400 active:bg-red-500 active:border-red-500 active:shadow-red-200 active:shadow-md" @click="openFileDialog">
     <input ref="fileinput" accept=".json" type="file" hidden @change="importFile">
-    Import
-  </Button>
+    <span v-text="$i18n.t('settings.manage.buttons.load')" />
+  </button>
 </template>
 
 <script>
-import Button from '@/components/base/button.vue'
 import { useSettings } from '~/stores/settings'
 import { useTasklist } from '~/stores/tasklist'
 
-export default {
-  components: { Button },
+function filterImportedObject (store, objectToImport) {
+  const storeKeys = Object.keys(store.$state)
+  return Object
+    .keys(objectToImport)
+    .filter(key => storeKeys.includes(key))
+    .reduce((prev, key) => Object.assign(prev, { [key]: objectToImport[key] }), {})
+}
 
+export default {
   methods: {
     openFileDialog () {
       this.$refs.fileinput.click()
@@ -33,8 +38,10 @@ export default {
         // try to patch settings and task list with the imported values
         try {
           const importedValues = JSON.parse(fileContents)
-          useSettings().$patch(importedValues.settings)
-          useTasklist().$patch(importedValues.tasklist)
+          const settingsStore = useSettings()
+          const tasklistStore = useTasklist()
+          settingsStore.$patch(filterImportedObject(settingsStore, importedValues.settings))
+          tasklistStore.$patch(filterImportedObject(tasklistStore, importedValues.tasklist))
         } catch (err) {
           console.warn(err)
         }
