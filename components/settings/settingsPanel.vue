@@ -43,7 +43,7 @@
               <Divider />
 
               <div v-text="$i18n.t('settings.manage.heading')" />
-              <div class="-mt-2 text-sm text-black text-opacity-75 dark:text-gray-50 dark:text-opacity-75" v-text="$i18n.t('settings.manage.description')" />
+              <div class="-mt-2 text-sm leading-snug text-black text-opacity-75 dark:text-gray-50 dark:text-opacity-75" v-text="$i18n.t('settings.manage.description')" />
               <div class="grid grid-flow-col grid-cols-2 gap-2 mt-1">
                 <ExportButton />
                 <ImportButton />
