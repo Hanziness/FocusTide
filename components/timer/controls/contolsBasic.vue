@@ -1,9 +1,9 @@
 <template>
-  <div class="w-max dark:text-gray-100 z-10 flex flex-row items-center p-2 text-gray-900 bg-transparent">
+  <div class="z-10 flex flex-row items-center p-2 text-gray-900 bg-transparent w-max dark:text-gray-100">
     <!-- Reset -->
     <div
       role="button"
-      class="dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500 -z-20 py-3 pl-4 pr-5 -mr-2 text-lg transition-colors bg-gray-200 rounded-l-lg shadow-md cursor-pointer"
+      class="py-3 pl-4 pr-5 -mr-2 text-lg transition-colors bg-gray-200 rounded-l-lg shadow-md cursor-pointer dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500 -z-20"
       :class="[{ 'pointer-events-none': !resetEnabled }]"
       :aria-disabled="!resetEnabled"
       :aria-label="$i18n.t('controls.stop')"
@@ -15,7 +15,7 @@
 
     <!-- Play/pause -->
     <div
-      class="dark:bg-gray-800 active:bg-gray-300 dark:active:bg-gray-700 play-button relative p-4 text-xl transition-colors bg-gray-200 rounded-full shadow-xl cursor-pointer"
+      class="relative p-4 text-xl transition-colors bg-gray-200 rounded-full shadow-xl cursor-pointer dark:bg-gray-800 active:bg-gray-300 dark:active:bg-gray-700 play-button"
       role="button"
       :aria-label="$i18n.t('controls.play')"
       tabindex="0"
@@ -40,7 +40,7 @@
       role="button"
       :aria-label="$i18n.t('controls.advance')"
       :aria-disabled="!advanceEnabled"
-      class="dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500 -z-20 py-3 pl-5 pr-4 -ml-2 text-lg transition-colors bg-gray-200 rounded-r-lg shadow-md cursor-pointer"
+      class="py-3 pl-5 pr-4 -ml-2 text-lg transition-colors bg-gray-200 rounded-r-lg shadow-md cursor-pointer dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500 -z-20"
       :class="[{ 'pointer-events-none': !advanceEnabled }]"
       tabindex="0"
       @click="advance"
@@ -97,14 +97,14 @@ export default {
       // move to next section if timer is completed
       if (this.scheduleStore.getCurrentTimerState === TimerState.COMPLETED) {
         this.advance()
-        this.scheduleStore.timerState = TimerState.TICKING
+        this.scheduleStore.timerState = TimerState.RUNNING
       } else {
-        this.scheduleStore.timerState = this.scheduleStore.getCurrentTimerState !== TimerState.TICKING ? TimerState.TICKING : TimerState.PAUSED
+        this.scheduleStore.timerState = this.scheduleStore.getCurrentTimerState !== TimerState.RUNNING ? TimerState.RUNNING : TimerState.PAUSED
       }
     },
 
     reset () {
-      this.scheduleStore.timerState = TimerState.RESET
+      this.scheduleStore.timerState = TimerState.STOPPED
     },
 
     advance () {

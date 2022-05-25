@@ -1,7 +1,7 @@
 
 <script>
 import { mapStores, mapState, mapWritableState } from 'pinia'
-import { TIMERSTATE, TimerState, useSchedule } from '@/stores/schedule'
+import { TimerState, useSchedule } from '@/stores/schedule'
 import { useSettings } from '~/stores/settings'
 import { useTasklist } from '~/stores/tasklist'
 
@@ -48,7 +48,7 @@ export default {
     },
 
     adaptiveTickRate (newValue, oldValue) {
-      if (this.timerState === TimerState.TICKING && newValue !== oldValue) {
+      if (this.timerState === TimerState.RUNNING && newValue !== oldValue) {
         this.scheduleNextTick({})
       }
     },
@@ -61,7 +61,7 @@ export default {
 
       if (newValue !== oldValue) {
         switch (newValue) {
-          case TimerState.TICKING:
+          case TimerState.RUNNING:
             this.startTimer()
             break
           case TimerState.RESET:
@@ -81,7 +81,7 @@ export default {
     /** Resets the remaining time to the original value, resetting the timer to 0% */
     resetTimer () {
       const currentTimerState = this.scheduleStore.getCurrentTimerState
-      const nextState = currentTimerState === TIMERSTATE.RUNNING ? currentTimerState : TIMERSTATE.STOPPED
+      const nextState = currentTimerState === TimerState.RUNNING ? currentTimerState : TimerState.STOPPED
       this.timeElapsed = 0
       this.timerTick({ nextState, decrement: false })
     },
@@ -106,7 +106,7 @@ export default {
     scheduleNextTick ({ decrement = true }) {
       this.timerTick({ decrement })
 
-      if (this.timerState === TimerState.TICKING) {
+      if (this.timerState === TimerState.RUNNING) {
         // check adaptive ticking settings
         let nextTickMs = this.settingsStore.getAdaptiveTickRate
 
@@ -137,7 +137,7 @@ export default {
      * @param {timerState} nextState The next state the timer will be in (if not RUNNING), it won't tick further
      * @param {boolean} decrement If set to false, the timer will tick this time, but won't affect the remaining time
      */
-    timerTick ({ nextState = TimerState.TICKING, decrement = true }) {
+    timerTick ({ nextState = TimerState.RUNNING, decrement = true }) {
       const newUpdate = new Date().getTime()
       const elapsedDelta = newUpdate - this.lastUpdate
 
@@ -150,11 +150,11 @@ export default {
       this.lastUpdate = newUpdate
 
       // check if timer completed and schedule next tick
-      if (nextState === TimerState.TICKING && this.timeElapsed >= this.timeOriginal) {
+      if (nextState === TimerState.RUNNING && this.timeElapsed >= this.timeOriginal) {
       // timer completed, notify participants
         this.timerState = TimerState.COMPLETED
         this.$emit('complete')
-      } else if (nextState === TimerState.TICKING) {
+      } else if (nextState === TimerState.RUNNING) {
         // next tick is scheduled
       } else {
         // do not tick further
