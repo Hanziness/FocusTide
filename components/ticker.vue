@@ -9,7 +9,7 @@ export default {
   data () {
     return {
       // timeOriginal: 1,
-      timeElapsed: 0,
+      // timeElapsed: 0,
       lastUpdate: new Date().getTime(),
       nextTickDelta: 1000,
       timerHandle: null
@@ -27,6 +27,15 @@ export default {
     }),
 
     ...mapWritableState(useSchedule, ['timerState']),
+
+    timeElapsed: {
+      get () {
+        return useSchedule().items[0].timeElapsed
+      },
+      set (newValue) {
+        useSchedule().items[0].timeElapsed = newValue
+      }
+    },
 
     timeRemaining () {
       return this.timeOriginal - this.timeElapsed
