@@ -1,6 +1,6 @@
 <template>
   <div
-    class="transform-gpu absolute top-0 left-0 block w-full h-full transition-all duration-500"
+    class="absolute top-0 left-0 block w-full h-full transition-all duration-500 transform-gpu"
     :class="[{ 'ease-out-expo': background }]"
     :style="{
       'background-color': colour ? colour : getScheduleColour[scheduleEntryId],
@@ -8,7 +8,7 @@
     }"
   >
     <!-- Dark mode background override -->
-    <div class="dark:visible mix-blend-multiply absolute invisible w-full h-full bg-gray-600" />
+    <div class="absolute invisible w-full h-full bg-gray-600 dark:visible mix-blend-multiply" />
   </div>
 </template>
 
@@ -43,7 +43,7 @@ export default {
     ...mapState(useSchedule, ['getScheduleColour']),
 
     progressPercentage () {
-      return (this.timeElapsed / this.timeOriginal) * 100
+      return Math.min((this.timeElapsed / this.timeOriginal) * 100, 100)
     }
   }
 }
