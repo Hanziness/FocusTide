@@ -1,12 +1,17 @@
 <template>
-  <div :class="['timer-display select-none flex flex-row gap-2 items-center leading-none', { 'active': running }]">
-    <transition name="transition-approximate-up" mode="out-in">
-      <div :key="time.value" :style="{ '--ch': Math.ceil(Math.log10(time.value + 1)) }" class="text-9xl xl:text-[12rem] font-bold text-right time-value">
-        {{ time.value }}
+  <div :class="['timer-display select-none flex flex-row gap-2 items-center leading-none text-9xl xl:text-[12rem]', { 'active': running }]">
+    <transition>
+      <div v-show="time.value < 0" class="-mr-4 font-bold">
+        +
       </div>
     </transition>
     <transition name="transition-approximate-up" mode="out-in">
-      <div :key="time.string" class="text-3xl xl:text-7xl">
+      <div :key="time.value" :style="{ '--ch': Math.max(1, Math.ceil(Math.log10(Math.abs(time.value) + 1))) }" class="font-bold text-right time-value">
+        {{ Math.abs(time.value) }}
+      </div>
+    </transition>
+    <transition name="transition-approximate-up" mode="out-in">
+      <div :key="time.string" class="text-[.5em]">
         {{ time.string }}
       </div>
     </transition>
@@ -34,7 +39,7 @@ export default {
         timeObject.string = this.$i18n.tc('timer.approximate.minutes', timeObject.value)
       }
 
-      this.$emit('tick', `${timeObject.value} ${timeObject.string}`)
+      this.$emit('tick', `${timeObject.value < 0 ? '+' : ''}${Math.abs(timeObject.value)} ${timeObject.string}`)
       return timeObject
     }
   }
