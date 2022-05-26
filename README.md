@@ -90,13 +90,12 @@ This is an open-source project that welcomes contributions. Please check the [**
   * [`nuxt/google-fonts`](https://github.com/nuxt-community/google-fonts-module) for Google Fonts support
   * [`nuxt/pwa`](https://pwa.nuxtjs.org/) for PWA (Progressive Web Apps) support
   * [`vue-native-notification`](https://github.com/dennisbruner/vue-native-notification) for easier notifications support
-  * [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate) for store persistence
   * [Vuelidate](https://vuelidate.js.org/) for input validation (`vuelidate`)
   * [`@nuxt/image`](https://image.nuxtjs.org/) for automatic image optimization
+  * [`pinia`](https://pinia.vuejs.org/) for state management
 * [**Tailwind CSS**](https://tailwindcss.com/)
   * [`@tailwindcss/forms`](https://github.com/tailwindlabs/tailwindcss-forms)
 * [Tabler Icons](https://tabler-icons.io/) through [`vue-tabler-icons`](https://github.com/alex-oleshkevich/vue-tabler-icons)
-* [DayJS](https://day.js.org/) for time formatting
 * [`conventional-changelog/standard-version`](https://github.com/conventional-changelog/standard-version) for automatic changelog generation from [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ### 🛠 Building or running the app yourself
