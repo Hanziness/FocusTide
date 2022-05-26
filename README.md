@@ -4,7 +4,7 @@ Free and open-source Pomodoro application, right in your browser.
 
 [<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="54">](https://www.buymeacoffee.com/imreg?utm_source=github&utm_medium=web&utm_content=readme) <a href="https://www.producthunt.com/posts/anotherpomodoro?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-anotherpomodoro" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=327185&theme=light" alt="AnotherPomodoro - Modern & customizable productivity timer | Product Hunt" width="250" height="54" /></a>
 
-![Netlify Status](https://api.netlify.com/api/v1/badges/7cb2b7fb-cacd-4acf-803b-8af9dad9f2a8/deploy-status) ![License](https://img.shields.io/github/license/Hanziness/AnotherPomodoro) ![GitHub package.json version](https://img.shields.io/github/package-json/v/Hanziness/AnotherPomodoro) [![Crowdin translation status](https://badges.crowdin.net/anotherpomodoro/localized.svg)](https://crowdin.com/project/anotherpomodoro) ![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fanother-pomodoro.app%2F%3Futm_source%3Dshare%26utm_medium%3Dsocial%26utm_campaign%3Dprofile%26utm_content%3Dgh_top_share)
+![Netlify Status](https://api.netlify.com/api/v1/badges/7cb2b7fb-cacd-4acf-803b-8af9dad9f2a8/deploy-status) ![License](https://img.shields.io/github/license/Hanziness/AnotherPomodoro) ![GitHub package.json version](https://img.shields.io/github/package-json/v/Hanziness/AnotherPomodoro) [![Crowdin translation status](https://badges.crowdin.net/anotherpomodoro/localized.svg)](https://crowdin.com/project/anotherpomodoro)
 
 ![Screenshot of the application showing a work section.](./static/assets/img/ProductImg_Default.png)
 
