@@ -91,17 +91,11 @@ AnotherPomodoro is an open software and such it welcomes others to contribute co
 
 ## Submitting translations
 
-While we also accept translations submitted to the app, currently they are stored in `js` files inside the project, which means maintenance will likely be an issue in the future. If there is a bigger need to provide more translations, the project will likely be moved to a translation crowdsourcing platform like Crowdin. As of now, if you want to submit translations for your language, you need to do three things:
+[![Crowdin](https://badges.crowdin.net/anotherpomodoro/localized.svg)](https://crowdin.com/project/anotherpomodoro)
 
-1. Create an issue, noting that you would do the localisations for a particular language. Once this is confirmed and you are assigned to the issue, continue with the next steps.
-2. Copy `i18n/en.js` (to eg. `i18n/hu.js`, if you would be making the Hungarian translation) and translate the strings to your chosen language.
-3. Add your language to `nuxt.config.js` (in the `i18n.locales` array). Please make sure to *use the app* as some translations might end up out-of-context if translated blindly. The entry for English translations (stored in `i18n/en.js`) look like this:
+Translations are managed through [AnotherPomodoro's Crowdin project](https://crowdin.com/project/anotherpomodoro). If you want to contribute translations for your own language, please [create an issue](https://github.com/Hanziness/AnotherPomodoro/issues/new/choose).
 
-```
-{ code: 'en', name: 'English', iso: 'en-US', file: 'en.js' }
-```
-
-### Technical requirements
+## Technical requirements
 
 * **Submit code against the `develop` branch!** It contains the most up-to-date development version of the app.
 * Make sure your code works

@@ -4,7 +4,7 @@ Free and open-source Pomodoro application, right in your browser.
 
 [<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="54">](https://www.buymeacoffee.com/imreg?utm_source=github&utm_medium=web&utm_content=readme) <a href="https://www.producthunt.com/posts/anotherpomodoro?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-anotherpomodoro" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=327185&theme=light" alt="AnotherPomodoro - Modern & customizable productivity timer | Product Hunt" width="250" height="54" /></a>
 
-![Netlify Status](https://api.netlify.com/api/v1/badges/7cb2b7fb-cacd-4acf-803b-8af9dad9f2a8/deploy-status)
+![Netlify Status](https://api.netlify.com/api/v1/badges/7cb2b7fb-cacd-4acf-803b-8af9dad9f2a8/deploy-status) ![License](https://img.shields.io/github/license/Hanziness/AnotherPomodoro) ![GitHub package.json version](https://img.shields.io/github/package-json/v/Hanziness/AnotherPomodoro) [![Crowdin translation status](https://badges.crowdin.net/anotherpomodoro/localized.svg)](https://crowdin.com/project/anotherpomodoro)
 
 ![Screenshot of the application showing a work section.](./static/assets/img/ProductImg_Default.png)
 
@@ -90,13 +90,12 @@ This is an open-source project that welcomes contributions. Please check the [**
   * [`nuxt/google-fonts`](https://github.com/nuxt-community/google-fonts-module) for Google Fonts support
   * [`nuxt/pwa`](https://pwa.nuxtjs.org/) for PWA (Progressive Web Apps) support
   * [`vue-native-notification`](https://github.com/dennisbruner/vue-native-notification) for easier notifications support
-  * [`vuex-persistedstate`](https://github.com/robinvdvleuten/vuex-persistedstate) for store persistence
   * [Vuelidate](https://vuelidate.js.org/) for input validation (`vuelidate`)
   * [`@nuxt/image`](https://image.nuxtjs.org/) for automatic image optimization
+  * [`pinia`](https://pinia.vuejs.org/) for state management
 * [**Tailwind CSS**](https://tailwindcss.com/)
   * [`@tailwindcss/forms`](https://github.com/tailwindlabs/tailwindcss-forms)
 * [Tabler Icons](https://tabler-icons.io/) through [`vue-tabler-icons`](https://github.com/alex-oleshkevich/vue-tabler-icons)
-* [DayJS](https://day.js.org/) for time formatting
 * [`conventional-changelog/standard-version`](https://github.com/conventional-changelog/standard-version) for automatic changelog generation from [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ### 🛠 Building or running the app yourself
