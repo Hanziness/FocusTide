@@ -77,11 +77,11 @@ export default {
     },
 
     resetEnabled () {
-      return this.scheduleStore.getCurrentTimerState !== 0
+      return this.scheduleStore.getCurrentTimerState !== TimerState.STOPPED
     },
 
     advanceEnabled () {
-      return this.scheduleStore.getCurrentTimerState !== 1
+      return this.scheduleStore.getCurrentTimerState !== TimerState.RUNNING
     }
   },
 
@@ -104,11 +104,16 @@ export default {
     },
 
     reset () {
-      this.scheduleStore.timerState = TimerState.STOPPED
+      if (this.scheduleStore.timerState !== TimerState.COMPLETED && this.scheduleStore.items[0].timeElapsed > this.scheduleStore.items[0].length) {
+        this.scheduleStore.timerState = TimerState.COMPLETED
+      } else {
+        this.scheduleStore.timerState = TimerState.STOPPED
+      }
     },
 
     advance () {
       this.scheduleStore.advance()
+      this.scheduleStore.timerState = TimerState.STOPPED
     }
   }
 }
