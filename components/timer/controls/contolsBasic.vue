@@ -10,7 +10,14 @@
       tabindex="0"
       @click="reset"
     >
-      <IconStop :aria-label="$i18n.t('controls.stop')" class="transition-opacity duration-300" :class="[{ 'opacity-40': !resetEnabled }]" size="24" :title="$i18n.t('controls.stop')" />
+      <Component
+        :is="stopResetIcon"
+        :aria-label="$i18n.t('controls.stop')"
+        class="transition-opacity duration-300"
+        :class="[{ 'opacity-40': !resetEnabled }]"
+        size="24"
+        :title="$i18n.t('controls.stop')"
+      />
     </div>
 
     <!-- Play/pause -->
@@ -51,7 +58,7 @@
 </template>
 
 <script>
-import { PlayerPlayIcon, PlayerPauseIcon, PlayerStopIcon, PlayerSkipForwardIcon } from 'vue-tabler-icons'
+import { PlayerPlayIcon, PlayerPauseIcon, PlayerStopIcon, PlayerSkipForwardIcon, PlayerSkipBackIcon } from 'vue-tabler-icons'
 import { mapStores } from 'pinia'
 import KeyboardListener from '@/assets/mixins/keyboardListener'
 
@@ -64,7 +71,8 @@ export default {
     IconPlay: PlayerPlayIcon,
     IconPause: PlayerPauseIcon,
     IconStop: PlayerStopIcon,
-    IconSkipNext: PlayerSkipForwardIcon
+    IconSkipNext: PlayerSkipForwardIcon,
+    IconReset: PlayerSkipBackIcon
   },
 
   mixins: [KeyboardListener],
@@ -82,6 +90,16 @@ export default {
 
     advanceEnabled () {
       return this.scheduleStore.getCurrentTimerState !== TimerState.RUNNING
+    },
+
+    stopResetIcon () {
+      const elapsed = this.scheduleStore.items[0].timeElapsed
+      const total = this.scheduleStore.items[0].length
+      if (elapsed >= total && this.scheduleStore.isRunning) {
+        return PlayerStopIcon
+      }
+
+      return PlayerSkipBackIcon
     }
   },
 
