@@ -1,7 +1,7 @@
 <template>
-  <div class="dark:text-gray-100 relative flex flex-col justify-center text-center text-black transition-opacity duration-500 select-none" :class="[{ 'opacity-70': !running, 'opacity-100': running }]">
+  <div class="relative flex flex-col justify-center text-center text-black transition-opacity duration-500 select-none dark:text-gray-100" :class="[{ 'opacity-70': !running, 'opacity-100': running }]">
     <Transition name="timer-switch" mode="out-in">
-      <CompleteMarker v-if="getCurrentTimerState === 3" :key="'complete'" />
+      <CompleteMarker v-if="getCurrentTimerState === timerStates.COMPLETED" :key="'complete'" />
       <TimerTraditional v-else-if="timerWidget === 'traditional'" v-bind="timerInfo" :key="'traditional'" @tick="$emit('tick', $event)" />
       <TimerApproximate v-else-if="timerWidget === 'approximate'" v-bind="timerInfo" :key="'approximate'" @tick="$emit('tick', $event)" />
       <TimerPercentage v-else-if="timerWidget === 'percentage'" v-bind="timerInfo" :key="'percentage'" @tick="$emit('tick', $event)" />
@@ -13,7 +13,7 @@
 import { mapState } from 'pinia'
 import { AvailableTimers } from '@/stores/settings'
 import TimerMixin from '@/assets/mixins/timerMixin'
-import { useSchedule } from '~/stores/schedule'
+import { useSchedule, TimerState } from '~/stores/schedule'
 
 export default {
   components: {
@@ -30,6 +30,11 @@ export default {
       validator (value) {
         return Object.values(AvailableTimers).includes(value)
       }
+    }
+  },
+  data () {
+    return {
+      timerStates: TimerState
     }
   },
   computed: {

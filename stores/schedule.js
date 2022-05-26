@@ -4,7 +4,7 @@ import { useSettings } from './settings'
 export const useSchedule = defineStore('schedule', {
   state: () => ({
     items: createScheduleSeries(10),
-    timerState: TIMERSTATE.STOPPED
+    timerState: TimerState.STOPPED
   }),
 
   getters: {
@@ -79,7 +79,7 @@ export const useSchedule = defineStore('schedule', {
     },
 
     isRunning: (state) => {
-      return [TIMERSTATE.RUNNING, TIMERSTATE.PAUSED].includes(state.timerState)
+      return [TimerState.RUNNING, TimerState.PAUSED].includes(state.timerState)
     },
 
     // VISUALS
@@ -139,13 +139,6 @@ export const useSchedule = defineStore('schedule', {
   }
 })
 
-export const TIMERSTATE = {
-  STOPPED: 0,
-  RUNNING: 1,
-  PAUSED: 2,
-  COMPLETED: 3
-}
-
 export const ScheduleItemType = {
   WORK: 'work',
   SHORTPAUSE: 'shortpause',
@@ -155,8 +148,8 @@ export const ScheduleItemType = {
 }
 
 export const TimerState = {
-  RESET: 0,
-  TICKING: 1,
+  STOPPED: 0,
+  RUNNING: 1,
   PAUSED: 2,
   COMPLETED: 3
 }
