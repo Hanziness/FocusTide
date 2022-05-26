@@ -33,11 +33,11 @@ export default {
         value: 0,
         string: null
       }
-      if (remainingMinutes > 59) {
-        timeObject.value = Math.round(remainingMinutes / 60)
+      if (Math.abs(remainingMinutes) > 59) {
+        timeObject.value = remainingMinutes >= 0 ? Math.round(remainingMinutes / 60) : Math.ceil(remainingMinutes / 60)
         timeObject.string = this.$i18n.tc('timer.approximate.hours', timeObject.value)
       } else {
-        timeObject.value = Math.ceil(remainingMinutes)
+        timeObject.value = remainingMinutes >= 0 ? Math.ceil(remainingMinutes) : Math.floor(remainingMinutes)
         timeObject.string = this.$i18n.tc('timer.approximate.minutes', timeObject.value)
       }
 
