@@ -1,7 +1,7 @@
 {
   "name": "another-pomodoro",
   "description": "Free and open-source productivity timer, right from your browser. Built to be simple.",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "dev": "nuxt dev",
