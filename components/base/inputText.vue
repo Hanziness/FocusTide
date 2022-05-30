@@ -1,7 +1,7 @@
 <template>
   <input
     v-model="displayValue"
-    :class="['form-input w-full text-right', { 'ring-yellow-600 focus:ring-yellow-600': $v.internalData.$anyError }]"
+    :class="['form-input w-full text-right', { 'border-yellow-300 ring ring-yellow-300 focus:ring-yellow-300': $v.internalData.$anyError }]"
     type="text"
   >
 </template>

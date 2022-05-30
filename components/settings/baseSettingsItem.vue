@@ -1,5 +1,5 @@
 <template>
-  <div v-show="visible" :class="['transition-all -m-1 p-1 rounded-lg', { 'opacity-50 cursor-default pointer-events-none': disabled, 'ring ring-yellow-200 bg-yellow-100': isError }]" :disabled="disabled" :aria-disabled="disabled">
+  <div v-show="visible" :class="['transition-all -m-1 p-1 rounded-lg', { 'opacity-50 cursor-default pointer-events-none': disabled }]" :disabled="disabled" :aria-disabled="disabled">
     <div class="flex flex-row items-center my-1">
       <div v-if="!!$slots['icon']" class="w-12 text-left">
         <slot name="icon" />
@@ -10,7 +10,7 @@
             {{ $i18n.t(translationKey + '._title') }}
           </slot>
         </div>
-        <div v-if="showDescription" class="text-black text-opacity-75 dark:text-gray-50 dark:text-opacity-75 text-sm leading-snug">
+        <div v-if="showDescription" class="text-sm leading-snug text-black text-opacity-75 dark:text-gray-50 dark:text-opacity-75">
           <slot name="item-subtitle" class="break-words">
             {{ $i18n.t(translationKey + '._description') }}
           </slot>
@@ -18,16 +18,16 @@
       </div>
       <div class="w-24 text-right">
         <!-- v-if="!!$slots['content-action']"  -->
-        <slot name="content-action" :settingsValue="settingsValue" :errorValue="errorValue" />
+        <slot name="content-action" :settings-value="settingsValue" :error-value="errorValue" />
       </div>
     </div>
 
     <!-- Content to show below the title and description -->
     <div class="flex flex-col w-full">
-      <slot name="content-main" :settingsValue="settingsValue" />
+      <slot name="content-main" :settings-value="settingsValue" />
     </div>
-    <slot name="content-error" :errorValue="errorValue">
-      <div v-show="isError" class="mt-1 text-yellow-700 flex flex-row space-x-1 items-center">
+    <slot name="content-error" :error-value="errorValue">
+      <div v-show="isError" class="flex flex-row items-center gap-1 px-2 py-1 mt-1 text-black bg-yellow-300 rounded-2xl">
         <ErrorIcon />
         <span v-text="errorValue" />
       </div>
