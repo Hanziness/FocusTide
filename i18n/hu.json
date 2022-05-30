@@ -22,20 +22,20 @@
       "or": "vagy",
       "configure": "Beállítás"
     },
-    "features": {
-      "0": {
+    "features": [
+      {
         "title": "Tiszta kezelőfelület",
         "description": "Csak az időzítőd, a kötelező vezérlők és egy csomó beállítási lehetőség"
       },
-      "1": {
+      {
         "title": "Nem kell telepíteni",
         "description": "A böngésződben fut, indítás után teljesen offline"
       },
-      "2": {
+      {
         "title": "Ingyenes & nyílt forrású",
         "description": "Nincsenek rejtett követők, bárki megtekintheti és hozzáadhat a forráskódhoz"
       }
-    },
+    ],
     "section_whatitdoes": {
       "title": "Mire jó ez?",
       "subtitle": {
@@ -111,13 +111,13 @@
     },
     "support": {
       "title": "Támogasd a projektet",
-      "subtitle": {
-        "0": "Az AnotherPomodoro hobbiprojektként készült, bárminemű anyagi bevétel szándéka nélkül.",
-        "1": {
+      "subtitle": [
+        "Az AnotherPomodoro hobbiprojektként készült, bárminemű anyagi bevétel szándéka nélkül.",
+        {
           "base": "Ha ennek ellenére úgy érzed, megérdemli, {0}.",
           "action": "támogasd a szerzőt egy kávéval"
         }
-      },
+      ],
       "credits": "❤ Szeretettel készítette: Gera Imre"
     }
   },
@@ -217,6 +217,14 @@
       "confirm": "Visszaállítás",
       "cancel": "Mégsem"
     },
+    "manage": {
+      "heading": "Beállítások kezelése",
+      "description": "A jelenlegi beállításokat letöltheted egy fájlba vagy vissza is állíthatod onnan",
+      "buttons": {
+        "save": "Mentés",
+        "load": "Betöltés"
+      }
+    },
     "scheduleMinTime": "A legrövidebb megengedett időtartam 5 másodperc",
     "about": {
       "madeby": "Készítette: Gera Imre",
@@ -286,11 +294,11 @@
             "custom": "Felhasználói beállítások"
           },
           "work": {
-            "_title": "Munka hossza",
+            "_title": "Munka",
             "_description": ""
           },
           "shortpause": {
-            "_title": "Szünet hossza",
+            "_title": "Szünet",
             "_description": ""
           },
           "longpause": {
@@ -441,5 +449,37 @@
       "workaholic": "Hosszú munkamenetekre."
     },
     "description": "{brief} \n {worklength} perc munka {splength} perces rövid szünetekkel és {lplength} perces hosszú szünettel minden {lpfreq}. munkamenet után."
+  },
+  "tutorials": {
+    "onboarding": {
+      "pages": {
+        "0": {
+          "title": "Üdvözöl az AnotherPomodoro!",
+          "text": "Tekints meg egy gyorstalpalót az alkalmazás hatékony használatáról."
+        },
+        "1": {
+          "title": "Kövesd az időzítőt",
+          "text": "Dolgozz vagy pihenj, amíg le nem jár az időzítő, majd folytasd a következővel."
+        },
+        "2": {
+          "title": "Pihenj rendszeresen",
+          "text": "Minden néhányadik szünet hosszabb. Használd ki."
+        },
+        "3": {
+          "title": "Maradj rugalmas",
+          "text": "Állítsd be a saját időzítőidet, használd a feladatlistát és az értesítéseket, hogy még hatékonyabb lehess. Nézd meg a beállításokat pár ötletért!"
+        },
+        "support": {
+          "title": "Támogasd a projektet",
+          "text": "Ha segít neked ez a projekt, hívd meg a fejlesztőt egy kávéra. A támogatás gombot a beállításokban is megtalálod."
+        }
+      },
+      "buttons": {
+        "close": "Bezárás",
+        "start": "Gyorstalpaló indítása",
+        "next": "Következő",
+        "support": "Támogasd a projektet"
+      }
+    }
   }
 }
