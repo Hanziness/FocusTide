@@ -22,20 +22,20 @@
       "or": "ili",
       "configure": "Postavi čarobnjaka"
     },
-    "features": {
-      "0": {
+    "features": [
+      {
         "title": "Jednostavno sučelje",
         "description": "Samo timer, bitne kontrole i hrpa mogućnosti za prilagođavanje"
       },
-      "1": {
+      {
         "title": "Ništa se ne mora instalirati",
         "description": "Radi u tvom pregledniku, potpuno neumreženo nakon pokretanja"
       },
-      "2": {
+      {
         "title": "Besplatan i otvorenog koda",
         "description": "Nema skrivenih programa za praćenje, svatko može vidjeti i doprinijeti kodu"
       }
-    },
+    ],
     "section_whatitdoes": {
       "title": "Što radi?",
       "subtitle": {
@@ -88,12 +88,12 @@
         },
         "timer_style": {
           "q": "Koji timer koristiti?",
-          "a": "To ovisi o tome kako želiš da se prikazuje timer. Tradicionalno se prikazuje kao „12:34” (sekunde-preciznost), približno kao „13 minuta”, a postotak kao „50 %”."
+          "a": "To ovisi o tome kako želiš da se prikazuje timer. Tradicionalno se prikazuje kao „12:34” (točnost u sekundama), približno kao „13 minuta”, a postotak kao „50 %”."
         }
       }
     },
     "section_features": {
-      "title": "Popis značajki",
+      "title": "Funkcije",
       "list": {
         "customization": "Prilagođavanje",
         "notifications": "Zvuk i obavijesti",
@@ -111,13 +111,13 @@
     },
     "support": {
       "title": "Podrži ovaj projekt",
-      "subtitle": {
-        "0": "AnotherPomodoro se razvija kao sporedni projekt bez naknade.",
-        "1": {
+      "subtitle": [
+        "AnotherPomodoro se razvija kao sporedni projekt bez naknade.",
+        {
           "base": "Ako smatraš da je ovaj projekt vrijedan podrške, {0}.",
           "action": "podrži ga"
         }
-      },
+      ],
       "credits": "Izrađen sa ❤. Autor: Imre Gera"
     }
   },
@@ -139,7 +139,7 @@
       },
       "timerstyle": {
         "title": "Prikaz timera",
-        "description": "AnotherPomodoro podržava tri stila timera, od preciznosti u sekundama do prikaza postotka."
+        "description": "AnotherPomodoro podržava tri stila timera, od točnosti u sekundama do prikaza postotka."
       },
       "permissions": {
         "title": "Dozvole",
@@ -172,7 +172,7 @@
     },
     "theme": {
       "_values": {
-        "light": "Standardna",
+        "light": "Standardne",
         "dark": "Tamna"
       },
       "_valueDescription": {
@@ -193,6 +193,12 @@
     "stop": "Resetiraj timer",
     "advance": "Idi na sljedeći odjeljak"
   },
+  "timer": {
+    "approximate": {
+      "hours": "sat | sata | sati",
+      "minutes": "minuta | minute | minuta"
+    }
+  },
   "settings": {
     "heading": "Postavke",
     "tabs": {
@@ -210,6 +216,14 @@
       "title": "Resetiraj postavke",
       "confirm": "Resetiraj",
       "cancel": "Odustani"
+    },
+    "manage": {
+      "heading": "Upravljaj postavkama",
+      "description": "Preuzmi trenutačne postavke ili učitaj postavke iz datoteke",
+      "buttons": {
+        "save": "Spremi",
+        "load": "Učitaj"
+      }
     },
     "scheduleMinTime": "Najkraće dozvoljeno vrijeme je 5 sekundi",
     "about": {
@@ -270,7 +284,7 @@
           "_title": "Unaprijed postavljen raspored",
           "_description": "",
           "_values": {
-            "default": "Standardni",
+            "default": "Standardne",
             "debug": "Otklanjanja grešaka",
             "custom": "Prilagođeni"
           },
@@ -354,7 +368,7 @@
       "visuals": {
         "darkMode": {
           "_title": "Aktiviraj tamni modus",
-          "_description": "Tamniji izgled, jednaka produktivnost"
+          "_description": "Tamnija, jednaka produktivnost"
         }
       },
       "reset": {
@@ -394,7 +408,8 @@
   "tasks": {
     "title": "Zadaci",
     "empty": "Još nema zadataka",
-    "manage": "Upravljaj"
+    "manage": "Upravljaj",
+    "addPlaceholder": "Upiši nešto što trebaš učiniti"
   },
   "ready": "Gotovo",
   "errorpage": {
@@ -422,7 +437,7 @@
   },
   "timerpreset": {
     "_values": {
-      "default": "Standardni",
+      "default": "Standardne",
       "easy": "Početnički",
       "advanced": "Napredni",
       "workaholic": "Radoholičarski"
@@ -434,5 +449,37 @@
       "workaholic": "Za duge radne sesije."
     },
     "description": "{brief} \n {worklength} min rada s {splength} min kratkih {lplength} min dugih pauza nakon svakih {lpfreq} radnih sesija."
+  },
+  "tutorials": {
+    "onboarding": {
+      "pages": {
+        "0": {
+          "title": "Dobro došao, dobro došla u AnotherPomodoro!",
+          "text": "Pogledaj kako učinkovito koristiti program."
+        },
+        "1": {
+          "title": "Prati sat",
+          "text": "Radi ili pauziraj sve dok timer ne istekne. Zatim nastavi sa sljedećim timerom."
+        },
+        "2": {
+          "title": "Redovito se odmaraj",
+          "text": "Svakih nekoliko pauza dobivaš više vremena za odmor. Iskoristi ga dobro."
+        },
+        "3": {
+          "title": "Ostani fleksibilan/na",
+          "text": "Postavi vlastite timere, koristi popis zadataka i obavijesti u svoju korist. Pogledaj daljnje mogućnosti u izborniku postavki!"
+        },
+        "support": {
+          "title": "Podrži projekt",
+          "text": "Ako ti je ovaj projekt pomogao, plati autoru kavu. Gumb za podršku također možeš pronaći u izborniku postavki."
+        }
+      },
+      "buttons": {
+        "close": "Zatvori",
+        "start": "Pokreni vježbu",
+        "next": "Dalje",
+        "support": "Podrži projekt"
+      }
+    }
   }
 }
