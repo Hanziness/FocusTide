@@ -42,9 +42,16 @@
         <Button v-else-if="page < 4" class="flex-grow w-full" default :importance="1" @click="page += 1">
           {{ $i18n.t('tutorials.onboarding.buttons.next') }}
         </Button>
-        <a v-else-if="page === 4" href="https://www.buymeacoffee.com/imreg?utm_source=anotherpomodoro&utm_medium=cta&utm_campaign=onboarding" target="_blank" class="flex-grow w-full py-2 text-center text-black transition border-2 rounded-full border-amber-400 bg-amber-400 hover:scale-105 hover:shadow-md hover:shadow-amber-200">
+        <Button
+          v-else-if="page === 4"
+          link
+          href="https://www.buymeacoffee.com/imreg?utm_source=anotherpomodoro&utm_medium=cta&utm_campaign=onboarding"
+          target="_blank"
+          :importance="1"
+          class="flex-grow w-full border-amber-400 bg-amber-400"
+        >
           {{ $i18n.t('tutorials.onboarding.buttons.support') }}
-        </a>
+        </Button>
       </div>
     </div>
   </popup-sheet>

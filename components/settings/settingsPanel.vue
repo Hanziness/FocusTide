@@ -116,27 +116,48 @@
                 <div class="flex flex-col items-center justify-center mt-8">
                   <!-- Support links -->
                   <div class="flex flex-row mt-3 space-x-2 text-center">
-                    <a href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="flex flex-row items-center px-4 py-2 space-x-1 text-white transition-colors bg-black rounded-full hover:bg-gray-700 active:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:active:bg-gray-800">
+                    <Button :importance="1" dark link href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="flex flex-row items-center gap-1 bg-slate-900">
                       <AboutGithub />
                       <span v-text="$i18n.t('settings.about.source')" />
-                    </a>
-                    <a href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="flex flex-row items-center px-4 py-2 space-x-1 text-black transition-colors bg-yellow-300 rounded-full hover:bg-yellow-200 active:bg-yellow-400">
+                    </Button>
+                    <Button :importance="1" link href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="flex flex-row items-center gap-1 bg-yellow-300">
                       <AboutSupport />
                       <span v-text="$i18n.t('settings.about.support')" />
-                    </a>
+                    </Button>
                   </div>
                   <!-- Share links -->
                   <div class="my-2" v-text="$i18n.t('settings.about.share')" />
                   <div class="flex flex-row items-center space-x-2 text-sm">
-                    <a href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="rounded-full w-12 h-12 bg-[#1da1f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+                    <Button
+                      link
+                      circle
+                      dark
+                      :importance="1"
+                      href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
+                      class="bg-[#1da1f2] !p-4"
+                    >
                       <AboutTwitter :aria-label="$i18n.t('index.alt.links.share.twitter')" size="24" />
-                    </a>
-                    <a href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#1877f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+                    </Button>
+                    <Button
+                      link
+                      circle
+                      dark
+                      :importance="1"
+                      href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app"
+                      class="bg-[#1877f2] !p-4"
+                    >
                       <AboutFacebook :aria-label="$i18n.t('index.alt.links.share.facebook')" size="24" class="translate-x-[-1px]" />
-                    </a>
-                    <a href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#ff4500] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+                    </Button>
+                    <Button
+                      link
+                      circle
+                      dark
+                      :importance="1"
+                      href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app"
+                      class="bg-[#ff4500] !p-4"
+                    >
                       <AboutReddit :aria-label="$i18n.t('index.alt.links.share.reddit')" size="24" />
-                    </a>
+                    </Button>
                   </div>
                 </div>
               </div>
