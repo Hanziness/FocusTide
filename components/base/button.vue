@@ -1,11 +1,14 @@
 <template functional>
-  <button
+  <Component
+    :is="props.link ? 'a' : 'button'"
     :ref="data.ref"
-    class="relative p-2 overflow-hidden transition duration-300 rounded-full before:transition before:absolute before:opacity-0 before:bg-black before:w-full before:h-full before:left-0 before:top-0 before:mix-blend-overlay"
+    class="relative p-2 overflow-hidden transition duration-300 rounded-full before:transition before:absolute before:opacity-0 before:w-full before:h-full before:left-0 before:top-0 before:mix-blend-overlay"
     :class="[
       { 'px-3': !props.circle },
       { 'opacity-60 pointer-events-none': props.disabled },
       { 'bg-theme border-theme ring-theme shadow-theme': props.default },
+      { 'text-center': props.link },
+      { 'before:bg-black text-black': !props.dark, 'before:bg-slate-50 text-slate-50': props.dark },
       { 'bg-opacity-100 hover:shadow-md hover:before:opacity-10 active:before:opacity-30': props.importance === 1 },
       { 'border-2 bg-opacity-0 hover:bg-theme active:before:opacity-20 active:shadow-sm': props.importance === 2 },
       { 'bg-opacity-0 hover:bg-opacity-30 active:bg-opacity-60 focus:ring': props.importance === 3 },
@@ -21,7 +24,7 @@
     <slot>
       {{ (data.domProps && data.domProps.textContent) ? data.domProps.textContent : null }}
     </slot>
-  </button>
+  </Component>
 </template>
 
 <script>
@@ -33,8 +36,20 @@ export default {
       type: Boolean
     },
 
+    /** If true, the component is rendered as an anchor (`<a>`) instead of a `<button>` */
+    link: {
+      default: false,
+      type: Boolean
+    },
+
     /** Apply default colour scheme to the button */
     default: {
+      default: false,
+      type: Boolean
+    },
+
+    /** Indicates that the button is dark. Classes will be adjusted to it. */
+    dark: {
       default: false,
       type: Boolean
     },
