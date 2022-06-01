@@ -3,9 +3,17 @@
     <div class="flex flex-col h-full overflow-hidden bg-white rounded-none shadow-lg md:rounded-lg dark:bg-gray-900 dark:text-gray-50">
       <h1 class="px-4 mt-4 mb-2 text-xl font-bold uppercase">
         <span>{{ $i18n.t('settings.heading') }}</span>
-        <UiButton :aria-label="$i18n.t('settings.buttons.close')" subtle class="float-right -mt-2 -mr-2" tabindex="0" @click="processedValue = false">
+        <Button
+          :aria-label="$i18n.t('settings.buttons.close')"
+          default
+          circle
+          :importance="3"
+          class="float-right -mt-2 -mr-2"
+          tabindex="0"
+          @click="processedValue = false"
+        >
           <CloseIcon :aria-label="$i18n.t('settings.buttons.close')" />
-        </UiButton>
+        </Button>
       </h1>
       <div class="flex-grow px-4 py-2 overflow-y-auto">
         <div class="w-full">
@@ -182,7 +190,7 @@ export default {
   name: 'SettingsPanel',
   components: {
     // UiOverlay: () => import('@/components/base/overlay.vue'),
-    UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/base/button.vue'),
+    Button: () => import(/* webpackChunkName: "uibase" */ '@/components/base/button.vue'),
     SettingsCheck: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsCheck.vue'),
     SettingsText: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsText.vue'),
     SettingsTime: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsTime.vue'),
