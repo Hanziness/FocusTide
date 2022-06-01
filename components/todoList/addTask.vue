@@ -1,11 +1,11 @@
 <template>
-  <div class="rounded-xl dark:bg-gray-700 focus-within:bg-white dark:focus-within:bg-gray-600 focus-within:shadow-lg focus-within:duration-200 flex flex-row items-center py-4 pl-4 pr-2 space-x-2 transition-all duration-500 bg-gray-100 shadow-sm" :style="{ '--theme': currentScheduleColour }">
+  <div class="flex flex-row items-center py-4 pl-4 pr-2 space-x-2 transition-all duration-500 bg-gray-100 shadow-sm rounded-xl dark:bg-gray-700 focus-within:bg-white dark:focus-within:bg-gray-600 focus-within:shadow-lg focus-within:duration-200" :style="{ '--theme': currentScheduleColour }">
     <input
       ref="addtask_input"
       :value="taskTitle"
       type="text"
       required
-      class="dark:bg-transparent focus:ring-transparent focus:ring-offset-0 dark:focus:bg-transparent peer flex-grow block min-w-0 p-0 bg-transparent border-none"
+      class="flex-grow block min-w-0 p-0 bg-transparent border-none dark:bg-transparent focus:ring-transparent focus:ring-offset-0 dark:focus:bg-transparent peer"
       :placeholder="$i18n.t('tasks.addPlaceholder')"
       @input="e => taskTitle = e.target.value"
       @keyup="checkEnter"
@@ -73,7 +73,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .bg-theme {
   background-color: var(--theme);
 }
