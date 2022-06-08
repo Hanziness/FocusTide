@@ -24,7 +24,7 @@
     },
     "features": {
       "0": {
-        "title": "Interface ciblée et propre",
+        "title": "Interface simple et propre",
         "description": "Juste votre minuterie, les commandes essentielles et un tas de personnalisations"
       },
       "1": {
@@ -258,7 +258,7 @@
       "adaptiveTicking": {
         "enabled": {
           "_title": "Activer le ticking adaptatif",
-          "_description": "La minuterie tickera moins souvent en arrière-plan"
+          "_description": "Le minuteur se met à jour moins souvent lorsqu'il est en arrière-plan."
         }
       },
       "schedule": {
@@ -267,17 +267,17 @@
           "_description": ""
         },
         "numScheduleEntries": {
-          "_title": "Nombre d'entrées future à afficher",
+          "_title": "Nombre de périodes future à afficher",
           "_description": ""
         },
         "visibility": {
           "enabled": {
-            "_title": "Afficher les cycles futures",
-            "_description": ""
+            "_title": "Afficher les périodes futures",
+            "_description": "Afficher une ligne du temps avec les périodes de travail et pauses"
           },
           "showSectionType": {
-            "_title": "Afficher le type de  section actuel",
-            "_description": "Affiche le type de section actuel sous la prévision de cycle"
+            "_title": "Afficher le type de période actuel",
+            "_description": "Affiche le type de période actuel sous la lige du temps"
           }
         },
         "lengths": {
