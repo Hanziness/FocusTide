@@ -10,20 +10,27 @@
       @input="e => taskTitle = e.target.value"
       @keyup="checkEnter"
     >
-    <button :class="['rounded-lg bg-theme bg-opacity-80 hover:bg-opacity-100 text-white px-3 py-2 -my-3 transition-all', { 'bg-gray-200 opacity-60 dark:opacity-30 pointer-events-none': !valid }]" @click="addTask">
-      <CornerDownLeftIcon size="24" />
-    </button>
+    <Button
+      :importance="3"
+      circle
+      class="-my-2 sectiontheme dark:!text-white hover:before:opacity-30 active:before:opacity-80"
+      :disabled="!valid"
+      @click="addTask"
+    >
+      <CornerDownLeftIcon :stroke-width="2" class="relative" size="24" />
+    </Button>
   </div>
 </template>
 
 <script>
 import { CornerDownLeftIcon } from 'vue-tabler-icons'
 import { mapActions, mapState } from 'pinia'
+import Button from '@/components/base/button.vue'
 import { taskState, useTasklist } from '@/stores/tasklist.js'
 import { useSchedule } from '~/stores/schedule'
 
 export default {
-  components: { CornerDownLeftIcon },
+  components: { Button, CornerDownLeftIcon },
 
   data () {
     return {
@@ -74,7 +81,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.bg-theme {
+.sectiontheme::before {
   background-color: var(--theme);
+}
+
+.sectiontheme {
+  --tw-ring-color: var(--theme);
+}
+
+.sectiontheme-text:not(:active) {
+  color: var(--theme);
 }
 </style>
