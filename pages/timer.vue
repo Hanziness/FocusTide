@@ -27,14 +27,16 @@
                 <ScheduleDisplay v-show="settingsStore.schedule.visibility.enabled" class="px-0" />
                 <!-- Settings button -->
                 <div class="flex items-center flex-column">
-                  <button
+                  <Button
+                    circle
+                    default
+                    :importance="3"
                     :aria-label="$i18n.t('settings.heading')"
-                    class="p-3 text-gray-200 transition rounded-full hover:bg-slate-200 hover:bg-opacity-30 active:bg-opacity-50"
-                    :class="{ 'pointer-events-none': preview }"
+                    class="text-gray-200"
                     @click="showSettings = true"
                   >
                     <CogIcon :aria-label="$i18n.t('settings.heading')" />
-                  </button>
+                  </Button>
                 </div>
               </div>
               <div v-if="settingsStore.schedule.visibility.enabled && settingsStore.schedule.visibility.showSectionType" class="py-2 text-center bg-gray-700 select-none text-gray-50">
@@ -90,6 +92,7 @@ import { useSchedule } from '~/stores/schedule'
 import { useSettings } from '~/stores/settings'
 import { useEvents } from '@/stores/events'
 import TutorialView from '@/components/tutorial/_tutorialView.vue'
+import Button from '@/components/base/button.vue'
 
 // Static imports:
 
@@ -107,7 +110,8 @@ export default {
     TodoList: () => import(/* webpackChunkName: "todo" */ '@/components/todoList/main.vue'),
     CogIcon: SettingsIcon,
     ListCheckIcon,
-    TutorialView
+    TutorialView,
+    Button
   },
 
   layout: 'timer',
