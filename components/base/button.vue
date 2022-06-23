@@ -22,9 +22,11 @@
     :disabled="props.disabled"
     v-on="listeners"
   >
-    <slot>
-      {{ (data.domProps && data.domProps.textContent) ? data.domProps.textContent : null }}
-    </slot>
+    <div class="relative">
+      <slot>
+        {{ (data.domProps && data.domProps.textContent) ? data.domProps.textContent : null }}
+      </slot>
+    </div>
   </Component>
 </template>
 
