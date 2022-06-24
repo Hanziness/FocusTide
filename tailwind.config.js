@@ -29,5 +29,10 @@ module.exports = {
   plugins: [
     // require('@tailwindcss/typography')
     require('@tailwindcss/forms')
-  ]
+  ],
+  future: {
+    // TODO only in Tailwind 3.1
+    // only apply hover classes when @media hover:hover and pointer:fine
+    hoverOnlyWhenSupported: true
+  }
 }
