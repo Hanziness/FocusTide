@@ -32,8 +32,9 @@
           { 'group-active:scale-110': props.extendedBaseStyles && props.circle },
           { 'before:bg-black dark:before:bg-slate-50': !props.dark, 'before:bg-slate-50': props.dark },
           { 'bg-opacity-100 group-hover:shadow-sm group-hover:before:opacity-10 group-active:before:opacity-25 group-active:shadow-lg': props.importance === 1 },
-          { 'border-2 bg-opacity-0 group-hover:bg-opacity-100 group-active:bg-opacity-100 group-active:shadow-sm group-active:before:opacity-10': props.importance === 2 },
-          { 'bg-opacity-0 group-hover:bg-opacity-30 group-active:bg-opacity-40 group-focus:ring': props.importance === 3 }
+          { 'border-2 bg-opacity-0 dark:bg-opacity-0 group-hover:bg-opacity-100 group-active:bg-opacity-100 group-active:shadow-sm group-active:before:opacity-10': props.importance === 2 },
+          { 'bg-opacity-0 dark:bg-opacity-0 group-hover:bg-opacity-30 group-active:bg-opacity-40 group-focus:ring': props.importance === 3 },
+          props.bgClass
         ]"
       />
 
@@ -42,6 +43,7 @@
         class="relative p-3"
         :class="[
           { 'px-4': !props.circle },
+          props.innerClass,
         ]"
       >
         <slot>
@@ -59,6 +61,18 @@ export default {
     disabled: {
       default: false,
       type: Boolean
+    },
+
+    /** Classes to be applied to the background of the button */
+    bgClass: {
+      default: '',
+      type: String
+    },
+
+    /** Classes to apply to the inner element (contents) */
+    innerClass: {
+      default: '',
+      type: String
     },
 
     /** If true, the component is rendered as an anchor (`<a>`) instead of a `<button>` */
