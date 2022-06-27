@@ -13,7 +13,8 @@
     <Button
       :importance="3"
       circle
-      class="-my-2 sectiontheme dark:!text-white hover:before:opacity-30 active:before:opacity-80"
+      class="-my-2 dark:!text-white"
+      bg-class="bg-opacity-0 sectiontheme dark:bg-slate-50 bg-slate-900"
       :disabled="!valid"
       @click="addTask"
     >
@@ -91,5 +92,9 @@ export default {
 
 .sectiontheme-text:not(:active) {
   color: var(--theme);
+}
+
+.bordertheme {
+  border-color: var(--theme);
 }
 </style>
