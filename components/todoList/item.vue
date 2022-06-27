@@ -34,7 +34,15 @@
 
     <div class="flex flex-row items-center flex-shrink-0 gap-4 md:gap-3">
       <transition name="slidein">
-        <Button v-show="manage" circle :importance="3" class="p-3 -m-3 md:p-2 md:-m-2 themed-ring" @click="$emit('delete')">
+        <Button
+          v-show="manage"
+          circle
+          :importance="3"
+          class="-m-3 md:-m-2"
+          inner-class="p-3 md:p-2"
+          bg-class="themed-ring"
+          @click="$emit('delete')"
+        >
           <IconDelete size="18" />
         </Button>
       </transition>
