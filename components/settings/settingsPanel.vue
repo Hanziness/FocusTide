@@ -115,12 +115,25 @@
                 <div v-text="$i18n.t('settings.about.madeby')" />
                 <div class="flex flex-col items-center justify-center mt-8">
                   <!-- Support links -->
-                  <div class="flex flex-row mt-3 space-x-2 text-center">
-                    <Button :importance="1" dark link href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="flex flex-row items-center gap-1 bg-slate-900">
+                  <div class="flex flex-row flex-wrap justify-center gap-2 mt-3 text-center">
+                    <Button
+                      :importance="1"
+                      dark
+                      link
+                      href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
+                      inner-class="flex flex-row items-center gap-1 text-slate-50"
+                      bg-class="bg-slate-900"
+                    >
                       <AboutGithub />
                       <span v-text="$i18n.t('settings.about.source')" />
                     </Button>
-                    <Button :importance="1" link href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="flex flex-row items-center gap-1 bg-yellow-300">
+                    <Button
+                      :importance="1"
+                      link
+                      href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
+                      inner-class="flex flex-row items-center gap-1"
+                      bg-class="bg-yellow-300"
+                    >
                       <AboutSupport />
                       <span v-text="$i18n.t('settings.about.support')" />
                     </Button>
@@ -134,7 +147,8 @@
                       dark
                       :importance="1"
                       href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
-                      class="bg-[#1da1f2] !p-4"
+                      bg-class="bg-[#1da1f2]"
+                      inner-class="!p-4 text-slate-50"
                     >
                       <AboutTwitter :aria-label="$i18n.t('index.alt.links.share.twitter')" size="24" />
                     </Button>
@@ -144,7 +158,8 @@
                       dark
                       :importance="1"
                       href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app"
-                      class="bg-[#1877f2] !p-4"
+                      bg-class="bg-[#1877f2]"
+                      inner-class="!p-4 text-slate-50"
                     >
                       <AboutFacebook :aria-label="$i18n.t('index.alt.links.share.facebook')" size="24" class="translate-x-[-1px]" />
                     </Button>
@@ -154,7 +169,8 @@
                       dark
                       :importance="1"
                       href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app"
-                      class="bg-[#ff4500] !p-4"
+                      bg-class="bg-[#ff4500]"
+                      inner-class="!p-4 text-slate-50"
                     >
                       <AboutReddit :aria-label="$i18n.t('index.alt.links.share.reddit')" size="24" />
                     </Button>
