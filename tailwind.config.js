@@ -21,12 +21,18 @@ module.exports = {
         'primary-font': colors.black,
         work: '#FF6B6B',
         shortpause: '#F4A261',
-        longpause: '#2EC4B6'
+        longpause: '#2EC4B6',
+        theme: '#F87171'
       }
     }
   },
   plugins: [
     // require('@tailwindcss/typography')
     require('@tailwindcss/forms')
-  ]
+  ],
+  future: {
+    // TODO only in Tailwind 3.1
+    // only apply hover classes when @media hover:hover and pointer:fine
+    hoverOnlyWhenSupported: true
+  }
 }

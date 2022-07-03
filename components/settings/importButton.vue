@@ -1,11 +1,12 @@
 <template>
-  <button class="px-6 py-3 transition border-2 border-red-400 rounded-full select-none dark:shadow-none hover:bg-red-400 active:bg-red-500 active:border-red-500 active:shadow-red-200 active:shadow-md" @click="openFileDialog">
+  <Button default :importance="2" @click="openFileDialog">
     <input ref="fileinput" accept=".json" type="file" hidden @change="importFile">
     <span v-text="$i18n.t('settings.manage.buttons.load')" />
-  </button>
+  </Button>
 </template>
 
 <script>
+import Button from '@/components/base/button.vue'
 import { useSettings } from '~/stores/settings'
 import { useTasklist } from '~/stores/tasklist'
 
@@ -18,6 +19,8 @@ function filterImportedObject (store, objectToImport) {
 }
 
 export default {
+  components: { Button },
+
   methods: {
     openFileDialog () {
       this.$refs.fileinput.click()

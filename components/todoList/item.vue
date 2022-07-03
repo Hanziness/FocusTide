@@ -1,6 +1,6 @@
 <template>
   <div
-    class="hover:shadow-sm themed-border md:py-2 relative flex flex-row items-center px-2 py-3 transition-all duration-200 border-l-8 rounded-md"
+    class="relative flex flex-row items-center px-2 py-3 transition-all duration-200 border-l-8 rounded-md hover:shadow-sm themed-border md:py-2"
     :class="[{ 'opacity-50 line-through italic': item.state === 2, 'cursor-move': showReorder, 'ring themed-ring': dragged || droptarget, 'themed-bg !text-white': manage && editing }, manage && editing ? 'themed-bg' : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200']"
     :style="{ '--theme': visuals[item.section].colour }"
     draggable
@@ -17,7 +17,7 @@
         <IconMenu v-else size="16" />
       </span>
     </div>
-    <div class="mr-7 flex flex-col flex-grow w-full min-w-0 py-2 -my-2 transition-all duration-75 select-none" :class="[showReorder ? 'translate-x-6' : 'translate-x-0']" @click="editing = true">
+    <div class="flex flex-col flex-grow w-full min-w-0 py-2 -my-2 transition-all duration-75 select-none mr-7" :class="[showReorder ? 'translate-x-6' : 'translate-x-0']" @click="editing = true">
       <input
         v-if="manage && editing"
         ref="editbox"
@@ -32,13 +32,21 @@
 
     <span class="flex-grow" />
 
-    <div class="md:gap-3 flex flex-row items-center flex-shrink-0 gap-4">
+    <div class="flex flex-row items-center flex-shrink-0 gap-4 md:gap-3">
       <transition name="slidein">
-        <button v-show="manage" class="hover:bg-slate-900 dark:hover:bg-slate-100 hover:bg-opacity-10 dark:hover:bg-opacity-20 md:p-2 md:-m-2 p-3 -m-3 transition-all duration-100 rounded-full" @click="$emit('delete')">
+        <Button
+          v-show="manage"
+          circle
+          :importance="3"
+          class="-m-3 md:-m-2"
+          inner-class="p-3 md:p-2"
+          bg-class="themed-ring"
+          @click="$emit('delete')"
+        >
           <IconDelete size="18" />
-        </button>
+        </Button>
       </transition>
-      <input :checked="checked" type="checkbox" class="themed-checkbox md:w-5 md:h-5 w-6 h-6 mr-1 rounded" @input="checked = !checked">
+      <input :checked="checked" type="checkbox" class="w-6 h-6 mr-1 rounded themed-checkbox md:w-5 md:h-5" @input="checked = !checked">
     </div>
   </div>
 </template>
@@ -48,9 +56,10 @@ import { MenuIcon, TrashIcon, PencilIcon } from 'vue-tabler-icons'
 import { mapState } from 'pinia'
 import { taskState, useTasklist } from '@/stores/tasklist'
 import { useSettings } from '~/stores/settings'
+import Button from '~/components/base/button.vue'
 
 export default {
-  components: { IconMenu: MenuIcon, IconDelete: TrashIcon, IconEditing: PencilIcon },
+  components: { IconMenu: MenuIcon, IconDelete: TrashIcon, IconEditing: PencilIcon, Button },
   props: {
     item: {
       type: Object,

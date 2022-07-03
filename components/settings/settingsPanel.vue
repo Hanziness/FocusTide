@@ -3,9 +3,17 @@
     <div class="flex flex-col h-full overflow-hidden bg-white rounded-none shadow-lg md:rounded-lg dark:bg-gray-900 dark:text-gray-50">
       <h1 class="px-4 mt-4 mb-2 text-xl font-bold uppercase">
         <span>{{ $i18n.t('settings.heading') }}</span>
-        <UiButton :aria-label="$i18n.t('settings.buttons.close')" subtle class="float-right -mt-2 -mr-2" tabindex="0" @click="processedValue = false">
+        <Button
+          :aria-label="$i18n.t('settings.buttons.close')"
+          default
+          circle
+          :importance="3"
+          class="float-right -mt-2 -mr-2"
+          tabindex="0"
+          @click="processedValue = false"
+        >
           <CloseIcon :aria-label="$i18n.t('settings.buttons.close')" />
-        </UiButton>
+        </Button>
       </h1>
       <div class="flex-grow px-4 py-2 overflow-y-auto">
         <div class="w-full">
@@ -107,28 +115,65 @@
                 <div v-text="$i18n.t('settings.about.madeby')" />
                 <div class="flex flex-col items-center justify-center mt-8">
                   <!-- Support links -->
-                  <div class="flex flex-row mt-3 space-x-2 text-center">
-                    <a href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="flex flex-row items-center px-4 py-2 space-x-1 text-white transition-colors bg-black rounded-full hover:bg-gray-700 active:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:active:bg-gray-800">
+                  <div class="flex flex-row flex-wrap justify-center gap-2 mt-3 text-center">
+                    <Button
+                      :importance="1"
+                      dark
+                      link
+                      href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
+                      inner-class="flex flex-row items-center gap-1 text-slate-50 text-gray-50"
+                      bg-class="bg-slate-900 dark:bg-slate-700"
+                    >
                       <AboutGithub />
                       <span v-text="$i18n.t('settings.about.source')" />
-                    </a>
-                    <a href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="flex flex-row items-center px-4 py-2 space-x-1 text-black transition-colors bg-yellow-300 rounded-full hover:bg-yellow-200 active:bg-yellow-400">
+                    </Button>
+                    <Button
+                      :importance="1"
+                      link
+                      href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
+                      inner-class="flex flex-row items-center gap-1 text-black"
+                      bg-class="bg-yellow-300"
+                    >
                       <AboutSupport />
                       <span v-text="$i18n.t('settings.about.support')" />
-                    </a>
+                    </Button>
                   </div>
                   <!-- Share links -->
                   <div class="my-2" v-text="$i18n.t('settings.about.share')" />
                   <div class="flex flex-row items-center space-x-2 text-sm">
-                    <a href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="rounded-full w-12 h-12 bg-[#1da1f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+                    <Button
+                      link
+                      circle
+                      dark
+                      :importance="1"
+                      href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
+                      bg-class="bg-[#1da1f2]"
+                      inner-class="!p-4 text-slate-50"
+                    >
                       <AboutTwitter :aria-label="$i18n.t('index.alt.links.share.twitter')" size="24" />
-                    </a>
-                    <a href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#1877f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+                    </Button>
+                    <Button
+                      link
+                      circle
+                      dark
+                      :importance="1"
+                      href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app"
+                      bg-class="bg-[#1877f2]"
+                      inner-class="!p-4 text-slate-50"
+                    >
                       <AboutFacebook :aria-label="$i18n.t('index.alt.links.share.facebook')" size="24" class="translate-x-[-1px]" />
-                    </a>
-                    <a href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#ff4500] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
+                    </Button>
+                    <Button
+                      link
+                      circle
+                      dark
+                      :importance="1"
+                      href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app"
+                      bg-class="bg-[#ff4500]"
+                      inner-class="!p-4 text-slate-50"
+                    >
                       <AboutReddit :aria-label="$i18n.t('index.alt.links.share.reddit')" size="24" />
-                    </a>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -182,7 +227,7 @@ export default {
   name: 'SettingsPanel',
   components: {
     // UiOverlay: () => import('@/components/base/overlay.vue'),
-    UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/base/button.vue'),
+    Button: () => import(/* webpackChunkName: "uibase" */ '@/components/base/button.vue'),
     SettingsCheck: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsCheck.vue'),
     SettingsText: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsText.vue'),
     SettingsTime: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsTime.vue'),
