@@ -16,7 +16,7 @@
           </slot>
         </div>
       </div>
-      <div class="w-24 text-right">
+      <div class="w-24 text-right flex flex-row justify-end ml-1">
         <!-- v-if="!!$slots['content-action']"  -->
         <slot name="content-action" :settings-value="settingsValue" :error-value="errorValue" />
       </div>
