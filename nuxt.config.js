@@ -216,7 +216,8 @@ export default defineNuxtConfig({
     locales: [
       { code: 'en', name: 'English', iso: 'en-US', file: 'en.json' },
       { code: 'hu', name: 'Magyar', iso: 'hu-HU', file: 'hu.json' },
-      { code: 'hr', name: 'Hrvatski', iso: 'hr-HR', file: 'hr.json' }
+      { code: 'hr', name: 'Hrvatski', iso: 'hr-HR', file: 'hr.json' },
+      { code: 'fr', name: 'Français', iso: 'fr-FR', file: 'fr.json' }
     ],
     defaultLocale: 'en',
     lazy: true,
