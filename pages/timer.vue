@@ -72,7 +72,7 @@
             <TimerControls :class="[{ 'pointer-events-none': preview }]" :can-use-keyboard="!preview && !showSettings" />
 
             <Button
-              v-show="settingsStore.tasks.enabled"
+              v-if="settingsStore.tasks.enabled"
               circle
               :importance="1"
               class="right-5 sm:absolute transition"
