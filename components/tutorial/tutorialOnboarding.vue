@@ -48,7 +48,8 @@
           href="https://www.buymeacoffee.com/imreg?utm_source=anotherpomodoro&utm_medium=cta&utm_campaign=onboarding"
           target="_blank"
           :importance="1"
-          class="flex-grow w-full border-amber-400 bg-amber-400"
+          class="flex-grow w-full"
+          bg-class="bg-amber-300 border-amber-300"
         >
           {{ $i18n.t('tutorials.onboarding.buttons.support') }}
         </Button>
