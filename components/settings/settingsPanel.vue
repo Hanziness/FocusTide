@@ -121,8 +121,8 @@
                       dark
                       link
                       href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
-                      inner-class="flex flex-row items-center gap-1 text-slate-50"
-                      bg-class="bg-slate-900"
+                      inner-class="flex flex-row items-center gap-1 text-slate-50 text-gray-50"
+                      bg-class="bg-slate-900 dark:bg-slate-700"
                     >
                       <AboutGithub />
                       <span v-text="$i18n.t('settings.about.source')" />
@@ -131,7 +131,7 @@
                       :importance="1"
                       link
                       href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
-                      inner-class="flex flex-row items-center gap-1"
+                      inner-class="flex flex-row items-center gap-1 text-black"
                       bg-class="bg-yellow-300"
                     >
                       <AboutSupport />
