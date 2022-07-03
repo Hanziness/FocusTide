@@ -34,16 +34,16 @@
       <div class="flex-grow h-4" />
       <div class="flex flex-col gap-2 mt-4 md:flex-row">
         <button class="flex-grow w-full py-2 transition border-2 rounded-full text-work border-work hover:bg-work hover:text-white" @click="$emit('close')">
-          Close
+          {{ $i18n.t('tutorials.onboarding.buttons.close') }}
         </button>
         <button v-if="page === 0" class="flex-grow w-full py-2 text-white transition border-2 rounded-full border-work bg-work hover:scale-105 hover:shadow-md hover:shadow-red-200" @click="page = 1">
-          Start tutorial
+          {{ $i18n.t('tutorials.onboarding.buttons.start') }}
         </button>
         <button v-else-if="page < 4" class="flex-grow w-full py-2 text-white transition border-2 rounded-full border-work bg-work hover:shadow-md hover:shadow-red-200 hover:scale-105" @click="page += 1">
-          Next
+          {{ $i18n.t('tutorials.onboarding.buttons.next') }}
         </button>
         <a v-else-if="page === 4" href="https://www.buymeacoffee.com/imreg?utm_source=anotherpomodoro&utm_medium=cta&utm_campaign=onboarding" target="_blank" class="flex-grow w-full py-2 text-center text-black transition border-2 rounded-full border-amber-400 bg-amber-400 hover:scale-105 hover:shadow-md hover:shadow-amber-200">
-          Support the project
+          {{ $i18n.t('tutorials.onboarding.buttons.support') }}
         </a>
       </div>
     </div>
