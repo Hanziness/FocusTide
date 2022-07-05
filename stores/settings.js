@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { EventType, useEvents } from './events'
 import TickMultipliers from '@/assets/settings/adaptiveTickingMultipliers'
 import timerPresets from '@/assets/settings/timerPresets'
 
@@ -121,6 +122,7 @@ export const useSettings = defineStore('settings', {
     // mutations
     registerNewHidden (newHidden = document.hidden) {
       this.adaptiveTicking.registeredHidden = newHidden
+      useEvents().recordEvent(newHidden === true ? EventType.FOCUS_LOST : EventType.FOCUS_GAIN)
     },
 
     applyPreset (id) {

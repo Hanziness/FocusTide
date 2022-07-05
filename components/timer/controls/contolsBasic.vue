@@ -64,6 +64,7 @@ import KeyboardListener from '@/assets/mixins/keyboardListener'
 
 import { TimerState, useSchedule } from '@/stores/schedule'
 import { useSettings } from '~/stores/settings'
+import { EventType, useEvents } from '~/stores/events'
 
 export default {
   components: {
@@ -78,7 +79,7 @@ export default {
   mixins: [KeyboardListener],
 
   computed: {
-    ...mapStores(useSettings, useSchedule),
+    ...mapStores(useSettings, useSchedule, useEvents),
 
     progressPercentage () {
       return this.scheduleStore.getCurrentItem.timeElapsed / this.scheduleStore.getCurrentItem.length
@@ -132,6 +133,7 @@ export default {
     advance () {
       this.scheduleStore.advance()
       this.scheduleStore.timerState = TimerState.STOPPED
+      this.eventsStore.recordEvent(EventType.SCHEDULE_ADVANCE_MANUAL, { next: this.scheduleStore.getSchedule[0].type })
     }
   }
 }

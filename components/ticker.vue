@@ -4,6 +4,7 @@ import { mapStores, mapState, mapWritableState } from 'pinia'
 import { TimerState, useSchedule } from '@/stores/schedule'
 import { useSettings } from '~/stores/settings'
 import { useTasklist } from '~/stores/tasklist'
+import { useEvents, EventType } from '~/stores/events'
 
 export default {
   data () {
@@ -27,6 +28,8 @@ export default {
     }),
 
     ...mapWritableState(useSchedule, ['timerState']),
+
+    ...mapStores(useEvents),
 
     timeElapsed: {
       get () {
@@ -161,6 +164,7 @@ export default {
       if (nextState === TimerState.RUNNING && isTimerJustFinished) {
         // timer completed, notify participants
         this.$emit('complete')
+        this.eventsStore.recordEvent(EventType.TIMER_FINISH)
       }
 
       this.$emit('tick', this.timeElapsed)
@@ -168,6 +172,7 @@ export default {
 
     /** Starts or resumes the timer */
     startTimer () {
+      this.eventsStore.recordEvent(EventType.TIMER_START)
       this.scheduleStore.lockInfo({
         length: this.timeOriginal,
         type: this.scheduleStore.getCurrentItem.type
@@ -178,6 +183,8 @@ export default {
     pauseOrStopTimer (stop = false) {
       this.clearTickHandle()
       this.timerTick({ nextState: stop ? TimerState.STOPPED : TimerState.PAUSED })
+
+      this.eventsStore.recordEvent(stop ? EventType.TIMER_STOP : EventType.TIMER_PAUSE)
 
       if (stop) {
         this.scheduleStore.lockInfo({
