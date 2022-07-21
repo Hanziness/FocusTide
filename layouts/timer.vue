@@ -1,5 +1,10 @@
 <template>
-  <transition name="loading" mode="in-out" appear :duration="1000">
+  <transition
+    name="loading"
+    mode="in-out"
+    appear
+    :duration="1000"
+  >
     <splash-screen v-if="loading" />
     <div v-else class="relative w-screen h-screen" :class="[{ 'dark': darkMode }]">
       <slot />
@@ -22,7 +27,7 @@ export default {
 
   data () {
     return {
-      loading: true
+      loading: false
     }
   },
 
@@ -37,11 +42,13 @@ export default {
   },
 
   mounted () {
-    // hide the spinner
-    console.log('Mounted layout')
-    this.$nextTick(() => {
-      this.loading = false
-    })
+    // TODO This is causing the splash screen to unmount at the wrong time, staying on the screen
+
+    // // hide the spinner
+    // console.log('Mounted layout')
+    // this.$nextTick(() => {
+    //   this.loading = false
+    // })
   }
 }
 </script>
@@ -52,13 +59,15 @@ export default {
   @apply transition-all duration-1000 ease-out;
 }
 
-.loading-enter {
+.loading-enter-from,
+.loading-appear-from {
   @apply opacity-60;
 
   clip-path: circle(0%);
 }
 
-.loading-enter-to {
+.loading-enter-to,
+.loading-appear-to {
   clip-path: circle(100%);
 }
 </style>
