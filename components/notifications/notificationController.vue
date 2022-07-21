@@ -3,6 +3,7 @@ import { mapStores } from 'pinia'
 import { useSettings } from '~/stores/settings'
 import { useSchedule } from '~/stores/schedule'
 import { useNotifications } from '~/stores/notifications'
+import { EventType, useEvents } from '~/stores/events'
 
 export default {
   data () {
@@ -17,7 +18,27 @@ export default {
   },
 
   computed: {
-    ...mapStores(useSettings, useSchedule, useNotifications)
+    ...mapStores(useSettings, useSchedule, useNotifications, useEvents),
+
+    remainingTime () {
+      return this.scheduleStore.getSchedule[0].timeElapsed
+    },
+
+    lastEvent () {
+      const lastEventArray = this.eventsStore.events.slice(-1)
+      return lastEventArray.length > 0 ? lastEventArray[0] : null
+    }
+  },
+
+  watch: {
+    remainingTime (newValue, oldValue) {
+      // TODO update persistent notification (if enabled)
+    },
+    lastEvent (newValue, oldValue) {
+      if (newValue._event === EventType.TIMER_FINISH) {
+        this.showNotification(this.scheduleStore.getSchedule[1].type)
+      }
+    }
   },
 
   created () {
@@ -42,6 +63,9 @@ export default {
   },
 
   mounted () {
+    // Register app started notification
+    this.eventsStore.recordEvent(EventType.APP_STARTED)
+
     // check if timer is already running
     if (this.scheduleStore.timerState === 1) {
       this.loadSoundSet()
@@ -57,7 +81,7 @@ export default {
       // Commit this information immediately to make sure it's up to date
       this.settingsStore.registerNewHidden(window.document.hidden)
     } else {
-      this.settingsStore.registerNewHidden(null)
+      this.settingsStore.registerNewHidden(false)
     }
 
     // Check permissions
@@ -138,9 +162,9 @@ export default {
     },
 
     handleCompletion (nextType = undefined) {
-      const nextScheduleType = nextType || this.scheduleStore.getSchedule[1].type
-      this.playSound(nextScheduleType)
-      this.showNotification(nextScheduleType)
+      // const nextScheduleType = nextType || this.scheduleStore.getSchedule[1].type
+      // this.playSound(nextScheduleType)
+      // this.showNotification(nextScheduleType)
     }
   },
 

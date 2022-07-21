@@ -75,7 +75,7 @@
               v-if="settingsStore.tasks.enabled"
               circle
               :importance="1"
-              class="right-5 sm:absolute transition"
+              class="transition right-5 sm:absolute"
               bg-class="dark:bg-slate-800 bg-slate-200"
               inner-class="p-5"
               :class="{'scale-0': showTodoManager}"
@@ -197,13 +197,6 @@ export default {
     },
 
     ...mapStores(useSettings, useSchedule, useEvents)
-  },
-
-  mounted () {
-    // Add visibility change listener for adaptive ticking
-    document.addEventListener('visibilitychange', () => {
-      this.settingsStore.registerNewHidden(document.hidden)
-    })
   }
 }
 </script>
