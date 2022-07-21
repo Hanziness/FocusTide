@@ -35,10 +35,8 @@ export default {
       // TODO update persistent notification (if enabled)
     },
     lastEvent (newValue, oldValue) {
-      console.log(newValue)
-      if (newValue._eventType === EventType.TIMER_FINISH) {
+      if (newValue._event === EventType.TIMER_FINISH) {
         this.showNotification(this.scheduleStore.getSchedule[1].type)
-        console.log("Woohoo, timer's finished!")
       }
     }
   },
