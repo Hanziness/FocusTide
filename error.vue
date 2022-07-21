@@ -8,14 +8,14 @@
     <!-- Error description -->
     <div class="max-w-screen-lg mt-8 overflow-hidden border-2 border-gray-300 rounded-lg">
       <transition name="showerror-transition" mode="out-in">
-        <div v-if="!showError" class="hover:bg-gray-600 active:bg-gray-800 flex flex-row items-center p-4 space-x-4 text-gray-100 transition bg-gray-700 cursor-pointer" role="button" @click="showError = true">
+        <div v-if="!showError" class="flex flex-row items-center p-4 space-x-4 text-gray-100 transition bg-gray-700 cursor-pointer hover:bg-gray-600 active:bg-gray-800" role="button" @click="showError = true">
           <IconShowError size="42" />
           <div>
             <div class="font-bold" v-text="$t('errorpage.showError.main')" />
             <div v-text="$t('errorpage.showError.sub')" />
           </div>
         </div>
-        <pre v-if="showError" class="max-h-56 p-4 overflow-y-scroll" v-text="fullError" />
+        <pre v-else-if="showError" class="p-4 overflow-y-scroll max-h-56" v-text="fullError" />
       </transition>
     </div>
 
