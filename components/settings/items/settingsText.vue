@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
-import { required, minValue, maxValue, numeric } from 'vuelidate/lib/validators'
+import * as useVuelidate from '@vuelidate/core'
+import { required, minValue, maxValue, numeric } from '@vuelidate/validators'
 import settingsInputMixin from '@/assets/mixins/settings/settingsItemBase'
 
 export default {
@@ -26,7 +26,7 @@ export default {
     InputText: () => import(/* webpackMode: "eager" */ '@/components/base/inputText.vue')
   },
 
-  mixins: [validationMixin, settingsInputMixin],
+  mixins: [settingsInputMixin],
 
   props: {
     min: {
@@ -43,6 +43,10 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+
+  setup () {
+    return { v$: useVuelidate() }
   },
 
   validations () {

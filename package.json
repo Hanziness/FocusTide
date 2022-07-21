@@ -22,12 +22,13 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/sitemap": "^2.4.0",
     "@pinia/nuxt": "^0.1.8",
+    "@vuelidate/core": "2.0.0-alpha.42",
+    "@vuelidate/validators": "2.0.0-alpha.30",
     "pinia": "^2.0.13",
     "sass-loader": "^10.0.4",
     "vue": "^3.2.37",
     "vue-native-notification": "^1.1.1",
-    "vue-tabler-icons": "^2.0.0",
-    "vuelidate": "^0.7.5"
+    "vue-tabler-icons": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.0",
