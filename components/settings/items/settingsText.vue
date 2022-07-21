@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import * as useVuelidate from '@vuelidate/core'
+import { useVuelidate } from '@vuelidate/core'
 import { required, minValue, maxValue, numeric } from '@vuelidate/validators'
 import settingsInputMixin from '@/assets/mixins/settings/settingsItemBase'
 
