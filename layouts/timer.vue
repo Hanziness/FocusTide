@@ -46,7 +46,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .loading-enter-active,
 .loading-leave-active {
   @apply transition-all duration-1000 ease-out;
