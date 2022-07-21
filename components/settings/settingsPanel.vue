@@ -223,16 +223,23 @@ import { useSettings } from '~/stores/settings'
 import { useNotifications } from '~/stores/notifications'
 import { useMain } from '~/stores'
 
+import Button from '@/components/base/button.vue'
+import SettingsCheck from '@/components/settings/items/settingsCheck.vue'
+import SettingsText from '@/components/settings/items/settingsText.vue'
+import SettingsTime from '@/components/settings/items/settingsTime.vue'
+import SettingsOptions from '@/components/settings/items/settingsOptions.vue'
+import Divider from '@/components/base/divider.vue'
+
 export default {
   name: 'SettingsPanel',
   components: {
     // UiOverlay: () => import('@/components/base/overlay.vue'),
-    Button: () => import(/* webpackChunkName: "uibase" */ '@/components/base/button.vue'),
-    SettingsCheck: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsCheck.vue'),
-    SettingsText: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsText.vue'),
-    SettingsTime: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsTime.vue'),
-    SettingsOptions: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsOptions.vue'),
-    Divider: () => import(/* webpackMode: "eager" */ '@/components/base/divider.vue'),
+    Button,
+    SettingsCheck,
+    SettingsText,
+    SettingsTime,
+    SettingsOptions,
+    Divider,
     OptionGroup,
     TabHeader,
     ExportButton,
