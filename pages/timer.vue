@@ -1,21 +1,36 @@
 <template>
   <section class="h-full overflow-hidden transition-colors duration-300 ease-in dark:text-gray-50" :class="[{'dark' : settingsStore.visuals.darkMode }]">
+    <Title>{{ (remainingTimeString ? `(${remainingTimeString}) ` : '') + pageTitle }}</Title>
+
+    <Link>
+      rel: 'icon',
+      type: 'image/svg+xml',
+      href: `data:image/svg+xml,
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
+        fill="none"
+        style="color: ${scheduleStore.currentScheduleColour};"
+        xmlns="http://www.w3.org/2000/svg"
+      ><circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`
+    </Link>
     <!-- Dark mode background override -->
     <div class="absolute w-full h-full dark:bg-gray-900" />
+    <NotificationController />
 
     <!-- Settings panel -->
     <div>
-      <Transition name="transition-fade">
+      <!-- <Transition name="transition-fade">
         <UiOverlay v-if="showSettings" />
-      </Transition>
+      </Transition> -->
       <Transition name="transition-slidein">
         <SettingsPanel v-if="showSettings" v-model="showSettings" class="right-0" />
       </Transition>
     </div>
-    <NotificationController>
-      <Ticker slot-scope="{handleCompletion}" @complete="handleCompletion">
+    <Ticker>
+      <template #default="{ timerState, timeElapsed, timeOriginal }">
         <div
-          slot-scope="{ timerState, timeElapsed, timeOriginal }"
           class="relative flex flex-col items-center justify-center w-full h-full"
         >
           <div class="z-10 flex flex-row w-full">
@@ -29,22 +44,21 @@
                 <div class="flex items-center flex-column">
                   <Button
                     circle
-                    default
+                    default-style
                     :importance="3"
-                    :aria-label="$i18n.t('settings.heading')"
+                    :aria-label="$t('settings.heading')"
                     class="text-gray-200"
                     @click="showSettings = true"
                   >
-                    <CogIcon :aria-label="$i18n.t('settings.heading')" />
+                    <CogIcon :aria-label="$t('settings.heading')" />
                   </Button>
                 </div>
               </div>
               <div v-if="settingsStore.schedule.visibility.enabled && settingsStore.schedule.visibility.showSectionType" class="py-2 text-center bg-gray-700 select-none text-gray-50">
-                {{ $i18n.t('section.' + scheduleStore.getCurrentItem.type).toLowerCase() }}
+                {{ $t('section.' + scheduleStore.getCurrentItem.type).toLowerCase() }}
               </div>
             </div>
           </div>
-
           <TransitionGroup name="progress-transition" tag="div" :duration="1000">
             <TimerProgress
               v-for="(scheduleItem, index) in progressBarSchedules"
@@ -55,7 +69,6 @@
               :time-original="timeOriginal"
             />
           </TransitionGroup>
-
           <div class="flex flex-col items-center justify-center w-full h-full gap-2">
             <TimerSwitch
               key="timerswitch"
@@ -67,10 +80,8 @@
               @tick="timeString = $event"
             />
           </div>
-
           <div class="relative flex flex-row items-center justify-center w-full gap-2 mb-4">
             <TimerControls :class="[{ 'pointer-events-none': preview }]" :can-use-keyboard="!preview && !showSettings" />
-
             <Button
               v-if="settingsStore.tasks.enabled"
               circle
@@ -85,11 +96,11 @@
             </Button>
           </div>
           <transition enter-class="translate-y-full" enter-active-class="duration-300 ease-out" leave-to-class="translate-y-full" leave-active-class="duration-150 ease-in">
-            <TodoList v-show="settingsStore.tasks.enabled && showTodoManager" class="fixed bottom-0 z-10 w-full max-w-lg transition-all rounded-t-xl xl:right-4 xl:pb-8" :editing="[0].includes(scheduleStore.timerState)" @hide="showTodoManager = false" />
+            <todo-list v-if="settingsStore.tasks.enabled && showTodoManager" class="fixed bottom-0 z-10 w-full max-w-lg transition-all rounded-t-xl xl:right-4 xl:pb-8" :editing="[0].includes(scheduleStore.timerState)" @hide="showTodoManager = false" />
           </transition>
         </div>
-      </Ticker>
-    </NotificationController>
+      </template>
+    </Ticker>
     <TutorialView />
   </section>
 </template>
@@ -97,33 +108,43 @@
 <script>
 import { mapStores } from 'pinia'
 import { SettingsIcon, ListCheckIcon } from 'vue-tabler-icons'
+import { useHead } from '#app'
 import { useSchedule } from '~/stores/schedule'
 import { useSettings } from '~/stores/settings'
 import { useEvents } from '@/stores/events'
 import TutorialView from '@/components/tutorial/_tutorialView.vue'
+import Ticker from '@/components/ticker.vue'
+import ScheduleDisplay from '@/components/schedule/scheduleDisplay.vue'
+import NotificationController from '@/components/notifications/notificationController.vue'
+import TimerProgress from '@/components/timer/timerProgress.vue'
+import TimerSwitch from '@/components/timer/display/_timerSwitch.vue'
+import TimerControls from '@/components/timer/controls/contolsBasic.vue'
+import SettingsPanel from '@/components/settings/settingsPanel.vue'
+// import UiOverlay from '@/components/base/overlay.vue'
+import TodoList from '@/components/todoList/main.vue'
 import Button from '@/components/base/button.vue'
 
 // Static imports:
 
+definePageMeta({ layout: 'timer' })
+
 export default {
   name: 'PageTimer',
   components: {
-    Ticker: () => import(/* webpackChunkName: "ticker", webpackMode: "eager" */ '@/components/ticker.vue'),
-    ScheduleDisplay: () => import(/* webpackChunkName: "schedule", webpackPrefetch: true */ '@/components/schedule/scheduleDisplay.vue'),
-    NotificationController: () => import(/* webpackChunkName: "ticker", webpackMode: "eager" */ '@/components/notifications/notificationController.vue'),
-    TimerProgress: () => import(/* webpackChunkName: "progress", webpackPrefetch: true */ '@/components/timer/timerProgress.vue'),
-    TimerSwitch: () => import(/* webpackChunkName: "timerSwitch", webpackPrefetch: true */ '@/components/timer/display/_timerSwitch.vue'),
-    TimerControls: () => import(/* webpackChunkName: "timerControls", webpackPrefetch: true */ '~/components/timer/controls/contolsBasic.vue'),
-    SettingsPanel: () => import(/* webpackChunkName: "settings" */ '@/components/settings/settingsPanel.vue'),
-    UiOverlay: () => import(/* webpackChunkName: "uibase", webpackPrefetch: true */ '@/components/base/overlay.vue'),
-    TodoList: () => import(/* webpackChunkName: "todo" */ '@/components/todoList/main.vue'),
+    Ticker,
+    ScheduleDisplay,
+    NotificationController,
+    TimerProgress,
+    TimerSwitch,
+    TimerControls,
+    SettingsPanel,
+    // UiOverlay,
+    TodoList,
     CogIcon: SettingsIcon,
     ListCheckIcon,
     TutorialView,
     Button
   },
-
-  layout: 'timer',
 
   props: {
     preview: {
@@ -132,38 +153,21 @@ export default {
     }
   },
 
+  setup () {
+    useHead({
+      meta: [{
+        hid: 'description',
+        name: 'description',
+        content: 'Jumpstart your productivity sessions with AnotherPomodoro. Start your timer session on this page, or check the home page for a guided tour!'
+      }]
+    })
+  },
+
   data () {
     return {
       showSettings: false,
       showTodoManager: false,
       timeString: ''
-    }
-  },
-
-  head () {
-    if (this.preview) { return }
-    return {
-      title: (this.remainingTimeString ? `(${this.remainingTimeString}) ` : '') + this.pageTitle,
-      meta: [{
-        hid: 'description',
-        name: 'description',
-        content: 'Jumpstart your productivity sessions with AnotherPomodoro. Start your timer session on this page, or check the home page for a guided tour!'
-      }],
-      link: [
-        {
-          rel: 'icon',
-          type: 'image/svg+xml',
-          href: `data:image/svg+xml,
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="0 0 32 32"
-                  fill="none"
-                  style="color: ${this.scheduleStore.currentScheduleColour};"
-                  xmlns="http://www.w3.org/2000/svg"
-                ><circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`
-        }
-      ]
     }
   },
 
@@ -179,7 +183,7 @@ export default {
 
     remainingTimeString () {
       if (this.scheduleStore.getCurrentTimerState === 3) {
-        return this.settingsStore.pageTitle.useTickEmoji ? '✔' : this.$i18n.t('ready').toLowerCase()
+        return this.settingsStore.pageTitle.useTickEmoji ? '✔' : this.$t('ready').toLowerCase()
       }
 
       return this.timeString
@@ -187,7 +191,7 @@ export default {
 
     pageTitle () {
       return this.scheduleStore.getCurrentItem
-        ? this.$i18n.t('section.' + this.scheduleStore.getCurrentItem.type).toLowerCase()
+        ? this.$t('section.' + this.scheduleStore.getCurrentItem.type).toLowerCase()
         : 'Pomodoro'
     },
 
@@ -197,7 +201,12 @@ export default {
     },
 
     ...mapStores(useSettings, useSchedule, useEvents)
+  },
+
+  mounted () {
+    console.log(this.$i18n)
   }
+
 }
 </script>
 

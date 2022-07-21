@@ -1,3 +1,4 @@
+import { defineNuxtPlugin, useRouter } from '#app'
 import { useMain, flags } from '@/stores/index'
 
 const persistStores = ['settings', 'tasklist', 'tutorials']
@@ -19,7 +20,8 @@ function restoreStore (store) {
   }
 }
 
-const PiniaNuxtPersistencePlugin = ({ app, $pinia }) => {
+export default defineNuxtPlugin(({ vueApp, $pinia }) => {
+  const router = useRouter()
   const PiniaPersistPlugin = ({ store }) => {
     if (persistStores.includes(store.$id)) {
       const restore = localStorage.getItem(storeResetKey) == null
@@ -58,11 +60,9 @@ const PiniaNuxtPersistencePlugin = ({ app, $pinia }) => {
 
       // `afterEach` is used as a workaround to Pinia subscribers disappearing on navigation
       changeSubscription()
-      app.router.afterEach(changeSubscription)
+      router.afterEach(changeSubscription)
     }
   }
 
   $pinia.use(PiniaPersistPlugin)
-}
-
-export default PiniaNuxtPersistencePlugin
+})

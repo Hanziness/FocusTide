@@ -5,21 +5,21 @@
     </transition>
 
     <!-- Tutorial component -->
-    <transition
-      mode="out-in"
-      enter-class="!translate-y-full"
+    <transition-group
+      enter-from-class="!translate-y-full"
       enter-active-class="transition duration-500 ease-out"
       leave-to-class="!translate-y-full"
       leave-active-class="transition duration-300"
       appear
     >
       <component :is="tutorial[tutorialId]" v-for="tutorialId in [currentTutorial]" :key="tutorialId" :open="isTutorialOpen(tutorialId)" @close="closeTutorial(tutorialId)" />
-    </transition>
+    </transition-group>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from 'pinia'
+import { markRaw } from 'vue'
 import tutorialOnboarding from './tutorialOnboarding.vue'
 import { useTutorials } from '~/stores/tutorials'
 import { useMain, flags } from '@/stores/index'
@@ -28,7 +28,7 @@ export default {
   data () {
     return {
       tutorial: {
-        onboarding: tutorialOnboarding
+        onboarding: markRaw(tutorialOnboarding)
       },
 
       /** Controls whether the darkening backdrop is shown */

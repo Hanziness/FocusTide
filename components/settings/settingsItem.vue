@@ -1,10 +1,10 @@
 <template>
   <baseSettingsItem>
     <template #item-title>
-      {{ $i18n.t(translationKey + '._title') }}
+      {{ $t(translationKey + '._title') }}
     </template>
     <template #item-subtitle>
-      {{ $i18n.t(translationKey + '._description') }}
+      {{ $t(translationKey + '._description') }}
     </template>
   </baseSettingsItem>
 </template>

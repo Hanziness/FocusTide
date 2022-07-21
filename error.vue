@@ -11,8 +11,8 @@
         <div v-if="!showError" class="hover:bg-gray-600 active:bg-gray-800 flex flex-row items-center p-4 space-x-4 text-gray-100 transition bg-gray-700 cursor-pointer" role="button" @click="showError = true">
           <IconShowError size="42" />
           <div>
-            <div class="font-bold" v-text="$i18n.t('errorpage.showError.main')" />
-            <div v-text="$i18n.t('errorpage.showError.sub')" />
+            <div class="font-bold" v-text="$t('errorpage.showError.main')" />
+            <div v-text="$t('errorpage.showError.sub')" />
           </div>
         </div>
         <pre v-if="showError" class="max-h-56 p-4 overflow-y-scroll" v-text="fullError" />
@@ -23,27 +23,27 @@
     <ActionBar class="mt-8">
       <ActionButton v-bind="getRowAndState('reset')" class="text-red-500" text-colours @click="actionReset">
         <IconReset />
-        <div v-text="$i18n.t('errorpage.action.reset')" />
+        <div v-text="$t('errorpage.action.reset')" />
       </ActionButton>
       <ActionButton v-bind="getRowAndState('reload')" class="text-blue-500" text-colours @click="actionReload">
         <IconReload />
-        <div v-text="$i18n.t('errorpage.action.reload')" />
+        <div v-text="$t('errorpage.action.reload')" />
       </ActionButton>
       <ActionButton v-bind="getRowAndState('home')" class="text-emerald-500" text-colours href="/">
         <IconHome />
-        <div v-text="$i18n.t('errorpage.action.home')" />
+        <div v-text="$t('errorpage.action.home')" />
       </ActionButton>
       <ActionButton v-bind="getRowAndState('githubIssue')" class="text-gray-400" text-colours href="https://github.com/Hanziness/AnotherPomodoro/issues?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
         <IconGithub />
-        <div v-text="$i18n.t('errorpage.action.githubIssue')" />
+        <div v-text="$t('errorpage.action.githubIssue')" />
       </ActionButton>
       <ActionButton v-bind="getRowAndState('githubDiscussion')" class="text-gray-400" text-colours href="https://github.com/Hanziness/AnotherPomodoro/discussions?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
         <IconDiscussion />
-        <div v-text="$i18n.t('errorpage.action.githubDiscussion')" />
+        <div v-text="$t('errorpage.action.githubDiscussion')" />
       </ActionButton>
       <ActionButton v-bind="getRowAndState('twitter')" class="text-[#1da1f2]" text-colours href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
         <IconTwitter />
-        <div v-text="$i18n.t('errorpage.action.twitter')" />
+        <div v-text="$t('errorpage.action.twitter')" />
       </ActionButton>
     </ActionBar>
   </div>
@@ -154,7 +154,7 @@ export default {
       }
 
       return {
-        title: this.$i18n.t('errorpage.title.' + this.errorType),
+        title: this.$t('errorpage.title.' + this.errorType),
         icon
       }
     },

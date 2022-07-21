@@ -13,14 +13,19 @@
 import { mapState } from 'pinia'
 import { AvailableTimers } from '@/stores/settings'
 import TimerMixin from '@/assets/mixins/timerMixin'
-import { useSchedule, TimerState } from '~/stores/schedule'
+import { useSchedule, TimerState } from '@/stores/schedule'
+
+import TimerTraditional from '@/components/timer/display/timerTraditional.vue'
+import TimerApproximate from '@/components/timer/display/timerApproximate.vue'
+import TimerPercentage from '@/components/timer/display/timerPercentage.vue'
+import CompleteMarker from '@/components/timer/display/timerComplete.vue'
 
 export default {
   components: {
-    TimerTraditional: () => import(/* webpackChunkName: "timerTraditional" */ '~/components/timer/display/timerTraditional.vue'),
-    TimerApproximate: () => import(/* webpackChunkName: "timerApproximate" */ '~/components/timer/display/timerApproximate.vue'),
-    TimerPercentage: () => import(/* webpackChunkName: "timerPercentage" */ '~/components/timer/display/timerPercentage.vue'),
-    CompleteMarker: () => import(/* webpackMode: "eager" */ '@/components/timer/display/timerComplete.vue')
+    TimerTraditional,
+    TimerApproximate,
+    TimerPercentage,
+    CompleteMarker
   },
   mixins: [TimerMixin],
   props: {

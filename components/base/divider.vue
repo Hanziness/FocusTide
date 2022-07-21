@@ -1,5 +1,5 @@
-<template functional>
-  <hr class="my-2 border-t border-gray-200 dark:border-gray-600">
+<template>
+  <hr class="h-0 my-2 border-t border-gray-200 dark:border-gray-600">
 </template>
 
 <script>
@@ -7,9 +7,3 @@ export default {
   name: 'Divider'
 }
 </script>
-
-<style lang="scss" scoped>
-hr {
-  height: 0;
-}
-</style>

@@ -1,13 +1,13 @@
 <template>
-  <Transition name="loading" mode="in-out" appear duration="1000">
-    <SplashScreen v-if="loading" />
-    <div v-else :class="['w-screen, h-screen relative', { 'dark': darkMode }]">
-      <nuxt />
+  <transition name="loading" mode="in-out" appear :duration="1000">
+    <splash-screen v-if="loading" />
+    <div v-else class="relative w-screen h-screen" :class="[{ 'dark': darkMode }]">
+      <slot />
     </div>
-  </Transition>
+  </transition>
 </template>
 
-<script>
+<script lang="ts">
 import { mapState } from 'pinia'
 import SplashScreen from '~/components/timer/splashScreen.vue'
 import { useSettings } from '~/stores/settings'
@@ -38,6 +38,7 @@ export default {
 
   mounted () {
     // hide the spinner
+    console.log('Mounted layout')
     this.$nextTick(() => {
       this.loading = false
     })

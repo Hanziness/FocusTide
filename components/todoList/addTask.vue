@@ -6,7 +6,7 @@
       type="text"
       required
       class="flex-grow block min-w-0 p-0 bg-transparent border-none dark:bg-transparent focus:ring-transparent focus:ring-offset-0 dark:focus:bg-transparent peer"
-      :placeholder="$i18n.t('tasks.addPlaceholder')"
+      :placeholder="$t('tasks.addPlaceholder')"
       @input="e => taskTitle = e.target.value"
       @keyup="checkEnter"
     >

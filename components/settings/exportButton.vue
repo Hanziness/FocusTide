@@ -1,5 +1,5 @@
 <template>
-  <Button default :importance="2" @click="downloadSettings" v-text="$i18n.t('settings.manage.buttons.save')" />
+  <Button default-style :importance="2" @click="downloadSettings" v-text="$t('settings.manage.buttons.save')" />
 </template>
 
 <script>

@@ -1,12 +1,16 @@
+import { defineNuxtPlugin } from '#app'
+
 /// Inject available language from `$i18n` as $languages
-export default function ({ app }, inject) {
+export default defineNuxtPlugin((nuxtApp) => {
   const availableLocales = {}
 
-  if (app.i18n) {
-    for (const lang of app.i18n.locales) {
+  console.log(nuxtApp.vueApp.i18n.locales._value)
+
+  if (nuxtApp.vueApp.i18n) {
+    for (const lang of nuxtApp.vueApp.i18n.locales.value) {
       availableLocales[lang.code] = lang.name
     }
   }
 
-  inject('languages', availableLocales)
-}
+  nuxtApp.provide('languages', availableLocales)
+})

@@ -1,10 +1,10 @@
 // import colors from 'vuetify/es5/util/colors'
 // import { join } from 'path'
 
-import fs from 'fs'
-import { defineNuxtConfig } from '@nuxt/bridge'
+import * as fs from 'fs'
+import { defineNuxtConfig } from 'nuxt'
 
-const packageJson = fs.readFileSync('./package.json')
+const packageJson = fs.readFileSync('./package.json').toString()
 const version = JSON.parse(packageJson).version || 0
 
 const iconConfig = {
@@ -85,13 +85,14 @@ export default defineNuxtConfig({
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
   */
-  bridge: false,
 
   env: {
     PACKAGE_VERSION: version
   },
 
   target: 'static',
+  ssr: false,
+
   /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
@@ -130,7 +131,7 @@ export default defineNuxtConfig({
   */
   plugins: [
     '@/plugins/i18nlanguages.js',
-    '@/plugins/notifications.client.js',
+    // '@/plugins/notifications.client.js',
     '@/plugins/store-persist.client.js',
     '@/plugins/store-i18n-watch.client.js'
   ],
@@ -148,16 +149,14 @@ export default defineNuxtConfig({
       src: icon.src,
       prefix: icon.prefix
     }))],
-    '@nuxt/postcss8',
     '@nuxtjs/google-fonts',
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
-    '@nuxtjs/composition-api/module',
-    '@pinia/nuxt',
-    '@nuxt/image',
-    '@nuxtjs/pwa'
+    '@pinia/nuxt'
+    // '@nuxt/image'
+    // '@nuxtjs/pwa'
   ],
 
   /*
@@ -179,7 +178,7 @@ export default defineNuxtConfig({
 
   generate: {
     // Generate fallback pages (makes error pages work on Netlify, too)
-    fallback: true
+    fallback: '404.html'
   },
 
   /**
@@ -226,7 +225,7 @@ export default defineNuxtConfig({
     vueI18n: {
       fallbackLocale: 'en'
     },
-    vuex: false,
+    // vuex: false,
     // Routes generation strategy, can be set to one of the following:
     // - 'no_prefix': routes won't be prefixed
     // - 'prefix_except_default': add locale prefix for every locale except default
@@ -269,23 +268,24 @@ export default defineNuxtConfig({
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
-    corejs: 3,
     postcss: {
-      plugins: {
-        'postcss-import': {},
-        'tailwindcss/nesting': {},
-        tailwindcss: {},
-        autoprefixer: {}
+      postcssOptions: {
+        plugins: {
+          'postcss-import': {},
+          'tailwindcss/nesting': {},
+          tailwindcss: {},
+          autoprefixer: {}
+        }
       }
     }
   },
   watchers: {
     chokidar: {
-      ignoreInitial: true,
-      ignored: ['**/node_modules', '**/.git', '**/.nuxt']
+      ignoreInitial: true
+      // ignored: ['**/node_modules', '**/.git', '**/.nuxt']
     },
     webpack: {
-      ignored: ['**/node_modules', '**/.git', '**/.nuxt']
+      // ignored: ['**/node_modules', '**/.git', '**/.nuxt']
     }
   }
 })

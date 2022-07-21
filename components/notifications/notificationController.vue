@@ -1,3 +1,7 @@
+<template>
+  <div />
+</template>
+
 <script>
 import { mapStores } from 'pinia'
 import { useSettings } from '~/stores/settings'
@@ -142,14 +146,14 @@ export default {
       if (nextState === 'work') {
         notificationActions.push({
           action: 'ready',
-          title: this.$i18n.t('notification.action.ready')
+          title: this.$t('notification.action.ready')
         })
       }
 
       try {
-        this.$notification.show(this.$i18n.t('notification.' + nextState + '.title'), {
+        this.$notification.show(this.$t('notification.' + nextState + '.title'), {
           tag: 'AnotherPomodoro-SectionNotify',
-          body: this.$i18n.t('notification.' + nextState + '.body'),
+          body: this.$t('notification.' + nextState + '.body'),
           actions: notificationActions
         }, {
           onclick () {
@@ -166,12 +170,6 @@ export default {
       // this.playSound(nextScheduleType)
       // this.showNotification(nextScheduleType)
     }
-  },
-
-  render () {
-    return this.$scopedSlots.default({
-      handleCompletion: this.handleCompletion
-    })
   }
 }
 </script>

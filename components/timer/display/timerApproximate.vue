@@ -35,10 +35,10 @@ export default {
       }
       if (Math.abs(remainingMinutes) > 59) {
         timeObject.value = remainingMinutes >= 0 ? Math.round(remainingMinutes / 60) : Math.ceil(remainingMinutes / 60)
-        timeObject.string = this.$i18n.tc('timer.approximate.hours', timeObject.value)
+        timeObject.string = this.$t('timer.approximate.hours', timeObject.value)
       } else {
         timeObject.value = remainingMinutes > 0 ? Math.ceil(remainingMinutes) : Math.min(-1, Math.floor(remainingMinutes))
-        timeObject.string = this.$i18n.tc('timer.approximate.minutes', timeObject.value)
+        timeObject.string = this.$t('timer.approximate.minutes', timeObject.value)
       }
 
       this.$emit('tick', `${timeObject.value < 0 ? '+' : ''}${Math.abs(timeObject.value)} ${timeObject.string}`)

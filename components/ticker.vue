@@ -1,6 +1,7 @@
 
 <script>
 import { mapStores, mapState, mapWritableState } from 'pinia'
+import { h } from 'vue'
 import { TimerState, useSchedule } from '@/stores/schedule'
 import { useSettings } from '~/stores/settings'
 import { useTasklist } from '~/stores/tasklist'
@@ -163,7 +164,6 @@ export default {
       const isTimerJustFinished = this.timeElapsed >= this.timeOriginal && this.timeElapsed - elapsedDelta < this.timeOriginal
       if (nextState === TimerState.RUNNING && isTimerJustFinished) {
         // timer completed, notify participants
-        this.$emit('complete')
         this.eventsStore.recordEvent(EventType.TIMER_FINISH)
       }
 
@@ -203,13 +203,13 @@ export default {
   },
 
   render () {
-    return this.$scopedSlots.default({
+    console.log(this.timeElapsed)
+    return h('div', this.$slots.default({
       timeRemaining: this.timeRemaining,
       timeElapsed: this.timeElapsed,
       timeOriginal: this.timeOriginal,
-      timerState: this.timerState,
-      fn_changeTimerState: this.setTimerState
-    })
+      timerState: this.timerState
+    }))
   }
 }
 </script>

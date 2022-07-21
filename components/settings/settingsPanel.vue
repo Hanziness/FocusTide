@@ -2,9 +2,9 @@
   <section v-show="processedValue" class="fixed z-40 w-full h-full p-0 md:p-4 md:max-w-screen-sm">
     <div class="flex flex-col h-full overflow-hidden bg-white rounded-none shadow-lg md:rounded-lg dark:bg-gray-900 dark:text-gray-50">
       <h1 class="px-4 mt-4 mb-2 text-xl font-bold uppercase">
-        <span>{{ $i18n.t('settings.heading') }}</span>
+        <span>{{ $t('settings.heading') }}</span>
         <Button
-          :aria-label="$i18n.t('settings.buttons.close')"
+          :aria-label="$t('settings.buttons.close')"
           default
           circle
           :importance="3"
@@ -12,7 +12,7 @@
           tabindex="0"
           @click="processedValue = false"
         >
-          <CloseIcon :aria-label="$i18n.t('settings.buttons.close')" />
+          <CloseIcon :aria-label="$t('settings.buttons.close')" />
         </Button>
       </h1>
       <div class="flex-grow px-4 py-2 overflow-y-auto">
@@ -50,8 +50,8 @@
 
               <Divider />
 
-              <div v-text="$i18n.t('settings.manage.heading')" />
-              <div class="-mt-2 text-sm leading-snug text-black text-opacity-75 dark:text-gray-50 dark:text-opacity-75" v-text="$i18n.t('settings.manage.description')" />
+              <div v-text="$t('settings.manage.heading')" />
+              <div class="-mt-2 text-sm leading-snug text-black text-opacity-75 dark:text-gray-50 dark:text-opacity-75" v-text="$t('settings.manage.description')" />
               <div class="grid grid-flow-col grid-cols-2 gap-2 mt-1">
                 <ExportButton />
                 <ImportButton />
@@ -79,7 +79,7 @@
               <SettingsTime :settings-key="['schedule', 'lengths', 'longpause']" :min-ms="5000" />
               <div class="flex flex-row items-center px-3 py-4 space-x-2 rounded-lg ring-inset ring ring-primary bg-primary/20 dark:bg-gray-700 dark:text-gray-100">
                 <InfoIcon />
-                <span v-text="$i18n.t('settings.scheduleMinTime')" />
+                <span v-text="$t('settings.scheduleMinTime')" />
               </div>
             </div>
 
@@ -112,7 +112,7 @@
                   </div>
                   <sup class="text-base" v-text="version" />
                 </div>
-                <div v-text="$i18n.t('settings.about.madeby')" />
+                <div v-text="$t('settings.about.madeby')" />
                 <div class="flex flex-col items-center justify-center mt-8">
                   <!-- Support links -->
                   <div class="flex flex-row flex-wrap justify-center gap-2 mt-3 text-center">
@@ -125,7 +125,7 @@
                       bg-class="bg-slate-900 dark:bg-slate-700"
                     >
                       <AboutGithub />
-                      <span v-text="$i18n.t('settings.about.source')" />
+                      <span v-text="$t('settings.about.source')" />
                     </Button>
                     <Button
                       :importance="1"
@@ -135,11 +135,11 @@
                       bg-class="bg-yellow-300"
                     >
                       <AboutSupport />
-                      <span v-text="$i18n.t('settings.about.support')" />
+                      <span v-text="$t('settings.about.support')" />
                     </Button>
                   </div>
                   <!-- Share links -->
-                  <div class="my-2" v-text="$i18n.t('settings.about.share')" />
+                  <div class="my-2" v-text="$t('settings.about.share')" />
                   <div class="flex flex-row items-center space-x-2 text-sm">
                     <Button
                       link
@@ -150,7 +150,7 @@
                       bg-class="bg-[#1da1f2]"
                       inner-class="!p-4 text-slate-50"
                     >
-                      <AboutTwitter :aria-label="$i18n.t('index.alt.links.share.twitter')" size="24" />
+                      <AboutTwitter :aria-label="$t('index.alt.links.share.twitter')" size="24" />
                     </Button>
                     <Button
                       link
@@ -161,7 +161,7 @@
                       bg-class="bg-[#1877f2]"
                       inner-class="!p-4 text-slate-50"
                     >
-                      <AboutFacebook :aria-label="$i18n.t('index.alt.links.share.facebook')" size="24" class="translate-x-[-1px]" />
+                      <AboutFacebook :aria-label="$t('index.alt.links.share.facebook')" size="24" class="translate-x-[-1px]" />
                     </Button>
                     <Button
                       link
@@ -172,7 +172,7 @@
                       bg-class="bg-[#ff4500]"
                       inner-class="!p-4 text-slate-50"
                     >
-                      <AboutReddit :aria-label="$i18n.t('index.alt.links.share.reddit')" size="24" />
+                      <AboutReddit :aria-label="$t('index.alt.links.share.reddit')" size="24" />
                     </Button>
                   </div>
                 </div>
@@ -184,22 +184,22 @@
 
       <!-- Tab bar -->
       <div class="flex flex-row flex-none h-20 p-4">
-        <TabHeader :active="activeTab === 1" :text="$i18n.t('settings.tabs.main')" @click="activeTab = 1">
+        <TabHeader :active="activeTab === 1" :text="$t('settings.tabs.main')" @click="activeTab = 1">
           <template #icon>
             <TabIconGeneral role="presentation" />
           </template>
         </TabHeader>
-        <TabHeader :active="activeTab === 2" :text="$i18n.t('settings.tabs.timer')" @click="activeTab = 2">
+        <TabHeader :active="activeTab === 2" :text="$t('settings.tabs.timer')" @click="activeTab = 2">
           <template #icon>
             <TabIconSchedule role="presentation" />
           </template>
         </TabHeader>
-        <TabHeader :active="activeTab === 3" :text="$i18n.t('settings.tabs.display')" @click="activeTab = 3">
+        <TabHeader :active="activeTab === 3" :text="$t('settings.tabs.display')" @click="activeTab = 3">
           <template #icon>
             <TabIconVisuals role="presentation" />
           </template>
         </TabHeader>
-        <TabHeader :active="activeTab === 4" :text="$i18n.t('settings.tabs.about')" @click="activeTab = 4">
+        <TabHeader :active="activeTab === 4" :text="$t('settings.tabs.about')" @click="activeTab = 4">
           <template #icon>
             <TabIconAbout role="presentation" />
           </template>

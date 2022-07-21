@@ -9,7 +9,7 @@
       tag="div"
       class="relative flex flex-row flex-grow-0 gap-2"
     >
-      <ScheduleItem
+      <schedule-item
         v-for="(item, i) in getSchedule"
         :key="item.id"
         :data="item"
@@ -22,9 +22,12 @@
 <script>
 import { mapState } from 'pinia'
 import { useSchedule } from '~/stores/schedule'
+
+import ScheduleItem from '@/components/schedule/scheduleItem.vue'
+
 export default {
   components: {
-    ScheduleItem: () => import(/* webpackMode: "eager" */ '@/components/schedule/scheduleItem.vue')
+    ScheduleItem
   },
 
   computed: {

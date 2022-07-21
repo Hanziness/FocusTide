@@ -82,7 +82,7 @@ export default {
 
     errorValue (error, additionalInfo = {}) {
       if (error !== undefined) {
-        this.lastError = this.$i18n.t('error.' + error, additionalInfo)
+        this.lastError = this.$t('error.' + error, additionalInfo)
       } else {
         this.lastError = undefined
       }

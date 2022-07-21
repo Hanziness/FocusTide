@@ -1,7 +1,7 @@
 <template>
-  <Button default :importance="2" @click="openFileDialog">
+  <Button default-style :importance="2" @click="openFileDialog">
     <input ref="fileinput" accept=".json" type="file" hidden @change="importFile">
-    <span v-text="$i18n.t('settings.manage.buttons.load')" />
+    <span v-text="$t('settings.manage.buttons.load')" />
   </Button>
 </template>
 

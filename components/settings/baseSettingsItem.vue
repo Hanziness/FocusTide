@@ -7,12 +7,12 @@
       <div class="flex-grow min-w-0">
         <div class="">
           <slot name="item-title">
-            {{ $i18n.t(translationKey + '._title') }}
+            {{ $t(translationKey + '._title') }}
           </slot>
         </div>
         <div v-if="showDescription" class="text-sm leading-snug text-black text-opacity-75 dark:text-gray-50 dark:text-opacity-75">
           <slot name="item-subtitle" class="break-words">
-            {{ $i18n.t(translationKey + '._description') }}
+            {{ $t(translationKey + '._description') }}
           </slot>
         </div>
       </div>
