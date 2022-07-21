@@ -104,20 +104,17 @@
 <script>
 import { mapStores } from 'pinia'
 import { SettingsIcon, ListCheckIcon } from 'vue-tabler-icons'
+import { defineAsyncComponent } from 'vue'
 import { useHead } from '#app'
 import { useSchedule } from '~/stores/schedule'
 import { useSettings } from '~/stores/settings'
 import { useEvents } from '@/stores/events'
-import TutorialView from '@/components/tutorial/_tutorialView.vue'
+
 import Ticker from '@/components/ticker.vue'
-import ScheduleDisplay from '@/components/schedule/scheduleDisplay.vue'
 import NotificationController from '@/components/notifications/notificationController.vue'
-import TimerProgress from '@/components/timer/timerProgress.vue'
 import TimerSwitch from '@/components/timer/display/_timerSwitch.vue'
 import TimerControls from '@/components/timer/controls/contolsBasic.vue'
-import SettingsPanel from '@/components/settings/settingsPanel.vue'
 // import UiOverlay from '@/components/base/overlay.vue'
-import TodoList from '@/components/todoList/main.vue'
 import Button from '@/components/base/button.vue'
 
 // Static imports:
@@ -127,18 +124,20 @@ definePageMeta({ layout: 'timer' })
 export default {
   name: 'PageTimer',
   components: {
+    // lazy-loaded components
+    ScheduleDisplay: defineAsyncComponent(() => import('@/components/schedule/scheduleDisplay.vue')),
+    TimerProgress: defineAsyncComponent(() => import('@/components/timer/timerProgress.vue')),
+    SettingsPanel: defineAsyncComponent(() => import('@/components/settings/settingsPanel.vue')),
+    TodoList: defineAsyncComponent(() => import('@/components/todoList/main.vue')),
+    TutorialView: defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue')),
+
     Ticker,
-    ScheduleDisplay,
     NotificationController,
-    TimerProgress,
     TimerSwitch,
     TimerControls,
-    SettingsPanel,
     // UiOverlay,
-    TodoList,
     CogIcon: SettingsIcon,
     ListCheckIcon,
-    TutorialView,
     Button
   },
 
