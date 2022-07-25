@@ -1,7 +1,7 @@
 <template>
   <input
     v-model="displayValue"
-    class="form-input w-full text-right transition ring-theme"
+    class="w-full text-right transition form-input ring-theme"
     :class="[{ 'border-yellow-300 ring ring-yellow-300 focus:ring-yellow-300': $v.internalData.$anyError }]"
     type="text"
     :inputmode="numeric? 'numeric' : 'text'"
@@ -10,12 +10,10 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
-import { required, minValue, maxValue, numeric } from 'vuelidate/lib/validators'
+import { useVuelidate } from '@vuelidate/core'
+import { required, minValue, maxValue, numeric } from '@vuelidate/validators'
 
 export default {
-  mixins: [validationMixin],
-
   props: {
     value: {
       type: [String, Number],
@@ -47,6 +45,10 @@ export default {
       type: Object,
       default: () => {}
     }
+  },
+
+  setup () {
+    return { v$: useVuelidate() }
   },
 
   data () {

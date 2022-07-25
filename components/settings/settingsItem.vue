@@ -11,10 +11,13 @@
 
 <script>
 import { mapStores } from 'pinia'
-import { useSettings } from '~/stores/settings'
+import { useSettings } from '@/stores/settings'
+
+import BaseSettingsItem from '@/components/settings/resolvedSettingsItem.vue'
+
 export default {
   components: {
-    baseSettingsItem: () => import(/* webpackMode: "eager" */ '~/components/settings/resolvedSettingsItem.vue')
+    BaseSettingsItem
   },
 
   props: {

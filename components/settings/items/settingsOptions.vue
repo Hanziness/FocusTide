@@ -7,10 +7,13 @@
 </template>
 
 <script>
+import BaseSettingsItem from '@/components/settings/resolvedSettingsItem.vue'
+import OptionGroup from '@/components/base/optionGroup.vue'
+
 export default {
   components: {
-    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '~/components/settings/resolvedSettingsItem.vue'),
-    OptionGroup: () => import(/* webpackChunkName: "uibase" */ '@/components/base/optionGroup.vue')
+    BaseSettingsItem,
+    OptionGroup
   },
 
   props: {

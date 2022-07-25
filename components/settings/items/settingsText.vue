@@ -20,10 +20,13 @@ import { useVuelidate } from '@vuelidate/core'
 import { required, minValue, maxValue, numeric } from '@vuelidate/validators'
 import settingsInputMixin from '@/assets/mixins/settings/settingsItemBase'
 
+import BaseSettingsItem from '@/components/settings/resolvedSettingsItem.vue'
+import InputText from '@/components/base/inputText.vue'
+
 export default {
   components: {
-    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '~/components/settings/resolvedSettingsItem.vue'),
-    InputText: () => import(/* webpackMode: "eager" */ '@/components/base/inputText.vue')
+    BaseSettingsItem,
+    InputText
   },
 
   mixins: [settingsInputMixin],

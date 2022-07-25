@@ -11,17 +11,17 @@
       <template #content-action="{ settingsValue }">
         <slot
           name="content-action"
-          :settingsValue="settingsValue"
+          :settings-value="settingsValue"
           :update="update"
           :error="error"
-          :lastError="lastError"
+          :last-error="lastError"
         />
       </template>
 
       <template #content-main="{ settingsValue }">
         <slot
           name="content-main"
-          :settingsValue="settingsValue"
+          :settings-value="settingsValue"
           :translation-key="translationKey"
           :values="values"
           :selected="settingsValue"
@@ -35,10 +35,13 @@
 <script>
 import settingsInputMixin from '@/assets/mixins/settings/settingsItemBase'
 
+import SettingsResolver from '@/components/settings/renderlessSettingsResolver.vue'
+import BaseSettingsItemBare from '@/components/settings/baseSettingsItem.vue'
+
 export default {
   components: {
-    SettingsResolver: () => import(/* webpackMode: "eager" */ '@/components/settings/renderlessSettingsResolver.vue'),
-    BaseSettingsItemBare: () => import(/* webpackMode: "eager" */ '~/components/settings/baseSettingsItem.vue')
+    SettingsResolver,
+    BaseSettingsItemBare
   },
 
   mixins: [settingsInputMixin],

@@ -89,8 +89,9 @@ export default {
     }
   },
 
-  render () {
-    return this.$scopedSlots.default({
+  render (ctx, props) {
+    console.log(ctx)
+    return () => ctx.$slots.default({
       key: this.settingsKey,
       value: this.settingValue,
       svalue: this.settingValue,

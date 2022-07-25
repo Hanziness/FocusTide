@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-flow-row select-option-group gap-3" :class="[Object.keys(values).length > 3 ? 'md:grid-flow-row md:grid-cols-3' : 'md:grid-flow-col md:auto-cols-auto']">
+  <div class="grid grid-flow-row gap-3 select-option-group" :class="[Object.keys(values).length > 3 ? 'md:grid-flow-row md:grid-cols-3' : 'md:grid-flow-col md:auto-cols-auto']">
     <OptionControl
       v-for="(item, key) in values"
       :key="key"
@@ -15,9 +15,11 @@
 </template>
 
 <script>
+import OptionControl from '@/components/base/option.vue'
+
 export default {
   components: {
-    OptionControl: () => import(/* webpackMode: "eager" */ '@/components/base/option.vue')
+    OptionControl
   },
 
   props: {

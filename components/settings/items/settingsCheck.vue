@@ -9,11 +9,12 @@
 <script>
 import settingsInputMixin from '@/assets/mixins/settings/settingsItemBase'
 import Toggle from '@/components/base/toggle.vue'
+import BaseSettingsItem from '@/components/settings/resolvedSettingsItem.vue'
 
 export default {
   components: {
     Toggle,
-    BaseSettingsItem: () => import(/* webpackMode: "eager" */ '~/components/settings/resolvedSettingsItem.vue')
+    BaseSettingsItem
   },
 
   mixins: [settingsInputMixin],
