@@ -163,12 +163,12 @@ export default defineNuxtConfig({
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/i18n',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/i18n'
+    // '@nuxtjs/sitemap'
   ],
 
   /** Modules that need to be transpiled */
-  transpileDependencies: ['vuex-persist'],
+  // transpileDependencies: ['vuex-persist'],
 
   /** ESLint module settings */
   eslint: {
@@ -248,9 +248,9 @@ export default defineNuxtConfig({
     }
   },
 
-  sitemap: {
-    hostname: process.env.URL ? process.env.URL : 'https://another-pomodoro.netlify.app'
-  },
+  // sitemap: {
+  //   hostname: process.env.URL ? process.env.URL : 'https://another-pomodoro.netlify.app'
+  // },
 
   /*
   ** Google Fonts
