@@ -18,6 +18,7 @@
     <!-- Dark mode background override -->
     <div class="absolute w-full h-full dark:bg-gray-900" />
     <NotificationController />
+    <BaseSettingsItemDev :path="['a', 'b']" />
 
     <!-- Settings panel -->
     <div>
@@ -117,6 +118,8 @@ import TimerControls from '@/components/timer/controls/contolsBasic.vue'
 // import UiOverlay from '@/components/base/overlay.vue'
 import Button from '@/components/base/button.vue'
 
+import BaseSettingsItemDev from '@/components/settings/items/baseSettingsItem.vue'
+
 // Static imports:
 
 definePageMeta({ layout: 'timer' })
@@ -138,7 +141,9 @@ export default {
     // UiOverlay,
     CogIcon: SettingsIcon,
     ListCheckIcon,
-    Button
+    Button,
+
+    BaseSettingsItemDev
   },
 
   props: {
