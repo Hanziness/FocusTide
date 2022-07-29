@@ -15,11 +15,5 @@
       "@@/*": ["./*"]
     }
   },
-  "vueCompilerOptions": {
-    "experimentalCompatMode": 2,
-    "experimentalTemplateCompilerOptions": {
-      "compatConfig": { "MODE": 2 } // optional
-    }
-  },
   "exclude": ["node_modules", ".nuxt", "dist"]
 }
