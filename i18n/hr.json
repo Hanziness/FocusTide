@@ -172,7 +172,7 @@
     },
     "theme": {
       "_values": {
-        "light": "Standardne",
+        "light": "Standardna",
         "dark": "Tamna"
       },
       "_valueDescription": {
@@ -284,9 +284,9 @@
           "_title": "Unaprijed postavljen raspored",
           "_description": "",
           "_values": {
-            "default": "Standardne",
+            "default": "Standardni",
             "debug": "Otklanjanja grešaka",
-            "custom": "Prilagođeni"
+            "custom": "Prilagođen"
           },
           "_valueDescription": {
             "default": "25 minuta rada, 5 minuta pauze",
@@ -437,7 +437,7 @@
   },
   "timerpreset": {
     "_values": {
-      "default": "Standardne",
+      "default": "Standardni",
       "easy": "Početnički",
       "advanced": "Napredni",
       "workaholic": "Radoholičarski"
