@@ -18,7 +18,9 @@
     <!-- Dark mode background override -->
     <div class="absolute w-full h-full dark:bg-gray-900" />
     <NotificationController />
-    <BaseSettingsItemDev :path="['a', 'b']" />
+    <BaseSettingsItemDev :path="['adaptiveTicking', 'enabled']" type="check" />
+    <BaseSettingsItemDev :path="['schedule', 'lengths', 'work']" type="time" />
+    <BaseSettingsItemDev :min="1" :max="10" :path="['schedule', 'longPauseInterval']" type="number" />
 
     <!-- Settings panel -->
     <div>
@@ -117,6 +119,7 @@ import TimerSwitch from '@/components/timer/display/_timerSwitch.vue'
 import TimerControls from '@/components/timer/controls/contolsBasic.vue'
 // import UiOverlay from '@/components/base/overlay.vue'
 import Button from '@/components/base/button.vue'
+import TimerProgress from '@/components/timer/timerProgress.vue'
 
 import BaseSettingsItemDev from '@/components/settings/items/baseSettingsItem.vue'
 
@@ -129,12 +132,12 @@ export default {
   components: {
     // lazy-loaded components
     ScheduleDisplay: defineAsyncComponent(() => import('@/components/schedule/scheduleDisplay.vue')),
-    TimerProgress: defineAsyncComponent(() => import('@/components/timer/timerProgress.vue')),
     SettingsPanel: defineAsyncComponent(() => import('@/components/settings/settingsPanel.vue')),
     TodoList: defineAsyncComponent(() => import('@/components/todoList/main.vue')),
     TutorialView: defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue')),
 
     Ticker,
+    TimerProgress,
     NotificationController,
     TimerSwitch,
     TimerControls,
