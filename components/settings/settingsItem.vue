@@ -64,7 +64,7 @@ const isSideControls = computed(() => props.type !== Control.Option)
 </script>
 
 <template>
-  <div class="flex flex-col justify-start gap-2">
+  <div class="flex flex-col justify-start gap-2" :class="{'pointer-events-none opacity-60': props.disabled }" :tabindex="disabled ? -1 : 0">
     <div class="flex flex-row items-center">
       <!-- Settings item title and description -->
       <div class="select-none flex-grow">
