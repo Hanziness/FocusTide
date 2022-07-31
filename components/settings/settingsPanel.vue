@@ -17,6 +17,7 @@
       </h1>
       <div class="flex-grow overflow-y-auto">
         <Transition tag="div" name="tab-transition" mode="out-in" class="relative w-full overflow-hidden">
+          <!-- Core settings -->
           <div v-if="activeTab === 1" :key="1" class="settings-tab">
             <OptionGroup
               :choices="$languages"
@@ -63,19 +64,22 @@
             <SettingsItem type="check" :path="['reset']" />
           </div>
 
+          <!-- Schedule -->
           <div v-else-if="activeTab === 2" :key="2" class="settings-tab">
             <SettingsItem type="number" :path="['schedule', 'longPauseInterval']" :min="1" :max="10" />
             <Divider />
 
             <SettingsItem
-              type="option"
+              type="empty"
               :path="['schedule', 'lengths']"
-              :custom-value="settingsStore.getActiveSchedulePreset"
-              override-translation-key="timerpreset"
-              :choices="timerPresets"
-              :set-value-on-change="false"
-              :custom-set-function="(v) => { settingsStore.applyPreset(v) }"
-            />
+            >
+              <OptionGroup
+                translation-key="timerpreset"
+                :choices="timerPresets"
+                :value="settingsStore.getActiveSchedulePreset"
+                @input="(newPreset) => settingsStore.applyPreset(newPreset)"
+              />
+            </SettingsItem>
             <SettingsItem type="time" :path="['schedule', 'lengths', 'work']" :min-ms="5000" />
             <SettingsItem type="time" :path="['schedule', 'lengths', 'shortpause']" :min-ms="5000" />
             <SettingsItem type="time" :path="['schedule', 'lengths', 'longpause']" :min-ms="5000" />
@@ -85,6 +89,7 @@
             </div>
           </div>
 
+          <!-- Display -->
           <div v-else-if="activeTab === 3" :key="3" class="settings-tab">
             <SettingsItem type="check" :path="['visuals', 'darkMode']" />
             <Divider />
@@ -105,6 +110,7 @@
             <!-- TODO Audio volume control -->
           </div>
 
+          <!-- About page -->
           <div v-else-if="activeTab === 4" :key="4" class="settings-tab">
             <div class="flex flex-col items-center">
               <img src="/favicon.svg" width="64" height="64" class="inline-block p-2 mb-1 bg-red-200 rounded-lg">
