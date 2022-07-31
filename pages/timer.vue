@@ -18,9 +18,6 @@
     <!-- Dark mode background override -->
     <div class="absolute w-full h-full dark:bg-gray-900" />
     <NotificationController />
-    <BaseSettingsItemDev :path="['adaptiveTicking', 'enabled']" type="check" />
-    <BaseSettingsItemDev :path="['schedule', 'lengths', 'work']" type="time" />
-    <BaseSettingsItemDev :min="1" :max="10" :path="['schedule', 'longPauseInterval']" type="number" />
 
     <!-- Settings panel -->
     <div>
@@ -28,7 +25,7 @@
         <UiOverlay v-if="showSettings" />
       </Transition> -->
       <Transition name="transition-slidein">
-        <SettingsPanel v-if="showSettings" v-model="showSettings" class="right-0" />
+        <SettingsPanel v-if="showSettings" :value="showSettings" class="right-0" />
       </Transition>
     </div>
     <Ticker class="relative flex flex-col items-center justify-center w-full h-full">
@@ -113,6 +110,7 @@ import { useSchedule } from '~/stores/schedule'
 import { useSettings } from '~/stores/settings'
 import { useEvents } from '@/stores/events'
 
+// Static imports:
 import Ticker from '@/components/ticker.vue'
 import NotificationController from '@/components/notifications/notificationController.vue'
 import TimerSwitch from '@/components/timer/display/_timerSwitch.vue'
@@ -120,10 +118,6 @@ import TimerControls from '@/components/timer/controls/contolsBasic.vue'
 // import UiOverlay from '@/components/base/overlay.vue'
 import Button from '@/components/base/button.vue'
 import TimerProgress from '@/components/timer/timerProgress.vue'
-
-import BaseSettingsItemDev from '@/components/settings/items/baseSettingsItem.vue'
-
-// Static imports:
 
 definePageMeta({ layout: 'timer' })
 
@@ -135,7 +129,6 @@ export default {
     SettingsPanel: defineAsyncComponent(() => import('@/components/settings/settingsPanel.vue')),
     TodoList: defineAsyncComponent(() => import('@/components/todoList/main.vue')),
     TutorialView: defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue')),
-
     Ticker,
     TimerProgress,
     NotificationController,
@@ -144,9 +137,7 @@ export default {
     // UiOverlay,
     CogIcon: SettingsIcon,
     ListCheckIcon,
-    Button,
-
-    BaseSettingsItemDev
+    Button
   },
 
   props: {

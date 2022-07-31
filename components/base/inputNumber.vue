@@ -42,7 +42,7 @@ const updateInput = (newValue: string) => {
 <template>
   <div class="flex flex-row items-center gap-2">
     <input
-      class="relative min-w-0 appearance-none group isolate before:bg-theme before:absolute before:left-0 before:h-2 before:w-2"
+      class="relative min-w-0 appearance-none group isolate bg-transparent before:bg-theme before:absolute before:left-0 before:h-2 before:w-2"
       :value="state.value"
       :min="props.min"
       :max="props.max"
@@ -59,7 +59,7 @@ input[type="range"]::-moz-range-track {
 }
 
 input[type="range"]::-moz-range-thumb {
-  @apply rounded-full border-none bg-theme scale-90 transition-all duration-300 active:scale-100;
+  @apply rounded-full border-none bg-theme scale-90 transition-all duration-300 active:scale-110;
 
   &:focus {
     @apply ring ring-theme;

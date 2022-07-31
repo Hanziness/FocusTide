@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent } from 'vue'
 import { useSettings } from '@/stores/settings'
+import OptionGroup from '~~/components/base/optionGroup.vue'
 
 enum Control {
   Check = 'check',
@@ -21,7 +22,7 @@ interface Props {
   path: Array<string>,
   type: Control,
   disabled?: boolean,
-  choices?: Array<string>,
+  choices?: Record<string, unknown>,
   min?: number,
   max?: number
 }
@@ -30,6 +31,8 @@ const props = defineProps<Props>()
 const translationKey = 'settings.values.' + props.path.join('.')
 
 const settingsStore = useSettings()
+
+const emit = defineEmits<{(event: 'input', value: any): void }>()
 
 const value = computed({
   get () {
@@ -53,32 +56,47 @@ const value = computed({
 
     current[lastPathItem] = newValue
     settingsStore.$patch(patchObj)
+    emit('input', newValue)
   }
 })
+
+const isSideControls = computed(() => props.type !== Control.Option)
 </script>
 
 <template>
-  <div class="flex flex-row items-center justify-between gap-2">
-    <!-- Settings item title and description -->
-    <div class="select-none">
-      <div v-text="$t(translationKey + '._title')" />
-      <div class="text-sm opacity-80" v-text="$t(translationKey + '._description')" />
+  <div class="flex flex-col justify-start gap-2">
+    <div class="flex flex-row items-center">
+      <!-- Settings item title and description -->
+      <div class="select-none flex-grow">
+        <div v-text="$t(translationKey + '._title')" />
+        <div class="text-sm opacity-80" v-text="$t(translationKey + '._description')" />
+      </div>
+      <!-- Settings item control (right side) -->
+      <div v-if="isSideControls" class="flex-shrink-0 w-36">
+        <Component
+          :is="controls[props.type]"
+          :disabled="props.disabled"
+          :min="props.min"
+          :max="props.max"
+          :choices="props.choices"
+          class="ml-auto"
+          :value="value"
+          @input="(newValue) => value = newValue"
+        />
+      </div>
     </div>
 
-    <!-- Settings item control (right side) -->
-    <div class="flex-shrink-0 w-32">
-      <Component
-        :is="controls[props.type]"
-        :disabled="props.disabled"
-        :min="props.min"
-        :max="props.max"
+    <!-- Settings item control (below) -->
+    <div v-if="!isSideControls">
+      <OptionGroup
         :choices="props.choices"
-        class="ml-auto"
+        :disabled="props.disabled"
         :value="value"
+        :translation-key="translationKey"
         @input="(newValue) => value = newValue"
-      />
+      >
+        <slot />
+      </OptionGroup>
     </div>
-
-    <!-- TODO Settings item control (below) -->
   </div>
 </template>

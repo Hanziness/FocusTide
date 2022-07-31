@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import Toggle from './toggle.vue'
-import ButtonComponent from './button.vue'
+// import ButtonComponent from './button.vue'
 
 const props = defineProps({
   value: {
@@ -89,10 +89,10 @@ const updateSec = (newValue: string) => {
       @input="(e) => updateSec((e.target as HTMLInputElement).value)"
     >
     <div class="flex flex-row items-center gap-1 mr-2">
-      <div :class="{ 'font-bold': inputMinutes }" @click="inputMinutes = true">
+      <div class="w-6 h-6 text-center rounded-full text-sm cursor-pointer -mx-1 px-1" :class="{ 'font-bold bg-theme bg-opacity-40': inputMinutes }" @click="inputMinutes = true">
         m
       </div>
-      <div :class="{ 'font-bold': !inputMinutes }" @click="inputMinutes = false">
+      <div class="w-6 h-6 text-center rounded-full text-sm cursor-pointer -mx-1 px-1" :class="{ 'font-bold bg-theme bg-opacity-40': !inputMinutes }" @click="inputMinutes = false">
         s
       </div>
       <!-- <ButtonComponent default-style circle :importance="3" class="flex-shrink-0 text-sm" inner-class="!p-2">

@@ -1,16 +1,16 @@
 <template>
-  <div class="grid grid-flow-row gap-3 select-option-group" :class="[Object.keys(values).length > 3 ? 'md:grid-flow-row md:grid-cols-3' : 'md:grid-flow-col md:auto-cols-auto']">
-    <OptionControl
-      v-for="(item, key) in values"
-      :key="key"
-      class="min-w-0"
-      :active="key === selected"
-      :translation-key="translationKey"
-      :translation-subkey="key"
-      :custom-title="overrideText.title == null ? '' : (overrideText.title[key] ? overrideText.title[key] : null)"
-      :custom-description="overrideText.description == null ? '' : (overrideText.description[key] ? overrideText.description[key] : null)"
-      @click="select(key)"
-    />
+  <div class="grid grid-flow-row gap-3 select-option-group" :class="[Object.keys(choices).length > 3 ? 'md:grid-flow-row md:grid-cols-3' : 'md:grid-flow-col md:auto-cols-auto']">
+    <slot>
+      <OptionControl
+        v-for="(item, key) in choices"
+        :key="key"
+        class="min-w-0"
+        :active="key === value"
+        :title="!!overrideText.title[key] ? overrideText.title[key] : $t(`${translationKey}._choices.${key}.title`)"
+        :description="overrideText.description ? (!!overrideText.description[key] ? overrideText.description[key] : $t(`${translationKey}._choices.${key}.description`)) : ''"
+        @click="select(key)"
+      />
+    </slot>
   </div>
 </template>
 
@@ -23,10 +23,10 @@ export default {
   },
 
   props: {
-    values: {
+    choices: {
       type: Object,
       required: true,
-      default: () => {}
+      default: () => ({})
     },
 
     translationKey: {
@@ -34,31 +34,29 @@ export default {
       default: ''
     },
 
-    selected: {
+    value: {
       type: String,
       default: ''
     },
 
     overrideText: {
       type: Object,
-      default: () => {
-        return {
-          title: {},
-          description: {}
-        }
-      }
+      default: () => ({
+        title: {},
+        description: {}
+      })
     }
   },
 
   // data () {
   //   return {
-  //     selected: null
+  //     value: null
   //   }
   // },
 
   methods: {
     select (key) {
-      // this.selected = key
+      // this.value = key
       this.$emit('input', key)
     }
   }

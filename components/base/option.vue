@@ -1,64 +1,38 @@
+<script setup lang="ts">
+const props = defineProps({
+  active: {
+    type: Boolean,
+    default: false
+  },
+  title: {
+    type: String,
+    default: ''
+  },
+  description: {
+    type: String,
+    default: ''
+  }
+})
+</script>
+
 <template>
   <button
-    class="px-3 py-4 border border-solid border-gray-300 rounded-lg bg-white text-left dark:bg-gray-800 dark:border-gray-600 basis-0 transition-colors flex flex-col justify-start"
+    class="px-3 py-4 border border-solid border-gray-300 rounded-xl bg-white text-left dark:bg-gray-800 dark:border-gray-600 basis-0 transition-colors flex flex-col justify-start"
     :class="[{
       'bg-primary dark:bg-primary border-transparent dark:border-transparent ring ring-primary ring-offset-2 dark:ring-offset-slate-800 text-primary-font dark:text-primary-font': active,
       'hover:bg-gray-200 dark:hover:bg-gray-600': !active
     }]"
     @click="$emit('click')"
   >
-    <div class="text-lg" :class="[{'font-bold uppercase': description.length > 0 }]">
+    <div class="text-lg" :class="[{'font-bold uppercase': props.description.length > 0 }]">
       <slot name="title">
-        {{ title }}
+        {{ props.title }}
       </slot>
     </div>
-    <div v-show="description.length > 0" class="text-sm text-opacity-75">
+    <div v-show="props.description.length > 0" class="text-sm text-opacity-75">
       <slot name="description">
-        {{ description }}
+        {{ props.description }}
       </slot>
     </div>
   </button>
 </template>
-
-<script>
-export default {
-  props: {
-    translationKey: {
-      type: String,
-      default: ''
-    },
-
-    translationSubkey: {
-      type: String,
-      default: ''
-    },
-
-    active: {
-      type: Boolean,
-      default: false
-    },
-
-    /// Override the auto-translated title
-    customTitle: {
-      type: String,
-      default: null
-    },
-
-    /// Override the auto-translated description
-    customDescription: {
-      type: String,
-      default: null
-    }
-  },
-
-  computed: {
-    title () {
-      return typeof this.customTitle === 'string' ? this.customTitle : this.$t(this.translationKey + '._values.' + this.translationSubkey)
-    },
-
-    description () {
-      return typeof this.customDescription === 'string' ? this.customDescription : this.$t(this.translationKey + '._valueDescription.' + this.translationSubkey)
-    }
-  }
-}
-</script>
