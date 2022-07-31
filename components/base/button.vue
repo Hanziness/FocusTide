@@ -14,6 +14,7 @@
     ]"
     :aria-disabled="disabled"
     :disabled="disabled"
+    :type="link ? undefined : 'button'"
   >
     <!-- Backdrop -->
     <div class="relative">
