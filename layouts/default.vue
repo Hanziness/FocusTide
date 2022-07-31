@@ -1,6 +1,6 @@
 <template>
   <div :class="[{ 'dark': visuals.darkMode }]">
-    <nuxt />
+    <slot />
   </div>
 </template>
 
