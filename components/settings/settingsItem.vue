@@ -8,7 +8,8 @@ enum Control {
   Text = 'text',
   Time = 'time',
   Number = 'number',
-  Option = 'option'
+  Option = 'option',
+  Empty = 'empty'
 }
 
 const controls = {
@@ -36,6 +37,10 @@ const emit = defineEmits<{(event: 'input', value: any): void }>()
 
 const value = computed({
   get () {
+    if (props.type === Control.Empty) {
+      return null
+    }
+
     return props.path.reduce((prev, property) => {
       if (prev != null) {
         const next = (prev as any)[property] || null
@@ -46,6 +51,10 @@ const value = computed({
   },
 
   set (newValue) {
+    if (props.type === Control.Empty) {
+      return
+    }
+
     const patchObj = {}
     let current = patchObj
     const lastPathItem = props.path[props.path.length - 1]
@@ -60,14 +69,14 @@ const value = computed({
   }
 })
 
-const isSideControls = computed(() => props.type !== Control.Option)
+const isSideControls = computed(() => ![Control.Option, Control.Empty].includes(props.type))
 </script>
 
 <template>
   <div class="flex flex-col justify-start gap-2" :class="{'pointer-events-none opacity-60': props.disabled }" :tabindex="disabled ? -1 : 0">
     <div class="flex flex-row items-center">
       <!-- Settings item title and description -->
-      <div class="select-none flex-grow">
+      <div class="flex-grow select-none">
         <div v-text="$t(translationKey + '._title')" />
         <div class="text-sm opacity-80" v-text="$t(translationKey + '._description')" />
       </div>
@@ -89,14 +98,14 @@ const isSideControls = computed(() => props.type !== Control.Option)
     <!-- Settings item control (below) -->
     <div v-if="!isSideControls">
       <OptionGroup
+        v-if="props.type === Control.Option"
         :choices="props.choices"
         :disabled="props.disabled"
         :value="value"
         :translation-key="translationKey"
         @input="(newValue) => value = newValue"
-      >
-        <slot />
-      </OptionGroup>
+      />
+      <slot />
     </div>
   </div>
 </template>
