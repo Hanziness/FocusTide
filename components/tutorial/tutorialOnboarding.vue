@@ -33,13 +33,13 @@
       </transition>
       <div class="flex-grow h-4" />
       <div class="flex flex-col gap-2 mt-4 md:flex-row">
-        <Button class="flex-grow w-full" default :importance="2" @click="$emit('close')">
+        <Button class="flex-grow w-full" default-style :importance="2" @click="$emit('close')">
           {{ $t('tutorials.onboarding.buttons.close') }}
         </Button>
-        <Button v-if="page === 0" class="flex-grow w-full" default :importance="1" @click="page = 1">
+        <Button v-if="page === 0" class="flex-grow w-full" default-style :importance="1" @click="page = 1">
           {{ $t('tutorials.onboarding.buttons.start') }}
         </Button>
-        <Button v-else-if="page < 4" class="flex-grow w-full" default :importance="1" @click="page += 1">
+        <Button v-else-if="page < 4" class="flex-grow w-full" default-style :importance="1" @click="page += 1">
           {{ $t('tutorials.onboarding.buttons.next') }}
         </Button>
         <Button
