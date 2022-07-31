@@ -203,7 +203,6 @@ export default {
   },
 
   render () {
-    console.log(this.timeElapsed)
     return h('div', this.$slots.default({
       timeRemaining: this.timeRemaining,
       timeElapsed: this.timeElapsed,
