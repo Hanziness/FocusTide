@@ -6,8 +6,8 @@
         :key="key"
         class="min-w-0"
         :active="key === value"
-        :title="!!overrideText.title[key] ? overrideText.title[key] : $t(`${translationKey}._choices.${key}.title`)"
-        :description="overrideText.description ? (!!overrideText.description[key] ? overrideText.description[key] : $t(`${translationKey}._choices.${key}.description`)) : ''"
+        :title="!!overrideText.title[key] ? overrideText.title[key] : $t(`${translationKey}._values.${key}`)"
+        :description="overrideText.description ? (!!overrideText.description[key] ? overrideText.description[key] : $t(`${translationKey}._valueDescription.${key}`)) : ''"
         @click="select(key)"
       />
     </slot>
