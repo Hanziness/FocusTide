@@ -140,10 +140,11 @@ export default defineNuxtConfig({
   ** See https://nuxtjs.org/api/configuration-components
   */
   components: false,
+
   /*
-  ** Nuxt.js dev-modules
+  ** Nuxt.js modules
   */
-  buildModules: [
+  modules: [
     ['~/modules/build/icon_resize', iconConfig.variants.map(icon => ({
       sizes: iconConfig.sizes,
       src: icon.src,
@@ -154,15 +155,7 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
-    '@pinia/nuxt'
-    // '@nuxt/image'
-    // '@nuxtjs/pwa'
-  ],
-
-  /*
-  ** Nuxt.js modules
-  */
-  modules: [
+    '@pinia/nuxt',
     '@nuxtjs/i18n'
     // '@nuxtjs/sitemap'
   ],
