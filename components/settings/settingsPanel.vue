@@ -5,7 +5,7 @@
         <span>{{ $t('settings.heading') }}</span>
         <Button
           :aria-label="$t('settings.buttons.close')"
-          default
+          default-style
           circle
           :importance="3"
           class="float-right -mt-2 -mr-2"
@@ -259,7 +259,7 @@ export default {
     AboutReddit: BrandRedditIcon
   },
   props: {
-    value: {
+    modelValue: {
       type: Boolean,
       default: false
     }
@@ -281,8 +281,8 @@ export default {
     }),
 
     processedValue: {
-      get () { return this.value },
-      set (newValue) { this.$emit('input', newValue) }
+      get () { return this.modelValue },
+      set (newValue) { this.$emit('update:modelValue', newValue) }
     },
 
     notificationPermission: {

@@ -25,7 +25,7 @@
         <UiOverlay v-if="showSettings" />
       </Transition> -->
       <Transition name="transition-slidein">
-        <SettingsPanel v-if="showSettings" :value="showSettings" class="right-0" />
+        <SettingsPanel v-if="showSettings" v-model="showSettings" class="right-0" />
       </Transition>
     </div>
     <Ticker class="relative flex flex-col items-center justify-center w-full h-full">
