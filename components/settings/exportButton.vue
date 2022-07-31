@@ -1,15 +1,17 @@
 <template>
-  <Button default-style :importance="2" @click="downloadSettings" v-text="$t('settings.manage.buttons.save')" />
+  <ButtonControl default-style :importance="2" @click="downloadSettings">
+    <span v-text="$t('settings.manage.buttons.save')" />
+  </ButtonControl>
 </template>
 
 <script>
-import Button from '@/components/base/button.vue'
+import ButtonControl from '@/components/base/button.vue'
 import { useSettings } from '@/stores/settings'
 import { useTasklist } from '@/stores/tasklist'
 
 export default {
   components: {
-    Button
+    ButtonControl
   },
   methods: {
     downloadSettings () {
