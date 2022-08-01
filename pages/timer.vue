@@ -28,7 +28,6 @@
         <SettingsPanel v-if="showSettings" v-model="showSettings" class="right-0" />
       </Transition>
     </div>
-    <Ticker />
     <div class="relative flex flex-col items-center justify-center w-full h-full">
       <div class="z-10 flex flex-row w-full">
         <div
@@ -110,7 +109,7 @@ import { useSettings } from '~~/stores/settings'
 import { useEvents } from '@/stores/events'
 
 // Static imports:
-import Ticker from '@/components/ticker.vue'
+import { useTicker } from '~~/components/ticker.ts'
 import NotificationController from '@/components/notifications/notificationController.vue'
 import TimerSwitch from '@/components/timer/display/_timerSwitch.vue'
 import TimerControls from '@/components/timer/controls/contolsBasic.vue'
@@ -128,7 +127,6 @@ export default {
     SettingsPanel: defineAsyncComponent(() => import('@/components/settings/settingsPanel.vue')),
     TodoList: defineAsyncComponent(() => import('@/components/todoList/main.vue')),
     TutorialView: defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue')),
-    Ticker,
     TimerProgress,
     NotificationController,
     TimerSwitch,
@@ -154,6 +152,8 @@ export default {
         content: 'Jumpstart your productivity sessions with AnotherPomodoro. Start your timer session on this page, or check the home page for a guided tour!'
       }]
     })
+
+    useTicker()
   },
 
   data () {
