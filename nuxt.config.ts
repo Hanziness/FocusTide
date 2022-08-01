@@ -89,8 +89,10 @@ export default defineNuxtConfig({
   ** See https://nuxtjs.org/api/configuration-target
   */
 
-  env: {
-    PACKAGE_VERSION: version
+  runtimeConfig: {
+    public: {
+      PACKAGE_VERSION: version
+    }
   },
 
   target: 'static',
