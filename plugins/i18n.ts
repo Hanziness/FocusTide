@@ -61,10 +61,8 @@ export default defineNuxtPlugin(({ vueApp, $pinia }) => {
         }
 
         const changeSubscription = () => {
-          console.info('Registering lang change notifier')
           store.$subscribe(() => {
             if (store.$state.lang) {
-              console.info(`Setting locale to ${store.$state.lang}`)
               changeLocaleDynamic(store.$state.lang)
             }
           })
