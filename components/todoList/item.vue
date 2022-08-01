@@ -54,7 +54,7 @@
 <script>
 import { MenuIcon, TrashIcon, PencilIcon } from 'vue-tabler-icons'
 import { mapState } from 'pinia'
-import { taskState, useTasklist } from '@/stores/tasklist'
+import { taskState, useTasklist } from '~~/stores/tasklist'
 import { useSettings } from '~~/stores/settings'
 import Button from '~/components/base/button.vue'
 

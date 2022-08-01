@@ -7,7 +7,7 @@
 <script lang="ts">
 import { mapState } from 'pinia'
 import { useSettings } from '~~/stores/settings'
-import { useLoading } from '~/stores/loading'
+import { useLoading } from '~~/stores/loading'
 
 export default {
   name: 'LayoutTimer',

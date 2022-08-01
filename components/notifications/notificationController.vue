@@ -6,8 +6,8 @@
 import { mapStores } from 'pinia'
 import { useSettings } from '~~/stores/settings'
 import { useSchedule } from '~~/stores/schedule'
-import { useNotifications } from '~/stores/notifications'
-import { EventType, useEvents } from '~/stores/events'
+import { useNotifications } from '~~/stores/notifications'
+import { EventType, useEvents } from '~~/stores/events'
 
 export default {
   data () {

@@ -7,7 +7,7 @@
 <script>
 import ButtonControl from '@/components/base/button.vue'
 import { useSettings } from '~~/stores/settings'
-import { useTasklist } from '@/stores/tasklist'
+import { useTasklist } from '~~/stores/tasklist'
 
 export default {
   components: {

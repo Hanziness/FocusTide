@@ -106,7 +106,7 @@ import { defineAsyncComponent } from 'vue'
 import { useHead } from '#app'
 import { useSchedule } from '~~/stores/schedule'
 import { useSettings } from '~~/stores/settings'
-import { useEvents } from '@/stores/events'
+import { useEvents } from '~~/stores/events'
 
 // Static imports:
 import { useTicker } from '~~/components/ticker.ts'

@@ -21,8 +21,8 @@
 import { mapActions, mapState } from 'pinia'
 import { markRaw } from 'vue'
 import tutorialOnboarding from './tutorialOnboarding.vue'
-import { useTutorials } from '~/stores/tutorials'
-import { useMain, flags } from '@/stores/index'
+import { useTutorials } from '~~/stores/tutorials'
+import { useMain, flags } from '~~/stores/index'
 
 export default {
   data () {

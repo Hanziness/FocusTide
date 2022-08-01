@@ -1,5 +1,5 @@
 import { defineNuxtPlugin, useRouter } from '#app'
-import { useMain, flags } from '@/stores/index'
+import { useMain, flags } from '~~/stores/index'
 
 const persistStores = ['settings', 'tasklist', 'tutorials']
 const storeResetKey = '--reset-store'

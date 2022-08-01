@@ -22,7 +22,7 @@
 <script>
 import { mapState, mapStores } from 'pinia'
 import Item from './item.vue'
-import { useTasklist } from '~/stores/tasklist'
+import { useTasklist } from '~~/stores/tasklist'
 import { useSettings } from '~~/stores/settings'
 import { useSchedule } from '~~/stores/schedule'
 export default {

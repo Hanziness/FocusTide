@@ -8,7 +8,7 @@
 <script>
 import Button from '@/components/base/button.vue'
 import { useSettings } from '~~/stores/settings'
-import { useTasklist } from '~/stores/tasklist'
+import { useTasklist } from '~~/stores/tasklist'
 
 function filterImportedObject (store, objectToImport) {
   const storeKeys = Object.keys(store.$state)

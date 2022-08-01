@@ -2,8 +2,8 @@ import { reactive, computed, watch } from 'vue'
 
 import { TimerState, useSchedule } from '~~/stores/schedule'
 import { useSettings } from '~~/stores/settings'
-import { useTasklist } from '~/stores/tasklist'
-import { useEvents, EventType } from '~/stores/events'
+import { useTasklist } from '~~/stores/tasklist'
+import { useEvents, EventType } from '~~/stores/events'
 
 export function useTicker () {
   const settingsStore = useSettings()

@@ -199,7 +199,7 @@ import Section from '@/components/index/section.vue'
 import ScheduleCard from '@/components/index/scheduleCard.vue'
 
 import SupportButton from '~/components/socialButtons/supportButton.vue'
-import { useMain } from '@/stores/index'
+import { useMain } from '~~/stores/index'
 
 export default {
   name: 'PageHome',
