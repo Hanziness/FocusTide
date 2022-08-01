@@ -2,7 +2,10 @@
 // import { join } from 'path'
 
 import * as fs from 'fs'
+import { dirname, resolve } from 'path'
+import { fileURLToPath } from 'url'
 import { defineNuxtConfig } from 'nuxt'
+import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 
 const packageJson = fs.readFileSync('./package.json').toString()
 const version = JSON.parse(packageJson).version || 0
@@ -129,12 +132,11 @@ export default defineNuxtConfig({
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
-  plugins: [
-    '@/plugins/i18nlanguages.js',
-    // '@/plugins/notifications.client.js',
-    '@/plugins/store-persist.client.js',
-    '@/plugins/store-i18n-watch.client.js'
-  ],
+  // plugins: [
+  //   // '@/plugins/notifications.client.js',
+  //   '@/plugins/store-persist.client.js',
+  //   '@/plugins/store-i18n-watch.client.js'
+  // ],
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
@@ -155,8 +157,7 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
-    '@pinia/nuxt',
-    '@nuxtjs/i18n'
+    '@pinia/nuxt'
     // '@nuxtjs/sitemap'
   ],
 
@@ -272,6 +273,7 @@ export default defineNuxtConfig({
       }
     }
   },
+
   watchers: {
     chokidar: {
       ignoreInitial: true
@@ -280,5 +282,15 @@ export default defineNuxtConfig({
     webpack: {
       // ignored: ['**/node_modules', '**/.git', '**/.nuxt']
     }
+  },
+
+  vite: {
+    plugins: [
+      VueI18nVitePlugin({
+        include: [
+          resolve(dirname(fileURLToPath(import.meta.url)), './i18n/en.json')
+        ]
+      })
+    ]
   }
 })
