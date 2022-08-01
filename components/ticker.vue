@@ -1,7 +1,9 @@
+<template>
+  <div id="ticker" />
+</template>
 
 <script>
 import { mapStores, mapState, mapWritableState } from 'pinia'
-import { h } from 'vue'
 import { TimerState, useSchedule } from '@/stores/schedule'
 import { useSettings } from '~~/stores/settings'
 import { useTasklist } from '~/stores/tasklist'
@@ -200,15 +202,6 @@ export default {
       this.pauseOrStopTimer(true)
       this.setTimes(newTimerMs)
     }
-  },
-
-  render () {
-    return h('div', this.$slots.default({
-      timeRemaining: this.timeRemaining,
-      timeElapsed: this.timeElapsed,
-      timeOriginal: this.timeOriginal,
-      timerState: this.timerState
-    }))
   }
 }
 </script>
