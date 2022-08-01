@@ -20,7 +20,7 @@ function restoreStore (store) {
   }
 }
 
-export default defineNuxtPlugin(({ vueApp, $pinia }) => {
+export default defineNuxtPlugin(({ $pinia }) => {
   const router = useRouter()
   const PiniaPersistPlugin = ({ store }) => {
     if (persistStores.includes(store.$id)) {
