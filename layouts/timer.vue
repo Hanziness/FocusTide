@@ -1,29 +1,16 @@
 <template>
-  <transition
-    name="loading"
-    mode="in-out"
-    appear
-    :duration="1000"
-  >
-    <splash-screen v-if="loading" />
-    <div v-else class="relative w-screen h-screen" :class="[{ 'dark': darkMode }]">
-      <slot />
-    </div>
-  </transition>
+  <div class="relative w-screen h-screen" :class="[{ 'dark': darkMode }]">
+    <slot />
+  </div>
 </template>
 
 <script lang="ts">
 import { mapState } from 'pinia'
-import SplashScreen from '~/components/timer/splashScreen.vue'
 import { useSettings } from '~~/stores/settings'
 import { useLoading } from '~/stores/loading'
 
 export default {
   name: 'LayoutTimer',
-
-  components: {
-    SplashScreen
-  },
 
   data () {
     return {
@@ -39,16 +26,6 @@ export default {
     ...mapState(useLoading, {
       updateFinished: 'persist_finished'
     })
-  },
-
-  mounted () {
-    // TODO This is causing the splash screen to unmount at the wrong time, staying on the screen
-
-    // // hide the spinner
-    // console.log('Mounted layout')
-    // this.$nextTick(() => {
-    //   this.loading = false
-    // })
   }
 }
 </script>
