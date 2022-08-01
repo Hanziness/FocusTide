@@ -21,7 +21,7 @@
 
 <script>
 import { mapState } from 'pinia'
-import { useSchedule } from '~/stores/schedule'
+import { useSchedule } from '~~/stores/schedule'
 
 import ScheduleItem from '@/components/schedule/scheduleItem.vue'
 

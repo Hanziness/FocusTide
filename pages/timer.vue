@@ -105,7 +105,7 @@ import { mapStores } from 'pinia'
 import { SettingsIcon, ListCheckIcon } from 'vue-tabler-icons'
 import { defineAsyncComponent } from 'vue'
 import { useHead } from '#app'
-import { useSchedule } from '~/stores/schedule'
+import { useSchedule } from '~~/stores/schedule'
 import { useSettings } from '~~/stores/settings'
 import { useEvents } from '@/stores/events'
 

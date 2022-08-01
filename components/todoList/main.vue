@@ -43,7 +43,7 @@ import Button from '@/components/base/button.vue'
 import TaskItem from '@/components/todoList/item.vue'
 import TaskAdd from '@/components/todoList/addTask.vue'
 import { useSettings } from '~~/stores/settings'
-import { useSchedule } from '~/stores/schedule'
+import { useSchedule } from '~~/stores/schedule'
 import { useTasklist } from '~/stores/tasklist'
 
 export default {

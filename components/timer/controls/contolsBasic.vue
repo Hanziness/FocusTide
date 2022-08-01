@@ -62,7 +62,7 @@ import { PlayerPlayIcon, PlayerPauseIcon, PlayerStopIcon, PlayerSkipForwardIcon,
 import { mapStores } from 'pinia'
 import KeyboardListener from '@/assets/mixins/keyboardListener'
 
-import { TimerState, useSchedule } from '@/stores/schedule'
+import { TimerState, useSchedule } from '~~/stores/schedule'
 import { useSettings } from '~~/stores/settings'
 import { EventType, useEvents } from '~/stores/events'
 

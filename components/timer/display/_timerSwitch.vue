@@ -13,7 +13,7 @@
 import { mapState } from 'pinia'
 import { AvailableTimers } from '~~/stores/settings'
 import TimerMixin from '@/assets/mixins/timerMixin'
-import { useSchedule, TimerState } from '@/stores/schedule'
+import { useSchedule, TimerState } from '~~/stores/schedule'
 
 import TimerTraditional from '@/components/timer/display/timerTraditional.vue'
 import TimerApproximate from '@/components/timer/display/timerApproximate.vue'
