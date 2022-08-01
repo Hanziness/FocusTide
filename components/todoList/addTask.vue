@@ -27,7 +27,7 @@
 import { CornerDownLeftIcon } from 'vue-tabler-icons'
 import { mapActions, mapState } from 'pinia'
 import Button from '@/components/base/button.vue'
-import { taskState, useTasklist } from '~~/stores/tasklist.js'
+import { taskState, useTasklist } from '~~/stores/tasklist'
 import { useSchedule } from '~~/stores/schedule'
 
 export default {
