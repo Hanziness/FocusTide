@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { EventType, useEvents } from './events'
 import TickMultipliers from '@/assets/settings/adaptiveTickingMultipliers'
 import timerPresets from '@/assets/settings/timerPresets'
+import { languages } from '~~/plugins/i18n'
 
 export const AvailableTimers = {
   TIMER_TRADITIONAL: 'traditional',
@@ -13,10 +14,19 @@ export const AvailableSoundSets = {
   SOUNDSET_MUSICAL: 'musical'
 }
 
+const getDefaultLocale = () : string => {
+  if (!window || !window.navigator || !window.navigator.language) {
+    return 'en'
+  }
+
+  const consideredLanguages = Object.keys(languages).filter(lang => window.navigator.language.split('-')[0].includes(lang))
+  return consideredLanguages.length > 0 ? consideredLanguages[0] : 'en'
+}
+
 export const useSettings = defineStore('settings', {
   state: () => ({
     _updated: false,
-    lang: undefined,
+    lang: getDefaultLocale(),
     visuals: {
       work: {
         colour: 'rgb(255, 107, 107)'

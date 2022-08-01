@@ -7,7 +7,7 @@ import { createI18n } from 'vue-i18n'
 
 import messages from '@intlify/unplugin-vue-i18n/messages'
 
-const languages = {
+export const languages = {
   en: {
     name: 'English',
     iso: 'en-US'
