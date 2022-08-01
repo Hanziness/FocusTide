@@ -21,9 +21,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@pinia/nuxt": "^0.1.8",
     "pinia": "^2.0.13",
-    "sass-loader": "^10.0.4",
     "vue": "^3.2.37",
-    "vue-native-notification": "^1.1.1",
     "vue-tabler-icons": "^2.0.0"
   },
   "devDependencies": {
@@ -39,7 +37,6 @@
     "@tailwindcss/forms": "^0.4.0-alpha.2",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
-    "@vue/runtime-dom": "^3.2.26",
     "autoprefixer": "^10.4.1",
     "core-js": "3",
     "eslint": "^8.20.0",
