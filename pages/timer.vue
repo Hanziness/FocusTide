@@ -196,12 +196,7 @@ export default {
     },
 
     ...mapStores(useSettings, useSchedule, useEvents)
-  },
-
-  mounted () {
-    console.log(this.$i18n)
   }
-
 }
 </script>
 
