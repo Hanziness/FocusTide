@@ -3,7 +3,7 @@
     <TransitionGroup
       enter-active-class="transition duration-300 delay-150"
       leave-active-class="absolute transition duration-300"
-      enter-class="translate-x-8 !opacity-0"
+      enter-from-class="translate-x-8 !opacity-0"
       move-class="transition duration-300 delay-150"
       leave-to-class="scale-90 opacity-0"
       tag="div"

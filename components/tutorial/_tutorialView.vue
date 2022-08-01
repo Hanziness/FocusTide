@@ -1,6 +1,6 @@
 <template>
   <div v-show="enableComponent" class="fixed top-0 left-0 z-40 w-screen h-screen transition">
-    <transition leave-to-class="opacity-0" enter-class="opacity-0" appear @after-leave="enableComponent = false">
+    <transition leave-to-class="opacity-0" enter-from-class="opacity-0" appear @after-leave="enableComponent = false">
       <div v-show="currentTutorial !== null" class="fixed top-0 left-0 w-full h-full transition-all duration-500 bg-opacity-40 dark:bg-opacity-70 bg-slate-900" />
     </transition>
 

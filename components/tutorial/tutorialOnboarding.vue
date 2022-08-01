@@ -1,7 +1,7 @@
 <template>
   <popup-sheet class="fixed w-full max-w-2xl md:p-4" open>
     <div class="flex flex-col px-6 pt-6 pb-6 transition bg-white shadow-lg md:pb-3 rounded-t-2xl md:rounded-2xl">
-      <transition enter-active-class="transition" enter-class="translate-x-4 opacity-0" leave-to-class="-translate-x-4 opacity-0" leave-active-class="transition" mode="out-in">
+      <transition enter-active-class="transition" enter-from-class="translate-x-4 opacity-0" leave-to-class="-translate-x-4 opacity-0" leave-active-class="transition" mode="out-in">
         <!-- Welcome screen -->
         <div v-if="page === 0" key="page-index" class="flex flex-col">
           <div class="flex flex-col items-center gap-2 mb-2 text-center">
