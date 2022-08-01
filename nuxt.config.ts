@@ -289,6 +289,9 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       VueI18nVitePlugin({
+        // TODO this is needed to make lazy-loading work properly
+        runtimeOnly: false,
+        fullInstall: false,
         include: [
           resolve(dirname(fileURLToPath(import.meta.url)), './i18n/en.json')
         ]
