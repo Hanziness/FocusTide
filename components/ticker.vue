@@ -3,7 +3,7 @@
 import { mapStores, mapState, mapWritableState } from 'pinia'
 import { h } from 'vue'
 import { TimerState, useSchedule } from '@/stores/schedule'
-import { useSettings } from '~/stores/settings'
+import { useSettings } from '~~/stores/settings'
 import { useTasklist } from '~/stores/tasklist'
 import { useEvents, EventType } from '~/stores/events'
 

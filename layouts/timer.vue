@@ -15,7 +15,7 @@
 <script lang="ts">
 import { mapState } from 'pinia'
 import SplashScreen from '~/components/timer/splashScreen.vue'
-import { useSettings } from '~/stores/settings'
+import { useSettings } from '~~/stores/settings'
 import { useLoading } from '~/stores/loading'
 
 export default {

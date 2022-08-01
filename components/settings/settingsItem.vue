@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent } from 'vue'
-import { useSettings } from '@/stores/settings'
+import { useSettings } from '~~/stores/settings'
 import OptionGroup from '~~/components/base/optionGroup.vue'
 
 enum Control {

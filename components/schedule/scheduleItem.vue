@@ -13,7 +13,7 @@
 
 <script>
 import { mapState } from 'pinia'
-import { useSettings } from '~/stores/settings'
+import { useSettings } from '~~/stores/settings'
 export default {
   props: {
     data: {

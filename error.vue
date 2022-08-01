@@ -54,7 +54,7 @@ import { MoodSadIcon, RoadSignIcon, MoodConfuzedIcon, RefreshAlertIcon, RefreshI
 import { mapActions } from 'pinia'
 import ActionButton from '@/components/error/action.vue'
 import ActionBar from '@/components/error/actionBar.vue'
-import { useSettings } from '~/stores/settings'
+import { useSettings } from '~~/stores/settings'
 
 const actionType = {
   RECOMMEND: 'recommended',

@@ -226,7 +226,7 @@ import ExportButton from '@/components/settings/exportButton.vue'
 import ImportButton from '@/components/settings/importButton.vue'
 
 import presetTimers from '@/assets/settings/timerPresets'
-import { useSettings } from '~/stores/settings'
+import { useSettings } from '~~/stores/settings'
 import { useNotifications } from '~/stores/notifications'
 import { useMain } from '~/stores'
 

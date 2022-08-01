@@ -7,7 +7,7 @@
 
 <script>
 import Button from '@/components/base/button.vue'
-import { useSettings } from '~/stores/settings'
+import { useSettings } from '~~/stores/settings'
 import { useTasklist } from '~/stores/tasklist'
 
 function filterImportedObject (store, objectToImport) {

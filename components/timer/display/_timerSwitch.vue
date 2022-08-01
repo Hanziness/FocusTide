@@ -11,7 +11,7 @@
 
 <script>
 import { mapState } from 'pinia'
-import { AvailableTimers } from '@/stores/settings'
+import { AvailableTimers } from '~~/stores/settings'
 import TimerMixin from '@/assets/mixins/timerMixin'
 import { useSchedule, TimerState } from '@/stores/schedule'
 

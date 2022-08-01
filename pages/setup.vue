@@ -1,12 +1,12 @@
 <template>
-  <div class="dark:text-gray-100 dark:bg-gray-900 pb-8">
-    <div class="dark:bg-opacity-25 dark:text-gray-100 pt-8 pb-20 text-center text-black bg-red-100">
+  <div class="pb-8 dark:text-gray-100 dark:bg-gray-900">
+    <div class="pt-8 pb-20 text-center text-black bg-red-100 dark:bg-opacity-25 dark:text-gray-100">
       <img src="/favicon.svg" width="64" height="64" class="inline-block p-2 mb-4 bg-red-200 rounded-lg">
       <h1 class="text-5xl font-bold uppercase" v-text="$t('setup.title')" />
     </div>
-    <div class="2xl:flex-row 2xl:space-x-4 flex flex-col px-12 mx-auto -mt-8">
+    <div class="flex flex-col px-12 mx-auto -mt-8 2xl:flex-row 2xl:space-x-4">
       <!-- Column 1: setup panel -->
-      <div class="setup-panel dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:divide-gray-700 2xl:max-w-4xl 2xl:mt-0 2xl:order-first order-last mt-4 bg-gray-100 border border-gray-300 divide-y divide-gray-300 rounded-lg shadow-xl">
+      <div class="order-last mt-4 bg-gray-100 border border-gray-300 divide-y divide-gray-300 rounded-lg shadow-xl setup-panel dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:divide-gray-700 2xl:max-w-4xl 2xl:mt-0 2xl:order-first">
         <SetupStep :title="$t('setup.steps.language.title')">
           <OptionGroup
             :selected="settingsToApply.lang"
@@ -80,7 +80,7 @@
       <!-- Column 2: timer preview -->
       <div class="sticky top-1 rounded-lg w-full h-[420px] overflow-hidden shadow-lg">
         <TimerPage class="pointer-events-none" preview />
-        <div class="top-2 left-2 absolute z-10 flex flex-row p-2 space-x-1 text-gray-900 bg-blue-100 rounded-lg">
+        <div class="absolute z-10 flex flex-row p-2 space-x-1 text-gray-900 bg-blue-100 rounded-lg top-2 left-2">
           <InfoIcon />
           <span v-text="$t('setup.preview')" />
         </div>
@@ -93,7 +93,7 @@
 import { CheckIcon, InfoCircleIcon } from 'vue-tabler-icons'
 import { mapStores } from 'pinia'
 import { getNotificationPermissions } from '@/assets/utils/notifications'
-import { AvailableTimers, useSettings } from '@/stores/settings'
+import { AvailableTimers, useSettings } from '~~/stores/settings'
 import OptionGroup from '~/components/base/optionGroup.vue'
 import TimerPage from '@/pages/timer.vue'
 import { mergeDeep } from '@/assets/utils/mergeDeep'
