@@ -17,7 +17,6 @@
     </Link>
     <!-- Dark mode background override -->
     <div class="absolute w-full h-full dark:bg-gray-900" />
-    <NotificationController />
 
     <!-- Settings panel -->
     <div>
@@ -110,7 +109,8 @@ import { useEvents } from '~~/stores/events'
 
 // Static imports:
 import { useTicker } from '~~/components/ticker.ts'
-import NotificationController from '@/components/notifications/notificationController.vue'
+import { useWeb } from '~~/platforms/web'
+
 import TimerSwitch from '@/components/timer/display/_timerSwitch.vue'
 import TimerControls from '@/components/timer/controls/contolsBasic.vue'
 // import UiOverlay from '@/components/base/overlay.vue'
@@ -128,7 +128,6 @@ export default {
     TodoList: defineAsyncComponent(() => import('@/components/todoList/main.vue')),
     TutorialView: defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue')),
     TimerProgress,
-    NotificationController,
     TimerSwitch,
     TimerControls,
     // UiOverlay,
@@ -154,6 +153,9 @@ export default {
     })
 
     useTicker()
+
+    // TODO Load appropriate platform module based on runtime config
+    useWeb()
   },
 
   data () {
