@@ -2,19 +2,6 @@
   <section class="h-full overflow-hidden transition-colors duration-300 ease-in dark:text-gray-50" :class="[{'dark' : settingsStore.visuals.darkMode }]">
     <Title>{{ (remainingTimeString ? `(${remainingTimeString}) ` : '') + pageTitle }}</Title>
 
-    <Link>
-      rel: 'icon',
-      type: 'image/svg+xml',
-      href: `data:image/svg+xml,
-      <svg
-        width="32"
-        height="32"
-        viewBox="0 0 32 32"
-        fill="none"
-        style="color: ${scheduleStore.currentScheduleColour};"
-        xmlns="http://www.w3.org/2000/svg"
-      ><circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`
-    </Link>
     <!-- Dark mode background override -->
     <div class="absolute w-full h-full dark:bg-gray-900" />
 
@@ -144,12 +131,32 @@ export default {
   },
 
   setup () {
+    const scheduleStore = useSchedule()
+
+    const iconSvg = computed(() => `data:image/svg+xml,
+      <svg
+        width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      style="color: ${scheduleStore.currentScheduleColour};"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`)
+
     useHead({
       meta: [{
         hid: 'description',
         name: 'description',
         content: 'Jumpstart your productivity sessions with AnotherPomodoro. Start your timer session on this page, or check the home page for a guided tour!'
-      }]
+      }],
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: iconSvg
+        }
+      ]
     })
 
     useTicker()
