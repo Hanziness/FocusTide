@@ -3,13 +3,13 @@
     <div ref="top" class="invisible" />
 
     <!-- FAB -->
-    <Transition name="fab-transition">
-      <nuxt-link v-show="showFAB" v-slot="{ navigate }" to="/timer" custom>
-        <div role="button" tabindex="0" class="fixed bottom-0 z-10 flex flex-row items-center w-full px-4 py-3 space-x-2 text-xl font-bold text-black uppercase transition border rounded-t-lg shadow-md cursor-pointer select-none xl:w-auto xl:right-6 xl:bottom-4 xl:rounded-lg bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 border-neutral-100" @click="navigate">
+    <Transition enter-from-class="translate-y-4 opacity-0" enter-to-class="translate-y-0" enter-active-class="transition" leave-to-class="translate-y-4 opacity-0" leave-active-class="transition">
+      <NuxtLink v-show="showFAB" v-slot="{ navigate }" to="/timer" class="fixed bottom-0 z-10 w-full transition duration-300 xl:w-auto xl:right-6 xl:bottom-4">
+        <button type="button" tabindex="0" class="flex flex-row items-center w-full px-4 py-3 space-x-2 text-xl font-bold text-black uppercase transition border rounded-t-lg shadow-md cursor-pointer select-none xl:rounded-lg bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 border-neutral-100" @click="navigate">
           <img src="/favicon.svg" width="32" height="32" role="presentation">
           <span v-text="$t('index.launch')" />
-        </div>
-      </nuxt-link>
+        </button>
+      </NuxtLink>
     </Transition>
 
     <!-- Section 1: intro -->
@@ -299,17 +299,12 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.fab-transition-enter,
-.fab-transition-leave-to {
-  @apply scale-0 opacity-0;
-}
-
+<style lang="postcss" scoped>
 .main-appear-enter-active {
   @apply transition duration-1000;
 }
 
-.main-appear-enter {
+.main-appear-enter-from {
   @apply opacity-0 -translate-x-4;
 }
 </style>
