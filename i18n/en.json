@@ -39,7 +39,7 @@
     "section_whatitdoes": {
       "title": "What does it do?",
       "subtitle": {
-        "main": "{0} helps you keep track of your time.",
+        "main": "{appname} helps you keep track of your time.",
         "sub": "Just work or take a break when it says so."
       },
       "cards": [
@@ -112,11 +112,8 @@
     "support": {
       "title": "Support this project",
       "subtitle": {
-        "0": "AnotherPomodoro is being developed as a side project with no compensation in mind.",
-        "1": {
-          "base": "If you feel that this is a project worth supporting, please {0}.",
-          "action": "do so"
-        }
+        "main": "AnotherPomodoro is being developed as a side project with no compensation in mind.",
+        "action": "If you feel that this is a project worth supporting, please do so."
       },
       "credits": "Made with ❤ by Imre Gera"
     }

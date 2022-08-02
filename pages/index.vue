@@ -97,11 +97,7 @@
       <div class="flex flex-col items-center text-sky-900">
         <h2 class="text-5xl font-bold tracking-tight uppercase" v-text="$t('index.section_whatitdoes.title')" />
         <div class="mt-2 text-lg text-center xl:text-xl">
-          <client-only>
-            <i18n path="index.section_whatitdoes.subtitle.main" tag="p">
-              <b>AnotherPomodoro</b>
-            </i18n>
-          </client-only>
+          <p v-text="$t('index.section_whatitdoes.subtitle.main', { appname: 'AnotherPomodoro' })" />
           <p v-text="$t('index.section_whatitdoes.subtitle.sub')" />
         </div>
 
@@ -158,10 +154,8 @@
     <Section ref="section-5" class="flex flex-col items-center justify-start px-4 overflow-hidden text-center md:justify-center bg-stone-100 py-36">
       <h2 class="text-5xl font-bold leading-tight tracking-tight text-black uppercase" v-text="$t('index.support.title')" />
       <div class="flex flex-col mt-4 space-y-1">
-        <p v-text="$t('index.support.subtitle[0]')" />
-        <i18n path="index.support.subtitle[1].base">
-          <b>{{ $t('index.support.subtitle[1].action') }}</b>
-        </i18n>
+        <p v-text="$t('index.support.subtitle.main')" />
+        <p v-text="$t('index.support.subtitle.action')" />
       </div>
       <div class="flex flex-row mt-8 space-x-2">
         <SupportButton type="github" default-classes />
