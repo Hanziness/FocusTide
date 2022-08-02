@@ -334,7 +334,7 @@ div.settings-tab {
   position: relative;
 }
 
-.tab-transition-enter {
+.tab-transition-enter-from {
   transform: translateY(10px);
   opacity: 0;
 }
