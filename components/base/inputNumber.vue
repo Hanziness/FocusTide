@@ -42,7 +42,7 @@ const updateInput = (newValue: string) => {
 <template>
   <div class="flex flex-row items-center gap-2">
     <input
-      class="relative min-w-0 appearance-none group isolate bg-transparent before:bg-theme before:absolute before:left-0 before:h-2 before:w-2"
+      class="relative min-w-0 bg-transparent appearance-none group isolate"
       :value="state.value"
       :min="props.min"
       :max="props.max"
@@ -53,16 +53,41 @@ const updateInput = (newValue: string) => {
   </div>
 </template>
 
-<style lang="postcss" scoped>
-input[type="range"]::-moz-range-track {
+<style lang="scss" scoped>
+@mixin range-track {
   @apply h-1 min-w-0 rounded-full bg-theme bg-opacity-20 group-active:bg-opacity-40;
 }
 
-input[type="range"]::-moz-range-thumb {
+@mixin range-thumb {
   @apply rounded-full border-none bg-theme scale-90 transition-all duration-300 active:scale-110;
 
   &:focus {
     @apply ring ring-theme;
   }
+}
+
+::-moz-range-thumb {
+  @include range-thumb;
+}
+
+::-moz-range-track {
+  @include range-track;
+}
+
+::-ms-thumb {
+  @include range-thumb;
+}
+
+::ms-track {
+  @include range-track;
+}
+
+// TODO it doesn't entirely work in Chrome :/
+::-webkit-slider-thumb {
+  @include range-thumb;
+}
+
+::-webkit-slider-runnable-track {
+  @include range-track;
 }
 </style>
