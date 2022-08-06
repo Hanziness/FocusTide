@@ -98,7 +98,6 @@ import { useWeb } from '~~/platforms/web'
 
 import TimerSwitch from '@/components/timer/display/_timerSwitch.vue'
 import TimerControls from '@/components/timer/controls/contolsBasic.vue'
-import UiOverlay from '@/components/base/overlay.vue'
 import Button from '@/components/base/button.vue'
 import TimerProgress from '@/components/timer/timerProgress.vue'
 
@@ -112,10 +111,10 @@ export default {
     SettingsPanel: defineAsyncComponent(() => import('@/components/settings/settingsPanel.vue')),
     TodoList: defineAsyncComponent(() => import('@/components/todoList/main.vue')),
     TutorialView: defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue')),
+    UiOverlay: defineAsyncComponent(() => import('@/components/base/overlay.vue')),
     TimerProgress,
     TimerSwitch,
     TimerControls,
-    UiOverlay,
     CogIcon: SettingsIcon,
     ListCheckIcon,
     Button
