@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row items-center py-4 pl-4 pr-2 space-x-2 transition-all duration-500 bg-gray-100 shadow-sm rounded-xl dark:bg-gray-700 focus-within:bg-white dark:focus-within:bg-gray-600 focus-within:shadow-lg focus-within:duration-200" :style="{ '--theme': currentScheduleColour }">
+  <div class="flex flex-row items-center py-4 pl-4 pr-2 space-x-2 transition-all duration-500 bg-gray-100 shadow-sm rounded-xl dark:bg-gray-700 focus-within:bg-white dark:focus-within:bg-gray-600 focus-within:shadow-lg focus-within:duration-200" :style="{ '--theme': currentScheduleColourModern }">
     <input
       ref="addtask_input"
       :value="taskTitle"
@@ -15,7 +15,6 @@
       circle
       class="-my-2 dark:!text-white"
       bg-class="bg-themed ring-themed dark:bg-slate-50 bg-slate-900"
-      :style="{ '--theme': currentScheduleColourModern }"
       :disabled="!valid"
       @click="addTask"
     >
