@@ -296,27 +296,8 @@ export default {
       set (newValue) { this.$emit('update:modelValue', newValue) }
     },
 
-    notificationPermission: {
-      get () {
-        return Notification ? (Notification.permission === 'granted' && this.settingsStore.permissions.notifications) : false
-      },
-      set (newValue) {
-        if (Notification.permission === 'default') {
-          const thisRef = this
-          this.$notification.requestPermission().then((newValue) => {
-            if (newValue === 'granted') {
-              thisRef.settingsStore.SET({ key: ['permissions', 'notifications'], value: true })
-            } else {
-              thisRef.notificationsBlocked = true
-              thisRef.settingsStore.SET({ key: ['permissions', 'notifications'], value: false })
-            }
-
-            thisRef.updateNotificationsEnabled(newValue === 'granted')
-          })
-        } else if (Notification.permission === 'granted') {
-          this.settingsStore.SET({ key: ['permissions', 'notifications'], value: newValue })
-        }
-      }
+    notificationPermission: () => {
+      return Notification ? (Notification.permission === 'granted' && this.settingsStore.permissions.notifications) : false
     }
   },
 
