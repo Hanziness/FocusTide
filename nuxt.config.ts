@@ -6,76 +6,32 @@ import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { defineNuxtConfig } from 'nuxt'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
+import VitePWAGenerator from './modules/build/pwa'
+import IconResizer from './modules/build/icon_resize'
 
 const packageJson = fs.readFileSync('./package.json').toString()
 const version = JSON.parse(packageJson).version || 0
 
 const iconConfig = {
+  outputFolder: 'icons',
   sizes: [64, 120, 144, 152, 192, 384, 512],
   variants: [
     {
-      src: '/static/icon.png',
+      src: '/public/icon.png',
       prefix: 'icon-maskable-',
       purpose: 'maskable'
     },
     {
-      src: '/static/icon_monochrome.png',
+      src: '/public/icon_monochrome.png',
       prefix: 'icon-monochrome-',
       purpose: 'monochrome'
     },
     {
-      src: '/static/favicon.png',
+      src: '/public/favicon.png',
       prefix: 'icon-base-',
       purpose: 'any'
     }
   ]
-}
-
-const screenshots = [
-  {
-    src: '/assets/img/screenshots/stores/mobile_0.jpg',
-    sizes: '1520x3040',
-    type: 'image/jpg',
-    platform: 'narrow',
-    label: 'A pomodoro timer running in the app'
-  },
-  {
-    src: '/assets/img/screenshots/stores/mobile_1.jpg',
-    sizes: '1520x3040',
-    type: 'image/jpg',
-    platform: 'narrow',
-    label: 'AnotherPomdoro comes with a built-in to-do manager'
-  },
-  {
-    src: '/assets/img/screenshots/stores/mobile_2.jpg',
-    sizes: '1520x3040',
-    type: 'image/jpg',
-    platform: 'narrow',
-    label: 'The timer is fully customizable: the timer\'s looks, the schedules and there\'s also a dark mode.'
-  },
-  {
-    src: '/assets/img/screenshots/stores/mobile_3.jpg',
-    sizes: '1520x3040',
-    type: 'image/jpg',
-    platform: 'narrow',
-    label: 'Every feature is optional in AnotherPomodoro. If all you need is a simple timer, it can do that, too.'
-  },
-  {
-    src: '/assets/img/screenshots/stores/mobile_4.jpg',
-    sizes: '1520x3040',
-    type: 'image/jpg',
-    platform: 'narrow',
-    label: 'Two screenshots showing the "approximate" and "percentage" timer styles.'
-  }
-]
-
-let pwaIcons = []
-for (const iconVariant of iconConfig.variants) {
-  pwaIcons = pwaIcons.concat(iconConfig.sizes.map(size => ({
-    src: `/_nuxt/icons/${iconVariant.prefix}${size}.png`,
-    sizes: `${size}x${size}`,
-    purpose: iconVariant.purpose
-  })))
 }
 
 export default defineNuxtConfig({
@@ -149,11 +105,6 @@ export default defineNuxtConfig({
   ** Nuxt.js modules
   */
   modules: [
-    ['~/modules/build/icon_resize', iconConfig.variants.map(icon => ({
-      sizes: iconConfig.sizes,
-      src: icon.src,
-      prefix: icon.prefix
-    }))],
     '@nuxtjs/google-fonts',
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
@@ -175,33 +126,6 @@ export default defineNuxtConfig({
   generate: {
     // Generate fallback pages (makes error pages work on Netlify, too)
     fallback: '404.html'
-  },
-
-  /**
-   * PWA module settings
-   */
-  pwa: {
-    meta: {
-      name: 'AnotherPomodoro',
-      author: 'Imre Gera',
-      description: 'Modern and customisable productivity timer, right in your browser!',
-      theme_color: '#F87171',
-      lang: 'en',
-      twitterCard: 'summary_large_image'
-    },
-    icon: false,
-    manifest: {
-      name: 'AnotherPomodoro: modern & simple Pomodoro app',
-      short_name: 'AnotherPomodoro',
-      start_url: '/timer?standalone=true',
-      orientation: 'any',
-      categories: ['productivity', 'utilities'],
-      display: 'standalone',
-      shortcuts: [],
-      lang: 'en-US',
-      screenshots,
-      icons: pwaIcons
-    }
   },
 
   /**
@@ -287,6 +211,10 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    build: {
+      manifest: false,
+      ssrManifest: false
+    },
     plugins: [
       VueI18nVitePlugin({
         // TODO this is needed to make lazy-loading work properly
@@ -295,7 +223,9 @@ export default defineNuxtConfig({
         include: [
           resolve(dirname(fileURLToPath(import.meta.url)), './i18n/en.json')
         ]
-      })
+      }),
+      VitePWAGenerator({ swPath: 'serviceworker.js' }),
+      IconResizer(iconConfig)
     ]
   }
 })
