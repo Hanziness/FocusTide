@@ -79,7 +79,7 @@ export const useSettings = defineStore('settings', {
       registeredHidden: null
     },
     permissions: {
-      notifications: undefined,
+      notifications: null as boolean,
       audio: true
     },
     audio: {
