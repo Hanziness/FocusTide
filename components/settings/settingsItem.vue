@@ -74,7 +74,7 @@ const isSideControls = computed(() => ![Control.Option, Control.Empty].includes(
 
 <template>
   <div class="flex flex-col justify-start gap-2" :class="{'pointer-events-none opacity-60': props.disabled }" :tabindex="disabled ? -1 : 0">
-    <div class="flex flex-row items-center">
+    <div class="flex flex-row items-center gap-4">
       <!-- Settings item title and description -->
       <div class="flex-grow select-none">
         <div v-text="$t(translationKey + '._title')" />
