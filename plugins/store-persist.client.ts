@@ -1,6 +1,28 @@
 import { defineNuxtPlugin, useRouter } from '#app'
 import { useMain, flags } from '~~/stores/index'
 
+interface Version {
+  major: number,
+  minor?: number,
+  patch?: number
+}
+
+interface BreakingChange {
+  from?: Version,
+  to?: Version,
+  reason: string[]
+}
+
+const breakingChanges: BreakingChange[] = [
+  {
+    from: { major: 1 },
+    to: { major: 1, minor: 3 },
+    reason: [
+      'Timer theme colours are now stored in a different way, restoring previous settings would cause the app to not have colours.'
+    ]
+  }
+]
+
 const persistStores = ['settings', 'tasklist', 'tutorials']
 const storeResetKey = '--reset-store'
 

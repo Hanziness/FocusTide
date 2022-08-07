@@ -2,9 +2,13 @@ import { defineStore } from 'pinia'
 
 export const useEvents = defineStore('events', {
   state: () => ({
-    events: [],
+    events: [] as Event[],
     maxEventsToKeep: 200
   }),
+
+  getters: {
+    lastEvent: state => state.events.length > 0 ? state.events[state.events.length - 1] : null
+  },
 
   actions: {
     recordEvent (eventType, eventData = undefined) {
@@ -12,10 +16,6 @@ export const useEvents = defineStore('events', {
       this.events.splice(0, this.events.length - this.maxEventsToKeep)
     }
   }
-})
-
-export const state = () => ({
-  eventList: []
 })
 
 export enum EventType {
@@ -29,6 +29,7 @@ export enum EventType {
   SCHEDULE_ADVANCE_AUTO = 'schedule.adv.auto',
   APP_STARTED = 'app.start',
   APP_ERROR = 'app.error',
+  WEB_REQUEST_NOTIFICATION_PERMISSION = 'web.permission.notification',
   OTHER = 'other'
 }
 

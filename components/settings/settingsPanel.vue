@@ -35,7 +35,11 @@
               :path="['permissions', 'notifications']"
               :set-value-on-change="false"
               :disabled="notificationsEnabled === false"
-              :custom-set-function="changeNotificationSettings"
+              @input="(newValue) => {
+                if (runtimeConfig.public.platform === 'web' && newValue === true) {
+                  eventsStore.recordEvent('web.permission.notification')
+                }
+              }"
             />
 
             <Divider />
@@ -233,6 +237,7 @@ import { useMain } from '~~/stores'
 import Button from '@/components/base/button.vue'
 import SettingsItem from '~~/components/settings/settingsItem.vue'
 import Divider from '@/components/base/divider.vue'
+import { useEvents } from '~~/stores/events'
 
 export default {
   name: 'SettingsPanel',
@@ -265,6 +270,12 @@ export default {
     }
   },
 
+  setup () {
+    return {
+      runtimeConfig: useRuntimeConfig()
+    }
+  },
+
   data () {
     return {
       activeTab: 1,
@@ -274,7 +285,7 @@ export default {
   },
 
   computed: {
-    ...mapStores(useSettings),
+    ...mapStores(useSettings, useEvents),
     ...mapState(useMain, ['version']),
     ...mapState(useNotifications, {
       notificationsEnabled: 'enabled'

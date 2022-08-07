@@ -40,6 +40,18 @@ export function useWeb () {
     }
   })
 
+  eventsStore.$subscribe(() => {
+    if (eventsStore.lastEvent._event === EventType.WEB_REQUEST_NOTIFICATION_PERMISSION && window.Notification && window.Notification.permission === 'default') {
+      window.Notification.requestPermission().then((newNotificationPermission) => {
+        settingsStore.$patch({
+          permissions: {
+            notifications: newNotificationPermission === 'granted'
+          }
+        })
+      })
+    }
+  })
+
   onMounted(() => {
     // // sound set watcher
     // this.storeUnwatch.soundSet = this.$store.watch(
