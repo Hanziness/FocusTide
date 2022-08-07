@@ -3,7 +3,7 @@
     <div class="relative flex flex-row items-center justify-center h-10">
       <p class="text-xl font-bold tracking-tighter text-gray-800 uppercase dark:text-gray-100" v-text="$t('tasks.title')" />
       <div class="absolute right-0 float-right -mr-2">
-        <Button circle default :importance="3" @click="$emit('hide')">
+        <Button circle default-style :importance="3" @click="$emit('hide')">
           <XIcon />
         </Button>
       </div>
