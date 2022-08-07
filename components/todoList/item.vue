@@ -1,32 +1,125 @@
+<script setup lang="ts">
+import { nextTick } from 'vue'
+import { MenuIcon, TrashIcon, PencilIcon } from 'vue-tabler-icons'
+import { taskState, useTasklist } from '~~/stores/tasklist'
+import { useSettings, ColorMethod } from '~~/stores/settings'
+import Button from '~/components/base/button.vue'
+
+// declare refs
+const editbox = ref(null)
+
+const tasksStore = useTasklist()
+const settingsStore = useSettings()
+
+const props = defineProps({
+  item: {
+    type: Object,
+    required: true
+  },
+  manage: {
+    type: Boolean,
+    default: false
+  },
+  /** Whether a dragged item is over this one */
+  droptarget: {
+    type: Boolean,
+    default: false
+  },
+  moveable: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const state = reactive({
+  hovering: false,
+  dragged: false,
+  editing: false,
+  editedTitle: null
+})
+
+const emit = defineEmits<{(event: 'input', checked: boolean) : void,
+  (event: 'update', newTitle: string) : void,
+  (event: 'delete') : void,
+  (event: 'dropstart', item: unknown) : void,
+  (event: 'dropfinish', item: unknown) : void,
+  (event: 'droptarget', item: unknown) : void
+}>()
+
+const checked = computed({
+  get () {
+    return props.item.state === taskState.complete
+  },
+  set (newValue) {
+    emit('input', newValue)
+  }
+})
+const showReorder = computed(() => state.editing || (props.moveable && state.hovering))
+const displayedTitle = computed({
+  get () {
+    return state.editedTitle ?? props.item.title
+  },
+  set (newValue: string) {
+    state.editedTitle = newValue
+  }
+})
+const isValid = computed(() => !tasksStore.tasks.some(task => task.id !== props.item.id && task.title === displayedTitle && task.section === props.item.section))
+
+watch(() => state.editing, (newValue: boolean) => {
+  if (newValue) {
+    // only focus on <input> in the next tick (when it is rendered)
+    nextTick(() => {
+      editbox?.value.focus()
+    })
+  }
+})
+
+// methods
+const startDrag = (evt, item) => {
+  evt.dataTransfer.dropEffect = 'move'
+  evt.dataTransfer.effectAllowed = 'move'
+  evt.dataTransfer.setData('source.title', item.title)
+  evt.dataTransfer.setData('source.section', item.section)
+  state.dragged = true
+}
+
+const handleEdit = (newValue) => {
+  if (isValid && props.item.title !== displayedTitle) {
+    emit('update', newValue)
+  }
+  state.editedTitle = null
+}
+</script>
+
 <template>
   <div
-    class="relative flex flex-row items-center px-2 py-3 transition-all duration-200 border-l-8 rounded-md hover:shadow-sm themed-border md:py-2"
-    :class="[{ 'opacity-50 line-through italic': item.state === 2, 'cursor-move': showReorder, 'ring themed-ring': dragged || droptarget, 'themed-bg !text-white': manage && editing }, manage && editing ? 'themed-bg' : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200']"
-    :style="{ '--theme': visuals[item.section].colour }"
-    draggable
-    @mouseenter="hovering = true"
-    @mouseleave="hovering = false"
-    @dragstart="startDrag($event, item), $emit('dropstart', item)"
+    class="relative flex flex-row items-center px-2 py-3 transition-all duration-200 border-l-8 rounded-md hover:shadow-sm border-themed md:py-2"
+    :class="[{ 'opacity-50 line-through italic': props.item.state === 2, 'cursor-move': props.showReorder, 'ring ring-themed': state.dragged || props.droptarget, 'bg-themed !text-white': props.manage && state.editing }, props.manage && state.editing ? 'bg-themed' : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200']"
+    :style="{ '--theme': settingsStore.getColor(props.item.section, ColorMethod.modern) }"
+    draggable="true"
+    @mouseenter="state.hovering = true"
+    @mouseleave="state.hovering = false"
+    @dragstart="(event) => { startDrag(event, item), emit('dropstart', props.item) }"
     @dragover.prevent
-    @dragend="dragged = false, $emit('dropfinish', item)"
-    @dragenter="$emit('droptarget', item)"
+    @dragend="(event) => { state.dragged = false, emit('dropfinish', props.item) }"
+    @dragenter="emit('droptarget', props.item)"
   >
-    <div :class="['absolute left-0 top-0 h-full self-stretch themed-bg transition-all duration-75 text-white flex flex-row items-center flex-shrink-0', showReorder ? 'w-6' : 'w-0']">
+    <div :class="['absolute left-0 top-0 h-full self-stretch bg-themed transition-all duration-75 text-white flex flex-row items-center flex-shrink-0', showReorder ? 'w-6' : 'w-0']">
       <span v-show="showReorder">
-        <IconEditing v-if="manage && editing" size="16" />
-        <IconMenu v-else size="16" />
+        <PencilIcon v-if="props.manage && state.editing" size="16" />
+        <MenuIcon v-else size="16" />
       </span>
     </div>
-    <div class="flex flex-col flex-grow w-full min-w-0 py-2 -my-2 transition-all duration-75 select-none mr-7" :class="[showReorder ? 'translate-x-6' : 'translate-x-0']" @click="editing = true">
+    <div class="flex flex-col flex-grow w-full min-w-0 py-2 -my-2 transition-all duration-75 select-none mr-7" :class="[showReorder ? 'translate-x-6' : 'translate-x-0']" @click="state.editing = true">
       <input
-        v-if="manage && editing"
+        v-if="props.manage && state.editing"
         ref="editbox"
         v-model="displayedTitle"
         class="py-2 pl-1 -my-2 -ml-1 text-white bg-transparent outline-none"
-        @blur="editing = false, handleEdit(displayedTitle)"
-        @keyup.enter.exact="editing = false, handleEdit(displayedTitle)"
+        @blur="state.editing = false, handleEdit(displayedTitle)"
+        @keyup.enter.exact="state.editing = false, handleEdit(displayedTitle)"
       >
-      <span v-else class="break-words">{{ item.title }}</span>
+      <span v-else class="break-words">{{ props.item.title }}</span>
       <!-- <span class="text-sm">Description</span> -->
     </div>
 
@@ -40,112 +133,16 @@
           :importance="3"
           class="-m-3 md:-m-2"
           inner-class="p-3 md:p-2"
-          bg-class="themed-ring"
-          @click="$emit('delete')"
+          bg-class="ring-themed bg-themed"
+          @click="emit('delete')"
         >
-          <IconDelete size="18" />
+          <TrashIcon size="18" />
         </Button>
       </transition>
-      <input v-model="checked" type="checkbox" class="w-6 h-6 mr-1 rounded themed-checkbox md:w-5 md:h-5">
+      <input v-model="checked" type="checkbox" class="w-6 h-6 mr-1 rounded text-themed md:w-5 md:h-5">
     </div>
   </div>
 </template>
-
-<script>
-import { MenuIcon, TrashIcon, PencilIcon } from 'vue-tabler-icons'
-import { mapState } from 'pinia'
-import { taskState, useTasklist } from '~~/stores/tasklist'
-import { useSettings } from '~~/stores/settings'
-import Button from '~/components/base/button.vue'
-
-export default {
-  components: { IconMenu: MenuIcon, IconDelete: TrashIcon, IconEditing: PencilIcon, Button },
-  props: {
-    item: {
-      type: Object,
-      required: true
-    },
-    manage: {
-      type: Boolean,
-      default: false
-    },
-    /** Whether a dragged item is over this one */
-    droptarget: {
-      type: Boolean,
-      default: false
-    },
-    moveable: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data () {
-    return {
-      hovering: false,
-      dragged: false,
-      editing: false,
-      editedTitle: null
-    }
-  },
-  computed: {
-    ...mapState(useTasklist, ['tasks']),
-    ...mapState(useSettings, ['visuals']),
-
-    checked: {
-      get () {
-        return this.item.state === taskState.complete
-      },
-      set (newValue) {
-        this.$emit('input', newValue)
-      }
-    },
-    showReorder: {
-      get () {
-        return this.editing || (this.moveable && this.hovering)
-      }
-    },
-    valid: {
-      get () {
-        return !this.tasks.some(task => task.id !== this.item.id && task.title === this.displayedTitle && task.section === this.item.section)
-      }
-    },
-    displayedTitle: {
-      get () {
-        return this.editedTitle ?? this.item.title
-      },
-      set (newValue) {
-        this.editedTitle = newValue
-      }
-    }
-  },
-  watch: {
-    editing (newValue) {
-      if (newValue) {
-        // only focus on <input> in the next tick (when it is rendered)
-        this.$nextTick(() => {
-          this.$refs.editbox?.focus()
-        })
-      }
-    }
-  },
-  methods: {
-    startDrag (evt, item) {
-      evt.dataTransfer.dropEffect = 'move'
-      evt.dataTransfer.effectAllowed = 'move'
-      evt.dataTransfer.setData('source.title', item.title)
-      evt.dataTransfer.setData('source.section', item.section)
-      this.dragged = true
-    },
-
-    handleEdit (newValue) {
-      if (this.valid && this.item.title !== this.displayedTitle) {
-        this.$emit('update', newValue)
-      }
-      this.editedTitle = null
-    }
-  }
-}
-</script>
 
 <style lang="scss">
 .themed-border {

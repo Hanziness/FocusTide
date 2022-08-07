@@ -13,7 +13,6 @@
       tag="div"
       name="transition-item"
       class="flex flex-col px-2 py-1 mt-2 -mx-2 space-y-2 overflow-x-hidden overflow-y-auto max-h-64"
-      @drop.prevent="itemDropped($event, 1)"
     >
       <TaskItem
         v-for="task in displayedTasks"
