@@ -47,7 +47,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      PACKAGE_VERSION: version
+      PACKAGE_VERSION: version,
+      platform: 'web'
     }
   },
 
