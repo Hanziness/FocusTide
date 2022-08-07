@@ -42,7 +42,7 @@ const updateInput = (newValue: string) => {
 <template>
   <div class="flex flex-row items-center gap-2">
     <input
-      class="relative min-w-0 bg-transparent appearance-none group isolate"
+      class="relative h-3 min-w-0 bg-transparent appearance-none group isolate"
       :value="state.value"
       :min="props.min"
       :max="props.max"
@@ -59,7 +59,7 @@ const updateInput = (newValue: string) => {
 }
 
 @mixin range-thumb {
-  @apply rounded-full border-none bg-theme scale-90 transition-all duration-300 active:scale-110;
+  @apply rounded-full border-none bg-theme scale-90 transition-all duration-300 active:scale-125 appearance-none w-4 h-4 mt-[-0.375rem];
 
   &:focus {
     @apply ring ring-theme;
@@ -82,7 +82,6 @@ const updateInput = (newValue: string) => {
   @include range-track;
 }
 
-// TODO it doesn't entirely work in Chrome :/
 ::-webkit-slider-thumb {
   @include range-thumb;
 }
