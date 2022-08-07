@@ -139,7 +139,7 @@ const handleEdit = (newValue) => {
           <TrashIcon size="18" />
         </Button>
       </transition>
-      <input v-model="checked" type="checkbox" class="w-6 h-6 mr-1 rounded text-themed md:w-5 md:h-5">
+      <input v-model="checked" type="checkbox" class="w-6 h-6 mr-1 rounded text-themed dark:text-themed md:w-5 md:h-5">
     </div>
   </div>
 </template>
