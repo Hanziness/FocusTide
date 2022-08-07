@@ -104,7 +104,7 @@ const handleEdit = (newValue) => {
     @dragend="(event) => { state.dragged = false, emit('dropfinish', props.item) }"
     @dragenter="emit('droptarget', props.item)"
   >
-    <div :class="['absolute left-0 top-0 h-full self-stretch bg-themed transition-all duration-75 text-white flex flex-row items-center flex-shrink-0', showReorder ? 'w-6' : 'w-0']">
+    <div :class="['absolute left-0 top-0 h-full self-stretch bg-themed transition-all duration-75 text-white flex flex-row items-center flex-shrink-0 cursor-move', showReorder ? 'w-6' : 'w-0']">
       <span v-show="showReorder">
         <PencilIcon v-if="props.manage && state.editing" size="16" />
         <MenuIcon v-else size="16" />
