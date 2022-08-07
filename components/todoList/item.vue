@@ -46,7 +46,7 @@
           <IconDelete size="18" />
         </Button>
       </transition>
-      <input :checked="checked" type="checkbox" class="w-6 h-6 mr-1 rounded themed-checkbox md:w-5 md:h-5" @input="checked = !checked">
+      <input v-model="checked" type="checkbox" class="w-6 h-6 mr-1 rounded themed-checkbox md:w-5 md:h-5">
     </div>
   </div>
 </template>
