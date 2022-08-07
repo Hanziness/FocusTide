@@ -139,7 +139,7 @@ export const useSettings = defineStore('settings', {
     getColor: (state) => {
       return (color: string, method: ColorMethod = ColorMethod.classic) => {
         if (method === ColorMethod.classic) {
-          return `rgb(${(state.visuals[color].colour as number[]).join(',')}`
+          return `rgb(${(state.visuals[color].colour as number[]).join(',')})`
         } else if (method === ColorMethod.modern) {
           return (state.visuals[color].colour as number[]).join(' ')
         }
