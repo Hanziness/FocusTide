@@ -175,7 +175,7 @@ export default {
     currentColour () {
       const currentState = this.scheduleStore.items[0]?.type
       if (currentState) {
-        return this.settingsStore.visuals[currentState].colour
+        return this.settingsStore.getColor(currentState)
       } else {
         return ''
       }

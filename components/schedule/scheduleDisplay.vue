@@ -12,7 +12,7 @@
       <schedule-item
         v-for="(item, i) in getSchedule"
         :key="item.id"
-        :data="item"
+        :type="item.type"
         :active="i === 0"
       />
     </TransitionGroup>
