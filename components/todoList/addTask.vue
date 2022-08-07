@@ -14,7 +14,8 @@
       :importance="3"
       circle
       class="-my-2 dark:!text-white"
-      bg-class="bg-opacity-0 sectiontheme dark:bg-slate-50 bg-slate-900"
+      bg-class="bg-themed ring-themed dark:bg-slate-50 bg-slate-900"
+      :style="{ '--theme': currentScheduleColourModern }"
       :disabled="!valid"
       @click="addTask"
     >
@@ -44,7 +45,7 @@ export default {
 
   computed: {
     ...mapState(useTasklist, ['tasks']),
-    ...mapState(useSchedule, ['getCurrentItem', 'currentScheduleColour'])
+    ...mapState(useSchedule, ['getCurrentItem', 'currentScheduleColourModern'])
   },
 
   watch: {
@@ -80,21 +81,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.sectiontheme::before {
-  background-color: var(--theme);
-}
-
-.sectiontheme {
-  --tw-ring-color: var(--theme);
-}
-
-.sectiontheme-text:not(:active) {
-  color: var(--theme);
-}
-
-.bordertheme {
-  border-color: var(--theme);
-}
-</style>

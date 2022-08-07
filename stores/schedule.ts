@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { useSettings } from './settings'
+import { ColorMethod, useSettings } from './settings'
 
 export const useSchedule = defineStore('schedule', {
   state: () => ({
@@ -86,6 +86,11 @@ export const useSchedule = defineStore('schedule', {
     currentScheduleColour () {
       const settings = useSettings()
       return settings.getColor(this.getCurrentItem.type)
+    },
+
+    currentScheduleColourModern () {
+      const settings = useSettings()
+      return settings.getColor(this.getCurrentItem.type, ColorMethod.modern)
     },
 
     nextScheduleColour () {
