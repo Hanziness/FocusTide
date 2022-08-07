@@ -85,24 +85,24 @@ export const useSchedule = defineStore('schedule', {
     // VISUALS
     currentScheduleColour () {
       const settings = useSettings()
-      return settings.visuals[this.getCurrentItem.type].colour
+      return settings.getColor(this.getCurrentItem.type)
     },
 
-    nextScheduleColour (state) {
+    nextScheduleColour () {
       const settings = useSettings()
       const nextState = this.getSchedule[1].type
       if (nextState) {
-        return settings.visuals[nextState].colour
+        return settings.getColor(nextState)
       } else {
         return 'transparent'
       }
     },
 
-    getScheduleColour (state) {
+    getScheduleColour () {
       const settings = useSettings()
       const colours = []
       for (const item of this.getSchedule) {
-        colours.push(settings.visuals[item.type].colour)
+        colours.push(settings.getColor(item.type))
       }
       return colours
     }

@@ -4,6 +4,14 @@ import TickMultipliers from '@/assets/settings/adaptiveTickingMultipliers'
 import timerPresets from '@/assets/settings/timerPresets'
 import { languages } from '~~/plugins/i18n'
 
+export enum ColorMethod {
+  /** `rgb(r, g, b)` */
+  classic,
+
+  /** `r g b` */
+  modern
+}
+
 export const AvailableTimers = {
   TIMER_TRADITIONAL: 'traditional',
   TIMER_APPROXIMATE: 'approximate',
@@ -28,17 +36,18 @@ export const useSettings = defineStore('settings', {
     _updated: false,
     lang: getDefaultLocale(),
     visuals: {
+      // TODO breaking change, previously it was a string: 'rgb(r, b, g)'
       work: {
-        colour: 'rgb(255, 107, 107)'
+        colour: [255, 107, 107]
       },
       shortpause: {
-        colour: 'rgb(244, 162, 97)'
+        colour: [244, 162, 97]
       },
       longpause: {
-        colour: 'rgb(46, 196, 182)'
+        colour: [46, 196, 182]
       },
       wait: {
-        colour: 'rgb(222, 226, 230)'
+        colour: [222, 226, 230]
       },
       darkMode: false
     },
@@ -125,6 +134,16 @@ export const useSettings = defineStore('settings', {
 
     performanceSettings: (state) => {
       return state.performance
+    },
+
+    getColor: (state) => {
+      return (color: string, method: ColorMethod = ColorMethod.classic) => {
+        if (method === ColorMethod.classic) {
+          return `rgb(${(state.visuals[color].colour as number[]).join(',')}`
+        } else if (method === ColorMethod.modern) {
+          return (state.visuals[color].colour as number[]).join(' ')
+        }
+      }
     }
   },
 
