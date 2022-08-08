@@ -1,6 +1,6 @@
 <template>
   <transition
-    enter-class="!translate-y-full"
+    enter-from-class="!translate-y-full"
     enter-active-class="transition-all duration-300"
     leave-to-class="!translate-y-full"
     leave-active-class="transition-all duration-300"

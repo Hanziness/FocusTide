@@ -6,17 +6,17 @@
       class="py-3 pl-4 pr-5 -mr-2 text-lg transition-colors bg-gray-200 rounded-l-lg shadow-md cursor-pointer dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500 -z-20"
       :class="[{ 'pointer-events-none': !resetEnabled }]"
       :aria-disabled="!resetEnabled"
-      :aria-label="$i18n.t('controls.stop')"
+      :aria-label="$t('controls.stop')"
       tabindex="0"
       @click="reset"
     >
       <Component
         :is="stopResetIcon"
-        :aria-label="$i18n.t('controls.stop')"
+        :aria-label="$t('controls.stop')"
         class="transition-opacity duration-300"
         :class="[{ 'opacity-40': !resetEnabled }]"
         size="24"
-        :title="$i18n.t('controls.stop')"
+        :title="$t('controls.stop')"
       />
     </div>
 
@@ -24,7 +24,7 @@
     <div
       class="relative p-4 text-xl transition-colors bg-gray-200 rounded-full shadow-xl cursor-pointer dark:bg-gray-800 active:bg-gray-300 dark:active:bg-gray-700 play-button"
       role="button"
-      :aria-label="$i18n.t('controls.play')"
+      :aria-label="$t('controls.play')"
       tabindex="0"
       :class="[{ 'active': scheduleStore.getCurrentTimerState === 1 }]"
       :style="{ '--next': scheduleStore.nextScheduleColour,
@@ -34,10 +34,10 @@
     >
       <Transition name="transition-fade" mode="out-in" tag="div" class="">
         <div v-if="scheduleStore.getCurrentTimerState !== 1" :key="1" class="relative">
-          <IconPlay :aria-label="$i18n.t('controls.play')" size="64" stroke-width="1" />
+          <IconPlay :aria-label="$t('controls.play')" size="64" stroke-width="1" />
         </div>
         <div v-else :key="2" class="relative">
-          <IconPause :aria-label="$i18n.t('controls.play')" size="64" stroke-width="1" />
+          <IconPause :aria-label="$t('controls.play')" size="64" stroke-width="1" />
         </div>
       </Transition>
     </div>
@@ -45,14 +45,14 @@
     <!-- Advance -->
     <div
       role="button"
-      :aria-label="$i18n.t('controls.advance')"
+      :aria-label="$t('controls.advance')"
       :aria-disabled="!advanceEnabled"
       class="py-3 pl-5 pr-4 -ml-2 text-lg transition-colors bg-gray-200 rounded-r-lg shadow-md cursor-pointer dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500 -z-20"
       :class="[{ 'pointer-events-none': !advanceEnabled }]"
       tabindex="0"
       @click="advance"
     >
-      <IconSkipNext :aria-label="$i18n.t('controls.advance')" class="transition-opacity duration-300" :class="[{ 'opacity-40': !advanceEnabled }]" size="24" />
+      <IconSkipNext :aria-label="$t('controls.advance')" class="transition-opacity duration-300" :class="[{ 'opacity-40': !advanceEnabled }]" size="24" />
     </div>
   </div>
 </template>
@@ -62,9 +62,9 @@ import { PlayerPlayIcon, PlayerPauseIcon, PlayerStopIcon, PlayerSkipForwardIcon,
 import { mapStores } from 'pinia'
 import KeyboardListener from '@/assets/mixins/keyboardListener'
 
-import { TimerState, useSchedule } from '@/stores/schedule'
-import { useSettings } from '~/stores/settings'
-import { EventType, useEvents } from '~/stores/events'
+import { TimerState, useSchedule } from '~~/stores/schedule'
+import { useSettings } from '~~/stores/settings'
+import { EventType, useEvents } from '~~/stores/events'
 
 export default {
   components: {

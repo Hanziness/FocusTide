@@ -46,11 +46,10 @@ export const useTasklist = defineStore('tasklist', {
       }
     },
 
-    toggleComplete ({ item }) {
-      const itemIndex = this.tasks.indexOf(item)
-      if (itemIndex >= 0) {
-        this.tasks[itemIndex].state = this.tasks[itemIndex].state === taskState.inProgress ? taskState.complete : taskState.inProgress
-      }
+    setComplete (id: string, complete: boolean) {
+      const itemIndex = this.tasks.findIndex(item => item.id === id)
+
+      this.tasks[itemIndex].state = complete ? taskState.complete : taskState.inProgress
     },
 
     deleteTask ({ item }) {

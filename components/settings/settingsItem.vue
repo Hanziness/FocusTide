@@ -1,133 +1,111 @@
-<template>
-  <baseSettingsItem>
-    <template #item-title>
-      {{ $i18n.t(translationKey + '._title') }}
-    </template>
-    <template #item-subtitle>
-      {{ $i18n.t(translationKey + '._description') }}
-    </template>
-  </baseSettingsItem>
-</template>
+<script setup lang="ts">
+import { computed, defineAsyncComponent } from 'vue'
+import { useSettings } from '~~/stores/settings'
+import OptionGroup from '~~/components/base/optionGroup.vue'
 
-<script>
-import { mapStores } from 'pinia'
-import { useSettings } from '~/stores/settings'
-export default {
-  components: {
-    baseSettingsItem: () => import(/* webpackMode: "eager" */ '~/components/settings/resolvedSettingsItem.vue')
-  },
-
-  props: {
-    /** A default value that the user can reset the field to */
-    defaultValue: {
-      type: [String, Number, Object],
-      default: undefined
-    },
-
-    /** Whether to show the description of the setting */
-    showDescription: {
-      type: Boolean,
-      default: true
-    },
-
-    /** Settings keys representing the value to change.
-     * @example `['a', 'b']` will create a binding to `settings.state.a.b`
-     */
-    settingsKey: {
-      type: Array,
-      default: () => []
-    },
-
-    /** Controls whether the setting item is disabled */
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-
-    /** Controls whether the item is visible */
-    visible: {
-      type: Boolean,
-      default: true
-    },
-
-    /** String representing the icon */
-    icon: {
-      type: String,
-      default: undefined
-    },
-
-    /** Whether to commit store change as soon as the value changes */
-    setValueOnChange: {
-      type: Boolean,
-      default: true
-    },
-
-    /**
-     * Custom function that will be called when the value changes
-     * Useful for more complicated store operations
-     */
-    customSetFunction: {
-      type: Function,
-      default: undefined
-    },
-
-    /** Value used for preset controls to specify active item (read-only) */
-    customValue: {
-      type: [Number, String, Object],
-      default: undefined
-    }
-  },
-  data () {
-    return {
-      isInputValid: true
-    }
-  },
-
-  computed: {
-    ...mapStores(useSettings),
-
-    /** Returns the translation key used for i18n */
-    translationKey: {
-      get () {
-        return 'settings.values.' + this.settingsKey.join('.')
-      }
-    },
-
-    /**
-     * Computed property responsible for getting and setting the appropriate
-     * store state variable.
-     */
-    settingValue: {
-      get () {
-        // if customValue is set, return that, else query the store
-        return this.customValue !== undefined ? this.customValue : this.resolveKeys(this.settingsKey, false)
-      },
-      set (newValue) {
-        if (this.setValueOnChange) {
-          this.settingsStore.SET({ key: this.settingsKey, value: newValue })
-        } else {
-          this.$emit('change', newValue)
-        }
-      }
-    }
-  },
-
-  methods: {
-    /** Function passed to action slot */
-    updateValue (newValue) {
-      // console.log(newValue)
-      this.settingValue = newValue
-    },
-
-    /** Resolves key array into value */
-    resolveKeys (keys, parent = false) {
-      const maxIndex = parent ? keys.length - 1 : keys.length
-      let currentValue = this.settingsStore.$state
-      for (let index = 0; index < maxIndex; index++) {
-        currentValue = currentValue ? currentValue[keys[index]] : null
-      }
-      return currentValue
-    }
-  }
+enum Control {
+  Check = 'check',
+  Text = 'text',
+  Time = 'time',
+  Number = 'number',
+  Option = 'option',
+  Empty = 'empty'
 }
+
+const controls = {
+  check: defineAsyncComponent(() => import('@/components/base/toggle.vue')),
+  text: defineAsyncComponent(() => import('@/components/base/inputText.vue')),
+  time: defineAsyncComponent(() => import('@/components/base/inputTime.vue')),
+  number: defineAsyncComponent(() => import('@/components/base/inputNumber.vue'))
+}
+
+interface Props {
+  path: Array<string>,
+  type: Control,
+  disabled?: boolean,
+  choices?: Record<string, unknown>,
+  min?: number,
+  max?: number
+}
+
+const props = defineProps<Props>()
+const translationKey = 'settings.values.' + props.path.join('.')
+
+const settingsStore = useSettings()
+
+const emit = defineEmits<{(event: 'input', value: any): void }>()
+
+const value = computed({
+  get () {
+    if (props.type === Control.Empty) {
+      return null
+    }
+
+    return props.path.reduce((prev, property) => {
+      if (prev != null) {
+        const next = (prev as any)[property] || null
+        return next
+      }
+      return null
+    }, settingsStore.$state)
+  },
+
+  set (newValue) {
+    if (props.type === Control.Empty) {
+      return
+    }
+
+    const patchObj = {}
+    let current = patchObj
+    const lastPathItem = props.path[props.path.length - 1]
+
+    for (let i = 0; i < props.path.length - 1; i++) {
+      current = current[props.path[i]] = current[props.path[i]] || {}
+    }
+
+    current[lastPathItem] = newValue
+    settingsStore.$patch(patchObj)
+    emit('input', newValue)
+  }
+})
+
+const isSideControls = computed(() => ![Control.Option, Control.Empty].includes(props.type))
 </script>
+
+<template>
+  <div class="flex flex-col justify-start gap-2" :class="{'pointer-events-none opacity-60': props.disabled }" :tabindex="disabled ? -1 : 0">
+    <div class="flex flex-row items-center gap-4">
+      <!-- Settings item title and description -->
+      <div class="flex-grow select-none">
+        <div v-text="$t(translationKey + '._title')" />
+        <div class="text-sm opacity-80" v-text="$t(translationKey + '._description')" />
+      </div>
+      <!-- Settings item control (right side) -->
+      <div v-if="isSideControls" class="flex-shrink-0 w-36">
+        <Component
+          :is="controls[props.type]"
+          :disabled="props.disabled"
+          :min="props.min"
+          :max="props.max"
+          :choices="props.choices"
+          class="ml-auto"
+          :value="value"
+          @input="(newValue) => value = newValue"
+        />
+      </div>
+    </div>
+
+    <!-- Settings item control (below) -->
+    <div v-if="!isSideControls">
+      <OptionGroup
+        v-if="props.type === Control.Option"
+        :choices="props.choices"
+        :disabled="props.disabled"
+        :value="value"
+        :translation-key="translationKey"
+        @input="(newValue) => value = newValue"
+      />
+      <slot />
+    </div>
+  </div>
+</template>

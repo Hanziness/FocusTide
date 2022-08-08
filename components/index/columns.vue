@@ -1,5 +1,5 @@
-<template functional>
-  <div class="flex" v-bind="data.attrs" :class="[data.class, data.staticClass]">
+<template>
+  <div class="flex">
     <slot name="left" />
     <slot name="right" />
   </div>

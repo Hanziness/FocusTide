@@ -1,13 +1,13 @@
 <template>
-  <div class="dark:text-gray-100 dark:bg-gray-900 pb-8">
-    <div class="dark:bg-opacity-25 dark:text-gray-100 pt-8 pb-20 text-center text-black bg-red-100">
+  <div class="pb-8 dark:text-gray-100 dark:bg-gray-900">
+    <div class="pt-8 pb-20 text-center text-black bg-red-100 dark:bg-opacity-25 dark:text-gray-100">
       <img src="/favicon.svg" width="64" height="64" class="inline-block p-2 mb-4 bg-red-200 rounded-lg">
-      <h1 class="text-5xl font-bold uppercase" v-text="$i18n.t('setup.title')" />
+      <h1 class="text-5xl font-bold uppercase" v-text="$t('setup.title')" />
     </div>
-    <div class="2xl:flex-row 2xl:space-x-4 flex flex-col px-12 mx-auto -mt-8">
+    <div class="flex flex-col px-12 mx-auto -mt-8 2xl:flex-row 2xl:space-x-4">
       <!-- Column 1: setup panel -->
-      <div class="setup-panel dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:divide-gray-700 2xl:max-w-4xl 2xl:mt-0 2xl:order-first order-last mt-4 bg-gray-100 border border-gray-300 divide-y divide-gray-300 rounded-lg shadow-xl">
-        <SetupStep :title="$i18n.t('setup.steps.language.title')">
+      <div class="order-last mt-4 bg-gray-100 border border-gray-300 divide-y divide-gray-300 rounded-lg shadow-xl setup-panel dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:divide-gray-700 2xl:max-w-4xl 2xl:mt-0 2xl:order-first">
+        <SetupStep :title="$t('setup.steps.language.title')">
           <OptionGroup
             :selected="settingsToApply.lang"
             :values="$languages"
@@ -16,7 +16,7 @@
           />
         </SetupStep>
 
-        <SetupStep :title="$i18n.t('setup.steps.preset.title')" :description="$i18n.t('setup.steps.preset.description')" :attention="mainpreset === undefined">
+        <SetupStep :title="$t('setup.steps.preset.title')" :description="$t('setup.steps.preset.description')" :attention="mainpreset === undefined">
           <OptionGroup
             :values="{ 'minimalist': 'minimalist', 'default': 'default', 'hardcore': 'hardcore' }"
             :selected="mainpreset"
@@ -25,7 +25,7 @@
           />
         </SetupStep>
 
-        <SetupStep :title="$i18n.t('setup.steps.timerpreset.title')" :description="$i18n.t('setup.steps.timerpreset.description')" :attention="timerpreset === undefined">
+        <SetupStep :title="$t('setup.steps.timerpreset.title')" :description="$t('setup.steps.timerpreset.description')" :attention="timerpreset === undefined">
           <OptionGroup
             :selected="timerpreset"
             :values="{'easy': 'easy', 'default': 'default', 'advanced': 'advanced', 'workaholic': 'workaholic'}"
@@ -35,7 +35,7 @@
           />
         </SetupStep>
 
-        <SetupStep :title="$i18n.t('setup.steps.timerstyle.title')" :description="$i18n.t('setup.steps.timerstyle.description')">
+        <SetupStep :title="$t('setup.steps.timerstyle.title')" :description="$t('setup.steps.timerstyle.description')">
           <OptionGroup
             :selected="settingsToApply.currentTimer"
             :values="{'traditional': 'traditional', 'approximate': 'approxmate', 'percentage': 'percentage'}"
@@ -45,22 +45,22 @@
         </SetupStep>
 
         <SetupStep
-          :title="$i18n.t('setup.steps.permissions.title')"
-          :description="$i18n.t('setup.steps.permissions.description')"
+          :title="$t('setup.steps.permissions.title')"
+          :description="$t('setup.steps.permissions.description')"
         >
           <div class="flex flex-col space-y-1">
             <div class="">
               <input v-model="settingsToApply.permissions.audio" type="checkbox" class="w-5 h-5 rounded">
-              <span v-text="$i18n.t('setup.permissions.audio')" />
+              <span v-text="$t('setup.permissions.audio')" />
             </div>
             <div class="">
               <input :checked="settingsToApply.permissions.notifications && browserNotificationPermission === 'granted'" :disabled="browserNotificationPermission && browserNotificationPermission !== 'granted'" type="checkbox" class="w-5 h-5 rounded" @change="setNotificationPermissions">
-              <span v-text="$i18n.t('setup.permissions.notifications')" />
+              <span v-text="$t('setup.permissions.notifications')" />
             </div>
           </div>
         </SetupStep>
 
-        <SetupStep :title="$i18n.t('setup.steps.theme.title')" :description="$i18n.t('setup.steps.theme.description')">
+        <SetupStep :title="$t('setup.steps.theme.title')" :description="$t('setup.steps.theme.description')">
           <OptionGroup
             :selected="settingsToApply.visuals.darkMode === true ? 'dark' : (settingsToApply.visuals.darkMode === false ? 'light' : null)"
             :values="{ 'light': false, 'dark': true }"
@@ -69,20 +69,20 @@
           />
         </SetupStep>
 
-        <SetupStep :title="$i18n.t('setup.steps.tip.title')" :description="$i18n.t('setup.steps.tip.description')" />
+        <SetupStep :title="$t('setup.steps.tip.title')" :description="$t('setup.steps.tip.description')" />
 
         <a href="/timer" :class="['bg-green-600 text-white font-bold text-lg text-center p-2 rounded-lg border border-green-700 uppercase hover:bg-green-700 cursor-pointer m-4 mt-0 flex flex-row items-center justify-center space-x-1', { 'opacity-60 pointer-events-none': completedSteps < 4 }]" role="button">
           <ReadyIcon />
-          <span v-text="$i18n.t('setup.startButton')" />
+          <span v-text="$t('setup.startButton')" />
         </a>
       </div>
 
       <!-- Column 2: timer preview -->
       <div class="sticky top-1 rounded-lg w-full h-[420px] overflow-hidden shadow-lg">
         <TimerPage class="pointer-events-none" preview />
-        <div class="top-2 left-2 absolute z-10 flex flex-row p-2 space-x-1 text-gray-900 bg-blue-100 rounded-lg">
+        <div class="absolute z-10 flex flex-row p-2 space-x-1 text-gray-900 bg-blue-100 rounded-lg top-2 left-2">
           <InfoIcon />
-          <span v-text="$i18n.t('setup.preview')" />
+          <span v-text="$t('setup.preview')" />
         </div>
       </div>
     </div>
@@ -93,7 +93,7 @@
 import { CheckIcon, InfoCircleIcon } from 'vue-tabler-icons'
 import { mapStores } from 'pinia'
 import { getNotificationPermissions } from '@/assets/utils/notifications'
-import { AvailableTimers, useSettings } from '@/stores/settings'
+import { AvailableTimers, useSettings } from '~~/stores/settings'
 import OptionGroup from '~/components/base/optionGroup.vue'
 import TimerPage from '@/pages/timer.vue'
 import { mergeDeep } from '@/assets/utils/mergeDeep'
@@ -189,7 +189,7 @@ export default {
 
   head () {
     return {
-      title: `AnotherPomodoro: ${this.$i18n.t('setup.head').toLowerCase()}`,
+      title: `AnotherPomodoro: ${this.$t('setup.head').toLowerCase()}`,
       meta: [{
         hid: 'description',
         name: 'description',
@@ -225,8 +225,8 @@ export default {
       for (const key in this.presetTimers) {
         if (Object.hasOwnProperty.call(this.presetTimers, key)) {
           const preset = this.presetTimers[key]
-          customText.description[key] = this.$i18n.t('timerpreset.description', {
-            brief: this.$i18n.t('timerpreset._valueDescription.' + key),
+          customText.description[key] = this.$t('timerpreset.description', {
+            brief: this.$t('timerpreset._valueDescription.' + key),
             worklength: preset.lengths.work / 60000,
             splength: preset.lengths.shortpause / 60000,
             lplength: preset.lengths.longpause / 60000,

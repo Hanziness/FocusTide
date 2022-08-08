@@ -50,14 +50,14 @@ export default {
           icon: 'GitHub',
           class: 'bg-black hover:bg-gray-700 active:bg-gray-800 text-white',
           darkClass: 'dark:bg-gray-700 dark:hover:bg-gray-600 dark:active:bg-gray-800',
-          text: this.$i18n.t('settings.about.source')
+          text: this.$t('settings.about.source')
         },
         support: {
           url: 'https://www.buymeacoffee.com/imreg',
           icon: 'Coffee',
           class: 'bg-yellow-300 hover:bg-yellow-200 active:bg-yellow-400 text-black',
           darkClass: '',
-          text: this.$i18n.t('settings.about.support')
+          text: this.$t('settings.about.support')
         }
       }
     }

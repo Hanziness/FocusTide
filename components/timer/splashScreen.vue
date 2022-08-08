@@ -1,9 +1,9 @@
-<template functional>
-  <div class="fixed w-full h-full left-0 top-0 overflow-hidden flex flex-col items-center justify-center bg-gray-800">
+<template>
+  <div class="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-full overflow-hidden bg-gray-800">
     <div class="flex flex-row space-x-4">
-      <div class="rounded-full w-8 h-8 bg-work flashing anim-timing" />
-      <div class="rounded-full w-8 h-8 bg-shortpause flashing anim-delay-1 anim-timing" />
-      <div class="rounded-full w-8 h-8 bg-longpause flashing anim-delay-2 anim-timing" />
+      <div class="w-8 h-8 rounded-full bg-work flashing anim-timing" />
+      <div class="w-8 h-8 rounded-full bg-shortpause flashing anim-delay-1 anim-timing" />
+      <div class="w-8 h-8 rounded-full bg-longpause flashing anim-delay-2 anim-timing" />
     </div>
   </div>
 </template>

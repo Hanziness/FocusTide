@@ -1,19 +1,18 @@
 <template>
-  <div class="px-4 py-4 border-gray-400 shadow-lg bg-gray-50 dark:bg-gray-800 border-opacity-20 md:border md:py-3" @keyup.stop="">
+  <div class="px-4 py-4 border-gray-400 shadow-lg bg-gray-50 dark:bg-gray-800 dark:text-slate-50 border-opacity-20 md:border md:py-3" @keyup.stop="">
     <div class="relative flex flex-row items-center justify-center h-10">
-      <p class="text-xl font-bold tracking-tighter text-gray-800 uppercase dark:text-gray-100" v-text="$i18n.t('tasks.title')" />
+      <p class="text-xl font-bold tracking-tighter text-gray-800 uppercase dark:text-gray-100" v-text="$t('tasks.title')" />
       <div class="absolute right-0 float-right -mr-2">
-        <Button circle default :importance="3" @click="$emit('hide')">
+        <Button circle default-style :importance="3" @click="$emit('hide')">
           <XIcon />
         </Button>
       </div>
     </div>
-    <div v-show="displayedTasks.length < 1" key="notask" class="mt-3 italic text-black dark:text-gray-200 text-opacity-70" v-text="$i18n.t('tasks.empty')" />
+    <div v-show="displayedTasks.length < 1" key="notask" class="mt-3 italic text-black dark:text-gray-200 text-opacity-70" v-text="$t('tasks.empty')" />
     <transition-group
       tag="div"
       name="transition-item"
       class="flex flex-col px-2 py-1 mt-2 -mx-2 space-y-2 overflow-x-hidden overflow-y-auto max-h-64"
-      @drop.prevent="itemDropped($event, 1)"
     >
       <TaskItem
         v-for="task in displayedTasks"
@@ -22,7 +21,7 @@
         :item="task"
         :droptarget="task === dropTarget"
         moveable
-        @input="tasklistStore.toggleComplete({ item: task })"
+        @input="(isCompleted) => tasklistStore.setComplete(task.id, isCompleted)"
         @update="newTitle => tasklistStore.editTitle({ id: task.id, newTitle })"
         @delete="tasklistStore.deleteTask({ item: task })"
         @dropstart="draggedItem = task, dragging = true"
@@ -42,9 +41,9 @@ import { mapStores } from 'pinia'
 import Button from '@/components/base/button.vue'
 import TaskItem from '@/components/todoList/item.vue'
 import TaskAdd from '@/components/todoList/addTask.vue'
-import { useSettings } from '~/stores/settings'
-import { useSchedule } from '~/stores/schedule'
-import { useTasklist } from '~/stores/tasklist'
+import { useSettings } from '~~/stores/settings'
+import { useSchedule } from '~~/stores/schedule'
+import { useTasklist } from '~~/stores/tasklist'
 
 export default {
   components: { TaskItem, TaskAdd, XIcon, Button /* IconManage: EditIcon */ },

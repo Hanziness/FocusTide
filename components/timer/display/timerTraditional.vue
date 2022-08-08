@@ -4,7 +4,7 @@
   >
     <transition-group
       name="transition-traditional"
-      enter-class="translate-y-4 opacity-0 md:translate-y-0 md:translate-x-4"
+      enter-from-class="translate-y-4 opacity-0 md:translate-y-0 md:translate-x-4"
       enter-active-class="duration-500"
       enter-to-class=""
       leave-class=""

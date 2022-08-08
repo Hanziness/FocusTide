@@ -5,8 +5,7 @@ module.exports = {
     './components/**/*.{vue,js}',
     './layouts/**/*.vue',
     './pages/**/*.vue',
-    './plugins/**/*.{js,ts}',
-    './nuxt.config.{js,ts}'
+    './plugins/**/*.{js,ts}'
   ],
   darkMode: 'class',
   theme: {
@@ -22,7 +21,8 @@ module.exports = {
         work: '#FF6B6B',
         shortpause: '#F4A261',
         longpause: '#2EC4B6',
-        theme: '#F87171'
+        theme: '#F87171',
+        themed: 'rgb(var(--theme) / <alpha-value>)'
       }
     }
   },

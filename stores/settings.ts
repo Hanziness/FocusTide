@@ -2,6 +2,15 @@ import { defineStore } from 'pinia'
 import { EventType, useEvents } from './events'
 import TickMultipliers from '@/assets/settings/adaptiveTickingMultipliers'
 import timerPresets from '@/assets/settings/timerPresets'
+import { languages } from '~~/plugins/i18n'
+
+export enum ColorMethod {
+  /** `rgb(r, g, b)` */
+  classic,
+
+  /** `r g b` */
+  modern
+}
 
 export const AvailableTimers = {
   TIMER_TRADITIONAL: 'traditional',
@@ -13,22 +22,32 @@ export const AvailableSoundSets = {
   SOUNDSET_MUSICAL: 'musical'
 }
 
+const getDefaultLocale = () : string => {
+  if (!window || !window.navigator || !window.navigator.language) {
+    return 'en'
+  }
+
+  const consideredLanguages = Object.keys(languages).filter(lang => window.navigator.language.split('-')[0].includes(lang))
+  return consideredLanguages.length > 0 ? consideredLanguages[0] : 'en'
+}
+
 export const useSettings = defineStore('settings', {
   state: () => ({
     _updated: false,
-    lang: undefined,
+    lang: getDefaultLocale(),
     visuals: {
+      // TODO breaking change, previously it was a string: 'rgb(r, b, g)'
       work: {
-        colour: 'rgb(255, 107, 107)'
+        colour: [255, 107, 107]
       },
       shortpause: {
-        colour: 'rgb(244, 162, 97)'
+        colour: [244, 162, 97]
       },
       longpause: {
-        colour: 'rgb(46, 196, 182)'
+        colour: [46, 196, 182]
       },
       wait: {
-        colour: 'rgb(222, 226, 230)'
+        colour: [222, 226, 230]
       },
       darkMode: false
     },
@@ -60,7 +79,7 @@ export const useSettings = defineStore('settings', {
       registeredHidden: null
     },
     permissions: {
-      notifications: undefined,
+      notifications: null as boolean,
       audio: true
     },
     audio: {
@@ -115,6 +134,16 @@ export const useSettings = defineStore('settings', {
 
     performanceSettings: (state) => {
       return state.performance
+    },
+
+    getColor: (state) => {
+      return (color: string, method: ColorMethod = ColorMethod.classic) => {
+        if (method === ColorMethod.classic) {
+          return `rgb(${(state.visuals[color].colour as number[]).join(',')})`
+        } else if (method === ColorMethod.modern) {
+          return (state.visuals[color].colour as number[]).join(' ')
+        }
+      }
     }
   },
 

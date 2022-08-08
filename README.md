@@ -86,29 +86,26 @@ This is an open-source project that welcomes contributions. Please check the [**
 ### ❤ Technologies, packages used
 
 * [**NuxtJS**](https://nuxtjs.org/) (and thus [**VueJS**](https://vuejs.org/))
-  * [`nuxt-i18n`](https://i18n.nuxtjs.org/) (and thus [`vue-i18n`](https://kazupon.github.io/vue-i18n/)) for localization
+  * [`vue-i18n`](https://kazupon.github.io/vue-i18n/) for localization
   * [`nuxt/google-fonts`](https://github.com/nuxt-community/google-fonts-module) for Google Fonts support
-  * [`nuxt/pwa`](https://pwa.nuxtjs.org/) for PWA (Progressive Web Apps) support
-  * [`vue-native-notification`](https://github.com/dennisbruner/vue-native-notification) for easier notifications support
-  * [Vuelidate](https://vuelidate.js.org/) for input validation (`vuelidate`)
-  * [`@nuxt/image`](https://image.nuxtjs.org/) for automatic image optimization
   * [`pinia`](https://pinia.vuejs.org/) for state management
 * [**Tailwind CSS**](https://tailwindcss.com/)
   * [`@tailwindcss/forms`](https://github.com/tailwindlabs/tailwindcss-forms)
 * [Tabler Icons](https://tabler-icons.io/) through [`vue-tabler-icons`](https://github.com/alex-oleshkevich/vue-tabler-icons)
+* [Workbox](https://github.com/GoogleChrome/workbox) as a PWA service worker
 * [`conventional-changelog/standard-version`](https://github.com/conventional-changelog/standard-version) for automatic changelog generation from [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ### 🛠 Building or running the app yourself
 
 ```bash
-# install dependencies
-$ yarn install
+# install dependencies (watch the install argument!)
+$ pnpm install --shamefully-hoist
 
 # serve with hot reload at localhost:3000
-$ yarn dev
+$ pnpm dev
 
 # generate the final static site
-$ yarn generate
+$ pnpm generate
 ```
 
 ## ☕ Support the project

@@ -14,7 +14,7 @@
 
 <script>
 import { mapState } from 'pinia'
-import { useSchedule } from '~/stores/schedule'
+import { useSchedule } from '~~/stores/schedule'
 export default {
   props: {
     timeElapsed: {
