@@ -17,7 +17,7 @@ useHead({
 })
 
 const settingsStore = useSettings()
-const isDarkMode = settingsStore.visuals.darkMode
+const isDarkMode = computed(() => settingsStore.visuals.darkMode)
 </script>
 
 <template>
