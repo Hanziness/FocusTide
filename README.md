@@ -6,7 +6,7 @@ Free and open-source Pomodoro application, right in your browser.
 
 ![Netlify Status](https://api.netlify.com/api/v1/badges/7cb2b7fb-cacd-4acf-803b-8af9dad9f2a8/deploy-status) ![License](https://img.shields.io/github/license/Hanziness/AnotherPomodoro) ![GitHub package.json version](https://img.shields.io/github/package-json/v/Hanziness/AnotherPomodoro) [![Crowdin translation status](https://badges.crowdin.net/anotherpomodoro/localized.svg)](https://crowdin.com/project/anotherpomodoro)
 
-![Screenshot of the application showing a work section.](./static/assets/img/ProductImg_Default.png)
+![Screenshot of the application showing a work section.](./public/assets/img/ProductImg_Default.png)
 
 ## What is it?
 
@@ -76,9 +76,9 @@ Production deployments (on Netlify or elsewhere) may use third-party tools (like
 The app itself still does not collect any data (eg. when you're running it on your own machine) 💪
 
 ## 🖼 More screenshots
-![Settings in dark mode](./static/assets/img/ProductImg_SettingsDark.png)
+![Settings in dark mode](./public/assets/img/ProductImg_SettingsDark.png)
 
-![The percentage timer with the revamped to-do list](./static/assets/img/ProductImg_Percentage.png)
+![The percentage timer with the revamped to-do list](./public/assets/img/ProductImg_Percentage.png)
 ## 🏗 If you're a developer
 
 This is an open-source project that welcomes contributions. Please check the [**contribution guidelines**](./CONTRIBUTING.md) before opening issues, discussions or pull requests!
