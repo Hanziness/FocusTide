@@ -1,5 +1,5 @@
 <template>
-  <section class="h-full overflow-hidden transition-colors duration-300 ease-in dark:text-gray-50" :class="[{'dark' : settingsStore.visuals.darkMode }]">
+  <section class="h-full overflow-hidden transition-colors duration-300 ease-in dark:text-gray-50">
     <Title>{{ (remainingTimeString ? `(${remainingTimeString}) ` : '') + pageTitle }}</Title>
 
     <!-- Dark mode background override -->
@@ -68,7 +68,7 @@
           :importance="1"
           class="transition right-5 sm:absolute"
           bg-class="dark:bg-slate-800 bg-slate-200"
-          inner-class="p-5"
+          inner-class="p-5 dark:text-slate-50"
           :class="{'scale-0': showTodoManager}"
           @click="showTodoManager = true"
         >
