@@ -12,7 +12,7 @@
     "clean": "nuxi clean",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
-    "lint": "yarn lint:js && yarn lint:style",
+    "lint": "pnpm lint:js && pnpm lint:style",
     "release-patch": "standard-version --release-as patch && git push --follow-tags",
     "release-minor": "standard-version --release-as minor && git push --follow-tags",
     "release-major": "standard-version --release-as major && git push --follow-tags",
