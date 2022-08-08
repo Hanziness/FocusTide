@@ -1,33 +1,53 @@
 import { defineNuxtPlugin, useRouter } from '#app'
 import { useMain, flags } from '~~/stores/index'
 
-interface Version {
-  major: number,
-  minor?: number,
-  patch?: number
-}
-
 interface BreakingChange {
-  from?: Version,
-  to?: Version,
-  reason: string[]
+  from?: string,
+  to: string,
+  reason: string[],
+  affectedStores: string[]
 }
 
 const breakingChanges: BreakingChange[] = [
   {
-    from: { major: 1 },
-    to: { major: 1, minor: 3 },
+    from: '1.0.0',
+    to: '1.3.0',
     reason: [
       'Timer theme colours are now stored in a different way, restoring previous settings would cause the app to not have colours.'
-    ]
+    ],
+    affectedStores: ['settings']
   }
 ]
 
-const persistStores = ['settings', 'tasklist', 'tutorials']
+const persistStores = ['settings', 'tasklist', 'tutorials', 'main']
 const storeResetKey = '--reset-store'
 
 /** Get the persistence key of the store by its ID */
 const getStorePersistenceKey = id => `persist-${id}`
+
+/** Returns stores and reasons why they cannot be restored from previous versions
+ * @example { settings: ['Something changed lately'] }
+ */
+function getBlockedStores (): Record<string, string[]> {
+  const mainStore = localStorage.getItem(getStorePersistenceKey('main'))
+  let previousVersion = '0.0.0'
+  if (mainStore !== null) {
+    const mainStoreParsed = JSON.parse(mainStore)
+
+    previousVersion = mainStoreParsed.version
+  }
+
+  return persistStores.reduce((affectedStores, storeId) => {
+    const storeExists = localStorage.getItem(getStorePersistenceKey(storeId)) !== null
+    const breakingChangeIndex = breakingChanges.findIndex(breakingChange => breakingChange.affectedStores.includes(storeId) && breakingChange.to > previousVersion)
+
+    if (storeExists && breakingChangeIndex >= 0) {
+      affectedStores[storeId] = breakingChanges[breakingChangeIndex].reason
+    }
+
+    return affectedStores
+  }, {})
+}
 
 /** Restore store to its persisted state (if there is such a state) */
 function restoreStore (store) {
@@ -44,13 +64,23 @@ function restoreStore (store) {
 
 export default defineNuxtPlugin(({ $pinia }) => {
   const router = useRouter()
+  const blockedStores = getBlockedStores()
+  useMain().$patch({
+    skippedStores: blockedStores
+  })
+
   const PiniaPersistPlugin = ({ store }) => {
     if (persistStores.includes(store.$id)) {
       const restore = localStorage.getItem(storeResetKey) == null
 
-      // Restore the store first
-      if (restore) {
-        restoreStore(store)
+      // Restore the store first if it's not the main store (that contains the version number)
+      if (restore && store.$id !== 'main') {
+        // Check if the store can be restored
+        if (Object.keys(blockedStores).includes(store.$id)) {
+          console.warn(`Store '${store.$id}' was not be restored due to breaking changes that happened since the last app update: \n - ${blockedStores[store.$id].join('\n - ')}`)
+        } else {
+          restoreStore(store)
+        }
       }
 
       const changeSubscription = () => {

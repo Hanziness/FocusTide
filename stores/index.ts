@@ -8,7 +8,8 @@ export const flags = {
 export const useMain = defineStore('main', {
   state: () => ({
     version: useRuntimeConfig().public.PACKAGE_VERSION,
-    flags: []
+    flags: [],
+    skippedStores: {}
   }),
 
   getters: {
