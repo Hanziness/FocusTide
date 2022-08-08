@@ -1,5 +1,5 @@
 import { defineNuxtPlugin, useRouter } from '#app'
-import { useMain, flags } from '~~/stores/index'
+import { useMain, flags } from '~~/stores/main'
 
 interface BreakingChange {
   from?: string,
@@ -23,7 +23,7 @@ const persistStores = ['settings', 'tasklist', 'tutorials', 'main']
 const storeResetKey = '--reset-store'
 
 /** Get the persistence key of the store by its ID */
-const getStorePersistenceKey = id => `persist-${id}`
+const getStorePersistenceKey = (id: string) => `persist-${id}`
 
 /** Returns stores and reasons why they cannot be restored from previous versions
  * @example { settings: ['Something changed lately'] }
@@ -65,11 +65,15 @@ function restoreStore (store) {
 export default defineNuxtPlugin(({ $pinia }) => {
   const router = useRouter()
   const blockedStores = getBlockedStores()
-  useMain().$patch({
-    skippedStores: blockedStores
-  })
+  //
 
   const PiniaPersistPlugin = ({ store }) => {
+    if (store.$id === 'main') {
+      store.$patch({
+        skippedStores: blockedStores
+      })
+    }
+
     if (persistStores.includes(store.$id)) {
       const restore = localStorage.getItem(storeResetKey) == null
 
@@ -84,6 +88,13 @@ export default defineNuxtPlugin(({ $pinia }) => {
       }
 
       const changeSubscription = () => {
+        // Write initial state to storage
+        localStorage.setItem(
+          getStorePersistenceKey(store.$id),
+          JSON.stringify(store.$state)
+        )
+        console.info(`Written state for ${store.$id}`)
+
         // Subscribe to changes and persist them
         const unsubscribe = store.$subscribe(() => {
           try {

@@ -231,7 +231,7 @@ import ImportButton from '@/components/settings/importButton.vue'
 import presetTimers from '@/assets/settings/timerPresets'
 import { useSettings } from '~~/stores/settings'
 import { useNotifications } from '~~/stores/notifications'
-import { useMain } from '~~/stores'
+import { useMain } from '~~/stores/main'
 
 import Button from '@/components/base/button.vue'
 import SettingsItem from '~~/components/settings/settingsItem.vue'
