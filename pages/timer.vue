@@ -163,7 +163,6 @@ export default {
   },
 
   data () {
-    console.log(useRuntimeConfig())
     return {
       showSettings: false,
       showTodoManager: false,
