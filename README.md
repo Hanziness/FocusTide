@@ -98,8 +98,8 @@ This is an open-source project that welcomes contributions. Please check the [**
 ### 🛠 Building or running the app yourself
 
 ```bash
-# install dependencies
-$ pnpm install
+# install dependencies (watch the install argument!)
+$ pnpm install --shamefully-hoist
 
 # serve with hot reload at localhost:3000
 $ pnpm dev
