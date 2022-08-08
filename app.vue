@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { swPath } from 'virtual:pwa'
+import { useSettings } from '~~/stores/settings'
 
 useHead({
   link: [
@@ -14,10 +15,13 @@ useHead({
     }
   ]
 })
+
+const settingsStore = useSettings()
+const isDarkMode = settingsStore.visuals.darkMode
 </script>
 
 <template>
   <NuxtLayout>
-    <NuxtPage />
+    <NuxtPage :class="{'dark': isDarkMode}" />
   </NuxtLayout>
 </template>

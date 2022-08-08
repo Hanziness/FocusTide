@@ -4,8 +4,8 @@
 
     <!-- FAB -->
     <Transition enter-from-class="translate-y-4 opacity-0" enter-to-class="translate-y-0" enter-active-class="transition" leave-to-class="translate-y-4 opacity-0" leave-active-class="transition">
-      <NuxtLink v-show="showFAB" v-slot="{ navigate }" to="/timer" class="fixed bottom-0 z-10 w-full transition duration-300 xl:w-auto xl:right-6 xl:bottom-4">
-        <button type="button" tabindex="0" class="flex flex-row items-center w-full px-4 py-3 space-x-2 text-xl font-bold text-black uppercase transition border rounded-t-lg shadow-md cursor-pointer select-none xl:rounded-lg bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 border-neutral-100" @click="navigate">
+      <NuxtLink v-show="showFAB" to="/timer" class="fixed bottom-0 z-10 w-full transition duration-300 xl:w-auto xl:right-6 xl:bottom-4">
+        <button type="button" tabindex="0" class="flex flex-row items-center w-full px-4 py-3 space-x-2 text-xl font-bold text-black uppercase transition border rounded-t-lg shadow-md cursor-pointer select-none xl:rounded-lg bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500 border-neutral-100">
           <img src="/favicon.svg" width="32" height="32" role="presentation">
           <span v-text="$t('index.launch')" />
         </button>
@@ -34,8 +34,8 @@
             </div>
             <!-- CTAs -->
             <div class="grid grid-flow-row grid-cols-1 gap-2 mt-6 md:grid-flow-col">
-              <nuxt-link v-slot="{ navigate }" to="/timer" custom>
-                <div class="flex-grow px-6 py-4 text-2xl font-bold text-center uppercase transition-all rounded-lg shadow-lg cursor-pointer select-none bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500" role="button" tabindex="0" @click="navigate" v-text="$t('index.cta.quickstart')" />
+              <nuxt-link to="/timer">
+                <button type="button" class="flex-grow w-full px-6 py-4 text-2xl font-bold text-center uppercase transition-all rounded-lg shadow-lg cursor-pointer select-none bg-amber-300 hover:bg-amber-400 shadow-amber-300/30 hover:shadow-amber-300/60 active:duration-500 active:shadow-xl active:shadow-amber-300/80 active:bg-amber-500" role="button" tabindex="0" v-text="$t('index.cta.quickstart')" />
               </nuxt-link>
               <!-- <nuxt-link v-slot="{ navigate }" to="/setup" custom>
                 <div class="flex-grow px-6 py-4 text-2xl font-bold text-center uppercase transition-all rounded-lg cursor-pointer select-none bg-slate-300 hover:bg-gray-300 shadow-slate-300/0 hover:shadow-slate-300/40 hover:shadow-lg active:shadow-slate-300/60 active:bg-slate-400" role="button" tabindex="0" @click="navigate" v-text="$t('index.cta.configure')" />

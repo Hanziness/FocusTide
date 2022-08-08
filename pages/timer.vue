@@ -101,8 +101,6 @@ import TimerControls from '@/components/timer/controls/contolsBasic.vue'
 import Button from '@/components/base/button.vue'
 import TimerProgress from '@/components/timer/timerProgress.vue'
 
-definePageMeta({ layout: 'timer' })
-
 export default {
   name: 'PageTimer',
   components: {
@@ -128,6 +126,8 @@ export default {
   },
 
   setup () {
+    definePageMeta({ layout: 'timer' })
+
     const scheduleStore = useSchedule()
 
     const iconSvg = computed(() => `data:image/svg+xml,
