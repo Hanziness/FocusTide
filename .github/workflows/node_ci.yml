@@ -20,8 +20,8 @@ jobs:
       with:
         node-version: '14'
         architecture: 'x64'
-        cache: 'yarn'
+        cache: 'pnpm'
     - name: Install dependencies
-      run: yarn install --frozen-lockfile
+      run: pnpm install --shamefully-hoist --prefer-frozen-lockfile
     - name: Build app
-      run: yarn generate:modern
+      run: pnpm generate:modern
