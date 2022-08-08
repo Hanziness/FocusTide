@@ -98,14 +98,14 @@ This is an open-source project that welcomes contributions. Please check the [**
 ### 🛠 Building or running the app yourself
 
 ```bash
-# install dependencies (watch the install argument!)
-$ pnpm install --shamefully-hoist
+# install dependencies
+$ yarn install
 
 # serve with hot reload at localhost:3000
-$ pnpm dev
+$ yarn dev
 
 # generate the final static site
-$ pnpm generate
+$ yarn generate
 ```
 
 ## ☕ Support the project
