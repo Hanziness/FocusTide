@@ -126,7 +126,7 @@ export default {
   },
 
   setup () {
-    definePageMeta({ layout: 'timer' })
+    definePageMeta({ layout: 'timer', layoutTransition: false })
 
     const scheduleStore = useSchedule()
 
