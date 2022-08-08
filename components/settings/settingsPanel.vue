@@ -33,11 +33,10 @@
             <SettingsItem
               type="check"
               :path="['permissions', 'notifications']"
-              :set-value-on-change="false"
               :disabled="notificationsEnabled === false"
               @input="(newValue) => {
                 if (runtimeConfig.public.platform === 'web' && newValue === true) {
-                  eventsStore.recordEvent('web.permission.notification')
+                  eventsStore.recordEvent('permission.notification')
                 }
               }"
             />

@@ -41,7 +41,7 @@ export function useWeb () {
   })
 
   eventsStore.$subscribe(() => {
-    if (eventsStore.lastEvent._event === EventType.WEB_REQUEST_NOTIFICATION_PERMISSION && window.Notification && window.Notification.permission === 'default') {
+    if (eventsStore.lastEvent._event === EventType.NOTIFICATIONS_ENABLED && window.Notification && window.Notification.permission === 'default') {
       window.Notification.requestPermission().then((newNotificationPermission) => {
         settingsStore.$patch({
           permissions: {
@@ -142,7 +142,7 @@ export function useWeb () {
 
     // TODO Firefox does not support actions
     if (window.Notification.permission !== 'granted' || settingsStore.permissions.notifications !== true) { return }
-    const notificationActions = []
+    const notificationActions : NotificationAction[] = []
     if (nextState === 'work') {
       notificationActions.push({
         action: 'ready',

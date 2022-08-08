@@ -29,7 +29,7 @@ export enum EventType {
   SCHEDULE_ADVANCE_AUTO = 'schedule.adv.auto',
   APP_STARTED = 'app.start',
   APP_ERROR = 'app.error',
-  WEB_REQUEST_NOTIFICATION_PERMISSION = 'web.permission.notification',
+  NOTIFICATIONS_ENABLED = 'permission.notification',
   OTHER = 'other'
 }
 
