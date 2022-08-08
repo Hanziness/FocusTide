@@ -20,7 +20,6 @@
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.3.5",
-    "@pinia/nuxt": "^0.1.8",
     "pinia": "^2.0.13",
     "vue": "^3.2.37",
     "vue-tabler-icons": "^2.0.0"
@@ -35,6 +34,7 @@
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/google-fonts": "^3.0.0-0",
     "@nuxtjs/stylelint-module": "^4.0.0",
+    "@pinia/nuxt": "^0.3.1",
     "@tailwindcss/forms": "^0.4.0-alpha.2",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",

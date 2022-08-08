@@ -11,7 +11,7 @@ specifiers:
   '@nuxtjs/google-fonts': ^3.0.0-0
   '@nuxtjs/pwa': ^3.3.5
   '@nuxtjs/stylelint-module': ^4.0.0
-  '@pinia/nuxt': ^0.1.8
+  '@pinia/nuxt': ^0.3.1
   '@tailwindcss/forms': ^0.4.0-alpha.2
   '@typescript-eslint/eslint-plugin': ^5.31.0
   '@typescript-eslint/parser': ^5.31.0
@@ -40,7 +40,6 @@ specifiers:
 
 dependencies:
   '@nuxtjs/pwa': 3.3.5
-  '@pinia/nuxt': 0.1.9_pinia@2.0.17+vue@3.2.37
   pinia: 2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
   vue: 3.2.37
   vue-tabler-icons: 2.8.0
@@ -55,6 +54,7 @@ devDependencies:
   '@nuxtjs/eslint-module': 3.1.0_eslint@8.21.0
   '@nuxtjs/google-fonts': 3.0.0-0
   '@nuxtjs/stylelint-module': 4.1.0_stylelint@14.9.1
+  '@pinia/nuxt': 0.3.1_j6bzmzd4ujpabbp5objtwxyjp4
   '@tailwindcss/forms': 0.4.1_tailwindcss@3.1.8
   '@typescript-eslint/eslint-plugin': 5.32.0_iosr3hrei2tubxveewluhu5lhy
   '@typescript-eslint/parser': 5.32.0_qugx7qdu5zevzvxaiqyxfiwquq
@@ -1929,17 +1929,21 @@ packages:
       stylelint-webpack-plugin: 2.4.0_stylelint@14.9.1
     dev: true
 
-  /@pinia/nuxt/0.1.9_pinia@2.0.17+vue@3.2.37:
-    resolution: {integrity: sha512-5YmfBOxXHM5eA5pE4mq5opJnSmVYn2qYJ2ak01FrCww0esxfRLkmuu4emynu0Ar5eQ/DDz9wI3ukgRwAubXqmg==}
-    peerDependencies:
-      pinia: '>=2.0.14'
+  /@pinia/nuxt/0.3.1_j6bzmzd4ujpabbp5objtwxyjp4:
+    resolution: {integrity: sha512-JoDvTolUrJPfe9xEmvHz0jRqd3vYzuStqtt1k3SgwHChIWxxnlZ8hmU1RlXIh51RGL549LeXupSiKGydDIYc2A==}
     dependencies:
+      '@nuxt/kit': 3.0.0-rc.6
       pinia: 2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
-      vue-demi: 0.13.6_vue@3.2.37
     transitivePeerDependencies:
       - '@vue/composition-api'
+      - esbuild
+      - rollup
+      - supports-color
+      - typescript
+      - vite
       - vue
-    dev: false
+      - webpack
+    dev: true
 
   /@rollup/plugin-alias/3.1.9_rollup@2.77.2:
     resolution: {integrity: sha512-QI5fsEvm9bDzt32k39wpOwZhVzRcL5ydcffUHMyLVaVaLeC70I8TJZ17F1z1eMoLu4E/UOcH9BWVkKpIKdrfiw==}
@@ -6860,7 +6864,6 @@ packages:
       typescript: 4.7.4
       vue: 3.2.37
       vue-demi: 0.13.6_vue@3.2.37
-    dev: false
 
   /pkg-types/0.3.3:
     resolution: {integrity: sha512-6AJcCMnjUQPQv/Wk960w0TOmjhdjbeaQJoSKWRQv9N3rgkessCu6J0Ydsog/nw1MbpnxHuPzYbfOn2KmlZO1FA==}
@@ -9057,7 +9060,6 @@ packages:
         optional: true
     dependencies:
       vue: 3.2.37
-    dev: false
 
   /vue-eslint-parser/8.3.0_eslint@8.21.0:
     resolution: {integrity: sha512-dzHGG3+sYwSf6zFBa0Gi9ZDshD7+ad14DGOdTLjruRVgZXe2J+DcZ9iUhyR48z5g1PqRa20yt3Njna/veLJL/g==}
