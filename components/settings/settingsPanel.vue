@@ -55,8 +55,7 @@
 
             <Divider />
 
-            <div v-text="$t('settings.manage.heading')" />
-            <div class="-mt-2 text-sm leading-snug text-black text-opacity-75 dark:text-gray-50 dark:text-opacity-75" v-text="$t('settings.manage.description')" />
+            <SettingsItem type="empty" :path="['manage']" />
             <div class="grid grid-flow-col grid-cols-2 gap-2 mt-1">
               <ExportButton />
               <ImportButton />

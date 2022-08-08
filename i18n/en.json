@@ -215,8 +215,6 @@
       "cancel": "Cancel"
     },
     "manage": {
-      "heading": "Manage settings",
-      "description": "Download the current settings or load them from a file",
       "buttons": {
         "save": "Save",
         "load": "Load"
@@ -230,6 +228,10 @@
       "share": "or share the app on social media:"
     },
     "values": {
+      "manage": {
+        "_title": "Manage settings",
+        "_description": "Download the current settings or load them from a file"
+      },
       "lang": {
         "_title": "Language",
         "_description": ""
