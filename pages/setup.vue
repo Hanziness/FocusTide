@@ -92,6 +92,7 @@
 <script>
 import { CheckIcon, InfoCircleIcon } from 'vue-tabler-icons'
 import { mapStores } from 'pinia'
+import { useI18n } from 'vue-i18n'
 import { getNotificationPermissions } from '@/assets/utils/notifications'
 import { AvailableTimers, useSettings } from '~~/stores/settings'
 import OptionGroup from '~/components/base/optionGroup.vue'
@@ -114,6 +115,12 @@ export default {
   transition: {
     name: 'transition-setup',
     mode: 'out-in'
+  },
+
+  setup () {
+    const { t } = useI18n()
+
+    return { t }
   },
 
   data () {
@@ -189,7 +196,7 @@ export default {
 
   head () {
     return {
-      title: `AnotherPomodoro: ${this.$t('setup.head').toLowerCase()}`,
+      title: 'AnotherPomodoro: setup',
       meta: [{
         hid: 'description',
         name: 'description',

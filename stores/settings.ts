@@ -23,7 +23,7 @@ export const AvailableSoundSets = {
 }
 
 const getDefaultLocale = () : string => {
-  if (!window || !window.navigator || !window.navigator.language) {
+  if (process.server || !window || !window.navigator || !window.navigator.language) {
     return 'en'
   }
 
