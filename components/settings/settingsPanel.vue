@@ -35,7 +35,7 @@
               :path="['permissions', 'notifications']"
               :disabled="notificationsEnabled === false"
               @input="(newValue) => {
-                if (runtimeConfig.public.platform === 'web' && newValue === true) {
+                if (runtimeConfig.public.PLATFORM === 'web' && newValue === true) {
                   eventsStore.recordEvent('permission.notification')
                 }
               }"
