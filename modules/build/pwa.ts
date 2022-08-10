@@ -21,7 +21,11 @@ export default function VitePWAGenerator ({ swPath = 'sw.js' }): PluginOption {
       }
     },
     async configResolved (config) {
-      console.log(config.build.outDir)
+      // Do not emit anything if we're bundling the server
+      if (config.build.outDir.endsWith('/server')) {
+        return
+      }
+
       await generateSW({
         swDest: path.join(config.build.outDir, swPath),
         globDirectory: config.build.outDir,

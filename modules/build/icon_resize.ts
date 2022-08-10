@@ -18,7 +18,13 @@ interface IconResizerPluginOptions {
 export default function IconResizer (moduleOptions: IconResizerPluginOptions): PluginOption {
   return {
     name: 'icon-generator',
+
     async configResolved (config) {
+      // Do not emit anything if we're bundling the server
+      if (config.build.outDir.endsWith('/server')) {
+        return
+      }
+
       await moduleOptions.variants.map((iconConfig): Promise<unknown> => {
         if (!iconConfig.src) {
           return new Promise((_resolve, reject) => reject(new Error('No source file specified')))
