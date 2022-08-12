@@ -1,5 +1,12 @@
+
 <template>
-  <section class="h-full overflow-hidden transition-colors duration-300 ease-in dark:text-gray-50">
+  <section
+    class="h-full overflow-hidden transition-colors duration-300 ease-in dark:text-gray-50"
+    :style="{
+      'padding-top': `${mobileSettingsStore.padding.top}px`,
+      'padding-bottom': `${mobileSettingsStore.padding.bottom}px`
+    }"
+  >
     <Title>{{ (remainingTimeString ? `(${remainingTimeString}) ` : '') + pageTitle }}</Title>
 
     <!-- Dark mode background override -->
@@ -105,6 +112,8 @@ import TimerProgress from '@/components/timer/timerProgress.vue'
 import { AppPlatform } from '~~/platforms/platforms'
 import { useMobile } from '~~/platforms/mobile'
 
+import { useMobileSettings } from '~~/stores/platforms/mobileSettings'
+
 export default {
   name: 'PageTimer',
   components: {
@@ -131,6 +140,7 @@ export default {
 
   setup () {
     definePageMeta({ layout: 'timer', layoutTransition: false })
+    const mobileSettingsStore = useMobileSettings()
 
     const scheduleStore = useSchedule()
     const runtimeConfig = useRuntimeConfig()
@@ -168,6 +178,10 @@ export default {
       useWeb()
     } else if (runtimeConfig.public.PLATFORM === AppPlatform.mobile) {
       useMobile()
+    }
+
+    return {
+      mobileSettingsStore
     }
   },
 
