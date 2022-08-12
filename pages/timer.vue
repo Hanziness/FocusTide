@@ -102,6 +102,8 @@ import TimerSwitch from '@/components/timer/display/_timerSwitch.vue'
 import TimerControls from '@/components/timer/controls/contolsBasic.vue'
 import Button from '@/components/base/button.vue'
 import TimerProgress from '@/components/timer/timerProgress.vue'
+import { AppPlatform } from '~~/platforms/platforms'
+import { useMobile } from '~~/platforms/mobile'
 
 export default {
   name: 'PageTimer',
@@ -131,6 +133,7 @@ export default {
     definePageMeta({ layout: 'timer', layoutTransition: false })
 
     const scheduleStore = useSchedule()
+    const runtimeConfig = useRuntimeConfig()
 
     const iconSvg = computed(() => `data:image/svg+xml,
       <svg
@@ -161,7 +164,11 @@ export default {
     useTicker()
 
     // TODO Load appropriate platform module based on runtime config
-    useWeb()
+    if (runtimeConfig.public.PLATFORM === AppPlatform.web) {
+      useWeb()
+    } else if (runtimeConfig.public.PLATFORM === AppPlatform.mobile) {
+      useMobile()
+    }
   },
 
   data () {

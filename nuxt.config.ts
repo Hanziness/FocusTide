@@ -8,6 +8,7 @@ import { defineNuxtConfig } from 'nuxt'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 import VitePWAGenerator from './modules/build/pwa'
 import IconResizer from './modules/build/icon_resize'
+import { AppPlatform } from './platforms/platforms'
 
 const packageJson = fs.readFileSync('./package.json').toString()
 const version = JSON.parse(packageJson).version || 0
@@ -34,12 +35,7 @@ const iconConfig = {
   ]
 }
 
-export enum AppPlatform {
-  web = 'web',
-  mobile = 'mobile'
-}
-
-const currentPlatform = process.env.NUXT_PUBLIC_PLATFORM ?? 'web'
+const currentPlatform = process.env.NUXT_PUBLIC_PLATFORM ?? AppPlatform.web
 console.info(`Platform is ${currentPlatform}`)
 
 // function getIgnoredFiles () { }
