@@ -79,7 +79,9 @@
         <todo-list v-if="settingsStore.tasks.enabled && showTodoManager" class="fixed bottom-0 z-10 w-full max-w-lg transition-all rounded-t-xl xl:right-4 xl:pb-8" :editing="[0].includes(scheduleStore.timerState)" @hide="showTodoManager = false" />
       </transition>
     </div>
-    <TutorialView />
+    <client-only>
+      <TutorialView />
+    </client-only>
   </section>
 </template>
 

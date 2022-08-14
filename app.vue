@@ -2,19 +2,21 @@
 import { swPath } from 'virtual:pwa'
 import { useSettings } from '~~/stores/settings'
 
-useHead({
-  link: [
-    {
-      rel: 'manifest',
-      href: '/app_manifest.json'
-    }
-  ],
-  script: [
-    {
-      src: `/${swPath}`
-    }
-  ]
-})
+if (!process.server) {
+  useHead({
+    link: [
+      {
+        rel: 'manifest',
+        href: '/app_manifest.json'
+      }
+    ],
+    script: [
+      {
+        src: `/${swPath}`
+      }
+    ]
+  })
+}
 
 const settingsStore = useSettings()
 const isDarkMode = computed(() => settingsStore.visuals.darkMode)

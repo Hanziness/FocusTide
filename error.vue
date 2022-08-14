@@ -91,7 +91,7 @@ const actions = {
 }
 
 export default {
-  name: 'LayoutError',
+  name: 'ErrorPage',
   components: {
     // Error reason icons
     IconCrash: MoodSadIcon,
@@ -112,7 +112,6 @@ export default {
     ActionButton,
     ActionBar
   },
-  layout: 'empty',
   props: {
     error: {
       type: Object,

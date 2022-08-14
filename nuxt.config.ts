@@ -53,7 +53,7 @@ export default defineNuxtConfig({
   },
 
   target: 'static',
-  ssr: false,
+  ssr: true,
 
   /*
   ** Headers of the page
