@@ -1941,13 +1941,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pinia/nuxt@npm:^0.3.1":
-  version: 0.3.1
-  resolution: "@pinia/nuxt@npm:0.3.1"
+"@pinia/nuxt@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@pinia/nuxt@npm:0.4.0"
   dependencies:
     "@nuxt/kit": 3.0.0-rc.6
-    pinia: ">=2.0.17"
-  checksum: 48479ebb25596649782438a604f29ee81e1fd6499138109cb984244f9806fd95cd9013194e8b46b22b02ddd7cabe6097c5155ed09944a9dbf43e9761e963165c
+    pinia: ">=2.0.18"
+  checksum: ed651fc574b5e5964aba2540d2a889426a0999bfb5d6785bf6ee57941fae181de7a2d2f750ab6613699d648b8652451e2899006442eb5f21647f11d44788bb3a
   languageName: node
   linkType: hard
 
@@ -2728,7 +2728,7 @@ __metadata:
     "@nuxtjs/eslint-module": ^3.0.2
     "@nuxtjs/google-fonts": ^3.0.0-0
     "@nuxtjs/stylelint-module": ^4.0.0
-    "@pinia/nuxt": ^0.3.1
+    "@pinia/nuxt": ^0.4.0
     "@tailwindcss/forms": ^0.5.2
     "@typescript-eslint/eslint-plugin": ^5.31.0
     "@typescript-eslint/parser": ^5.31.0
@@ -8571,7 +8571,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pinia@npm:>=2.0.17, pinia@npm:^2.0.13":
+"pinia@npm:>=2.0.18":
+  version: 2.0.18
+  resolution: "pinia@npm:2.0.18"
+  dependencies:
+    "@vue/devtools-api": ^6.2.1
+    vue-demi: "*"
+  peerDependencies:
+    "@vue/composition-api": ^1.4.0
+    typescript: ">=4.4.4"
+    vue: ^2.6.14 || ^3.2.0
+  peerDependenciesMeta:
+    "@vue/composition-api":
+      optional: true
+    typescript:
+      optional: true
+  checksum: e873667e78b566b8b362c6a3df120e4f07056115c25d3242b15bfbae3a73c19182fe641facf24219332edf7dddca9af2ffedb345256facddbc52df7a0126fa95
+  languageName: node
+  linkType: hard
+
+"pinia@npm:^2.0.13":
   version: 2.0.17
   resolution: "pinia@npm:2.0.17"
   dependencies:
