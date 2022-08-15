@@ -5,6 +5,7 @@ interface FlutterJavascriptChannel {
 }
 
 enum FlutterMessageType {
+  clientReady = 'ready',
   setPadding = 'setPadding'
 }
 
@@ -22,25 +23,32 @@ declare global {
 export function useMobile () {
   const mobileSettingsStore = useMobileSettings()
 
-  console.info('Mobile platform loaded')
+  onMounted(() => {
+    console.info('Mobile platform loaded')
 
-  if (!window.NativeFramework) {
-    console.warn('Native framework not found')
-    return
-  }
-
-  window.Send = function (msg: FlutterMessage) {
-    console.log(`Got: ${JSON.stringify(msg)}`)
-
-    switch (msg.type) {
-      case FlutterMessageType.setPadding:
-        mobileSettingsStore.$patch({
-          padding: msg.payload
-        })
-
-        break
+    if (!window) {
+      console.warn('Window does not exist, quitting')
+      return
     }
-  }
 
-  window.NativeFramework.postMessage('Hola')
+    if (!window.NativeFramework) {
+      console.warn('Native framework not found')
+      return
+    }
+
+    window.Send = function (msg: FlutterMessage) {
+      console.log(`Got: ${JSON.stringify(msg)}`)
+
+      switch (msg.type) {
+        case FlutterMessageType.setPadding:
+          mobileSettingsStore.$patch({
+            padding: msg.payload
+          })
+
+          break
+      }
+    }
+
+    window.NativeFramework.postMessage(JSON.stringify({ type: FlutterMessageType.clientReady } as FlutterMessage))
+  })
 }
