@@ -1,4 +1,5 @@
 import { useMobileSettings } from '~~/stores/platforms/mobileSettings'
+import { useEvents, EventType } from '~~/stores/events'
 
 interface FlutterJavascriptChannel {
   postMessage(message: string): void;
@@ -6,7 +7,8 @@ interface FlutterJavascriptChannel {
 
 enum FlutterMessageType {
   clientReady = 'ready',
-  setPadding = 'setPadding'
+  setPadding = 'setPadding',
+  showNotification = 'showNotification'
 }
 
 interface FlutterMessage {
@@ -22,6 +24,7 @@ declare global {
 
 export function useMobile () {
   const mobileSettingsStore = useMobileSettings()
+  const eventsStore = useEvents()
 
   onMounted(() => {
     console.info('Mobile platform loaded')
@@ -48,6 +51,19 @@ export function useMobile () {
           break
       }
     }
+
+    // register store watcher
+    eventsStore.$subscribe(() => {
+      if (eventsStore.lastEvent._event === EventType.TIMER_FINISH) {
+        window.NativeFramework.postMessage(JSON.stringify({
+          type: FlutterMessageType.showNotification,
+          payload: {
+            title: 'Hello',
+            description: 'This is a test notification :)'
+          }
+        } as FlutterMessage))
+      }
+    })
 
     window.NativeFramework.postMessage(JSON.stringify({ type: FlutterMessageType.clientReady } as FlutterMessage))
   })
