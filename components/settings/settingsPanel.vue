@@ -1,6 +1,6 @@
 <template>
   <section v-show="processedValue" class="fixed z-40 w-full h-full p-0 md:p-4 md:max-w-screen-sm">
-    <div class="flex flex-col h-full overflow-hidden bg-white rounded-none shadow-lg md:rounded-lg dark:bg-gray-900 dark:text-gray-50">
+    <div class="flex flex-col h-full overflow-hidden bg-white rounded-none shadow-lg md:rounded-lg dark:bg-gray-900 dark:text-gray-50" :style="{ 'padding-top': `${mobileSettingsStore.padding.top}px`, 'padding-bottom': `${mobileSettingsStore.padding.bottom}px` }">
       <h1 class="px-4 mt-4 mb-2 text-xl font-bold uppercase">
         <span>{{ $t('settings.heading') }}</span>
         <Button
@@ -231,6 +231,7 @@ import presetTimers from '@/assets/settings/timerPresets'
 import { useSettings } from '~~/stores/settings'
 import { useNotifications } from '~~/stores/notifications'
 import { useMain } from '~~/stores/main'
+import { useMobileSettings } from '~~/stores/platforms/mobileSettings'
 
 import Button from '@/components/base/button.vue'
 import SettingsItem from '~~/components/settings/settingsItem.vue'
@@ -270,7 +271,8 @@ export default {
 
   setup () {
     return {
-      runtimeConfig: useRuntimeConfig()
+      runtimeConfig: useRuntimeConfig(),
+      mobileSettingsStore: useMobileSettings()
     }
   },
 
