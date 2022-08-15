@@ -2,10 +2,6 @@
 <template>
   <section
     class="h-full overflow-hidden transition-colors duration-300 ease-in dark:text-gray-50"
-    :style="{
-      'padding-top': `${mobileSettingsStore.padding.top}px`,
-      'padding-bottom': `${mobileSettingsStore.padding.bottom}px`
-    }"
   >
     <Title>{{ (remainingTimeString ? `(${remainingTimeString}) ` : '') + pageTitle }}</Title>
 
@@ -29,7 +25,13 @@
         :time-original="scheduleStore.getCurrentItem.length"
       />
     </TransitionGroup>
-    <div class="relative flex flex-col items-center justify-center w-full h-full isolate">
+    <div
+      class="relative flex flex-col items-center justify-center w-full h-full isolate"
+      :style="{
+        'padding-top': `${mobileSettingsStore.padding.top}px`,
+        'padding-bottom': `${mobileSettingsStore.padding.bottom}px`
+      }"
+    >
       <div class="flex flex-row w-full">
         <div
           class="flex flex-col overflow-hidden transition-all duration-300 bg-gray-800 shadow-lg md:w-auto"
