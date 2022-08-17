@@ -53,14 +53,14 @@
             />
             <SettingsItem type="check" :path="['tasks', 'removeCompletedTasks']" :disabled="!settingsStore.tasks.enabled" />
 
-            <Divider />
-
-            <SettingsItem type="empty" :path="['manage']" />
-            <div class="grid grid-flow-col grid-cols-2 gap-2 mt-1">
-              <ExportButton />
-              <ImportButton />
-            </div>
-
+            <template v-if="runtimeConfig.public.PLATFORM === 'web'">
+              <Divider />
+              <SettingsItem type="empty" :path="['manage']" />
+              <div class="grid grid-flow-col grid-cols-2 gap-2 mt-1">
+                <ExportButton />
+                <ImportButton />
+              </div>
+            </template>
             <Divider />
 
             <SettingsItem type="check" :path="['reset']" />
