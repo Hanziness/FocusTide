@@ -8,7 +8,8 @@ interface FlutterJavascriptChannel {
 enum FlutterMessageType {
   clientReady = 'ready',
   setPadding = 'setPadding',
-  showNotification = 'showNotification'
+  showNotification = 'showNotification',
+  appEvent = 'appEvent'
 }
 
 interface FlutterMessage {
@@ -54,6 +55,11 @@ export function useMobile () {
 
     // register store watcher
     eventsStore.$subscribe(() => {
+      window.NativeFramework.postMessage(JSON.stringify({
+        type: FlutterMessageType.appEvent,
+        payload: eventsStore.lastEvent
+      } as FlutterMessage))
+
       if (eventsStore.lastEvent._event === EventType.TIMER_FINISH) {
         window.NativeFramework.postMessage(JSON.stringify({
           type: FlutterMessageType.showNotification,
