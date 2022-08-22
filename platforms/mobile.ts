@@ -23,6 +23,7 @@ interface FlutterMessage {
 declare global {
   interface Window {
     NativeFramework?: FlutterJavascriptChannel
+    Send?: (msg: FlutterMessage) => void
   }
 }
 
