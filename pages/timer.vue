@@ -1,5 +1,8 @@
+
 <template>
-  <section class="h-full overflow-hidden transition-colors duration-300 ease-in dark:text-gray-50">
+  <section
+    class="h-full overflow-hidden transition-colors duration-300 ease-in dark:text-gray-50"
+  >
     <Title>{{ (remainingTimeString ? `(${remainingTimeString}) ` : '') + pageTitle }}</Title>
 
     <!-- Dark mode background override -->
@@ -22,7 +25,13 @@
         :time-original="scheduleStore.getCurrentItem.length"
       />
     </TransitionGroup>
-    <div class="relative flex flex-col items-center justify-center w-full h-full isolate">
+    <div
+      class="relative flex flex-col items-center justify-center w-full h-full isolate"
+      :style="{
+        'padding-top': `${mobileSettingsStore.padding.top}px`,
+        'padding-bottom': `${mobileSettingsStore.padding.bottom}px`
+      }"
+    >
       <div class="flex flex-row w-full">
         <div
           class="flex flex-col overflow-hidden transition-all duration-300 bg-gray-800 shadow-lg md:w-auto"
@@ -102,6 +111,10 @@ import TimerSwitch from '@/components/timer/display/_timerSwitch.vue'
 import TimerControls from '@/components/timer/controls/contolsBasic.vue'
 import Button from '@/components/base/button.vue'
 import TimerProgress from '@/components/timer/timerProgress.vue'
+import { AppPlatform } from '~~/platforms/platforms'
+import { useMobile } from '~~/platforms/mobile'
+
+import { useMobileSettings } from '~~/stores/platforms/mobileSettings'
 
 export default {
   name: 'PageTimer',
@@ -129,8 +142,10 @@ export default {
 
   setup () {
     definePageMeta({ layout: 'timer', layoutTransition: false })
+    const mobileSettingsStore = useMobileSettings()
 
     const scheduleStore = useSchedule()
+    const runtimeConfig = useRuntimeConfig()
 
     const iconSvg = computed(() => `data:image/svg+xml,
       <svg
@@ -160,8 +175,16 @@ export default {
 
     useTicker()
 
-    // TODO Load appropriate platform module based on runtime config
-    useWeb()
+    // Load appropriate platform module based on runtime config
+    if (runtimeConfig.public.PLATFORM === AppPlatform.web) {
+      useWeb()
+    } else if (runtimeConfig.public.PLATFORM === AppPlatform.mobile) {
+      useMobile()
+    }
+
+    return {
+      mobileSettingsStore
+    }
   },
 
   data () {

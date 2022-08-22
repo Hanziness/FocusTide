@@ -8,6 +8,7 @@ import { defineNuxtConfig } from 'nuxt'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 import VitePWAGenerator from './modules/build/pwa'
 import IconResizer from './modules/build/icon_resize'
+import { AppPlatform } from './platforms/platforms'
 
 const packageJson = fs.readFileSync('./package.json').toString()
 const version = JSON.parse(packageJson).version || 0
@@ -34,6 +35,11 @@ const iconConfig = {
   ]
 }
 
+const currentPlatform = process.env.NUXT_PUBLIC_PLATFORM ?? AppPlatform.web
+console.info(`Platform is ${currentPlatform}`)
+
+// function getIgnoredFiles () { }
+
 export default defineNuxtConfig({
   /*
   ** Nuxt rendering mode
@@ -48,7 +54,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       PACKAGE_VERSION: version,
-      platform: 'web'
+      PLATFORM: AppPlatform.web
     }
   },
 
@@ -126,7 +132,12 @@ export default defineNuxtConfig({
 
   generate: {
     // Generate fallback pages (makes error pages work on Netlify, too)
-    fallback: '404.html'
+    fallback: currentPlatform === 'web' ? '404.html' : null,
+    crawler: currentPlatform === 'web',
+
+    // Exclude home and setup pages on mobile platforms
+    exclude: currentPlatform === 'mobile' ? ['/', '/setup'] : [],
+    manifest: false
   },
 
   /**

@@ -1,6 +1,6 @@
 <template>
   <section v-show="processedValue" class="fixed z-40 w-full h-full p-0 md:p-4 md:max-w-screen-sm">
-    <div class="flex flex-col h-full overflow-hidden bg-white rounded-none shadow-lg md:rounded-lg dark:bg-gray-900 dark:text-gray-50">
+    <div class="flex flex-col h-full overflow-hidden bg-white rounded-none shadow-lg md:rounded-lg dark:bg-gray-900 dark:text-gray-50" :style="{ 'padding-top': `${mobileSettingsStore.padding.top}px`, 'padding-bottom': `${mobileSettingsStore.padding.bottom}px` }">
       <h1 class="px-4 mt-4 mb-2 text-xl font-bold uppercase">
         <span>{{ $t('settings.heading') }}</span>
         <Button
@@ -27,19 +27,28 @@
             />
             <Divider />
             <SettingsItem type="check" :path="['adaptiveTicking', 'enabled']" />
-            <SettingsItem type="check" :path="['timerControls', 'enableKeyboardShortcuts']" />
-            <Divider />
-            <SettingsItem type="check" :path="['permissions', 'audio']" />
-            <SettingsItem
-              type="check"
-              :path="['permissions', 'notifications']"
-              :disabled="notificationsEnabled === false"
-              @input="(newValue) => {
-                if (runtimeConfig.public.platform === 'web' && newValue === true) {
-                  eventsStore.recordEvent('permission.notification')
-                }
-              }"
-            />
+            <SettingsItem v-if="isWeb" type="check" :path="['timerControls', 'enableKeyboardShortcuts']" />
+
+            <template v-if="isWeb">
+              <Divider />
+              <SettingsItem type="check" :path="['permissions', 'audio']" />
+              <SettingsItem
+                type="check"
+                :path="['permissions', 'notifications']"
+                :disabled="notificationsEnabled === false"
+                @input="(newValue) => {
+                  if (newValue === true) {
+                    eventsStore.recordEvent('permission.notification')
+                  }
+                }"
+              />
+            </template>
+
+            <template v-if="isMobile">
+              <Divider />
+              <SettingsItem type="check" :path="['mobile', 'notifications', 'sectionOver']" />
+              <SettingsItem type="check" :path="['mobile', 'notifications', 'persistent']" />
+            </template>
 
             <Divider />
 
@@ -53,14 +62,14 @@
             />
             <SettingsItem type="check" :path="['tasks', 'removeCompletedTasks']" :disabled="!settingsStore.tasks.enabled" />
 
-            <Divider />
-
-            <SettingsItem type="empty" :path="['manage']" />
-            <div class="grid grid-flow-col grid-cols-2 gap-2 mt-1">
-              <ExportButton />
-              <ImportButton />
-            </div>
-
+            <template v-if="isWeb">
+              <Divider />
+              <SettingsItem type="empty" :path="['manage']" />
+              <div class="grid grid-flow-col grid-cols-2 gap-2 mt-1">
+                <ExportButton />
+                <ImportButton />
+              </div>
+            </template>
             <Divider />
 
             <SettingsItem type="check" :path="['reset']" />
@@ -108,7 +117,7 @@
             />
             <Divider />
             <SettingsItem type="check" :path="['performance', 'showProgressBar']" />
-            <SettingsItem type="check" :path="['pageTitle', 'useTickEmoji']" />
+            <SettingsItem v-if="isWeb" type="check" :path="['pageTitle', 'useTickEmoji']" />
             <!-- TODO Audio volume control -->
           </div>
 
@@ -231,6 +240,7 @@ import presetTimers from '@/assets/settings/timerPresets'
 import { useSettings } from '~~/stores/settings'
 import { useNotifications } from '~~/stores/notifications'
 import { useMain } from '~~/stores/main'
+import { useMobileSettings } from '~~/stores/platforms/mobileSettings'
 
 import Button from '@/components/base/button.vue'
 import SettingsItem from '~~/components/settings/settingsItem.vue'
@@ -269,8 +279,12 @@ export default {
   },
 
   setup () {
+    const runtimeConfig = useRuntimeConfig()
     return {
-      runtimeConfig: useRuntimeConfig()
+      runtimeConfig,
+      mobileSettingsStore: useMobileSettings(),
+      isWeb: computed(() => runtimeConfig.public.PLATFORM === 'web'),
+      isMobile: computed(() => runtimeConfig.public.PLATFORM === 'mobile')
     }
   },
 
