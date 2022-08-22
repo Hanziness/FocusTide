@@ -1,5 +1,7 @@
 import { useMobileSettings } from '~~/stores/platforms/mobileSettings'
 import { useEvents, EventType } from '~~/stores/events'
+import { useSettings } from '~~/stores/settings'
+import { useSchedule } from '~~/stores/schedule'
 
 interface FlutterJavascriptChannel {
   postMessage(message: string): void;
@@ -9,7 +11,8 @@ enum FlutterMessageType {
   clientReady = 'ready',
   setPadding = 'setPadding',
   showNotification = 'showNotification',
-  appEvent = 'appEvent'
+  appEvent = 'appEvent',
+  tick = 'tick'
 }
 
 interface FlutterMessage {
@@ -26,6 +29,8 @@ declare global {
 export function useMobile () {
   const mobileSettingsStore = useMobileSettings()
   const eventsStore = useEvents()
+  const settingsStore = useSettings()
+  const scheduleStore = useSchedule()
 
   onMounted(() => {
     console.info('Mobile platform loaded')
@@ -60,7 +65,7 @@ export function useMobile () {
         payload: eventsStore.lastEvent
       } as FlutterMessage))
 
-      if (eventsStore.lastEvent._event === EventType.TIMER_FINISH) {
+      if (eventsStore.lastEvent._event === EventType.TIMER_FINISH && settingsStore.mobile.notifications.sectionOver) {
         window.NativeFramework.postMessage(JSON.stringify({
           type: FlutterMessageType.showNotification,
           payload: {
@@ -69,6 +74,17 @@ export function useMobile () {
           }
         } as FlutterMessage))
       }
+    })
+
+    scheduleStore.$subscribe(() => {
+      const currentItem = scheduleStore.getCurrentItem
+      window.NativeFramework.postMessage(JSON.stringify({
+        type: FlutterMessageType.tick,
+        payload: {
+          remaining_ms: currentItem.length - currentItem.timeElapsed,
+          length_ms: currentItem.length
+        }
+      } as FlutterMessage))
     })
 
     window.NativeFramework.postMessage(JSON.stringify({ type: FlutterMessageType.clientReady } as FlutterMessage))
