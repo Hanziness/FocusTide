@@ -175,7 +175,7 @@ export default {
 
     useTicker()
 
-    // TODO Load appropriate platform module based on runtime config
+    // Load appropriate platform module based on runtime config
     if (runtimeConfig.public.PLATFORM === AppPlatform.web) {
       useWeb()
     } else if (runtimeConfig.public.PLATFORM === AppPlatform.mobile) {
