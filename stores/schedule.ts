@@ -1,6 +1,19 @@
 import { defineStore } from 'pinia'
 import { ColorMethod, useSettings } from './settings'
 
+export enum ETimerState {
+  STOPPED,
+  RUNNING,
+  PAUSED,
+  COMPLETED
+}
+export interface ScheduleEntry {
+  id: number,
+  timeElapsed: number,
+  length?: number,
+  type?: ETimerState
+}
+
 export const useSchedule = defineStore('schedule', {
   state: () => ({
     items: createScheduleSeries(10),
@@ -30,7 +43,7 @@ export const useSchedule = defineStore('schedule', {
     },
 
     /** Getter to retrieve schedule with all necessary information filled in */
-    getSchedule (state) {
+    getSchedule (state): ScheduleEntry[] {
       const settings = useSettings()
       const scheduleSettings = settings.schedule
       const numEntities = scheduleSettings.numScheduleEntries
@@ -70,7 +83,7 @@ export const useSchedule = defineStore('schedule', {
       return returnArray
     },
 
-    getCurrentItem () {
+    getCurrentItem (): ScheduleEntry {
       return this.getSchedule[0]
     },
 
@@ -159,7 +172,7 @@ export const TimerState = {
   COMPLETED: 3
 }
 
-function createScheduleEntry (id) {
+function createScheduleEntry (id): ScheduleEntry {
   return {
     id,
     timeElapsed: 0,
@@ -169,7 +182,7 @@ function createScheduleEntry (id) {
 }
 
 function createScheduleSeries (numEntries) {
-  const items = []
+  const items = [] as ScheduleEntry[]
   for (let i = 0; i < numEntries; i++) {
     items.push(createScheduleEntry(i))
   }
