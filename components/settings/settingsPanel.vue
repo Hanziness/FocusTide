@@ -27,19 +27,28 @@
             />
             <Divider />
             <SettingsItem type="check" :path="['adaptiveTicking', 'enabled']" />
-            <SettingsItem type="check" :path="['timerControls', 'enableKeyboardShortcuts']" />
-            <Divider />
-            <SettingsItem type="check" :path="['permissions', 'audio']" />
-            <SettingsItem
-              type="check"
-              :path="['permissions', 'notifications']"
-              :disabled="notificationsEnabled === false"
-              @input="(newValue) => {
-                if (runtimeConfig.public.PLATFORM === 'web' && newValue === true) {
-                  eventsStore.recordEvent('permission.notification')
-                }
-              }"
-            />
+            <SettingsItem v-if="isWeb" type="check" :path="['timerControls', 'enableKeyboardShortcuts']" />
+
+            <template v-if="isWeb">
+              <Divider />
+              <SettingsItem type="check" :path="['permissions', 'audio']" />
+              <SettingsItem
+                type="check"
+                :path="['permissions', 'notifications']"
+                :disabled="notificationsEnabled === false"
+                @input="(newValue) => {
+                  if (newValue === true) {
+                    eventsStore.recordEvent('permission.notification')
+                  }
+                }"
+              />
+            </template>
+
+            <template v-if="isMobile">
+              <Divider />
+              <SettingsItem type="check" :path="['mobile', 'notifications', 'sectionOver']" />
+              <SettingsItem type="check" :path="['mobile', 'notifications', 'persistent']" />
+            </template>
 
             <Divider />
 
@@ -53,7 +62,7 @@
             />
             <SettingsItem type="check" :path="['tasks', 'removeCompletedTasks']" :disabled="!settingsStore.tasks.enabled" />
 
-            <template v-if="runtimeConfig.public.PLATFORM === 'web'">
+            <template v-if="isWeb">
               <Divider />
               <SettingsItem type="empty" :path="['manage']" />
               <div class="grid grid-flow-col grid-cols-2 gap-2 mt-1">
@@ -108,7 +117,7 @@
             />
             <Divider />
             <SettingsItem type="check" :path="['performance', 'showProgressBar']" />
-            <SettingsItem type="check" :path="['pageTitle', 'useTickEmoji']" />
+            <SettingsItem v-if="isWeb" type="check" :path="['pageTitle', 'useTickEmoji']" />
             <!-- TODO Audio volume control -->
           </div>
 
@@ -270,9 +279,12 @@ export default {
   },
 
   setup () {
+    const runtimeConfig = useRuntimeConfig()
     return {
-      runtimeConfig: useRuntimeConfig(),
-      mobileSettingsStore: useMobileSettings()
+      runtimeConfig,
+      mobileSettingsStore: useMobileSettings(),
+      isWeb: computed(() => runtimeConfig.public.PLATFORM === 'web'),
+      isMobile: computed(() => runtimeConfig.public.PLATFORM === 'mobile')
     }
   },
 

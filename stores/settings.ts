@@ -98,6 +98,12 @@ export const useSettings = defineStore('settings', {
     pageTitle: {
       useTickEmoji: true
     },
+    mobile: {
+      notifications: {
+        sectionOver: true,
+        persistent: false
+      }
+    },
     reset: false
   }),
 
