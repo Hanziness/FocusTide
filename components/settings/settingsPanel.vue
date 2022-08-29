@@ -16,7 +16,7 @@
         </Button>
       </h1>
       <div class="flex-grow overflow-y-auto">
-        <Transition tag="div" name="tab-transition" mode="out-in" class="relative w-full overflow-hidden">
+        <Transition tag="div" name="tab-transition" mode="out-in" class="relative w-full">
           <!-- Core settings -->
           <div v-if="activeTab === 1" :key="1" class="settings-tab">
             <OptionGroup
@@ -123,79 +123,7 @@
 
           <!-- About page -->
           <div v-else-if="activeTab === 4" :key="4" class="settings-tab">
-            <div class="flex flex-col items-center">
-              <img src="/favicon.svg" width="64" height="64" class="inline-block p-2 mb-1 bg-red-200 rounded-lg">
-              <div>
-                <div class="inline-block text-2xl font-bold">
-                  AnotherPomodoro
-                </div>
-                <sup class="text-base" v-text="version" />
-              </div>
-              <div v-text="$t('settings.about.madeby')" />
-              <div class="flex flex-col items-center justify-center mt-8">
-                <!-- Support links -->
-                <div class="flex flex-row flex-wrap justify-center gap-2 mt-3 text-center">
-                  <Button
-                    :importance="1"
-                    dark
-                    link
-                    href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
-                    inner-class="flex flex-row items-center gap-1 text-slate-50 text-gray-50"
-                    bg-class="bg-slate-900 dark:bg-slate-700"
-                  >
-                    <AboutGithub />
-                    <span v-text="$t('settings.about.source')" />
-                  </Button>
-                  <Button
-                    :importance="1"
-                    link
-                    href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
-                    inner-class="flex flex-row items-center gap-1 text-black"
-                    bg-class="bg-yellow-300"
-                  >
-                    <AboutSupport />
-                    <span v-text="$t('settings.about.support')" />
-                  </Button>
-                </div>
-                <!-- Share links -->
-                <div class="my-2" v-text="$t('settings.about.share')" />
-                <div class="flex flex-row items-center space-x-2 text-sm">
-                  <Button
-                    link
-                    circle
-                    dark
-                    :importance="1"
-                    href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
-                    bg-class="bg-[#1da1f2]"
-                    inner-class="!p-4 text-slate-50"
-                  >
-                    <AboutTwitter :aria-label="$t('index.alt.links.share.twitter')" size="24" />
-                  </Button>
-                  <Button
-                    link
-                    circle
-                    dark
-                    :importance="1"
-                    href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app"
-                    bg-class="bg-[#1877f2]"
-                    inner-class="!p-4 text-slate-50"
-                  >
-                    <AboutFacebook :aria-label="$t('index.alt.links.share.facebook')" size="24" class="translate-x-[-1px]" />
-                  </Button>
-                  <Button
-                    link
-                    circle
-                    dark
-                    :importance="1"
-                    href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app"
-                    bg-class="bg-[#ff4500]"
-                    inner-class="!p-4 text-slate-50"
-                  >
-                    <AboutReddit :aria-label="$t('index.alt.links.share.reddit')" size="24" />
-                  </Button>
-                </div>
-              </div>
-            </div>
+            <AboutTab />
           </div>
         </Transition>
       </div>
@@ -228,13 +156,15 @@
 </template>
 
 <script>
-import { XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon, InfoCircleIcon, BrandGithubIcon, CoffeeIcon, BrandTwitterIcon, BrandFacebookIcon, BrandRedditIcon } from 'vue-tabler-icons'
+import { XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon, InfoCircleIcon } from 'vue-tabler-icons'
 
 import { mapActions, mapState, mapStores } from 'pinia'
 import OptionGroup from '@/components/base/optionGroup.vue'
 import TabHeader from '@/components/settings/panel/tabHeader.vue'
 import ExportButton from '@/components/settings/exportButton.vue'
 import ImportButton from '@/components/settings/importButton.vue'
+
+import AboutTab from '~~/components/settings/aboutTab.vue'
 
 import presetTimers from '@/assets/settings/timerPresets'
 import { useSettings } from '~~/stores/settings'
@@ -265,11 +195,7 @@ export default {
     TabIconVisuals: ArtboardIcon,
     TabIconAbout: InfoCircleIcon,
     InfoIcon: InfoCircleIcon,
-    AboutGithub: BrandGithubIcon,
-    AboutSupport: CoffeeIcon,
-    AboutTwitter: BrandTwitterIcon,
-    AboutFacebook: BrandFacebookIcon,
-    AboutReddit: BrandRedditIcon
+    AboutTab
   },
   props: {
     modelValue: {

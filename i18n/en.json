@@ -225,6 +225,8 @@
       "madeby": "Made by Imre Gera",
       "source": "Source code",
       "support": "Support the project",
+      "supportBody": "I develop AnotherPomodoro in my free time. It would mean a lot to me if you could help me keep working on it!",
+      "mobileSupport": "Due to the rules enforced by the Google Play Store, I cannot show you any links inside the mobile app to donate to the project.",
       "share": "or share the app on social media:"
     },
     "values": {
