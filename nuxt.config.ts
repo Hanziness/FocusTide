@@ -54,7 +54,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       PACKAGE_VERSION: version,
-      PLATFORM: AppPlatform.web
+      PLATFORM: AppPlatform.web,
+      URL: 'https://another-pomodoro.app'
     }
   },
 
