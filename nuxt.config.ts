@@ -238,7 +238,19 @@ export default defineNuxtConfig({
         ]
       }),
       VitePWAGenerator({ swPath: 'serviceworker.js' }),
-      IconResizer(iconConfig)
+      IconResizer(iconConfig),
+      IconResizer({
+        outputFolder: 'icons',
+        sizes: [192],
+        variants: [
+          {
+            src: '/public/icon.png',
+            prefix: 'icon-apple-',
+            purpose: 'any',
+            bgColor: '#fee2e2'
+          }
+        ]
+      })
     ]
   }
 })
