@@ -2,9 +2,15 @@ import path from 'path'
 import { PluginOption } from 'vite'
 import { generateSW } from 'workbox-build'
 
-export default function VitePWAGenerator ({ swPath = 'sw.js' }): PluginOption {
+interface PWAModuleOptions {
+  swPath: string
+}
+
+export default function VitePWAGenerator (moduleOptions: PWAModuleOptions): PluginOption {
   const virtualModuleId = 'virtual:pwa'
   const resolvedVirtualModuleId = '\0' + virtualModuleId
+
+  const { swPath = 'sw.js' } = moduleOptions
 
   return {
     name: 'Workbox installer',
@@ -32,7 +38,6 @@ export default function VitePWAGenerator ({ swPath = 'sw.js' }): PluginOption {
         globPatterns: [
           '**/*.{js,mjs,css,html}'
         ],
-        clientsClaim: true,
         sourcemap: false,
         runtimeCaching: [
           {
@@ -59,7 +64,7 @@ export default function VitePWAGenerator ({ swPath = 'sw.js' }): PluginOption {
           }
         ]
       })
-      console.info(`Generated service worker at ${path.join(config.build.outDir, 'sw.js')}`)
+      console.info(`Generated service worker at ${path.join(config.build.outDir, swPath)}`)
     }
   }
 }
