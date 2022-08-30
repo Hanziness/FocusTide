@@ -5,6 +5,7 @@
   "description": "Modern and customisable productivity timer, right in your browser!",
   "start_url": "/timer?pwa=true",
   "theme_color": "#F87171",
+  "background_color": "#FEE2E2",
   "orientation": "any",
   "categories": ["productivity", "utilities"],
   "display": "standalone",
