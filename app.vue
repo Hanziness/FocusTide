@@ -8,13 +8,25 @@ if (!process.server) {
       {
         rel: 'manifest',
         href: '/app_manifest.json'
+      },
+      {
+        rel: 'apple-touch-icon',
+        href: '/icons/icon-apple-192.png'
       }
     ],
-    script: [
-      {
-        src: `/${swPath}`
-      }
+    meta: [
+      { name: 'theme-color', content: '#F87171' }
     ]
+  })
+
+  onMounted(() => {
+    if (typeof window !== 'undefined') {
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register(`/${swPath}`)
+        })
+      }
+    }
   })
 }
 
