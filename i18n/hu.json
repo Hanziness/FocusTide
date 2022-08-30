@@ -218,8 +218,7 @@
       "cancel": "Mégsem"
     },
     "manage": {
-      "heading": "Beállítások kezelése",
-      "description": "A jelenlegi beállításokat letöltheted egy fájlba vagy vissza is állíthatod onnan",
+      
       "buttons": {
         "save": "Mentés",
         "load": "Betöltés"
@@ -233,6 +232,10 @@
       "share": "vagy oszd meg ismerőseiddel az alkalmazást:"
     },
     "values": {
+      "manage": {
+        "_title": "Beállítások kezelése",
+        "_description": "A jelenlegi beállításokat letöltheted egy fájlba vagy vissza is állíthatod onnan"
+      },
       "lang": {
         "_title": "Nyelv",
         "_description": ""

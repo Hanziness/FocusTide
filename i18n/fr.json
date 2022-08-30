@@ -218,8 +218,7 @@
       "cancel": "Annuler"
     },
     "manage": {
-      "heading": "Gérer les paramètres",
-      "description": "Télécharger les paramètres actuels ou les charger à partir d'un fichier",
+
       "buttons": {
         "save": "Sauvegarder",
         "load": "Charger"
@@ -233,6 +232,10 @@
       "share": "ou partagez l'application sur les réseaux sociaux :"
     },
     "values": {
+      "manage": {
+        "_title": "Gérer les paramètres",
+        "_description": "Télécharger les paramètres actuels ou les charger à partir d'un fichier"
+      },
       "lang": {
         "_description": "",
         "_title": "Langue"
