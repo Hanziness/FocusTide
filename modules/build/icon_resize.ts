@@ -7,12 +7,13 @@ interface IconVariant {
   src: string,
   prefix: string,
   purpose: string
+  bgColor?: string
 }
 
 interface IconResizerPluginOptions {
   sizes: number[],
   outputFolder: string,
-  variants: IconVariant[]
+  variants: IconVariant[],
 }
 
 export default function IconResizer (moduleOptions: IconResizerPluginOptions): PluginOption {
@@ -41,8 +42,13 @@ export default function IconResizer (moduleOptions: IconResizerPluginOptions): P
         const promises = []
         for (const size of moduleOptions.sizes) {
           const outputFileName = `${iconConfig.prefix}${size}.png`
-          promises.push(sharp(join(config.root, iconConfig.src))
-            .resize(size)
+          let basePromise = sharp(join(config.root, iconConfig.src)).resize(size)
+
+          if (iconConfig.bgColor) {
+            basePromise = basePromise.flatten({ background: iconConfig.bgColor })
+          }
+
+          promises.push(basePromise
             .toFile(join(outputFolder, outputFileName))
             .then(() => console.info(`Written ${outputFileName}`))
           )
