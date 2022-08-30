@@ -234,6 +234,18 @@
         "_title": "Manage settings",
         "_description": "Download the current settings or load them from a file"
       },
+      "mobile": {
+        "notifications": {
+          "sectionOver": {
+            "_title": "Section over notifications",
+            "_description": "Show a notification when a section is over"
+          },
+          "persistent": {
+            "_title": "Persistent notification",
+            "_description": "Display the progress of the current timer"
+          }
+        }
+      },
       "lang": {
         "_title": "Language",
         "_description": ""

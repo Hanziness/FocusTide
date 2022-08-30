@@ -218,8 +218,6 @@
       "cancel": "Odustani"
     },
     "manage": {
-      "heading": "Upravljaj postavkama",
-      "description": "Preuzmi trenutačne postavke ili učitaj postavke iz datoteke",
       "buttons": {
         "save": "Spremi",
         "load": "Učitaj"
@@ -233,6 +231,10 @@
       "share": "ili dijeli program na društvenim mrežama:"
     },
     "values": {
+      "manage": {
+        "_title": "Upravljaj postavkama",
+        "_description": "Preuzmi trenutačne postavke ili učitaj postavke iz datoteke"
+      },
       "lang": {
         "_title": "Jezik",
         "_description": ""
