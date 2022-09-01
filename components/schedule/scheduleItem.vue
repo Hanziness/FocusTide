@@ -1,33 +1,33 @@
+<script setup lang="ts">
+import { settings } from '~~/dist/_nuxt/fr.3cdea116.mjs'
+import { useSettings } from '~~/stores/settings'
+
+const settingsStore = useSettings()
+
+const props = defineProps({
+  type: {
+    type: String,
+    required: true
+  },
+  active: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const colour = computed(() => settingsStore.getColor(props.type))
+
+</script>
+
 <template>
   <div
+    class="w-12 h-12 border rounded-lg"
     :class="[
-      'mr-2 inline-block w-12 h-12 relative border border-transparent rounded-lg p-0 last-of-type:mr-0',
-      { 'border-gray-100 shadow': active },
-      { 'shadow-sm opacity-40': !active }
+      { 'border-gray-100 shadow': props.active },
+      { 'shadow-sm opacity-40 border-transparent': !props.active }
     ]"
     :style="[
-      { 'background-color': visuals[data.type].colour }
+      { 'background-color': colour }
     ]"
   />
 </template>
-
-<script>
-import { mapState } from 'pinia'
-import { useSettings } from '~/stores/settings'
-export default {
-  props: {
-    data: {
-      type: Object,
-      default: () => {}
-    },
-    active: {
-      type: Boolean,
-      default: false
-    }
-  },
-
-  computed: {
-    ...mapState(useSettings, ['visuals'])
-  }
-}
-</script>

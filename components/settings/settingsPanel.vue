@@ -1,151 +1,151 @@
 <template>
-  <section v-show="processedValue" class="md:p-4 md:max-w-screen-sm fixed z-40 w-full h-full p-0">
-    <div class="md:rounded-lg dark:bg-gray-900 dark:text-gray-50 flex flex-col h-full overflow-hidden bg-white rounded-none shadow-lg">
+  <section class="fixed z-40 w-full h-full p-0 md:p-4 md:max-w-screen-sm">
+    <div class="flex flex-col h-full overflow-hidden bg-white rounded-none shadow-lg md:rounded-lg dark:bg-gray-900 dark:text-gray-50" :style="{ 'padding-top': `${mobileSettingsStore.padding.top}px`, 'padding-bottom': `${mobileSettingsStore.padding.bottom}px` }">
       <h1 class="px-4 mt-4 mb-2 text-xl font-bold uppercase">
-        <span>{{ $i18n.t('settings.heading') }}</span>
-        <UiButton :aria-label="$i18n.t('settings.buttons.close')" subtle class="float-right -mt-2 -mr-2" tabindex="0" @click="processedValue = false">
-          <CloseIcon :aria-label="$i18n.t('settings.buttons.close')" />
-        </UiButton>
+        <span>{{ $t('settings.heading') }}</span>
+        <Button
+          :aria-label="$t('settings.buttons.close')"
+          default-style
+          circle
+          :importance="3"
+          class="float-right -mt-2 -mr-2"
+          tabindex="0"
+          @click="processedValue = false"
+        >
+          <CloseIcon :aria-label="$t('settings.buttons.close')" />
+        </Button>
       </h1>
-      <div class="flex-grow px-4 py-2 overflow-y-auto">
-        <div class="w-full">
-          <Transition tag="div" name="tab-transition" mode="out-in" class="relative w-full overflow-hidden">
-            <div v-if="activeTab === 1" :key="1" class="settings-tab">
-              <OptionGroup
-                :values="$languages"
-                :selected="settingsStore.lang"
-                :override-text="{ title: $languages, description: null }"
-                @input="(event) => { settingsStore.lang = event }"
-              />
+      <div class="flex-grow overflow-y-auto">
+        <Transition tag="div" name="tab-transition" mode="out-in" class="relative w-full">
+          <!-- Core settings -->
+          <div v-if="activeTab === 1" :key="1" class="settings-tab">
+            <OptionGroup
+              :choices="$languages"
+              :value="settingsStore.lang"
+              :override-text="{ title: $languages, description: null }"
+              @input="(newLang) => { settingsStore.lang = newLang }"
+            />
+            <Divider />
+            <SettingsItem type="check" :path="['adaptiveTicking', 'enabled']" />
+            <SettingsItem v-if="isWeb" type="check" :path="['timerControls', 'enableKeyboardShortcuts']" />
+
+            <template v-if="isWeb">
               <Divider />
-              <SettingsCheck :settings-key="['adaptiveTicking', 'enabled']" />
-              <SettingsCheck :settings-key="['timerControls', 'enableKeyboardShortcuts']" />
-              <Divider />
-              <SettingsCheck :settings-key="['permissions', 'audio']" />
-              <SettingsCheck
-                :settings-key="['permissions', 'notifications']"
-                :set-value-on-change="false"
+              <SettingsItem type="check" :path="['permissions', 'audio']" />
+              <SettingsItem
+                type="check"
+                :path="['permissions', 'notifications']"
                 :disabled="notificationsEnabled === false"
-                :custom-set-function="changeNotificationSettings"
+                @input="(newValue) => {
+                  if (newValue === true) {
+                    eventsStore.recordEvent('permission.notification')
+                  }
+                }"
               />
+            </template>
 
+            <template v-if="isMobile">
               <Divider />
+              <SettingsItem type="check" :path="['mobile', 'notifications', 'sectionOver']" />
+              <SettingsItem type="check" :path="['mobile', 'notifications', 'persistent']" />
+            </template>
 
-              <SettingsCheck :settings-key="['tasks', 'enabled']" />
-              <SettingsText
-                :settings-key="['tasks', 'maxActiveTasks']"
-                :min="1"
-                numeric
-                :disabled="!settingsStore.tasks.enabled"
-              />
-              <SettingsCheck :settings-key="['tasks', 'removeCompletedTasks']" :disabled="!settingsStore.tasks.enabled" />
+            <Divider />
 
+            <SettingsItem type="check" :path="['tasks', 'enabled']" />
+            <SettingsItem
+              type="number"
+              :path="['tasks', 'maxActiveTasks']"
+              :min="1"
+              :max="15"
+              :disabled="!settingsStore.tasks.enabled"
+            />
+            <SettingsItem type="check" :path="['tasks', 'removeCompletedTasks']" :disabled="!settingsStore.tasks.enabled" />
+
+            <template v-if="isWeb">
               <Divider />
-
-              <SettingsCheck :settings-key="['reset']" />
-            </div>
-
-            <div v-else-if="activeTab === 2" :key="2" class="settings-tab">
-              <SettingsText :settings-key="['schedule', 'longPauseInterval']" :min="1" numeric />
-              <Divider />
-
-              <SettingsOptions
-                :settings-key="['schedule', 'lengths']"
-                :custom-value="settingsStore.getActiveSchedulePreset"
-                override-translation-key="timerpreset"
-                :values="timerPresets"
-                :set-value-on-change="false"
-                :custom-set-function="(v) => { settingsStore.applyPreset(v) }"
-              />
-              <SettingsTime :settings-key="['schedule', 'lengths', 'work']" :min-ms="5000" />
-              <SettingsTime :settings-key="['schedule', 'lengths', 'shortpause']" :min-ms="5000" />
-              <SettingsTime :settings-key="['schedule', 'lengths', 'longpause']" :min-ms="5000" />
-              <div class="ring-inset ring ring-primary bg-primary/20 dark:bg-gray-700 dark:text-gray-100 flex flex-row items-center px-3 py-4 space-x-2 rounded-lg">
-                <InfoIcon />
-                <span v-text="$i18n.t('settings.scheduleMinTime')" />
+              <SettingsItem type="empty" :path="['manage']" />
+              <div class="grid grid-flow-col grid-cols-2 gap-2 mt-1">
+                <ExportButton />
+                <ImportButton />
               </div>
-            </div>
+            </template>
+            <Divider />
 
-            <div v-else-if="activeTab === 3" :key="3" class="settings-tab">
-              <SettingsCheck :settings-key="['visuals', 'darkMode']" />
-              <Divider />
-              <SettingsOptions :settings-key="['currentTimer']" :values="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
-              <Divider />
-              <SettingsCheck :settings-key="['schedule', 'visibility', 'enabled']" />
-              <SettingsCheck :settings-key="['schedule', 'visibility', 'showSectionType']" :disabled="!settingsStore.schedule.visibility.enabled" />
-              <SettingsText
-                :settings-key="['schedule', 'numScheduleEntries']"
-                :min="3"
-                :max="10"
-                :disabled="!settingsStore.schedule.visibility.enabled"
-                numeric
+            <SettingsItem type="check" :path="['reset']" />
+          </div>
+
+          <!-- Schedule -->
+          <div v-else-if="activeTab === 2" :key="2" class="settings-tab">
+            <SettingsItem type="number" :path="['schedule', 'longPauseInterval']" :min="1" :max="10" />
+            <Divider />
+
+            <SettingsItem
+              type="empty"
+              :path="['schedule', 'lengths']"
+            >
+              <OptionGroup
+                translation-key="timerpreset"
+                :choices="timerPresets"
+                :value="settingsStore.getActiveSchedulePreset"
+                @input="(newPreset) => settingsStore.applyPreset(newPreset)"
               />
-              <Divider />
-              <SettingsCheck :settings-key="['performance', 'showProgressBar']" />
-              <SettingsCheck :settings-key="['pageTitle', 'useTickEmoji']" />
-              <!-- TODO Audio volume control -->
+            </SettingsItem>
+            <SettingsItem type="time" :path="['schedule', 'lengths', 'work']" :min-ms="5000" />
+            <SettingsItem type="time" :path="['schedule', 'lengths', 'shortpause']" :min-ms="5000" />
+            <SettingsItem type="time" :path="['schedule', 'lengths', 'longpause']" :min-ms="5000" />
+            <div class="flex flex-row items-center px-3 py-4 space-x-2 rounded-lg ring-inset ring ring-primary bg-primary/20 dark:bg-gray-700 dark:text-gray-100">
+              <InfoIcon />
+              <span v-text="$t('settings.scheduleMinTime')" />
             </div>
+          </div>
 
-            <div v-else-if="activeTab === 4" :key="4" class="settings-tab">
-              <div class="flex flex-col items-center">
-                <img src="/favicon.svg" width="64" height="64" class="inline-block p-2 mb-1 bg-red-200 rounded-lg">
-                <div>
-                  <div class="inline-block text-2xl font-bold">
-                    AnotherPomodoro
-                  </div>
-                  <sup class="text-base" v-text="version" />
-                </div>
-                <div v-text="$i18n.t('settings.about.madeby')" />
-                <div class="flex flex-col items-center justify-center mt-8">
-                  <!-- Support links -->
-                  <div class="flex flex-row mt-3 space-x-2 text-center">
-                    <a href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="hover:bg-gray-700 active:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:active:bg-gray-800 flex flex-row items-center px-4 py-2 space-x-1 text-white transition-colors bg-black rounded-full">
-                      <AboutGithub />
-                      <span v-text="$i18n.t('settings.about.source')" />
-                    </a>
-                    <a href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="hover:bg-yellow-200 active:bg-yellow-400 flex flex-row items-center px-4 py-2 space-x-1 text-black transition-colors bg-yellow-300 rounded-full">
-                      <AboutSupport />
-                      <span v-text="$i18n.t('settings.about.support')" />
-                    </a>
-                  </div>
-                  <!-- Share links -->
-                  <div class="my-2" v-text="$i18n.t('settings.about.share')" />
-                  <div class="flex flex-row items-center space-x-2 text-sm">
-                    <a href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings" class="rounded-full w-12 h-12 bg-[#1da1f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
-                      <AboutTwitter :aria-label="$i18n.t('index.alt.links.share.twitter')" size="24" />
-                    </a>
-                    <a href="http://www.facebook.com/share.php?u=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#1877f2] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
-                      <AboutFacebook :aria-label="$i18n.t('index.alt.links.share.facebook')" size="24" class="translate-x-[-1px]" />
-                    </a>
-                    <a href="https://reddit.com/submit?url=https://another-pomodoro.netlify.app" class="rounded-full w-12 h-12 bg-[#ff4500] text-white flex flex-row items-center justify-center space-x-1 transition-colors">
-                      <AboutReddit :aria-label="$i18n.t('index.alt.links.share.reddit')" size="24" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Transition>
-        </div>
+          <!-- Display -->
+          <div v-else-if="activeTab === 3" :key="3" class="settings-tab">
+            <SettingsItem type="check" :path="['visuals', 'darkMode']" />
+            <Divider />
+            <SettingsItem type="option" :path="['currentTimer']" :choices="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
+            <Divider />
+            <SettingsItem type="check" :path="['schedule', 'visibility', 'enabled']" />
+            <SettingsItem type="check" :path="['schedule', 'visibility', 'showSectionType']" :disabled="!settingsStore.schedule.visibility.enabled" />
+            <SettingsItem
+              type="number"
+              :path="['schedule', 'numScheduleEntries']"
+              :min="3"
+              :max="10"
+              :disabled="!settingsStore.schedule.visibility.enabled"
+            />
+            <Divider />
+            <SettingsItem type="check" :path="['performance', 'showProgressBar']" />
+            <SettingsItem v-if="isWeb" type="check" :path="['pageTitle', 'useTickEmoji']" />
+            <!-- TODO Audio volume control -->
+          </div>
+
+          <!-- About page -->
+          <div v-else-if="activeTab === 4" :key="4" class="settings-tab">
+            <AboutTab />
+          </div>
+        </Transition>
       </div>
 
       <!-- Tab bar -->
       <div class="flex flex-row flex-none h-20 p-4">
-        <TabHeader :active="activeTab === 1" :text="$i18n.t('settings.tabs.main')" @click="activeTab = 1">
+        <TabHeader :active="activeTab === 1" :text="$t('settings.tabs.main')" @click="activeTab = 1">
           <template #icon>
             <TabIconGeneral role="presentation" />
           </template>
         </TabHeader>
-        <TabHeader :active="activeTab === 2" :text="$i18n.t('settings.tabs.timer')" @click="activeTab = 2">
+        <TabHeader :active="activeTab === 2" :text="$t('settings.tabs.timer')" @click="activeTab = 2">
           <template #icon>
             <TabIconSchedule role="presentation" />
           </template>
         </TabHeader>
-        <TabHeader :active="activeTab === 3" :text="$i18n.t('settings.tabs.display')" @click="activeTab = 3">
+        <TabHeader :active="activeTab === 3" :text="$t('settings.tabs.display')" @click="activeTab = 3">
           <template #icon>
             <TabIconVisuals role="presentation" />
           </template>
         </TabHeader>
-        <TabHeader :active="activeTab === 4" :text="$i18n.t('settings.tabs.about')" @click="activeTab = 4">
+        <TabHeader :active="activeTab === 4" :text="$t('settings.tabs.about')" @click="activeTab = 4">
           <template #icon>
             <TabIconAbout role="presentation" />
           </template>
@@ -156,29 +156,38 @@
 </template>
 
 <script>
-import { XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon, InfoCircleIcon, BrandGithubIcon, CoffeeIcon, BrandTwitterIcon, BrandFacebookIcon, BrandRedditIcon } from 'vue-tabler-icons'
+import { XIcon, AdjustmentsIcon, AlarmIcon, ArtboardIcon, InfoCircleIcon } from 'vue-tabler-icons'
 
 import { mapActions, mapState, mapStores } from 'pinia'
 import OptionGroup from '@/components/base/optionGroup.vue'
 import TabHeader from '@/components/settings/panel/tabHeader.vue'
+import ExportButton from '@/components/settings/exportButton.vue'
+import ImportButton from '@/components/settings/importButton.vue'
+
+import AboutTab from '~~/components/settings/aboutTab.vue'
 
 import presetTimers from '@/assets/settings/timerPresets'
-import { useSettings } from '~/stores/settings'
-import { useNotifications } from '~/stores/notifications'
-import { useMain } from '~/stores'
+import { useSettings } from '~~/stores/settings'
+import { useNotifications } from '~~/stores/notifications'
+import { useMain } from '~~/stores/main'
+import { useMobileSettings } from '~~/stores/platforms/mobileSettings'
+
+import Button from '@/components/base/button.vue'
+import SettingsItem from '~~/components/settings/settingsItem.vue'
+import Divider from '@/components/base/divider.vue'
+import { useEvents } from '~~/stores/events'
 
 export default {
   name: 'SettingsPanel',
   components: {
     // UiOverlay: () => import('@/components/base/overlay.vue'),
-    UiButton: () => import(/* webpackChunkName: "uibase" */ '@/components/base/button.vue'),
-    SettingsCheck: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsCheck.vue'),
-    SettingsText: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsText.vue'),
-    SettingsTime: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsTime.vue'),
-    SettingsOptions: () => import(/* webpackMode: "eager" */ '@/components/settings/items/settingsOptions.vue'),
-    Divider: () => import(/* webpackMode: "eager" */ '@/components/base/divider.vue'),
+    SettingsItem,
+    Button,
+    Divider,
     OptionGroup,
     TabHeader,
+    ExportButton,
+    ImportButton,
     CloseIcon: XIcon,
     // ResetIcon: RefreshAlertIcon,
     TabIconGeneral: AdjustmentsIcon,
@@ -186,16 +195,22 @@ export default {
     TabIconVisuals: ArtboardIcon,
     TabIconAbout: InfoCircleIcon,
     InfoIcon: InfoCircleIcon,
-    AboutGithub: BrandGithubIcon,
-    AboutSupport: CoffeeIcon,
-    AboutTwitter: BrandTwitterIcon,
-    AboutFacebook: BrandFacebookIcon,
-    AboutReddit: BrandRedditIcon
+    AboutTab
   },
   props: {
-    value: {
+    modelValue: {
       type: Boolean,
       default: false
+    }
+  },
+
+  setup () {
+    const runtimeConfig = useRuntimeConfig()
+    return {
+      runtimeConfig,
+      mobileSettingsStore: useMobileSettings(),
+      isWeb: computed(() => runtimeConfig.public.PLATFORM === 'web'),
+      isMobile: computed(() => runtimeConfig.public.PLATFORM === 'mobile')
     }
   },
 
@@ -208,38 +223,19 @@ export default {
   },
 
   computed: {
-    ...mapStores(useSettings),
+    ...mapStores(useSettings, useEvents),
     ...mapState(useMain, ['version']),
     ...mapState(useNotifications, {
       notificationsEnabled: 'enabled'
     }),
 
     processedValue: {
-      get () { return this.value },
-      set (newValue) { this.$emit('input', newValue) }
+      get () { return this.modelValue },
+      set (newValue) { this.$emit('update:modelValue', newValue) }
     },
 
-    notificationPermission: {
-      get () {
-        return Notification ? (Notification.permission === 'granted' && this.settingsStore.permissions.notifications) : false
-      },
-      set (newValue) {
-        if (Notification.permission === 'default') {
-          const thisRef = this
-          this.$notification.requestPermission().then((newValue) => {
-            if (newValue === 'granted') {
-              thisRef.settingsStore.SET({ key: ['permissions', 'notifications'], value: true })
-            } else {
-              thisRef.notificationsBlocked = true
-              thisRef.settingsStore.SET({ key: ['permissions', 'notifications'], value: false })
-            }
-
-            thisRef.updateNotificationsEnabled(newValue === 'granted')
-          })
-        } else if (Notification.permission === 'granted') {
-          this.settingsStore.SET({ key: ['permissions', 'notifications'], value: newValue })
-        }
-      }
+    notificationPermission: () => {
+      return Notification ? (Notification.permission === 'granted' && this.settingsStore.permissions.notifications) : false
     }
   },
 
@@ -257,7 +253,7 @@ export default {
 
 <style lang="scss" scoped>
 div.settings-tab {
-  @apply grid grid-cols-1 gap-2;
+  @apply grid grid-cols-1 gap-2 py-3 px-4;
 }
 
 // ===== TAB TRANSITIONS =====
@@ -268,7 +264,7 @@ div.settings-tab {
   position: relative;
 }
 
-.tab-transition-enter {
+.tab-transition-enter-from {
   transform: translateY(10px);
   opacity: 0;
 }

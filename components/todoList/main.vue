@@ -1,17 +1,18 @@
 <template>
-  <div class="bg-gray-50 dark:bg-gray-800 border-opacity-20 md:border md:py-3 px-4 py-4 border-gray-400 shadow-lg" @keyup.stop="">
+  <div class="px-4 py-4 border-gray-400 shadow-lg bg-gray-50 dark:bg-gray-800 dark:text-slate-50 border-opacity-20 md:border md:py-3" @keyup.stop="">
     <div class="relative flex flex-row items-center justify-center h-10">
-      <p class="dark:text-gray-100 text-xl font-bold tracking-tighter text-gray-800 uppercase" v-text="$i18n.t('tasks.title')" />
-      <button class="hover:bg-gray-300 dark:hover:bg-gray-700 active:bg-gray-400 absolute right-0 float-right p-2 transition-all rounded-full" @click="$emit('hide')">
-        <XIcon />
-      </button>
+      <p class="text-xl font-bold tracking-tighter text-gray-800 uppercase dark:text-gray-100" v-text="$t('tasks.title')" />
+      <div class="absolute right-0 float-right -mr-2">
+        <Button circle default-style :importance="3" @click="$emit('hide')">
+          <XIcon />
+        </Button>
+      </div>
     </div>
-    <div v-show="displayedTasks.length < 1" key="notask" class="dark:text-gray-200 text-opacity-70 mt-3 italic text-black" v-text="$i18n.t('tasks.empty')" />
+    <div v-show="displayedTasks.length < 1" key="notask" class="mt-3 italic text-black dark:text-gray-200 text-opacity-70" v-text="$t('tasks.empty')" />
     <transition-group
       tag="div"
       name="transition-item"
-      class="max-h-64 flex flex-col px-2 py-1 mt-2 -mx-2 space-y-2 overflow-x-hidden overflow-y-auto"
-      @drop.prevent="itemDropped($event, 1)"
+      class="flex flex-col px-2 py-1 mt-2 -mx-2 space-y-2 overflow-x-hidden overflow-y-auto max-h-64"
     >
       <TaskItem
         v-for="task in displayedTasks"
@@ -20,7 +21,7 @@
         :item="task"
         :droptarget="task === dropTarget"
         moveable
-        @input="tasklistStore.toggleComplete({ item: task })"
+        @input="(isCompleted) => tasklistStore.setComplete(task.id, isCompleted)"
         @update="newTitle => tasklistStore.editTitle({ id: task.id, newTitle })"
         @delete="tasklistStore.deleteTask({ item: task })"
         @dropstart="draggedItem = task, dragging = true"
@@ -37,14 +38,15 @@
 import { XIcon } from 'vue-tabler-icons'
 
 import { mapStores } from 'pinia'
+import Button from '@/components/base/button.vue'
 import TaskItem from '@/components/todoList/item.vue'
 import TaskAdd from '@/components/todoList/addTask.vue'
-import { useSettings } from '~/stores/settings'
-import { useSchedule } from '~/stores/schedule'
-import { useTasklist } from '~/stores/tasklist'
+import { useSettings } from '~~/stores/settings'
+import { useSchedule } from '~~/stores/schedule'
+import { useTasklist } from '~~/stores/tasklist'
 
 export default {
-  components: { TaskItem, TaskAdd, XIcon /* IconManage: EditIcon */ },
+  components: { TaskItem, TaskAdd, XIcon, Button /* IconManage: EditIcon */ },
   data () {
     return {
       manageMode: true,

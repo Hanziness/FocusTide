@@ -1,17 +1,10 @@
-<template functional>
-  <div class="w-full h-full fixed bg-transparent overflow-hidden z-20 transition-colors duration-300" :style="{ 'background-color': `rgba(0, 0, 0, ${props.opacity})` }">
+<template>
+  <div class="fixed z-20 w-full h-full overflow-hidden transition-colors duration-300 before:bg-black before:bg-opacity-60 before:absolute before:left-0 before:w-full before:h-full before:transition-all">
     <slot class="z-30" />
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    opacity: {
-      type: Number,
-      default: 0.3,
-      validator (value) { return value >= 0 && value <= 1 }
-    }
-  }
 }
 </script>

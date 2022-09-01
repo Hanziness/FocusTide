@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col space-y-4 items-center">
-    <div v-text="$i18n.t('errorpage.suggestions.primary')" />
+    <div v-text="$t('errorpage.suggestions.primary')" />
     <div ref="primary" class="flex flex-col lg:flex-row space-y-4 md:space-y-0 md:space-x-2">
       <!-- Recommended row  -->
     </div>
-    <div v-text="$i18n.t('errorpage.suggestions.secondary')" />
+    <div v-text="$t('errorpage.suggestions.secondary')" />
     <div ref="secondary" class="mt-4 flex flex-col lg:flex-row space-y-4 md:space-x-2 md:space-y-0">
       <!-- Secondary row -->
     </div>

@@ -1,0 +1,488 @@
+{
+  "index": {
+    "app_description": "Minuteur Pomodoro gratuit directement dans votre navigateur",
+    "alt": {
+      "img": {
+        "screenshot": "Capture d'écran du minuteur de AnotherPomodoro",
+        "icon": "L'icone de l'app"
+      },
+      "links": {
+        "source": "Voir sur GitHub",
+        "support": "Offrir un café à l'auteur",
+        "share": {
+          "twitter": "Suivre l'app sur Twitter",
+          "facebook": "Partager l'app sur Facebook",
+          "reddit": "Partager l'app sur Reddit"
+        }
+      }
+    },
+    "launch": "Lancer",
+    "cta": {
+      "quickstart": "Commencer dès maintenant",
+      "or": "ou",
+      "configure": "Assistant de configuration"
+    },
+    "features": {
+      "0": {
+        "title": "Interface simple et propre",
+        "description": "Juste votre minuterie, les commandes essentielles et un tas de personnalisations"
+      },
+      "1": {
+        "title": "Rien à installer",
+        "description": "Fonctionne dans votre navigateur, entièrement hors ligne après le lancement"
+      },
+      "2": {
+        "title": "Libre",
+        "description": "Pas de trackers cachés, tout le monde peut voir et contribuer au code"
+      }
+    },
+    "section_whatitdoes": {
+      "title": "Qu'est ce que ça fait?",
+      "subtitle": {
+        "main": "{0} vous aide à garder une trace de votre temps.",
+        "sub": "Travaillez ou faites une pause quand il le dit."
+      },
+      "cards": [
+        {
+          "title": "Travail",
+          "description": "Il est temps de faire avancer les choses",
+          "duration": "25 minutes"
+        },
+        {
+          "title": "Courte pause",
+          "description": "Regardez une vidéo, lisez un article, ou buvez un café",
+          "duration": "5-15 minutes"
+        },
+        {
+          "title": "Longue pause",
+          "description": "Faites une sieste ou une promenade",
+          "duration": "15 minutes"
+        }
+      ]
+    },
+    "section_features": {
+      "title": "Fonctionalitées",
+      "list": {
+        "adaptiveticking": "Ticking adaptatif",
+        "clean": "Design épurée",
+        "customization": "Personnalisable",
+        "darkmode": "Mode sombre",
+        "flexible": "Flexible",
+        "localization": "Traduit en plusieurs langues",
+        "more": "... et plus, à venir",
+        "noads": "Sans publicitées",
+        "notifications": "Audio & Notifications",
+        "notrackers": "Sans trackers",
+        "opensource": "Open source",
+        "pwa": "Hors ligne"
+      }
+    },
+    "support": {
+      "title": "Soutenez ce projet",
+      "subtitle": {
+        "0": "AnotherPomodoro est développé en tant que projet personnel, sans .",
+        "1": {
+          "base": "Si vous pensez que ce projet mérite d'être soutenu, {0}.",
+          "action": "soutenez-le"
+        }
+      },
+      "credits": "Fait avec ❤ par Imre Gera"
+    },
+    "faq": {
+      "accordion": {
+        "change_timers": {
+          "a": "Absolument! \nVous pouvez modifier les minuteries de travail, de pause et de longue pause comme vous le souhaitez ! \nVous pouvez également modifier la fréquence des longues pauses !",
+          "q": "Puis-je changer les minuteries par défaut ?"
+        },
+        "will_it_help": {
+          "a": "Cela dépend de vous. \nCette application s'efforce de créer un environnement motivant avec son design épuré et sa flexibilité, mais c'est à vous de décider si vous suivez les cycles qu'elle vous donne.",
+          "hint": "Si vous réalisez que vous ne pouvez pas travailler 25 minutes d'affilée ou qu'une pause de 5 minutes est trop courte, adaptez-les à quelque chose de plus confortable. \nN'abandonnez pas, suivez un horaire plus détendu et devenez progressivement plus strict.",
+          "q": "Cette application va-t-elle m'aider ?"
+        },
+        "data_collection": {
+          "a": "Non! \nL'application fonctionne uniquement dans votre navigateur, aucune donnée n'est collectée ou envoyée nulle part !",
+          "q": "Collecte-t-elle mes données ?"
+        },
+        "remember_settings": {
+          "a": "Elle utilise le stockage de votre navigateur pour le faire. \nSi vous effacez les données de votre navigateur, les paramètres de l'application reviendront également à leurs valeurs par défaut.",
+          "hint": "Si vous souhaitez conserver vos paramètres, n'utilisez pas l'application en navigation privée (mode incognito).",
+          "q": "Comment se souviendra-t-elle alors de mes paramètres ?"
+        },
+        "need_to_know": {
+          "a": "Absolument rien. \nSi vous ne voulez pas vous plonger dans les paramètres, démarrez simplement la minuterie et écoutez le carillon audio lorsqu'elle se termine. \nUne fois fait, démarrez la minuterie suivante lorsque vous êtes prêt. \nAucune connaissance n'est nécessaire pour utiliser cette minuterie, faites juste attention au temps restant !",
+          "q": "Alors, que dois-je savoir pour utiliser cette application ?"
+        },
+        "timer_style": {
+          "a": "Cela dépend de la façon dont vous voulez que la minuterie soit affichée. \nLe format traditionnel ressemble à \"12:34\" (précision en secondes), le format approximatif ressemble à \"13 minutes\" et le pourcentage ressemble à \"50 %\".",
+          "q": "Quel style de minuterie dois-je utiliser ?"
+        }
+      },
+      "hint": "Conseil",
+      "title": "FAQ"
+    }
+  },
+  "setup": {
+    "steps": {
+      "language": {
+        "title": "Langue"
+      },
+      "permissions": {
+        "description": "L'application peut émettre un son et envoyer une notification lorsque la minuterie expire.",
+        "title": "Autorisations"
+      },
+      "preset": {
+        "description": "Ces préréglages activent certaines fonctions de l'application afin que vous puissiez l'utiliser comme vous vous sentez à l'aise.",
+        "title": "Préréglage de l'application"
+      },
+      "theme": {
+        "description": "Contrôlez l'apparence de l'application.",
+        "title": "Thème"
+      },
+      "timerpreset": {
+        "description": "Choisissez un préréglage de minuterie avec lequel vous souhaitez travailler.",
+        "title": "Durée de la minuterie"
+      },
+      "timerstyle": {
+        "description": "AnotherPomodoro prend en charge trois styles de minuterie allant de la précision à la seconde à l'affichage d'un pourcentage seulement.",
+        "title": "Affichage de la minuterie"
+      },
+      "tip": {
+        "description": "Vous trouverez tous les paramètres en cliquant sur l'icône en forme de roue crantée dans le coin supérieur droit.",
+        "title": "Conseil"
+      }
+    },
+    "presets": {
+      "_values": {
+        "minimalist": "Minimalist",
+        "default": "Normal",
+        "hardcore": "Max de fonctions"
+      },
+      "_valueDescription": {
+        "default": "Les paramètres de démarrage. \nRecommandé pour les utilisateurs novices.",
+        "hardcore": "Chaque fonctionnalité est activée pour que vous puissiez tout avoir devant vous.",
+        "minimalist": "Aucun élément distrayant, juste une minuterie au milieu."
+      }
+    },
+    "permissions": {
+      "audio": "Audio",
+      "notifications": "Notifications"
+    },
+    "theme": {
+      "_values": {
+        "light": "Claire",
+        "dark": "Foncé"
+      },
+      "_valueDescription": {
+        "dark": "Moins lumineux, tout aussi productif",
+        "light": "Plein de couleurs amicales"
+      }
+    },
+    "head": "Installer",
+    "startButton": "Allons-y",
+    "title": "Commençons",
+    "preview": "Aperçu"
+  },
+  "section": {
+    "work": "Tâche",
+    "shortpause": "Pause",
+    "longpause": "Grande pause",
+    "wait": "Attente"
+  },
+  "controls": {
+    "play": "Start or pause the timer",
+    "stop": "Reset timer",
+    "advance": "Go to next section"
+  },
+  "timer": {
+    "approximate": {
+      "hours": "heure | heures",
+      "minutes": "minutes | minutes"
+    }
+  },
+  "settings": {
+    "heading": "Paramètres",
+    "tabs": {
+      "main": "Principal",
+      "timer": "Minuteur",
+      "display": "Affichage",
+      "audio": "Audio",
+      "about": "À propos"
+    },
+    "buttons": {
+      "close": "Fermer",
+      "reset": "Réinitialiser"
+    },
+    "reset": {
+      "title": "Réinitialiser les paramètres",
+      "confirm": "Réinitialiser",
+      "cancel": "Annuler"
+    },
+    "manage": {
+
+      "buttons": {
+        "save": "Sauvegarder",
+        "load": "Charger"
+      }
+    },
+    "scheduleMinTime": "Le temps minimum est de 5 secondes.",
+    "about": {
+      "madeby": "Développé par Imre Gera",
+      "source": "Code source",
+      "support": "Soutenir le projet",
+      "share": "ou partagez l'application sur les réseaux sociaux :"
+    },
+    "values": {
+      "manage": {
+        "_title": "Gérer les paramètres",
+        "_description": "Télécharger les paramètres actuels ou les charger à partir d'un fichier"
+      },
+      "lang": {
+        "_description": "",
+        "_title": "Langue"
+      },
+      "eventLoggingEnabled": {
+        "_description": "",
+        "_title": "Activer la journalisation des événements"
+      },
+      "currentTimer": {
+        "_title": "Style de minuterie",
+        "_description": "",
+        "_values": {
+          "traditional": "Préscise",
+          "approximate": "Approximative",
+          "percentage": "Pourcentage"
+        },
+        "_valueDescription": {
+          "traditional": "12:34",
+          "approximate": "13 minutes",
+          "percentage": "50%"
+        }
+      },
+      "adaptiveTicking": {
+        "enabled": {
+          "_title": "Activer le ticking adaptatif",
+          "_description": "Le minuteur se met à jour moins souvent lorsqu'il est en arrière-plan."
+        }
+      },
+      "schedule": {
+        "longPauseInterval": {
+          "_title": "Interval de longues pauses",
+          "_description": ""
+        },
+        "numScheduleEntries": {
+          "_title": "Nombre de périodes future à afficher",
+          "_description": ""
+        },
+        "visibility": {
+          "enabled": {
+            "_title": "Afficher les périodes futures",
+            "_description": "Afficher une ligne du temps avec les périodes de travail et pauses"
+          },
+          "showSectionType": {
+            "_title": "Afficher le type de période actuel",
+            "_description": "Affiche le type de période actuel sous la lige du temps"
+          }
+        },
+        "lengths": {
+          "_title": "Minuteurs prédéfinie",
+          "_description": "",
+          "_values": {
+            "custom": "Personnalisé",
+            "debug": "Déboguer",
+            "default": "Défaut"
+          },
+          "_valueDescription": {
+            "custom": "Défini par vous",
+            "debug": "À des fins de débogage",
+            "default": "25 minutes de travail, 5 minutes de pause"
+          },
+          "work": {
+            "_description": "",
+            "_title": "Travail"
+          },
+          "shortpause": {
+            "_description": "",
+            "_title": "Pause"
+          },
+          "longpause": {
+            "_description": "",
+            "_title": "Longue pause"
+          }
+        }
+      },
+      "performance": {
+        "showProgressBar": {
+          "_description": "Afficher la progression derrière la minuterie",
+          "_title": "Afficher la barre de progression"
+        }
+      },
+      "permissions": {
+        "audio": {
+          "_description": "Laisser l'application jouer des sons lorsqu'une section est terminée",
+          "_title": "Lecture audio"
+        },
+        "notifications": {
+          "_description": "Laissez l'application vous envoyer des notifications lorsqu'une section est terminée",
+          "_title": "Autorisations de notification"
+        }
+      },
+      "audio": {
+        "volume": {
+          "_description": "",
+          "_title": "Volume sonore"
+        },
+        "soundSet": {
+          "_title": "Ensemble de sons",
+          "_description": "Sons utilisés pour les notifications",
+          "_values": {
+            "musical": "Musical"
+          },
+          "_valueDescription": {
+            "musical": "Les sons par défaut"
+          }
+        }
+      },
+      "timerControls": {
+        "enableKeyboardShortcuts": {
+          "_description": "Démarrer/mettre en pause le minuteur avec la touche espace",
+          "_title": "Activer les raccourcis clavier"
+        }
+      },
+      "tasks": {
+        "enabled": {
+          "_description": "Gérez votre travail directement depuis l'application",
+          "_title": "Activer la liste des tâches"
+        },
+        "maxActiveTasks": {
+          "_description": "Vous ne verrez que ce nombre de tâches actives au maximum",
+          "_title": "Tâches actives maximales à afficher"
+        },
+        "removeCompletedTasks": {
+          "_description": "Les tâches terminées seront supprimées lorsqu'une nouvelle section commencera",
+          "_title": "Supprimer les tâches terminées"
+        }
+      },
+      "pageTitle": {
+        "useTickEmoji": {
+          "_description": "Afficher ✔ a la place de \"fait\"",
+          "_title": "Utilisez tick emoji dans le titre"
+        }
+      },
+      "visuals": {
+        "darkMode": {
+          "_description": "Moins lumineux, tout aussi productif",
+          "_title": "Activer le mode sombre"
+        }
+      },
+      "reset": {
+        "_description": "Tous les paramètres seront réinitialisés après le rechargement de l'application",
+        "_title": "Réinitialiser les paramètres"
+      }
+    }
+  },
+  "notification": {
+    "action": {
+      "ready": "Démarrer!"
+    },
+    "work": {
+      "title": "Il est temps de se remettre au travail!",
+      "body": "Votre pause est terminée. Travaillez encore un peu, puis reposez-vous à nouveau."
+    },
+    "shortpause": {
+      "title": "Il est temps de faire une pause",
+      "body": "Bien, vous avez mérité une courte pause."
+    },
+    "longpause": {
+      "title": "Waa! Plus de temps libre !",
+      "body": "Bien bien. Après avoir tant travaillé, vous méritez une longue pause."
+    }
+  },
+  "error": {
+    "format_invalid": "Format d'entrée invalide",
+    "max": "La valeur doit être au plus {max}",
+    "min": "La valeur doit être d'au moins {min}",
+    "min_time": "Le temps de saisie est trop court",
+    "numeric": "La valeur doit être un nombre",
+    "range_invalid": "La valeur doit être comprise entre {min} et {max}",
+    "required": "Ce champ doit être rempli",
+    "time_format": "Heure au format incorrect (MM:SS)",
+    "undefined": "Erreur indéfinie"
+  },
+  "tasks": {
+    "addPlaceholder": "Entrez quelque chose à faire",
+    "empty": "Aucune tâche pour le moment",
+    "manage": "Faire en sorte",
+    "title": "Tâches"
+  },
+  "ready": "Fait",
+  "errorpage": {
+    "title": {
+      "crash": "L'application a planté",
+      "notfound": "Cette page n'existe pas",
+      "other": "Quelque chose s'est mal passé"
+    },
+    "action": {
+      "githubDiscussion": "Demandez aux autres s'ils ont le même problème",
+      "githubIssue": "Rapport un bug",
+      "home": "Retournez à la page d'accueil",
+      "reload": "Recharge la page",
+      "reset": "Réinitialiser l'application",
+      "twitter": "Écrivez un tweet amical"
+    },
+    "showError": {
+      "main": "Afficher le message d'erreur !",
+      "sub": "Vous pouvez l'utiliser pour signaler un problème ou demander si d'autres l'ont déjà rencontré."
+    },
+    "suggestions": {
+      "primary": "Vous pouvez",
+      "secondary": "ou si cela ne vous a pas aidé"
+    }
+  },
+  "timerpreset": {
+    "_values": {
+      "default": "Normal",
+      "easy": "Débutant",
+      "advanced": "Avancé",
+      "workaholic": "Bourreau de travail"
+    },
+    "_valueDescription": {
+      "default": "Les valeurs traditionel Pomodoro.",
+      "easy": "Pour ceux qui débutent avec Pomodoro.",
+      "advanced": "Travaillez un peu plus efficacement.",
+      "workaholic": "Pour de longues séances de travail."
+    },
+    "description": "{bref}\n \n{worklength} minutes de travail avec {splength} minutes de pause et une grande pause de {lplength} minutes après chaque {lpfreq} sessions de travail."
+  },
+  "tutorials": {
+    "onboarding": {
+      "pages": {
+        "0": {
+          "text": "Jetez un coup d'œil sur la façon d'utiliser l'application efficacement.",
+          "title": "Bienvenue sur AnotherPomodoro !"
+        },
+        "1": {
+          "text": "Travaillez ou faites une pause jusqu'à la fin du temps imparti. \nEnsuite, passez au prochain minuteur.",
+          "title": "Suivez l'horloge"
+        },
+        "2": {
+          "text": "Après quelques cycles de travail et courte pause, vous obtenez plus de temps pour vous reposer. \nFaites-en bon usage.",
+          "title": "Reposez-vous régulièrement"
+        },
+        "3": {
+          "text": "Définissez vos propres minuteries, utilisez la liste des tâches et les notifications à votre avantage. \nConsultez le menu des paramètres pour plus de réglages !",
+          "title": "Restez flexible"
+        },
+        "support": {
+          "text": "Si ce projet vous a aidé, pensez à offrir un café à l'auteur. Vous retrouverez le boutton pour supporter l'auteur dans le menu \"À propos\".",
+          "title": "Soutenir le projet"
+        }
+      },
+      "buttons": {
+        "close": "Fermer",
+        "next": "Suivant",
+        "start": "Démarrer le tutoriel",
+        "support": "Soutenir le projet"
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 <template>
-  <div class="dark:text-gray-100 relative flex flex-col justify-center text-center text-black transition-opacity duration-500 select-none" :class="[{ 'opacity-70': !running, 'opacity-100': running }]">
+  <div class="relative grid text-black transition-opacity duration-500 select-none place-items-center dark:text-gray-100" :class="[{ 'opacity-70': !running, 'opacity-100': running }]">
     <Transition name="timer-switch" mode="out-in">
-      <CompleteMarker v-if="getCurrentTimerState === 3" :key="'complete'" />
+      <CompleteMarker v-if="getCurrentTimerState === timerStates.COMPLETED" :key="'complete'" />
       <TimerTraditional v-else-if="timerWidget === 'traditional'" v-bind="timerInfo" :key="'traditional'" @tick="$emit('tick', $event)" />
       <TimerApproximate v-else-if="timerWidget === 'approximate'" v-bind="timerInfo" :key="'approximate'" @tick="$emit('tick', $event)" />
       <TimerPercentage v-else-if="timerWidget === 'percentage'" v-bind="timerInfo" :key="'percentage'" @tick="$emit('tick', $event)" />
@@ -11,16 +11,16 @@
 
 <script>
 import { mapState } from 'pinia'
-import { AvailableTimers } from '@/stores/settings'
+import { AvailableTimers } from '~~/stores/settings'
 import TimerMixin from '@/assets/mixins/timerMixin'
-import { useSchedule } from '~/stores/schedule'
+import { useSchedule, TimerState } from '~~/stores/schedule'
 
 export default {
   components: {
-    TimerTraditional: () => import(/* webpackChunkName: "timerTraditional" */ '~/components/timer/display/timerTraditional.vue'),
-    TimerApproximate: () => import(/* webpackChunkName: "timerApproximate" */ '~/components/timer/display/timerApproximate.vue'),
-    TimerPercentage: () => import(/* webpackChunkName: "timerPercentage" */ '~/components/timer/display/timerPercentage.vue'),
-    CompleteMarker: () => import(/* webpackMode: "eager" */ '@/components/timer/display/timerComplete.vue')
+    TimerTraditional: defineAsyncComponent(() => import('@/components/timer/display/timerTraditional.vue')),
+    TimerApproximate: defineAsyncComponent(() => import('@/components/timer/display/timerApproximate.vue')),
+    TimerPercentage: defineAsyncComponent(() => import('@/components/timer/display/timerPercentage.vue')),
+    CompleteMarker: defineAsyncComponent(() => import('@/components/timer/display/timerComplete.vue'))
   },
   mixins: [TimerMixin],
   props: {
@@ -39,6 +39,10 @@ export default {
         timeOriginal: this.timeOriginal,
         timerState: this.timerState
       }
+    },
+
+    timerStates () {
+      return TimerState
     },
 
     ...mapState(useSchedule, ['getCurrentTimerState'])

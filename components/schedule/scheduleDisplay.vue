@@ -1,14 +1,18 @@
 <template>
-  <div class="w-full p-4 overflow-hidden select-none">
+  <div class="flex flex-row justify-center w-full p-4 overflow-hidden select-none">
     <TransitionGroup
-      name="schedule-transition"
+      enter-active-class="transition duration-300 delay-150"
+      leave-active-class="absolute transition duration-300"
+      enter-from-class="translate-x-8 !opacity-0"
+      move-class="transition duration-300 delay-150"
+      leave-to-class="scale-90 opacity-0"
       tag="div"
-      class="relative flex flex-row justify-center flex-grow-0"
+      class="relative flex flex-row flex-grow-0 gap-2"
     >
-      <ScheduleItem
+      <schedule-item
         v-for="(item, i) in getSchedule"
         :key="item.id"
-        :data="item"
+        :type="item.type"
         :active="i === 0"
       />
     </TransitionGroup>
@@ -17,10 +21,13 @@
 
 <script>
 import { mapState } from 'pinia'
-import { useSchedule } from '~/stores/schedule'
+import { useSchedule } from '~~/stores/schedule'
+
+import ScheduleItem from '@/components/schedule/scheduleItem.vue'
+
 export default {
   components: {
-    ScheduleItem: () => import(/* webpackMode: "eager" */ '@/components/schedule/scheduleItem.vue')
+    ScheduleItem
   },
 
   computed: {
@@ -28,23 +35,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.schedule-transition-enter-active,
-.schedule-transition-leave-active,
-.schedule-transition-move {
-  @apply transition-all duration-300;
-}
-
-.schedule-transition-enter {
-  @apply opacity-0 translate-x-8;
-}
-
-.schedule-transition-leave-active {
-  position: absolute;
-}
-
-.schedule-transition-leave-to {
-  @apply opacity-0 -translate-x-8;
-}
-</style>

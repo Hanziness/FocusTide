@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "AnotherPomodoro: modern & simple Pomodoro app",
+  "short_name": "AnotherPomodoro",
+  "description": "Modern and customisable productivity timer, right in your browser!",
+  "start_url": "/timer?pwa=true",
+  "theme_color": "#F87171",
+  "background_color": "#FEE2E2",
+  "orientation": "any",
+  "categories": ["productivity", "utilities"],
+  "display": "standalone",
+  "shortcuts": [],
+  "lang": "en-US",
+  "screenshots": [
+    {
+      "src": "/assets/img/screenshots/stores/mobile_0.jpg",
+      "sizes": "1520x3040",
+      "type": "image/jpg",
+      "platform": "narrow",
+      "label": "A pomodoro timer running in the app"
+    },
+    {
+      "src": "/assets/img/screenshots/stores/mobile_1.jpg",
+      "sizes": "1520x3040",
+      "type": "image/jpg",
+      "platform": "narrow",
+      "label": "AnotherPomdoro comes with a built-in to-do manager"
+    },
+    {
+      "src": "/assets/img/screenshots/stores/mobile_2.jpg",
+      "sizes": "1520x3040",
+      "type": "image/jpg",
+      "platform": "narrow",
+      "label": "The timer is fully customizable: the timer\"s looks, the schedules and there\"s also a dark mode."
+    },
+    {
+      "src": "/assets/img/screenshots/stores/mobile_3.jpg",
+      "sizes": "1520x3040",
+      "type": "image/jpg",
+      "platform": "narrow",
+      "label": "Every feature is optional in AnotherPomodoro. If all you need is a simple timer, it can do that, too."
+    },
+    {
+      "src": "/assets/img/screenshots/stores/mobile_4.jpg",
+      "sizes": "1520x3040",
+      "type": "image/jpg",
+      "platform": "narrow",
+      "label": "Two screenshots showing the 'approximate' and 'percentage' timer styles."
+    }
+  ],
+  "icons": [
+    {
+      "src": "/icons/icon-maskable-64.png",
+      "sizes": "64x64",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-maskable-120.png",
+      "sizes": "120x120",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-maskable-144.png",
+      "sizes": "144x144",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-maskable-152.png",
+      "sizes": "152x152",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-maskable-192.png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-maskable-384.png",
+      "sizes": "384x384",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-monochrome-64.png",
+      "sizes": "64x64",
+      "purpose": "monochrome"
+    },
+    {
+      "src": "/icons/icon-monochrome-120.png",
+      "sizes": "120x120",
+      "purpose": "monochrome"
+    },
+    {
+      "src": "/icons/icon-monochrome-144.png",
+      "sizes": "144x144",
+      "purpose": "monochrome"
+    },
+    {
+      "src": "/icons/icon-monochrome-152.png",
+      "sizes": "152x152",
+      "purpose": "monochrome"
+    },
+    {
+      "src": "/icons/icon-monochrome-192.png",
+      "sizes": "192x192",
+      "purpose": "monochrome"
+    },
+    {
+      "src": "/icons/icon-monochrome-384.png",
+      "sizes": "384x384",
+      "purpose": "monochrome"
+    },
+    {
+      "src": "/icons/icon-monochrome-512.png",
+      "sizes": "512x512",
+      "purpose": "monochrome"
+    },
+    {
+      "src": "/icons/icon-base-64.png",
+      "sizes": "64x64",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-base-120.png",
+      "sizes": "120x120",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-base-144.png",
+      "sizes": "144x144",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-base-152.png",
+      "sizes": "152x152",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-base-192.png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-base-384.png",
+      "sizes": "384x384",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-base-512.png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ]
+}

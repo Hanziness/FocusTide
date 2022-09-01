@@ -91,3 +91,5 @@ sw.*
 
 # Nuxt 3 build output
 .output
+
+.yarn
