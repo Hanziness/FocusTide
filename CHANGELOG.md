@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/Hanziness/AnotherPomodoro/compare/v1.2.0...v1.3.0) (2022-09-01)
+
+
+### Features
+
+* Add app event recording ([#249](https://github.com/Hanziness/AnotherPomodoro/issues/249)) ([33d2e86](https://github.com/Hanziness/AnotherPomodoro/commit/33d2e86fc8fcb1ba68d1dadf4bf250bec6594ea3))
+* Add platform modules ([#259](https://github.com/Hanziness/AnotherPomodoro/issues/259)) ([29e6392](https://github.com/Hanziness/AnotherPomodoro/commit/29e63926b1f8ff50a8af530c3903a1b43deadbba))
+* **i18n:** Add Spanish translations (courtesy Gudwin) ([#265](https://github.com/Hanziness/AnotherPomodoro/issues/265)) ([0e35a7e](https://github.com/Hanziness/AnotherPomodoro/commit/0e35a7e62b238fb004af80f644503e3b28857fe7))
+* Minor improvements ([#264](https://github.com/Hanziness/AnotherPomodoro/issues/264)) ([fe9771e](https://github.com/Hanziness/AnotherPomodoro/commit/fe9771ee5e2a4f416826c50986f418c5fa1cb7a0))
+
+
+### Bug Fixes
+
+* **pwa:** Fix PWA registration ([#263](https://github.com/Hanziness/AnotherPomodoro/issues/263)) ([ab12a53](https://github.com/Hanziness/AnotherPomodoro/commit/ab12a53f3a34daca95a91f0d738593ca54222d50))
+* Re-enable server-side rendering ([#258](https://github.com/Hanziness/AnotherPomodoro/issues/258)) ([1a368b9](https://github.com/Hanziness/AnotherPomodoro/commit/1a368b908e98cd14c5ff0ad458dab0b708f0d2ad))
+* Translate onboarding button strings ([#242](https://github.com/Hanziness/AnotherPomodoro/issues/242)) ([8279758](https://github.com/Hanziness/AnotherPomodoro/commit/82797580bdb31a8be0feec0f56878ee8ca6e590a))
+
+
+### Localizations
+
+* add french translation ([#243](https://github.com/Hanziness/AnotherPomodoro/issues/243)) ([056f3a8](https://github.com/Hanziness/AnotherPomodoro/commit/056f3a88c9db7b0b463c000fea3f350a4fc361db))
+
+
+### Refactors
+
+* Move support tab logic into separate component ([#260](https://github.com/Hanziness/AnotherPomodoro/issues/260)) ([2eece22](https://github.com/Hanziness/AnotherPomodoro/commit/2eece22a0f8add1b48680dac10250ff833918496))
+* **ui:** Revamp basic UI components ([#244](https://github.com/Hanziness/AnotherPomodoro/issues/244)) ([4adf2d3](https://github.com/Hanziness/AnotherPomodoro/commit/4adf2d31c7684b0be6964f9be269187697d0cfd7))
+* Upgrade app to Nuxt 3 ([#253](https://github.com/Hanziness/AnotherPomodoro/issues/253)) ([2a90418](https://github.com/Hanziness/AnotherPomodoro/commit/2a904182f96cb30a70439e5fbf0db0bdc8c4bf8d))
+
 ## [1.2.0](https://github.com/Hanziness/AnotherPomodoro/compare/v1.0.1...v1.2.0) (2022-05-30)
 
 
