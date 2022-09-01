@@ -1,0 +1,498 @@
+{
+  "index": {
+    "app_description": "Temporizador Pomodoro gratuito directamente en su navegador",
+    "alt": {
+      "img": {
+        "screenshot": "Captura de pantalla de un temporizador en funcionamiento en AnotherPomodoro",
+        "icon": "El icono de la aplicación"
+      },
+      "links": {
+        "source": "Ver en GitHub",
+        "support": "Invítele un café al autor",
+        "share": {
+          "twitter": "Siga la aplicación en Twitter",
+          "facebook": "Comparta la aplicación en Facebook",
+          "reddit": "Comparta la aplicación en Reddit"
+        }
+      }
+    },
+    "launch": "Iniciar",
+    "cta": {
+      "quickstart": "Inicio rápido",
+      "or": "o",
+      "configure": "Asistente de configuración"
+    },
+    "features": [
+      {
+        "title": "Interfaz centrada y limpia",
+        "description": "Solo su temporizador, los controles esenciales y un montón de personalizaciones"
+      },
+      {
+        "title": "Nada que instalar",
+        "description": "Se ejecuta en su navegador, completamente fuera de línea después de iniciar"
+      },
+      {
+        "title": "Libre y de código abierto",
+        "description": "Sin rastreadores ocultos, todos pueden ver y contribuir al código"
+      }
+    ],
+    "section_whatitdoes": {
+      "title": "¿Qué es lo que hace?",
+      "subtitle": {
+        "main": "{appname} le ayuda a controlar su tiempo.",
+        "sub": "Simplemente, trabaje o tómese un descanso cuando así lo diga."
+      },
+      "cards": [
+        {
+          "title": "Trabajo",
+          "description": "Hora de hacer las cosas",
+          "duration": "25 minutos"
+        },
+        {
+          "title": "Pausa corta",
+          "description": "Ve un video, lee un artículo, toma un café",
+          "duration": "5-15 minutos"
+        },
+        {
+          "title": "Pausa larga",
+          "description": "Toma una siesta o dé un paseo",
+          "duration": "15 minutos"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "hint": "Pista",
+      "accordion": {
+        "change_timers": {
+          "q": "¿Puedo cambiar esos temporizadores?",
+          "a": "¡Por supuesto! ¡Puede cambiar los temporizadores de trabajo, pausa y pausa larga a lo que quieras! ¡También puede cambiar la frecuencia de las pausas largas!"
+        },
+        "will_it_help": {
+          "q": "¿Esta aplicación me ayudará?",
+          "a": "Eso depende de usted. Esta aplicación se esfuerza por crear un entorno motivador con su diseño limpio y flexibilidad, pero depende de usted si sigue el horario que le da.",
+          "hint": "Si usted se da cuenta de que no puede trabajar 25 minutos seguidos o que una pausa de 5 minutos es demasiado corta, ajústelos a algo más cómodo. No se rinda, siga un horario más relajado y vaya siendo progresivamente más estricto."
+        },
+        "data_collection": {
+          "q": "¿Recolecta algún dato?",
+          "a": "¡No! ¡La aplicación solo se ejecuta en su navegador, no se recolectan ni se envían datos a ninguna parte!"
+        },
+        "remember_settings": {
+          "q": "¿Entonces cómo recordará mis ajustes?",
+          "a": "Depende de su navegador para hacerlo. Si borra los datos de su navegador, los ajustes de la aplicación también volverán a sus valores predeterminados.",
+          "hint": "Si quiere conservar sus ajustes, no utilice la aplicación en navegación privada (modo incógnito)."
+        },
+        "need_to_know": {
+          "q": "Entonces, ¿qué necesito saber para usar esta aplicación?",
+          "a": "Absolutamente nada. Si no quiere profundizar en los ajustes, simplemente inicie el temporizador y escuche la señal sonora cuando termine. Una vez que haya terminado, empiece el siguiente temporizador cuando esté listo. No es necesario ningún conocimiento para utilizar este temporizador, ¡simplemente preste atención al tiempo que queda!"
+        },
+        "timer_style": {
+          "q": "¿Qué estilo de temporizador debería usar?",
+          "a": "Eso depende de lo oscurecido que quiera que sea el temporizador. El tradicional se ve como \"12:34\" (preciso a los segundos), el aproximado se ve como \"13 minutos\" y el porcentual se ve como \"50%\"."
+        }
+      }
+    },
+    "section_features": {
+      "title": "Lista de características",
+      "list": {
+        "customization": "Personalización",
+        "notifications": "Audio & Notificaciones",
+        "flexible": "Flexible",
+        "pwa": "Fuera de línea",
+        "opensource": "Código abierto",
+        "notrackers": "Sin rastreadores",
+        "noads": "Sin anuncios ni ventanas emergentes",
+        "clean": "Diseño limpio",
+        "adaptiveticking": "Tictac adaptativo",
+        "localization": "Múltiples idiomas",
+        "darkmode": "Modo oscuro",
+        "more": "... y más por venir"
+      }
+    },
+    "support": {
+      "title": "Apoye este proyecto",
+      "subtitle": {
+        "main": "AnotherPomodoro está siendo desarrollado como un proyecto paralelo sin ninguna compensación en mente.",
+        "action": "Si siente que este es un proyecto que vale la pena apoyar, por favor hágalo."
+      },
+      "credits": "Hecho con ❤ por Imre Gera"
+    }
+  },
+  "setup": {
+    "head": "Configuración",
+    "title": "Empecemos",
+    "startButton": "Vamos",
+    "steps": {
+      "language": {
+        "title": "Idioma"
+      },
+      "preset": {
+        "title": "Preajuste de la aplicación",
+        "description": "Estos preajustes activan determinadas funciones de la aplicación para que pueda utilizarla de la manera que le resulte más cómoda."
+      },
+      "timerpreset": {
+        "title": "Duración del temporizador",
+        "description": "Elige un preajuste para el temporizador con el que quieras trabajar."
+      },
+      "timerstyle": {
+        "title": "Vista del temporizador",
+        "description": "AnotherPomodoro soporta tres estilos de temporizador que van desde preciso a los segundos hasta mostrar solo un porcentaje."
+      },
+      "permissions": {
+        "title": "Permisos",
+        "description": "La aplicación puede reproducir un sonido y enviar una notificación cuando un temporizador termina."
+      },
+      "theme": {
+        "title": "Tema",
+        "description": "Controle como se ve la aplicación."
+      },
+      "tip": {
+        "title": "Consejo",
+        "description": "Encontrará todos los ajustes haciendo clic en el icono del engranaje en la esquina superior derecha."
+      }
+    },
+    "presets": {
+      "_values": {
+        "minimalist": "Minimalista",
+        "default": "Predeterminado",
+        "hardcore": "Completo"
+      },
+      "_valueDescription": {
+        "minimalist": "Sin elementos distractores, solo un temporizador en el medio.",
+        "default": "Los ajustes de inicio. Recomendado para usuarios primerizos.",
+        "hardcore": "Cada característica está activada para que pueda tener todo delante de usted."
+      }
+    },
+    "permissions": {
+      "audio": "Audio",
+      "notifications": "Notificaciones"
+    },
+    "theme": {
+      "_values": {
+        "light": "Predeterminado",
+        "dark": "Oscuro"
+      },
+      "_valueDescription": {
+        "light": "Lleno de colores amigables",
+        "dark": "Menos brillante, igual de productivo"
+      }
+    },
+    "preview": "vista previa"
+  },
+  "section": {
+    "work": "Trabajo",
+    "shortpause": "Descanso",
+    "longpause": "Descanso Largo",
+    "wait": "Esperando"
+  },
+  "controls": {
+    "play": "Iniciar o pausar el temporizador",
+    "stop": "Restablecer temporizador",
+    "advance": "Ir a la siguiente sección"
+  },
+  "timer": {
+    "approximate": {
+      "hours": "hora | horas",
+      "minutes": "minuto | minutos"
+    }
+  },
+  "settings": {
+    "heading": "Ajustes",
+    "tabs": {
+      "main": "Principal",
+      "timer": "Horario",
+      "display": "Vista",
+      "audio": "Audio",
+      "about": "Acerca de"
+    },
+    "buttons": {
+      "close": "Cerrar",
+      "reset": "Restablecer"
+    },
+    "reset": {
+      "title": "Restablecer ajustes",
+      "confirm": "Restablecer",
+      "cancel": "Cancelar"
+    },
+    "manage": {
+      "buttons": {
+        "save": "Guardar",
+        "load": "Cargar"
+      }
+    },
+    "scheduleMinTime": "El tiempo mínimo permitido es de 5 segundos",
+    "about": {
+      "madeby": "Hecho por Imre Gera",
+      "source": "Código fuente",
+      "support": "Apoye el proyecto",
+      "supportBody": "Desarrollo AnotherPomodoro en mi tiempo libre. ¡Significaría mucho para mí si pudiera ayudarme a seguir trabajando en él!",
+      "mobileSupport": "Debido a las reglas impuestas por la Google Play Store, no puedo mostrarle ningún enlace dentro de la aplicación móvil para donar al proyecto.",
+      "share": "o comparta la aplicación en redes sociales:"
+    },
+    "values": {
+      "manage": {
+        "_title": "Administrar ajustes",
+        "_description": "Descargar los ajustes actuales o cargarlos desde un archivo"
+      },
+      "mobile": {
+        "notifications": {
+          "sectionOver": {
+            "_title": "Sección sobre notificaciones",
+            "_description": "Mostrar una notificación cuando termine una sección"
+          },
+          "persistent": {
+            "_title": "Notificación persistente",
+            "_description": "Mostrar el progreso del temporizador actual"
+          }
+        }
+      },
+      "lang": {
+        "_title": "Idioma",
+        "_description": ""
+      },
+      "eventLoggingEnabled": {
+        "_title": "Activar registro de eventos",
+        "_description": ""
+      },
+      "currentTimer": {
+        "_title": "Estilo del temporizador",
+        "_description": "",
+        "_values": {
+          "traditional": "Tradicional",
+          "approximate": "Aproximado",
+          "percentage": "Porcentaje"
+        },
+        "_valueDescription": {
+          "traditional": "12:34",
+          "approximate": "13 minutos",
+          "percentage": "50%"
+        }
+      },
+      "adaptiveTicking": {
+        "enabled": {
+          "_title": "Activar tictac adaptativo",
+          "_description": "El temporizador avanzará con menos frecuencia mientras está en segundo plano"
+        }
+      },
+      "schedule": {
+        "longPauseInterval": {
+          "_title": "Intervalo de descanso largo",
+          "_description": ""
+        },
+        "numScheduleEntries": {
+          "_title": "Número de entradas en el horario",
+          "_description": ""
+        },
+        "visibility": {
+          "enabled": {
+            "_title": "Mostrar horario",
+            "_description": ""
+          },
+          "showSectionType": {
+            "_title": "Mostrar tipo de sesión en el horario",
+            "_description": "Muestra el tipo de sección actual bajo el horario"
+          }
+        },
+        "lengths": {
+          "_title": "Preajuste de horario",
+          "_description": "",
+          "_values": {
+            "default": "Predeterminado",
+            "debug": "Depurar",
+            "custom": "Personalizado"
+          },
+          "_valueDescription": {
+            "default": "25 minutos de trabajo, 5 minutos de descanso",
+            "debug": "Para motivos de depuración",
+            "custom": "Establecido por usted"
+          },
+          "work": {
+            "_title": "Trabajo",
+            "_description": ""
+          },
+          "shortpause": {
+            "_title": "Descanso",
+            "_description": ""
+          },
+          "longpause": {
+            "_title": "Descanso largo",
+            "_description": ""
+          }
+        }
+      },
+      "performance": {
+        "showProgressBar": {
+          "_title": "Mostrar barra de progreso",
+          "_description": "Mostrar progreso detrás del temporizador"
+        }
+      },
+      "permissions": {
+        "audio": {
+          "_title": "Reproducir audio",
+          "_description": "Permitir que la aplicación reproduzca sonidos cuando una sección haya terminado"
+        },
+        "notifications": {
+          "_title": "Permisos de notificación",
+          "_description": "Permitir que la aplicación le envíe notificaciones cuando una sección haya terminado"
+        }
+      },
+      "audio": {
+        "volume": {
+          "_title": "Volumen del audio",
+          "_description": ""
+        },
+        "soundSet": {
+          "_title": "Sound set",
+          "_description": "Sonidos usados para las notificaciones",
+          "_values": {
+            "musical": "Musical"
+          },
+          "_valueDescription": {
+            "musical": "Los sonidos predeterminados"
+          }
+        }
+      },
+      "timerControls": {
+        "enableKeyboardShortcuts": {
+          "_title": "Activar atajos de teclado",
+          "_description": "Iniciar/pausar el temporizador con la tecla de espacio"
+        }
+      },
+      "tasks": {
+        "enabled": {
+          "_title": "Activar lista de tareas",
+          "_description": "Administre su trabajo directamente desde la aplicación"
+        },
+        "maxActiveTasks": {
+          "_title": "Máximo de tareas activas a mostrar",
+          "_description": "Solo verá esta cantidad de tareas activas como máximo"
+        },
+        "removeCompletedTasks": {
+          "_title": "Eliminar tareas completadas",
+          "_description": "Las tareas completadas serán eliminadas cuando una nueva sección comience"
+        }
+      },
+      "pageTitle": {
+        "useTickEmoji": {
+          "_title": "Usar emoji de tick en el título",
+          "_description": "Mostrar ✔ en vez de \"hecho\""
+        }
+      },
+      "visuals": {
+        "darkMode": {
+          "_title": "Activar modo oscuro",
+          "_description": "Menos brillante, igual de productivo"
+        }
+      },
+      "reset": {
+        "_title": "Restablecer ajustes",
+        "_description": "Todos los ajustes serán restablecidos después de recargar la aplicación"
+      }
+    }
+  },
+  "notification": {
+    "action": {
+      "ready": "¡Vamos!"
+    },
+    "work": {
+      "title": "¡Hora de volver al trabajo!",
+      "body": "Su descanso ha terminado. Trabaja un poco más, luego descansa de nuevo."
+    },
+    "shortpause": {
+      "title": "Hora para un descanso",
+      "body": "Bien, ha ganado un breve descanso."
+    },
+    "longpause": {
+      "title": "¡Uf! ¡Más tiempo libre!",
+      "body": "Bueno, bueno. Después de trabajar tanto, merece un descanso más largo."
+    }
+  },
+  "error": {
+    "format_invalid": "Formato de entrada inválido",
+    "range_invalid": "El valor debe estar entre {min} y {max}",
+    "required": "Este campo debe ser completado",
+    "numeric": "El valor debe ser un número",
+    "min": "El valor debe ser como mínimo {min}",
+    "max": "El valor debe ser como mínimo {max}",
+    "time_format": "Tiempo formateado incorrectamente (MM:SS)",
+    "min_time": "El tiempo ingresado es demasiado corto",
+    "undefined": "Error indefinido"
+  },
+  "tasks": {
+    "title": "Tareas",
+    "empty": "Aún no hay tareas",
+    "manage": "Administrar",
+    "addPlaceholder": "Introduzca algo que tenga que hacer"
+  },
+  "ready": "Hecho",
+  "errorpage": {
+    "title": {
+      "crash": "La aplicación falló",
+      "notfound": "Esa página no existe",
+      "other": "Algo salió mal"
+    },
+    "action": {
+      "reset": "Restablecer la aplicación",
+      "reload": "Recargar la página",
+      "home": "Volver a la página principal",
+      "githubIssue": "Enviar un informe de error",
+      "githubDiscussion": "Preguntar a otros si tienen el mismo problema",
+      "twitter": "Escribir un tweet amistoso"
+    },
+    "showError": {
+      "main": "¡Muéstrame el mensaje de error!",
+      "sub": "Lo usaré para reportar un problema o preguntaré si otros lo experimentan también."
+    },
+    "suggestions": {
+      "primary": "Usted puede",
+      "secondary": "o si esos no ayudaron"
+    }
+  },
+  "timerpreset": {
+    "_values": {
+      "default": "Predeterminado",
+      "easy": "Principiante",
+      "advanced": "Avanzado",
+      "workaholic": "Adicto/a al trabajo"
+    },
+    "_valueDescription": {
+      "default": "Los valores predeterminados de Pomodoro.",
+      "easy": "Para aquellos que aún no ha probado la técnica Pomodoro.",
+      "advanced": "Trabaje un poco más eficazmente.",
+      "workaholic": "Para sesiones de trabajo largas."
+    },
+    "description": "{brief} \n {worklength} minutos de trabajo con una pausa corta de {splength} minutos y una pausa larga de {lplength} minutos después de cada {lpfreq} sesiones."
+  },
+  "tutorials": {
+    "onboarding": {
+      "pages": {
+        "0": {
+          "title": "¡Bienvenido/a AnotherPomodoro!",
+          "text": "Eche un vistazo a cómo utilizar la aplicación de forma eficaz."
+        },
+        "1": {
+          "title": "Siga el reloj",
+          "text": "Trabaje o tómese un descanso hasta que se acabe el temporizador. Luego proceda con su próximo temporizador."
+        },
+        "2": {
+          "title": "Descanse regularmente",
+          "text": "Después de unos cuantos descansos, tendrás más tiempo para descansar. Aprovéchelo."
+        },
+        "3": {
+          "title": "Manténgase flexible",
+          "text": "Configure sus propios temporizadores, utilice la lista de tareas y notificaciones a su favor. ¡Revise el menú de ajustes para más oportunidades!"
+        },
+        "support": {
+          "title": "Apoye el proyecto",
+          "text": "Si este proyecto te ha ayudado, considera invitar al autor un café. También puede encontrar el botón de apoyo en el menú de ajustes."
+        }
+      },
+      "buttons": {
+        "close": "Cerrar",
+        "start": "Iniciar tutorial",
+        "next": "Siguiente",
+        "support": "Apoye el proyecto"
+      }
+    }
+  }
+}
