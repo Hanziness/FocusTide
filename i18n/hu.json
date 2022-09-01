@@ -111,13 +111,10 @@
     },
     "support": {
       "title": "Támogasd a projektet",
-      "subtitle": [
-        "Az AnotherPomodoro hobbiprojektként készült, bárminemű anyagi bevétel szándéka nélkül.",
-        {
-          "base": "Ha ennek ellenére úgy érzed, megérdemli, {0}.",
-          "action": "támogasd a szerzőt egy kávéval"
-        }
-      ],
+      "subtitle": {
+        "main": "Az AnotherPomodoro hobbiprojektként készült, bárminemű anyagi bevétel szándéka nélkül.",
+        "action": "Ha úgy érzed, ennek ellenére megérdemli, kérlek támogasd a projektet."
+      },
       "credits": "❤ Szeretettel készítette: Gera Imre"
     }
   },
@@ -218,7 +215,6 @@
       "cancel": "Mégsem"
     },
     "manage": {
-      
       "buttons": {
         "save": "Mentés",
         "load": "Betöltés"
@@ -229,12 +225,26 @@
       "madeby": "Készítette: Gera Imre",
       "source": "Forráskód",
       "support": "Támogasd a projektet",
+      "supportBody": "Az AnotherPomodorot a szabadidőmben fejlesztem, sokat jelentene, ha segítenél továbbfejleszteni!",
+      "mobileSupport": "A Google Play áruház szabályai miatt nem jeleníthetek meg semmilyen hivatkozást az anyagi támogatáshoz.",
       "share": "vagy oszd meg ismerőseiddel az alkalmazást:"
     },
     "values": {
       "manage": {
         "_title": "Beállítások kezelése",
         "_description": "A jelenlegi beállításokat letöltheted egy fájlba vagy vissza is állíthatod onnan"
+      },
+      "mobile": {
+        "notifications": {
+          "sectionOver": {
+            "_title": "Szakasz végi értesítések",
+            "_description": "Jelenítsen meg értesítést az alkalmazás, ha vége van egy szakasznak"
+          },
+          "persistent": {
+            "_title": "Folyamatjelző értesítés",
+            "_description": "Folyamatosan mutasson egy értesítést a jelenlegi időzítővel"
+          }
+        }
       },
       "lang": {
         "_title": "Nyelv",
