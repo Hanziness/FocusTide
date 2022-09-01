@@ -1,7 +1,7 @@
 
 <template>
   <section
-    class="h-full overflow-hidden transition-colors duration-300 ease-in dark:text-gray-50"
+    class="h-full overflow-hidden duration-300 ease-in dark:text-gray-50"
   >
     <Title>{{ (remainingTimeString ? `(${remainingTimeString}) ` : '') + pageTitle }}</Title>
 
@@ -58,17 +58,15 @@
           </div>
         </div>
       </div>
-      <div class="flex flex-col items-center justify-center w-full h-full gap-2">
-        <TimerSwitch
-          key="timerswitch"
-          :time-elapsed="scheduleStore.getCurrentItem.timeElapsed"
-          :time-original="scheduleStore.getCurrentItem.length"
-          :timer-state="scheduleStore.timerState"
-          :timer-widget="settingsStore.currentTimer"
-          class="absolute grid place-items-center"
-          @tick="timeString = $event"
-        />
-      </div>
+      <TimerSwitch
+        key="timerswitch"
+        :time-elapsed="scheduleStore.getCurrentItem.timeElapsed"
+        :time-original="scheduleStore.getCurrentItem.length"
+        :timer-state="scheduleStore.timerState"
+        :timer-widget="settingsStore.currentTimer"
+        class="flex-grow"
+        @tick="timeString = $event"
+      />
       <div class="relative flex flex-row items-center justify-center w-full gap-2 mb-4">
         <TimerControls :class="[{ 'pointer-events-none': preview }]" :can-use-keyboard="!preview && !showSettings" />
         <Button
@@ -106,13 +104,13 @@ import { useEvents } from '~~/stores/events'
 // Static imports:
 import { useTicker } from '~~/components/ticker.ts'
 import { useWeb } from '~~/platforms/web'
+import { useMobile } from '~~/platforms/mobile'
 
 import TimerSwitch from '@/components/timer/display/_timerSwitch.vue'
-import TimerControls from '@/components/timer/controls/contolsBasic.vue'
 import Button from '@/components/base/button.vue'
 import TimerProgress from '@/components/timer/timerProgress.vue'
+import TimerControls from '@/components/timer/controls/contolsBasic.vue'
 import { AppPlatform } from '~~/platforms/platforms'
-import { useMobile } from '~~/platforms/mobile'
 
 import { useMobileSettings } from '~~/stores/platforms/mobileSettings'
 
@@ -125,9 +123,9 @@ export default {
     TodoList: defineAsyncComponent(() => import('@/components/todoList/main.vue')),
     TutorialView: defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue')),
     UiOverlay: defineAsyncComponent(() => import('@/components/base/overlay.vue')),
+    TimerControls,
     TimerProgress,
     TimerSwitch,
-    TimerControls,
     CogIcon: SettingsIcon,
     ListCheckIcon,
     Button
