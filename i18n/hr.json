@@ -111,13 +111,10 @@
     },
     "support": {
       "title": "Podrži ovaj projekt",
-      "subtitle": [
-        "AnotherPomodoro se razvija kao sporedni projekt bez naknade.",
-        {
-          "base": "Ako smatraš da je ovaj projekt vrijedan podrške, {0}.",
-          "action": "podrži ga"
-        }
-      ],
+      "subtitle": {
+        "main": "AnotherPomodoro se razvija kao sporedni projekt bez naknade.",
+        "action": "Ako smatraš da je ovaj projekt vrijedan podrške, podrži ga."
+      },
       "credits": "Izrađen sa ❤. Autor: Imre Gera"
     }
   },
@@ -172,7 +169,7 @@
     },
     "theme": {
       "_values": {
-        "light": "Standardna",
+        "light": "Standardne",
         "dark": "Tamna"
       },
       "_valueDescription": {
@@ -228,12 +225,26 @@
       "madeby": "Autor: Imre Gera",
       "source": "Izvorni kod",
       "support": "Podrži projekt",
+      "supportBody": "AnotherPomodoro razvijam u slobodno vrijeme. Puno bi mi značilo kad bi mi pomogao/la nastaviti rad na programu!",
+      "mobileSupport": "Zbog pravila koja provodi Google Play Store, ne mogu pokazati poveznice unutar mobilnog programa za doniranje projektu.",
       "share": "ili dijeli program na društvenim mrežama:"
     },
     "values": {
       "manage": {
         "_title": "Upravljaj postavkama",
         "_description": "Preuzmi trenutačne postavke ili učitaj postavke iz datoteke"
+      },
+      "mobile": {
+        "notifications": {
+          "sectionOver": {
+            "_title": "Odjeljak iznad obavijesti",
+            "_description": "Prikaži obavijest kada odjeljak završi"
+          },
+          "persistent": {
+            "_title": "Trajna obavijest",
+            "_description": "Prikaži napredak trenutačnog timera"
+          }
+        }
       },
       "lang": {
         "_title": "Jezik",
@@ -286,9 +297,9 @@
           "_title": "Unaprijed postavljen raspored",
           "_description": "",
           "_values": {
-            "default": "Standardni",
+            "default": "Standardne",
             "debug": "Otklanjanja grešaka",
-            "custom": "Prilagođen"
+            "custom": "Prilagođeni"
           },
           "_valueDescription": {
             "default": "25 minuta rada, 5 minuta pauze",
@@ -439,7 +450,7 @@
   },
   "timerpreset": {
     "_values": {
-      "default": "Standardni",
+      "default": "Standardne",
       "easy": "Početnički",
       "advanced": "Napredni",
       "workaholic": "Radoholičarski"
