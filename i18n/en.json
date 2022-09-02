@@ -22,20 +22,20 @@
       "or": "or",
       "configure": "Setup wizard"
     },
-    "features": {
-      "0": {
+    "features": [
+      {
         "title": "Focused, clean interface",
         "description": "Just your timer, the essential controls and a bunch of customizations"
       },
-      "1": {
+      {
         "title": "Nothing to install",
         "description": "Runs in your browser, entirely offline after launch"
       },
-      "2": {
+      {
         "title": "Free & open-source",
         "description": "No hidden trackers, everyone can view and contribute to the code"
       }
-    },
+    ],
     "section_whatitdoes": {
       "title": "What does it do?",
       "subtitle": {
