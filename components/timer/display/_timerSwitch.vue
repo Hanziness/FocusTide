@@ -15,12 +15,17 @@ import { AvailableTimers } from '~~/stores/settings'
 import TimerMixin from '@/assets/mixins/timerMixin'
 import { useSchedule, TimerState } from '~~/stores/schedule'
 
+import TimerTraditional from '@/components/timer/display/timerTraditional.vue'
+import TimerApproximate from '@/components/timer/display/timerApproximate.vue'
+import TimerPercentage from '@/components/timer/display/timerPercentage.vue'
+import CompleteMarker from '@/components/timer/display/timerComplete.vue'
+
 export default {
   components: {
-    TimerTraditional: defineAsyncComponent(() => import('@/components/timer/display/timerTraditional.vue')),
-    TimerApproximate: defineAsyncComponent(() => import('@/components/timer/display/timerApproximate.vue')),
-    TimerPercentage: defineAsyncComponent(() => import('@/components/timer/display/timerPercentage.vue')),
-    CompleteMarker: defineAsyncComponent(() => import('@/components/timer/display/timerComplete.vue'))
+    TimerTraditional,
+    TimerApproximate,
+    TimerPercentage,
+    CompleteMarker
   },
   mixins: [TimerMixin],
   props: {
