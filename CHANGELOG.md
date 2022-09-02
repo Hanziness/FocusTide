@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/Hanziness/AnotherPomodoro/compare/v1.3.0...v1.3.1) (2022-09-02)
+
+
+### Bug Fixes
+
+* Fix hydration issues ([#266](https://github.com/Hanziness/AnotherPomodoro/issues/266)) ([419293c](https://github.com/Hanziness/AnotherPomodoro/commit/419293cbfd258e3fe449f90761c91a571beb61f5))
+
 ## [1.3.0](https://github.com/Hanziness/AnotherPomodoro/compare/v1.2.0...v1.3.0) (2022-09-01)
 
 
