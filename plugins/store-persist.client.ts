@@ -54,7 +54,9 @@ function restoreStore (store) {
   const stateToRestore = JSON.parse(localStorage.getItem(getStorePersistenceKey(store.$id)))
 
   if (stateToRestore !== null) {
-    store.$patch(stateToRestore)
+    onMounted(() => {
+      store.$patch(stateToRestore)
+    })
 
     console.log(`Restoring ${store.$id}`)
     const mainStore = useMain()
