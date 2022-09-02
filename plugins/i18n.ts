@@ -23,6 +23,10 @@ export const languages = {
   hu: {
     name: 'Magyar',
     iso: 'hu-HU'
+  },
+  es: {
+    name: 'Español',
+    iso: 'es-ES'
   }
 }
 
