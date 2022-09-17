@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.5](https://github.com/Hanziness/AnotherPomodoro/compare/v1.3.4...v1.3.5) (2022-09-17)
+
+
+### Bug Fixes
+
+* **serviceworker:** Fix service worker not registering ([#270](https://github.com/Hanziness/AnotherPomodoro/issues/270)) ([4fc8e4d](https://github.com/Hanziness/AnotherPomodoro/commit/4fc8e4d7faf8a6ca8e0b90e32ec3009174bb7805))
+
 ### [1.3.4](https://github.com/Hanziness/AnotherPomodoro/compare/v1.3.3...v1.3.4) (2022-09-17)
 
 
