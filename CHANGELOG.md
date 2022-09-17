@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.4](https://github.com/Hanziness/AnotherPomodoro/compare/v1.3.3...v1.3.4) (2022-09-17)
+
+
+### Refactors
+
+* Update Nuxt to RC.10 ([#269](https://github.com/Hanziness/AnotherPomodoro/issues/269)) ([fbc6a07](https://github.com/Hanziness/AnotherPomodoro/commit/fbc6a07bc581031dcc12fc7ae65c46d21074fbe8))
+
 ### [1.3.3](https://github.com/Hanziness/AnotherPomodoro/compare/v1.3.2...v1.3.3) (2022-09-02)
 
 
