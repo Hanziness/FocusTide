@@ -39,10 +39,18 @@ if (!process.server) {
 
 const settingsStore = useSettings()
 const isDarkMode = computed(() => settingsStore.visuals.darkMode)
+
+watch(isDarkMode, (newDarkMode) => {
+  useHead({
+    bodyAttrs: {
+      class: newDarkMode ? 'dark' : undefined
+    }
+  })
+})
 </script>
 
 <template>
   <NuxtLayout>
-    <NuxtPage :class="{'dark': isDarkMode}" />
+    <NuxtPage />
   </NuxtLayout>
 </template>
