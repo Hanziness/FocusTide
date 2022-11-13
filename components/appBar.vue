@@ -18,7 +18,7 @@ const settingsStore = useSettings()
         <ScheduleView />
       </ClientOnly>
     </div>
-    <div v-show="settingsStore.schedule.visibility.enabled && settingsStore.schedule.visibility.showSectionType" class="flex-shrink overflow-hidden text-lg select-none text-ellipsis" v-text="$t('section.' + scheduleStore.getCurrentItem.type).toLowerCase()" />
+    <div v-show="settingsStore.schedule.visibility.enabled && settingsStore.schedule.visibility.showSectionType" class="flex-shrink overflow-hidden text-lg whitespace-pre select-none text-ellipsis" v-text="$t('section.' + scheduleStore.getCurrentItem.type).toLowerCase()" />
     <div class="flex-grow" />
     <CButton
       v-show="settingsStore.tasks.enabled"
