@@ -21,7 +21,7 @@ const colour = computed(() => settingsStore.getColor(props.type))
 
 <template>
   <div
-    class="w-12 h-12 border rounded-lg"
+    class="inline-block h-full mr-2 border rounded-full last:mr-0 aspect-square"
     :class="[
       { 'border-gray-100 shadow': props.active },
       { 'shadow-sm opacity-40 border-transparent': !props.active }
