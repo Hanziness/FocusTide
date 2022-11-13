@@ -4,8 +4,8 @@
 import * as fs from 'fs'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
-import { defineNuxtConfig } from 'nuxt'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
+import StylelintPlugin from 'vite-plugin-stylelint'
 import VitePWAGenerator from './modules/build/pwa'
 import IconResizer from './modules/build/icon_resize'
 import { AppPlatform } from './platforms/platforms'
@@ -117,7 +117,6 @@ export default defineNuxtConfig({
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
-    '@nuxtjs/stylelint-module',
     '@pinia/nuxt'
     // '@nuxtjs/sitemap'
   ],
@@ -133,7 +132,7 @@ export default defineNuxtConfig({
 
   generate: {
     // Generate fallback pages (makes error pages work on Netlify, too)
-    fallback: currentPlatform === 'web' ? '404.html' : null,
+    fallback: currentPlatform === 'web' ? '404.html' : undefined,
     crawler: currentPlatform === 'web',
 
     // Exclude home and setup pages on mobile platforms
@@ -200,16 +199,12 @@ export default defineNuxtConfig({
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
-  build: {
-    postcss: {
-      postcssOptions: {
-        plugins: {
-          'postcss-import': {},
-          'tailwindcss/nesting': {},
-          tailwindcss: {},
-          autoprefixer: {}
-        }
-      }
+  postcss: {
+    plugins: {
+      'postcss-import': {},
+      'tailwindcss/nesting': {},
+      tailwindcss: {},
+      autoprefixer: {}
     }
   },
 
@@ -229,6 +224,7 @@ export default defineNuxtConfig({
       ssrManifest: false
     },
     plugins: [
+      StylelintPlugin(),
       VueI18nVitePlugin({
         // TODO this is needed to make lazy-loading work properly
         runtimeOnly: false,
