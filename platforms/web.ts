@@ -152,7 +152,7 @@ export function useWeb () {
 
     try {
       new Notification(i18n.t('notification.' + nextState + '.title'), {
-        tag: 'AnotherPomodoro-SectionNotify',
+        tag: 'FocusTide-SectionNotify',
         body: i18n.t('notification.' + nextState + '.body'),
         actions: notificationActions
       })

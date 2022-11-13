@@ -1,8 +1,8 @@
-# ⏳ AnotherPomodoro
+# ⏳ FocusTide
 
 Free and open-source Pomodoro application, right in your browser.
 
-[<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="54">](https://www.buymeacoffee.com/imreg?utm_source=github&utm_medium=web&utm_content=readme) <a href="https://www.producthunt.com/posts/anotherpomodoro?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-anotherpomodoro" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=327185&theme=light" alt="AnotherPomodoro - Modern & customizable productivity timer | Product Hunt" width="250" height="54" /></a>
+[<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="54">](https://www.buymeacoffee.com/imreg?utm_source=github&utm_medium=web&utm_content=readme) <a href="https://www.producthunt.com/posts/anotherpomodoro?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-anotherpomodoro" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=327185&theme=light" alt="FocusTide - Modern & customizable productivity timer | Product Hunt" width="250" height="54" /></a>
 
 ![Netlify Status](https://api.netlify.com/api/v1/badges/7cb2b7fb-cacd-4acf-803b-8af9dad9f2a8/deploy-status) ![License](https://img.shields.io/github/license/Hanziness/AnotherPomodoro) ![GitHub package.json version](https://img.shields.io/github/package-json/v/Hanziness/AnotherPomodoro) [![Crowdin translation status](https://badges.crowdin.net/anotherpomodoro/localized.svg)](https://crowdin.com/project/anotherpomodoro)
 
@@ -10,11 +10,11 @@ Free and open-source Pomodoro application, right in your browser.
 
 ## What is it?
 
-AnotherPomodoro is a Pomodoro timer application running in the browser. It helps you manage your time so that you can do more work instead of watching videos of cute cats 😿
+FocusTide is a Pomodoro timer application running in the browser. It helps you manage your time so that you can do more work instead of watching videos of cute cats 😿
 
 ### Quickstart: your schedule
 
-When working with AnotherPomodoro, you'll be moving between three types of sessions:
+When working with FocusTide, you'll be moving between three types of sessions:
 
 1. **Work**. <br> Do what you have to do.
 2. (Short) **Pause**. <br> Take a short rest, stand up from your computer and drink some water.

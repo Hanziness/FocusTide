@@ -35,7 +35,7 @@ export default {
     },
     utmTags: {
       type: String,
-      default: '?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings'
+      default: '?utm_source=FocusTide&utm_medium=web&utm_content=settings'
     },
     iconSize: {
       type: String,

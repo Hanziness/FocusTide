@@ -3,7 +3,7 @@
     "app_description": "Besplatni Pomodoro izravno u tvom pregledniku",
     "alt": {
       "img": {
-        "screenshot": "Slika pokrenutog timera u programu AnotherPomodoro",
+        "screenshot": "Slika pokrenutog timera u programu FocusTide",
         "icon": "Ikona programa"
       },
       "links": {
@@ -112,7 +112,7 @@
     "support": {
       "title": "Podrži ovaj projekt",
       "subtitle": {
-        "main": "AnotherPomodoro se razvija kao sporedni projekt bez naknade.",
+        "main": "FocusTide se razvija kao sporedni projekt bez naknade.",
         "action": "Ako smatraš da je ovaj projekt vrijedan podrške, podrži ga."
       },
       "credits": "Izrađen sa ❤. Autor: Imre Gera"
@@ -136,7 +136,7 @@
       },
       "timerstyle": {
         "title": "Prikaz timera",
-        "description": "AnotherPomodoro podržava tri stila timera, od točnosti u sekundama do prikaza postotka."
+        "description": "FocusTide podržava tri stila timera, od točnosti u sekundama do prikaza postotka."
       },
       "permissions": {
         "title": "Dozvole",
@@ -225,7 +225,7 @@
       "madeby": "Autor: Imre Gera",
       "source": "Izvorni kod",
       "support": "Podrži projekt",
-      "supportBody": "AnotherPomodoro razvijam u slobodno vrijeme. Puno bi mi značilo kad bi mi pomogao/la nastaviti rad na programu!",
+      "supportBody": "FocusTide razvijam u slobodno vrijeme. Puno bi mi značilo kad bi mi pomogao/la nastaviti rad na programu!",
       "mobileSupport": "Zbog pravila koja provodi Google Play Store, ne mogu pokazati poveznice unutar mobilnog programa za doniranje projektu.",
       "share": "ili dijeli program na društvenim mrežama:"
     },
@@ -467,7 +467,7 @@
     "onboarding": {
       "pages": {
         "0": {
-          "title": "Dobro došao, dobro došla u AnotherPomodoro!",
+          "title": "Dobro došao, dobro došla u FocusTide!",
           "text": "Pogledaj kako učinkovito koristiti program."
         },
         "1": {

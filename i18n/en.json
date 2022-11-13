@@ -3,7 +3,7 @@
     "app_description": "Free Pomodoro timer right in your browser",
     "alt": {
       "img": {
-        "screenshot": "Screenshot of a timer running in AnotherPomodoro",
+        "screenshot": "Screenshot of a timer running in FocusTide",
         "icon": "The app's icon"
       },
       "links": {
@@ -112,7 +112,7 @@
     "support": {
       "title": "Support this project",
       "subtitle": {
-        "main": "AnotherPomodoro is being developed as a side project with no compensation in mind.",
+        "main": "FocusTide is being developed as a side project with no compensation in mind.",
         "action": "If you feel that this is a project worth supporting, please do so."
       },
       "credits": "Made with ❤ by Imre Gera"
@@ -136,7 +136,7 @@
       },
       "timerstyle": {
         "title": "Timer display",
-        "description": "AnotherPomodoro supports three timer styles ranging from seconds-precision to showing only a percentage."
+        "description": "FocusTide supports three timer styles ranging from seconds-precision to showing only a percentage."
       },
       "permissions": {
         "title": "Permissions",
@@ -225,7 +225,7 @@
       "madeby": "Made by Imre Gera",
       "source": "Source code",
       "support": "Support the project",
-      "supportBody": "I develop AnotherPomodoro in my free time. It would mean a lot to me if you could help me keep working on it!",
+      "supportBody": "I develop FocusTide in my free time. It would mean a lot to me if you could help me keep working on it!",
       "mobileSupport": "Due to the rules enforced by the Google Play Store, I cannot show you any links inside the mobile app to donate to the project.",
       "share": "or share the app on social media:"
     },
@@ -467,7 +467,7 @@
     "onboarding": {
       "pages": {
         "0": {
-          "title": "Welcome to AnotherPomodoro!",
+          "title": "Welcome to FocusTide!",
           "text": "Take a quick look around on how to use the app effectively."
         },
         "1": {

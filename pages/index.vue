@@ -27,7 +27,7 @@
               <!-- App name and slogan -->
               <div class="flex flex-col">
                 <h1 class="text-3xl font-bold md:text-5xl">
-                  AnotherPomodoro
+                  FocusTide
                 </h1>
                 <div class="text-lg md:text-xl" v-text="$t('index.app_description')" />
               </div>
@@ -97,7 +97,7 @@
       <div class="flex flex-col items-center text-sky-900">
         <h2 class="text-5xl font-bold tracking-tight uppercase" v-text="$t('index.section_whatitdoes.title')" />
         <div class="mt-2 text-lg text-center xl:text-xl">
-          <p v-text="$t('index.section_whatitdoes.subtitle.main', { appname: 'AnotherPomodoro' })" />
+          <p v-text="$t('index.section_whatitdoes.subtitle.main', { appname: 'FocusTide' })" />
           <p v-text="$t('index.section_whatitdoes.subtitle.sub')" />
         </div>
 
@@ -237,7 +237,7 @@ export default {
 
   head () {
     return {
-      title: 'AnotherPomodoro',
+      title: 'FocusTide',
       link: [
         { rel: 'icon', href: '/favicon.svg' }
       ]

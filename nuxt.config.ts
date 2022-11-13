@@ -68,13 +68,13 @@ export default defineNuxtConfig({
   */
   head: {
     titleTemplate: '%s',
-    title: 'AnotherPomodoro',
+    title: 'FocusTide',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
       { hid: 'keywords', name: 'keywords', content: 'pomodoro app, pomodoro, free, productivity tool, app, open-source, online timer, countdown timer, focus timer, pomodoro clock, no ads, productivity timer, todo list, task management, tomato timer, pwa' },
-      { hid: 'twitter:title', name: 'twitter:title', content: 'AnotherPomodoro' },
+      { hid: 'twitter:title', name: 'twitter:title', content: 'FocusTide' },
       { hid: 'twitter:description', name: 'twitter:description', content: process.env.npm_package_description || '' },
       { hid: 'twitter:image', name: 'twitter:image', content: '/img/ogImage.png' },
       { hid: 'og:image', property: 'og:image', content: '/img/ogImage.png' },
@@ -189,7 +189,7 @@ export default defineNuxtConfig({
   */
   googleFonts: {
     families: {
-      Poppins: [400, 700]
+      Lexend: [400, 700]
     },
     display: 'swap'
     // download: true
