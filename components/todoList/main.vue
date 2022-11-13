@@ -3,7 +3,7 @@
     <div class="relative flex flex-row items-center justify-center h-10">
       <p class="text-xl font-bold tracking-tighter text-gray-800 uppercase dark:text-gray-100" v-text="$t('tasks.title')" />
       <div class="absolute right-0 float-right -mr-2">
-        <Button circle default-style :importance="3" @click="$emit('hide')">
+        <Button circle default-style :importance="3" @click="openPanels.todo = false">
           <XIcon />
         </Button>
       </div>
@@ -44,9 +44,18 @@ import TaskAdd from '@/components/todoList/addTask.vue'
 import { useSettings } from '~~/stores/settings'
 import { useSchedule } from '~~/stores/schedule'
 import { useTasklist } from '~~/stores/tasklist'
+import { useOpenPanels } from '~~/stores/openpanels'
 
 export default {
   components: { TaskItem, TaskAdd, XIcon, Button /* IconManage: EditIcon */ },
+
+  setup () {
+    const openPanels = useOpenPanels()
+    return {
+      openPanels
+    }
+  },
+
   data () {
     return {
       manageMode: true,
@@ -81,6 +90,7 @@ export default {
       }
     }
   },
+
   methods: {
     updateDropTarget (item) {
       this.dropTarget = item
