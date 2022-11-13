@@ -3,7 +3,7 @@
     "app_description": "Ingyenes Pomodoro alkalmazás közvetlenül a böngésződben",
     "alt": {
       "img": {
-        "screenshot": "Képernyőkép egy futó időzítőről az AnotherPomodoro alkalmazásban",
+        "screenshot": "Képernyőkép egy futó időzítőről az FocusTide alkalmazásban",
         "icon": "Az alkalmazás ikonja"
       },
       "links": {
@@ -112,7 +112,7 @@
     "support": {
       "title": "Támogasd a projektet",
       "subtitle": {
-        "main": "Az AnotherPomodoro hobbiprojektként készült, bárminemű anyagi bevétel szándéka nélkül.",
+        "main": "Az FocusTide hobbiprojektként készült, bárminemű anyagi bevétel szándéka nélkül.",
         "action": "Ha úgy érzed, ennek ellenére megérdemli, kérlek támogasd a projektet."
       },
       "credits": "❤ Szeretettel készítette: Gera Imre"
@@ -136,7 +136,7 @@
       },
       "timerstyle": {
         "title": "Időzítő stílusa",
-        "description": "Az AnotherPomodoro háromféle időzítő megjelenést is támogat a másodperc pontosságútól a százalékos megjelenítésig."
+        "description": "Az FocusTide háromféle időzítő megjelenést is támogat a másodperc pontosságútól a százalékos megjelenítésig."
       },
       "permissions": {
         "title": "Engedélyek",
@@ -225,7 +225,7 @@
       "madeby": "Készítette: Gera Imre",
       "source": "Forráskód",
       "support": "Támogasd a projektet",
-      "supportBody": "Az AnotherPomodorot a szabadidőmben fejlesztem, sokat jelentene, ha segítenél továbbfejleszteni!",
+      "supportBody": "Az FocusTidet a szabadidőmben fejlesztem, sokat jelentene, ha segítenél továbbfejleszteni!",
       "mobileSupport": "A Google Play áruház szabályai miatt nem jeleníthetek meg semmilyen hivatkozást az anyagi támogatáshoz.",
       "share": "vagy oszd meg ismerőseiddel az alkalmazást:"
     },
@@ -467,7 +467,7 @@
     "onboarding": {
       "pages": {
         "0": {
-          "title": "Üdvözöl az AnotherPomodoro!",
+          "title": "Üdvözöl az FocusTide!",
           "text": "Tekints meg egy gyorstalpalót az alkalmazás hatékony használatáról."
         },
         "1": {

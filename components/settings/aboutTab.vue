@@ -14,7 +14,7 @@ const mainStore = useMain()
     <img src="/favicon.svg" width="64" height="64" class="inline-block p-2 mb-1 bg-red-200 rounded-lg">
     <div>
       <div class="inline-block text-2xl font-bold">
-        AnotherPomodoro
+        FocusTide
       </div>
       <sup class="text-base" v-text="mainStore.version" />
     </div>

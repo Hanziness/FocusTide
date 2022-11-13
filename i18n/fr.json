@@ -3,7 +3,7 @@
     "app_description": "Minuteur Pomodoro gratuit directement dans votre navigateur",
     "alt": {
       "img": {
-        "screenshot": "Capture d'écran du minuteur de AnotherPomodoro",
+        "screenshot": "Capture d'écran du minuteur de FocusTide",
         "icon": "L'icone de l'app"
       },
       "links": {
@@ -80,7 +80,7 @@
     "support": {
       "title": "Soutenez ce projet",
       "subtitle": {
-        "0": "AnotherPomodoro est développé en tant que projet personnel, sans .",
+        "0": "FocusTide est développé en tant que projet personnel, sans .",
         "1": {
           "base": "Si vous pensez que ce projet mérite d'être soutenu, {0}.",
           "action": "soutenez-le"
@@ -143,7 +143,7 @@
         "title": "Durée de la minuterie"
       },
       "timerstyle": {
-        "description": "AnotherPomodoro prend en charge trois styles de minuterie allant de la précision à la seconde à l'affichage d'un pourcentage seulement.",
+        "description": "FocusTide prend en charge trois styles de minuterie allant de la précision à la seconde à l'affichage d'un pourcentage seulement.",
         "title": "Affichage de la minuterie"
       },
       "tip": {
@@ -458,7 +458,7 @@
       "pages": {
         "0": {
           "text": "Jetez un coup d'œil sur la façon d'utiliser l'application efficacement.",
-          "title": "Bienvenue sur AnotherPomodoro !"
+          "title": "Bienvenue sur FocusTide !"
         },
         "1": {
           "text": "Travaillez ou faites une pause jusqu'à la fin du temps imparti. \nEnsuite, passez au prochain minuteur.",

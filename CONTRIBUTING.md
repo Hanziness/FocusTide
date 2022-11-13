@@ -1,6 +1,6 @@
-# AnotherPomodoro contribution guidelines
+# FocusTide contribution guidelines
 
-**AnotherPomodoro** is not a huge project and as such its guidelines are not so strict, either. It might be a great project for beginners and students to implement new features or bug fixes in.
+**FocusTide** is not a huge project and as such its guidelines are not so strict, either. It might be a great project for beginners and students to implement new features or bug fixes in.
 
 Still, **before contributing, please read this short guide** to make sure you submit a new issue or pull request the right way!
 
@@ -82,7 +82,7 @@ If that feature request is approved or there is a concrete idea to implement:
 
 ## Submitting pull requests
 
-AnotherPomodoro is an open software and such it welcomes others to contribute code (fixes or features) to it. Adhering to the following simple rules will help your code get accepted:
+FocusTide is an open software and such it welcomes others to contribute code (fixes or features) to it. Adhering to the following simple rules will help your code get accepted:
 
 * Before submitting code, please start a discussion (either [on the discussions](https://github.com/Hanziness/AnotherPomodoro/discussions) or the [issues page](https://github.com/Hanziness/AnotherPomodoro/issues)). **Code submitted without prior discussion will likely not be accepted.**
 * Fork the repository. **Don't forget to switch to the `develop` branch after cloning!**
