@@ -32,32 +32,7 @@
         'padding-bottom': `${mobileSettingsStore.padding.bottom}px`
       }"
     >
-      <div class="flex flex-row w-full">
-        <div
-          class="flex flex-col overflow-hidden transition-all duration-300 bg-gray-800 shadow-lg md:w-auto"
-          :class="[settingsStore.schedule.visibility.enabled ? 'mt-0 md:mt-3 md:rounded-lg w-full max-w-full mx-auto self-center' : 'ml-auto p-2 rounded-l-lg mt-3']"
-        >
-          <div class="flex flex-row gap-3" :class="[settingsStore.schedule.visibility.enabled ? 'px-3' : '']">
-            <ScheduleDisplay v-show="settingsStore.schedule.visibility.enabled" class="px-0" />
-            <!-- Settings button -->
-            <div class="flex items-center flex-column">
-              <Button
-                circle
-                default-style
-                :importance="3"
-                :aria-label="$t('settings.heading')"
-                class="text-gray-200"
-                @click="showSettings = true"
-              >
-                <CogIcon :aria-label="$t('settings.heading')" />
-              </Button>
-            </div>
-          </div>
-          <div v-if="settingsStore.schedule.visibility.enabled && settingsStore.schedule.visibility.showSectionType" class="py-2 text-center bg-gray-700 select-none text-gray-50">
-            {{ $t('section.' + scheduleStore.getCurrentItem.type).toLowerCase() }}
-          </div>
-        </div>
-      </div>
+      <AppBar />
       <TimerSwitch
         key="timerswitch"
         :time-elapsed="scheduleStore.getCurrentItem.timeElapsed"
@@ -118,7 +93,7 @@ export default {
   name: 'PageTimer',
   components: {
     // lazy-loaded components
-    ScheduleDisplay: defineAsyncComponent(() => import('@/components/schedule/scheduleDisplay.vue')),
+    AppBar: defineAsyncComponent(() => import('@/components/appBar.vue')),
     SettingsPanel: defineAsyncComponent(() => import('@/components/settings/settingsPanel.vue')),
     TodoList: defineAsyncComponent(() => import('@/components/todoList/main.vue')),
     TutorialView: defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue')),
