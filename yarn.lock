@@ -1875,19 +1875,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxtjs/stylelint-module@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "@nuxtjs/stylelint-module@npm:4.1.0"
-  dependencies:
-    consola: ^2.15.3
-    stylelint-webpack-plugin: ^2.3.1
-  peerDependencies:
-    stylelint: ^13.0.0 || ^14.0.0
-    webpack: ^4.0.0 || ^5.0.0
-  checksum: 0389d7e47d1a8a58a126cbb7172c7e08b262c2be2deb0d0e63238b00060cf6c46ddc4983673e1bf0a74b60b36589cded9299854f0bc7d3857c983f9071da1e22
-  languageName: node
-  linkType: hard
-
 "@pinia/nuxt@npm:^0.4.3":
   version: 0.4.3
   resolution: "@pinia/nuxt@npm:0.4.3"
@@ -2783,7 +2770,6 @@ __metadata:
     "@nuxtjs/eslint-config-typescript": ^11.0.0
     "@nuxtjs/eslint-module": ^3.1.0
     "@nuxtjs/google-fonts": ^3.0.0-1
-    "@nuxtjs/stylelint-module": ^4.1.0
     "@pinia/nuxt": ^0.4.3
     "@tailwindcss/forms": ^0.5.3
     "@typescript-eslint/eslint-plugin": ^5.42.1
@@ -2807,6 +2793,7 @@ __metadata:
     typescript: ^4.8.4
     vite: ^3.2.3
     vite-plugin-eslint: ^1.8.1
+    vite-plugin-stylelint: ^3.0.8
     vue: ^3.2.45
     vue-i18n: ^9.2.2
     vue-tabler-icons: ^2.16.0
@@ -6057,7 +6044,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globby@npm:^11.0.4, globby@npm:^11.1.0":
+"globby@npm:^11.1.0":
   version: 11.1.0
   resolution: "globby@npm:11.1.0"
   dependencies:
@@ -6912,17 +6899,6 @@ __metadata:
     merge-stream: ^2.0.0
     supports-color: ^8.0.0
   checksum: 98cd68b696781caed61c983a3ee30bf880b5bd021c01d98f47b143d4362b85d0737f8523761e2713d45e18b4f9a2b98af1eaee77afade4111bb65c77d6f7c980
-  languageName: node
-  linkType: hard
-
-"jest-worker@npm:^28.1.0":
-  version: 28.1.3
-  resolution: "jest-worker@npm:28.1.3"
-  dependencies:
-    "@types/node": "*"
-    merge-stream: ^2.0.0
-    supports-color: ^8.0.0
-  checksum: e921c9a1b8f0909da9ea07dbf3592f95b653aef3a8bb0cbcd20fc7f9a795a1304adecac31eecb308992c167e8d7e75c522061fec38a5928ace0f9571c90169ca
   languageName: node
   linkType: hard
 
@@ -10389,23 +10365,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-webpack-plugin@npm:^2.3.1":
-  version: 2.4.0
-  resolution: "stylelint-webpack-plugin@npm:2.4.0"
-  dependencies:
-    arrify: ^2.0.1
-    globby: ^11.0.4
-    jest-worker: ^28.1.0
-    micromatch: ^4.0.5
-    normalize-path: ^3.0.0
-    schema-utils: ^3.1.1
-  peerDependencies:
-    stylelint: ^13.0.0 || ^14.0.0
-    webpack: ^4.0.0 || ^5.0.0
-  checksum: 9bd4d71d8f875fc50e7e152252f2c2690b397d38baba2a6c9819facac3f6f4023b17589e197a98d4fa4d1a292beac3b9939ca36e3108e01563afe5366019153f
-  languageName: node
-  linkType: hard
-
 "stylelint@npm:^14.15.0":
   version: 14.15.0
   resolution: "stylelint@npm:14.15.0"
@@ -11293,6 +11252,22 @@ __metadata:
     eslint: ">=7"
     vite: ">=2"
   checksum: 65598893e2063a287a690ae296ba1fc212ee50dbc810d396a6cda44ee60c6f400adb52fc4c4a5ff54a89c11100bbaaf43eada23c9a78654ab1717f097d78176f
+  languageName: node
+  linkType: hard
+
+"vite-plugin-stylelint@npm:^3.0.8":
+  version: 3.0.8
+  resolution: "vite-plugin-stylelint@npm:3.0.8"
+  dependencies:
+    "@rollup/pluginutils": ^4.2.1
+  peerDependencies:
+    "@types/stylelint": ^13.0.0
+    stylelint: ^13.0.0 || ^14.0.0
+    vite: ^2.0.0 || ^3.0.0
+  peerDependenciesMeta:
+    "@types/stylelint":
+      optional: true
+  checksum: 9065eab9b3ea01f37bd0c9cef39de92656b48205d7056865b1287adc9718b27a474651bb3d80b67092426541d0bb49f8df7aebd042379890ad8c9269880a7647
   languageName: node
   linkType: hard
 

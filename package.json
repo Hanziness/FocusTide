@@ -33,7 +33,6 @@
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "@nuxtjs/eslint-module": "^3.1.0",
     "@nuxtjs/google-fonts": "^3.0.0-1",
-    "@nuxtjs/stylelint-module": "^4.1.0",
     "@pinia/nuxt": "^0.4.3",
     "@tailwindcss/forms": "^0.5.3",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
@@ -56,6 +55,7 @@
     "typescript": "^4.8.4",
     "vite": "^3.2.3",
     "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-stylelint": "^3.0.8",
     "vue-i18n": "^9.2.2",
     "workbox-build": "^6.5.4"
   },
