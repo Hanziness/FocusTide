@@ -4,9 +4,11 @@ import CButton from '@/components/base/button.vue'
 import ScheduleView from '@/components/schedule/scheduleDisplay.vue'
 import { useOpenPanels } from '@/stores/openpanels'
 import { useSchedule } from '~~/stores/schedule'
+import { useSettings } from '~~/stores/settings'
 
 const openPanels = useOpenPanels()
 const scheduleStore = useSchedule()
+const settingsStore = useSettings()
 </script>
 
 <template>
@@ -19,6 +21,7 @@ const scheduleStore = useSchedule()
     <div class="text-lg select-none" v-text="$t('section.' + scheduleStore.getCurrentItem.type).toLowerCase()" />
     <div class="flex-grow" />
     <CButton
+      v-if="settingsStore.tasks.enabled"
       :importance="1"
       inner-class="!py-2"
       bg-class="bg-themed ring-themed shadow-themed border-themed"
