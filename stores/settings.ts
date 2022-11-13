@@ -65,7 +65,7 @@ export const useSettings = defineStore('settings', {
         wait: 8 * 1000,
         autostart: true
       },
-      numScheduleEntries: 5,
+      numScheduleEntries: 3,
       visibility: {
         enabled: true,
         showSectionType: true

@@ -111,8 +111,8 @@
             <SettingsItem
               type="number"
               :path="['schedule', 'numScheduleEntries']"
-              :min="3"
-              :max="10"
+              :min="2"
+              :max="5"
               :disabled="!settingsStore.schedule.visibility.enabled"
             />
             <Divider />
