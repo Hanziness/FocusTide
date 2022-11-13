@@ -11,9 +11,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['Poppins', 'sans-serif'],
-        body: ['Poppins', 'sans-serif'],
-        sans: ['Poppins', 'sans-serif']
+        display: ['Lexend', 'sans-serif'],
+        body: ['Lexend', 'sans-serif'],
+        sans: ['Lexend', 'sans-serif']
       },
       colors: {
         primary: colors.red[400],

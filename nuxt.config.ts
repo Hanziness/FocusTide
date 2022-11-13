@@ -189,7 +189,7 @@ export default defineNuxtConfig({
   */
   googleFonts: {
     families: {
-      Poppins: [400, 700]
+      Lexend: [400, 700]
     },
     display: 'swap'
     // download: true
