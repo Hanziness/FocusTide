@@ -12,7 +12,7 @@ const settingsStore = useSettings()
 </script>
 
 <template>
-  <div class="flex flex-row items-center w-full gap-2 px-4 my-1 isolate h-14" :style="{ '--theme': '15 23 42' }">
+  <div class="flex flex-row items-center w-full gap-2 px-4 my-1 isolate h-14" :style="{ '--theme': settingsStore.visuals.darkMode ? '245 245 244' : '15 23 42' }">
     <div class="h-10 px-2 py-2 rounded-full bg-themed">
       <ClientOnly>
         <ScheduleView />
@@ -22,19 +22,19 @@ const settingsStore = useSettings()
     <div class="flex-grow" />
     <CButton
       v-if="settingsStore.tasks.enabled"
-      :importance="1"
+      :importance="2"
       inner-class="!py-2"
-      bg-class="bg-themed ring-themed shadow-themed border-themed"
-      class="text-white"
+      bg-class="ring-themed shadow-themed border-themed"
+      class="dark:text-slate-200 text-slate-900"
       @click="openPanels.todo = !openPanels.todo"
     >
       <ChecklistIcon class="inline-block" />
     </CButton>
     <CButton
-      :importance="1"
+      :importance="2"
       inner-class="!py-2"
-      bg-class="bg-themed ring-themed shadow-themed border-themed"
-      class="text-white"
+      bg-class="ring-themed shadow-themed border-themed"
+      class="dark:text-slate-200 text-slate-900"
       @click="openPanels.settings = !openPanels.settings"
     >
       <SettingsIcon class="inline-block" />
