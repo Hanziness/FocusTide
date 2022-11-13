@@ -21,7 +21,7 @@ const settingsStore = useSettings()
     <div class="flex-shrink overflow-hidden text-lg select-none text-ellipsis" v-text="$t('section.' + scheduleStore.getCurrentItem.type).toLowerCase()" />
     <div class="flex-grow" />
     <CButton
-      v-if="settingsStore.tasks.enabled"
+      v-show="settingsStore.tasks.enabled"
       :importance="2"
       inner-class="!py-2"
       bg-class="ring-themed shadow-themed border-themed"
