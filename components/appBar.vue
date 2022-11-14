@@ -25,7 +25,8 @@ const settingsStore = useSettings()
       circle
       :importance="2"
       bg-class="ring-themed shadow-themed border-themed"
-      class="h-10 dark:text-slate-200 text-slate-900"
+      class="h-10 transition rounded-full dark:text-slate-200 text-slate-900"
+      :class="{ 'bg-themed !text-slate-200 dark:!text-slate-900' : openPanels.todo }"
       inner-class="!p-1"
       @click="openPanels.todo = !openPanels.todo"
     >
