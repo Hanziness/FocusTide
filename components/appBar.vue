@@ -22,19 +22,21 @@ const settingsStore = useSettings()
     <div class="flex-grow" />
     <CButton
       v-show="settingsStore.tasks.enabled"
+      circle
       :importance="2"
-      inner-class="!py-2"
       bg-class="ring-themed shadow-themed border-themed"
-      class="dark:text-slate-200 text-slate-900"
+      class="h-10 dark:text-slate-200 text-slate-900"
+      inner-class="!p-1"
       @click="openPanels.todo = !openPanels.todo"
     >
       <ChecklistIcon class="inline-block" />
     </CButton>
     <CButton
+      circle
       :importance="2"
-      inner-class="!py-2"
       bg-class="ring-themed shadow-themed border-themed"
-      class="dark:text-slate-200 text-slate-900"
+      class="h-10 dark:text-slate-200 text-slate-900"
+      inner-class="!p-1"
       @click="openPanels.settings = !openPanels.settings"
     >
       <SettingsIcon class="inline-block" />
