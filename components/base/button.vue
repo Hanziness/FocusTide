@@ -10,16 +10,17 @@
     class="group"
     :class="[
       { 'opacity-40 pointer-events-none': disabled },
-      { 'text-center': link }
+      { 'text-center': link },
+      { 'aspect-square': circle}
     ]"
     :aria-disabled="disabled"
     :disabled="disabled"
     :type="link ? undefined : 'button'"
   >
     <!-- Backdrop -->
-    <div class="relative">
+    <div class="relative w-full h-full isolate">
       <div
-        class="absolute w-full h-full overflow-hidden transition duration-300 rounded-full before:transition before:absolute before:opacity-0 before:w-full before:h-full before:left-0 before:top-0"
+        class="absolute w-full h-full overflow-hidden transition duration-300 rounded-full -z-10 before:transition before:absolute before:opacity-0 before:w-full before:h-full before:left-0 before:top-0"
         :class="[
           { 'bg-theme border-theme ring-theme shadow-theme': defaultStyle },
           { '': extendedBaseStyles },
@@ -35,7 +36,7 @@
 
       <!-- Contents -->
       <div
-        class="relative p-3"
+        class="grid items-center justify-center w-full h-full grid-flow-col p-3"
         :class="[
           { 'px-4': !circle },
           innerClass,
