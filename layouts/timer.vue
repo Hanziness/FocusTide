@@ -13,9 +13,10 @@ const scheduleStore = useSchedule()
 <template>
   <div class="relative w-screen h-screen">
     <transition enter-from-class="opacity-0" enter-active-class="transition duration-300" leave-to-class="opacity-0" leave-active-class="transition">
-      <div v-show="openPanels.settings" class="fixed z-40 w-screen h-screen bg-black bg-opacity-30" />
+      <!-- Darkening overlay -->
+      <div v-show="openPanels.settings" class="fixed z-40 w-screen h-screen bg-black bg-opacity-40" />
     </transition>
-    <transition enter-from-class="translate-x-32 opacity-0" enter-active-class="transition duration-300 ease-out" leave-to-class="scale-90 opacity-0" leave-active-class="transition ease-in">
+    <transition enter-from-class="translate-x-32 opacity-0" enter-active-class="transition duration-300 ease-out" leave-to-class="scale-95 opacity-0" leave-active-class="transition ease-in">
       <SettingsPanel v-show="openPanels.settings" class="right-0" />
     </transition>
     <transition enter-from-class="translate-y-full" enter-active-class="duration-300 ease-out" leave-to-class="translate-y-full" leave-active-class="duration-150 ease-in">
