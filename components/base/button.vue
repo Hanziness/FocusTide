@@ -50,7 +50,7 @@
 
 <script>
 export default {
-  name: 'ControlButton',
+  name: 'UIButton',
   props: {
     disabled: {
       default: false,
