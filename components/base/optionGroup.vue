@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import OptionControl from '@/components/base/option.vue'
+import OptionControl from '~~/components/base/uiOption.vue'
 
 export default {
   components: {
