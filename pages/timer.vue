@@ -66,7 +66,6 @@ import { useWeb } from '~~/platforms/web'
 import { useMobile } from '~~/platforms/mobile'
 
 import TimerSwitch from '@/components/timer/display/_timerSwitch.vue'
-import Button from '@/components/base/button.vue'
 import TimerProgress from '@/components/timer/timerProgress.vue'
 import TimerControls from '@/components/timer/controls/controlsNew.vue'
 import { AppPlatform } from '~~/platforms/platforms'
@@ -84,10 +83,7 @@ export default {
     UiOverlay: defineAsyncComponent(() => import('@/components/base/overlay.vue')),
     TimerControls,
     TimerProgress,
-    TimerSwitch,
-    // CogIcon: SettingsIcon,
-    // ListCheckIcon,
-    Button
+    TimerSwitch
   },
 
   props: {
