@@ -4,6 +4,6 @@
 
 <script>
 export default {
-  name: 'Divider'
+  name: 'UIDivider'
 }
 </script>
