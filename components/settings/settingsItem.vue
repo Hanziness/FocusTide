@@ -13,7 +13,7 @@ enum Control {
 }
 
 const controls = {
-  check: defineAsyncComponent(() => import('@/components/base/toggle.vue')),
+  check: defineAsyncComponent(() => import('~~/components/base/uiToggle.vue')),
   text: defineAsyncComponent(() => import('@/components/base/inputText.vue')),
   time: defineAsyncComponent(() => import('@/components/base/inputTime.vue')),
   number: defineAsyncComponent(() => import('@/components/base/inputNumber.vue'))
