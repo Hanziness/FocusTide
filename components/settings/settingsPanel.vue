@@ -10,7 +10,7 @@
           :importance="3"
           class="float-right -mt-2 -mr-2"
           tabindex="0"
-          @click="processedValue = false"
+          @click="openPanels.settings = false"
         >
           <CloseIcon :aria-label="$t('settings.buttons.close')" />
         </Button>
@@ -111,8 +111,8 @@
             <SettingsItem
               type="number"
               :path="['schedule', 'numScheduleEntries']"
-              :min="3"
-              :max="10"
+              :min="2"
+              :max="5"
               :disabled="!settingsStore.schedule.visibility.enabled"
             />
             <Divider />
@@ -176,6 +176,7 @@ import Button from '@/components/base/button.vue'
 import SettingsItem from '~~/components/settings/settingsItem.vue'
 import Divider from '@/components/base/divider.vue'
 import { useEvents } from '~~/stores/events'
+import { useOpenPanels } from '~~/stores/openpanels'
 
 export default {
   name: 'SettingsPanel',
@@ -206,8 +207,10 @@ export default {
 
   setup () {
     const runtimeConfig = useRuntimeConfig()
+    const openPanels = useOpenPanels()
     return {
       runtimeConfig,
+      openPanels,
       mobileSettingsStore: useMobileSettings(),
       isWeb: computed(() => runtimeConfig.public.PLATFORM === 'web'),
       isMobile: computed(() => runtimeConfig.public.PLATFORM === 'mobile')
@@ -228,11 +231,6 @@ export default {
     ...mapState(useNotifications, {
       notificationsEnabled: 'enabled'
     }),
-
-    processedValue: {
-      get () { return this.modelValue },
-      set (newValue) { this.$emit('update:modelValue', newValue) }
-    },
 
     notificationPermission: () => {
       return Notification ? (Notification.permission === 'granted' && this.settingsStore.permissions.notifications) : false

@@ -115,7 +115,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/google-fonts',
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
+    // '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@pinia/nuxt'
     // '@nuxtjs/sitemap'
