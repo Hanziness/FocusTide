@@ -42,9 +42,8 @@
         class="flex-grow"
         @tick="timeString = $event"
       />
-      <div class="relative flex flex-row items-center justify-center w-full gap-2 mb-4">
-        <TimerControls :class="[{ 'pointer-events-none': preview }]" :can-use-keyboard="!preview && !showSettings" />
-      </div>
+
+      <TimerControls class="mb-8" />
     </div>
     <client-only>
       <TutorialView />
@@ -54,7 +53,7 @@
 
 <script>
 import { mapStores } from 'pinia'
-import { SettingsIcon, ListCheckIcon } from 'vue-tabler-icons'
+// import { SettingsIcon, ListCheckIcon } from 'vue-tabler-icons'
 import { defineAsyncComponent } from 'vue'
 import { useHead } from '#app'
 import { useSchedule } from '~~/stores/schedule'
@@ -69,7 +68,7 @@ import { useMobile } from '~~/platforms/mobile'
 import TimerSwitch from '@/components/timer/display/_timerSwitch.vue'
 import Button from '@/components/base/button.vue'
 import TimerProgress from '@/components/timer/timerProgress.vue'
-import TimerControls from '@/components/timer/controls/contolsBasic.vue'
+import TimerControls from '@/components/timer/controls/controlsNew.vue'
 import { AppPlatform } from '~~/platforms/platforms'
 
 import { useMobileSettings } from '~~/stores/platforms/mobileSettings'
@@ -80,14 +79,14 @@ export default {
     // lazy-loaded components
     AppBar: defineAsyncComponent(() => import('@/components/appBar.vue')),
     SettingsPanel: defineAsyncComponent(() => import('@/components/settings/settingsPanel.vue')),
-    TodoList: defineAsyncComponent(() => import('@/components/todoList/main.vue')),
+    // TodoList: defineAsyncComponent(() => import('@/components/todoList/main.vue')),
     TutorialView: defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue')),
     UiOverlay: defineAsyncComponent(() => import('@/components/base/overlay.vue')),
     TimerControls,
     TimerProgress,
     TimerSwitch,
-    CogIcon: SettingsIcon,
-    ListCheckIcon,
+    // CogIcon: SettingsIcon,
+    // ListCheckIcon,
     Button
   },
 
