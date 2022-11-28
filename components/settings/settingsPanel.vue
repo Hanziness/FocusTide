@@ -3,7 +3,7 @@
     <div class="flex flex-col h-full overflow-hidden bg-white rounded-none shadow-lg md:rounded-lg dark:bg-gray-900 dark:text-gray-50" :style="{ 'padding-top': `${mobileSettingsStore.padding.top}px`, 'padding-bottom': `${mobileSettingsStore.padding.bottom}px` }">
       <h1 class="px-4 mt-4 mb-2 text-xl font-bold uppercase">
         <span>{{ $t('settings.heading') }}</span>
-        <Button
+        <ControlButton
           :aria-label="$t('settings.buttons.close')"
           default-style
           circle
@@ -13,7 +13,7 @@
           @click="openPanels.settings = false"
         >
           <CloseIcon :aria-label="$t('settings.buttons.close')" />
-        </Button>
+        </ControlButton>
       </h1>
       <div class="flex-grow overflow-y-auto">
         <Transition tag="div" name="tab-transition" mode="out-in" class="relative w-full">
@@ -172,7 +172,7 @@ import { useNotifications } from '~~/stores/notifications'
 import { useMain } from '~~/stores/main'
 import { useMobileSettings } from '~~/stores/platforms/mobileSettings'
 
-import Button from '@/components/base/button.vue'
+import ControlButton from '@/components/base/button.vue'
 import SettingsItem from '~~/components/settings/settingsItem.vue'
 import Divider from '@/components/base/divider.vue'
 import { useEvents } from '~~/stores/events'
@@ -183,7 +183,7 @@ export default {
   components: {
     // UiOverlay: () => import('@/components/base/overlay.vue'),
     SettingsItem,
-    Button,
+    ControlButton,
     Divider,
     OptionGroup,
     TabHeader,
