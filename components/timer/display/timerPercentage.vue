@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { TimerState, useSchedule } from '~~/stores/schedule'
 
-const { getCurrentItem, getCurrentTimerState } = useSchedule()
-const running = computed(() => getCurrentTimerState === TimerState.RUNNING)
+const scheduleStore = useSchedule()
+const running = computed(() => scheduleStore.getCurrentTimerState === TimerState.RUNNING)
 const emit = defineEmits<{(event: 'tick', timeString: string): void }>()
 
 const timerValue = computed(() => {
-  const completeRounded = Math.round((getCurrentItem.length - getCurrentItem.timeElapsed) / 1000)
-  const totalRounded = Math.round(getCurrentItem.length / 1000)
+  const completeRounded = Math.round((scheduleStore.getCurrentItem.length - scheduleStore.getCurrentItem.timeElapsed) / 1000)
+  const totalRounded = Math.round(scheduleStore.getCurrentItem.length / 1000)
   const percentageValue = Math.round(((totalRounded - completeRounded) / totalRounded) * 100)
 
   emit('tick', `${percentageValue}%`)

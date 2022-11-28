@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { TimerState, useSchedule } from '~~/stores/schedule'
 
-const { getCurrentItem, getCurrentTimerState } = useSchedule()
-const running = computed(() => getCurrentTimerState === TimerState.RUNNING)
+const scheduleStore = useSchedule()
+const running = computed(() => scheduleStore.getCurrentTimerState === TimerState.RUNNING)
 const emit = defineEmits<{(event: 'tick', timeString: string): void }>()
 
 const timeLeftStructured = computed(() => {
-  const sLeft = Math.abs(Math.round((getCurrentItem.length - getCurrentItem.timeElapsed) / 1000))
+  const sLeft = Math.abs(Math.round((scheduleStore.getCurrentItem.length - scheduleStore.getCurrentItem.timeElapsed) / 1000))
   const hours = Math.floor(sLeft / (60 * 60))
   const minutes = Math.floor((sLeft % (60 * 60)) / (60))
   const seconds = Math.floor(sLeft % 60)
@@ -14,7 +14,7 @@ const timeLeftStructured = computed(() => {
   const timeStructured = { hours, minutes, seconds }
 
   const displayKeys = (Object.keys(timeStructured) as Array<keyof typeof timeStructured>).filter(value => value !== 'hours' || hours > 0)
-  const completed = getCurrentItem.timeElapsed > getCurrentItem.length && [hours, minutes, seconds].some(num => num > 0)
+  const completed = scheduleStore.getCurrentItem.timeElapsed > scheduleStore.getCurrentItem.length && [hours, minutes, seconds].some(num => num > 0)
 
   // if (completed) {
   //   displayKeys.unshift('_plus')
