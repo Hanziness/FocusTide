@@ -1,12 +1,19 @@
 import { defineStore } from 'pinia'
 
+export enum NotificationPermission {
+  Default,
+  Granted,
+  Denied,
+  NotSupported
+}
+
 export const useNotifications = defineStore('notifications', {
   state: () => ({
-    enabled: undefined
+    enabled: NotificationPermission.Default
   }),
 
   actions: {
-    updateEnabled (manualValue = undefined) {
+    updateEnabled (manualValue? : NotificationPermission) {
       if (manualValue !== undefined) {
         this.enabled = manualValue
         return
@@ -14,15 +21,18 @@ export const useNotifications = defineStore('notifications', {
 
       if (window && window.Notification) {
         const permissions = window.Notification.permission
-        if (permissions === 'default') {
-          this.enabled = null
-        } else if (permissions === 'granted') {
-          this.enabled = true
-        } else {
-          this.enabled = false
+        switch (permissions) {
+          case 'default':
+            this.enabled = NotificationPermission.Default
+            break
+          case 'granted':
+            this.enabled = NotificationPermission.Granted
+            break
+          default:
+            this.enabled = NotificationPermission.Denied
         }
       } else {
-        this.enabled = false
+        this.enabled = NotificationPermission.NotSupported
       }
     }
   }
