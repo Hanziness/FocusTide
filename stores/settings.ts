@@ -204,10 +204,10 @@ export const useSettings = defineStore('settings', {
     },
 
     getColor: (state) => {
-      return (color: keyof Settings['visuals']['theme'], method: ColorMethod = ColorMethod.classic) => {
+      return (color: keyof Settings['visuals']['theme'], method: ColorMethod = ColorMethod.classic): string => {
         if (method === ColorMethod.classic) {
           return `rgb(${state.visuals.theme[color].join(',')})`
-        } else if (method === ColorMethod.modern) {
+        } else {
           return state.visuals.theme[color].join(' ')
         }
       }

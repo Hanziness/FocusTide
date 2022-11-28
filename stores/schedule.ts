@@ -118,17 +118,17 @@ export const useSchedule = defineStore('schedule', {
     },
 
     // VISUALS
-    currentScheduleColour () {
+    currentScheduleColour (): string {
       const settings = useSettings()
       return settings.getColor(this.getCurrentItem.type)
     },
 
-    currentScheduleColourModern () {
+    currentScheduleColourModern (): string {
       const settings = useSettings()
       return settings.getColor(this.getCurrentItem.type, ColorMethod.modern)
     },
 
-    nextScheduleColour () {
+    nextScheduleColour (): string {
       const settings = useSettings()
       const nextState = this.getSchedule[1].type
       if (nextState) {
@@ -138,9 +138,9 @@ export const useSchedule = defineStore('schedule', {
       }
     },
 
-    getScheduleColour () {
+    getScheduleColour (): string[] {
       const settings = useSettings()
-      const colours = []
+      const colours: string[] = []
       for (const item of this.getSchedule) {
         colours.push(settings.getColor(item.type))
       }
@@ -152,7 +152,7 @@ export const useSchedule = defineStore('schedule', {
     /** Advances the schedule by removing the first item and adding a new one to the end */
     advance () {
       this.items = this.items.slice(1)
-      this.items.push(createScheduleEntry(this.items.slice(-1).pop().id + 1))
+      this.items.push(createScheduleEntry(this.items.length > 0 ? this.items.slice(-1)[0].id + 1 : 0))
     },
 
     /** Allows locking information on a schedule item (so the getter will not override it) */
