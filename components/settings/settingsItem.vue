@@ -83,14 +83,12 @@ const value = computed({
       current = current[splitPath[i]] as Record<string, unknown>
     }
 
-    console.log(patchObj)
-
     settingsStore.$patch(patchObj)
     emit('input', newValue)
   }
 })
 
-const isSideControls = computed(() => ![Control.Empty].includes(props.type))
+const isSideControls = computed(() => ![Control.Option, Control.Empty].includes(props.type))
 </script>
 
 <template>
