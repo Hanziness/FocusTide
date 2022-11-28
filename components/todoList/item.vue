@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { nextTick } from 'vue'
+import { nextTick, Ref, PropType } from 'vue'
 import { MenuIcon, TrashIcon, PencilIcon } from 'vue-tabler-icons'
-import { taskState, useTasklist } from '~~/stores/tasklist'
+import { TaskState, useTasklist, Task } from '~~/stores/tasklist'
 import { useSettings, ColorMethod } from '~~/stores/settings'
 import Button from '~/components/base/button.vue'
 
 // declare refs
-const editbox = ref(null)
+const editbox: Ref<HTMLInputElement | null> = ref(null)
 
 const tasksStore = useTasklist()
 const settingsStore = useSettings()
 
 const props = defineProps({
   item: {
-    type: Object,
+    type: Object as PropType<Task>,
     required: true
   },
   manage: {
@@ -35,7 +35,7 @@ const state = reactive({
   hovering: false,
   dragged: false,
   editing: false,
-  editedTitle: null
+  editedTitle: null as string | null
 })
 
 const emit = defineEmits<{(event: 'input', checked: boolean) : void,
@@ -48,7 +48,7 @@ const emit = defineEmits<{(event: 'input', checked: boolean) : void,
 
 const checked = computed({
   get () {
-    return props.item.state === taskState.complete
+    return props.item.state === TaskState.complete
   },
   set (newValue) {
     emit('input', newValue)
@@ -63,28 +63,30 @@ const displayedTitle = computed({
     state.editedTitle = newValue
   }
 })
-const isValid = computed(() => !tasksStore.tasks.some(task => task.id !== props.item.id && task.title === displayedTitle && task.section === props.item.section))
+const isValid = computed(() => !tasksStore.tasks.some(task => task.id !== props.item.id && task.title === displayedTitle.value && task.section === props.item.section))
 
 watch(() => state.editing, (newValue: boolean) => {
   if (newValue) {
     // only focus on <input> in the next tick (when it is rendered)
     nextTick(() => {
-      editbox?.value.focus()
+      (editbox.value as HTMLInputElement).focus()
     })
   }
 })
 
 // methods
-const startDrag = (evt, item) => {
-  evt.dataTransfer.dropEffect = 'move'
-  evt.dataTransfer.effectAllowed = 'move'
-  evt.dataTransfer.setData('source.title', item.title)
-  evt.dataTransfer.setData('source.section', item.section)
-  state.dragged = true
+const startDrag = (evt: DragEvent, item: Task) => {
+  if (evt.dataTransfer) {
+    evt.dataTransfer.dropEffect = 'move'
+    evt.dataTransfer.effectAllowed = 'move'
+    evt.dataTransfer.setData('source.title', item.title)
+    evt.dataTransfer.setData('source.section', item.section)
+    state.dragged = true
+  }
 }
 
-const handleEdit = (newValue) => {
-  if (isValid && props.item.title !== displayedTitle) {
+const handleEdit = (newValue: string) => {
+  if (isValid.value && props.item.title !== displayedTitle.value) {
     emit('update', newValue)
   }
   state.editedTitle = null
@@ -94,7 +96,7 @@ const handleEdit = (newValue) => {
 <template>
   <div
     class="relative flex flex-row items-center px-2 py-3 transition-all duration-200 border-l-8 rounded-md hover:shadow-sm border-themed md:py-2"
-    :class="[{ 'opacity-50 line-through italic': props.item.state === 2, 'cursor-move': props.showReorder, 'ring ring-themed': state.dragged || props.droptarget, 'bg-themed !text-white': props.manage && state.editing }, props.manage && state.editing ? 'bg-themed' : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200']"
+    :class="[{ 'opacity-50 line-through italic': props.item.state === 2, 'cursor-move': showReorder, 'ring ring-themed': state.dragged || props.droptarget, 'bg-themed !text-white': props.manage && state.editing }, props.manage && state.editing ? 'bg-themed' : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200']"
     :style="{ '--theme': settingsStore.getColor(props.item.section, ColorMethod.modern) }"
     draggable="true"
     @mouseenter="state.hovering = true"

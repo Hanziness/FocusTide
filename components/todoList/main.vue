@@ -22,8 +22,8 @@
         :droptarget="task === dropTarget"
         moveable
         @input="(isCompleted) => tasklistStore.setComplete(task.id, isCompleted)"
-        @update="newTitle => tasklistStore.editTitle({ id: task.id, newTitle })"
-        @delete="tasklistStore.deleteTask({ item: task })"
+        @update="newTitle => tasklistStore.editTitle(task.id, newTitle)"
+        @delete="tasklistStore.deleteTask(task)"
         @dropstart="draggedItem = task, dragging = true"
         @dropfinish="handleDrop"
         @droptarget="updateDropTarget"
