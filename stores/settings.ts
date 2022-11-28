@@ -14,6 +14,12 @@ export enum SoundSet {
   Musical = 'musical'
 }
 
+export enum Section {
+  work = 'work',
+  shortpause = 'shortpause',
+  longpause = 'longpause'
+}
+
 export interface Settings {
   _updated: boolean,
   lang: string,

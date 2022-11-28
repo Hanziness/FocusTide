@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ColorMethod, Settings, useSettings } from './settings'
+import { ColorMethod, Section, Settings, useSettings } from './settings'
 
 export enum ETimerState {
   STOPPED,
@@ -11,14 +11,14 @@ export interface ScheduleEntry {
   id: number,
   timeElapsed: number,
   length?: number,
-  type?: keyof Settings['schedule']['lengths']
+  type?: Section
 }
 
 export interface ScheduleEntryComplete {
   id: number,
   timeElapsed: number,
   length: number,
-  type: keyof Settings['schedule']['lengths']
+  type: Section
 }
 
 export enum ScheduleItemType {
