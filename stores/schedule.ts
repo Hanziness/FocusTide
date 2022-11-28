@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ColorMethod, useSettings } from './settings'
+import { ColorMethod, Settings, useSettings } from './settings'
 
 export enum ETimerState {
   STOPPED,
@@ -11,7 +11,29 @@ export interface ScheduleEntry {
   id: number,
   timeElapsed: number,
   length?: number,
-  type?: ETimerState
+  type?: keyof Settings['schedule']['lengths']
+}
+
+export interface ScheduleEntryComplete {
+  id: number,
+  timeElapsed: number,
+  length: number,
+  type: keyof Settings['schedule']['lengths']
+}
+
+export enum ScheduleItemType {
+  WORK = 'work',
+  SHORTPAUSE = 'shortpause',
+  LONGPAUSE = 'longpause',
+  WAIT = 'wait',
+  OTHER = 'other'
+}
+
+export enum TimerState {
+  STOPPED,
+  RUNNING,
+  PAUSED,
+  COMPLETED
 }
 
 export const useSchedule = defineStore('schedule', {
@@ -25,7 +47,7 @@ export const useSchedule = defineStore('schedule', {
       const settings = useSettings()
 
       const numEntriesInABlock = 2 * (settings.schedule.longPauseInterval)
-      const scheduleTypes = []
+      const scheduleTypes: ScheduleItemType[] = []
 
       for (let index = 0; index < numEntriesInABlock; index++) {
         let newType = ScheduleItemType.WORK
@@ -43,7 +65,7 @@ export const useSchedule = defineStore('schedule', {
     },
 
     /** Getter to retrieve schedule with all necessary information filled in */
-    getSchedule (state): ScheduleEntry[] {
+    getSchedule (state): ScheduleEntryComplete[] {
       const settings = useSettings()
       const scheduleSettings = settings.schedule
       const numEntities = scheduleSettings.numScheduleEntries
@@ -68,7 +90,7 @@ export const useSchedule = defineStore('schedule', {
 
       for (let index = 0; index < returnArray.length; index++) {
         // set item type if needed
-        const itemType = returnArray[index].type ? returnArray[index].type : scheduleTypes[returnArray[index].id % scheduleTypes.length]
+        const itemType: keyof Settings['schedule']['lengths'] = returnArray[index].type ? returnArray[index].type : scheduleTypes[returnArray[index].id % scheduleTypes.length]
         if (returnArray[index].type === undefined) { returnArray[index].type = itemType }
 
         // set length if needed
@@ -83,7 +105,7 @@ export const useSchedule = defineStore('schedule', {
       return returnArray
     },
 
-    getCurrentItem (): ScheduleEntry {
+    getCurrentItem (): ScheduleEntryComplete {
       return this.getSchedule[0]
     },
 
@@ -142,37 +164,22 @@ export const useSchedule = defineStore('schedule', {
     },
 
     /** Updates elapsed time on the first schedule entry */
-    updateTime (timeElapsed) {
+    updateTime (timeElapsed: number) {
       this.items[0].timeElapsed = timeElapsed
     },
 
-    updateTimerState (newState) {
+    updateTimerState (newState: TimerState) {
       this.timerState = newState
     },
 
     /** Mutation to generate an initial schedule state */
-    initSchedule (numEntries) {
+    initSchedule (numEntries: number) {
       this.items = createScheduleSeries(numEntries)
     }
   }
 })
 
-export const ScheduleItemType = {
-  WORK: 'work',
-  SHORTPAUSE: 'shortpause',
-  LONGPAUSE: 'longpause',
-  WAIT: 'wait',
-  OTHER: 'other'
-}
-
-export const TimerState = {
-  STOPPED: 0,
-  RUNNING: 1,
-  PAUSED: 2,
-  COMPLETED: 3
-}
-
-function createScheduleEntry (id): ScheduleEntry {
+function createScheduleEntry (id: number): ScheduleEntry {
   return {
     id,
     timeElapsed: 0,
@@ -181,7 +188,7 @@ function createScheduleEntry (id): ScheduleEntry {
   }
 }
 
-function createScheduleSeries (numEntries) {
+function createScheduleSeries (numEntries: number) {
   const items = [] as ScheduleEntry[]
   for (let i = 0; i < numEntries; i++) {
     items.push(createScheduleEntry(i))

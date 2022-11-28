@@ -26,15 +26,15 @@
               @input="(newLang) => { settingsStore.lang = newLang }"
             />
             <Divider />
-            <SettingsItem type="check" :path="['adaptiveTicking', 'enabled']" />
-            <SettingsItem v-if="isWeb" type="check" :path="['timerControls', 'enableKeyboardShortcuts']" />
+            <SettingsItem type="check" path="adaptiveTicking.enabled" />
+            <SettingsItem v-if="isWeb" type="check" path="timerControls.enableKeyboardShortcuts" />
 
             <template v-if="isWeb">
               <Divider />
-              <SettingsItem type="check" :path="['permissions', 'audio']" />
+              <SettingsItem type="check" path="permissions.audio" />
               <SettingsItem
                 type="check"
-                :path="['permissions', 'notifications']"
+                path="permissions.notifications"
                 :disabled="notificationsEnabled === false"
                 @input="(newValue) => {
                   if (newValue === true) {
@@ -46,25 +46,25 @@
 
             <template v-if="isMobile">
               <Divider />
-              <SettingsItem type="check" :path="['mobile', 'notifications', 'sectionOver']" />
-              <SettingsItem type="check" :path="['mobile', 'notifications', 'persistent']" />
+              <SettingsItem type="check" path="mobile.notifications.sectionOver" />
+              <SettingsItem type="check" path="mobile.notifications.persistent" />
             </template>
 
             <Divider />
 
-            <SettingsItem type="check" :path="['tasks', 'enabled']" />
+            <SettingsItem type="check" path="tasks.enabled" />
             <SettingsItem
               type="number"
-              :path="['tasks', 'maxActiveTasks']"
+              path="tasks.maxActiveTasks"
               :min="1"
               :max="15"
               :disabled="!settingsStore.tasks.enabled"
             />
-            <SettingsItem type="check" :path="['tasks', 'removeCompletedTasks']" :disabled="!settingsStore.tasks.enabled" />
+            <SettingsItem type="check" path="tasks.removeCompletedTasks" :disabled="!settingsStore.tasks.enabled" />
 
             <template v-if="isWeb">
               <Divider />
-              <SettingsItem type="empty" :path="['manage']" />
+              <SettingsItem type="empty" path="manage" />
               <div class="grid grid-flow-col grid-cols-2 gap-2 mt-1">
                 <ExportButton />
                 <ImportButton />
@@ -72,17 +72,17 @@
             </template>
             <Divider />
 
-            <SettingsItem type="check" :path="['reset']" />
+            <SettingsItem type="check" path="reset" />
           </div>
 
           <!-- Schedule -->
           <div v-else-if="activeTab === 2" :key="2" class="settings-tab">
-            <SettingsItem type="number" :path="['schedule', 'longPauseInterval']" :min="1" :max="10" />
+            <SettingsItem type="number" path="schedule.longPauseInterval" :min="1" :max="10" />
             <Divider />
 
             <SettingsItem
               type="empty"
-              :path="['schedule', 'lengths']"
+              path="schedule.lengths"
             >
               <OptionGroup
                 translation-key="timerpreset"
@@ -91,9 +91,9 @@
                 @input="(newPreset) => settingsStore.applyPreset(newPreset)"
               />
             </SettingsItem>
-            <SettingsItem type="time" :path="['schedule', 'lengths', 'work']" :min-ms="5000" />
-            <SettingsItem type="time" :path="['schedule', 'lengths', 'shortpause']" :min-ms="5000" />
-            <SettingsItem type="time" :path="['schedule', 'lengths', 'longpause']" :min-ms="5000" />
+            <SettingsItem type="time" path="schedule.lengths.work" :min-ms="5000" />
+            <SettingsItem type="time" path="schedule.lengths.shortpause" :min-ms="5000" />
+            <SettingsItem type="time" path="schedule.lengths.longpause" :min-ms="5000" />
             <div class="flex flex-row items-center px-3 py-4 space-x-2 rounded-lg ring-inset ring ring-primary bg-primary/20 dark:bg-gray-700 dark:text-gray-100">
               <InfoIcon />
               <span v-text="$t('settings.scheduleMinTime')" />
@@ -102,22 +102,22 @@
 
           <!-- Display -->
           <div v-else-if="activeTab === 3" :key="3" class="settings-tab">
-            <SettingsItem type="check" :path="['visuals', 'darkMode']" />
+            <SettingsItem type="check" path="visuals.darkMode" />
             <Divider />
-            <SettingsItem type="option" :path="['currentTimer']" :choices="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
+            <SettingsItem type="option" path="currentTimer" :choices="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
             <Divider />
-            <SettingsItem type="check" :path="['schedule', 'visibility', 'enabled']" />
-            <SettingsItem type="check" :path="['schedule', 'visibility', 'showSectionType']" :disabled="!settingsStore.schedule.visibility.enabled" />
+            <SettingsItem type="check" path="schedule.visibility.enabled" />
+            <SettingsItem type="check" path="schedule.visibility.showSectionType" :disabled="!settingsStore.schedule.visibility.enabled" />
             <SettingsItem
               type="number"
-              :path="['schedule', 'numScheduleEntries']"
+              path="schedule.numScheduleEntries"
               :min="2"
               :max="5"
               :disabled="!settingsStore.schedule.visibility.enabled"
             />
             <Divider />
-            <SettingsItem type="check" :path="['performance', 'showProgressBar']" />
-            <SettingsItem v-if="isWeb" type="check" :path="['pageTitle', 'useTickEmoji']" />
+            <SettingsItem type="check" path="performance.showProgressBar" />
+            <SettingsItem v-if="isWeb" type="check" path="pageTitle.useTickEmoji" />
             <!-- TODO Audio volume control -->
           </div>
 

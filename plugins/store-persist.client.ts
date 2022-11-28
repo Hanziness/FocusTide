@@ -16,6 +16,14 @@ const breakingChanges: BreakingChange[] = [
       'Timer theme colours are now stored in a different way, restoring previous settings would cause the app to not have colours.'
     ],
     affectedStores: ['settings']
+  },
+  {
+    from: '1.0.0',
+    to: '1.4.0',
+    reason: [
+      'The settings\' theming data was restructured.'
+    ],
+    affectedStores: ['settings']
   }
 ]
 
