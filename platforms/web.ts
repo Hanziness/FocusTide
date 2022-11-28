@@ -6,6 +6,11 @@ import { useSchedule } from '~~/stores/schedule'
 import { useNotifications } from '~~/stores/notifications'
 import { EventType, useEvents } from '~~/stores/events'
 
+interface SoundSettings {
+  source: HTMLAudioElement,
+  ready: boolean
+}
+
 export function useWeb () {
   const settingsStore = useSettings()
   const scheduleStore = useSchedule()
@@ -14,34 +19,27 @@ export function useWeb () {
   const i18n = useI18n()
 
   const state = reactive({
-    currentSoundSet: null,
+    currentSoundSet: null as string | null,
     sounds: {
-      work: null,
-      shortpause: null,
-      longpause: null
+      work: null as SoundSettings | null,
+      shortpause: null as SoundSettings | null,
+      longpause: null as SoundSettings | null
     }
   })
-
-  // TODO (??) This is elapsed time!
-  // const remainingTime = computed(() => scheduleStore.getSchedule[0].timeElapsed)
 
   const lastEvent = computed(() => {
     const lastEventArray = eventsStore.events.slice(-1)
     return lastEventArray.length > 0 ? lastEventArray[0] : null
   })
 
-  // watch(remainingTime, (newValue, oldValue) => {
-  //   // TODO update persistent notification (if enabled)
-  // })
-
   watch(lastEvent, (newValue) => {
-    if (newValue._event === EventType.TIMER_FINISH) {
+    if (newValue !== null && newValue._event === EventType.TIMER_FINISH) {
       showNotification(scheduleStore.getSchedule[1].type)
     }
   })
 
   eventsStore.$subscribe(() => {
-    if (eventsStore.lastEvent._event === EventType.NOTIFICATIONS_ENABLED && window.Notification && window.Notification.permission === 'default') {
+    if (eventsStore.lastEvent !== null && eventsStore.lastEvent._event === EventType.NOTIFICATIONS_ENABLED && window.Notification && window.Notification.permission === 'default') {
       window.Notification.requestPermission().then((newNotificationPermission) => {
         settingsStore.$patch({
           permissions: {
@@ -105,14 +103,17 @@ export function useWeb () {
 
     try {
       for (const key in state.sounds) {
-        state.sounds[key] = {
+        const soundKey = key as keyof typeof state.sounds
+        const newSound = {
           source: new Audio(`/audio/${setName}/${key}.mp3`),
           ready: false
         }
 
-        state.sounds[key].source.addEventListener('canplay', () => {
-          state.sounds[key].ready = true
+        newSound.source.addEventListener('canplay', () => {
+          newSound.ready = true
         })
+
+        state.sounds[soundKey] = newSound
       }
 
       state.currentSoundSet = setName
@@ -125,19 +126,19 @@ export function useWeb () {
    * Play the specified sound
    * @param {String} key The key of the sound. Valid values are `work`, `pause` and `longpause`.
    */
-  const playSound = (key: string) => {
+  const playSound = (key: keyof typeof state.sounds) => {
     // load sound set if not already loaded
     if (!state.currentSoundSet) {
       loadSoundSet()
     }
 
-    if (state.sounds[key] && settingsStore.permissions.audio) {
-      state.sounds[key].source.volume = settingsStore.audio.volume
-      state.sounds[key].source.play()
+    if (state.sounds[key] !== null && settingsStore.permissions.audio) {
+      state.sounds[key]!.source.volume = settingsStore.audio.volume // eslint-disable-line @typescript-eslint/no-non-null-assertion
+      state.sounds[key]?.source.play()
     }
   }
 
-  const showNotification = (nextState: string) => {
+  const showNotification = (nextState: keyof typeof state.sounds) => {
     playSound(nextState)
 
     // TODO Firefox does not support actions
@@ -151,7 +152,7 @@ export function useWeb () {
     }
 
     try {
-      new Notification(i18n.t('notification.' + nextState + '.title'), {
+      new Notification(i18n.t('notification.' + nextState + '.title'), { // eslint-disable-line no-new
         tag: 'FocusTide-SectionNotify',
         body: i18n.t('notification.' + nextState + '.body'),
         actions: notificationActions
