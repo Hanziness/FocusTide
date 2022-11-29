@@ -3,7 +3,7 @@ import OptionControl from '~~/components/base/uiOption.vue'
 
 interface Props {
   choices: Record<string, unknown>,
-  translationKey: string,
+  translationKey?: string,
   value: keyof Props['choices'] | null,
   overrideText: Record<'title'|'description', Record<string, string>>
 }
