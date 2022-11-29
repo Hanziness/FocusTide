@@ -1,3 +1,107 @@
+<script setup lang="ts">
+import { defineAsyncComponent } from 'vue'
+import { useHead } from '#app'
+import { useI18n } from 'vue-i18n'
+import { useSchedule } from '~~/stores/schedule'
+import { useSettings } from '~~/stores/settings'
+
+// Static imports:
+import { useTicker } from '~~/components/ticker'
+import { useWeb } from '~~/platforms/web'
+import { useMobile } from '~~/platforms/mobile'
+
+import TimerSwitch from '@/components/timer/display/_timerSwitch.vue'
+import TimerProgress from '@/components/timer/timerProgress.vue'
+import TimerControls from '@/components/timer/controls/controlsNew.vue'
+import { AppPlatform } from '~~/platforms/platforms'
+
+import { useMobileSettings } from '~~/stores/platforms/mobileSettings'
+
+// components
+const AppBar = defineAsyncComponent(() => import('@/components/appBar.vue'))
+const SettingsPanel = defineAsyncComponent(() => import('@/components/settings/settingsPanel.vue'))
+// const TodoList = defineAsyncComponent(() => import('@/components/todoList/main.vue'))
+const TutorialView = defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue'))
+const UiOverlay = defineAsyncComponent(() => import('@/components/base/overlay.vue'))
+
+const settingsStore = useSettings()
+const mobileSettingsStore = useMobileSettings()
+const scheduleStore = useSchedule()
+
+const runtimeConfig = useRuntimeConfig()
+
+const { t } = useI18n()
+
+const iconSvg = computed(() => `data:image/svg+xml,
+<svg
+  width="32"
+  height="32"
+  viewBox="0 0 32 32"
+  fill="none"
+  style="color: ${scheduleStore.currentScheduleColour};"
+  xmlns="http://www.w3.org/2000/svg"
+>
+<circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`)
+
+definePageMeta({ layout: 'timer', layoutTransition: false })
+useHead({
+  meta: [{
+    hid: 'description',
+    name: 'description',
+    content: 'Jumpstart your productivity sessions with FocusTide. Start your timer session on this page, or check the home page for a guided tour!'
+  }],
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/svg+xml',
+      href: iconSvg
+    }
+  ]
+})
+
+useTicker()
+
+// Load appropriate platform module based on runtime config
+if (runtimeConfig.public.PLATFORM === AppPlatform.web) {
+  useWeb()
+} else if (runtimeConfig.public.PLATFORM === AppPlatform.mobile) {
+  useMobile()
+}
+
+const state = reactive({
+  showSettings: false,
+  showTodoManager: false,
+  timeString: ''
+})
+
+// const currentColour = computed(() => {
+//   const currentState = scheduleStore.items[0]?.type
+//   if (currentState) {
+//     return settingsStore.getColor(currentState)
+//   } else {
+//     return ''
+//   }
+// })
+
+const remainingTimeString = computed(() => {
+  if (scheduleStore.getCurrentTimerState === 3) {
+    return settingsStore.pageTitle.useTickEmoji ? '✔' : t('ready').toLowerCase()
+  }
+
+  return state.timeString
+})
+
+const pageTitle = computed(() => {
+  return scheduleStore.getCurrentItem
+    ? t('section.' + scheduleStore.getCurrentItem.type).toLowerCase()
+    : 'Pomodoro'
+})
+
+const progressBarSchedules = computed(() => {
+  const numSchedules = settingsStore.performance.showProgressBar ? 2 : 1
+  return scheduleStore.getSchedule.slice(0, numSchedules)
+})
+</script>
 
 <template>
   <section
@@ -10,10 +114,10 @@
 
     <!-- Settings panel -->
     <Transition name="transition-fade">
-      <UiOverlay v-if="showSettings" />
+      <UiOverlay v-if="state.showSettings" />
     </Transition>
     <Transition name="transition-slidein">
-      <SettingsPanel v-if="showSettings" v-model="showSettings" class="right-0" />
+      <SettingsPanel v-if="state.showSettings" v-model="state.showSettings" class="right-0" />
     </Transition>
     <TransitionGroup name="progress-transition" tag="div" :duration="1000">
       <TimerProgress
@@ -40,7 +144,7 @@
         :timer-state="scheduleStore.timerState"
         :timer-widget="settingsStore.currentTimer"
         class="flex-grow"
-        @tick="timeString = $event"
+        @tick="state.timeString = $event"
       />
 
       <TimerControls class="mb-8" />
@@ -50,137 +154,6 @@
     </client-only>
   </section>
 </template>
-
-<script>
-import { mapStores } from 'pinia'
-// import { SettingsIcon, ListCheckIcon } from 'vue-tabler-icons'
-import { defineAsyncComponent } from 'vue'
-import { useHead } from '#app'
-import { useSchedule } from '~~/stores/schedule'
-import { useSettings } from '~~/stores/settings'
-import { useEvents } from '~~/stores/events'
-
-// Static imports:
-import { useTicker } from '~~/components/ticker.ts'
-import { useWeb } from '~~/platforms/web'
-import { useMobile } from '~~/platforms/mobile'
-
-import TimerSwitch from '@/components/timer/display/_timerSwitch.vue'
-import TimerProgress from '@/components/timer/timerProgress.vue'
-import TimerControls from '@/components/timer/controls/controlsNew.vue'
-import { AppPlatform } from '~~/platforms/platforms'
-
-import { useMobileSettings } from '~~/stores/platforms/mobileSettings'
-
-export default {
-  name: 'PageTimer',
-  components: {
-    // lazy-loaded components
-    AppBar: defineAsyncComponent(() => import('@/components/appBar.vue')),
-    SettingsPanel: defineAsyncComponent(() => import('@/components/settings/settingsPanel.vue')),
-    // TodoList: defineAsyncComponent(() => import('@/components/todoList/main.vue')),
-    TutorialView: defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue')),
-    UiOverlay: defineAsyncComponent(() => import('@/components/base/overlay.vue')),
-    TimerControls,
-    TimerProgress,
-    TimerSwitch
-  },
-
-  props: {
-    preview: {
-      type: Boolean,
-      default: false
-    }
-  },
-
-  setup () {
-    definePageMeta({ layout: 'timer', layoutTransition: false })
-    const mobileSettingsStore = useMobileSettings()
-
-    const scheduleStore = useSchedule()
-    const runtimeConfig = useRuntimeConfig()
-
-    const iconSvg = computed(() => `data:image/svg+xml,
-      <svg
-        width="32"
-      height="32"
-      viewBox="0 0 32 32"
-      fill="none"
-      style="color: ${scheduleStore.currentScheduleColour};"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="16" cy="16" r="14" fill="currentColor" /></svg>`)
-
-    useHead({
-      meta: [{
-        hid: 'description',
-        name: 'description',
-        content: 'Jumpstart your productivity sessions with FocusTide. Start your timer session on this page, or check the home page for a guided tour!'
-      }],
-      link: [
-        {
-          rel: 'icon',
-          type: 'image/svg+xml',
-          href: iconSvg
-        }
-      ]
-    })
-
-    useTicker()
-
-    // Load appropriate platform module based on runtime config
-    if (runtimeConfig.public.PLATFORM === AppPlatform.web) {
-      useWeb()
-    } else if (runtimeConfig.public.PLATFORM === AppPlatform.mobile) {
-      useMobile()
-    }
-
-    return {
-      mobileSettingsStore
-    }
-  },
-
-  data () {
-    return {
-      showSettings: false,
-      showTodoManager: false,
-      timeString: ''
-    }
-  },
-
-  computed: {
-    currentColour () {
-      const currentState = this.scheduleStore.items[0]?.type
-      if (currentState) {
-        return this.settingsStore.getColor(currentState)
-      } else {
-        return ''
-      }
-    },
-
-    remainingTimeString () {
-      if (this.scheduleStore.getCurrentTimerState === 3) {
-        return this.settingsStore.pageTitle.useTickEmoji ? '✔' : this.$t('ready').toLowerCase()
-      }
-
-      return this.timeString
-    },
-
-    pageTitle () {
-      return this.scheduleStore.getCurrentItem
-        ? this.$t('section.' + this.scheduleStore.getCurrentItem.type).toLowerCase()
-        : 'Pomodoro'
-    },
-
-    progressBarSchedules () {
-      const numSchedules = this.settingsStore.performance.showProgressBar ? 2 : 1
-      return this.scheduleStore.getSchedule.slice(0, numSchedules)
-    },
-
-    ...mapStores(useSettings, useSchedule, useEvents)
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 .timer-background {
