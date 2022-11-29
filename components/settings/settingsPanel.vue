@@ -34,11 +34,7 @@ const state = reactive({
   resetConfirm: false
 })
 
-// const notificationPermission = computed(() => {
-//   return Notification ? (Notification.permission === 'granted' && this.settingsStore.permissions.notifications) : false
-// })
-
-// notificationsStore.updateEnabled()
+notificationsStore.updateEnabled()
 </script>
 
 <template>
