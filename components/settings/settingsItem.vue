@@ -77,7 +77,7 @@ const value = computed({
       }
     }
 
-    if (typeof candidate === 'string' || typeof candidate === 'number') {
+    if (typeof candidate === 'string' || typeof candidate === 'number' || typeof candidate === 'boolean') {
       return candidate
     } else {
       return null
