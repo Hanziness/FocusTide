@@ -5,7 +5,6 @@ import { useI18n } from 'vue-i18n'
 import { useSchedule } from '~~/stores/schedule'
 import { useSettings } from '~~/stores/settings'
 
-// Static imports:
 import { useTicker } from '~~/components/ticker'
 import { useWeb } from '~~/platforms/web'
 import { useMobile } from '~~/platforms/mobile'
@@ -20,7 +19,6 @@ import { useMobileSettings } from '~~/stores/platforms/mobileSettings'
 // components
 const AppBar = defineAsyncComponent(() => import('@/components/appBar.vue'))
 const SettingsPanel = defineAsyncComponent(() => import('@/components/settings/settingsPanel.vue'))
-// const TodoList = defineAsyncComponent(() => import('@/components/todoList/main.vue'))
 const TutorialView = defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue'))
 const UiOverlay = defineAsyncComponent(() => import('@/components/base/uiOverlay.vue'))
 
@@ -73,15 +71,6 @@ const state = reactive({
   showTodoManager: false,
   timeString: ''
 })
-
-// const currentColour = computed(() => {
-//   const currentState = scheduleStore.items[0]?.type
-//   if (currentState) {
-//     return settingsStore.getColor(currentState)
-//   } else {
-//     return ''
-//   }
-// })
 
 const remainingTimeString = computed(() => {
   if (scheduleStore.getCurrentTimerState === 3) {

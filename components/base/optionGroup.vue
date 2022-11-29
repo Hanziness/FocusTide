@@ -17,32 +17,6 @@ const props = withDefaults(defineProps<Props>(), {
   })
 })
 
-// const props = defineProps({
-//   choices: {
-//     type: Object,
-//     required: true,
-//     default: () => ({})
-//   },
-
-//   translationKey: {
-//     type: String,
-//     default: ''
-//   },
-
-//   value: {
-//     type: String,
-//     default: ''
-//   },
-
-//   overrideText: {
-//     type: Object as PropType<Record<'title'|'description', Record<string, string>>>,
-//     default: () => ({
-//       title: {},
-//       description: {}
-//     })
-//   }
-// })
-
 const emit = defineEmits<{(type: 'input', value: keyof Props['choices']): void }>()
 
 const select = (key: string) => {

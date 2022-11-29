@@ -82,14 +82,6 @@ const value = computed({
     } else {
       return null
     }
-
-    // return props.path.reduce((prev, property) => {
-    //   if (prev != null) {
-    //     const next = (prev)[property as keyof typeof settingsStore.$state] || null
-    //     return next
-    //   }
-    //   return null
-    // }, settingsStore.$state)
   },
 
   set (newValue) {

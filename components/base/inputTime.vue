@@ -1,7 +1,4 @@
 <script setup lang="ts">
-// import Toggle from './toggle.vue'
-// import ButtonComponent from './button.vue'
-
 const props = defineProps({
   value: {
     type: Number,
