@@ -19,7 +19,7 @@ export const useNotifications = defineStore('notifications', {
         return
       }
 
-      if (window && window.Notification) {
+      if (typeof window !== 'undefined' && window.Notification) {
         const permissions = window.Notification.permission
         switch (permissions) {
           case 'default':
