@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { settings } from '~~/dist/_nuxt/fr.3cdea116.mjs'
-import { useSettings } from '~~/stores/settings'
+import { PropType } from 'vue'
+import { Section, useSettings } from '~~/stores/settings'
 
 const settingsStore = useSettings()
 
 const props = defineProps({
   type: {
-    type: String,
+    type: String as PropType<Section>,
     required: true
   },
   active: {
@@ -16,7 +16,6 @@ const props = defineProps({
 })
 
 const colour = computed(() => settingsStore.getColor(props.type))
-
 </script>
 
 <template>
