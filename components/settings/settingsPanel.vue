@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XIcon as CloseIcon, AdjustmentsIcon as TabIconGeneral, AlarmIcon as TabIconSchedule, ArtboardIcon as TabIconVisuals, InfoCircleIcon as InfoIcon } from 'vue-tabler-icons'
+import { XIcon as CloseIcon, AdjustmentsIcon as TabIconGeneral, AlarmIcon as TabIconSchedule, ArtboardIcon as TabIconVisuals, InfoCircleIcon as InfoIcon, InfoCircleIcon as TabIconAbout } from 'vue-tabler-icons'
 
 import OptionGroup from '@/components/base/optionGroup.vue'
 import TabHeader from '@/components/settings/panel/tabHeader.vue'
