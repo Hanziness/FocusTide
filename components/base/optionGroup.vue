@@ -5,7 +5,7 @@ interface Props {
   choices: Record<string, unknown>,
   translationKey?: string,
   value: keyof Props['choices'] | null,
-  overrideText: Record<'title'|'description', Record<string, string>>
+  overrideText?: Record<'title'|'description', Record<string, string>>
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -59,7 +59,7 @@ const select = (key: string) => {
         class="min-w-0"
         :active="key === props.value"
         :title="!!props.overrideText.title[key] ? props.overrideText.title[key] : $t(`${props.translationKey}._values.${key}`)"
-        :description="props.overrideText.description[key] ? (!!props.overrideText.description[key] ? props.overrideText.description[key] : $t(`${props.translationKey}._valueDescription.${key}`)) : ''"
+        :description="!!props.overrideText.description[key] ? props.overrideText.description[key] : (props.translationKey ? $t(`${props.translationKey}._valueDescription.${key}`) : '')"
         @click="select(key)"
       />
     </slot>
