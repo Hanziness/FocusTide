@@ -1,3 +1,11 @@
+<script setup lang="ts">
+const emit = defineEmits<{(type: 'mounted'): void}>()
+
+onMounted(() => {
+  emit('mounted')
+})
+</script>
+
 <template>
   <div class="relative w-screen">
     <slot name="before" />
@@ -5,11 +13,3 @@
     <slot name="after" />
   </div>
 </template>
-
-<script>
-export default {
-  mounted () {
-    this.$emit('mounted')
-  }
-}
-</script>

@@ -4,9 +4,3 @@
     <slot name="right" />
   </div>
 </template>
-
-<script>
-export default {
-
-}
-</script>
