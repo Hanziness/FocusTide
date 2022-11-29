@@ -2,15 +2,7 @@
 import { computed, defineAsyncComponent } from 'vue'
 import { useSettings } from '~~/stores/settings'
 import OptionGroup from '~~/components/base/optionGroup.vue'
-
-enum Control {
-  Check = 'check',
-  Text = 'text',
-  Time = 'time',
-  Number = 'number',
-  Option = 'option',
-  Empty = 'empty'
-}
+import { Control } from '~~/components/settings/types/settingsItem'
 
 const controls : Record<Control, unknown> = {
   check: defineAsyncComponent(() => import('~~/components/base/uiToggle.vue')),
@@ -38,6 +30,33 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+
+// const props = defineProps({
+//   path: {
+//     type: String as PropType<NestedKeyOf<typeof settingsStore.$state>>,
+//     required: true
+//   },
+//   type: {
+//     type: String as PropType<Control>,
+//     required: true
+//   },
+//   disabled: {
+//     type: Boolean,
+//     default: false
+//   },
+//   choices: {
+//     type: Object,
+//     required: true
+//   },
+//   min: {
+//     type: Number,
+//     default: 0
+//   },
+//   max: {
+//     type: Number,
+//     default: 10
+//   }
+// })
 const translationKey = 'settings.values.' + props.path
 
 const emit = defineEmits<{(event: 'input', value: unknown): void }>()
@@ -58,7 +77,11 @@ const value = computed({
       }
     }
 
-    return candidate
+    if (typeof candidate === 'string' || typeof candidate === 'number') {
+      return candidate
+    } else {
+      return null
+    }
 
     // return props.path.reduce((prev, property) => {
     //   if (prev != null) {
@@ -120,7 +143,7 @@ const isSideControls = computed(() => ![Control.Option, Control.Empty].includes(
         v-if="props.type === Control.Option"
         :choices="props.choices"
         :disabled="props.disabled"
-        :value="value"
+        :value="value ?? ''"
         :translation-key="translationKey"
         @input="(newValue: any) => value = newValue"
       />

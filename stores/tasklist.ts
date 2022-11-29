@@ -28,7 +28,7 @@ export const useTasklist = defineStore('tasklist', {
 
   getters: {
     /** Returns a sorted version of the tasks array where higher priorities go before lower priorities */
-    sortedTasks: (state) => {
+    sortedTasks: (state): Task[] => {
     // return a sorted copy (`sort` sorts in place)
       return [...state.tasks].sort((a, b) => {
         return b.priority - a.priority

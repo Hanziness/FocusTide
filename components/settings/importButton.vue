@@ -1,16 +1,13 @@
-<template>
-  <Button default-style :importance="2" @click="openFileDialog">
-    <input ref="fileinput" accept=".json" type="file" hidden @change="importFile">
-    <span v-text="$t('settings.manage.buttons.load')" />
-  </Button>
-</template>
-
-<script>
+<script setup lang="ts">
+import { Ref } from 'vue'
+import { Store } from 'pinia'
 import Button from '@/components/base/button.vue'
 import { useSettings } from '~~/stores/settings'
 import { useTasklist } from '~~/stores/tasklist'
 
-function filterImportedObject (store, objectToImport) {
+const fileinput: Ref<HTMLInputElement | null> = ref(null)
+
+function filterImportedObject (store: Store, objectToImport: Record<string, unknown>) {
   const storeKeys = Object.keys(store.$state)
   return Object
     .keys(objectToImport)
@@ -18,39 +15,43 @@ function filterImportedObject (store, objectToImport) {
     .reduce((prev, key) => Object.assign(prev, { [key]: objectToImport[key] }), {})
 }
 
-export default {
-  components: { Button },
+const openFileDialog = () => {
+  fileinput.value?.click()
+}
 
-  methods: {
-    openFileDialog () {
-      this.$refs.fileinput.click()
-    },
+const importFile = () => {
+  // try to get file from the input field
+  const file = (fileinput.value as HTMLInputElement).files?.item(0)
+  if (!file) {
+    return
+  }
 
-    importFile () {
-      // try to get file from the input field
-      const file = this.$refs.fileinput.files[0]
-      if (!file) {
-        return
-      }
+  // read file
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    if (!e.target) { return }
+    const fileContents = e.target.result
 
-      // read file
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        const fileContents = e.target.result
+    if (!fileContents) { return }
 
-        // try to patch settings and task list with the imported values
-        try {
-          const importedValues = JSON.parse(fileContents)
-          const settingsStore = useSettings()
-          const tasklistStore = useTasklist()
-          settingsStore.$patch(filterImportedObject(settingsStore, importedValues.settings))
-          tasklistStore.$patch(filterImportedObject(tasklistStore, importedValues.tasklist))
-        } catch (err) {
-          console.warn(err)
-        }
-      }
-      reader.readAsText(file)
+    // try to patch settings and task list with the imported values
+    try {
+      const importedValues = JSON.parse(fileContents as string)
+      const settingsStore = useSettings()
+      const tasklistStore = useTasklist()
+      settingsStore.$patch(filterImportedObject(settingsStore, importedValues.settings))
+      tasklistStore.$patch(filterImportedObject(tasklistStore, importedValues.tasklist))
+    } catch (err) {
+      console.warn(err)
     }
   }
+  reader.readAsText(file)
 }
 </script>
+
+<template>
+  <Button default-style :importance="2" @click="openFileDialog">
+    <input ref="fileinput" accept=".json" type="file" hidden @change="importFile">
+    <span v-text="$t('settings.manage.buttons.load')" />
+  </Button>
+</template>

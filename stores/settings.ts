@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { EventType, useEvents } from './events'
 import TickMultipliers from '~~/assets/settings/adaptiveTickingMultipliers'
-import timerPresets from '@/assets/settings/timerPresets'
+import timerPresets from '~~/assets/settings/timerPresets'
 import { languages } from '~~/plugins/i18n'
 
 export enum TimerType {
@@ -227,8 +227,12 @@ export const useSettings = defineStore('settings', {
       useEvents().recordEvent(newHidden === true ? EventType.FOCUS_LOST : EventType.FOCUS_GAIN)
     },
 
-    applyPreset (id: keyof typeof timerPresets) {
-      if (timerPresets[id]) {
+    applyPreset (id: string) {
+      const validate = (id: string): id is keyof typeof timerPresets => {
+        return Object.keys(timerPresets).includes(id)
+      }
+
+      if (validate(id)) {
         this.schedule.lengths = Object.assign({}, timerPresets[id].lengths)
       }
     },
