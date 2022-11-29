@@ -22,7 +22,7 @@ const AppBar = defineAsyncComponent(() => import('@/components/appBar.vue'))
 const SettingsPanel = defineAsyncComponent(() => import('@/components/settings/settingsPanel.vue'))
 // const TodoList = defineAsyncComponent(() => import('@/components/todoList/main.vue'))
 const TutorialView = defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue'))
-const UiOverlay = defineAsyncComponent(() => import('@/components/base/overlay.vue'))
+const UiOverlay = defineAsyncComponent(() => import('@/components/base/uiOverlay.vue'))
 
 const settingsStore = useSettings()
 const mobileSettingsStore = useMobileSettings()
