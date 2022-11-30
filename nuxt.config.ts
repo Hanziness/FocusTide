@@ -59,7 +59,6 @@ export default defineNuxtConfig({
     }
   },
 
-  target: 'static',
   ssr: true,
 
   /*
@@ -132,12 +131,12 @@ export default defineNuxtConfig({
 
   generate: {
     // Generate fallback pages (makes error pages work on Netlify, too)
-    fallback: currentPlatform === 'web' ? '404.html' : undefined,
-    crawler: currentPlatform === 'web',
+    // fallback: currentPlatform === 'web' ? '404.html' : undefined,
+    // crawler: currentPlatform === 'web',
 
     // Exclude home and setup pages on mobile platforms
-    exclude: currentPlatform === 'mobile' ? ['/', '/setup'] : [],
-    manifest: false
+    exclude: currentPlatform === 'mobile' ? ['/', '/setup'] : []
+    // manifest: false
   },
 
   /**
@@ -219,6 +218,11 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    define: {
+      // disable Options API support in Vue
+      __VUE_OPTIONS_API__: false,
+      __VUE_PROD_DEVTOOLS__: false
+    },
     build: {
       manifest: false,
       ssrManifest: false

@@ -2,25 +2,26 @@
 import { computed, defineAsyncComponent } from 'vue'
 import { useSettings } from '~~/stores/settings'
 import OptionGroup from '~~/components/base/optionGroup.vue'
+import { Control } from '~~/components/settings/types/settingsItem'
 
-enum Control {
-  Check = 'check',
-  Text = 'text',
-  Time = 'time',
-  Number = 'number',
-  Option = 'option',
-  Empty = 'empty'
-}
-
-const controls = {
-  check: defineAsyncComponent(() => import('@/components/base/toggle.vue')),
+const controls : Record<Control, unknown> = {
+  check: defineAsyncComponent(() => import('~~/components/base/uiToggle.vue')),
   text: defineAsyncComponent(() => import('@/components/base/inputText.vue')),
   time: defineAsyncComponent(() => import('@/components/base/inputTime.vue')),
-  number: defineAsyncComponent(() => import('@/components/base/inputNumber.vue'))
+  number: defineAsyncComponent(() => import('@/components/base/inputNumber.vue')),
+  option: null,
+  empty: null
 }
+const settingsStore = useSettings()
+
+type NestedKeyOf<ObjectType extends object> =
+  {[Key in keyof ObjectType & (string | number)]: ObjectType[Key] extends object
+  ? `${Key}` | `${Key}.${NestedKeyOf<ObjectType[Key]>}`
+  : `${Key}`
+  }[keyof ObjectType & (string | number)];
 
 interface Props {
-  path: Array<string>,
+  path: NestedKeyOf<typeof settingsStore.$state> | 'manage',
   type: Control,
   disabled?: boolean,
   choices?: Record<string, unknown>,
@@ -29,11 +30,10 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const translationKey = 'settings.values.' + props.path.join('.')
 
-const settingsStore = useSettings()
+const translationKey = 'settings.values.' + props.path
 
-const emit = defineEmits<{(event: 'input', value: any): void }>()
+const emit = defineEmits<{(event: 'input', value: unknown): void }>()
 
 const value = computed({
   get () {
@@ -41,13 +41,21 @@ const value = computed({
       return null
     }
 
-    return props.path.reduce((prev, property) => {
-      if (prev != null) {
-        const next = (prev as any)[property] || null
-        return next
+    let candidate = settingsStore.$state
+    const pathSplit = props.path.split('.')
+
+    for (let i = 0; i < pathSplit.length; i++) {
+      candidate = (candidate as any)[pathSplit[i]] as any || null // eslint-disable-line @typescript-eslint/no-explicit-any
+      if (candidate === undefined) {
+        break
       }
+    }
+
+    if (typeof candidate === 'string' || typeof candidate === 'number' || typeof candidate === 'boolean') {
+      return candidate
+    } else {
       return null
-    }, settingsStore.$state)
+    }
   },
 
   set (newValue) {
@@ -56,14 +64,14 @@ const value = computed({
     }
 
     const patchObj = {}
-    let current = patchObj
-    const lastPathItem = props.path[props.path.length - 1]
+    let current: Record<string, unknown> = patchObj
 
-    for (let i = 0; i < props.path.length - 1; i++) {
-      current = current[props.path[i]] = current[props.path[i]] || {}
+    const splitPath = props.path.split('.')
+    for (let i = 0; i < splitPath.length; i++) {
+      current[splitPath[i]] = i === splitPath.length - 1 ? newValue : {}
+      current = current[splitPath[i]] as Record<string, unknown>
     }
 
-    current[lastPathItem] = newValue
     settingsStore.$patch(patchObj)
     emit('input', newValue)
   }
@@ -90,7 +98,7 @@ const isSideControls = computed(() => ![Control.Option, Control.Empty].includes(
           :choices="props.choices"
           class="ml-auto"
           :value="value"
-          @input="(newValue) => value = newValue"
+          @input="(newValue: any) => value = newValue"
         />
       </div>
     </div>
@@ -101,9 +109,9 @@ const isSideControls = computed(() => ![Control.Option, Control.Empty].includes(
         v-if="props.type === Control.Option"
         :choices="props.choices"
         :disabled="props.disabled"
-        :value="value"
+        :value="value ?? ''"
         :translation-key="translationKey"
-        @input="(newValue) => value = newValue"
+        @input="(newValue: any) => value = newValue"
       />
       <slot />
     </div>

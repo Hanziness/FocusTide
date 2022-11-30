@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { useSchedule } from '~~/stores/schedule'
+import ScheduleItem from '@/components/schedule/scheduleItem.vue'
+
+const scheduleStore = useSchedule()
+</script>
+
 <template>
   <TransitionGroup
     enter-active-class="transition duration-300 delay-150"
@@ -9,27 +16,10 @@
     class="relative flex-grow-0 h-full rounded-full select-none"
   >
     <schedule-item
-      v-for="(item, i) in getSchedule"
+      v-for="(item, i) in scheduleStore.getSchedule"
       :key="item.id"
       :type="item.type"
       :active="i === 0"
     />
   </TransitionGroup>
 </template>
-
-<script>
-import { mapState } from 'pinia'
-import { useSchedule } from '~~/stores/schedule'
-
-import ScheduleItem from '@/components/schedule/scheduleItem.vue'
-
-export default {
-  components: {
-    ScheduleItem
-  },
-
-  computed: {
-    ...mapState(useSchedule, ['getSchedule'])
-  }
-}
-</script>

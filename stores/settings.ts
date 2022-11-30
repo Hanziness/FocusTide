@@ -1,8 +1,91 @@
 import { defineStore } from 'pinia'
 import { EventType, useEvents } from './events'
-import TickMultipliers from '@/assets/settings/adaptiveTickingMultipliers'
-import timerPresets from '@/assets/settings/timerPresets'
+import TickMultipliers from '~~/assets/settings/adaptiveTickingMultipliers'
+import timerPresets from '~~/assets/settings/timerPresets'
 import { languages } from '~~/plugins/i18n'
+
+export enum TimerType {
+  Traditional = 'traditional',
+  Approximate = 'approximate',
+  Percentage = 'percentage'
+}
+
+export enum SoundSet {
+  Musical = 'musical'
+}
+
+export enum Section {
+  work = 'work',
+  shortpause = 'shortpause',
+  longpause = 'longpause'
+}
+
+export interface Settings {
+  _updated: boolean,
+  lang: string,
+  visuals: {
+    theme: {
+      work: number[],
+      shortpause: number[],
+      longpause: number[]
+    },
+    darkMode: boolean
+    },
+    performance: {
+      showProgressBar: boolean
+    },
+    schedule: {
+      lengths: {
+        work: number,
+        shortpause: number,
+        longpause: number
+      },
+      longPauseInterval: number, // every 3rd pause is a long one,
+      autoStartNextTimer: {
+        wait: number,
+        autostart: boolean
+      },
+      numScheduleEntries: number,
+      visibility: {
+        enabled: boolean,
+        showSectionType: boolean
+      }
+    },
+    eventLoggingEnabled: boolean,
+    currentTimer: TimerType,
+    adaptiveTicking: {
+      enabled: boolean,
+      baseTickRate: number,
+      registeredHidden: boolean | null
+    },
+    permissions: {
+      notifications: boolean | null,
+      audio: boolean
+    },
+    audio: {
+      volume: number,
+      repeatTimes: number,
+      soundSet: SoundSet
+    },
+    timerControls: {
+      enableKeyboardShortcuts: boolean
+    },
+    tasks: {
+      enabled: boolean,
+      maxActiveTasks: number,
+      removeCompletedTasks: boolean
+    },
+    pageTitle: {
+      useTickEmoji: boolean
+    },
+    mobile: {
+      notifications: {
+        sectionOver: true,
+        persistent: boolean
+      }
+    },
+    reset: boolean
+}
 
 export enum ColorMethod {
   /** `rgb(r, g, b)` */
@@ -10,12 +93,6 @@ export enum ColorMethod {
 
   /** `r g b` */
   modern
-}
-
-export const AvailableTimers = {
-  TIMER_TRADITIONAL: 'traditional',
-  TIMER_APPROXIMATE: 'approximate',
-  TIMER_PERCENTAGE: 'percentage'
 }
 
 export const AvailableSoundSets = {
@@ -32,22 +109,14 @@ const getDefaultLocale = () : string => {
 }
 
 export const useSettings = defineStore('settings', {
-  state: () => ({
+  state: () : Settings => ({
     _updated: false,
     lang: getDefaultLocale(),
     visuals: {
-      // TODO breaking change, previously it was a string: 'rgb(r, b, g)'
-      work: {
-        colour: [255, 107, 107]
-      },
-      shortpause: {
-        colour: [244, 162, 97]
-      },
-      longpause: {
-        colour: [46, 196, 182]
-      },
-      wait: {
-        colour: [222, 226, 230]
+      theme: {
+        work: [255, 107, 107],
+        shortpause: [244, 162, 97],
+        longpause: [46, 196, 182]
       },
       darkMode: false
     },
@@ -72,20 +141,20 @@ export const useSettings = defineStore('settings', {
       }
     },
     eventLoggingEnabled: false,
-    currentTimer: AvailableTimers.TIMER_APPROXIMATE,
+    currentTimer: TimerType.Approximate,
     adaptiveTicking: {
       enabled: true,
       baseTickRate: 1000,
       registeredHidden: null
     },
     permissions: {
-      notifications: null as boolean,
+      notifications: false,
       audio: true
     },
     audio: {
       volume: 0.9,
       repeatTimes: 2,
-      soundSet: 'musical'
+      soundSet: SoundSet.Musical
     },
     timerControls: {
       enableKeyboardShortcuts: true
@@ -108,18 +177,16 @@ export const useSettings = defineStore('settings', {
   }),
 
   getters: {
-    isUserPresetActive: (state) => {
-      return JSON.stringify(timerPresets.user) === JSON.stringify(state.schedule.lengths)
-    },
-
     getActiveSchedulePreset: (state) => {
-      for (const key in timerPresets) {
-        if (JSON.stringify(timerPresets[key].lengths) === JSON.stringify(state.schedule.lengths)) {
-          return key
-        }
-      }
+      const index = Object.entries(timerPresets).findIndex(([_key, value]) => {
+        return JSON.stringify(value.lengths) === JSON.stringify(state.schedule.lengths)
+      })
 
-      return null
+      if (index >= 0) {
+        return Object.keys(timerPresets)[index]
+      } else {
+        return null
+      }
     },
 
     getAdaptiveTickRate: (state) => {
@@ -143,11 +210,11 @@ export const useSettings = defineStore('settings', {
     },
 
     getColor: (state) => {
-      return (color: string, method: ColorMethod = ColorMethod.classic) => {
+      return (color: keyof Settings['visuals']['theme'], method: ColorMethod = ColorMethod.classic): string => {
         if (method === ColorMethod.classic) {
-          return `rgb(${(state.visuals[color].colour as number[]).join(',')})`
-        } else if (method === ColorMethod.modern) {
-          return (state.visuals[color].colour as number[]).join(' ')
+          return `rgb(${state.visuals.theme[color].join(',')})`
+        } else {
+          return state.visuals.theme[color].join(' ')
         }
       }
     }
@@ -160,87 +227,18 @@ export const useSettings = defineStore('settings', {
       useEvents().recordEvent(newHidden === true ? EventType.FOCUS_LOST : EventType.FOCUS_GAIN)
     },
 
-    applyPreset (id) {
-      if (timerPresets[id]) {
+    applyPreset (id: string) {
+      const validate = (id: string): id is keyof typeof timerPresets => {
+        return Object.keys(timerPresets).includes(id)
+      }
+
+      if (validate(id)) {
         this.schedule.lengths = Object.assign({}, timerPresets[id].lengths)
       }
     },
 
-    /** @deprecated Use Pinia's $patch method instead! */
-    mergeSettings (newSettings) {
-      // reset settings before merging new ones
-      this.$reset()
-
-      for (const key in newSettings) {
-        if (Object.hasOwnProperty.call(newSettings, key)) {
-          if (typeof newSettings[key] === 'object') {
-            // perform merge
-            this[key] = {
-              ...this[key],
-              ...newSettings[key]
-            }
-          } else {
-            this[key] = newSettings[key]
-          }
-        }
-      }
-    },
-
-    changeClockStyle (newStyle) {
-      if (Object.values(AvailableTimers).findIndex(newStyle) !== -1) {
-        this.currentTimer = newStyle
-      }
-    },
-
-    /**
-     * @deprecated Change the state directly instead
-     */
-    SET ({ key, value, byRef = false }) {
-      /*
-       * example: key = ['a', 'b']
-       * we find currentElement = state.settings.a, then set currentElement[b] = value
-       * if we found state.settings.a.b at first, we couldn't change the value as
-       * we wouldn't have a reference to the (primitive) a.b!
-       */
-
-      // find parent object
-      let currentElement = this.$state
-      for (let index = 0; index < key.length - 1; index++) {
-        currentElement = currentElement[key[index]]
-      }
-
-      // set value
-      if (typeof value === 'object' && value !== null && !byRef) {
-        // this avoids assigning by reference
-        currentElement[key[key.length - 1]] = Object.assign({}, value)
-      } else {
-        currentElement[key[key.length - 1]] = value
-      }
-    },
-
-    setReset (shouldReset) {
+    setReset (shouldReset: boolean) {
       this.reset = shouldReset
-    },
-
-    /**
-     * Mutation to force hydration after use of `replaceState`
-     * @deprecated This is probably not needed anymore as state can be directly replaced in Pinia
-    */
-    _setUpdated () {
-      this._updated = true
-      this._updated = false
-    },
-
-    // BEGIN ACTIONS
-    /**
-     * @deprecated Use Pinia's $reset method instead
-     */
-    resetSettings (store) {
-      const defaults = this.$state()
-      defaults.lang = store.state.lang // keep language preference
-
-      // defaults.lang = store.state.lang
-      store.commit('mergeSettings', defaults)
     }
   }
 })

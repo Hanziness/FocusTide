@@ -3,8 +3,3 @@
     <slot class="z-30" />
   </div>
 </template>
-
-<script>
-export default {
-}
-</script>

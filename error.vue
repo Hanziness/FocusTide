@@ -52,8 +52,8 @@
 <script>
 import { MoodSadIcon, RoadSignIcon, MoodConfuzedIcon, RefreshAlertIcon, RefreshIcon, HomeIcon, BrandGithubIcon, BrandTwitterIcon, MessagesIcon, BugIcon } from 'vue-tabler-icons'
 import { mapActions } from 'pinia'
-import ActionButton from '@/components/error/action.vue'
-import ActionBar from '@/components/error/actionBar.vue'
+import ActionButton from '~~/components/error/errorAction.vue'
+import ActionBar from '~~/components/error/errorActionBar.vue'
 import { useSettings } from '~~/stores/settings'
 
 const actionType = {

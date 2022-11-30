@@ -13,16 +13,18 @@ const props = defineProps({
     default: ''
   }
 })
+
+const emit = defineEmits<{(type: 'click'): void}>()
 </script>
 
 <template>
   <button
-    class="px-3 py-4 border border-solid border-gray-300 rounded-xl bg-white text-left dark:bg-gray-800 dark:border-gray-600 basis-0 transition-colors flex flex-col justify-start"
+    class="flex flex-col justify-start px-3 py-4 text-left transition-colors bg-white border border-gray-300 border-solid rounded-xl dark:bg-gray-800 dark:border-gray-600 basis-0"
     :class="[{
       'bg-primary dark:bg-primary border-transparent dark:border-transparent ring ring-primary ring-offset-2 dark:ring-offset-slate-800 text-primary-font dark:text-primary-font': active,
       'hover:bg-gray-200 dark:hover:bg-gray-600': !active
     }]"
-    @click="$emit('click')"
+    @click="emit('click')"
   >
     <div class="text-lg" :class="[{'font-bold uppercase': props.description.length > 0 }]">
       <slot name="title">

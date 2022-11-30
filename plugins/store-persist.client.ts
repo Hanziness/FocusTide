@@ -1,4 +1,5 @@
 import { defineNuxtPlugin, useRouter } from '#app'
+import { PiniaPluginContext, Store } from 'pinia'
 import { useMain, flags } from '~~/stores/main'
 
 interface BreakingChange {
@@ -14,6 +15,14 @@ const breakingChanges: BreakingChange[] = [
     to: '1.3.0',
     reason: [
       'Timer theme colours are now stored in a different way, restoring previous settings would cause the app to not have colours.'
+    ],
+    affectedStores: ['settings']
+  },
+  {
+    from: '1.0.0',
+    to: '1.4.0',
+    reason: [
+      'The settings\' theming data was restructured.'
     ],
     affectedStores: ['settings']
   }
@@ -46,19 +55,23 @@ function getBlockedStores (): Record<string, string[]> {
     }
 
     return affectedStores
-  }, {})
+  }, {} as Record<string, string[]>)
 }
 
 /** Restore store to its persisted state (if there is such a state) */
-function restoreStore (store) {
-  const stateToRestore = JSON.parse(localStorage.getItem(getStorePersistenceKey(store.$id)))
+function restoreStore (store: Store) {
+  const lsStore = localStorage.getItem(getStorePersistenceKey(store.$id))
+  if (store === null) {
+    return
+  }
+
+  const stateToRestore = JSON.parse(lsStore as string)
 
   if (stateToRestore !== null) {
     onMounted(() => {
       store.$patch(stateToRestore)
     })
 
-    console.log(`Restoring ${store.$id}`)
     const mainStore = useMain()
     mainStore.registerFlag(flags.STORE_RESTORED)
   }
@@ -69,12 +82,12 @@ export default defineNuxtPlugin(({ $pinia }) => {
   const blockedStores = getBlockedStores()
   //
 
-  const PiniaPersistPlugin = ({ store }) => {
-    if (store.$id === 'main') {
-      store.$patch({
-        skippedStores: blockedStores
-      })
-    }
+  const PiniaPersistPlugin = ({ store }: PiniaPluginContext) => {
+    // if (store.$id === 'main') {
+    //   store.$patch({
+    //     skippedStores: blockedStores
+    //   })
+    // }
 
     if (persistStores.includes(store.$id)) {
       const restore = localStorage.getItem(storeResetKey) == null
@@ -95,7 +108,6 @@ export default defineNuxtPlugin(({ $pinia }) => {
           getStorePersistenceKey(store.$id),
           JSON.stringify(store.$state)
         )
-        console.info(`Written state for ${store.$id}`)
 
         // Subscribe to changes and persist them
         const unsubscribe = store.$subscribe(() => {

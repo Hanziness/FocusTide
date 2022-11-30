@@ -8,16 +8,16 @@ export const flags = {
 export const useMain = defineStore('main', {
   state: () => ({
     version: useRuntimeConfig().public.PACKAGE_VERSION,
-    flags: [],
-    skippedStores: {}
+    flags: [] as string[],
+    skippedStores: {} as Record<string, string[]>
   }),
 
   getters: {
-    isFlagActive: state => flag => state.flags.includes(flag)
+    isFlagActive: state => (flag: string) => state.flags.includes(flag)
   },
 
   actions: {
-    registerFlag (flag) {
+    registerFlag (flag: string) {
       if (!this.flags.includes(flag)) {
         this.flags.push(flag)
       }
