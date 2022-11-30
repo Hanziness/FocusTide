@@ -21,7 +21,7 @@ type NestedKeyOf<ObjectType extends object> =
   }[keyof ObjectType & (string | number)];
 
 interface Props {
-  path: NestedKeyOf<typeof settingsStore.$state>,
+  path: NestedKeyOf<typeof settingsStore.$state> | 'manage',
   type: Control,
   disabled?: boolean,
   choices?: Record<string, unknown>,
