@@ -31,32 +31,6 @@ interface Props {
 
 const props = defineProps<Props>()
 
-// const props = defineProps({
-//   path: {
-//     type: String as PropType<NestedKeyOf<typeof settingsStore.$state>>,
-//     required: true
-//   },
-//   type: {
-//     type: String as PropType<Control>,
-//     required: true
-//   },
-//   disabled: {
-//     type: Boolean,
-//     default: false
-//   },
-//   choices: {
-//     type: Object,
-//     required: true
-//   },
-//   min: {
-//     type: Number,
-//     default: 0
-//   },
-//   max: {
-//     type: Number,
-//     default: 10
-//   }
-// })
 const translationKey = 'settings.values.' + props.path
 
 const emit = defineEmits<{(event: 'input', value: unknown): void }>()
