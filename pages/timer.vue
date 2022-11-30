@@ -18,9 +18,7 @@ import { useMobileSettings } from '~~/stores/platforms/mobileSettings'
 
 // components
 const AppBar = defineAsyncComponent(() => import('@/components/appBar.vue'))
-const SettingsPanel = defineAsyncComponent(() => import('@/components/settings/settingsPanel.vue'))
 const TutorialView = defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue'))
-const UiOverlay = defineAsyncComponent(() => import('@/components/base/uiOverlay.vue'))
 
 const settingsStore = useSettings()
 const mobileSettingsStore = useMobileSettings()
@@ -67,8 +65,6 @@ if (runtimeConfig.public.PLATFORM === AppPlatform.web) {
 }
 
 const state = reactive({
-  showSettings: false,
-  showTodoManager: false,
   timeString: ''
 })
 
@@ -101,13 +97,7 @@ const progressBarSchedules = computed(() => {
     <!-- Dark mode background override -->
     <div class="absolute w-full h-full dark:bg-gray-900" />
 
-    <!-- Settings panel -->
-    <Transition name="transition-fade">
-      <UiOverlay v-if="state.showSettings" />
-    </Transition>
-    <Transition name="transition-slidein">
-      <SettingsPanel v-if="state.showSettings" v-model="state.showSettings" class="right-0" />
-    </Transition>
+    <!-- Progress bar -->
     <TransitionGroup name="progress-transition" tag="div" :duration="1000">
       <TimerProgress
         v-for="(scheduleItem, index) in progressBarSchedules"
