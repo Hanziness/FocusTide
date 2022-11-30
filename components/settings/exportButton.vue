@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ButtonControl from '@/components/base/button.vue'
+import ButtonControl from '~~/components/base/uiButton.vue'
 import { useSettings } from '~~/stores/settings'
 import { useTasklist } from '~~/stores/tasklist'
 

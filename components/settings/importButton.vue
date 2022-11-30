@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Ref } from 'vue'
 import { Store } from 'pinia'
-import Button from '@/components/base/button.vue'
+import Button from '~~/components/base/uiButton.vue'
 import { useSettings } from '~~/stores/settings'
 import { useTasklist } from '~~/stores/tasklist'
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { CornerDownLeftIcon } from 'vue-tabler-icons'
 import { Ref } from 'vue'
-import Button from '@/components/base/button.vue'
+import Button from '~~/components/base/uiButton.vue'
 import { TaskState, useTasklist } from '~~/stores/tasklist'
 import { useSchedule } from '~~/stores/schedule'
 

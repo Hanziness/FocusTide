@@ -1,6 +1,6 @@
 <script setup>
 import { PlayerPlayIcon, PlayerPauseIcon, PlayerStopIcon, PlayerTrackNextIcon } from 'vue-tabler-icons'
-import CButton from '@/components/base/button.vue'
+import CButton from '~~/components/base/uiButton.vue'
 import { TimerState, useSchedule } from '~~/stores/schedule'
 
 const scheduleStore = useSchedule()

@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts"> // eslint-disable-line vue/multi-word-component-names
 import SettingsPanel from '@/components/settings/settingsPanel.vue'
-import TodoList from '@/components/todoList/main.vue'
+import TodoList from '~~/components/todoList/todoList.vue'
 import { useOpenPanels } from '~~/stores/openpanels'
 import { useSchedule } from '~~/stores/schedule'
 import { useSettings } from '~~/stores/settings'
@@ -20,7 +20,7 @@ const scheduleStore = useSchedule()
       <SettingsPanel v-show="openPanels.settings" class="right-0" />
     </transition>
     <transition enter-from-class="translate-y-full" enter-active-class="duration-300 ease-out" leave-to-class="translate-y-full" leave-active-class="duration-150 ease-in">
-      <TodoList v-if="settingsStore.tasks.enabled && openPanels.todo" class="fixed bottom-0 z-10 w-full max-w-lg transition-all rounded-t-xl xl:right-4 xl:pb-8" :editing="[0].includes(scheduleStore.timerState)" @hide="showTodoManager = false" />
+      <TodoList v-if="settingsStore.tasks.enabled && openPanels.todo" class="fixed bottom-0 z-10 w-full max-w-lg transition-all rounded-t-xl xl:right-4 xl:pb-8" :editing="[0].includes(scheduleStore.timerState)" @hide="openPanels.todo = false" />
     </transition>
     <slot />
   </div>

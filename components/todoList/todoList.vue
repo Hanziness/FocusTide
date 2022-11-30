@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { XIcon } from 'vue-tabler-icons'
 
-import ControlButton from '@/components/base/button.vue'
-import TaskItem from '@/components/todoList/item.vue'
+import ControlButton from '~~/components/base/uiButton.vue'
+import TaskItem from '~~/components/todoList/todoItem.vue'
 import TaskAdd from '@/components/todoList/addTask.vue'
 import { useSettings } from '~~/stores/settings'
 import { useSchedule } from '~~/stores/schedule'

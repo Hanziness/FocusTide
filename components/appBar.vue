@@ -1,6 +1,6 @@
 <script setup>
 import { SettingsIcon, ChecklistIcon } from 'vue-tabler-icons'
-import CButton from '@/components/base/button.vue'
+import CButton from '~~/components/base/uiButton.vue'
 import ScheduleView from '@/components/schedule/scheduleDisplay.vue'
 import { useOpenPanels } from '@/stores/openpanels'
 import { useSchedule } from '~~/stores/schedule'

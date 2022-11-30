@@ -3,7 +3,7 @@ import { nextTick, Ref, PropType } from 'vue'
 import { MenuIcon, TrashIcon, PencilIcon } from 'vue-tabler-icons'
 import { TaskState, useTasklist, Task } from '~~/stores/tasklist'
 import { useSettings, ColorMethod } from '~~/stores/settings'
-import Button from '~/components/base/button.vue'
+import Button from '~~/components/base/uiButton.vue'
 
 // declare refs
 const editbox: Ref<HTMLInputElement | null> = ref(null)

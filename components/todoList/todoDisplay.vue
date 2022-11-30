@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TaskItem from './item.vue'
+import TaskItem from './todoItem.vue'
 import { TaskState, useTasklist } from '~~/stores/tasklist'
 import { useSettings } from '~~/stores/settings'
 import { useSchedule } from '~~/stores/schedule'

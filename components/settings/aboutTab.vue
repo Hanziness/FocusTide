@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { CoffeeIcon, BrandGithubIcon, BrandTwitterIcon, BrandFacebookIcon, BrandRedditIcon } from 'vue-tabler-icons'
-import Button from '~~/components/base/button.vue'
+import Button from '~~/components/base/uiButton.vue'
 import { AppPlatform } from '~~/platforms/platforms'
 import { useMain } from '~~/stores/main'
 

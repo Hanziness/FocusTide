@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ClockIcon, MugIcon, SettingsIcon, HeartIcon } from 'vue-tabler-icons'
-import Button from '@/components/base/button.vue'
+import Button from '~~/components/base/uiButton.vue'
 import PopupSheet from '@/components/base/popupSheet.vue'
 
 const state = reactive({
