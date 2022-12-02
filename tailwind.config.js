@@ -40,7 +40,7 @@ module.exports = {
           darkcontainer: '#005225',
           darkoncontainer: '#78fc9d'
         },
-        background: {
+        surface: {
           light: '#fffbff',
           onlight: '#201a1a',
           variant: '#f4dddc',
