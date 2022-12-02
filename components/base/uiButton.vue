@@ -1,4 +1,30 @@
 <script setup lang="ts">
+import { PropType } from 'vue'
+
+enum ButtonTheme {
+  /// Use primary theme colours
+  Primary = 'primary',
+
+  /// Use secondary theme colours
+  Secondary = 'secondary',
+
+  /// Use neutral theme colours
+  Neutral = 'neutral',
+
+  /// Use neutral theme colours, but force dark variant
+  NeutralDark = 'neutraldark',
+
+  /// Use neutral theme colours, but force light variant
+  NeutralWhite = 'neutralwhite'
+}
+
+/// Defines in which directions the button scales when clicked
+enum MotionType {
+  None = 'none',
+  Horizontal = 'horizontal',
+  All = 'all'
+}
+
 const props = defineProps({
   disabled: {
     default: false,
@@ -21,6 +47,16 @@ const props = defineProps({
   link: {
     default: false,
     type: Boolean
+  },
+
+  theme: {
+    type: String as PropType<ButtonTheme>,
+    default: 'primary'
+  },
+
+  motion: {
+    type: String as PropType<MotionType>,
+    default: 'all'
   },
 
   /** Apply default colour scheme to the button */
@@ -82,7 +118,10 @@ const props = defineProps({
       <div
         class="absolute w-full h-full overflow-hidden transition duration-300 rounded-full -z-10 before:transition before:absolute before:opacity-0 before:w-full before:h-full before:left-0 before:top-0"
         :class="[
-          { 'bg-theme border-theme ring-theme shadow-theme': props.defaultStyle },
+          // { 'bg-theme border-theme ring-theme shadow-theme': props.defaultStyle },
+          { 'bg-primary border-primary ring-primary shadow-primary dark:bg-primary-dark dark:border-primary-dark dark:ring-primary-dark dark:shadow-none': props.theme === ButtonTheme.Primary},
+          { 'bg-primary border-secondary ring-secondary shadow-secondary dark:bg-secondary-dark dark:border-secondary-dark dark:ring-secondary-dark dark:shadow-none': props.theme === ButtonTheme.Secondary },
+          { 'bg-surface-light border-surface-light ring-surface-light dark:bg-surface-dark dark:border-surface-dark dark:ring-surface-dark dark:shadow-none': props.theme === ButtonTheme.Neutral},
           { '': props.extendedBaseStyles },
           { 'group-active:scale-105 group-active:scale-y-110': props.extendedBaseStyles && !props.circle },
           { 'group-active:scale-110': props.extendedBaseStyles && props.circle },
