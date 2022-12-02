@@ -43,8 +43,12 @@ module.exports = {
         background: {
           light: '#fffbff',
           onlight: '#201a1a',
+          variant: '#f4dddc',
+          onvariant: '#524342',
           dark: '#201a1a',
-          ondark: '#ede0de'
+          ondark: '#ede0de',
+          darkvariant: '#524342',
+          ondarkvariant: '#d7c1c0'
         },
         work: '#FF6B6B',
         shortpause: '#F4A261',
