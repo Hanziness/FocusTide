@@ -16,8 +16,30 @@ module.exports = {
         sans: ['Lexend', 'sans-serif']
       },
       colors: {
-        primary: colors.red[400],
-        'primary-font': colors.black,
+        primary: {
+          DEFAULT: '#a7373a',
+          container: '#ffdad8',
+          oncontainer: '#410007',
+          dark: '#ffb3b0',
+          darkon: '#670311',
+          darkcontainer: '#871f25',
+          darkoncontainer: '#ffdad8'
+        },
+        secondary: {
+          DEFAULT: '#006d34',
+          container: '#78fc9d',
+          oncontainer: '#00210b',
+          dark: '#59df83',
+          darkon: '#003918',
+          darkcontainer: '#005225',
+          darkoncontainer: '#78fc9d'
+        },
+        background: {
+          light: '#fffbff',
+          onlight: '#201a1a',
+          dark: '#201a1a',
+          ondark: '#ede0de'
+        },
         work: '#FF6B6B',
         shortpause: '#F4A261',
         longpause: '#2EC4B6',

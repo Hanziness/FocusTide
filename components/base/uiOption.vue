@@ -21,7 +21,7 @@ const emit = defineEmits<{(type: 'click'): void}>()
   <button
     class="flex flex-col justify-start px-3 py-4 text-left transition-colors bg-white border border-gray-300 border-solid rounded-xl dark:bg-gray-800 dark:border-gray-600 basis-0"
     :class="[{
-      'bg-primary dark:bg-primary border-transparent dark:border-transparent ring ring-primary ring-offset-2 dark:ring-offset-slate-800 text-primary-font dark:text-primary-font': active,
+      'bg-primary dark:bg-primary border-transparent dark:border-transparent ring ring-primary ring-offset-2 dark:ring-offset-slate-800 text-black dark:text-black': active,
       'hover:bg-gray-200 dark:hover:bg-gray-600': !active
     }]"
     @click="emit('click')"
