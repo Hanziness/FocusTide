@@ -16,6 +16,12 @@ module.exports = {
         sans: ['Lexend', 'sans-serif']
       },
       colors: {
+        /* derived from Material Theme Builder - seeds:
+        - primary: #F77272
+        - secondary: #72F798
+        - tertiary: #aa8c5c
+        - neutral: #998e8d
+        */
         primary: {
           DEFAULT: '#a7373a',
           container: '#ffdad8',
