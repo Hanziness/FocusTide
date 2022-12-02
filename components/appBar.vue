@@ -12,13 +12,13 @@ const settingsStore = useSettings()
 </script>
 
 <template>
-  <div class="flex flex-row items-center w-full gap-2 px-4 my-1 isolate h-14" :style="{ '--theme': settingsStore.visuals.darkMode ? '245 245 244' : '15 23 42' }">
-    <div v-show="settingsStore.schedule.visibility.enabled" class="flex-shrink-0 h-10 px-2 py-2 rounded-full bg-themed">
+  <div class="flex flex-row items-center w-full gap-2 px-4 my-1 isolate h-14">
+    <div v-show="settingsStore.schedule.visibility.enabled" class="flex-shrink-0 h-10 px-2 py-2 rounded-full bg-surface-dark">
       <ClientOnly>
         <ScheduleView />
       </ClientOnly>
     </div>
-    <div v-show="settingsStore.schedule.visibility.enabled && settingsStore.schedule.visibility.showSectionType" class="flex-shrink overflow-hidden text-lg whitespace-pre select-none text-ellipsis" v-text="$t('section.' + scheduleStore.getCurrentItem.type).toLowerCase()" />
+    <div v-show="settingsStore.schedule.visibility.enabled && settingsStore.schedule.visibility.showSectionType" class="flex-shrink overflow-hidden text-lg whitespace-pre select-none text-ellipsis text-surface-onlight dark:text-surface-ondark" v-text="$t('section.' + scheduleStore.getCurrentItem.type).toLowerCase()" />
     <div class="flex-grow" />
     <CButton
       v-show="settingsStore.tasks.enabled"
