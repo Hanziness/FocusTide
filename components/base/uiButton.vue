@@ -19,7 +19,7 @@ enum ButtonTheme {
 }
 
 /// Defines in which directions the button scales when clicked
-enum MotionType {
+enum MotionTheme {
   None = 'none',
   Horizontal = 'horizontal',
   All = 'all'
@@ -49,25 +49,27 @@ const props = defineProps({
     type: Boolean
   },
 
+  /// The button's colour theme
   theme: {
     type: String as PropType<ButtonTheme>,
     default: 'primary'
   },
 
+  /// Defines whether the button should have a scaling animation when pressed
   motion: {
-    type: String as PropType<MotionType>,
+    type: String as PropType<MotionTheme>,
     default: 'all'
+  },
+
+  /// Remove the default padding on the contents of the button
+  nopadding: {
+    type: Boolean,
+    default: false
   },
 
   /** Apply default colour scheme to the button */
   defaultStyle: {
     default: false,
-    type: Boolean
-  },
-
-  /** Adds some more classes, like scaling on active and before:background opacity for hover and active */
-  extendedBaseStyles: {
-    default: true,
     type: Boolean
   },
 
@@ -118,14 +120,13 @@ const props = defineProps({
       <div
         class="absolute w-full h-full overflow-hidden transition duration-300 rounded-full -z-10 before:transition before:absolute before:opacity-0 before:w-full before:h-full before:left-0 before:top-0"
         :class="[
-          // { 'bg-theme border-theme ring-theme shadow-theme': props.defaultStyle },
-          { 'bg-primary border-primary ring-primary shadow-primary dark:bg-primary-dark dark:border-primary-dark dark:ring-primary-dark dark:shadow-none': props.theme === ButtonTheme.Primary},
-          { 'bg-primary border-secondary ring-secondary shadow-secondary dark:bg-secondary-dark dark:border-secondary-dark dark:ring-secondary-dark dark:shadow-none': props.theme === ButtonTheme.Secondary },
-          { 'bg-surface-light border-surface-light ring-surface-light dark:bg-surface-dark dark:border-surface-dark dark:ring-surface-dark dark:shadow-none': props.theme === ButtonTheme.Neutral},
-          { '': props.extendedBaseStyles },
-          { 'group-active:scale-105 group-active:scale-y-110': props.extendedBaseStyles && !props.circle },
-          { 'group-active:scale-110': props.extendedBaseStyles && props.circle },
-          { 'before:bg-black dark:before:bg-slate-50': !props.dark, 'before:bg-slate-50': props.dark },
+          { 'bg-primary-container border-primary-container ring-primary-container shadow-primary dark:bg-primary-darkcontainer dark:border-primary-darkcontainer dark:ring-primary-darkcontainer': props.theme === ButtonTheme.Primary},
+          { 'bg-secondary-container border-secondary-container ring-secondary-container shadow-secondary dark:bg-secondary-darkcontainer dark:border-secondary-darkcontainer dark:ring-secondary-darkcontainer': props.theme === ButtonTheme.Secondary },
+          { 'bg-surface-light border-surface-light ring-surface-light': props.theme === ButtonTheme.NeutralWhite || props.theme === ButtonTheme.Neutral },
+          { 'dark:bg-surface-dark dark:border-surface-dark dark:ring-surface-dark': props.theme === ButtonTheme.NeutralDark || props.theme === ButtonTheme.Neutral},
+          { 'group-active:scale-x-110': props.motion === MotionTheme.Horizontal || props.motion === MotionTheme.All },
+          { 'group-active:scale-y-110': props.motion === MotionTheme.All },
+          { 'before:bg-surface-dark dark:before:bg-surface-light': !props.dark, 'before:bg-surface-light': props.dark },
           { 'bg-opacity-100 group-hover:shadow-sm group-hover:before:opacity-10 group-active:before:opacity-25 group-active:shadow-lg': importance === 1 },
           { 'border-2 bg-opacity-0 dark:bg-opacity-0 group-hover:bg-opacity-100 group-active:bg-opacity-100 group-active:shadow-sm group-active:before:opacity-10': importance === 2 },
           { 'bg-opacity-0 dark:bg-opacity-0 group-hover:bg-opacity-30 group-active:bg-opacity-40 group-focus:ring': importance === 3 },
@@ -135,9 +136,10 @@ const props = defineProps({
 
       <!-- Contents -->
       <div
-        class="grid items-center justify-center w-full h-full grid-flow-col p-3"
+        class="grid items-center justify-center w-full h-full grid-flow-col"
         :class="[
-          { 'px-4': !props.circle },
+          { 'p-3': !props.nopadding },
+          { 'px-4': !props.circle && !props.nopadding },
           props.innerClass,
         ]"
       >
