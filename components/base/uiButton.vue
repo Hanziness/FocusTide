@@ -105,12 +105,13 @@ const props = defineProps({
         :class="[
           { 'bg-primary-container border-primary-container ring-primary-container shadow-primary dark:bg-primary-darkcontainer dark:border-primary-darkcontainer dark:ring-primary-darkcontainer': props.theme === ButtonTheme.Primary},
           { 'bg-secondary-container border-secondary-container ring-secondary-container shadow-secondary dark:bg-secondary-darkcontainer dark:border-secondary-darkcontainer dark:ring-secondary-darkcontainer': props.theme === ButtonTheme.Secondary },
-          { 'bg-surface-light border-surface-light ring-surface-light': props.theme === ButtonTheme.NeutralWhite || props.theme === ButtonTheme.Neutral },
-          { 'dark:bg-surface-dark dark:border-surface-dark dark:ring-surface-dark': props.theme === ButtonTheme.NeutralDark || props.theme === ButtonTheme.Neutral},
+          { 'bg-surface-light border-surface-light ring-surface-light dark:bg-surface-dark dark:border-surface-dark dark:ring-surface-dark': props.theme === ButtonTheme.Neutral },
+          {'bg-surface-light border-surface-light ring-surface-light': props.theme === ButtonTheme.NeutralWhite},
+          { 'bg-surface-dark border-surface-dark ring-surface-dark': props.theme === ButtonTheme.NeutralDark},
           { 'group-active:scale-x-110': props.motion === MotionTheme.Horizontal || props.motion === MotionTheme.All },
           { 'group-active:scale-y-110': props.motion === MotionTheme.All },
           { 'before:bg-surface-dark dark:before:bg-surface-light': !props.dark, 'before:bg-surface-light': props.dark },
-          { 'bg-opacity-100 group-hover:shadow-sm group-hover:before:opacity-10 group-active:before:opacity-25 group-active:shadow-lg': importance === 1 },
+          { 'bg-opacity-100 group-hover:shadow-sm group-hover:before:opacity-10 group-active:before:opacity-25 group-active:shadow-lg ring-0 border-0': importance === 1 },
           { 'border-2 bg-opacity-0 dark:bg-opacity-0 group-hover:bg-opacity-100 group-active:bg-opacity-100 group-active:shadow-sm group-active:before:opacity-10': importance === 2 },
           { 'bg-opacity-0 dark:bg-opacity-0 group-hover:bg-opacity-100 group-active:bg-opacity-100 group-focus:ring': importance === 3 },
           props.bgClass
@@ -126,7 +127,8 @@ const props = defineProps({
           { 'text-primary-oncontainer dark:text-primary-darkoncontainer': !props.noContentTheme && props.theme === ButtonTheme.Primary },
           { 'text-secondary-oncontainer dark:text-secondary-darkoncontainer': !props.noContentTheme && props.theme === ButtonTheme.Secondary },
           { 'text-surface-onlight': !props.noContentTheme && (props.theme === ButtonTheme.NeutralWhite || props.theme === ButtonTheme.Neutral) },
-          { 'dark:text-surface-ondark': !props.noContentTheme && (props.theme === ButtonTheme.NeutralWhite || props.theme === ButtonTheme.Neutral)},
+          { 'dark:text-surface-ondark': !props.noContentTheme && props.theme === ButtonTheme.Neutral },
+          { 'text-surface-ondark': !props.noContentTheme && props.theme === ButtonTheme.NeutralDark},
           props.innerClass,
         ]"
       >
