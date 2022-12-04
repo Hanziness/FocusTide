@@ -84,10 +84,10 @@ const updateSec = (newValue: string) => {
       @input="(e) => updateSec((e.target as HTMLInputElement).value)"
     >
     <div class="flex flex-row items-center gap-1 mr-2">
-      <div class="w-6 h-6 px-1 -mx-1 text-sm text-center rounded-full cursor-pointer" :class="{ 'font-bold bg-theme bg-opacity-40': inputMinutes }" @click="inputMinutes = true">
+      <div class="w-6 h-6 px-1 -mx-1 text-sm text-center rounded-full cursor-pointer" :class="{ 'font-bold bg-primary dark:bg-primary-dark bg-opacity-40': inputMinutes }" @click="inputMinutes = true">
         m
       </div>
-      <div class="w-6 h-6 px-1 -mx-1 text-sm text-center rounded-full cursor-pointer" :class="{ 'font-bold bg-theme bg-opacity-40': !inputMinutes }" @click="inputMinutes = false">
+      <div class="w-6 h-6 px-1 -mx-1 text-sm text-center rounded-full cursor-pointer" :class="{ 'font-bold bg-primary dark:bg-primary-dark bg-opacity-40': !inputMinutes }" @click="inputMinutes = false">
         s
       </div>
       <!-- <ButtonComponent default-style circle :importance="3" class="flex-shrink-0 text-sm" inner-class="!p-2">

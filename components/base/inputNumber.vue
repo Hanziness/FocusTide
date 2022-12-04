@@ -55,14 +55,14 @@ const updateInput = (newValue: string) => {
 
 <style lang="scss" scoped>
 @mixin range-track {
-  @apply h-1 min-w-0 rounded-full bg-theme bg-opacity-20 group-active:bg-opacity-40;
+  @apply h-1 min-w-0 rounded-full bg-primary dark:bg-primary-dark bg-opacity-20 group-active:bg-opacity-40;
 }
 
 @mixin range-thumb {
-  @apply rounded-full border-none bg-theme scale-90 transition-all duration-300 active:scale-125 appearance-none w-4 h-4 mt-[-0.375rem];
+  @apply rounded-full border-none bg-primary dark:bg-primary-dark scale-90 transition-all duration-300 active:scale-125 appearance-none w-4 h-4 mt-[-0.375rem];
 
   &:focus {
-    @apply ring ring-theme;
+    @apply ring ring-primary dark:ring-primary-dark;
   }
 }
 
