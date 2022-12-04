@@ -1,29 +1,6 @@
 <script setup lang="ts">
 import { PropType } from 'vue'
-
-enum ButtonTheme {
-  /// Use primary theme colours
-  Primary = 'primary',
-
-  /// Use secondary theme colours
-  Secondary = 'secondary',
-
-  /// Use neutral theme colours
-  Neutral = 'neutral',
-
-  /// Use neutral theme colours, but force dark variant
-  NeutralDark = 'neutraldark',
-
-  /// Use neutral theme colours, but force light variant
-  NeutralWhite = 'neutralwhite'
-}
-
-/// Defines in which directions the button scales when clicked
-enum MotionTheme {
-  None = 'none',
-  Horizontal = 'horizontal',
-  All = 'all'
-}
+import { ButtonTheme, MotionTheme } from './types/button'
 
 const props = defineProps({
   disabled: {
