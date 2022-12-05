@@ -1,5 +1,6 @@
 <script setup>
 import { SettingsIcon, ChecklistIcon } from 'vue-tabler-icons'
+import { ButtonTheme } from './base/types/button'
 import CButton from '~~/components/base/uiButton.vue'
 import ScheduleView from '@/components/schedule/scheduleDisplay.vue'
 import { useOpenPanels } from '@/stores/openpanels'
@@ -23,21 +24,22 @@ const settingsStore = useSettings()
     <CButton
       v-show="settingsStore.tasks.enabled"
       circle
-      :importance="2"
-      bg-class="ring-themed shadow-themed border-themed"
-      class="h-10 transition rounded-full dark:text-slate-200 text-slate-900"
-      :class="{ 'bg-themed !text-slate-200 dark:!text-slate-900' : openPanels.todo }"
-      inner-class="!p-1"
+      :theme="openPanels.todo ? ButtonTheme.Primary : ButtonTheme.Neutral"
+      :importance="1"
+      class="transition rounded-full h-11"
+      no-content-theme
+      inner-class="p-1"
       @click="openPanels.todo = !openPanels.todo"
     >
       <ChecklistIcon class="inline-block" />
     </CButton>
     <CButton
       circle
-      :importance="2"
-      bg-class="ring-themed shadow-themed border-themed"
-      class="h-10 dark:text-slate-200 text-slate-900"
-      inner-class="!p-1"
+      :importance="1"
+      :theme="ButtonTheme.Neutral"
+      class="h-11"
+      no-content-theme
+      inner-class="p-1"
       @click="openPanels.settings = !openPanels.settings"
     >
       <SettingsIcon class="inline-block" />
