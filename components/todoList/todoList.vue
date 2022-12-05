@@ -62,7 +62,7 @@ const handleDrop = () => {
 </script>
 
 <template>
-  <div class="px-4 py-4 border-gray-400 shadow-lg bg-gray-50 dark:bg-gray-800 dark:text-slate-50 border-opacity-20 md:border md:py-3" @keyup.stop="">
+  <div class="px-4 py-4 shadow-lg border-surface-dark dark:border-surface-light bg-surface-variant text-surface-onvariant dark:bg-surface-darkvariant dark:text-surface-ondarkvariant border-opacity-20 dark:border-opacity-20 md:border md:py-3" @keyup.stop="">
     <div class="relative flex flex-row items-center justify-center h-10">
       <p class="text-xl font-bold tracking-tighter text-gray-800 uppercase dark:text-gray-100" v-text="$t('tasks.title')" />
       <div class="absolute right-0 float-right -mr-2">
