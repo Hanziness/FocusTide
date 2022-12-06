@@ -39,7 +39,7 @@ notificationsStore.updateEnabled()
 
 <template>
   <section class="fixed z-40 w-full h-full p-0 md:p-4 md:max-w-screen-sm">
-    <div class="flex flex-col h-full overflow-hidden bg-white rounded-none shadow-lg md:rounded-lg dark:bg-gray-900 dark:text-gray-50" :style="{ 'padding-top': `${mobileSettingsStore.padding.top}px`, 'padding-bottom': `${mobileSettingsStore.padding.bottom}px` }">
+    <div class="flex flex-col h-full overflow-hidden rounded-none shadow-lg bg-surface-light text-surface-onlight md:rounded-lg dark:bg-surface-dark dark:text-surface-ondark" :style="{ 'padding-top': `${mobileSettingsStore.padding.top}px`, 'padding-bottom': `${mobileSettingsStore.padding.bottom}px` }">
       <h1 class="px-4 mt-4 mb-2 text-xl font-bold uppercase">
         <span>{{ $t('settings.heading') }}</span>
         <ControlButton

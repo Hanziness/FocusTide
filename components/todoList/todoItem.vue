@@ -96,7 +96,7 @@ const handleEdit = (newValue: string) => {
 <template>
   <div
     class="relative flex flex-row items-center px-2 py-3 transition-all duration-200 border-l-8 rounded-md hover:shadow-sm border-themed md:py-2"
-    :class="[{ 'opacity-50 line-through italic': props.item.state === 2, 'cursor-move': showReorder, 'ring ring-themed': state.dragged || props.droptarget, 'bg-themed !text-white': props.manage && state.editing }, props.manage && state.editing ? 'bg-themed' : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200']"
+    :class="[{ 'opacity-50 line-through italic': props.item.state === 2, 'cursor-move': showReorder, 'ring ring-themed': state.dragged || props.droptarget, 'bg-themed !text-white': props.manage && state.editing }, props.manage && state.editing ? 'bg-themed' : 'bg-surface-light dark:bg-surface-dark hover:shadow-md hover:ring-1 hover:ring-themed']"
     :style="{ '--theme': settingsStore.getColor(props.item.section, ColorMethod.modern) }"
     draggable="true"
     @mouseenter="state.hovering = true"
