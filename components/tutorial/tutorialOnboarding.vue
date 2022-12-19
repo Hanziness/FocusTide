@@ -2,7 +2,12 @@
 import { ClockIcon, MugIcon, SettingsIcon, HeartIcon } from 'vue-tabler-icons'
 import Button from '~~/components/base/uiButton.vue'
 import PopupSheet from '@/components/base/popupSheet.vue'
-import { ButtonImportance } from '../base/types/button';
+import { ButtonImportance } from '../base/types/button'
+import UiProgress from '~~/components/base/uiProgress.vue'
+
+import OnboardingPage0 from '~~/components/tutorial/onboarding/page0_welcome.vue'
+import OnboardingPage1 from '~~/components/tutorial/onboarding/page1.vue'
+import OnboardingPage2 from '~~/components/tutorial/onboarding/page2_timers.vue'
 
 const state = reactive({
   page: 0
@@ -11,36 +16,13 @@ const state = reactive({
 
 <template>
   <popup-sheet class="fixed w-full max-w-2xl md:p-4" open>
-    <div class="flex flex-col px-6 pt-6 pb-6 transition bg-white shadow-lg md:pb-3 rounded-t-2xl md:rounded-2xl">
+    <div class="flex flex-col px-6 pt-6 pb-6 transition bg-surface-light dark:bg-surface-dark backdrop-blur-xl backdrop-brightness-200 backdrop-contrast-50 backdrop-saturate-50 bg-opacity-80 shadow-lg md:pb-3 rounded-t-2xl md:rounded-2xl">
+      <UiProgress :progress="state.page / 4" class="mb-4" />
       <transition enter-active-class="transition" enter-from-class="translate-x-4 opacity-0" leave-to-class="-translate-x-4 opacity-0" leave-active-class="transition" mode="out-in">
         <!-- Welcome screen -->
-        <div v-if="state.page === 0" key="page-index" class="flex flex-col">
-          <div class="flex flex-col items-center gap-2 mb-2 text-center">
-            <img src="/favicon.svg" class="p-3 bg-work bg-opacity-20 rounded-xl" width="72">
-            <h2 class="mt-2 text-xl font-bold uppercase" v-text="$t('tutorials.onboarding.pages.0.title')" />
-            <p v-text="$t('tutorials.onboarding.pages.0.text')" />
-          </div>
-        </div>
-        <div v-else-if="state.page === 1" key="tutorial-1" class="flex flex-col items-center gap-2 text-center">
-          <ClockIcon size="72" class="p-3 bg-work bg-opacity-20 rounded-xl" />
-          <h2 class="mt-2 text-xl font-bold uppercase text-work" v-text="$t('tutorials.onboarding.pages.1.title')" />
-          <p v-text="$t('tutorials.onboarding.pages.1.text')" />
-        </div>
-        <div v-else-if="state.page === 2" key="tutorial-2" class="flex flex-col items-center gap-2 text-center">
-          <MugIcon size="72" class="p-3 bg-shortpause bg-opacity-20 rounded-xl" />
-          <h2 class="mt-2 text-xl font-bold uppercase text-shortpause" v-text="$t('tutorials.onboarding.pages.2.title')" />
-          <p v-text="$t('tutorials.onboarding.pages.2.text')" />
-        </div>
-        <div v-else-if="state.page === 3" key="tutorial-3" class="flex flex-col items-center gap-2 text-center">
-          <SettingsIcon size="72" class="p-3 bg-longpause bg-opacity-20 rounded-xl" />
-          <h2 class="mt-2 text-xl font-bold uppercase text-longpause" v-text="$t('tutorials.onboarding.pages.3.title')" />
-          <p v-text="$t('tutorials.onboarding.pages.3.text')" />
-        </div>
-        <div v-else-if="state.page === 4" key="tutorial-4" class="flex flex-col items-center gap-2 text-center">
-          <HeartIcon size="72" class="p-3 text-black bg-amber-400 rounded-xl" />
-          <h2 class="mt-2 text-xl font-bold uppercase text-amber-500" v-text="$t('tutorials.onboarding.pages.support.title')" />
-          <p v-text="$t('tutorials.onboarding.pages.support.text')" />
-        </div>
+        <OnboardingPage0 v-if="state.page === 0" />
+        <OnboardingPage1 v-else-if="state.page === 1" />
+        <OnboardingPage2 v-else-if="state.page === 2" />
       </transition>
       <div class="flex-grow h-4" />
       <div class="flex flex-col gap-2 mt-4 md:flex-row">
