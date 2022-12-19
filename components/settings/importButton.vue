@@ -4,6 +4,7 @@ import { Store } from 'pinia'
 import Button from '~~/components/base/uiButton.vue'
 import { useSettings } from '~~/stores/settings'
 import { useTasklist } from '~~/stores/tasklist'
+import { ButtonImportance } from '../base/types/button'
 
 const fileinput: Ref<HTMLInputElement | null> = ref(null)
 
@@ -50,7 +51,7 @@ const importFile = () => {
 </script>
 
 <template>
-  <Button default-style :importance="2" @click="openFileDialog">
+  <Button default-style :importance="ButtonImportance.Filled" @click="openFileDialog">
     <input ref="fileinput" accept=".json" type="file" hidden @change="importFile">
     <span v-text="$t('settings.manage.buttons.load')" />
   </Button>

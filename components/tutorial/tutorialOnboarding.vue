@@ -2,6 +2,7 @@
 import { ClockIcon, MugIcon, SettingsIcon, HeartIcon } from 'vue-tabler-icons'
 import Button from '~~/components/base/uiButton.vue'
 import PopupSheet from '@/components/base/popupSheet.vue'
+import { ButtonImportance } from '../base/types/button';
 
 const state = reactive({
   page: 0
@@ -43,13 +44,13 @@ const state = reactive({
       </transition>
       <div class="flex-grow h-4" />
       <div class="flex flex-col gap-2 mt-4 md:flex-row">
-        <Button class="flex-grow w-full" default-style :importance="2" @click="$emit('close')">
+        <Button class="flex-grow w-full" default-style :importance="ButtonImportance.Tonal" @click="$emit('close')">
           {{ $t('tutorials.onboarding.buttons.close') }}
         </Button>
-        <Button v-if="state.page === 0" class="flex-grow w-full" default-style :importance="1" @click="state.page = 1">
+        <Button v-if="state.page === 0" class="flex-grow w-full" default-style :importance="ButtonImportance.Filled" @click="state.page = 1">
           {{ $t('tutorials.onboarding.buttons.start') }}
         </Button>
-        <Button v-else-if="state.page < 4" class="flex-grow w-full" default-style :importance="1" @click="state.page += 1">
+        <Button v-else-if="state.page < 4" class="flex-grow w-full" default-style :importance="ButtonImportance.Filled" @click="state.page += 1">
           {{ $t('tutorials.onboarding.buttons.next') }}
         </Button>
         <Button
@@ -57,7 +58,7 @@ const state = reactive({
           link
           href="https://www.buymeacoffee.com/imreg?utm_source=anotherpomodoro&utm_medium=cta&utm_campaign=onboarding"
           target="_blank"
-          :importance="1"
+          :importance="ButtonImportance.Filled"
           class="flex-grow w-full"
           bg-class="bg-amber-300 border-amber-300"
         >

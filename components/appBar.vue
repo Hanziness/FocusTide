@@ -1,6 +1,6 @@
 <script setup>
 import { SettingsIcon, ChecklistIcon } from 'vue-tabler-icons'
-import { ButtonTheme } from './base/types/button'
+import { ButtonImportance, ButtonTheme } from './base/types/button'
 import CButton from '~~/components/base/uiButton.vue'
 import ScheduleView from '@/components/schedule/scheduleDisplay.vue'
 import { useOpenPanels } from '@/stores/openpanels'
@@ -25,7 +25,7 @@ const settingsStore = useSettings()
       v-show="settingsStore.tasks.enabled"
       circle
       :theme="openPanels.todo ? ButtonTheme.Primary : ButtonTheme.Neutral"
-      :importance="1"
+      :importance="ButtonImportance.Filled"
       class="transition rounded-full h-11"
       no-content-theme
       inner-class="p-1"
@@ -35,7 +35,7 @@ const settingsStore = useSettings()
     </CButton>
     <CButton
       circle
-      :importance="1"
+      :importance="ButtonImportance.Filled"
       :theme="ButtonTheme.Neutral"
       class="h-11"
       no-content-theme

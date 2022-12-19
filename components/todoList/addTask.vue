@@ -4,6 +4,7 @@ import { Ref } from 'vue'
 import Button from '~~/components/base/uiButton.vue'
 import { TaskState, useTasklist } from '~~/stores/tasklist'
 import { useSchedule } from '~~/stores/schedule'
+import { ButtonImportance } from '../base/types/button'
 
 const tasksStore = useTasklist()
 const scheduleStore = useSchedule()
@@ -63,7 +64,7 @@ const checkEnter = (event: KeyboardEvent) => {
       @keyup="checkEnter"
     >
     <Button
-      :importance="3"
+      :importance="ButtonImportance.Text"
       circle
       class="-my-2"
       :disabled="!data.valid"
