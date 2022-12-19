@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PlayerPlayIcon, PlayerPauseIcon, PlayerStopIcon, PlayerTrackNextIcon } from 'vue-tabler-icons'
-import { ButtonTheme } from '~~/components/base/types/button'
+import { ButtonImportance, ButtonTheme } from '~~/components/base/types/button'
 import CButton from '~~/components/base/uiButton.vue'
 import { TimerState, useSchedule } from '~~/stores/schedule'
 
@@ -30,7 +30,7 @@ const advance = () => {
       circle
       inner-class="p-5"
       :theme="ButtonTheme.Secondary"
-      :importance="1"
+      :importance="ButtonImportance.Filled"
       class="h-16 transition"
       :class="{ 'scale-0 opacity-0 pointer-events-none' : !scheduleStore.isRunning }"
       @click="reset"
@@ -38,7 +38,7 @@ const advance = () => {
       <PlayerStopIcon :size="24" />
     </CButton>
 
-    <CButton inner-class="p-6 px-8 transition" bg-class="rounded-full" :theme="ButtonTheme.NeutralDark" :importance="1" @click="playPause">
+    <CButton inner-class="p-6 px-8 transition" bg-class="rounded-full" :theme="ButtonTheme.NeutralDark" :importance="ButtonImportance.Filled" @click="playPause">
       <PlayerPlayIcon v-if="scheduleStore.timerState !== TimerState.RUNNING" :size="28" />
       <PlayerPauseIcon v-else :size="28" />
     </CButton>
@@ -47,7 +47,7 @@ const advance = () => {
       circle
       inner-class="p-5"
       :theme="ButtonTheme.Secondary"
-      :importance="1"
+      :importance="ButtonImportance.Filled"
       class="h-16 transition"
       :class="{ 'scale-0 opacity-0 pointer-events-none' : scheduleStore.timerState === TimerState.RUNNING }"
       @click="advance()"

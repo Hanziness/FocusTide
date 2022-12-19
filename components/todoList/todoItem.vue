@@ -4,6 +4,7 @@ import { MenuIcon, TrashIcon, PencilIcon } from 'vue-tabler-icons'
 import { TaskState, useTasklist, Task } from '~~/stores/tasklist'
 import { useSettings, ColorMethod } from '~~/stores/settings'
 import Button from '~~/components/base/uiButton.vue'
+import { ButtonImportance } from '../base/types/button'
 
 // declare refs
 const editbox: Ref<HTMLInputElement | null> = ref(null)
@@ -132,7 +133,7 @@ const handleEdit = (newValue: string) => {
         <Button
           v-show="manage"
           circle
-          :importance="3"
+          :importance="ButtonImportance.Text"
           class="-m-3 md:-m-2"
           inner-class="p-3 md:p-2"
           bg-class="ring-themed bg-themed"

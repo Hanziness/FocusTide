@@ -19,6 +19,7 @@ import Divider from '~~/components/base/uiDivider.vue'
 import { useEvents } from '~~/stores/events'
 import { useOpenPanels } from '~~/stores/openpanels'
 import { Control } from '~~/components/settings/types/settingsItem'
+import { ButtonImportance } from '../base/types/button'
 
 const runtimeConfig = useRuntimeConfig()
 const eventsStore = useEvents()
@@ -46,7 +47,7 @@ notificationsStore.updateEnabled()
           :aria-label="$t('settings.buttons.close')"
           default-style
           circle
-          :importance="3"
+          :importance="ButtonImportance.Text"
           class="float-right -mt-2 -mr-2"
           tabindex="0"
           @click="openPanels.settings = false"

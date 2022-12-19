@@ -2,6 +2,7 @@
 import ButtonControl from '~~/components/base/uiButton.vue'
 import { useSettings } from '~~/stores/settings'
 import { useTasklist } from '~~/stores/tasklist'
+import { ButtonImportance } from '../base/types/button';
 
 const downloadSettings = () => {
   const settings = useSettings().$state
@@ -23,7 +24,7 @@ const downloadSettings = () => {
 </script>
 
 <template>
-  <ButtonControl default-style :importance="2" @click="downloadSettings">
+  <ButtonControl default-style :importance="ButtonImportance.Filled" @click="downloadSettings">
     <span v-text="$t('settings.manage.buttons.save')" />
   </ButtonControl>
 </template>
