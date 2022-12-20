@@ -28,6 +28,7 @@ const settingsStore = useSettings()
       :importance="ButtonImportance.Filled"
       class="transition rounded-full h-11"
       no-content-theme
+      no-padding
       inner-class="p-1"
       @click="openPanels.todo = !openPanels.todo"
     >
@@ -39,6 +40,7 @@ const settingsStore = useSettings()
       :theme="ButtonTheme.Neutral"
       class="h-11"
       no-content-theme
+      no-padding
       inner-class="p-1"
       @click="openPanels.settings = !openPanels.settings"
     >
