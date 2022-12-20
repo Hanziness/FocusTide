@@ -11,6 +11,12 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/timer"
+  to = "/"
+  status = 301
+  force = true
+
 # Proxying for third-party scripts
 [[redirects]]
   from = "/bee.js"
