@@ -468,28 +468,44 @@
       "pages": {
         "0": {
           "title": "Welcome to FocusTide!",
-          "text": "Take a quick look around on how to use the app effectively."
+          "onboarding_invite": "Let's set you up for the first time. You can change everything in the settings menu later.",
+          "heading": "Choose your language"
         },
         "1": {
-          "title": "Follow the clock",
-          "text": "Work or take a break until the timer runs out. Then proceed with your next timer."
+          "heading": "Set your timers",
+          "text": "Choose a predefined setup for the lengths of your timers. You can customize them later in the settings."
         },
         "2": {
-          "title": "Rest regularly",
-          "text": "Every few breaks you get more time to rest. Make good use of it."
+          "theme": {
+            "heading": "Choose a theme",
+            "options": {
+              "_values": {
+                "light": "Light",
+                "dark": "Dark"
+              },
+              "_valueDescription": {
+                "light": "",
+                "dark": ""
+              }
+            }
+          },
+          "display": {
+            "heading": "Choose a display"
+          }
         },
         "3": {
-          "title": "Stay flexible",
-          "text": "Set your own timers, use the task list and notifications to your advantage. Check out the settings menu for more opportunities!"
+          "heading": "Remember",
+          "text": "You can always change these (and more) in the settings menu!"
         },
         "support": {
-          "title": "Support the project",
-          "text": "If this project helped you, consider inviting the author to a coffee. You can find the support button in the settings menu, too."
+          "heading": "Support the project",
+          "text": "If this project has helped you, consider buying the author a coffee.",
+          "hint": "You can also find support options in the Settings > About page."
         }
       },
       "buttons": {
         "close": "Close",
-        "start": "Start tutorial",
+        "start": "Start setup",
         "next": "Next",
         "support": "Support the project"
       }
