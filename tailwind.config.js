@@ -1,5 +1,3 @@
-const colors = require('tailwindcss/colors')
-
 module.exports = {
   content: [
     './components/**/*.{vue,js}',
@@ -45,10 +43,12 @@ module.exports = {
           onlight: '#201a1a',
           variant: '#f4dddc',
           onvariant: '#524342',
+          outline: '#857372',
           dark: '#201a1a',
           ondark: '#ede0de',
           darkvariant: '#524342',
-          ondarkvariant: '#d7c1c0'
+          ondarkvariant: '#d7c1c0',
+          darkoutline: '#a08c8b'
         },
         work: '#FF6B6B',
         shortpause: '#F4A261',
