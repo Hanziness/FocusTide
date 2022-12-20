@@ -467,31 +467,47 @@
     "onboarding": {
       "pages": {
         "0": {
-          "title": "Üdvözöl az FocusTide!",
-          "text": "Tekints meg egy gyorstalpalót az alkalmazás hatékony használatáról."
+          "title": "Üdvözöl a FocusTide!",
+          "onboarding_invite": "Itt beállíthatod az alkalmazást az első használatra.",
+          "heading": "Válassz nyelvet"
         },
         "1": {
-          "title": "Kövesd az időzítőt",
-          "text": "Dolgozz vagy pihenj, amíg le nem jár az időzítő, majd folytasd a következővel."
+          "heading": "Válassz időzítőt",
+          "text": "Válassz az előre beállított időzítők közül. Az egyes időzítők hosszát később a beállításokban is megváltoztathatod."
         },
         "2": {
-          "title": "Pihenj rendszeresen",
-          "text": "Minden néhányadik szünet hosszabb. Használd ki."
+          "theme": {
+            "heading": "Válassz témát",
+            "options": {
+              "_values": {
+                "light": "Világos",
+                "dark": "Sötét"
+              },
+              "_valueDescription": {
+                "light": "",
+                "dark": ""
+              }
+            }
+          },
+          "display": {
+            "heading": "Válassz megjelenést"
+          }
         },
         "3": {
-          "title": "Maradj rugalmas",
-          "text": "Állítsd be a saját időzítőidet, használd a feladatlistát és az értesítéseket, hogy még hatékonyabb lehess. Nézd meg a beállításokat pár ötletért!"
+          "heading": "Ne feledd",
+          "text": "Ezeket (és sok mást is) megváltoztathatsz a beállításokban."
         },
         "support": {
-          "title": "Támogasd a projektet",
-          "text": "Ha segít neked ez a projekt, hívd meg a fejlesztőt egy kávéra. A támogatás gombot a beállításokban is megtalálod."
+          "heading": "Támogasd a projektet",
+          "text": "Ha segít neked ez az alkalmazás, hívd meg a fejlesztőt egy kávéra.",
+          "hint": "Később a Beállítások > Névjegy lapon is megtalálod a támogatási lehetőségeket."
         }
       },
       "buttons": {
         "close": "Bezárás",
-        "start": "Gyorstalpaló indítása",
+        "start": "Beállítás",
         "next": "Következő",
-        "support": "Támogasd a projektet"
+        "support": "Projekt támogatása"
       }
     }
   }
