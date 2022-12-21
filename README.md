@@ -76,9 +76,9 @@ Production deployments (on Netlify or elsewhere) may use third-party tools (like
 The app itself still does not collect any data (eg. when you're running it on your own machine) 💪
 
 ## 🖼 More screenshots
-![Settings in dark mode](./public/assets/img/ProductImg_SettingsDark.png)
+![The display section of the settings panel](./public/assets/img/ProductImg_Settings.png)
 
-![The percentage timer with the revamped to-do list](./public/assets/img/ProductImg_Percentage.png)
+![The traditional timer with the to-do panel open](./public/assets/img/ProductImg_TodoOpen.png)
 ## 🏗 If you're a developer
 
 This is an open-source project that welcomes contributions. Please check the [**contribution guidelines**](./CONTRIBUTING.md) before opening issues, discussions or pull requests!
