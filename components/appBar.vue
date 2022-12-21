@@ -25,7 +25,7 @@ const settingsStore = useSettings()
       v-show="settingsStore.tasks.enabled"
       circle
       :theme="openPanels.todo ? ButtonTheme.Primary : ButtonTheme.Neutral"
-      :importance="ButtonImportance.Filled"
+      :importance="ButtonImportance.Tonal"
       class="transition rounded-full h-11"
       no-content-theme
       no-padding
