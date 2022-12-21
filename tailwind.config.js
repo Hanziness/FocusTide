@@ -50,6 +50,16 @@ module.exports = {
           ondarkvariant: '#d7c1c0',
           darkoutline: '#a08c8b'
         },
+        error: {
+          light: '#ba1a1a',
+          onlight: '#ffffff',
+          lightcontainer: '#ffdad6',
+          onlightcontainer: '#410002',
+          dark: '#ffb4ab',
+          ondark: '#690005',
+          darkcontainer: '#93000a',
+          ondarkcontainer: '#ffdad6'
+        },
         work: '#FF6B6B',
         shortpause: '#F4A261',
         longpause: '#2EC4B6',
@@ -58,10 +68,6 @@ module.exports = {
       }
     }
   },
-  plugins: [
-    // require('@tailwindcss/typography')
-    require('@tailwindcss/forms')
-  ],
   future: {
     // TODO only in Tailwind 3.1
     // only apply hover classes when @media hover:hover and pointer:fine
