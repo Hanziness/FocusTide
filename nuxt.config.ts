@@ -55,7 +55,7 @@ export default defineNuxtConfig({
     public: {
       PACKAGE_VERSION: version,
       PLATFORM: AppPlatform.web,
-      URL: 'https://another-pomodoro.app'
+      URL: 'https://focustide.app'
     }
   },
 

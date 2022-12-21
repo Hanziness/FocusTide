@@ -1,13 +1,13 @@
 # Domain redirects
 [[redirects]]
   from = "http://another-pomodoro.netlify.app/*"
-  to = "https://another-pomodoro.app/:splat"
+  to = "https://focustide.app/:splat"
   status = 301
   force = true
 
 [[redirects]]
   from = "https://another-pomodoro.netlify.app/*"
-  to = "https://another-pomodoro.app/:splat"
+  to = "https://focustide.app/:splat"
   status = 301
   force = true
 
