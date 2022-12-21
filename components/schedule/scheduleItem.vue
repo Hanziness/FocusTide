@@ -20,10 +20,10 @@ const colour = computed(() => settingsStore.getColor(props.type))
 
 <template>
   <div
-    class="inline-block h-full mr-2 rounded-full last:mr-0 aspect-square"
+    class="inline-block h-full mr-2 rounded-full last:mr-0 aspect-square transition"
     :class="[
-      { 'ring-gray-100 dark:ring-gray-800 ring-2': props.active },
-      { 'shadow-sm opacity-40 ring-0': !props.active }
+      { 'ring-surface-ondark ring-2 ring-inset scale-110': props.active },
+      { 'shadow-sm opacity-25 ring-0 scale-90': !props.active }
     ]"
     :style="[
       { 'background-color': colour }
