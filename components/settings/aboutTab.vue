@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { CoffeeIcon, BrandGithubIcon, BrandTwitterIcon, BrandFacebookIcon, BrandRedditIcon } from 'vue-tabler-icons'
+import { ButtonImportance } from '../base/types/button'
 import Button from '~~/components/base/uiButton.vue'
 import { AppPlatform } from '~~/platforms/platforms'
 import { useMain } from '~~/stores/main'
-import { ButtonImportance } from '../base/types/button';
 
 const runtimeConfig = useRuntimeConfig()
 const isMobile = computed(() => runtimeConfig.public.PLATFORM === AppPlatform.mobile)
