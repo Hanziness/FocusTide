@@ -35,7 +35,7 @@ const mainStore = useMain()
           link
           no-default-style
           no-content-theme
-          href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
+          href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=FocusTide&utm_medium=web&utm_content=settings"
           inner-class="flex flex-row items-center gap-1 text-slate-50 text-gray-50"
           bg-class="bg-slate-900 dark:bg-slate-700"
         >
@@ -49,7 +49,7 @@ const mainStore = useMain()
           dark
           no-default-style
           no-content-theme
-          href="https://www.buymeacoffee.com/imreg?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
+          href="https://www.buymeacoffee.com/imreg?utm_source=FocusTide&utm_medium=web&utm_content=settings"
           inner-class="flex flex-row items-center gap-1 text-black"
           bg-class="bg-yellow-300"
         >
@@ -77,7 +77,7 @@ const mainStore = useMain()
           no-default-style
           no-content-theme
           :importance="ButtonImportance.Filled"
-          href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodoro&utm_medium=web&utm_content=settings"
+          href="https://twitter.com/AnotherPomodoro?utm_source=FocusTide&utm_medium=web&utm_content=settings"
           bg-class="bg-[#1da1f2]"
           inner-class="!p-4 text-slate-50"
         >
