@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { XIcon } from 'vue-tabler-icons'
 
+import { ButtonImportance, ButtonTheme } from '../base/types/button'
 import ControlButton from '~~/components/base/uiButton.vue'
 import TaskItem from '~~/components/todoList/todoItem.vue'
 import TaskAdd from '@/components/todoList/addTask.vue'
@@ -8,7 +9,6 @@ import { useSettings } from '~~/stores/settings'
 import { useSchedule } from '~~/stores/schedule'
 import { Task, useTasklist } from '~~/stores/tasklist'
 import { useOpenPanels } from '~~/stores/openpanels'
-import { ButtonImportance, ButtonTheme } from '../base/types/button'
 
 const openPanels = useOpenPanels()
 const settingsStore = useSettings()
