@@ -22,7 +22,10 @@ const timeToObject = (timeInMs: number) => {
 }
 
 const innerValue = reactive(timeToObject(props.value))
-const inputMinutes = ref(true)
+const errorState = reactive({
+  min: false,
+  sec: false
+})
 
 const innerValueMs = computed(() => innerValue.min * 60 * 1000 + innerValue.sec * 1000)
 
@@ -44,6 +47,9 @@ watch(() => props.value, (newValue) => {
   const newTime = timeToObject(newValue)
   innerValue.min = newTime.min
   innerValue.sec = newTime.sec
+
+  errorState.min = false
+  errorState.sec = false
 })
 
 const updateMin = (newValue: string) => {
@@ -51,6 +57,9 @@ const updateMin = (newValue: string) => {
 
   if (!isNaN(newValueNum) && newValueNum >= 0) {
     innerValue.min = newValueNum
+    errorState.min = false
+  } else {
+    errorState.min = true
   }
 }
 
@@ -59,51 +68,33 @@ const updateSec = (newValue: string) => {
 
   if (!isNaN(newValueNum) && newValueNum >= 0 && newValueNum <= 59) {
     innerValue.sec = newValueNum
+    errorState.sec = false
+  } else {
+    errorState.sec = true
   }
 }
 </script>
 
 <template>
-  <div class="flex flex-row items-center gap-2">
+  <div class="flex flex-row items-center gap-2 relative rounded-lg overflow-hidden bg-surface-light dark:bg-surface-dark outline outline-1 outline-surface-outline dark:outline-surface-darkoutline focus-within:ring focus-within:ring-primary dark:focus-within:ring-primary-dark transition">
     <input
-      v-if="inputMinutes"
       :value="innerValue.min"
-      class="min-w-0"
       type="text"
       pattern="[0-9]*"
       inputmode="numeric"
+      class="bg-transparent w-full py-2 pl-2 focus:ring-0 focus:bg-primary-container focus:text-primary-oncontainer dark:focus:bg-primary-darkcontainer dark:focus:text-primary-darkoncontainer focus:outline-none"
+      :class="{ 'bg-error-light dark:bg-error-dark text-error-onlight dark:text-error-ondark': errorState.min }"
       @input="(e) => updateMin((e.target as HTMLInputElement).value)"
     >
+    <span>:</span>
     <input
-      v-else
       :value="innerValue.sec"
-      class="min-w-0"
       type="text"
       pattern="[0-9]*"
       inputmode="numeric"
+      class="bg-transparent w-full py-2 pl-2 focus:ring-0 focus:bg-primary-container focus:text-primary-oncontainer dark:focus:bg-primary-darkcontainer dark:focus:text-primary-darkoncontainer focus:outline-none"
+      :class="{ 'bg-error-light dark:bg-error-dark text-error-onlight dark:text-error-ondark': errorState.sec }"
       @input="(e) => updateSec((e.target as HTMLInputElement).value)"
     >
-    <div class="flex flex-row items-center gap-1 mr-2">
-      <div class="w-6 h-6 px-1 -mx-1 text-sm text-center rounded-full cursor-pointer" :class="{ 'font-bold bg-primary dark:bg-primary-dark bg-opacity-40': inputMinutes }" @click="inputMinutes = true">
-        m
-      </div>
-      <div class="w-6 h-6 px-1 -mx-1 text-sm text-center rounded-full cursor-pointer" :class="{ 'font-bold bg-primary dark:bg-primary-dark bg-opacity-40': !inputMinutes }" @click="inputMinutes = false">
-        s
-      </div>
-      <!-- <ButtonComponent default-style circle :importance="3" class="flex-shrink-0 text-sm" inner-class="!p-2">
-        m
-      </ButtonComponent>
-      <ButtonComponent default-style circle :importance="3" class="flex-shrink-0 text-sm" inner-class="!p-2">
-        s
-      </ButtonComponent> -->
-    </div>
-    <!-- <Toggle :value="inputMinutes" class="flex-shrink-0" @input="(newValue) => inputMinutes = newValue">
-      <template #when-on>
-        m
-      </template>
-      <template #when-off>
-        s
-      </template>
-    </Toggle> -->
   </div>
 </template>
