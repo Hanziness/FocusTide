@@ -1,6 +1,6 @@
 # ⏳ FocusTide
 
-Free and open-source Pomodoro application, right in your browser.
+Free, modern and open-source timer application, right in your browser.
 
 [<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="54">](https://www.buymeacoffee.com/imreg?utm_source=github&utm_medium=web&utm_content=readme) <a href="https://www.producthunt.com/posts/anotherpomodoro?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-anotherpomodoro" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=327185&theme=light" alt="FocusTide - Modern & customizable productivity timer | Product Hunt" width="250" height="54" /></a>
 
@@ -12,73 +12,68 @@ Free and open-source Pomodoro application, right in your browser.
 
 FocusTide is a Pomodoro timer application running in the browser. It helps you manage your time so that you can do more work instead of watching videos of cute cats 😿
 
-### Quickstart: your schedule
-
-When working with FocusTide, you'll be moving between three types of sessions:
-
-1. **Work**. <br> Do what you have to do.
-2. (Short) **Pause**. <br> Take a short rest, stand up from your computer and drink some water.
-3. **Long pause**. <br> Having worked some time now, take a longer break. You can grab a cup of coffee, watch some memes and scroll social media.
-
-With the default Pomodoro settings, every third break will be a long one.
-
-  > 💡 **Tip**. You can customize the length of the timers and the frequency of long pauses, too!
-
 ## What you get
 
 Here's the looong list of features this app includes.
 
-* ⏰ **Multiple timer styles**
+### ⏰ **Multiple timer styles**
   * (12:34) _traditional_ <br> a classic one with second-precision for those who want to know exactly how much time is left until coffee break
   * (12 minutes) _approximate_ <br> this one displays time with minute-precision so you know how much time is left but your eyes won't stick to the counter since it does not change every second
   * (50%) _percentage_ <br> being even less informative, this one keeps you away from the distraction of calculating "what can I do in the remaining 12 minutes and 34 seconds?".
-* 💡 **Friendly, focused and clean user interface**
-  * the essentials: a timer in the middle and controls at the bottom. The rest can be turned off:
-    * a quick glance at your schedule at the top
-    * a smart to-do list
-    * fancy and colourful progress bar in the background
-* 📑 **Flexible schedule**
+
+### 💡 **Friendly, focused and clean user interface**
+**It's just the essentials**: a timer in the middle and controls at the bottom. Everything else can be turned off:
+  * a quick glance at your schedule at the top
+  * a smart to-do list
+  * colour-coded sections
+  * colourful progress bar in the background
+
+### 📑 **Flexible schedule**
   * adjust the length of your sessions separately or use one of the built-in presets
   * set how frequent long pauses are
-* 🎵 **Multiple ways to notify you**
+  * **track the time spent beyond the timer**, unlike other timers that stop when the time expires
+
+### 🎵 **Multiple ways to notify you**
   * play sounds when you finish a section
   * desktop notifications so you don't have to keep checking your browser
-* ⚙ **Plenty of options**
+
+### ⚙ **Plenty of options**
   * set your schedule the way you want it
-  * hide the schedule, the progress bar or the to-do list
+  * toggle the schedule view, the progress bar or the to-do list
   * enable/disable audio and/or desktop notifications
   * change the number of schedule items shown
   * control your timer using the keyboard
   * dark and light themes
   * ... and more to come in the future!
-* ✅ **Clean to-do list**
+
+### ✅ **Clean to-do list**
   * set separate tasks for work, pause and long pause sections
   * only shows your top relevant tasks while the timer is running
   * automatically remove completed tasks at the end of each session
   * remembers your tasks across sessions
-* ✨ **Other nice-to-have features**
+
+### ✨ **Other nice-to-have features**
   * remembers your settings
-  * _adaptive ticking_: timers will update less frequently while the browser tab is not visible
   * it's a _PWA_ (Progressive Web App): it's fast and you can install it through your browser!
   * fancy and fluid animations
-  * setup wizard to get you started with the app
-  * localisations
-  * helpful error pages
-  * automatically advance sections
-* ✔ **No installation required**. Just open the webpage and enjoy it! You can even self-host it!
-* 📵 **No tracking, ads or any fishy stuff -- and it's entirely _free_**
-* 👋 **Open development**
-  * anyone can view the source code, raise issues (feature requests, bug reports) or even submit their own improvements!
+  * setup wizard to get you started
+  * translated into 5 languages
 
-### ⚠ Transparency warning
-Production deployments (on Netlify or elsewhere) may use third-party tools (like Plausible Analytics or FairAnalytics) to measure site performance.
+### ✔ **No installation required**. 
+Just open the webpage and enjoy it! You can even self-host it!
 
-The app itself still does not collect any data (eg. when you're running it on your own machine) 💪
+### 👋 **Open development**
+Anyone can view the source code, raise issues (feature requests, bug reports) or even submit their own improvements!
+
+## ⚠ Transparency warning
+Production deployments (on Netlify or elsewhere) may use third-party (but privacy-friendly) tools to measure site performance.
+
+The app itself does not collect any data (eg. when you're running it on your own machine) 💪
 
 ## 🖼 More screenshots
-![Settings in dark mode](./public/assets/img/ProductImg_SettingsDark.png)
+![The display section of the settings panel](./public/assets/img/ProductImg_Settings.png)
 
-![The percentage timer with the revamped to-do list](./public/assets/img/ProductImg_Percentage.png)
+![The traditional timer with the to-do panel open](./public/assets/img/ProductImg_TodoOpen.png)
 ## 🏗 If you're a developer
 
 This is an open-source project that welcomes contributions. Please check the [**contribution guidelines**](./CONTRIBUTING.md) before opening issues, discussions or pull requests!
@@ -114,4 +109,4 @@ If you like this project or it has helped you, please consider buying the mainta
 
 <p align="center"><a href="https://www.producthunt.com/posts/anotherpomodoro?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-anotherpomodoro" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=327185&theme=light" alt="AnotherPomodoro - Modern & customizable productivity timer | Product Hunt" width="250" height="54" /></a></p>
 
-[<p align="center"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="250"></p>](https://www.buymeacoffee.com/imreg?utm_source=github&utm_medium=web&utm_content=readme)
+<p align="center"><a href="https://www.buymeacoffee.com/imreg?utm_source=github&utm_medium=web&utm_content=readme"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="250"></a></p>
