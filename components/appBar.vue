@@ -14,7 +14,7 @@ const settingsStore = useSettings()
 
 <template>
   <div class="flex flex-row items-center w-full gap-2 px-4 my-1 isolate h-14">
-    <div v-show="settingsStore.schedule.visibility.enabled" class="flex-shrink-0 h-10 px-2 py-2 rounded-full bg-surface-dark">
+    <div v-show="settingsStore.schedule.visibility.enabled" class="flex-shrink-0 h-10 px-2 py-2 rounded-full bg-surface-dark dark:ring-1 ring-inset dark:ring-surface-ondark dark:ring-opacity-20 overflow-hidden">
       <ClientOnly>
         <ScheduleView />
       </ClientOnly>
@@ -25,7 +25,7 @@ const settingsStore = useSettings()
       v-show="settingsStore.tasks.enabled"
       circle
       :theme="openPanels.todo ? ButtonTheme.Primary : ButtonTheme.Neutral"
-      :importance="ButtonImportance.Filled"
+      :importance="ButtonImportance.Tonal"
       class="transition rounded-full h-11"
       no-content-theme
       no-padding

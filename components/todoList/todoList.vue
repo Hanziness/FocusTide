@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { XIcon } from 'vue-tabler-icons'
 
+import { ButtonImportance, ButtonTheme } from '../base/types/button'
 import ControlButton from '~~/components/base/uiButton.vue'
 import TaskItem from '~~/components/todoList/todoItem.vue'
 import TaskAdd from '@/components/todoList/addTask.vue'
@@ -8,7 +9,6 @@ import { useSettings } from '~~/stores/settings'
 import { useSchedule } from '~~/stores/schedule'
 import { Task, useTasklist } from '~~/stores/tasklist'
 import { useOpenPanels } from '~~/stores/openpanels'
-import { ButtonImportance, ButtonTheme } from '../base/types/button'
 
 const openPanels = useOpenPanels()
 const settingsStore = useSettings()
@@ -67,7 +67,7 @@ const handleDrop = () => {
     <div class="relative flex flex-row items-center justify-center h-10">
       <p class="text-xl font-bold tracking-tighter text-gray-800 uppercase dark:text-gray-100" v-text="$t('tasks.title')" />
       <div class="absolute right-0 float-right -mr-2">
-        <ControlButton circle default-style :theme="ButtonTheme.Neutral" :importance="ButtonImportance.Text" @click="openPanels.todo = false">
+        <ControlButton circle default-style :theme="ButtonTheme.Primary" :importance="ButtonImportance.Text" @click="openPanels.todo = false">
           <XIcon />
         </ControlButton>
       </div>
