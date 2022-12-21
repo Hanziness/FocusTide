@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { XIcon as CloseIcon, AdjustmentsIcon as TabIconGeneral, AlarmIcon as TabIconSchedule, ArtboardIcon as TabIconVisuals, InfoCircleIcon as InfoIcon, InfoCircleIcon as TabIconAbout } from 'vue-tabler-icons'
 
+import { ButtonImportance } from '../base/types/button'
 import OptionGroup from '@/components/base/optionGroup.vue'
 import TabHeader from '@/components/settings/panel/tabHeader.vue'
 import ExportButton from '@/components/settings/exportButton.vue'
@@ -19,7 +20,6 @@ import Divider from '~~/components/base/uiDivider.vue'
 import { useEvents } from '~~/stores/events'
 import { useOpenPanels } from '~~/stores/openpanels'
 import { Control } from '~~/components/settings/types/settingsItem'
-import { ButtonImportance } from '../base/types/button'
 
 const runtimeConfig = useRuntimeConfig()
 const eventsStore = useEvents()
