@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { nextTick, Ref, PropType } from 'vue'
 import { MenuIcon, TrashIcon, PencilIcon } from 'vue-tabler-icons'
+import { ButtonImportance } from '../base/types/button'
 import { TaskState, useTasklist, Task } from '~~/stores/tasklist'
 import { useSettings, ColorMethod } from '~~/stores/settings'
 import Button from '~~/components/base/uiButton.vue'
-import { ButtonImportance } from '../base/types/button'
 
 // declare refs
 const editbox: Ref<HTMLInputElement | null> = ref(null)
@@ -142,7 +142,7 @@ const handleEdit = (newValue: string) => {
           <TrashIcon size="18" />
         </Button>
       </transition>
-      <input v-model="checked" type="checkbox" class="w-6 h-6 mr-1 rounded text-themed dark:text-themed md:w-5 md:h-5">
+      <input v-model="checked" type="checkbox" class="w-6 h-6 mr-1 rounded accent-themed text-themed dark:text-themed md:w-5 md:h-5">
     </div>
   </div>
 </template>
