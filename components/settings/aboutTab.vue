@@ -81,7 +81,7 @@ const mainStore = useMain()
           bg-class="bg-[#1da1f2]"
           inner-class="!p-4 text-slate-50"
         >
-          <BrandTwitterIcon :aria-label="$t('index.alt.links.share.twitter')" size="24" />
+          <BrandTwitterIcon :aria-label="$t('support.share.twitter')" size="24" />
         </Button>
         <Button
           link
@@ -94,7 +94,7 @@ const mainStore = useMain()
           bg-class="bg-[#1877f2]"
           inner-class="!p-4 text-slate-50"
         >
-          <BrandFacebookIcon :aria-label="$t('index.alt.links.share.facebook')" size="24" class="translate-x-[-1px]" />
+          <BrandFacebookIcon :aria-label="$t('support.share.facebook')" size="24" class="translate-x-[-1px]" />
         </Button>
         <Button
           link
@@ -107,7 +107,7 @@ const mainStore = useMain()
           bg-class="bg-[#ff4500]"
           inner-class="!p-4 text-slate-50"
         >
-          <BrandRedditIcon :aria-label="$t('index.alt.links.share.reddit')" size="24" />
+          <BrandRedditIcon :aria-label="$t('support.share.reddit')" size="24" />
         </Button>
       </div>
     </div>
