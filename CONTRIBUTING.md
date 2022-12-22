@@ -10,7 +10,7 @@ Still, **before contributing, please read this short guide** to make sure you su
 
 The app's most up-to-date development version is on the `develop` branch. **You should always submit pull requests against `develop`** and you should be working on this branch locally.
 
-**The `prod` branch is only updated when a new version is released** as it contains the deployed version of the application (found at https://another-pomodoro.netlify.app).
+**The `prod` branch is only updated when a new version is released** as it contains the deployed version of the application (found at https://focustide.app).
 
 The `preview` branch is for testing production updates early, it is rarely updated -- sometimes the `develop` branch is merged into it before it is merged into `prod` to test new releases.
 
@@ -93,7 +93,7 @@ FocusTide is an open software and such it welcomes others to contribute code (fi
 
 [![Crowdin](https://badges.crowdin.net/anotherpomodoro/localized.svg)](https://crowdin.com/project/anotherpomodoro)
 
-Translations are managed through [AnotherPomodoro's Crowdin project](https://crowdin.com/project/anotherpomodoro). If you want to contribute translations for your own language, please [create an issue](https://github.com/Hanziness/AnotherPomodoro/issues/new/choose).
+Translations are managed through [FocusTide's Crowdin project](https://crowdin.com/project/anotherpomodoro). If you want to contribute translations for your own language, please [create an issue](https://github.com/Hanziness/AnotherPomodoro/issues/new/choose).
 
 ## Technical requirements
 

@@ -11,7 +11,7 @@ const settingsStore = useSettings()
 <template>
   <OnboardingPage>
     <div class="py-3 flex gap-2 text-3xl flex-col md:flex-row justify-center items-center">
-      <img class="w-10" src="/favicon.svg" role="note">
+      <img width="40" height="40" class="w-10" src="/favicon.svg" role="note">
       <span v-text="$t('tutorials.onboarding.pages.0.title')" />
     </div>
 

@@ -3,7 +3,9 @@ module.exports = {
     './components/**/*.{vue,js}',
     './layouts/**/*.vue',
     './pages/**/*.vue',
-    './plugins/**/*.{js,ts}'
+    './plugins/**/*.{js,ts}',
+    './error.vue',
+    './app.vue'
   ],
   darkMode: 'class',
   theme: {
