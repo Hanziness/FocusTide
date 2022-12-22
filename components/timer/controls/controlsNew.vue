@@ -43,6 +43,7 @@ const advance = () => {
       :aria-label="$t('controls.play')"
       inner-class="p-6 px-8 transition"
       bg-class="rounded-full"
+      class="h-20 w-28"
       :theme="ButtonTheme.NeutralDark"
       :importance="ButtonImportance.Filled"
       @click="playPause"
