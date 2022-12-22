@@ -1,7 +1,41 @@
+<script setup lang="ts">
+import { markRaw } from 'vue'
+import tutorialOnboarding from './tutorialOnboarding.vue'
+import { useTutorials } from '~~/stores/tutorials'
+import { useMain, flags } from '~~/stores/main'
+
+const tutorialsStore = useTutorials()
+const mainStore = useMain()
+
+const tutorials = {
+  onboarding: markRaw(tutorialOnboarding)
+}
+
+const state = reactive({
+  /** Controls whether the darkening backdrop is shown */
+  enableComponent: false
+})
+
+watch(() => tutorialsStore.currentTutorial, (newValue) => {
+  // if a tutorial is to be shown, enable the backdrop
+  if (newValue !== null) {
+    state.enableComponent = true
+  }
+})
+
+onMounted(() => {
+  state.enableComponent = tutorialsStore.currentTutorial != null
+
+  if (!mainStore.isFlagActive(flags.STORE_RESTORED)) {
+    tutorialsStore.openTutorial('onboarding')
+  }
+})
+</script>
+
 <template>
-  <div v-show="enableComponent" class="fixed top-0 left-0 z-40 w-screen h-screen transition">
-    <transition leave-to-class="opacity-0" enter-from-class="opacity-0" appear @after-leave="enableComponent = false">
-      <div v-show="currentTutorial !== null" class="fixed top-0 left-0 w-full h-full transition-all duration-500 bg-opacity-40 dark:bg-opacity-70 bg-slate-900" />
+  <div v-show="state.enableComponent" class="fixed top-0 left-0 z-40 w-screen h-screen transition">
+    <transition leave-to-class="opacity-0" enter-from-class="opacity-0" appear @after-leave="state.enableComponent = false">
+      <div v-show="tutorialsStore.currentTutorial !== null" class="fixed top-0 left-0 w-full h-full transition-all duration-500 bg-opacity-40 dark:bg-opacity-70 bg-slate-900" />
     </transition>
 
     <!-- Tutorial component -->
@@ -12,54 +46,7 @@
       leave-active-class="transition duration-300"
       appear
     >
-      <component :is="tutorial[tutorialId]" v-for="tutorialId in [currentTutorial]" :key="tutorialId" :open="isTutorialOpen(tutorialId)" @close="closeTutorial(tutorialId)" />
+      <component :is="tutorials[tutorialId]" v-for="tutorialId in (Object.keys(tutorials) as Array<keyof typeof tutorials>)" :key="tutorialId" :open="tutorialsStore.isTutorialOpen(tutorialId)" @close="tutorialsStore.closeTutorial(tutorialId)" />
     </transition-group>
   </div>
 </template>
-
-<script>
-import { mapActions, mapState } from 'pinia'
-import { markRaw } from 'vue'
-import tutorialOnboarding from './tutorialOnboarding.vue'
-import { useTutorials } from '~~/stores/tutorials'
-import { useMain, flags } from '~~/stores/main'
-
-export default {
-  data () {
-    return {
-      tutorial: {
-        onboarding: markRaw(tutorialOnboarding)
-      },
-
-      /** Controls whether the darkening backdrop is shown */
-      enableComponent: false
-    }
-  },
-
-  computed: {
-    ...mapState(useTutorials, ['currentTutorial', 'isTutorialOpen']),
-    ...mapState(useMain, ['isFlagActive'])
-  },
-
-  watch: {
-    currentTutorial (newValue) {
-      // if a tutorial is to be shown, enable the backdrop
-      if (newValue !== null) {
-        this.enableComponent = true
-      }
-    }
-  },
-
-  mounted () {
-    this.enableComponent = this.currentTutorial != null
-
-    if (!this.isFlagActive(flags.STORE_RESTORED)) {
-      this.openTutorial('onboarding')
-    }
-  },
-
-  methods: {
-    ...mapActions(useTutorials, ['openTutorial', 'closeTutorial'])
-  }
-}
-</script>

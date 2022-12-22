@@ -2,33 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  [type='text'],
-  [type='email'],
-  [type='url'],
-  [type='password'],
-  [type='number'],
-  [type='date'],
-  [type='datetime-local'],
-  [type='month'],
-  [type='search'],
-  [type='tel'],
-  [type='time'],
-  [type='week'],
-  [type='checkbox'],
-  [multiple],
-  textarea,
-  select {
-    @apply rounded-md border-gray-300 focus:border-gray-300 bg-gray-50 dark:bg-gray-100 focus:bg-white focus:ring-primary focus:ring focus:ring-offset-2;
-    @apply dark:bg-opacity-10 dark:hover:bg-opacity-20 dark:focus:bg-opacity-30 dark:text-gray-100 dark:border-gray-700 dark:focus:ring-offset-slate-800;
-    @apply transition-colors;
-  }
+input[type='checkbox'] {
+  appearance: none;
+  @apply border-2 rounded-md border-surface-onvariant dark:border-surface-ondarkvariant transition;
 }
 
-@layer base {
-  [type="checkbox"] {
-    @apply dark:bg-opacity-40 dark:hover:bg-opacity-50 dark:focus:bg-opacity-50 dark:active:bg-opacity-60 text-primary dark:text-primary;
-    // @apply dark:bg-gray-100 dark:bg-opacity-20 dark:hover:bg-opacity-50 dark:active:bg-opacity-90;
-    @apply dark:checked:hover:bg-current dark:checked:bg-current dark:checked:border-current;
-  }
+input[type='checkbox']:checked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-check' width='24' height='24' viewBox='0 0 24 24' stroke-width='3' stroke='white' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'%3E%3C/path%3E%3Cpath d='M5 12l5 5l10 -10'%3E%3C/path%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  @apply bg-current border-current;
 }

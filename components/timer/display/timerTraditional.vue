@@ -1,3 +1,41 @@
+<script setup lang="ts">
+import { TimerState, useSchedule } from '~~/stores/schedule'
+
+const scheduleStore = useSchedule()
+const running = computed(() => scheduleStore.getCurrentTimerState === TimerState.RUNNING)
+const emit = defineEmits<{(event: 'tick', timeString: string): void }>()
+
+const timeLeftStructured = computed(() => {
+  const sLeft = Math.abs(Math.round((scheduleStore.getCurrentItem.length - scheduleStore.getCurrentItem.timeElapsed) / 1000))
+  const hours = Math.floor(sLeft / (60 * 60))
+  const minutes = Math.floor((sLeft % (60 * 60)) / (60))
+  const seconds = Math.floor(sLeft % 60)
+
+  const timeStructured = { hours, minutes, seconds }
+
+  const displayKeys = (Object.keys(timeStructured) as Array<keyof typeof timeStructured>).filter(value => value !== 'hours' || hours > 0)
+  const completed = scheduleStore.getCurrentItem.timeElapsed > scheduleStore.getCurrentItem.length && [hours, minutes, seconds].some(num => num > 0)
+
+  // if (completed) {
+  //   displayKeys.unshift('_plus')
+  // }
+
+  const returnObject = {
+    num: timeStructured,
+    displayKeys,
+    completed
+  }
+
+  emit(
+    'tick',
+    (completed ? '+' : '') + displayKeys
+      .map(key => returnObject.num[key].toString().padStart(2, '0'))
+      .join(':')
+  )
+  return returnObject
+})
+</script>
+
 <template>
   <div
     :class="['md:text-[14rem] text-[9rem] leading-none timer-display relative', { 'active': running }]"
@@ -13,20 +51,18 @@
       move-class="duration-500"
       class="relative flex flex-col items-center transition md:flex-row isolate"
       tag="div"
-      @beforeLeave="beforeLeave"
     >
+      <div v-if="timeLeftStructured.completed" class="font-bold text-[.75em]">
+        +
+      </div>
       <div
         v-for="key in timeLeftStructured.displayKeys"
         :key="key"
         class="flex flex-row transition"
         :class="{ 'font-bold': key === 'minutes', 'md:text-9xl md:self-start': key === 'seconds', 'md:mr-4': key === 'hours' }"
       >
-        <div v-if="key === '_plus'" class="font-bold text-[.75em]">
-          +
-        </div>
         <span
           v-for="(char, idx) in timeLeftStructured.num[key].toString().padStart(2, '0')"
-          v-else
           :key="`${key}-${idx}`"
           class="w-[1ch]"
           :class="{ 'md:text-right text-center': idx === 0, 'md:text-left text-center': idx === 1 }"
@@ -36,47 +72,3 @@
     </transition-group>
   </div>
 </template>
-
-<script>
-import TimerMixin from '@/assets/mixins/timerMixin'
-
-export default {
-  mixins: [TimerMixin],
-  computed: {
-    timeLeftStructured () {
-      const sLeft = Math.abs(Math.round((this.timeOriginal - this.timeElapsed) / 1000))
-      const hours = Math.floor(sLeft / (60 * 60))
-      const minutes = Math.floor((sLeft % (60 * 60)) / (60))
-      const seconds = Math.floor(sLeft % 60)
-
-      const displayKeys = ['hours', 'minutes', 'seconds'].filter(value => value !== 'hours' || hours > 0)
-      const completed = this.timeElapsed > this.timeOriginal && [hours, minutes, seconds].some(num => num > 0)
-
-      if (completed) {
-        displayKeys.unshift('_plus')
-      }
-
-      const returnObject = {
-        num: { hours, minutes, seconds },
-        displayKeys,
-        completed
-      }
-
-      this.$emit(
-        'tick',
-        (completed ? '+' : '') + displayKeys
-          .filter(key => !key.startsWith('_'))
-          .map(key => returnObject.num[key].toString().padStart(2, '0'))
-          .join(':')
-      )
-      return returnObject
-    }
-  },
-  methods: {
-    /** "Hack" used to get around object flying in from the corners of the page */
-    beforeLeave (el) {
-
-    }
-  }
-}
-</script>

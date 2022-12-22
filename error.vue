@@ -1,218 +1,205 @@
+<script setup lang="ts">
+import { MoodSadIcon as IconCrash, RoadSignIcon as IconLost, MoodConfuzedIcon as IconOtherError, RefreshAlertIcon as IconReset, RefreshIcon as IconReload, HomeIcon as IconHome, BrandGithubIcon as IconGithub, BrandTwitterIcon as IconTwitter, MessagesIcon as IconDiscussion, BugIcon as IconShowError } from 'vue-tabler-icons'
+import { useI18n } from 'vue-i18n'
+import { ComputedRef } from 'vue'
+import type { Component } from 'vue'
+import { ActionType } from './components/error/types'
+import UiButton from './components/base/uiButton.vue'
+import { ButtonImportance, ButtonTheme } from './components/base/types/button'
+import ActionBar from '~~/components/error/errorActionBar.vue'
+import { useSettings } from '~~/stores/settings'
+
+const { t } = useI18n()
+const route = useRoute()
+const settingsStore = useSettings()
+
+enum ErrorType {
+  Crash = 'crash',
+  NotFound = 'notfound',
+  Other = 'other'
+}
+
+enum Action {
+  Reload = 'reload',
+  Reset = 'reset',
+  Home = 'home',
+  GithubIssue = 'githubIssue',
+  GithubDiscussion = 'githubDiscussion',
+  Twitter = 'twitter'
+}
+
+/** Action button presets */
+const actions: Record<ErrorType, Record<Action, ActionType>> = {
+  crash: {
+    reload: ActionType.RECOMMEND,
+    reset: ActionType.PRIMARY,
+    home: ActionType.PRIMARY,
+    githubIssue: ActionType.SECONDARY,
+    githubDiscussion: ActionType.SECONDARY,
+    twitter: ActionType.SECONDARY
+  },
+
+  notfound: {
+    home: ActionType.RECOMMEND,
+    githubDiscussion: ActionType.SECONDARY,
+    twitter: ActionType.SECONDARY,
+    githubIssue: ActionType.HIDE,
+    reload: ActionType.HIDE,
+    reset: ActionType.HIDE
+  },
+
+  other: {
+    reload: ActionType.RECOMMEND,
+    home: ActionType.PRIMARY,
+    reset: ActionType.PRIMARY,
+    githubIssue: ActionType.SECONDARY,
+    githubDiscussion: ActionType.SECONDARY,
+    twitter: ActionType.SECONDARY
+  }
+}
+
+const props = defineProps({
+  error: {
+    type: Object,
+    default: null
+  }
+})
+
+const state = reactive({
+  showError: false
+})
+
+/** Determines what type of error happened */
+const currentErrorType: ComputedRef<ErrorType> = computed(() => {
+  if (Number.parseInt(props.error.statusCode) >= 500) { return ErrorType.Crash }
+  if (Number.parseInt(props.error.statusCode) === 404) { return ErrorType.NotFound }
+  return ErrorType.Other
+})
+
+const Icons: Record<ErrorType, Component> = {
+  crash: IconCrash,
+  notfound: IconLost,
+  other: IconOtherError
+}
+
+const errorHeading = computed(() => t('errorpage.title.' + currentErrorType.value))
+
+/** The title and icon to show on the error page.
+ * For example on a 404 error it would show "Looks like you're lost",
+ * but on an app error (eg. "crash" because of a store error) it would show
+ * "Oops, the app crashed". Can return the icon as well.
+ */
+useHead({
+  title: errorHeading.value
+})
+
+/** Returns actions to show or recommend based on the error.
+ * For example if it's a 404 error, go to home or the
+ * discussion button is recommended but the reset button is hidden.
+ */
+const recommendedActions = computed(() => {
+  return actions[currentErrorType.value]
+})
+
+const fullError = computed(() => {
+  return Object.assign({}, props.error, { route })
+})
+
+/// Ask settings to reset and navigate back to the home page
+const actionReset = () => {
+  settingsStore.setReset(true)
+  location.assign('/')
+}
+
+/// Reload the current page
+const actionReload = () => {
+  location.reload()
+}
+
+interface ButtonStyleMapping {
+  theme: ButtonTheme,
+  importance: ButtonImportance
+}
+
+const actionTypeToButtonStyle = (action: ActionType): ButtonStyleMapping => {
+  switch (action) {
+    case ActionType.RECOMMEND:
+      return {
+        theme: ButtonTheme.Primary,
+        importance: ButtonImportance.Filled
+      }
+    case ActionType.PRIMARY:
+      return {
+        theme: ButtonTheme.Primary,
+        importance: ButtonImportance.Outline
+      }
+    case ActionType.SECONDARY:
+      return {
+        theme: ButtonTheme.Secondary,
+        importance: ButtonImportance.Outline
+      }
+    default: {
+      return {
+        theme: ButtonTheme.Neutral,
+        importance: ButtonImportance.Outline
+      }
+    }
+  }
+}
+</script>
+
 <template>
-  <div class="flex flex-col items-center justify-center w-screen h-screen p-6 text-gray-100 bg-gray-900">
+  <div class="flex flex-col items-center justify-center w-screen min-h-screen p-6 text-surface-ondark bg-surface-dark dark">
     <div>
-      <component :is="errorHeading.icon" size="128" stroke-width="1.25" />
+      <component :is="Icons[currentErrorType]" size="128" stroke-width="1.25" />
     </div>
-    <h1 class="mt-2 text-5xl font-bold tracking-tighter text-center uppercase" v-text="errorHeading.title" />
+    <h1 class="mt-2 text-5xl font-bold tracking-tighter text-center uppercase" v-text="errorHeading" />
 
     <!-- Error description -->
-    <div class="max-w-screen-lg mt-8 overflow-hidden border-2 border-gray-300 rounded-lg">
+    <div class="max-w-screen-lg mt-8 border-2 border-gray-300 rounded-lg">
       <transition name="showerror-transition" mode="out-in">
-        <div v-if="!showError" class="flex flex-row items-center p-4 space-x-4 text-gray-100 transition bg-gray-700 cursor-pointer hover:bg-gray-600 active:bg-gray-800" role="button" @click="showError = true">
+        <div v-if="!state.showError" class="flex flex-row items-center p-4 space-x-4 text-surface-ondark transition bg-surface-darkvariant cursor-pointer" role="button" @click="state.showError = true">
           <IconShowError size="42" />
           <div>
             <div class="font-bold" v-text="$t('errorpage.showError.main')" />
             <div v-text="$t('errorpage.showError.sub')" />
           </div>
         </div>
-        <pre v-else-if="showError" class="p-4 overflow-y-scroll max-h-56" v-text="fullError" />
+        <div v-else-if="state.showError" class="p-4 overflow-y-scroll max-h-56 max-w-full break-before-all">
+          <pre v-text="fullError" />
+        </div>
       </transition>
     </div>
 
     <!-- Recommended actions -->
     <ActionBar class="mt-8">
-      <ActionButton v-bind="getRowAndState('reset')" class="text-red-500" text-colours @click="actionReset">
-        <IconReset />
+      <UiButton :data-row="recommendedActions.reset" v-bind="actionTypeToButtonStyle(recommendedActions.reset)" @click="actionReset">
+        <IconReset class="mr-1" />
         <div v-text="$t('errorpage.action.reset')" />
-      </ActionButton>
-      <ActionButton v-bind="getRowAndState('reload')" class="text-blue-500" text-colours @click="actionReload">
-        <IconReload />
+      </UiButton>
+      <UiButton :data-row="recommendedActions.reload" v-bind="actionTypeToButtonStyle(recommendedActions.reload)" @click="actionReload">
+        <IconReload class="mr-1" />
         <div v-text="$t('errorpage.action.reload')" />
-      </ActionButton>
-      <ActionButton v-bind="getRowAndState('home')" class="text-emerald-500" text-colours href="/">
-        <IconHome />
+      </UiButton>
+      <UiButton link :data-row="recommendedActions.home" v-bind="actionTypeToButtonStyle(recommendedActions.home)" href="/">
+        <IconHome class="mr-1" />
         <div v-text="$t('errorpage.action.home')" />
-      </ActionButton>
-      <ActionButton v-bind="getRowAndState('githubIssue')" class="text-gray-400" text-colours href="https://github.com/Hanziness/AnotherPomodoro/issues?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
-        <IconGithub />
+      </UiButton>
+      <UiButton link :data-row="recommendedActions.githubIssue" v-bind="actionTypeToButtonStyle(recommendedActions.githubIssue)" href="https://github.com/Hanziness/AnotherPomodoro/issues?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
+        <IconGithub class="mr-1" />
         <div v-text="$t('errorpage.action.githubIssue')" />
-      </ActionButton>
-      <ActionButton v-bind="getRowAndState('githubDiscussion')" class="text-gray-400" text-colours href="https://github.com/Hanziness/AnotherPomodoro/discussions?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
-        <IconDiscussion />
+      </UiButton>
+      <UiButton link :data-row="recommendedActions.githubDiscussion" v-bind="actionTypeToButtonStyle(recommendedActions.githubDiscussion)" href="https://github.com/Hanziness/AnotherPomodoro/discussions?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
+        <IconDiscussion class="mr-1" />
         <div v-text="$t('errorpage.action.githubDiscussion')" />
-      </ActionButton>
-      <ActionButton v-bind="getRowAndState('twitter')" class="text-[#1da1f2]" text-colours href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
-        <IconTwitter />
+      </UiButton>
+      <UiButton link :data-row="recommendedActions.twitter" v-bind="actionTypeToButtonStyle(recommendedActions.home)" href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
+        <IconTwitter class="mr-1" />
         <div v-text="$t('errorpage.action.twitter')" />
-      </ActionButton>
+      </UiButton>
     </ActionBar>
   </div>
 </template>
-
-<script>
-import { MoodSadIcon, RoadSignIcon, MoodConfuzedIcon, RefreshAlertIcon, RefreshIcon, HomeIcon, BrandGithubIcon, BrandTwitterIcon, MessagesIcon, BugIcon } from 'vue-tabler-icons'
-import { mapActions } from 'pinia'
-import ActionButton from '@/components/error/action.vue'
-import ActionBar from '@/components/error/actionBar.vue'
-import { useSettings } from '~~/stores/settings'
-
-const actionType = {
-  RECOMMEND: 'recommended',
-  PRIMARY: 'primary',
-  SECONDARY: 'secondary',
-  HIDE: 'disabled'
-}
-
-/** Action button presets */
-const actions = {
-  crash: {
-    reload: actionType.RECOMMEND,
-    reset: actionType.PRIMARY,
-    home: actionType.PRIMARY,
-    githubIssue: actionType.SECONDARY,
-    githubDiscussion: actionType.SECONDARY,
-    twitter: actionType.SECONDARY
-  },
-
-  notfound: {
-    home: actionType.RECOMMEND,
-    githubDiscussion: actionType.SECONDARY,
-    twitter: actionType.SECONDARY
-  },
-
-  other: {
-    reload: actionType.RECOMMEND,
-    home: actionType.PRIMARY,
-    reset: actionType.PRIMARY,
-    githubIssue: actionType.SECONDARY,
-    githubDiscussion: actionType.SECONDARY,
-    twitter: actionType.SECONDARY
-  }
-}
-
-export default {
-  name: 'ErrorPage',
-  components: {
-    // Error reason icons
-    IconCrash: MoodSadIcon,
-    IconLost: RoadSignIcon,
-    IconOtherError: MoodConfuzedIcon,
-
-    // Show error icon
-    IconShowError: BugIcon,
-
-    // Action icons
-    IconReset: RefreshAlertIcon,
-    IconReload: RefreshIcon,
-    IconHome: HomeIcon,
-    IconGithub: BrandGithubIcon,
-    IconDiscussion: MessagesIcon,
-    IconTwitter: BrandTwitterIcon,
-
-    ActionButton,
-    ActionBar
-  },
-  props: {
-    error: {
-      type: Object,
-      default: null
-    }
-  },
-  data () {
-    return {
-      showError: false
-    }
-  },
-
-  head () {
-    return {
-      title: this.errorHeading.title
-    }
-  },
-
-  computed: {
-    /** Determines what type of error happened */
-    errorType () {
-      if (this.error.statusCode >= 500) { return 'crash' }
-      if (this.error.statusCode === 404) { return 'notfound' }
-      return 'other'
-    },
-
-    /** The title and icon to show on the error page.
-     * For example on a 404 error it would show "Looks like you're lost",
-     * but on an app error (eg. "crash" because of a store error) it would show
-     * "Oops, the app crashed". Can return the icon as well.
-     */
-    errorHeading () {
-      let icon = 'IconOtherError'
-
-      if (this.errorType === 'crash') {
-        icon = 'IconCrash'
-      } else if (this.errorType === 'notfound') {
-        icon = 'IconLost'
-      }
-
-      return {
-        title: this.$t('errorpage.title.' + this.errorType),
-        icon
-      }
-    },
-
-    /** Returns actions to show or recommend based on the error.
-     * For example if it's a 404 error, go to home or the
-     * discussion button is recommended but the reset button is hidden.
-     */
-    recommendedActions () {
-      return actions[this.errorType]
-    },
-
-    fullError () {
-      return Object.assign({}, this.error, { route: this.$route })
-    }
-  },
-
-  methods: {
-    ...mapActions(useSettings, ['setReset']),
-
-    getRowAndState (action) {
-      let row = 'hidden'
-      let state = 'disabled'
-
-      if (this.recommendedActions[action] && this.recommendedActions[action] === actionType.RECOMMEND) {
-        state = 'recommended'
-        row = 'recommended'
-      }
-
-      if (this.recommendedActions[action] && [actionType.PRIMARY, actionType.SECONDARY].includes(this.recommendedActions[action])) {
-        state = 'default'
-        row = this.recommendedActions[action]
-      }
-
-      if (['githubIssue', 'githubDiscussion'].includes(action)) {
-        if (!this.showError) {
-          state = 'disabled'
-        }
-      }
-
-      return {
-        'data-row': row,
-        state
-      }
-    },
-
-    /// Ask settings to reset and navigate back to the home page
-    actionReset () {
-      this.setReset(true)
-      location.assign('/')
-    },
-
-    /// Reload the current page
-    actionReload () {
-      location.reload()
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 .showerror-transition-enter-active {

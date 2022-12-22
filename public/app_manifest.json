@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/web-manifest-combined.json",
-  "name": "AnotherPomodoro: modern & simple Pomodoro app",
-  "short_name": "AnotherPomodoro",
+  "name": "FocusTide: modern & simple Pomodoro app",
+  "short_name": "FocusTide",
   "description": "Modern and customisable productivity timer, right in your browser!",
   "start_url": "/timer?pwa=true",
   "theme_color": "#F87171",
@@ -38,7 +38,7 @@
       "sizes": "1520x3040",
       "type": "image/jpg",
       "platform": "narrow",
-      "label": "Every feature is optional in AnotherPomodoro. If all you need is a simple timer, it can do that, too."
+      "label": "Every feature is optional in FocusTide. If all you need is a simple timer, it can do that, too."
     },
     {
       "src": "/assets/img/screenshots/stores/mobile_4.jpg",

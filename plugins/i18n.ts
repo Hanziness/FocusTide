@@ -1,4 +1,5 @@
 import { createI18n } from 'vue-i18n'
+import { PiniaPluginContext } from 'pinia'
 
 // import en from '@/i18n/en.json'
 // import fr from '@/i18n/fr.json'
@@ -57,7 +58,7 @@ export default defineNuxtPlugin(({ vueApp, $pinia }) => {
   // Register store lang change watcher
   const installPiniaI18nPlugin = () => {
     const router = useRouter()
-    const PiniaI18nPlugin = ({ store }) => {
+    const PiniaI18nPlugin = ({ store }: PiniaPluginContext) => {
       // if settings.lang changes, update app locale
       if (store.$id === 'settings') {
         if (!store.$state.lang && i18n.global.locale) {
@@ -84,10 +85,10 @@ export default defineNuxtPlugin(({ vueApp, $pinia }) => {
   return {
     provide: {
       setLocale: changeLocaleDynamic,
-      languages: Object.keys(languages).reduce((prev, lang) => {
+      languages: (Object.keys(languages) as Array<keyof typeof languages>).reduce((prev, lang) => {
         prev[lang] = languages[lang].name
         return prev
-      }, {})
+      }, {} as Record<keyof typeof languages, string>)
     }
   }
 })

@@ -1,183 +1,12 @@
 {
-  "index": {
-    "app_description": "Free Pomodoro timer right in your browser",
-    "alt": {
-      "img": {
-        "screenshot": "Screenshot of a timer running in AnotherPomodoro",
-        "icon": "The app's icon"
-      },
-      "links": {
-        "source": "View on GitHub",
-        "support": "Buy the author a coffee",
-        "share": {
-          "twitter": "Follow the app on Twitter",
-          "facebook": "Share the app on Facebook",
-          "reddit": "Share the app on Reddit"
-        }
-      }
-    },
-    "launch": "Launch",
-    "cta": {
-      "quickstart": "Quickstart",
-      "or": "or",
-      "configure": "Setup wizard"
-    },
-    "features": {
-      "0": {
-        "title": "Focused, clean interface",
-        "description": "Just your timer, the essential controls and a bunch of customizations"
-      },
-      "1": {
-        "title": "Nothing to install",
-        "description": "Runs in your browser, entirely offline after launch"
-      },
-      "2": {
-        "title": "Free & open-source",
-        "description": "No hidden trackers, everyone can view and contribute to the code"
-      }
-    },
-    "section_whatitdoes": {
-      "title": "What does it do?",
-      "subtitle": {
-        "main": "{appname} helps you keep track of your time.",
-        "sub": "Just work or take a break when it says so."
-      },
-      "cards": [
-        {
-          "title": "Work",
-          "description": "Time to get things done",
-          "duration": "25 minutes"
-        },
-        {
-          "title": "Short pause",
-          "description": "Watch a video, read an article, drink a coffee",
-          "duration": "5-15 minutes"
-        },
-        {
-          "title": "Long pause",
-          "description": "Take a nap or go for a walk",
-          "duration": "15 minutes"
-        }
-      ]
-    },
-    "faq": {
-      "title": "FAQ",
-      "hint": "Hint",
-      "accordion": {
-        "change_timers": {
-          "q": "Can I change those timers?",
-          "a": "Absolutely! You can change the work, pause and long pause timers to whatever you want! You can also change how frequent long pauses are!"
-        },
-        "will_it_help": {
-          "q": "Will this app help me?",
-          "a": "That depends on you. This app tries hard to create a motivating environment with its clean design and flexibility, but it's up to you whether you follow the schedule it gives you.",
-          "hint": "If you realize you can't work 25 minutes straight or a break of 5 minutes is too short, adjust them to something more comfortable. Don't give up, follow a more relaxed schedule and progressively go stricter."
-        },
-        "data_collection": {
-          "q": "Does it collect any data?",
-          "a": "Nope! The app runs only in your browser, no data is being collected or sent anywhere!"
-        },
-        "remember_settings": {
-          "q": "How will it remember my settings then?",
-          "a": "It relies on your browser to do that. If you clear your browser data, the app's settings will revert to their defaults, too.",
-          "hint": "If you want to keep your settings, don't use the app in private browsing (incognito mode)."
-        },
-        "need_to_know": {
-          "q": "So what do I need to know to use this app?",
-          "a": "Absolutely nothing. If you don't want to delve into the settings, just start the timer and listen for the audio chime when it finishes. Once it's done, start the next timer when you're ready. No knowledge is necessary to use this timer, just pay attention to the time left!"
-        },
-        "timer_style": {
-          "q": "Which timer style should I use?",
-          "a": "That depends on how obscure you want the timer to be. Traditional looks like \"12:34\" (seconds-precision), approximate looks like \"13 minutes\" and percentage looks like \"50%\"."
-        }
-      }
-    },
-    "section_features": {
-      "title": "Feature list",
-      "list": {
-        "customization": "Customization",
-        "notifications": "Audio & Notifications",
-        "flexible": "Flexible",
-        "pwa": "Offline",
-        "opensource": "Open-source",
-        "notrackers": "No trackers",
-        "noads": "No ads & pop-ups",
-        "clean": "Clean design",
-        "adaptiveticking": "Adaptive ticking",
-        "localization": "Multiple languages",
-        "darkmode": "Dark mode",
-        "more": "... and more to come"
-      }
-    },
-    "support": {
-      "title": "Support this project",
-      "subtitle": {
-        "main": "AnotherPomodoro is being developed as a side project with no compensation in mind.",
-        "action": "If you feel that this is a project worth supporting, please do so."
-      },
-      "credits": "Made with ❤ by Imre Gera"
+  "support": {
+    "source": "View on GitHub",
+    "support": "Buy the author a coffee",
+    "share": {
+      "twitter": "Follow the app on Twitter",
+      "facebook": "Share the app on Facebook",
+      "reddit": "Share the app on Reddit"
     }
-  },
-  "setup": {
-    "head": "Setup",
-    "title": "Let's get you started",
-    "startButton": "Let's go",
-    "steps": {
-      "language": {
-        "title": "Language"
-      },
-      "preset": {
-        "title": "Application preset",
-        "description": "These presets enable certain functions in the app so that you can use it the way you feel comfortable."
-      },
-      "timerpreset": {
-        "title": "Timer length",
-        "description": "Choose a timer preset that you'd like to work with."
-      },
-      "timerstyle": {
-        "title": "Timer display",
-        "description": "AnotherPomodoro supports three timer styles ranging from seconds-precision to showing only a percentage."
-      },
-      "permissions": {
-        "title": "Permissions",
-        "description": "The app can play a sound and send a notification when a timer expires."
-      },
-      "theme": {
-        "title": "Theme",
-        "description": "Control how the app looks."
-      },
-      "tip": {
-        "title": "Tip",
-        "description": "You'll find all the settings by clicking on the cog icon in the top right corner."
-      }
-    },
-    "presets": {
-      "_values": {
-        "minimalist": "Minimalist",
-        "default": "Default",
-        "hardcore": "Full-fledged"
-      },
-      "_valueDescription": {
-        "minimalist": "No distracting items, just a timer in the middle.",
-        "default": "The starter settings. Recommended for first time users.",
-        "hardcore": "Every feature is enabled so you can have everything in front of you."
-      }
-    },
-    "permissions": {
-      "audio": "Audio",
-      "notifications": "Notifications"
-    },
-    "theme": {
-      "_values": {
-        "light": "Default",
-        "dark": "Dark"
-      },
-      "_valueDescription": {
-        "light": "Full of friendly colours",
-        "dark": "Less bright, just as productive"
-      }
-    },
-    "preview": "preview"
   },
   "section": {
     "work": "Work",
@@ -189,6 +18,10 @@
     "play": "Start or pause the timer",
     "stop": "Reset timer",
     "advance": "Go to next section"
+  },
+  "appbar": {
+    "settings": "Open settings",
+    "todo": "Open task list"
   },
   "timer": {
     "approximate": {
@@ -225,7 +58,7 @@
       "madeby": "Made by Imre Gera",
       "source": "Source code",
       "support": "Support the project",
-      "supportBody": "I develop AnotherPomodoro in my free time. It would mean a lot to me if you could help me keep working on it!",
+      "supportBody": "I develop FocusTide in my free time. It would mean a lot to me if you could help me keep working on it!",
       "mobileSupport": "Due to the rules enforced by the Google Play Store, I cannot show you any links inside the mobile app to donate to the project.",
       "share": "or share the app on social media:"
     },
@@ -467,29 +300,45 @@
     "onboarding": {
       "pages": {
         "0": {
-          "title": "Welcome to AnotherPomodoro!",
-          "text": "Take a quick look around on how to use the app effectively."
+          "title": "Welcome to FocusTide!",
+          "onboarding_invite": "Let's set you up for the first time. You can change everything in the settings menu later.",
+          "heading": "Choose your language"
         },
         "1": {
-          "title": "Follow the clock",
-          "text": "Work or take a break until the timer runs out. Then proceed with your next timer."
+          "heading": "Set your timers",
+          "text": "Choose a predefined setup for the lengths of your timers. You can customize them later in the settings."
         },
         "2": {
-          "title": "Rest regularly",
-          "text": "Every few breaks you get more time to rest. Make good use of it."
+          "theme": {
+            "heading": "Choose a theme",
+            "options": {
+              "_values": {
+                "light": "Light",
+                "dark": "Dark"
+              },
+              "_valueDescription": {
+                "light": "",
+                "dark": ""
+              }
+            }
+          },
+          "display": {
+            "heading": "Choose a display"
+          }
         },
         "3": {
-          "title": "Stay flexible",
-          "text": "Set your own timers, use the task list and notifications to your advantage. Check out the settings menu for more opportunities!"
+          "heading": "Remember",
+          "text": "You can always change these (and more) in the settings menu!"
         },
         "support": {
-          "title": "Support the project",
-          "text": "If this project helped you, consider inviting the author to a coffee. You can find the support button in the settings menu, too."
+          "heading": "Support the project",
+          "text": "If this project has helped you, consider buying the author a coffee.",
+          "hint": "You can also find support options in the Settings > About page."
         }
       },
       "buttons": {
         "close": "Close",
-        "start": "Start tutorial",
+        "start": "Start setup",
         "next": "Next",
         "support": "Support the project"
       }

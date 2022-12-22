@@ -1,13 +1,34 @@
 import { defineStore } from 'pinia'
+import { Section } from './settings'
+
+export enum TaskState {
+  waiting = 0,
+  inProgress = 1,
+  complete = 2
+}
+export interface Task {
+  title: string,
+  description: string | null,
+  priority: number,
+  section: Section,
+  state: TaskState,
+  keepOnScreen: boolean,
+  id: number
+}
+
+export enum TaskMoveDirection {
+  up = 1,
+  down = -1
+}
 
 export const useTasklist = defineStore('tasklist', {
   state: () => ({
-    tasks: []
+    tasks: [] as Task[]
   }),
 
   getters: {
     /** Returns a sorted version of the tasks array where higher priorities go before lower priorities */
-    sortedTasks: (state) => {
+    sortedTasks: (state): Task[] => {
     // return a sorted copy (`sort` sorts in place)
       return [...state.tasks].sort((a, b) => {
         return b.priority - a.priority
@@ -16,8 +37,8 @@ export const useTasklist = defineStore('tasklist', {
   },
 
   actions: {
-    newTask ({ title, description = null, priority = 0, section, state = taskState.waiting }) {
-      const newTask = {
+    newTask (title: string, description: string | null, priority = 0, section: Section, state: TaskState = TaskState.waiting) {
+      const newTask: Task = {
         title,
         description,
         priority,
@@ -30,7 +51,7 @@ export const useTasklist = defineStore('tasklist', {
       this.tasks.push(newTask)
     },
 
-    changePriority ({ item, direction }) {
+    changePriority (item: Task, direction: TaskMoveDirection) {
       const itemIndex = this.tasks.indexOf(item)
 
       if (itemIndex >= 0) {
@@ -39,20 +60,20 @@ export const useTasklist = defineStore('tasklist', {
       }
     },
 
-    toggleWorking ({ item }) {
+    toggleWorking (item: Task) {
       const itemIndex = this.tasks.indexOf(item)
       if (itemIndex >= 0) {
-        this.tasks[itemIndex].state = this.tasks[itemIndex].state === taskState.inProgress ? taskState.waiting : taskState.inProgress
+        this.tasks[itemIndex].state = this.tasks[itemIndex].state === TaskState.inProgress ? TaskState.waiting : TaskState.inProgress
       }
     },
 
-    setComplete (id: string, complete: boolean) {
+    setComplete (id: number, complete: boolean) {
       const itemIndex = this.tasks.findIndex(item => item.id === id)
 
-      this.tasks[itemIndex].state = complete ? taskState.complete : taskState.inProgress
+      this.tasks[itemIndex].state = complete ? TaskState.complete : TaskState.inProgress
     },
 
-    deleteTask ({ item }) {
+    deleteTask (item: Task) {
       const itemIndex = this.tasks.indexOf(item)
       if (itemIndex >= 0) {
         this.tasks.splice(itemIndex, 1)
@@ -60,17 +81,17 @@ export const useTasklist = defineStore('tasklist', {
     },
 
     removeCompleted () {
-      this.tasks = this.tasks.filter(task => task.state !== taskState.complete)
+      this.tasks = this.tasks.filter(task => task.state !== TaskState.complete)
     },
 
-    moveItem ({ item, newIndex }) {
+    moveItem (item: Task, newIndex: number) {
       const oldIndex = this.tasks.indexOf(item)
       if (oldIndex < 0 || newIndex >= this.tasks.length) { return }
 
       this.tasks.splice(newIndex, 0, this.tasks.splice(oldIndex, 1)[0])
     },
 
-    editTitle ({ id, newTitle }) {
+    editTitle (id: number, newTitle: string) {
       const taskIndex = this.tasks.findIndex(item => item.id === id)
 
       if (taskIndex < 0) { return }
@@ -79,9 +100,3 @@ export const useTasklist = defineStore('tasklist', {
     }
   }
 })
-
-export const taskState = {
-  waiting: 0,
-  inProgress: 1,
-  complete: 2
-}

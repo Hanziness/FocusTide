@@ -1,6 +1,6 @@
-# AnotherPomodoro contribution guidelines
+# FocusTide contribution guidelines
 
-**AnotherPomodoro** is not a huge project and as such its guidelines are not so strict, either. It might be a great project for beginners and students to implement new features or bug fixes in.
+**FocusTide** is not a huge project and as such its guidelines are not so strict, either. It might be a great project for beginners and students to implement new features or bug fixes in.
 
 Still, **before contributing, please read this short guide** to make sure you submit a new issue or pull request the right way!
 
@@ -10,7 +10,7 @@ Still, **before contributing, please read this short guide** to make sure you su
 
 The app's most up-to-date development version is on the `develop` branch. **You should always submit pull requests against `develop`** and you should be working on this branch locally.
 
-**The `prod` branch is only updated when a new version is released** as it contains the deployed version of the application (found at https://another-pomodoro.netlify.app).
+**The `prod` branch is only updated when a new version is released** as it contains the deployed version of the application (found at https://focustide.app).
 
 The `preview` branch is for testing production updates early, it is rarely updated -- sometimes the `develop` branch is merged into it before it is merged into `prod` to test new releases.
 
@@ -82,7 +82,7 @@ If that feature request is approved or there is a concrete idea to implement:
 
 ## Submitting pull requests
 
-AnotherPomodoro is an open software and such it welcomes others to contribute code (fixes or features) to it. Adhering to the following simple rules will help your code get accepted:
+FocusTide is an open software and such it welcomes others to contribute code (fixes or features) to it. Adhering to the following simple rules will help your code get accepted:
 
 * Before submitting code, please start a discussion (either [on the discussions](https://github.com/Hanziness/AnotherPomodoro/discussions) or the [issues page](https://github.com/Hanziness/AnotherPomodoro/issues)). **Code submitted without prior discussion will likely not be accepted.**
 * Fork the repository. **Don't forget to switch to the `develop` branch after cloning!**
@@ -93,7 +93,7 @@ AnotherPomodoro is an open software and such it welcomes others to contribute co
 
 [![Crowdin](https://badges.crowdin.net/anotherpomodoro/localized.svg)](https://crowdin.com/project/anotherpomodoro)
 
-Translations are managed through [AnotherPomodoro's Crowdin project](https://crowdin.com/project/anotherpomodoro). If you want to contribute translations for your own language, please [create an issue](https://github.com/Hanziness/AnotherPomodoro/issues/new/choose).
+Translations are managed through [FocusTide's Crowdin project](https://crowdin.com/project/anotherpomodoro). If you want to contribute translations for your own language, please [create an issue](https://github.com/Hanziness/AnotherPomodoro/issues/new/choose).
 
 ## Technical requirements
 

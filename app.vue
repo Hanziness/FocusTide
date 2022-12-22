@@ -22,9 +22,16 @@ if (!process.server) {
   onMounted(() => {
     if (typeof window !== 'undefined') {
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
+        const registerSw = () => {
+          console.debug(`Registering service worker at /${swPath}`)
           navigator.serviceWorker.register(`/${swPath}`)
-        })
+        }
+
+        if (document.readyState === 'complete') {
+          registerSw()
+        } else {
+          window.addEventListener('load', registerSw)
+        }
       }
     }
   })
@@ -32,10 +39,18 @@ if (!process.server) {
 
 const settingsStore = useSettings()
 const isDarkMode = computed(() => settingsStore.visuals.darkMode)
+
+watch(isDarkMode, (newDarkMode) => {
+  useHead({
+    bodyAttrs: {
+      class: newDarkMode ? 'dark' : undefined
+    }
+  })
+})
 </script>
 
 <template>
   <NuxtLayout>
-    <NuxtPage :class="{'dark': isDarkMode}" />
+    <NuxtPage />
   </NuxtLayout>
 </template>

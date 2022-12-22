@@ -3,7 +3,7 @@
     "app_description": "Temporizador Pomodoro gratuito directamente en su navegador",
     "alt": {
       "img": {
-        "screenshot": "Captura de pantalla de un temporizador en funcionamiento en AnotherPomodoro",
+        "screenshot": "Captura de pantalla de un temporizador en funcionamiento en FocusTide",
         "icon": "El icono de la aplicación"
       },
       "links": {
@@ -112,7 +112,7 @@
     "support": {
       "title": "Apoye este proyecto",
       "subtitle": {
-        "main": "AnotherPomodoro está siendo desarrollado como un proyecto paralelo sin ninguna compensación en mente.",
+        "main": "FocusTide está siendo desarrollado como un proyecto paralelo sin ninguna compensación en mente.",
         "action": "Si siente que este es un proyecto que vale la pena apoyar, por favor hágalo."
       },
       "credits": "Hecho con ❤ por Imre Gera"
@@ -136,7 +136,7 @@
       },
       "timerstyle": {
         "title": "Vista del temporizador",
-        "description": "AnotherPomodoro soporta tres estilos de temporizador que van desde preciso a los segundos hasta mostrar solo un porcentaje."
+        "description": "FocusTide soporta tres estilos de temporizador que van desde preciso a los segundos hasta mostrar solo un porcentaje."
       },
       "permissions": {
         "title": "Permisos",
@@ -225,7 +225,7 @@
       "madeby": "Hecho por Imre Gera",
       "source": "Código fuente",
       "support": "Apoye el proyecto",
-      "supportBody": "Desarrollo AnotherPomodoro en mi tiempo libre. ¡Significaría mucho para mí si pudiera ayudarme a seguir trabajando en él!",
+      "supportBody": "Desarrollo FocusTide en mi tiempo libre. ¡Significaría mucho para mí si pudiera ayudarme a seguir trabajando en él!",
       "mobileSupport": "Debido a las reglas impuestas por la Google Play Store, no puedo mostrarle ningún enlace dentro de la aplicación móvil para donar al proyecto.",
       "share": "o comparta la aplicación en redes sociales:"
     },
@@ -467,7 +467,7 @@
     "onboarding": {
       "pages": {
         "0": {
-          "title": "¡Bienvenido/a AnotherPomodoro!",
+          "title": "¡Bienvenido/a FocusTide!",
           "text": "Eche un vistazo a cómo utilizar la aplicación de forma eficaz."
         },
         "1": {

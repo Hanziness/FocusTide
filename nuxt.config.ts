@@ -4,8 +4,8 @@
 import * as fs from 'fs'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
-import { defineNuxtConfig } from 'nuxt'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
+import StylelintPlugin from 'vite-plugin-stylelint'
 import VitePWAGenerator from './modules/build/pwa'
 import IconResizer from './modules/build/icon_resize'
 import { AppPlatform } from './platforms/platforms'
@@ -55,11 +55,10 @@ export default defineNuxtConfig({
     public: {
       PACKAGE_VERSION: version,
       PLATFORM: AppPlatform.web,
-      URL: 'https://another-pomodoro.app'
+      URL: 'https://focustide.app'
     }
   },
 
-  target: 'static',
   ssr: true,
 
   /*
@@ -68,13 +67,13 @@ export default defineNuxtConfig({
   */
   head: {
     titleTemplate: '%s',
-    title: 'AnotherPomodoro',
+    title: 'FocusTide',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
       { hid: 'keywords', name: 'keywords', content: 'pomodoro app, pomodoro, free, productivity tool, app, open-source, online timer, countdown timer, focus timer, pomodoro clock, no ads, productivity timer, todo list, task management, tomato timer, pwa' },
-      { hid: 'twitter:title', name: 'twitter:title', content: 'AnotherPomodoro' },
+      { hid: 'twitter:title', name: 'twitter:title', content: 'FocusTide' },
       { hid: 'twitter:description', name: 'twitter:description', content: process.env.npm_package_description || '' },
       { hid: 'twitter:image', name: 'twitter:image', content: '/img/ogImage.png' },
       { hid: 'og:image', property: 'og:image', content: '/img/ogImage.png' },
@@ -115,9 +114,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/google-fonts',
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
+    // '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
-    '@nuxtjs/stylelint-module',
     '@pinia/nuxt'
     // '@nuxtjs/sitemap'
   ],
@@ -133,12 +131,12 @@ export default defineNuxtConfig({
 
   generate: {
     // Generate fallback pages (makes error pages work on Netlify, too)
-    fallback: currentPlatform === 'web' ? '404.html' : null,
-    crawler: currentPlatform === 'web',
+    // fallback: currentPlatform === 'web' ? '404.html' : undefined,
+    // crawler: currentPlatform === 'web',
 
     // Exclude home and setup pages on mobile platforms
-    exclude: currentPlatform === 'mobile' ? ['/', '/setup'] : [],
-    manifest: false
+    exclude: currentPlatform === 'mobile' ? ['/', '/setup'] : []
+    // manifest: false
   },
 
   /**
@@ -190,7 +188,7 @@ export default defineNuxtConfig({
   */
   googleFonts: {
     families: {
-      Poppins: [400, 700]
+      Lexend: [400, 700]
     },
     display: 'swap'
     // download: true
@@ -200,16 +198,12 @@ export default defineNuxtConfig({
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
-  build: {
-    postcss: {
-      postcssOptions: {
-        plugins: {
-          'postcss-import': {},
-          'tailwindcss/nesting': {},
-          tailwindcss: {},
-          autoprefixer: {}
-        }
-      }
+  postcss: {
+    plugins: {
+      'postcss-import': {},
+      'tailwindcss/nesting': {},
+      tailwindcss: {},
+      autoprefixer: {}
     }
   },
 
@@ -224,11 +218,17 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    define: {
+      // disable Options API support in Vue
+      __VUE_OPTIONS_API__: false,
+      __VUE_PROD_DEVTOOLS__: false
+    },
     build: {
       manifest: false,
       ssrManifest: false
     },
     plugins: [
+      StylelintPlugin(),
       VueI18nVitePlugin({
         // TODO this is needed to make lazy-loading work properly
         runtimeOnly: false,
