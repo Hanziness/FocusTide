@@ -5,6 +5,12 @@ const state = reactive({
   items: [] as HTMLElement[]
 })
 
+const sortOrder = {
+  recommended: 0,
+  primary: 1,
+  secondary: 2
+}
+
 const primary: Ref<HTMLElement | null> = ref(null)
 const secondary: Ref<HTMLElement | null> = ref(null)
 const items: Ref<HTMLElement | null> = ref(null)
@@ -36,12 +42,6 @@ watch(() => state.items, (newValue) => {
 })
 
 onMounted(() => {
-  const sortOrder = {
-    recommended: 0,
-    primary: 1,
-    secondary: 2
-  }
-
   // collect all nodes with a `data-row` attribute
   state.items = []
   if (items != null) {
