@@ -1,4 +1,5 @@
 <script setup lang="ts"> // eslint-disable-line vue/multi-word-component-names
+import { useI18n } from 'vue-i18n'
 import SettingsPanel from '@/components/settings/settingsPanel.vue'
 import TodoList from '~~/components/todoList/todoList.vue'
 import { useOpenPanels } from '~~/stores/openpanels'
@@ -8,6 +9,14 @@ import { useSettings } from '~~/stores/settings'
 const openPanels = useOpenPanels()
 const settingsStore = useSettings()
 const scheduleStore = useSchedule()
+
+const { locale } = useI18n()
+
+useHead(() => {
+  return {
+    htmlAttrs: { lang: locale }
+  }
+})
 </script>
 
 <template>
