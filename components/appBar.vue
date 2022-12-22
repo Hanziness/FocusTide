@@ -30,12 +30,14 @@ const settingsStore = useSettings()
       no-content-theme
       no-padding
       inner-class="p-1"
+      :aria-label="$t('appbar.todo')"
       @click="openPanels.todo = !openPanels.todo"
     >
       <ChecklistIcon class="inline-block" />
     </CButton>
     <CButton
       circle
+      :aria-label="$t('appbar.settings')"
       :importance="ButtonImportance.Filled"
       :theme="ButtonTheme.Neutral"
       class="h-11"

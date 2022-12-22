@@ -190,6 +190,10 @@
     "stop": "Reset timer",
     "advance": "Go to next section"
   },
+  "appbar": {
+    "settings": "Open settings",
+    "todo": "Open task list"
+  },
   "timer": {
     "approximate": {
       "hours": "hour | hours",
