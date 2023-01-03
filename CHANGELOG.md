@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/Hanziness/AnotherPomodoro/compare/v1.3.5...v1.4.0) (2023-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* Change most URLs to FocusTide (#299)
+
+### Features
+
+* Make the status bar more compact ([#278](https://github.com/Hanziness/AnotherPomodoro/issues/278)) ([1abd793](https://github.com/Hanziness/AnotherPomodoro/commit/1abd793043af8f14927e1caa4b85aef3c63a51da))
+* Make theming more consistent ([#284](https://github.com/Hanziness/AnotherPomodoro/issues/284)) ([b877b1d](https://github.com/Hanziness/AnotherPomodoro/commit/b877b1d292d747bfb5513fead2a676ab29dde7c0))
+* Minor visual tweaks ([#298](https://github.com/Hanziness/AnotherPomodoro/issues/298)) ([4d98a3d](https://github.com/Hanziness/AnotherPomodoro/commit/4d98a3dda3c5a266802ab0898a761f8e3442fffd))
+* **onboarding:** Add setup steps to onboarding ([#291](https://github.com/Hanziness/AnotherPomodoro/issues/291)) ([c8a56dc](https://github.com/Hanziness/AnotherPomodoro/commit/c8a56dc07a7684b70e70c425b80f5c99366a1430))
+* **timer:** Redesign control bar ([#280](https://github.com/Hanziness/AnotherPomodoro/issues/280)) ([5dd5a8c](https://github.com/Hanziness/AnotherPomodoro/commit/5dd5a8c198bdb614d989911812ff1225e3b3738c))
+
+
+### Bug Fixes
+
+* Add back custom checkbox ([#307](https://github.com/Hanziness/AnotherPomodoro/issues/307)) ([95ddd27](https://github.com/Hanziness/AnotherPomodoro/commit/95ddd271494fb6364b9c847f331cb46d2b1a3725))
+* **appbar:** Fix button paddings ([#293](https://github.com/Hanziness/AnotherPomodoro/issues/293)) ([bc8f51a](https://github.com/Hanziness/AnotherPomodoro/commit/bc8f51a9a35f823befeecc3e24648577f443fce9))
+* **button:** Make outline style legible ([#290](https://github.com/Hanziness/AnotherPomodoro/issues/290)) ([2c26968](https://github.com/Hanziness/AnotherPomodoro/commit/2c26968e6ac2c4da81d13a834dc0f3f50370015e))
+* Hide full screen panel outlines ([#313](https://github.com/Hanziness/AnotherPomodoro/issues/313)) ([8caec65](https://github.com/Hanziness/AnotherPomodoro/commit/8caec65694ea9e5321481c370a52529faf8ab58e))
+* **schedule:** Fix ring around inactive schedule items ([#286](https://github.com/Hanziness/AnotherPomodoro/issues/286)) ([aa627c6](https://github.com/Hanziness/AnotherPomodoro/commit/aa627c6c11e52088c96ab2d9749fa80f508e65cf))
+* **todo:** To-do panel stays full width until md breakpoint ([#314](https://github.com/Hanziness/AnotherPomodoro/issues/314)) ([53d7176](https://github.com/Hanziness/AnotherPomodoro/commit/53d71760bda290a2a8781bacb4ed42c21f054457))
+
+
+### Refactors
+
+* Add strict typing and move components to Composition API ([#283](https://github.com/Hanziness/AnotherPomodoro/issues/283)) ([cfc3cc0](https://github.com/Hanziness/AnotherPomodoro/commit/cfc3cc0035ff12e1a2b3db895cd1ab28628ab505))
+* Change display strings to FocusTide ([#275](https://github.com/Hanziness/AnotherPomodoro/issues/275)) ([b5ba350](https://github.com/Hanziness/AnotherPomodoro/commit/b5ba3500ddcdd70e697262fa29427f5f672ee6ae))
+* Change most URLs to FocusTide ([#299](https://github.com/Hanziness/AnotherPomodoro/issues/299)) ([a2b23d1](https://github.com/Hanziness/AnotherPomodoro/commit/a2b23d1236fab94d1a6941ba4a56e1d96bc6624f))
+* **i18n:** Correct localization paths ([#317](https://github.com/Hanziness/AnotherPomodoro/issues/317)) ([54ea1ac](https://github.com/Hanziness/AnotherPomodoro/commit/54ea1ac86102931ed1184cdd5747bc282835a2c8))
+* Make buttons more consistent ([#288](https://github.com/Hanziness/AnotherPomodoro/issues/288)) ([4228083](https://github.com/Hanziness/AnotherPomodoro/commit/4228083ed76fa9c7345f957095f434c3724f508f))
+* Make the timer page the home page ([#295](https://github.com/Hanziness/AnotherPomodoro/issues/295)) ([5177330](https://github.com/Hanziness/AnotherPomodoro/commit/517733097caf41d574eb3b2d8c6ad1e19818ef2e))
+* Minor cleanups ([#308](https://github.com/Hanziness/AnotherPomodoro/issues/308)) ([19d0e3e](https://github.com/Hanziness/AnotherPomodoro/commit/19d0e3ece27389af87d80a82def788390a6887d7))
+* Update dependencies ([#273](https://github.com/Hanziness/AnotherPomodoro/issues/273)) ([7aea860](https://github.com/Hanziness/AnotherPomodoro/commit/7aea86021098c5d87702276c17e0c7abc9151d58))
+* Update dependencies ([#302](https://github.com/Hanziness/AnotherPomodoro/issues/302)) ([f98a1fa](https://github.com/Hanziness/AnotherPomodoro/commit/f98a1fa859fcc4f3f2aecb23cbdd4d68ef1aa154))
+* Update time input controls ([#305](https://github.com/Hanziness/AnotherPomodoro/issues/305)) ([8b7d811](https://github.com/Hanziness/AnotherPomodoro/commit/8b7d811c4841fe5beb6b596bafacd22eea99564e))
+* Update to Nuxt 3 stable ([#279](https://github.com/Hanziness/AnotherPomodoro/issues/279)) ([4cf5c34](https://github.com/Hanziness/AnotherPomodoro/commit/4cf5c3413919e9f5a746f55b454441518d719e13))
+
 ### [1.3.5](https://github.com/Hanziness/AnotherPomodoro/compare/v1.3.4...v1.3.5) (2022-09-17)
 
 
