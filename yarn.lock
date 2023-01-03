@@ -1531,9 +1531,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "@eslint/eslintrc@npm:1.4.0"
+"@eslint/eslintrc@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "@eslint/eslintrc@npm:1.4.1"
   dependencies:
     ajv: ^6.12.4
     debug: ^4.3.2
@@ -1544,7 +1544,7 @@ __metadata:
     js-yaml: ^4.1.0
     minimatch: ^3.1.2
     strip-json-comments: ^3.1.1
-  checksum: 73e39c833deafde8d8706e6fa9b52b6d99927c094ead8e405ea4174e8197ec24aac9ba88ae38cc8ad32eaccf07b9c7fc5dc70761d1fba6da41a928691447305f
+  checksum: cd3e5a8683db604739938b1c1c8b77927dc04fce3e28e0c88e7f2cd4900b89466baf83dfbad76b2b9e4d2746abdd00dd3f9da544d3e311633d8693f327d04cd7
   languageName: node
   linkType: hard
 
@@ -2967,8 +2967,8 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.42.1
     "@typescript-eslint/parser": ^5.42.1
     autoprefixer: ^10.4.13
-    core-js: ^3.26.1
-    eslint: ^8.30.0
+    core-js: ^3.27.1
+    eslint: ^8.31.0
     eslint-plugin-nuxt: ^4.0.0
     eslint-plugin-vue: ^9.8.0
     nuxt: ^3.0.0
@@ -2976,16 +2976,16 @@ __metadata:
     postcss: ^8.4.20
     postcss-html: ^1.5.0
     sass: ^1.57.1
-    sharp: ^0.31.2
+    sharp: ^0.31.3
     standard-version: ^9.5.0
-    stylelint: ^14.16.0
+    stylelint: ^14.16.1
     stylelint-config-recommended-vue: ^1.4.0
     stylelint-config-standard: ^29.0.0
     tailwindcss: ^3.2.4
     typescript: ^4.9.4
-    vite: ^4.0.2
+    vite: ^4.0.4
     vite-plugin-eslint: ^1.8.1
-    vite-plugin-stylelint: ^4.1.3
+    vite-plugin-stylelint: ^4.1.4
     vue: ^3.2.45
     vue-i18n: ^9.2.2
     vue-tabler-icons: ^2.17.0
@@ -4146,10 +4146,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.26.1":
-  version: 3.26.1
-  resolution: "core-js@npm:3.26.1"
-  checksum: 0a01149f51ff1e9f41d1ea49cc4c9222047949ea597189ede7c4cf8cde3b097766b9c7615acc77c86fe65b4002f20b638a133dfba7b41dba830d707aeeed45ad
+"core-js@npm:^3.27.1":
+  version: 3.27.1
+  resolution: "core-js@npm:3.27.1"
+  checksum: d50b5f88aea4302512ad9446c18e90f4d35dea1e6d8d3f87337690677061565ff11a670f1e0c87de57aa6074375fbb25ed5784076c040d3c4de8b4bce7d2ebeb
   languageName: node
   linkType: hard
 
@@ -5779,11 +5779,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.30.0":
-  version: 8.30.0
-  resolution: "eslint@npm:8.30.0"
+"eslint@npm:^8.31.0":
+  version: 8.31.0
+  resolution: "eslint@npm:8.31.0"
   dependencies:
-    "@eslint/eslintrc": ^1.4.0
+    "@eslint/eslintrc": ^1.4.1
     "@humanwhocodes/config-array": ^0.11.8
     "@humanwhocodes/module-importer": ^1.0.1
     "@nodelib/fs.walk": ^1.2.8
@@ -5824,7 +5824,7 @@ __metadata:
     text-table: ^0.2.0
   bin:
     eslint: bin/eslint.js
-  checksum: b7525bb465b342665c3b8bab7e114d514ef1bc4e79f211c919863f9c71767e7412ec82383a22614a92d159783f91101018817000f7c61ce69a5e7015280cafaf
+  checksum: 5e5688bb864edc6b12d165849994812eefa67fb3fc44bb26f53659b63edcd8bcc68389d27cc6cc9e5b79ee22f24b6f311fa3ed047bddcafdec7d84c1b5561e4f
   languageName: node
   linkType: hard
 
@@ -10511,9 +10511,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sharp@npm:^0.31.2":
-  version: 0.31.2
-  resolution: "sharp@npm:0.31.2"
+"sharp@npm:^0.31.3":
+  version: 0.31.3
+  resolution: "sharp@npm:0.31.3"
   dependencies:
     color: ^4.2.3
     detect-libc: ^2.0.1
@@ -10524,7 +10524,7 @@ __metadata:
     simple-get: ^4.0.1
     tar-fs: ^2.1.1
     tunnel-agent: ^0.6.0
-  checksum: 076717b7a073ea47bb522ff2931b74b6608daeb6f7ae334e4848d47fdf4d23bcb18cd49044fd5fb27ef27a1a4aa87d141894d67d1c4bb15a6e2e63cf4dbe329e
+  checksum: 29fd1dfbc616c6389f53f366cec342b4353d9f2a37e98952ca273db38dca57dfa0f336322d6d763f0fae876042ead22fd86ffe26d70c32ade2458d421db60d04
   languageName: node
   linkType: hard
 
@@ -11055,9 +11055,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint@npm:^14.16.0":
-  version: 14.16.0
-  resolution: "stylelint@npm:14.16.0"
+"stylelint@npm:^14.16.1":
+  version: 14.16.1
+  resolution: "stylelint@npm:14.16.1"
   dependencies:
     "@csstools/selector-specificity": ^2.0.2
     balanced-match: ^2.0.0
@@ -11099,7 +11099,7 @@ __metadata:
     write-file-atomic: ^4.0.2
   bin:
     stylelint: bin/stylelint.js
-  checksum: 3b8d003aa0756cd8101e06be08a621fe4a2627c962d5ee471a231e71132ea90468f34f12f7bf8ba1e6c9857f55ac2d5c1b63f7a6e5c4ed667b1826925e0fd267
+  checksum: bc24050415e3c357a76d8ca2799e74ce31f33c9158b4086462512b0191db5d6a161b81ef35b064039c6eacf98a5553e45fca4c5f21eb4d45e7f1d44b2d226e9b
   languageName: node
   linkType: hard
 
@@ -12009,9 +12009,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-stylelint@npm:^4.1.3":
-  version: 4.1.3
-  resolution: "vite-plugin-stylelint@npm:4.1.3"
+"vite-plugin-stylelint@npm:^4.1.4":
+  version: 4.1.4
+  resolution: "vite-plugin-stylelint@npm:4.1.4"
   dependencies:
     "@rollup/pluginutils": ^5.0.2
     chokidar: ^3.5.3
@@ -12022,7 +12022,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/stylelint":
       optional: true
-  checksum: e53fc755ecdba6ad7ffd291e51c6ff737fb366784fe8c5f7e9f44a7187e30b137f295c16e324ccf0e7857d20f53b54c3c10cc25f31643893e0ee99369462af26
+  checksum: af7afff95b0726afe389248b0c35155b9f51878b969150b125d686746066287b455235fbe8ba009800c8f977df208dd50a0320c63c2e90525a6758f33b1a5cbc
   languageName: node
   linkType: hard
 
@@ -12064,9 +12064,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "vite@npm:4.0.2"
+"vite@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "vite@npm:4.0.4"
   dependencies:
     esbuild: ^0.16.3
     fsevents: ~2.3.2
@@ -12098,7 +12098,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: b259782d83f293289f1cd7802cc525c75691fd45a1ded74e58365b5bff8f93f255daad4480269cda1660bf831f628b7a7224c9f591f039b5c0ccf351a8ee04ee
+  checksum: eb86c8cdfe8dcb6644005486b31cb60bc596f2aa683cb194abb5c0afca7c2a5dfdb02bbc7f83f419ad170227ac9c3b898f4406a6d1433105fb61d79d78e47d52
   languageName: node
   linkType: hard
 
