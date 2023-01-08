@@ -2,7 +2,7 @@
 import { markRaw } from 'vue'
 import tutorialOnboarding from './tutorialOnboarding.vue'
 import { useTutorials } from '~~/stores/tutorials'
-import { useMain, flags } from '~~/stores/main'
+import { useMain } from '~~/stores/main'
 
 const tutorialsStore = useTutorials()
 const mainStore = useMain()
@@ -26,7 +26,7 @@ watch(() => tutorialsStore.currentTutorial, (newValue) => {
 onMounted(() => {
   state.enableComponent = tutorialsStore.currentTutorial != null
 
-  if (!mainStore.isFlagActive(flags.STORE_RESTORED)) {
+  if (!mainStore.restoredStores.includes('tutorials')) {
     tutorialsStore.openTutorial('onboarding')
   }
 })

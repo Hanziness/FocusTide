@@ -9,7 +9,7 @@ export const useMain = defineStore('main', {
   state: () => ({
     version: useRuntimeConfig().public.PACKAGE_VERSION,
     flags: [] as string[],
-    skippedStores: {} as Record<string, string[]>
+    restoredStores: [] as string[]
   }),
 
   getters: {
