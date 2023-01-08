@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/Hanziness/FocusTide/compare/v1.4.0...v1.4.2) (2023-01-08)
+
+
+### Bug Fixes
+
+* **meta:** Use metadata again on the site ([#328](https://github.com/Hanziness/FocusTide/issues/328)) ([6fd3674](https://github.com/Hanziness/FocusTide/commit/6fd36747d207e70e34f627b9f0201097564edff7))
+* **meta:** Use metadata again on the site ([#329](https://github.com/Hanziness/FocusTide/issues/329)) ([4242df6](https://github.com/Hanziness/FocusTide/commit/4242df6effa47c23e799c334a49e2d8e648302d3))
+* Redirect another-pomodoro.app to focustide.app ([#323](https://github.com/Hanziness/FocusTide/issues/323)) ([012d7ee](https://github.com/Hanziness/FocusTide/commit/012d7eec088e24d1a8d0d71c32c5d471f2617fb6))
+
+
+### Refactors
+
+* Show tutorial for all users ([#327](https://github.com/Hanziness/FocusTide/issues/327)) ([dcd456c](https://github.com/Hanziness/FocusTide/commit/dcd456c74115f9e7386f416a2b96647eec5ccffa))
+* Update social handles ([#324](https://github.com/Hanziness/FocusTide/issues/324)) ([c2453f0](https://github.com/Hanziness/FocusTide/commit/c2453f0a044bd44e56b8cc542189332ff4ebf4b5))
+
 ### [1.4.1](https://github.com/Hanziness/FocusTide/compare/v1.4.0...v1.4.1) (2023-01-08)
 
 
