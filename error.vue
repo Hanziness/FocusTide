@@ -193,7 +193,7 @@ const actionTypeToButtonStyle = (action: ActionType): ButtonStyleMapping => {
         <IconDiscussion class="mr-1" />
         <div v-text="$t('errorpage.action.githubDiscussion')" />
       </UiButton>
-      <UiButton link :data-row="recommendedActions.twitter" v-bind="actionTypeToButtonStyle(recommendedActions.home)" href="https://twitter.com/AnotherPomodoro?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
+      <UiButton link :data-row="recommendedActions.twitter" v-bind="actionTypeToButtonStyle(recommendedActions.home)" href="https://twitter.com/FocusTide?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
         <IconTwitter class="mr-1" />
         <div v-text="$t('errorpage.action.twitter')" />
       </UiButton>

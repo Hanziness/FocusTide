@@ -77,7 +77,7 @@ const mainStore = useMain()
           no-default-style
           no-content-theme
           :importance="ButtonImportance.Filled"
-          href="https://twitter.com/AnotherPomodoro?utm_source=FocusTide&utm_medium=web&utm_content=settings"
+          href="https://twitter.com/FocusTide?utm_source=FocusTide&utm_medium=web&utm_content=settings"
           bg-class="bg-[#1da1f2]"
           inner-class="!p-4 text-slate-50"
         >
