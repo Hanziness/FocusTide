@@ -12,6 +12,18 @@
   force = true
 
 [[redirects]]
+  from = "http://another-pomodoro.app/*"
+  to = "https://focustide.app/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://another-pomodoro.app/*"
+  to = "https://focustide.app/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/timer"
   to = "/"
   status = 301
