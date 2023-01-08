@@ -41,11 +41,6 @@ const iconSvg = computed(() => `data:image/svg+xml,
 
 definePageMeta({ layout: 'timer', layoutTransition: false })
 useHead({
-  meta: [{
-    hid: 'description',
-    name: 'description',
-    content: 'Jumpstart your productivity sessions with FocusTide. Start your timer session on this page, or check the home page for a guided tour!'
-  }],
   link: [
     {
       rel: 'icon',
