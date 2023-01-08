@@ -12,6 +12,18 @@
   force = true
 
 [[redirects]]
+  from = "http://another-pomodoro.app/*"
+  to = "https://focustide.app/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://another-pomodoro.app/*"
+  to = "https://focustide.app/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/timer"
   to = "/"
   status = 301
@@ -27,18 +39,3 @@
   from = "/_hive/*"
   to = "https://hive.splitbee.io/:splat"
   status = 200
-
-[[redirects]]
-  from = "/fa.js"
-  to = "https://fairdatacenter.de/cdn/fair.js"
-  status = 200
-
-[[redirects]]
-  from = "/pa.js"
-  to = "https://plausible.io/js/plausible.outbound-links.js"
-  status = 200
-
-[[redirects]]
-  from = "/plausible-api"
-  to = "https://plausible.io/api/event"
-  status = 202
