@@ -185,11 +185,11 @@ const actionTypeToButtonStyle = (action: ActionType): ButtonStyleMapping => {
         <IconHome class="mr-1" />
         <div v-text="$t('errorpage.action.home')" />
       </UiButton>
-      <UiButton link :data-row="recommendedActions.githubIssue" v-bind="actionTypeToButtonStyle(recommendedActions.githubIssue)" href="https://github.com/Hanziness/AnotherPomodoro/issues?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
+      <UiButton link :data-row="recommendedActions.githubIssue" v-bind="actionTypeToButtonStyle(recommendedActions.githubIssue)" href="https://github.com/Hanziness/FocusTide/issues?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
         <IconGithub class="mr-1" />
         <div v-text="$t('errorpage.action.githubIssue')" />
       </UiButton>
-      <UiButton link :data-row="recommendedActions.githubDiscussion" v-bind="actionTypeToButtonStyle(recommendedActions.githubDiscussion)" href="https://github.com/Hanziness/AnotherPomodoro/discussions?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
+      <UiButton link :data-row="recommendedActions.githubDiscussion" v-bind="actionTypeToButtonStyle(recommendedActions.githubDiscussion)" href="https://github.com/Hanziness/FocusTide/discussions?utm_source=AnotherPomodor&utm_medium=web&utm_content=error">
         <IconDiscussion class="mr-1" />
         <div v-text="$t('errorpage.action.githubDiscussion')" />
       </UiButton>

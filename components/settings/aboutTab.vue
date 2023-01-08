@@ -35,7 +35,7 @@ const mainStore = useMain()
           link
           no-default-style
           no-content-theme
-          href="https://www.github.com/Hanziness/AnotherPomodoro?utm_source=FocusTide&utm_medium=web&utm_content=settings"
+          href="https://www.github.com/Hanziness/FocusTide?utm_source=FocusTide&utm_medium=web&utm_content=settings"
           inner-class="flex flex-row items-center gap-1 text-slate-50 text-gray-50"
           bg-class="bg-slate-900 dark:bg-slate-700"
         >

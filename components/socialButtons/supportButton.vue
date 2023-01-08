@@ -15,7 +15,7 @@ interface ConfigItem {
 
 const config: Record<string, ConfigItem> = {
   github: {
-    url: 'https://www.github.com/Hanziness/AnotherPomodoro',
+    url: 'https://www.github.com/Hanziness/FocusTide',
     icon: GitHub,
     class: 'bg-black hover:bg-gray-700 active:bg-gray-800 text-white',
     darkClass: 'dark:bg-gray-700 dark:hover:bg-gray-600 dark:active:bg-gray-800',
