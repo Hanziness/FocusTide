@@ -5,6 +5,7 @@ import { PiniaPluginContext } from 'pinia'
 // import fr from '@/i18n/fr.json'
 // import hr from '@/i18n/hr.json'
 // import hu from '@/i18n/hu.json'
+// import pt_BR from '@/i18n/pt-BR.json'
 
 import messages from '@intlify/unplugin-vue-i18n/messages'
 
@@ -25,9 +26,9 @@ export const languages = {
     name: 'Magyar',
     iso: 'hu-HU'
   },
-  es: {
-    name: 'Español',
-    iso: 'es-ES'
+  pt_BR: {
+    name: 'Português (Brasil)',
+    iso: 'pt-BR'
   }
 }
 
