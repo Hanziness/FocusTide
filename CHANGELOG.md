@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.3](https://github.com/Hanziness/AnotherPomodoro/compare/v1.4.2...v1.4.3) (2023-02-19)
+
+
+### Localizations
+
+* Update translations, add Portuguese (Brazilian) by [@lucawen](https://github.com/lucawen) ([#334](https://github.com/Hanziness/AnotherPomodoro/issues/334)) ([0deb114](https://github.com/Hanziness/AnotherPomodoro/commit/0deb11485dcb75c55e9fe762715be5c652ffd429))
+
 ### [1.4.2](https://github.com/Hanziness/FocusTide/compare/v1.4.0...v1.4.2) (2023-01-08)
 
 
