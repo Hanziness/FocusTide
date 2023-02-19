@@ -19,6 +19,10 @@
     "stop": "Restablecer temporizador",
     "advance": "Ir a la siguiente sección"
   },
+  "appbar": {
+    "settings": "Abrir ajustes",
+    "todo": "Abrir lista de tareas"
+  },
   "timer": {
     "approximate": {
       "hours": "hora | horas",
@@ -297,23 +301,39 @@
       "pages": {
         "0": {
           "title": "¡Bienvenido/a FocusTide!",
-          "text": "Eche un vistazo a cómo utilizar la aplicación de forma eficaz."
+          "onboarding_invite": "Vamos a instalarlo/a por primera vez. Puede cambiar todo en el menú de ajustes más tarde.",
+          "heading": "Elija su idioma"
         },
         "1": {
-          "title": "Siga el reloj",
+          "heading": "Establezca sus temporizadores",
           "text": "Trabaje o tómese un descanso hasta que se acabe el temporizador. Luego proceda con su próximo temporizador."
         },
         "2": {
-          "title": "Descanse regularmente",
-          "text": "Después de unos cuantos descansos, tendrás más tiempo para descansar. Aprovéchelo."
+          "theme": {
+            "heading": "Elija un tema",
+            "options": {
+              "_values": {
+                "light": "Claro",
+                "dark": "Oscuro"
+              },
+              "_valueDescription": {
+                "light": "",
+                "dark": ""
+              }
+            }
+          },
+          "display": {
+            "heading": "Elija una vista"
+          }
         },
         "3": {
-          "title": "Manténgase flexible",
+          "heading": "Recuerda",
           "text": "Configure sus propios temporizadores, utilice la lista de tareas y notificaciones a su favor. ¡Revise el menú de ajustes para más oportunidades!"
         },
         "support": {
-          "title": "Apoye el proyecto",
-          "text": "Si este proyecto te ha ayudado, considera invitar al autor un café. También puede encontrar el botón de apoyo en el menú de ajustes."
+          "heading": "Apoye el proyecto",
+          "text": "Si este proyecto te ha ayudado, considera invitar al autor un café. También puede encontrar el botón de apoyo en el menú de ajustes.",
+          "hint": "También puede encontrar opciones de asistencia en la página Configuración > Acerca de."
         }
       },
       "buttons": {

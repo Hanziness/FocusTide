@@ -97,7 +97,7 @@
         },
         "_valueDescription": {
           "traditional": "12:34",
-          "approximate": "13 minute",
+          "approximate": "13 minuta",
           "percentage": "50 %"
         }
       },
@@ -306,7 +306,7 @@
         },
         "1": {
           "heading": "Postavi svoje timere",
-          "text": "Odaberi unaprijed zadane duljine timera. Kasnije ih možeš prilagoditi u postavkama."
+          "text": "Radi ili pauziraj sve dok timer ne istekne. Zatim nastavi sa sljedećim timerom."
         },
         "2": {
           "theme": {
@@ -328,17 +328,17 @@
         },
         "3": {
           "heading": "Zapamti",
-          "text": "Ove opcije (i još više) možeš bilo kada promijeniti u postavkama!"
+          "text": "Postavi vlastite timere, koristi popis zadataka i obavijesti u svoju korist. Pogledaj daljnje mogućnosti u izborniku postavki!"
         },
         "support": {
           "heading": "Podrži projekt",
-          "text": "Ako ti je ovaj projekt pomogao, kupi autoru kavu.",
+          "text": "Ako ti je ovaj projekt pomogao, plati autoru kavu. Gumb za podršku također možeš pronaći u izborniku postavki.",
           "hint": "Opcije podrške možeš pronaći na stranici „Informacije” u postavkama."
         }
       },
       "buttons": {
         "close": "Zatvori",
-        "start": "Započni postavljanje",
+        "start": "Pokreni vježbu",
         "next": "Dalje",
         "support": "Podrži projekt"
       }

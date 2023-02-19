@@ -58,7 +58,7 @@
       "madeby": "Készítette: Gera Imre",
       "source": "Forráskód",
       "support": "Támogasd a projektet",
-      "supportBody": "A FocusTide-ot a szabadidőmben fejlesztem, nagyon sokat jelentene, ha segítenél továbbfejleszteni!",
+      "supportBody": "Az FocusTidet a szabadidőmben fejlesztem, sokat jelentene, ha segítenél továbbfejleszteni!",
       "mobileSupport": "A Google Play áruház szabályai miatt nem jeleníthetek meg semmilyen hivatkozást az anyagi támogatáshoz.",
       "share": "vagy oszd meg ismerőseiddel az alkalmazást:"
     },
@@ -301,12 +301,12 @@
       "pages": {
         "0": {
           "title": "Üdvözöl a FocusTide!",
-          "onboarding_invite": "Itt beállíthatod az alkalmazást az első használatra. Később mindent megváltoztathatsz a beállításokban.",
+          "onboarding_invite": "Itt beállíthatod az alkalmazást az első használatra.",
           "heading": "Válassz nyelvet"
         },
         "1": {
-          "heading": "Állítsd be az időzítőidet",
-          "text": "Válassz az előre megadott időzítő beállítások közül. Az időzítők hosszát később testre szabhatod a beállításokban."
+          "heading": "Válassz időzítőt",
+          "text": "Válassz az előre beállított időzítők közül. Az egyes időzítők hosszát később a beállításokban is megváltoztathatod."
         },
         "2": {
           "theme": {
@@ -328,19 +328,19 @@
         },
         "3": {
           "heading": "Ne feledd",
-          "text": "Ezeket (és még sok mást) is megváltoztathatsz a beállításokban!"
+          "text": "Ezeket (és sok mást is) megváltoztathatsz a beállításokban."
         },
         "support": {
           "heading": "Támogasd a projektet",
-          "text": "Ha ez a projekt segít neked, hívd meg a fejlesztőt egy kávéra.",
-          "hint": "A támogatási lehetőségeket megtalálod a Beállítások > Névjegy fülön is."
+          "text": "Ha segít neked ez az alkalmazás, hívd meg a fejlesztőt egy kávéra.",
+          "hint": "Később a Beállítások > Névjegy lapon is megtalálod a támogatási lehetőségeket."
         }
       },
       "buttons": {
         "close": "Bezárás",
         "start": "Beállítás",
         "next": "Következő",
-        "support": "Támogasd a projektet"
+        "support": "Projekt támogatása"
       }
     }
   }
