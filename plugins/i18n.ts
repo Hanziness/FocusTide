@@ -8,7 +8,20 @@ import { PiniaPluginContext } from 'pinia'
 
 import messages from '@intlify/unplugin-vue-i18n/messages'
 
-export const languages = {
+interface Language {
+  name: string,
+  iso: string
+}
+
+declare type LanguageStore = Record<string, Language>;
+
+/**
+ * The languages known by the application.
+ * A key of this object refers to the translation file `i18n/<key>.json`.
+ * Each language object contains the readable name of the
+ * language (written in that language) (`name`) and its ISO code (`iso`).
+ */
+export const languages : LanguageStore = {
   en: {
     name: 'English',
     iso: 'en-US'
