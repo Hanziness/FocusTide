@@ -28,6 +28,10 @@ export const languages = {
   es: {
     name: 'Español',
     iso: 'es-ES'
+  },
+  pt: {
+    name: 'Português (Brasil)',
+    iso: 'pt-BR'
   }
 }
 
