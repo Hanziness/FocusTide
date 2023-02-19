@@ -4,7 +4,9 @@ import { PiniaPluginContext } from 'pinia'
 import messages from '@intlify/unplugin-vue-i18n/messages'
 
 interface Language {
+  /// The name of the language written in that language (eg. "magyar" for Hungarian)
   name: string,
+  /// The ISO code of the language (e.g. "hu-HU" for Hungarian)
   iso: string
 }
 
