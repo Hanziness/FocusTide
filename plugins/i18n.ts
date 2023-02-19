@@ -1,11 +1,6 @@
 import { createI18n } from 'vue-i18n'
 import { PiniaPluginContext } from 'pinia'
 
-// import en from '@/i18n/en.json'
-// import fr from '@/i18n/fr.json'
-// import hr from '@/i18n/hr.json'
-// import hu from '@/i18n/hu.json'
-
 import messages from '@intlify/unplugin-vue-i18n/messages'
 
 interface Language {
