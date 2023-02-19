@@ -1,14 +1,24 @@
 import { createI18n } from 'vue-i18n'
 import { PiniaPluginContext } from 'pinia'
 
-// import en from '@/i18n/en.json'
-// import fr from '@/i18n/fr.json'
-// import hr from '@/i18n/hr.json'
-// import hu from '@/i18n/hu.json'
-
 import messages from '@intlify/unplugin-vue-i18n/messages'
 
-export const languages = {
+interface Language {
+  /// The name of the language written in that language (eg. "magyar" for Hungarian)
+  name: string,
+  /// The ISO code of the language (e.g. "hu-HU" for Hungarian)
+  iso: string
+}
+
+declare type LanguageStore = Record<string, Language>;
+
+/**
+ * The languages known by the application.
+ * A key of this object refers to the translation file `i18n/<key>.json`.
+ * Each language object contains the readable name of the
+ * language (written in that language) (`name`) and its ISO code (`iso`).
+ */
+export const languages : LanguageStore = {
   en: {
     name: 'English',
     iso: 'en-US'
@@ -28,6 +38,10 @@ export const languages = {
   es: {
     name: 'Español',
     iso: 'es-ES'
+  },
+  pt: {
+    name: 'Português (Brasil)',
+    iso: 'pt-BR'
   }
 }
 
