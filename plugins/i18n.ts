@@ -2,6 +2,8 @@ import { createI18n } from 'vue-i18n'
 import { PiniaPluginContext } from 'pinia'
 
 import messages from '@intlify/unplugin-vue-i18n/messages'
+import { nextTick } from 'vue'
+import { useSettings } from '~~/stores/settings'
 
 interface Language {
   /// The name of the language written in that language (eg. "magyar" for Hungarian)
@@ -43,6 +45,24 @@ export const languages : LanguageStore = {
     name: 'Português (Brasil)',
     iso: 'pt-BR'
   }
+}
+
+const getAppLocale = (inputLocaleString : string) : string => {
+  // match ISO first
+  const matchingIsoCodes = Object.keys(languages).filter(key => languages[key].iso.toLowerCase() === inputLocaleString.toLowerCase())
+
+  if (matchingIsoCodes.length > 0) {
+    return matchingIsoCodes[0]
+  }
+
+  // then match on language keys
+  const looselyMatchingLanguages = Object.keys(languages).filter(key => inputLocaleString.toLowerCase().startsWith(key))
+  if (looselyMatchingLanguages.length > 0) {
+    return looselyMatchingLanguages[0]
+  }
+
+  // default to English
+  return 'en'
 }
 
 export default defineNuxtPlugin(({ vueApp, $pinia }) => {
@@ -95,6 +115,13 @@ export default defineNuxtPlugin(({ vueApp, $pinia }) => {
   }
 
   installPiniaI18nPlugin()
+
+  // update locale setting based on browser language
+  nextTick(() => {
+    useSettings().lang = getAppLocale(
+      typeof navigator !== 'undefined' ? navigator.language : 'en'
+    )
+  })
 
   return {
     provide: {
