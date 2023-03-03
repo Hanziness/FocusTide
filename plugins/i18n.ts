@@ -2,7 +2,6 @@ import { createI18n } from 'vue-i18n'
 import { PiniaPluginContext } from 'pinia'
 
 import messages from '@intlify/unplugin-vue-i18n/messages'
-import { nextTick } from 'vue'
 import { useSettings } from '~~/stores/settings'
 
 interface Language {
@@ -47,17 +46,26 @@ export const languages : LanguageStore = {
   }
 }
 
-const getAppLocale = (inputLocaleString : string) : string => {
+const getClientLocale = () : string | undefined => {
+  if (typeof navigator === 'undefined') {
+    console.log('No navigator, defaulting to English')
+    return undefined
+  }
+
+  const navigatorLocale = navigator.language
+
   // match ISO first
-  const matchingIsoCodes = Object.keys(languages).filter(key => languages[key].iso.toLowerCase() === inputLocaleString.toLowerCase())
+  const matchingIsoCodes = Object.keys(languages).filter(key => languages[key].iso.toLowerCase() === navigatorLocale.toLowerCase())
 
   if (matchingIsoCodes.length > 0) {
+    console.log(`Found matching locale: ${matchingIsoCodes[0]}`)
     return matchingIsoCodes[0]
   }
 
   // then match on language keys
-  const looselyMatchingLanguages = Object.keys(languages).filter(key => inputLocaleString.toLowerCase().startsWith(key))
+  const looselyMatchingLanguages = Object.keys(languages).filter(key => navigatorLocale.toLowerCase().startsWith(key))
   if (looselyMatchingLanguages.length > 0) {
+    console.log(`Found loosely matching locale: ${looselyMatchingLanguages[0]}`)
     return looselyMatchingLanguages[0]
   }
 
@@ -95,10 +103,6 @@ export default defineNuxtPlugin(({ vueApp, $pinia }) => {
     const PiniaI18nPlugin = ({ store }: PiniaPluginContext) => {
       // if settings.lang changes, update app locale
       if (store.$id === 'settings') {
-        if (!store.$state.lang && i18n.global.locale) {
-          store.$state.lang = i18n.global.locale.value
-        }
-
         const changeSubscription = () => {
           store.$subscribe(() => {
             if (store.$state.lang) {
@@ -116,11 +120,13 @@ export default defineNuxtPlugin(({ vueApp, $pinia }) => {
 
   installPiniaI18nPlugin()
 
-  // update locale setting based on browser language
-  nextTick(() => {
-    useSettings().lang = getAppLocale(
-      typeof navigator !== 'undefined' ? navigator.language : 'en'
-    )
+  onNuxtReady(() => {
+    if (!process.server) {
+      const settingsStore = useSettings()
+      if (settingsStore.lang === undefined) {
+        settingsStore.lang = getClientLocale()
+      }
+    }
   })
 
   return {
