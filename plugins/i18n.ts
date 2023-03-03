@@ -2,6 +2,7 @@ import { createI18n } from 'vue-i18n'
 import { PiniaPluginContext } from 'pinia'
 
 import messages from '@intlify/unplugin-vue-i18n/messages'
+import { useSettings } from '~~/stores/settings'
 
 interface Language {
   /// The name of the language written in that language (eg. "magyar" for Hungarian)
@@ -45,6 +46,33 @@ export const languages : LanguageStore = {
   }
 }
 
+const getClientLocale = () : string | undefined => {
+  if (typeof navigator === 'undefined') {
+    console.log('No navigator, defaulting to English')
+    return undefined
+  }
+
+  const navigatorLocale = navigator.language
+
+  // match ISO first
+  const matchingIsoCodes = Object.keys(languages).filter(key => languages[key].iso.toLowerCase() === navigatorLocale.toLowerCase())
+
+  if (matchingIsoCodes.length > 0) {
+    console.log(`Found matching locale: ${matchingIsoCodes[0]}`)
+    return matchingIsoCodes[0]
+  }
+
+  // then match on language keys
+  const looselyMatchingLanguages = Object.keys(languages).filter(key => navigatorLocale.toLowerCase().startsWith(key))
+  if (looselyMatchingLanguages.length > 0) {
+    console.log(`Found loosely matching locale: ${looselyMatchingLanguages[0]}`)
+    return looselyMatchingLanguages[0]
+  }
+
+  // default to English
+  return 'en'
+}
+
 export default defineNuxtPlugin(({ vueApp, $pinia }) => {
   const i18n = createI18n({
     legacy: false,
@@ -75,10 +103,6 @@ export default defineNuxtPlugin(({ vueApp, $pinia }) => {
     const PiniaI18nPlugin = ({ store }: PiniaPluginContext) => {
       // if settings.lang changes, update app locale
       if (store.$id === 'settings') {
-        if (!store.$state.lang && i18n.global.locale) {
-          store.$state.lang = i18n.global.locale.value
-        }
-
         const changeSubscription = () => {
           store.$subscribe(() => {
             if (store.$state.lang) {
@@ -95,6 +119,15 @@ export default defineNuxtPlugin(({ vueApp, $pinia }) => {
   }
 
   installPiniaI18nPlugin()
+
+  onNuxtReady(() => {
+    if (!process.server) {
+      const settingsStore = useSettings()
+      if (settingsStore.lang === undefined) {
+        settingsStore.lang = getClientLocale()
+      }
+    }
+  })
 
   return {
     provide: {
