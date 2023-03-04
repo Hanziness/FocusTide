@@ -42,7 +42,7 @@ const isUsingCustomTheme = ref(activeThemeKey === undefined)
           <ThemePreview class="mx-auto" :theme="theme" />
         </template>
       </UiOption>
-      <UiOption key="custom" title="Custom" class="text-center" :active="isUsingCustomTheme" @click="isUsingCustomTheme = true">
+      <UiOption key="custom" :title="$t('settings.values.visuals.theme.custom')" class="text-center" :active="isUsingCustomTheme" @click="isUsingCustomTheme = true">
         <!-- <template #pre>
           <ThemePreview class="mx-auto mb-2" :theme="customTheme" />
         </template> -->

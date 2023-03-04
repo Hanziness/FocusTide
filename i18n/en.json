@@ -214,7 +214,8 @@
       "visuals": {
         "theme": {
           "_title": "Theme settings",
-          "_description": "Choose a set of predefined section colors or set your own"
+          "_description": "Choose a set of predefined section colors or set your own",
+          "custom": "Custom"
         },
         "darkMode": {
           "_title": "Enable dark mode",
