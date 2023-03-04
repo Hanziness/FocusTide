@@ -145,7 +145,6 @@ notificationsStore.updateEnabled()
           <div v-else-if="state.activeTab === 3" :key="3" class="settings-tab">
             <SettingsItem :type="Control.Empty" path="visuals.theme" />
             <ThemeSettings />
-            <Divider />
             <SettingsItem :type="Control.Check" path="visuals.darkMode" />
             <Divider />
             <SettingsItem :type="Control.Option" path="currentTimer" :choices="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
