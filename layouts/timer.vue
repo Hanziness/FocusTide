@@ -36,6 +36,7 @@ useHead(() => {
 </template>
 
 <style>
+/* stylelint-disable-next-line selector-id-pattern */
 html, body, #__nuxt {
   height: 100%;
 }
