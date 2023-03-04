@@ -212,6 +212,11 @@
         }
       },
       "visuals": {
+        "theme": {
+          "_title": "Téma beállítások",
+          "_description": "Válassz az előre elkészített szakasztémák közül vagy állíts be egy sajátot",
+          "custom": "Egyedi"
+        },
         "darkMode": {
           "_title": "Sötét téma bekapcsolása",
           "_description": "Kevesebb fényerő, ugyanannyi produktivitás"
