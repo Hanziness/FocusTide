@@ -212,6 +212,11 @@
         }
       },
       "visuals": {
+        "theme": {
+          "_title": "Configurações de tema",
+          "_description": "Escolha um conjunto de cores de seção predefinidas ou defina a sua própria",
+          "custom": "Customizado"
+        },
         "darkMode": {
           "_title": "Ativar modo escuro",
           "_description": "Menos brilho, mais produtivo"
