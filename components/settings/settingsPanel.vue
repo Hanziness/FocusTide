@@ -2,6 +2,7 @@
 import { XIcon as CloseIcon, AdjustmentsIcon as TabIconGeneral, AlarmIcon as TabIconSchedule, ArtboardIcon as TabIconVisuals, InfoCircleIcon as InfoIcon, InfoCircleIcon as TabIconAbout } from 'vue-tabler-icons'
 
 import { ButtonImportance } from '../base/types/button'
+import ThemeSettings from './theme/themeSettings.vue'
 import OptionGroup from '@/components/base/optionGroup.vue'
 import TabHeader from '@/components/settings/panel/tabHeader.vue'
 import ExportButton from '@/components/settings/exportButton.vue'
@@ -142,6 +143,8 @@ notificationsStore.updateEnabled()
 
           <!-- Display -->
           <div v-else-if="state.activeTab === 3" :key="3" class="settings-tab">
+            <SettingsItem :type="Control.Empty" path="visuals.theme" />
+            <ThemeSettings />
             <SettingsItem :type="Control.Check" path="visuals.darkMode" />
             <Divider />
             <SettingsItem :type="Control.Option" path="currentTimer" :choices="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />
