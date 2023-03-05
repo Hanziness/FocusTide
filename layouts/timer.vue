@@ -20,7 +20,7 @@ useHead(() => {
 </script>
 
 <template>
-  <div class="relative w-screen h-screen">
+  <div class="relative w-full h-full">
     <transition enter-from-class="opacity-0" enter-active-class="transition duration-300" leave-to-class="opacity-0" leave-active-class="transition">
       <!-- Darkening overlay -->
       <div v-show="openPanels.settings" class="fixed z-40 w-screen h-screen bg-black bg-opacity-40" />
@@ -34,3 +34,10 @@ useHead(() => {
     <slot />
   </div>
 </template>
+
+<style>
+/* stylelint-disable-next-line selector-id-pattern */
+html, body, #__nuxt {
+  height: 100%;
+}
+</style>
