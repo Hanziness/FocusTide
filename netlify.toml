@@ -13,7 +13,7 @@
 
 [[redirects]]
   from = "http://another-pomodoro.app/*"
-  to = "https://focustide.app/:splat"
+  to = "https://focustide.app/:splat?olddomain"
   status = 301
   force = true
 
