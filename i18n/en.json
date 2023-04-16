@@ -347,6 +347,12 @@
         "next": "Next",
         "support": "Support the project"
       }
+    },
+    "olddomain": {
+      "heading": "AnotherPomodoro is now FocusTide",
+      "warning": "We have detected that you might be coming from the old domain another-pomodoro.app, which will expire by the end of 2023.",
+      "action": "Please update your bookmark or hyperlink to focustide.app.",
+      "button": "OK"
     }
   }
 }
