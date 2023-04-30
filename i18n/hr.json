@@ -212,6 +212,11 @@
         }
       },
       "visuals": {
+        "theme": {
+          "_title": "Postavke teme",
+          "_description": "Odaberi skup unaprijed definiranih boja sekcija ili postavi vlastite",
+          "custom": "Prilagođeni"
+        },
         "darkMode": {
           "_title": "Aktiviraj tamni modus",
           "_description": "Tamnija, jednaka produktivnost"
@@ -342,6 +347,12 @@
         "next": "Dalje",
         "support": "Podrži projekt"
       }
+    },
+    "olddomain": {
+      "heading": "AnotherPomodoro se sada zove FocusTide",
+      "warning": "Otkrili smo da možda dolaziš sa stare domene another-pomodoro.app, koja će isteći 2023.",
+      "action": "Aktualiziraj svoju oznaku ili hiperpoveznicu na focustide.app.",
+      "button": "U redu"
     }
   }
 }
