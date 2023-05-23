@@ -130,7 +130,7 @@
           "_title": "Preajuste de horario",
           "_description": "",
           "_values": {
-            "default": "Predeterminado",
+            "default": "Por defecto",
             "debug": "Depurar",
             "custom": "Personalizado"
           },
@@ -181,7 +181,7 @@
             "musical": "Musical"
           },
           "_valueDescription": {
-            "musical": "Los sonidos predeterminados"
+            "musical": "Los sonidos por defecto"
           }
         }
       },
@@ -288,13 +288,13 @@
   },
   "timerpreset": {
     "_values": {
-      "default": "Predeterminado",
+      "default": "Por defecto",
       "easy": "Principiante",
       "advanced": "Avanzado",
       "workaholic": "Adicto/a al trabajo"
     },
     "_valueDescription": {
-      "default": "Los valores predeterminados de Pomodoro.",
+      "default": "Los valores por defecto de Pomodoro.",
       "easy": "Para aquellos que aún no ha probado la técnica Pomodoro.",
       "advanced": "Trabaje un poco más eficazmente.",
       "workaholic": "Para sesiones de trabajo largas."
