@@ -29,6 +29,7 @@
     "@babel/eslint-parser": "^7.19.1",
     "@babel/runtime-corejs3": "^7.20.1",
     "@intlify/unplugin-vue-i18n": "^0.7.3",
+    "@nuxt/kit": "^3.5.2",
     "@nuxtjs/eslint-config": "^11.0.0",
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "@nuxtjs/eslint-module": "^3.1.0",

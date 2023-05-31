@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { swPath } from 'virtual:pwa'
 import { useSettings } from '~~/stores/settings'
 
 if (!process.server) {
@@ -23,8 +22,8 @@ if (!process.server) {
     if (typeof window !== 'undefined') {
       if ('serviceWorker' in navigator) {
         const registerSw = () => {
-          console.debug(`Registering service worker at /${swPath}`)
-          navigator.serviceWorker.register(`/${swPath}`)
+          console.debug('Registering service worker at /serviceworker.js')
+          navigator.serviceWorker.register('/serviceworker.js')
         }
 
         if (document.readyState === 'complete') {

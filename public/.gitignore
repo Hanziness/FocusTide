@@ -1,0 +1,4 @@
+# these are files generated during builds
+serviceworker.js
+workbox-*.js
+icons/
