@@ -212,6 +212,11 @@
         }
       },
       "visuals": {
+        "theme": {
+          "_title": "Téma beállítások",
+          "_description": "Válassz az előre elkészített szakasztémák közül vagy állíts be egy sajátot",
+          "custom": "Egyedi"
+        },
         "darkMode": {
           "_title": "Sötét téma bekapcsolása",
           "_description": "Kevesebb fényerő, ugyanannyi produktivitás"
@@ -342,6 +347,12 @@
         "next": "Következő",
         "support": "Projekt támogatása"
       }
+    },
+    "olddomain": {
+      "heading": "Az AnotherPomodoro mostantól FocusTide",
+      "warning": "Úgy észleltük, hogy a régi another-pomodoro.app webcímről érkeztél, ami 2023 végére lejár.",
+      "action": "Kérjük, frissítsd a könyvjelzőidet és hivatkozásaidat a focustide.app webcímre.",
+      "button": "OK"
     }
   }
 }
