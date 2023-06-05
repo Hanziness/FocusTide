@@ -43,6 +43,10 @@ export const languages : LanguageStore = {
   pt: {
     name: 'Português (Brasil)',
     iso: 'pt-BR'
+  },
+  zh: {
+    name: '简体中文',
+    iso: 'zh-CN'
   }
 }
 
