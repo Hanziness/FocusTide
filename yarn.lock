@@ -1969,7 +1969,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:3.5.2, @nuxt/kit@npm:^3.3.3, @nuxt/kit@npm:^3.5.0, @nuxt/kit@npm:^3.5.2":
+"@nuxt/kit@npm:3.5.2, @nuxt/kit@npm:^3.3.3, @nuxt/kit@npm:^3.5.0":
   version: 3.5.2
   resolution: "@nuxt/kit@npm:3.5.2"
   dependencies:
@@ -3021,7 +3021,6 @@ __metadata:
     "@babel/eslint-parser": ^7.19.1
     "@babel/runtime-corejs3": ^7.20.1
     "@intlify/unplugin-vue-i18n": ^0.7.3
-    "@nuxt/kit": ^3.5.2
     "@nuxtjs/eslint-config": ^11.0.0
     "@nuxtjs/eslint-config-typescript": ^11.0.0
     "@nuxtjs/eslint-module": ^3.1.0

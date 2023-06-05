@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 import StylelintPlugin from 'vite-plugin-stylelint'
 import IconResizer from './modules/build/icon_resize'
+import ServiceWorkerGenerator from './modules/build/pwa'
 import { AppPlatform } from './platforms/platforms'
 
 const packageJson = fs.readFileSync('./package.json').toString()
@@ -234,6 +235,7 @@ export default defineNuxtConfig({
           resolve(dirname(fileURLToPath(import.meta.url)), './i18n/en.json')
         ]
       }),
+      ServiceWorkerGenerator({ swPath: 'serviceworker.js' }),
       IconResizer(iconConfig),
       IconResizer({
         outputFolder: 'icons',
