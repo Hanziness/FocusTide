@@ -188,8 +188,8 @@ export default defineNuxtConfig({
     families: {
       Lexend: [400, 700]
     },
-    display: 'swap'
-    // download: true
+    display: 'swap',
+    download: false
   },
 
   /*

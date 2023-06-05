@@ -43,23 +43,40 @@ export default function VitePWAGenerator (moduleOptions: PWAModuleOptions): Plug
         swDest: path.join(outputDir, moduleOptions.swPath),
         globDirectory: outputDir,
         globPatterns: [
-          '**/*.{js,json,mjs,css,html}'
+          '**/*.{js,json,mjs,css,html,svg,woff2}'
         ],
         sourcemap: false,
         navigationPreload: true,
         runtimeCaching: [
           {
-            urlPattern: ({ url }) => /\.(js|json|css)/.exec(url.pathname) !== null,
-            handler: 'StaleWhileRevalidate',
+            urlPattern: ({ url }) => /\.(js|json|css)$/.exec(url.pathname) !== null,
+            handler: 'CacheFirst',
             options: {
+              cacheName: 'code',
               cacheableResponse: {
                 statuses: [0, 200]
               }
             }
           },
           {
-            urlPattern: /.*\.(jpg|png|jpeg|svg)/,
-            handler: 'CacheFirst'
+            urlPattern: ({ url }) => /\.(jpg|png|jpeg|svg)$/.exec(url.pathname) !== null,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'assets',
+              cacheableResponse: {
+                statuses: [200]
+              }
+            }
+          },
+          {
+            urlPattern: ({ url }) => /\.(woff2)$/.exec(url.pathname) !== null,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'fonts',
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
           },
           {
             urlPattern: ({ url }) => ['', '/', '/index', '/index.html'].includes(url.pathname),
