@@ -1,6 +1,7 @@
 import path from 'path'
-import { PluginOption } from 'vite'
+import { rmSync, readdirSync } from 'fs'
 import { generateSW } from 'workbox-build'
+import { type PluginOption } from 'vite'
 
 interface PWAModuleOptions {
   swPath: string
@@ -14,13 +15,13 @@ export default function VitePWAGenerator (moduleOptions: PWAModuleOptions): Plug
 
   return {
     name: 'Workbox installer',
-    resolveId (id) {
+    resolveId (id: string) {
       // register virtual module
       if (id === virtualModuleId) {
         return resolvedVirtualModuleId
       }
     },
-    load (id) {
+    load (id: string) {
       // return virtual module
       if (id === resolvedVirtualModuleId) {
         return `export const swPath = '${swPath}'`
@@ -32,39 +33,63 @@ export default function VitePWAGenerator (moduleOptions: PWAModuleOptions): Plug
         return
       }
 
+      const outputDir = config.publicDir
+      readdirSync(outputDir).filter(file => file.startsWith('workbox-')).forEach((file) => {
+        console.info(`Removing ${path.join(outputDir, file)}`)
+        rmSync(path.join(outputDir, file))
+      })
+
       await generateSW({
-        swDest: path.join(config.build.outDir, swPath),
-        globDirectory: config.build.outDir,
+        swDest: path.join(outputDir, moduleOptions.swPath),
+        globDirectory: outputDir,
         globPatterns: [
-          '**/*.{js,mjs,css,html}'
+          '**/*.{js,json,mjs,css,html,svg,woff2}'
         ],
         sourcemap: false,
+        navigationPreload: true,
         runtimeCaching: [
           {
-            urlPattern: '*.js',
-            handler: 'StaleWhileRevalidate',
+            urlPattern: ({ url }) => /\.(js|json|css)$/.exec(url.pathname) !== null,
+            handler: 'CacheFirst',
             options: {
+              cacheName: 'code',
               cacheableResponse: {
                 statuses: [0, 200]
               }
             }
           },
           {
-            urlPattern: '*.css',
+            urlPattern: ({ url }) => /\.(jpg|png|jpeg|svg)$/.exec(url.pathname) !== null,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'assets',
+              cacheableResponse: {
+                statuses: [200]
+              }
+            }
+          },
+          {
+            urlPattern: ({ url }) => /\.(woff2)$/.exec(url.pathname) !== null,
             handler: 'StaleWhileRevalidate',
             options: {
+              cacheName: 'fonts',
               cacheableResponse: {
                 statuses: [0, 200]
               }
             }
           },
           {
-            urlPattern: '*.{jpg,png,jpeg}',
-            handler: 'CacheFirst'
+            urlPattern: ({ url }) => ['', '/', '/index', '/index.html'].includes(url.pathname),
+            handler: 'NetworkFirst',
+            options: {
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
           }
         ]
       })
-      console.info(`Generated service worker at ${path.join(config.build.outDir, swPath)}`)
+      console.info(`Generated service worker at ${path.join(outputDir, moduleOptions.swPath)}`)
     }
   }
 }

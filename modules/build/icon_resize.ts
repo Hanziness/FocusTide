@@ -31,7 +31,7 @@ export default function IconResizer (moduleOptions: IconResizerPluginOptions): P
           return new Promise((_resolve, reject) => reject(new Error('No source file specified')))
         }
 
-        const outputFolder = join(config.build.outDir, moduleOptions.outputFolder)
+        const outputFolder = join(config.publicDir, moduleOptions.outputFolder)
 
         if (!existsSync(outputFolder)) {
           mkdirSync(outputFolder, { recursive: true })
