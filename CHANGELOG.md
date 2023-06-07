@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/Hanziness/AnotherPomodoro/compare/v1.4.3...v1.5.0) (2023-06-07)
+
+
+### Features
+
+* Allow theming section colours ([#341](https://github.com/Hanziness/AnotherPomodoro/issues/341)) ([0857831](https://github.com/Hanziness/AnotherPomodoro/commit/08578310ec15428155adc917cdfd5ba89dcb0d70))
+* Warn when app is visited from the old domain ([#345](https://github.com/Hanziness/AnotherPomodoro/issues/345)) ([af42811](https://github.com/Hanziness/AnotherPomodoro/commit/af4281176c69ea4711ca9e396cee659a32e9cacd))
+
+
+### Bug Fixes
+
+* Adjust viewport height to eliminate scrolling on mobile ([#343](https://github.com/Hanziness/AnotherPomodoro/issues/343)) ([f55b2c1](https://github.com/Hanziness/AnotherPomodoro/commit/f55b2c1108ab223880d3c5f0bc7445d92c8e739d))
+* App opens in the user's language on first launch ([#340](https://github.com/Hanziness/AnotherPomodoro/issues/340)) ([2172406](https://github.com/Hanziness/AnotherPomodoro/commit/21724069cf2d3151c733fe0de531c9ab197a6d99))
+* **pwa:** Fix offline functionality ([#350](https://github.com/Hanziness/AnotherPomodoro/issues/350)) ([4ef1bb0](https://github.com/Hanziness/AnotherPomodoro/commit/4ef1bb075f783b0728a6d512ff28e5df474e0aed))
+
+
+### Refactors
+
+* **deps:** Update dependencies ([#349](https://github.com/Hanziness/AnotherPomodoro/issues/349)) ([09375ad](https://github.com/Hanziness/AnotherPomodoro/commit/09375ad2fa9a29125c9031d7f34a306710e51c41))
+* Update dependencies ([#346](https://github.com/Hanziness/AnotherPomodoro/issues/346)) ([78393b3](https://github.com/Hanziness/AnotherPomodoro/commit/78393b30a3f30250c206fd91976ff451b3c48b22))
+
+
+### Localizations
+
+* Enable Simplified Chinese ([#351](https://github.com/Hanziness/AnotherPomodoro/issues/351)) ([251ec00](https://github.com/Hanziness/AnotherPomodoro/commit/251ec00dcbb84eb8059548c756c921543a5717d4))
+* Update translations and add Chinese Simplified ([#342](https://github.com/Hanziness/AnotherPomodoro/issues/342)) ([fe361dd](https://github.com/Hanziness/AnotherPomodoro/commit/fe361ddfd2623e310d4c1ee0f02da67e31a48131))
+
 ### [1.4.3](https://github.com/Hanziness/AnotherPomodoro/compare/v1.4.2...v1.4.3) (2023-02-19)
 
 
