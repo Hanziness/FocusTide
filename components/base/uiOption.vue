@@ -26,6 +26,7 @@ const emit = defineEmits<{(type: 'click'): void}>()
     }]"
     @click="emit('click')"
   >
+    <slot name="pre" />
     <div class="text-lg" :class="[{'font-bold uppercase': props.description.length > 0 }]">
       <slot name="title">
         {{ props.title }}
@@ -36,5 +37,6 @@ const emit = defineEmits<{(type: 'click'): void}>()
         {{ props.description }}
       </slot>
     </div>
+    <slot name="post" />
   </button>
 </template>

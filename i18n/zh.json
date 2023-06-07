@@ -1,0 +1,352 @@
+{
+  "support": {
+    "source": "在 GitHub 上查看",
+    "support": "给我买一杯咖啡！",
+    "share": {
+      "twitter": "在 Twitter 上关注",
+      "facebook": "在 Facebook 上分享",
+      "reddit": "在 Reddit 上分享"
+    }
+  },
+  "section": {
+    "work": "工作",
+    "shortpause": "休息",
+    "longpause": "长休息",
+    "wait": "等待中"
+  },
+  "controls": {
+    "play": "开始或暂停计时器",
+    "stop": "重置计时器",
+    "advance": "下一部分"
+  },
+  "appbar": {
+    "settings": "打开设置",
+    "todo": "打开任务列表"
+  },
+  "timer": {
+    "approximate": {
+      "hours": "时 | 时",
+      "minutes": "分 | 分"
+    }
+  },
+  "settings": {
+    "heading": "设置",
+    "tabs": {
+      "main": "主要",
+      "timer": "时间表",
+      "display": "显示",
+      "audio": "音频",
+      "about": "关于"
+    },
+    "buttons": {
+      "close": "关闭",
+      "reset": "重置"
+    },
+    "reset": {
+      "title": "恢复默认值",
+      "confirm": "重置",
+      "cancel": "取消"
+    },
+    "manage": {
+      "buttons": {
+        "save": "保存",
+        "load": "加载"
+      }
+    },
+    "scheduleMinTime": "最少允许的时间是 5 秒",
+    "about": {
+      "madeby": "由 Imre Gera 开发",
+      "source": "源代码",
+      "support": "支持此项目",
+      "supportBody": "我在我的空余时间里开发了 FocusTide ，希望你能帮助我一起开发它！",
+      "mobileSupport": "由于 Google Play 商店的规则，我无法向您展示移动应用程序中的任何链接以便向项目捐赠。",
+      "share": "或在社交媒体上分享这个应用："
+    },
+    "values": {
+      "manage": {
+        "_title": "管理设置",
+        "_description": "下载当前配置或从文件加载配置"
+      },
+      "mobile": {
+        "notifications": {
+          "sectionOver": {
+            "_title": "通知上的部分",
+            "_description": "在一个时段结束后显示通知"
+          },
+          "persistent": {
+            "_title": "常驻通知",
+            "_description": "显示当前进度"
+          }
+        }
+      },
+      "lang": {
+        "_title": "语言",
+        "_description": ""
+      },
+      "eventLoggingEnabled": {
+        "_title": "开启日志记录",
+        "_description": ""
+      },
+      "currentTimer": {
+        "_title": "计时器风格",
+        "_description": "",
+        "_values": {
+          "traditional": "传统",
+          "approximate": "粗略",
+          "percentage": "百分比"
+        },
+        "_valueDescription": {
+          "traditional": "12:34",
+          "approximate": "13 分钟",
+          "percentage": "50%"
+        }
+      },
+      "adaptiveTicking": {
+        "enabled": {
+          "_title": "启用自适应刷新频率",
+          "_description": "当 FocusTide 在后台运行的时候，其计时器的刷新频率会降低"
+        }
+      },
+      "schedule": {
+        "longPauseInterval": {
+          "_title": "长休息周期",
+          "_description": ""
+        },
+        "numScheduleEntries": {
+          "_title": "时段总数",
+          "_description": ""
+        },
+        "visibility": {
+          "enabled": {
+            "_title": "展示时间表",
+            "_description": ""
+          },
+          "showSectionType": {
+            "_title": "在时间表中显示不同时段的类型",
+            "_description": "显示时间表中的显示当前时段的类型"
+          }
+        },
+        "lengths": {
+          "_title": "预设时间表",
+          "_description": "",
+          "_values": {
+            "default": "默认",
+            "debug": "调试",
+            "custom": "自定义"
+          },
+          "_valueDescription": {
+            "default": "工作25分钟，休息5分钟",
+            "debug": "用于调试目的",
+            "custom": "由您决定"
+          },
+          "work": {
+            "_title": "工作",
+            "_description": ""
+          },
+          "shortpause": {
+            "_title": "休息",
+            "_description": ""
+          },
+          "longpause": {
+            "_title": "长休息",
+            "_description": ""
+          }
+        }
+      },
+      "performance": {
+        "showProgressBar": {
+          "_title": "显示进度条",
+          "_description": "在背景中显示进度"
+        }
+      },
+      "permissions": {
+        "audio": {
+          "_title": "播放提示音",
+          "_description": "在每部分结束时播放提示音"
+        },
+        "notifications": {
+          "_title": "推送通知权限",
+          "_description": "在每部分结束时发送通知提醒"
+        }
+      },
+      "audio": {
+        "volume": {
+          "_title": "音频音量",
+          "_description": ""
+        },
+        "soundSet": {
+          "_title": "Sound set",
+          "_description": "用于通知的提示音",
+          "_values": {
+            "musical": "Musical"
+          },
+          "_valueDescription": {
+            "musical": "默认提示音"
+          }
+        }
+      },
+      "timerControls": {
+        "enableKeyboardShortcuts": {
+          "_title": "启用键盘快捷键",
+          "_description": "以空格键来 开始/暂停 计时器"
+        }
+      },
+      "tasks": {
+        "enabled": {
+          "_title": "显示任务列表",
+          "_description": "在此处管理您的任务"
+        },
+        "maxActiveTasks": {
+          "_title": "显示最大活跃任务数",
+          "_description": "在您工作时，您最多只会看到这么多活跃的任务"
+        },
+        "removeCompletedTasks": {
+          "_title": "自动删除已完成的任务",
+          "_description": "工作时间结束后，自动删除已完成的任务"
+        }
+      },
+      "pageTitle": {
+        "useTickEmoji": {
+          "_title": "在标题中使用表情符号",
+          "_description": "用 :very_check_mark: 代替 完成"
+        }
+      },
+      "visuals": {
+        "theme": {
+          "_title": "主题设置",
+          "_description": "选择一个预设的主题颜色，或者设置您自己的主题颜色",
+          "custom": "自定义"
+        },
+        "darkMode": {
+          "_title": "启用暗黑模式",
+          "_description": "黑暗，即是生产力本身"
+        }
+      },
+      "reset": {
+        "_title": "重置所有设置",
+        "_description": "所有的设置会被重置，此应用将自动重载"
+      }
+    }
+  },
+  "notification": {
+    "action": {
+      "ready": "让我们开始吧！"
+    },
+    "work": {
+      "title": "是时候回去工作了！",
+      "body": "您的休息时间已经结束。继续工作，然后再获得休息时间。"
+    },
+    "shortpause": {
+      "title": "休息片刻",
+      "body": "很好，你赚取了一段短暂的休息时间。"
+    },
+    "longpause": {
+      "title": "哇！更多的休息时间！",
+      "body": "好吧。在工作了这么久以后，你应该有更长的休息时间。"
+    }
+  },
+  "error": {
+    "format_invalid": "无效的输入格式",
+    "range_invalid": "值必须在 {min} 到 {max} 之间",
+    "required": "必须要填写所有参数",
+    "numeric": "值必须是一个数字",
+    "min": "值至少为 {min}",
+    "max": "值至多为 {max}",
+    "time_format": "时间的格式不正确 (MM:SS)",
+    "min_time": "时间太短了",
+    "undefined": "未知错误"
+  },
+  "tasks": {
+    "title": "任务",
+    "empty": "还没有任务",
+    "manage": "管理",
+    "addPlaceholder": "输入您需要去做的事情"
+  },
+  "ready": "搞定",
+  "errorpage": {
+    "title": {
+      "crash": "应用程序已崩溃",
+      "notfound": "此页面不存在",
+      "other": "出了些问题"
+    },
+    "action": {
+      "reset": "重置此应用",
+      "reload": "重载页面",
+      "home": "回到主页",
+      "githubIssue": "发送错误报告",
+      "githubDiscussion": "询问其他人是否有相同的问题",
+      "twitter": "写一个友好的推文"
+    },
+    "showError": {
+      "main": "向我展示错误信息",
+      "sub": "我也会用它来报告一个问题，或问别人是否也有这个问题。"
+    },
+    "suggestions": {
+      "primary": "您可以",
+      "secondary": "或者如果这些没有帮助"
+    }
+  },
+  "timerpreset": {
+    "_values": {
+      "default": "默认",
+      "easy": "初级",
+      "advanced": "高级",
+      "workaholic": "工作狂"
+    },
+    "_valueDescription": {
+      "default": "默认的番茄钟配置",
+      "easy": "对于那些尚未尝试过番茄钟的人",
+      "advanced": "工作效率更高",
+      "workaholic": "对于长的工作时间"
+    },
+    "description": "{brief} \n每工作 {worklength} 分钟后，短暂休息 {splength} 分钟；每工作 {lpfreq} 次后，长时间休息 {lplength} 分钟"
+  },
+  "tutorials": {
+    "onboarding": {
+      "pages": {
+        "0": {
+          "title": "欢迎使用 FocusTide！",
+          "onboarding_invite": "让我们进行初始化。您可以稍后在设置菜单中的更改所有的内容。",
+          "heading": "选择您的语言"
+        },
+        "1": {
+          "heading": "设置您的计时器",
+          "text": "选择预设。您也可以稍后在设置中自定义它们。"
+        },
+        "2": {
+          "theme": {
+            "heading": "选择应用主题",
+            "options": {
+              "_values": {
+                "light": "亮",
+                "dark": "暗"
+              },
+              "_valueDescription": {
+                "light": "",
+                "dark": ""
+              }
+            }
+          },
+          "display": {
+            "heading": "选择一种显示方式"
+          }
+        },
+        "3": {
+          "heading": "记住",
+          "text": "您总是可以在设置菜单中更改这些（以及其它设置） ！"
+        },
+        "support": {
+          "heading": "支持此项目",
+          "text": "如果这个项目可以帮到你，请考虑给我买杯咖啡。",
+          "hint": "您也可以在 设置 > 关于 中找到支持选项。"
+        }
+      },
+      "buttons": {
+        "close": "关闭",
+        "start": "开始设置",
+        "next": "下一步",
+        "support": "支持此项目"
+      }
+    }
+  }
+}

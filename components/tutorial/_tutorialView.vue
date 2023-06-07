@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { markRaw } from 'vue'
 import tutorialOnboarding from './tutorialOnboarding.vue'
+import tutorialOldDomain from './tutorialOldDomain.vue'
 import { useTutorials } from '~~/stores/tutorials'
-import { useMain, flags } from '~~/stores/main'
+import { useMain } from '~~/stores/main'
 
 const tutorialsStore = useTutorials()
 const mainStore = useMain()
 
 const tutorials = {
-  onboarding: markRaw(tutorialOnboarding)
+  onboarding: markRaw(tutorialOnboarding),
+  oldDomain: markRaw(tutorialOldDomain)
 }
 
 const state = reactive({
@@ -24,10 +26,15 @@ watch(() => tutorialsStore.currentTutorial, (newValue) => {
 })
 
 onMounted(() => {
+  const route = useRoute()
   state.enableComponent = tutorialsStore.currentTutorial != null
 
-  if (!mainStore.isFlagActive(flags.STORE_RESTORED)) {
+  if (!mainStore.restoredStores.includes('tutorials')) {
     tutorialsStore.openTutorial('onboarding')
+  }
+
+  if (route.query.olddomain !== undefined) {
+    tutorialsStore.openTutorial('oldDomain')
   }
 })
 </script>

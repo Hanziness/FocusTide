@@ -2,6 +2,7 @@
 import { XIcon as CloseIcon, AdjustmentsIcon as TabIconGeneral, AlarmIcon as TabIconSchedule, ArtboardIcon as TabIconVisuals, InfoCircleIcon as InfoIcon, InfoCircleIcon as TabIconAbout } from 'vue-tabler-icons'
 
 import { ButtonImportance } from '../base/types/button'
+import ThemeSettings from './theme/themeSettings.vue'
 import OptionGroup from '@/components/base/optionGroup.vue'
 import TabHeader from '@/components/settings/panel/tabHeader.vue'
 import ExportButton from '@/components/settings/exportButton.vue'
@@ -40,7 +41,7 @@ notificationsStore.updateEnabled()
 
 <template>
   <section class="fixed z-40 w-full h-full p-0 md:p-4 md:max-w-screen-sm">
-    <div class="flex flex-col h-full overflow-hidden rounded-none shadow-lg bg-surface-light text-surface-onlight md:rounded-xl dark:ring-1 dark:ring-surface-ondark dark:ring-opacity-20 ring-inset dark:bg-surface-dark dark:text-surface-ondark" :style="{ 'padding-top': `${mobileSettingsStore.padding.top}px`, 'padding-bottom': `${mobileSettingsStore.padding.bottom}px` }">
+    <div class="flex flex-col h-full overflow-hidden rounded-none shadow-lg bg-surface-light text-surface-onlight md:rounded-xl md:dark:ring-1 dark:ring-surface-ondark dark:ring-opacity-20 ring-inset dark:bg-surface-dark dark:text-surface-ondark" :style="{ 'padding-top': `${mobileSettingsStore.padding.top}px`, 'padding-bottom': `${mobileSettingsStore.padding.bottom}px` }">
       <h1 class="px-4 mt-4 mb-2 text-xl font-bold uppercase">
         <span>{{ $t('settings.heading') }}</span>
         <ControlButton
@@ -142,6 +143,8 @@ notificationsStore.updateEnabled()
 
           <!-- Display -->
           <div v-else-if="state.activeTab === 3" :key="3" class="settings-tab">
+            <SettingsItem :type="Control.Empty" path="visuals.theme" />
+            <ThemeSettings />
             <SettingsItem :type="Control.Check" path="visuals.darkMode" />
             <Divider />
             <SettingsItem :type="Control.Option" path="currentTimer" :choices="{traditional: 'traditional', approximate: 'approximate', percentage: 'percentage'}" />

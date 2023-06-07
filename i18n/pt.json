@@ -1,0 +1,352 @@
+{
+  "support": {
+    "source": "Ver no GitHub",
+    "support": "Compre um café para o autor",
+    "share": {
+      "twitter": "Siga o aplicativo no Twitter",
+      "facebook": "Compartilhe o aplicativo no Facebook",
+      "reddit": "Compartilhe o aplicativo no Reddit"
+    }
+  },
+  "section": {
+    "work": "Trabalhar",
+    "shortpause": "Pausa",
+    "longpause": "Pausa Longo",
+    "wait": "Aguardando"
+  },
+  "controls": {
+    "play": "Inicie ou pare o cronômetro",
+    "stop": "Reinicie o cronômetro",
+    "advance": "Va para a próxima sessão"
+  },
+  "appbar": {
+    "settings": "Abrir configurações",
+    "todo": "Abrir lista de tarefas"
+  },
+  "timer": {
+    "approximate": {
+      "hours": "hora | horas",
+      "minutes": "minuto | minutos"
+    }
+  },
+  "settings": {
+    "heading": "Configurações",
+    "tabs": {
+      "main": "Principal",
+      "timer": "Agendar",
+      "display": "Tela",
+      "audio": "Audio",
+      "about": "Sobre"
+    },
+    "buttons": {
+      "close": "Fechar",
+      "reset": "Reiniciar"
+    },
+    "reset": {
+      "title": "Reiniciar configurações",
+      "confirm": "Reiniciar",
+      "cancel": "Cancelar"
+    },
+    "manage": {
+      "buttons": {
+        "save": "Salvar",
+        "load": "Carregar"
+      }
+    },
+    "scheduleMinTime": "O tempo mínimo permitido é de 5 segundos",
+    "about": {
+      "madeby": "Criado por Imre Gera",
+      "source": "Código Fonte",
+      "support": "Ajude o projeto",
+      "supportBody": "Eu desenvolvi o FocusTide no meu tempo livre. Significaria muito para mim se você pudesse me ajudar a continuar trabalhando nele",
+      "mobileSupport": "Por causa das regras impostas pela Google Play Store, eu não posso mostrar nenhum link dentro do aplicativo móvel para doações a estre projeto",
+      "share": "ou compartilhe o aplicativo nas redes sociais:"
+    },
+    "values": {
+      "manage": {
+        "_title": "Gerenciar configurações",
+        "_description": "Baixe as configurações atuais ou carregue de um arquivo"
+      },
+      "mobile": {
+        "notifications": {
+          "sectionOver": {
+            "_title": "Sessão com notificações",
+            "_description": "Mostrar uma notificação quando uma sessão terminar"
+          },
+          "persistent": {
+            "_title": "Notificação persistente",
+            "_description": "Mostrar o progresso atual do cronômetro"
+          }
+        }
+      },
+      "lang": {
+        "_title": "Idioma",
+        "_description": ""
+      },
+      "eventLoggingEnabled": {
+        "_title": "Habilitar registro de eventos",
+        "_description": ""
+      },
+      "currentTimer": {
+        "_title": "Estilo do cronômetro",
+        "_description": "",
+        "_values": {
+          "traditional": "Tradicional",
+          "approximate": "Aproximado",
+          "percentage": "Porcentagem"
+        },
+        "_valueDescription": {
+          "traditional": "12:34",
+          "approximate": "13 minutos",
+          "percentage": "50%"
+        }
+      },
+      "adaptiveTicking": {
+        "enabled": {
+          "_title": "Ativar rastreamento adaptivo",
+          "_description": "O cronômetro marcará com menos frequência enquanto estiver em segundo plano"
+        }
+      },
+      "schedule": {
+        "longPauseInterval": {
+          "_title": "Intervalo de pausa longa",
+          "_description": ""
+        },
+        "numScheduleEntries": {
+          "_title": "Número de entradas de intervalo",
+          "_description": ""
+        },
+        "visibility": {
+          "enabled": {
+            "_title": "Mostrar intervalo",
+            "_description": ""
+          },
+          "showSectionType": {
+            "_title": "Mostrar tipo de sessão no intervalo",
+            "_description": "Mostrar o tipo de sessão atual no intervalo"
+          }
+        },
+        "lengths": {
+          "_title": "Intervalo predefinido",
+          "_description": "",
+          "_values": {
+            "default": "Padrão",
+            "debug": "Depuração",
+            "custom": "Customizado"
+          },
+          "_valueDescription": {
+            "default": "25 minutos de trabalho, 5 minutos de pausa",
+            "debug": "Para propósitos de depuração",
+            "custom": "Definido por você"
+          },
+          "work": {
+            "_title": "Trabalho",
+            "_description": ""
+          },
+          "shortpause": {
+            "_title": "Pausa",
+            "_description": ""
+          },
+          "longpause": {
+            "_title": "Pausa Longa",
+            "_description": ""
+          }
+        }
+      },
+      "performance": {
+        "showProgressBar": {
+          "_title": "Mostrar barra de progresso",
+          "_description": "Mostrar progresso atrás do cronômetro"
+        }
+      },
+      "permissions": {
+        "audio": {
+          "_title": "Reproduzir audio",
+          "_description": "Deixe o aplicativo reproduzir sons quando uma sessão terminar"
+        },
+        "notifications": {
+          "_title": "Permissões de notificação",
+          "_description": "Deixe o aplicativo enviar notificações quando uma sessão terminar"
+        }
+      },
+      "audio": {
+        "volume": {
+          "_title": "Volume do audio",
+          "_description": ""
+        },
+        "soundSet": {
+          "_title": "Sound set",
+          "_description": "Sons usados para notificação",
+          "_values": {
+            "musical": "Musical"
+          },
+          "_valueDescription": {
+            "musical": "O som padrão"
+          }
+        }
+      },
+      "timerControls": {
+        "enableKeyboardShortcuts": {
+          "_title": "Ativar atalhos de teclado",
+          "_description": "Iniciar/parar o cronômetro com a barra de espaço"
+        }
+      },
+      "tasks": {
+        "enabled": {
+          "_title": "Ativar lista de tarefas",
+          "_description": "Gerencie seu trabalho direto do aplicativo"
+        },
+        "maxActiveTasks": {
+          "_title": "Atividades máximas a serem mostradas",
+          "_description": "Você verá no máximop esta quantidade de tarefas ativas"
+        },
+        "removeCompletedTasks": {
+          "_title": "Remover tarefas completadas",
+          "_description": "Tarefas completadas serão removidas quando uma sessão começar"
+        }
+      },
+      "pageTitle": {
+        "useTickEmoji": {
+          "_title": "Usar emoji de tick no título",
+          "_description": "Mostrar ✔ ao invés de \"done\""
+        }
+      },
+      "visuals": {
+        "theme": {
+          "_title": "Configurações de tema",
+          "_description": "Escolha um conjunto de cores de seção predefinidas ou defina a sua própria",
+          "custom": "Customizado"
+        },
+        "darkMode": {
+          "_title": "Ativar modo escuro",
+          "_description": "Menos brilho, mais produtivo"
+        }
+      },
+      "reset": {
+        "_title": "Redefinir as configurações",
+        "_description": "Todas as configurações serão redefinidas depois da aplicação recarregar"
+      }
+    }
+  },
+  "notification": {
+    "action": {
+      "ready": "Vamos la!"
+    },
+    "work": {
+      "title": "Hora de voltar ao trabalho!",
+      "body": "Seu intervalo acabou. Trabalhe mais um pouco e descanse novamente"
+    },
+    "shortpause": {
+      "title": "Hora de descansar",
+      "body": "Ótimo, você ganhou um descanso curto"
+    },
+    "longpause": {
+      "title": "Whew! Mais tempo para descansar!",
+      "body": "Ora ora... Depois de trabalhar muito, você merece um descanso maior"
+    }
+  },
+  "error": {
+    "format_invalid": "Formato de entrada inválido",
+    "range_invalid": "O valor precisa estar entre {min} e {max}",
+    "required": "Este campo precisa ser preenchido",
+    "numeric": "O valor precisa ser um número",
+    "min": "O valor precisa ser pelo menos {min}",
+    "max": "O valor precisa ser até {max}",
+    "time_format": "Formato de horário inválido (MM:SS)",
+    "min_time": "O horário informado é muito curto",
+    "undefined": "Erro desconhecido"
+  },
+  "tasks": {
+    "title": "Tarefas",
+    "empty": "Nenhuma task por enquanto",
+    "manage": "Gerenciar",
+    "addPlaceholder": "Insira algo que você precisa fazer"
+  },
+  "ready": "Concluído",
+  "errorpage": {
+    "title": {
+      "crash": "O aplicativo travou",
+      "notfound": "A página não existe",
+      "other": "Algo deu errado"
+    },
+    "action": {
+      "reset": "Redefinir o aplicativo",
+      "reload": "Recarregar a página",
+      "home": "Voltar para a página de início",
+      "githubIssue": "Crie um relatório de problema",
+      "githubDiscussion": "Pergunte a outras pessoas se possuem o mesmo problema",
+      "twitter": "Escreva um tweet amigável"
+    },
+    "showError": {
+      "main": "Me mostre a mensagem de erro!",
+      "sub": "Vou usá-lo para relatar um problema ou perguntar se outras pessoas também estão passando por isso."
+    },
+    "suggestions": {
+      "primary": "Você pode",
+      "secondary": "ou se isso não ajudou"
+    }
+  },
+  "timerpreset": {
+    "_values": {
+      "default": "Padrão",
+      "easy": "Fácil",
+      "advanced": "Avançado",
+      "workaholic": "Viciado em trabalho"
+    },
+    "_valueDescription": {
+      "default": "O valor padrão do Pomodoro.",
+      "easy": "Para aqueles que ainda não testaram a técnica Pomdoro.",
+      "advanced": "Trabalhe um pouco mais eficiente.",
+      "workaholic": "Para longas sessões de trabalho."
+    },
+    "description": "{brief} \n {worklength} minutos de trabalho com {splength} minutos de pausa curta e {lplength} minutos de pausa longa depois de {lpfreq} sessões de trabalho."
+  },
+  "tutorials": {
+    "onboarding": {
+      "pages": {
+        "0": {
+          "title": "Bem vindo ao FocusTide!",
+          "onboarding_invite": "Vamos configurá-lo pela primeira vez. Você pode alterar tudo no menu de configurações mais tarde.",
+          "heading": "Escolha seu idioma"
+        },
+        "1": {
+          "heading": "Defina seus temporizadores",
+          "text": "Escolha uma configuração predefinida para o tempo de seus cronômetro. Você pode personalizá-los mais tarde nas configurações."
+        },
+        "2": {
+          "theme": {
+            "heading": "Escolha um tema",
+            "options": {
+              "_values": {
+                "light": "Claro",
+                "dark": "Escuro"
+              },
+              "_valueDescription": {
+                "light": "",
+                "dark": ""
+              }
+            }
+          },
+          "display": {
+            "heading": "Escolha uma exibição"
+          }
+        },
+        "3": {
+          "heading": "Lembre-se",
+          "text": "Você sempre pode alterar isso (e mais) no menu de configurações!"
+        },
+        "support": {
+          "heading": "Apoie o projeto",
+          "text": "Se este projeto ajudou você, considere comprar um café para o autor.",
+          "hint": "Você também pode encontrar opções de suporte na página Configurações > Sobre."
+        }
+      },
+      "buttons": {
+        "close": "Fechar",
+        "start": "Iniciar configuração",
+        "next": "Próximo",
+        "support": "Apoie o projeto"
+      }
+    }
+  }
+}

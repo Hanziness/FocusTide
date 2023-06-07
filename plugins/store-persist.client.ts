@@ -25,6 +25,14 @@ const breakingChanges: BreakingChange[] = [
       'The settings\' theming data was restructured.'
     ],
     affectedStores: ['settings']
+  },
+  {
+    from: '1.0.0',
+    to: '1.4.1',
+    reason: [
+      'The app was rebranded to FocusTide.'
+    ],
+    affectedStores: ['tutorials']
   }
 ]
 
@@ -74,6 +82,7 @@ function restoreStore (store: Store) {
 
     const mainStore = useMain()
     mainStore.registerFlag(flags.STORE_RESTORED)
+    mainStore.restoredStores.push(store.$id)
   }
 }
 

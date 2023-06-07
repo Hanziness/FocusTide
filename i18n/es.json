@@ -1,183 +1,12 @@
 {
-  "index": {
-    "app_description": "Temporizador Pomodoro gratuito directamente en su navegador",
-    "alt": {
-      "img": {
-        "screenshot": "Captura de pantalla de un temporizador en funcionamiento en FocusTide",
-        "icon": "El icono de la aplicación"
-      },
-      "links": {
-        "source": "Ver en GitHub",
-        "support": "Invítele un café al autor",
-        "share": {
-          "twitter": "Siga la aplicación en Twitter",
-          "facebook": "Comparta la aplicación en Facebook",
-          "reddit": "Comparta la aplicación en Reddit"
-        }
-      }
-    },
-    "launch": "Iniciar",
-    "cta": {
-      "quickstart": "Inicio rápido",
-      "or": "o",
-      "configure": "Asistente de configuración"
-    },
-    "features": [
-      {
-        "title": "Interfaz centrada y limpia",
-        "description": "Solo su temporizador, los controles esenciales y un montón de personalizaciones"
-      },
-      {
-        "title": "Nada que instalar",
-        "description": "Se ejecuta en su navegador, completamente fuera de línea después de iniciar"
-      },
-      {
-        "title": "Libre y de código abierto",
-        "description": "Sin rastreadores ocultos, todos pueden ver y contribuir al código"
-      }
-    ],
-    "section_whatitdoes": {
-      "title": "¿Qué es lo que hace?",
-      "subtitle": {
-        "main": "{appname} le ayuda a controlar su tiempo.",
-        "sub": "Simplemente, trabaje o tómese un descanso cuando así lo diga."
-      },
-      "cards": [
-        {
-          "title": "Trabajo",
-          "description": "Hora de hacer las cosas",
-          "duration": "25 minutos"
-        },
-        {
-          "title": "Pausa corta",
-          "description": "Ve un video, lee un artículo, toma un café",
-          "duration": "5-15 minutos"
-        },
-        {
-          "title": "Pausa larga",
-          "description": "Toma una siesta o dé un paseo",
-          "duration": "15 minutos"
-        }
-      ]
-    },
-    "faq": {
-      "title": "Preguntas Frecuentes",
-      "hint": "Pista",
-      "accordion": {
-        "change_timers": {
-          "q": "¿Puedo cambiar esos temporizadores?",
-          "a": "¡Por supuesto! ¡Puede cambiar los temporizadores de trabajo, pausa y pausa larga a lo que quieras! ¡También puede cambiar la frecuencia de las pausas largas!"
-        },
-        "will_it_help": {
-          "q": "¿Esta aplicación me ayudará?",
-          "a": "Eso depende de usted. Esta aplicación se esfuerza por crear un entorno motivador con su diseño limpio y flexibilidad, pero depende de usted si sigue el horario que le da.",
-          "hint": "Si usted se da cuenta de que no puede trabajar 25 minutos seguidos o que una pausa de 5 minutos es demasiado corta, ajústelos a algo más cómodo. No se rinda, siga un horario más relajado y vaya siendo progresivamente más estricto."
-        },
-        "data_collection": {
-          "q": "¿Recolecta algún dato?",
-          "a": "¡No! ¡La aplicación solo se ejecuta en su navegador, no se recolectan ni se envían datos a ninguna parte!"
-        },
-        "remember_settings": {
-          "q": "¿Entonces cómo recordará mis ajustes?",
-          "a": "Depende de su navegador para hacerlo. Si borra los datos de su navegador, los ajustes de la aplicación también volverán a sus valores predeterminados.",
-          "hint": "Si quiere conservar sus ajustes, no utilice la aplicación en navegación privada (modo incógnito)."
-        },
-        "need_to_know": {
-          "q": "Entonces, ¿qué necesito saber para usar esta aplicación?",
-          "a": "Absolutamente nada. Si no quiere profundizar en los ajustes, simplemente inicie el temporizador y escuche la señal sonora cuando termine. Una vez que haya terminado, empiece el siguiente temporizador cuando esté listo. No es necesario ningún conocimiento para utilizar este temporizador, ¡simplemente preste atención al tiempo que queda!"
-        },
-        "timer_style": {
-          "q": "¿Qué estilo de temporizador debería usar?",
-          "a": "Eso depende de lo oscurecido que quiera que sea el temporizador. El tradicional se ve como \"12:34\" (preciso a los segundos), el aproximado se ve como \"13 minutos\" y el porcentual se ve como \"50%\"."
-        }
-      }
-    },
-    "section_features": {
-      "title": "Lista de características",
-      "list": {
-        "customization": "Personalización",
-        "notifications": "Audio & Notificaciones",
-        "flexible": "Flexible",
-        "pwa": "Fuera de línea",
-        "opensource": "Código abierto",
-        "notrackers": "Sin rastreadores",
-        "noads": "Sin anuncios ni ventanas emergentes",
-        "clean": "Diseño limpio",
-        "adaptiveticking": "Tictac adaptativo",
-        "localization": "Múltiples idiomas",
-        "darkmode": "Modo oscuro",
-        "more": "... y más por venir"
-      }
-    },
-    "support": {
-      "title": "Apoye este proyecto",
-      "subtitle": {
-        "main": "FocusTide está siendo desarrollado como un proyecto paralelo sin ninguna compensación en mente.",
-        "action": "Si siente que este es un proyecto que vale la pena apoyar, por favor hágalo."
-      },
-      "credits": "Hecho con ❤ por Imre Gera"
+  "support": {
+    "source": "Ver en GitHub",
+    "support": "Invítele un café al autor",
+    "share": {
+      "twitter": "Siga la aplicación en Twitter",
+      "facebook": "Comparta la aplicación en Facebook",
+      "reddit": "Comparta la aplicación en Reddit"
     }
-  },
-  "setup": {
-    "head": "Configuración",
-    "title": "Empecemos",
-    "startButton": "Vamos",
-    "steps": {
-      "language": {
-        "title": "Idioma"
-      },
-      "preset": {
-        "title": "Preajuste de la aplicación",
-        "description": "Estos preajustes activan determinadas funciones de la aplicación para que pueda utilizarla de la manera que le resulte más cómoda."
-      },
-      "timerpreset": {
-        "title": "Duración del temporizador",
-        "description": "Elige un preajuste para el temporizador con el que quieras trabajar."
-      },
-      "timerstyle": {
-        "title": "Vista del temporizador",
-        "description": "FocusTide soporta tres estilos de temporizador que van desde preciso a los segundos hasta mostrar solo un porcentaje."
-      },
-      "permissions": {
-        "title": "Permisos",
-        "description": "La aplicación puede reproducir un sonido y enviar una notificación cuando un temporizador termina."
-      },
-      "theme": {
-        "title": "Tema",
-        "description": "Controle como se ve la aplicación."
-      },
-      "tip": {
-        "title": "Consejo",
-        "description": "Encontrará todos los ajustes haciendo clic en el icono del engranaje en la esquina superior derecha."
-      }
-    },
-    "presets": {
-      "_values": {
-        "minimalist": "Minimalista",
-        "default": "Predeterminado",
-        "hardcore": "Completo"
-      },
-      "_valueDescription": {
-        "minimalist": "Sin elementos distractores, solo un temporizador en el medio.",
-        "default": "Los ajustes de inicio. Recomendado para usuarios primerizos.",
-        "hardcore": "Cada característica está activada para que pueda tener todo delante de usted."
-      }
-    },
-    "permissions": {
-      "audio": "Audio",
-      "notifications": "Notificaciones"
-    },
-    "theme": {
-      "_values": {
-        "light": "Predeterminado",
-        "dark": "Oscuro"
-      },
-      "_valueDescription": {
-        "light": "Lleno de colores amigables",
-        "dark": "Menos brillante, igual de productivo"
-      }
-    },
-    "preview": "vista previa"
   },
   "section": {
     "work": "Trabajo",
@@ -189,6 +18,10 @@
     "play": "Iniciar o pausar el temporizador",
     "stop": "Restablecer temporizador",
     "advance": "Ir a la siguiente sección"
+  },
+  "appbar": {
+    "settings": "Abrir ajustes",
+    "todo": "Abrir lista de tareas"
   },
   "timer": {
     "approximate": {
@@ -297,7 +130,7 @@
           "_title": "Preajuste de horario",
           "_description": "",
           "_values": {
-            "default": "Predeterminado",
+            "default": "Por defecto",
             "debug": "Depurar",
             "custom": "Personalizado"
           },
@@ -348,7 +181,7 @@
             "musical": "Musical"
           },
           "_valueDescription": {
-            "musical": "Los sonidos predeterminados"
+            "musical": "Los sonidos por defecto"
           }
         }
       },
@@ -379,6 +212,11 @@
         }
       },
       "visuals": {
+        "theme": {
+          "_title": "Ajustes de tema",
+          "_description": "Elija un conjunto de colores predefinidos para la sección o establezca los suyos",
+          "custom": "Personalizado"
+        },
         "darkMode": {
           "_title": "Activar modo oscuro",
           "_description": "Menos brillante, igual de productivo"
@@ -450,13 +288,13 @@
   },
   "timerpreset": {
     "_values": {
-      "default": "Predeterminado",
+      "default": "Por defecto",
       "easy": "Principiante",
       "advanced": "Avanzado",
       "workaholic": "Adicto/a al trabajo"
     },
     "_valueDescription": {
-      "default": "Los valores predeterminados de Pomodoro.",
+      "default": "Los valores por defecto de Pomodoro.",
       "easy": "Para aquellos que aún no ha probado la técnica Pomodoro.",
       "advanced": "Trabaje un poco más eficazmente.",
       "workaholic": "Para sesiones de trabajo largas."
@@ -468,23 +306,39 @@
       "pages": {
         "0": {
           "title": "¡Bienvenido/a FocusTide!",
-          "text": "Eche un vistazo a cómo utilizar la aplicación de forma eficaz."
+          "onboarding_invite": "Vamos a instalarlo/a por primera vez. Puede cambiar todo en el menú de ajustes más tarde.",
+          "heading": "Elija su idioma"
         },
         "1": {
-          "title": "Siga el reloj",
+          "heading": "Establezca sus temporizadores",
           "text": "Trabaje o tómese un descanso hasta que se acabe el temporizador. Luego proceda con su próximo temporizador."
         },
         "2": {
-          "title": "Descanse regularmente",
-          "text": "Después de unos cuantos descansos, tendrás más tiempo para descansar. Aprovéchelo."
+          "theme": {
+            "heading": "Elija un tema",
+            "options": {
+              "_values": {
+                "light": "Claro",
+                "dark": "Oscuro"
+              },
+              "_valueDescription": {
+                "light": "",
+                "dark": ""
+              }
+            }
+          },
+          "display": {
+            "heading": "Elija una vista"
+          }
         },
         "3": {
-          "title": "Manténgase flexible",
+          "heading": "Recuerda",
           "text": "Configure sus propios temporizadores, utilice la lista de tareas y notificaciones a su favor. ¡Revise el menú de ajustes para más oportunidades!"
         },
         "support": {
-          "title": "Apoye el proyecto",
-          "text": "Si este proyecto te ha ayudado, considera invitar al autor un café. También puede encontrar el botón de apoyo en el menú de ajustes."
+          "heading": "Apoye el proyecto",
+          "text": "Si este proyecto te ha ayudado, considera invitar al autor un café. También puede encontrar el botón de apoyo en el menú de ajustes.",
+          "hint": "También puede encontrar opciones de asistencia en la página Configuración > Acerca de."
         }
       },
       "buttons": {
@@ -493,6 +347,12 @@
         "next": "Siguiente",
         "support": "Apoye el proyecto"
       }
+    },
+    "olddomain": {
+      "heading": "AnotherPomodoro es ahora FocusTide",
+      "warning": "Hemos detectado que es posible que procedas del antiguo dominio another-pomodoro.app, que expirará a finales de 2023.",
+      "action": "Por favor, actualice su marcador o hipervínculo a focustide.app.",
+      "button": "Ok"
     }
   }
 }

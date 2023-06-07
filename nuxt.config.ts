@@ -6,8 +6,8 @@ import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 import StylelintPlugin from 'vite-plugin-stylelint'
-import VitePWAGenerator from './modules/build/pwa'
 import IconResizer from './modules/build/icon_resize'
+import ServiceWorkerGenerator from './modules/build/pwa'
 import { AppPlatform } from './platforms/platforms'
 
 const packageJson = fs.readFileSync('./package.json').toString()
@@ -61,30 +61,28 @@ export default defineNuxtConfig({
 
   ssr: true,
 
-  /*
-  ** Headers of the page
-  ** See https://nuxtjs.org/api/configuration-head
-  */
-  head: {
-    titleTemplate: '%s',
-    title: 'FocusTide',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
-      { hid: 'keywords', name: 'keywords', content: 'pomodoro app, pomodoro, free, productivity tool, app, open-source, online timer, countdown timer, focus timer, pomodoro clock, no ads, productivity timer, todo list, task management, tomato timer, pwa' },
-      { hid: 'twitter:title', name: 'twitter:title', content: 'FocusTide' },
-      { hid: 'twitter:description', name: 'twitter:description', content: process.env.npm_package_description || '' },
-      { hid: 'twitter:image', name: 'twitter:image', content: '/img/ogImage.png' },
-      { hid: 'og:image', property: 'og:image', content: '/img/ogImage.png' },
-      { hid: 'og:image:url', property: 'og:image:url', content: '/img/ogImage.png' },
-      { hid: 'og:url', property: 'og:url', content: process.env.URL ? process.env.URL : 'https://another-pomodoro.netlify.app' }
-    ],
-    link: [
-      { rel: 'icon', href: '/favicon.svg' }
+  app: {
+    head: {
+      title: 'FocusTide',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' },
+        { hid: 'description', name: 'description', content: 'Modern and open-source productivity timer, right from your browser. Built to be simple.' },
+        { hid: 'keywords', name: 'keywords', content: 'pomodoro app, pomodoro, free, productivity tool, app, open-source, online timer, countdown timer, focus timer, pomodoro clock, no ads, productivity timer, todo list, task management, tomato timer, pwa' },
+        { hid: 'twitter:title', name: 'twitter:title', content: 'FocusTide' },
+        { hid: 'twitter:description', name: 'twitter:description', content: 'Modern and open-source productivity timer, right from your browser. Built to be simple.' },
+        { hid: 'twitter:image', name: 'twitter:image', content: '/img/ogImage.png' },
+        { hid: 'og:image', property: 'og:image', content: '/img/ogImage.png' },
+        { hid: 'og:image:url', property: 'og:image:url', content: '/img/ogImage.png' },
+        { hid: 'og:url', property: 'og:url', content: process.env.URL ? process.env.URL : 'https://another-pomodoro.netlify.app' }
+      ],
+      link: [
+        { rel: 'icon', href: '/favicon.svg' }
       // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+      ]
+    }
   },
+
   /*
   ** Global CSS
   */
@@ -124,10 +122,10 @@ export default defineNuxtConfig({
   // transpileDependencies: ['vuex-persist'],
 
   /** ESLint module settings */
-  eslint: {
-    // Caching is disabled to prevent constant Nuxt rebuilds when there are warnings
-    cache: false
-  },
+  // eslint: {
+  //   // Caching is disabled to prevent constant Nuxt rebuilds when there are warnings
+  //   cache: false
+  // },
 
   generate: {
     // Generate fallback pages (makes error pages work on Netlify, too)
@@ -142,42 +140,42 @@ export default defineNuxtConfig({
   /**
    * i18n settings
    */
-  i18n: {
-    locales: [
-      { code: 'en', name: 'English', iso: 'en-US', file: 'en.json' },
-      { code: 'hu', name: 'Magyar', iso: 'hu-HU', file: 'hu.json' },
-      { code: 'hr', name: 'Hrvatski', iso: 'hr-HR', file: 'hr.json' },
-      { code: 'fr', name: 'Français', iso: 'fr-FR', file: 'fr.json' }
-    ],
-    defaultLocale: 'en',
-    lazy: true,
-    langDir: 'i18n/',
-    parsePages: false,
-    vueI18n: {
-      fallbackLocale: 'en'
-    },
-    // vuex: false,
-    // Routes generation strategy, can be set to one of the following:
-    // - 'no_prefix': routes won't be prefixed
-    // - 'prefix_except_default': add locale prefix for every locale except default
-    // - 'prefix': add locale prefix for every locale
-    // - 'prefix_and_default': add locale prefix for every locale and default
-    strategy: 'no_prefix',
-    detectBrowserLanguage: {
-      // If enabled, a cookie is set once a user has been redirected to his
-      // preferred language to prevent subsequent redirections
-      // Set to false to redirect every time
-      useCookie: true,
-      // Set to override the default domain of the cookie. Defaults to host of the site.
-      cookieDomain: null,
-      // Cookie name
-      cookieKey: 'lang',
-      // Set to always redirect to value stored in the cookie, not just once
-      alwaysRedirect: false,
-      // If no locale for the browsers locale is a match, use this one as a fallback
-      fallbackLocale: 'en'
-    }
-  },
+  // i18n: {
+  //   locales: [
+  //     { code: 'en', name: 'English', iso: 'en-US', file: 'en.json' },
+  //     { code: 'hu', name: 'Magyar', iso: 'hu-HU', file: 'hu.json' },
+  //     { code: 'hr', name: 'Hrvatski', iso: 'hr-HR', file: 'hr.json' },
+  //     { code: 'fr', name: 'Français', iso: 'fr-FR', file: 'fr.json' }
+  //   ],
+  //   defaultLocale: 'en',
+  //   lazy: true,
+  //   langDir: 'i18n/',
+  //   parsePages: false,
+  //   vueI18n: {
+  //     fallbackLocale: 'en'
+  //   },
+  //   // vuex: false,
+  //   // Routes generation strategy, can be set to one of the following:
+  //   // - 'no_prefix': routes won't be prefixed
+  //   // - 'prefix_except_default': add locale prefix for every locale except default
+  //   // - 'prefix': add locale prefix for every locale
+  //   // - 'prefix_and_default': add locale prefix for every locale and default
+  //   strategy: 'no_prefix',
+  //   detectBrowserLanguage: {
+  //     // If enabled, a cookie is set once a user has been redirected to his
+  //     // preferred language to prevent subsequent redirections
+  //     // Set to false to redirect every time
+  //     useCookie: true,
+  //     // Set to override the default domain of the cookie. Defaults to host of the site.
+  //     cookieDomain: null,
+  //     // Cookie name
+  //     cookieKey: 'lang',
+  //     // Set to always redirect to value stored in the cookie, not just once
+  //     alwaysRedirect: false,
+  //     // If no locale for the browsers locale is a match, use this one as a fallback
+  //     fallbackLocale: 'en'
+  //   }
+  // },
 
   // sitemap: {
   //   hostname: process.env.URL ? process.env.URL : 'https://another-pomodoro.netlify.app'
@@ -190,8 +188,8 @@ export default defineNuxtConfig({
     families: {
       Lexend: [400, 700]
     },
-    display: 'swap'
-    // download: true
+    display: 'swap',
+    download: false
   },
 
   /*
@@ -237,7 +235,7 @@ export default defineNuxtConfig({
           resolve(dirname(fileURLToPath(import.meta.url)), './i18n/en.json')
         ]
       }),
-      VitePWAGenerator({ swPath: 'serviceworker.js' }),
+      ServiceWorkerGenerator({ swPath: 'serviceworker.js' }),
       IconResizer(iconConfig),
       IconResizer({
         outputFolder: 'icons',

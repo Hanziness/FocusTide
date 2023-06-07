@@ -17,7 +17,7 @@ const state = reactive({
 
 <template>
   <popup-sheet class="fixed w-full max-w-2xl md:p-4" open>
-    <div class="flex flex-col px-6 pt-6 pb-6 transition bg-surface-light dark:bg-surface-dark md:backdrop-blur-xl md:backdrop-brightness-200 md:backdrop-contrast-50 md:bg-opacity-80 md:dark:bg-opacity-80 shadow-lg md:pb-3 rounded-t-2xl md:rounded-2xl max-h-[90vh] md:h-auto md:min-h-[24rem] ring-1 ring-surface-onlight dark:ring-surface-ondark ring-opacity-20 dark:ring-opacity-20 ring-inset">
+    <div class="flex flex-col px-6 pt-6 pb-6 transition bg-surface-light dark:bg-surface-dark md:backdrop-blur-xl md:backdrop-brightness-200 md:backdrop-contrast-50 md:bg-opacity-80 md:dark:bg-opacity-80 shadow-lg md:pb-3 rounded-t-2xl md:rounded-2xl max-h-[90vh] md:h-auto md:min-h-[24rem] ring-1 ring-surface-onlight dark:ring-surface-ondark ring-opacity-20 dark:ring-opacity-20 md:ring-inset">
       <UiProgress :progress="state.page / 4" class="mb-4 flex-shrink-0" />
       <transition enter-active-class="transition" enter-from-class="translate-x-4 opacity-0" leave-to-class="-translate-x-4 opacity-0" leave-active-class="transition" mode="out-in">
         <!-- Welcome screen -->

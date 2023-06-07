@@ -212,6 +212,11 @@
         }
       },
       "visuals": {
+        "theme": {
+          "_title": "Theme settings",
+          "_description": "Choose a set of predefined section colors or set your own",
+          "custom": "Custom"
+        },
         "darkMode": {
           "_title": "Enable dark mode",
           "_description": "Less bright, just as productive"
@@ -342,6 +347,12 @@
         "next": "Next",
         "support": "Support the project"
       }
+    },
+    "olddomain": {
+      "heading": "AnotherPomodoro is now FocusTide",
+      "warning": "We have detected that you might be coming from the old domain another-pomodoro.app, which will expire by the end of 2023.",
+      "action": "Please update your bookmark or hyperlink to focustide.app.",
+      "button": "OK"
     }
   }
 }

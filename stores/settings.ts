@@ -22,7 +22,7 @@ export enum Section {
 
 export interface Settings {
   _updated: boolean,
-  lang: string,
+  lang?: string,
   visuals: {
     theme: {
       work: number[],
@@ -99,19 +99,10 @@ export const AvailableSoundSets = {
   SOUNDSET_MUSICAL: 'musical'
 }
 
-const getDefaultLocale = () : string => {
-  if (process.server || !window || !window.navigator || !window.navigator.language) {
-    return 'en'
-  }
-
-  const consideredLanguages = Object.keys(languages).filter(lang => window.navigator.language.split('-')[0].includes(lang))
-  return consideredLanguages.length > 0 ? consideredLanguages[0] : 'en'
-}
-
 export const useSettings = defineStore('settings', {
   state: () : Settings => ({
     _updated: false,
-    lang: getDefaultLocale(),
+    lang: undefined,
     visuals: {
       theme: {
         work: [255, 107, 107],
@@ -177,6 +168,10 @@ export const useSettings = defineStore('settings', {
   }),
 
   getters: {
+    getCurrentLocale: (state) => {
+      return state.lang ?? 'en'
+    },
+
     getActiveSchedulePreset: (state) => {
       const index = Object.entries(timerPresets).findIndex(([_key, value]) => {
         return JSON.stringify(value.lengths) === JSON.stringify(state.schedule.lengths)

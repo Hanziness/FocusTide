@@ -1,183 +1,12 @@
 {
-  "index": {
-    "app_description": "Ingyenes Pomodoro alkalmazás közvetlenül a böngésződben",
-    "alt": {
-      "img": {
-        "screenshot": "Képernyőkép egy futó időzítőről az FocusTide alkalmazásban",
-        "icon": "Az alkalmazás ikonja"
-      },
-      "links": {
-        "source": "Forráskód megtekintése GitHubon",
-        "support": "Fejlesztő meghívása egy kávéra",
-        "share": {
-          "twitter": "Kövesd az alkalmazást Twitteren",
-          "facebook": "Oszd meg Facebookon",
-          "reddit": "Oszd meg Redditen"
-        }
-      }
-    },
-    "launch": "Indítás",
-    "cta": {
-      "quickstart": "Gyorsindítás",
-      "or": "vagy",
-      "configure": "Beállítás"
-    },
-    "features": [
-      {
-        "title": "Tiszta kezelőfelület",
-        "description": "Csak az időzítőd, a kötelező vezérlők és egy csomó beállítási lehetőség"
-      },
-      {
-        "title": "Nem kell telepíteni",
-        "description": "A böngésződben fut, indítás után teljesen offline"
-      },
-      {
-        "title": "Ingyenes & nyílt forrású",
-        "description": "Nincsenek rejtett követők, bárki megtekintheti és hozzáadhat a forráskódhoz"
-      }
-    ],
-    "section_whatitdoes": {
-      "title": "Mire jó ez?",
-      "subtitle": {
-        "main": "Az {0} segít kordában tartani az idődet.",
-        "sub": "Te csak dolgozz vagy pihenj, amikor azt mondja."
-      },
-      "cards": [
-        {
-          "title": "Munka",
-          "description": "Ideje tenni a tennivalót",
-          "duration": "25 perc"
-        },
-        {
-          "title": "Szünet",
-          "description": "Nézz meg egy videót, olvass el egy cikket vagy igyál egy kávét",
-          "duration": "5 perc"
-        },
-        {
-          "title": "Hosszú szünet",
-          "description": "Sétálj vagy pihenj egyet",
-          "duration": "15 perc"
-        }
-      ]
-    },
-    "faq": {
-      "title": "GYIK",
-      "hint": "Tipp",
-      "accordion": {
-        "change_timers": {
-          "q": "Átállíthatom az időzítőket?",
-          "a": "Persze! Úgy állíthatod be a munka, szünet és hosszú szünet időzítőket, ahogy neked tetszik! Azt is megváltoztathatod, hogy milyen gyakran legyenek hosszú szünetek!"
-        },
-        "will_it_help": {
-          "q": "Segíteni fog rajtam ez az alkalmazás?",
-          "a": "Ez rajtad áll. Az alkalmazás mindent megtesz, hogy egy motiváló környezetet teremtsen a letisztult megjelenésével, de tőled függ, hogy követed-e a menetrendet.",
-          "hint": "Ha úgy érzed, nem tudsz 25 percig egyfolytában dolgozni vagy rövid az 5 perces szünet, állítsd át az időzítőket valami kényelmesebbre. Ne add fel, kövess egy lazább menetrendet és napról-napra szigoríts rajta egy kicsit."
-        },
-        "data_collection": {
-          "q": "Gyűjt az alkalmazás bármilyen adatot?",
-          "a": "Nem! Az alkalmazás csak a böngésződben fut, nem gyűjt és nem küld adatot sehova!"
-        },
-        "remember_settings": {
-          "q": "De akkor hogyan jegyzi meg a beállításaimat?",
-          "a": "Ehhez a böngésződre támaszkodik. Ha törlöd a böngészőből az adataidat, az alkalmazás beállításai is alaphelyzetbe állnak.",
-          "hint": "Ha meg akarod tartani a beállításaidat, ne privát böngészésben (inkognitó módban) használd."
-        },
-        "need_to_know": {
-          "q": "Mit kell tudnom az alkalmazás használatához?",
-          "a": "Semmit. Ha nem akarsz a beállítások között matatni, csak indítsd el az időzítőt és dolgozz a hangjelzésig. Amint kész vagy, indítsd el a következő időzítőt. Semmi extra tudásra nem lesz szükség, csak figyelj a hátralévő időre!"
-        },
-        "timer_style": {
-          "q": "Melyik időzítő-stílust használjam?",
-          "a": "Ez attól függ, mennyire akarod, hogy pontos legyen az az időzítő. Választhatsz hagyományos (\"12:34\", másodpercre pontos), közelítő (\"13 perc\", szöveges és percre pontos), valamint százalékos (\"50%\") megjelenítés közül."
-        }
-      }
-    },
-    "section_features": {
-      "title": "Funkciók",
-      "list": {
-        "customization": "Testreszabható",
-        "notifications": "Hang & Értesítések",
-        "flexible": "Rugalmas",
-        "pwa": "Offline",
-        "opensource": "Nyílt forrású",
-        "notrackers": "Nincsenek követők",
-        "noads": "Nincs reklám & felugró ablak",
-        "clean": "Letisztult megjelenés",
-        "adaptiveticking": "Adaptív ketyegés",
-        "localization": "Magyarul is tud",
-        "darkmode": "Sötét téma",
-        "more": "... és még több"
-      }
-    },
-    "support": {
-      "title": "Támogasd a projektet",
-      "subtitle": {
-        "main": "Az FocusTide hobbiprojektként készült, bárminemű anyagi bevétel szándéka nélkül.",
-        "action": "Ha úgy érzed, ennek ellenére megérdemli, kérlek támogasd a projektet."
-      },
-      "credits": "❤ Szeretettel készítette: Gera Imre"
+  "support": {
+    "source": "Megtekintés GitHubon",
+    "support": "Fejlesztő meghívása egy kávéra",
+    "share": {
+      "twitter": "Kövesd az alkalmazást a Twitteren",
+      "facebook": "Oszd meg az alkalmazást a Facebookon",
+      "reddit": "Oszd meg az alkalmazást Redditen"
     }
-  },
-  "setup": {
-    "head": "Beállítás",
-    "title": "Indulás",
-    "startButton": "Hajrá",
-    "steps": {
-      "language": {
-        "title": "Nyelv"
-      },
-      "preset": {
-        "title": "Előbeállítás",
-        "description": "Ezek a lehetőségek előre bekapcsolnak bizonyos funkciókat, hogy úgy használhasd az alkalmazást, ahogy kényelmes."
-      },
-      "timerpreset": {
-        "title": "Időzítők hossza",
-        "description": "Válassz egy számodra kényelmes időzítő beállítást."
-      },
-      "timerstyle": {
-        "title": "Időzítő stílusa",
-        "description": "Az FocusTide háromféle időzítő megjelenést is támogat a másodperc pontosságútól a százalékos megjelenítésig."
-      },
-      "permissions": {
-        "title": "Engedélyek",
-        "description": "Az alkalmazás képes hangot lejátszani és értesítést is küldeni egy-egy időzítő lejártakor. Válaszd ki, hogy mire van szükséged."
-      },
-      "theme": {
-        "title": "Téma",
-        "description": "Beállíthatod, hogyan nézzen ki az alkalmazás."
-      },
-      "tip": {
-        "title": "Végezetül",
-        "description": "A jobb felső sarokban lévő fogaskerék ikonra kattintva minden beállítást megtalálsz majd."
-      }
-    },
-    "presets": {
-      "_values": {
-        "minimalist": "Minimalista",
-        "default": "Alapértelmezett",
-        "hardcore": "Maximalista"
-      },
-      "_valueDescription": {
-        "minimalist": "Semmi elterelő elem, csak egy időzítő középen.",
-        "default": "Az alap beállítások. Ajánlott kezdő felhasználók számára.",
-        "hardcore": "Minden funkció bekapcsolva, így minden dolog előtted lehet."
-      }
-    },
-    "permissions": {
-      "audio": "Hang",
-      "notifications": "Értesítések"
-    },
-    "theme": {
-      "_values": {
-        "light": "Alapértelmezett",
-        "dark": "Sötét"
-      },
-      "_valueDescription": {
-        "light": "Tele barátságos színekkel",
-        "dark": "Kevesebb fényerő, ugyanannyi produktivitás"
-      }
-    },
-    "preview": "előnézet"
   },
   "section": {
     "work": "Munka",
@@ -189,6 +18,10 @@
     "play": "Időzítő indítása vagy szünetelése",
     "stop": "Időzítő megállítása",
     "advance": "Ugrás a következő szakaszra"
+  },
+  "appbar": {
+    "settings": "Beállítások megnyitása",
+    "todo": "Teendők megnyitása"
   },
   "timer": {
     "approximate": {
@@ -379,6 +212,11 @@
         }
       },
       "visuals": {
+        "theme": {
+          "_title": "Téma beállítások",
+          "_description": "Válassz az előre elkészített szakasztémák közül vagy állíts be egy sajátot",
+          "custom": "Egyedi"
+        },
         "darkMode": {
           "_title": "Sötét téma bekapcsolása",
           "_description": "Kevesebb fényerő, ugyanannyi produktivitás"
@@ -509,6 +347,12 @@
         "next": "Következő",
         "support": "Projekt támogatása"
       }
+    },
+    "olddomain": {
+      "heading": "Az AnotherPomodoro mostantól FocusTide",
+      "warning": "Úgy észleltük, hogy a régi another-pomodoro.app webcímről érkeztél, ami 2023 végére lejár.",
+      "action": "Kérjük, frissítsd a könyvjelzőidet és hivatkozásaidat a focustide.app webcímre.",
+      "button": "OK"
     }
   }
 }
