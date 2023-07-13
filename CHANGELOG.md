@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/Hanziness/FocusTide/compare/v1.5.0...v1.5.1) (2023-07-13)
+
+
+### Bug Fixes
+
+* Add missing query param to https redirects ([#354](https://github.com/Hanziness/FocusTide/issues/354)) ([044ba82](https://github.com/Hanziness/FocusTide/commit/044ba8203873018c8823c9a5526709d9e73bd0d7))
+
 ## [1.5.0](https://github.com/Hanziness/AnotherPomodoro/compare/v1.4.3...v1.5.0) (2023-06-07)
 
 
