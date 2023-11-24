@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { MoodSadIcon as IconCrash, RoadSignIcon as IconLost, MoodConfuzedIcon as IconOtherError, RefreshAlertIcon as IconReset, RefreshIcon as IconReload, HomeIcon as IconHome, BrandGithubIcon as IconGithub, BrandTwitterIcon as IconTwitter, MessagesIcon as IconDiscussion, BugIcon as IconShowError } from 'vue-tabler-icons'
 import { useI18n } from 'vue-i18n'
-import { ComputedRef } from 'vue'
-import type { Component } from 'vue'
+import type { Component, ComputedRef } from 'vue'
 import { ActionType } from './components/error/types'
 import UiButton from './components/base/uiButton.vue'
 import { ButtonImportance, ButtonTheme } from './components/base/types/button'

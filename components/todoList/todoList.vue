@@ -7,7 +7,7 @@ import TaskItem from '~~/components/todoList/todoItem.vue'
 import TaskAdd from '@/components/todoList/addTask.vue'
 import { useSettings } from '~~/stores/settings'
 import { useSchedule } from '~~/stores/schedule'
-import { Task, useTasklist } from '~~/stores/tasklist'
+import { type Task, useTasklist } from '~~/stores/tasklist'
 import { useOpenPanels } from '~~/stores/openpanels'
 
 const openPanels = useOpenPanels()

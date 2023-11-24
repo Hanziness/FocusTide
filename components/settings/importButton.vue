@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { Ref } from 'vue'
-import { Store } from 'pinia'
+import { type Ref } from 'vue'
+import { type Store } from 'pinia'
+import { ButtonImportance } from '../base/types/button'
 import Button from '~~/components/base/uiButton.vue'
 import { useSettings } from '~~/stores/settings'
 import { useTasklist } from '~~/stores/tasklist'
-import { ButtonImportance } from '../base/types/button'
 
 const fileinput: Ref<HTMLInputElement | null> = ref(null)
 

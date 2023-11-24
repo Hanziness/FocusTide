@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PropType } from 'vue'
+import { type PropType } from 'vue'
 import { ButtonImportance, ButtonTheme, MotionTheme } from './types/button'
 
 const props = defineProps({
