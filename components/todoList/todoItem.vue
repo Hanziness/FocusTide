@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { nextTick, Ref, PropType } from 'vue'
+import { nextTick, type Ref, type PropType } from 'vue'
 import { MenuIcon, TrashIcon, PencilIcon } from 'vue-tabler-icons'
 import { ButtonImportance } from '../base/types/button'
-import { TaskState, useTasklist, Task } from '~~/stores/tasklist'
+import { TaskState, useTasklist, type Task } from '~~/stores/tasklist'
 import { useSettings, ColorMethod } from '~~/stores/settings'
 import Button from '~~/components/base/uiButton.vue'
 
