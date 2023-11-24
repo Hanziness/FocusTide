@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.2](https://github.com/Hanziness/FocusTide/compare/v1.5.1...v1.5.2) (2023-11-24)
+
+
+### Bug Fixes
+
+* **ci:** Update CI workflow and update Yarn to V4 ([#357](https://github.com/Hanziness/FocusTide/issues/357)) ([7b39e62](https://github.com/Hanziness/FocusTide/commit/7b39e623f004560a083d380b40db983cc2bfa07c))
+
+
+### Refactors
+
+* Update dependencies ([#356](https://github.com/Hanziness/FocusTide/issues/356)) ([2d848f2](https://github.com/Hanziness/FocusTide/commit/2d848f2d08796efab03d5442bec6862b343f5bf8))
+
 ### [1.5.1](https://github.com/Hanziness/FocusTide/compare/v1.5.0...v1.5.1) (2023-07-13)
 
 
