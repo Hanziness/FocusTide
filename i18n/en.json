@@ -107,6 +107,20 @@
           "_description": "Timer will tick less frequently while in the background"
         }
       },
+      "sectionEndAction": {
+        "_title": "Section end behavior",
+        "_description": "What should happen when the timer runs out",
+        "_values": {
+          "continue": "Continue",
+          "stop": "Stop",
+          "skip": "Advance"
+        },
+        "_valueDescription": {
+          "continue": "Keep ticking",
+          "stop": "Stop the timer",
+          "skip": "Start the next section"
+        }
+      },
       "schedule": {
         "longPauseInterval": {
           "_title": "Long Break interval",

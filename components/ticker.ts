@@ -1,9 +1,15 @@
 import { reactive, computed, watch } from 'vue'
 
 import { TimerState, useSchedule } from '~~/stores/schedule'
-import { useSettings } from '~~/stores/settings'
+import { SectionEndAction, useSettings } from '~~/stores/settings'
 import { useTasklist } from '~~/stores/tasklist'
 import { useEvents, EventType } from '~~/stores/events'
+
+interface TickState {
+  lastUpdate: number
+  nextTickDelta: number
+  timerHandle: number | null
+}
 
 export function useTicker () {
   const settingsStore = useSettings()
@@ -11,7 +17,7 @@ export function useTicker () {
   const tasklistStore = useTasklist()
   const eventsStore = useEvents()
 
-  const state = reactive({
+  const state = reactive<TickState>({
     /** Timestamp of the last tick */
     lastUpdate: new Date().getTime(),
 
@@ -93,7 +99,7 @@ export function useTicker () {
 
   /** Clears the tick handle and stops ticking */
   const clearTickHandle = () => {
-    clearTimeout(state.timerHandle)
+    clearTimeout(state.timerHandle as number)
     state.timerHandle = null
   }
 
@@ -147,6 +153,11 @@ export function useTicker () {
     if (nextState === TimerState.RUNNING && isTimerJustFinished) {
       // timer completed, notify participants
       eventsStore.recordEvent(EventType.TIMER_FINISH)
+      if (settingsStore.sectionEndAction === SectionEndAction.Stop) {
+        scheduleStore.timerState = TimerState.COMPLETED
+      } else if (settingsStore.sectionEndAction === SectionEndAction.Skip) {
+        scheduleStore.advance()
+      }
     }
   }
 
