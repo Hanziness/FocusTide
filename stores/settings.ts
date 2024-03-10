@@ -2,12 +2,20 @@ import { defineStore } from 'pinia'
 import { EventType, useEvents } from './events'
 import TickMultipliers from '~~/assets/settings/adaptiveTickingMultipliers'
 import timerPresets from '~~/assets/settings/timerPresets'
-import { languages } from '~~/plugins/i18n'
 
 export enum TimerType {
   Traditional = 'traditional',
   Approximate = 'approximate',
   Percentage = 'percentage'
+}
+
+export enum SectionEndAction {
+  /** Continue ticking after the section ended */
+  KeepTicking = 'continue',
+  /** Stop the timer after the section ended, displaying a checkmark */
+  Stop = 'stop',
+  /** Automatically start the next section as soon as the previous one ended */
+  Skip = 'skip'
 }
 
 export enum SoundSet {
@@ -53,6 +61,7 @@ export interface Settings {
     },
     eventLoggingEnabled: boolean,
     currentTimer: TimerType,
+    sectionEndAction: SectionEndAction,
     adaptiveTicking: {
       enabled: boolean,
       baseTickRate: number,
@@ -132,6 +141,7 @@ export const useSettings = defineStore('settings', {
       }
     },
     eventLoggingEnabled: false,
+    sectionEndAction: SectionEndAction.Skip,
     currentTimer: TimerType.Approximate,
     adaptiveTicking: {
       enabled: true,
