@@ -231,8 +231,10 @@ export default defineNuxtConfig({
         // TODO this is needed to make lazy-loading work properly
         runtimeOnly: false,
         fullInstall: false,
+        dropMessageCompiler: true,
+        ssr: true,
         include: [
-          resolve(dirname(fileURLToPath(import.meta.url)), './i18n/en.json')
+          resolve(dirname(fileURLToPath(import.meta.url)), './i18n/*.json')
         ]
       }),
       ServiceWorkerGenerator({ swPath: 'serviceworker.js' }),
