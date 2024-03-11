@@ -153,10 +153,13 @@ export function useTicker () {
     if (nextState === TimerState.RUNNING && isTimerJustFinished) {
       // timer completed, notify participants
       eventsStore.recordEvent(EventType.TIMER_FINISH)
+
       if (settingsStore.sectionEndAction === SectionEndAction.Stop) {
         scheduleStore.timerState = TimerState.COMPLETED
       } else if (settingsStore.sectionEndAction === SectionEndAction.Skip) {
-        scheduleStore.advance()
+        nextTick(() => {
+          scheduleStore.advance()
+        })
       }
     }
   }
