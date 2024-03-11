@@ -1,5 +1,5 @@
 import { createI18n } from 'vue-i18n'
-import { PiniaPluginContext } from 'pinia'
+import type { PiniaPluginContext } from 'pinia'
 
 import messages from '@intlify/unplugin-vue-i18n/messages'
 import { useSettings } from '~~/stores/settings'
