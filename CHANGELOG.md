@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/Hanziness/FocusTide/compare/v1.5.2...v1.6.0) (2024-03-11)
+
+
+### Features
+
+* **timer:** Allow choosing a behavior when a section ends ([#361](https://github.com/Hanziness/FocusTide/issues/361)) ([40ca6d6](https://github.com/Hanziness/FocusTide/commit/40ca6d6cdf383676f905a05edd45de9bdfcddb15))
+
+
+### Bug Fixes
+
+* **ticker:** Delegate schedule advance to the next tick to fix the wrong sound playing ([#365](https://github.com/Hanziness/FocusTide/issues/365)) ([f62ef40](https://github.com/Hanziness/FocusTide/commit/f62ef40b41ffbe857f7fc515bc9fb231a6c38c6d))
+
+
+### Refactors
+
+* Update dependencies ([#363](https://github.com/Hanziness/FocusTide/issues/363)) ([3ea1bf8](https://github.com/Hanziness/FocusTide/commit/3ea1bf88b2d1ae1dee7245b7c8e8d214833d4fab))
+
+
+### Localizations
+
+* Update translations ([#362](https://github.com/Hanziness/FocusTide/issues/362)) ([4d889a6](https://github.com/Hanziness/FocusTide/commit/4d889a66c767b4624e820c1e57c97cdbc1667a04))
+
 ### [1.5.2](https://github.com/Hanziness/FocusTide/compare/v1.5.1...v1.5.2) (2023-11-24)
 
 
