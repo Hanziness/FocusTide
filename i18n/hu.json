@@ -107,6 +107,20 @@
           "_description": "Az időzítő kevesebbszer fog frissülni, amíg háttérben van"
         }
       },
+      "sectionEndAction": {
+        "_title": "Szakasz befejezésekor",
+        "_description": "Mi történjen, amikor vége egy szakasznak",
+        "_values": {
+          "continue": "Folytatás",
+          "stop": "Megállítás",
+          "skip": "Következő"
+        },
+        "_valueDescription": {
+          "continue": "Az időzítő tovább futtatása",
+          "stop": "Az időzítő megállítása",
+          "skip": "Ugrás a következő szakaszra"
+        }
+      },
       "schedule": {
         "longPauseInterval": {
           "_title": "Hosszú szünetek gyakorisága",
