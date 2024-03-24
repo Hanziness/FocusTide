@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" version="1.1" viewBox="0 0 256 256" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+    <g id="a" transform="matrix(.62978 0 0 .62745 -33.376 -32.627)">
+                    <g transform="matrix(.9963 0 0 1 1.1886 0)">
+                        <circle cx="256" cy="256" r="204" fill="#fef1e9"/>
+                    </g>
+                    <g transform="matrix(.6642 0 0 .66667 86.206 85.333)">
+                        <circle cx="256" cy="256" r="204" fill="#fdde74"/>
+                        <path d="m256.66 52.001c112.3 0.365 203.34 91.634 203.34 204 0 112.59-91.409 204-204 204-56.295 0-107.3-22.852-144.22-59.779l144.22-144.22v-204z" fill="#ff6b6b"/>
+                    </g>
+                    <g transform="matrix(.91552 0 0 .91892 21.869 20.757)">
+                        <circle cx="256" cy="256" r="222" fill-opacity="0"/>
+                        <path d="m256 34c122.52 0 222 99.475 222 222s-99.475 222-222 222-222-99.475-222-222 99.475-222 222-222zm0 34.824c103.31 0 187.18 83.87 187.18 187.18s-83.87 187.18-187.18 187.18-187.18-83.87-187.18-187.18 83.87-187.18 187.18-187.18z" fill="#ff6b6b"/>
+                    </g>
+                    <g transform="matrix(.9963 0 0 1 1.1886 0)">
+                        <circle cx="256" cy="256" r="32" fill="#ff6b6b"/>
+                    </g>
+                </g>
+</svg>

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">FocusTide</string>
+    <string name="title_activity_main">FocusTide</string>
+    <string name="package_name">app.hanziness.FocusTide</string>
+    <string name="custom_url_scheme">app.hanziness.FocusTide</string>
+</resources>

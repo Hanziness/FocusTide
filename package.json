@@ -4,6 +4,9 @@
   "version": "1.6.0",
   "packageManager": "yarn@4.0.2",
   "private": true,
+  "workspaces": [
+    "mobile"
+  ],
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev",
@@ -20,6 +23,9 @@
     "release": "standard-version"
   },
   "dependencies": {
+    "@capacitor/android": "^5.7.3",
+    "@capacitor/cli": "^5.7.3",
+    "@capacitor/core": "^5.7.3",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-tabler-icons": "^2.21.0"
