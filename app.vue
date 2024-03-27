@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useSettings } from '~~/stores/settings'
 
-if (!process.server) {
+if (!import.meta.server) {
   useHead({
     link: [
       {

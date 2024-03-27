@@ -125,7 +125,7 @@ export default defineNuxtPlugin(({ vueApp, $pinia }) => {
   installPiniaI18nPlugin()
 
   onNuxtReady(() => {
-    if (!process.server) {
+    if (!import.meta.server) {
       const settingsStore = useSettings()
       if (settingsStore.lang === undefined) {
         settingsStore.lang = getClientLocale()
