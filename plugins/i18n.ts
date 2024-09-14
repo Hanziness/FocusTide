@@ -87,13 +87,6 @@ export default defineNuxtPlugin(({ vueApp, $pinia }) => {
 
   const changeLocaleDynamic = async (newLocale: string) => {
     if (Object.keys(languages).includes(newLocale)) {
-      // Load locale dynamically if it has not been loaded yet
-      if (!i18n.global.availableLocales.includes(newLocale)) {
-        const newLocaleMessages = await import(`@/i18n/${newLocale}.json`)
-
-        i18n.global.setLocaleMessage(newLocale, newLocaleMessages.default)
-      }
-
       // Update app locale
       i18n.global.locale.value = newLocale
     }
@@ -125,7 +118,7 @@ export default defineNuxtPlugin(({ vueApp, $pinia }) => {
   installPiniaI18nPlugin()
 
   onNuxtReady(() => {
-    if (!process.server) {
+    if (!import.meta.server) {
       const settingsStore = useSettings()
       if (settingsStore.lang === undefined) {
         settingsStore.lang = getClientLocale()
