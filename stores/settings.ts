@@ -190,7 +190,7 @@ export const useSettings = defineStore('settings', {
       if (index >= 0) {
         return Object.keys(timerPresets)[index]
       } else {
-        return null
+        return undefined
       }
     },
 
