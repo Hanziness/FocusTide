@@ -93,3 +93,6 @@ sw.*
 .output
 
 .yarn
+
+# Build output of modules
+.build

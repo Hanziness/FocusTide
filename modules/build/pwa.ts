@@ -14,7 +14,7 @@ export default defineNuxtModule({
         nuxt.hook('nitro:config', async (nitroConfig) => {
             console.log(moduleOptions)
 
-            const outputDir = join('.nuxt', outputPath)
+            const outputDir = join('.build', outputPath)
 
             if (existsSync(outputDir)) {
                 readdirSync(outputDir).filter(file => file.startsWith('workbox-')).forEach((file) => {
@@ -78,7 +78,7 @@ export default defineNuxtModule({
             nitroConfig.publicAssets ||= []
             nitroConfig.publicAssets.push({
                 baseURL: '/',
-                dir: join(nuxt.options.rootDir, '.nuxt', outputPath),
+                dir: join(nuxt.options.rootDir, '.build', outputPath),
                 maxAge: 60 * 60 * 24 * 365 // 1 year
             })
         })
