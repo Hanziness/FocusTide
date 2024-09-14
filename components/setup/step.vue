@@ -12,11 +12,11 @@
 </template>
 
 <script>
-import { BellRingingIcon } from 'vue-tabler-icons'
+import { IconBellRinging } from '@tabler/icons-vue'
 
 export default {
   components: {
-    IconAlert: BellRingingIcon
+    IconAlert: IconBellRinging
   },
 
   props: {

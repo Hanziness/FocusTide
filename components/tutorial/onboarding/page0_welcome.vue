@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LanguageIcon } from 'vue-tabler-icons'
+import { IconLanguage } from '@tabler/icons-vue'
 import OnboardingPage from './onboardingPage.vue'
 import OnboardingHeader from './onboardingHeader.vue'
 import OptionGroup from '~~/components/base/optionGroup.vue'
@@ -18,7 +18,7 @@ const settingsStore = useSettings()
     <div class="text-center -mt-3 mb-4" v-text="$t('tutorials.onboarding.pages.0.onboarding_invite')" />
 
     <OnboardingHeader :text="$t('tutorials.onboarding.pages.0.heading')">
-      <LanguageIcon :size="42" />
+      <IconLanguage :size="42" />
     </OnboardingHeader>
 
     <OptionGroup

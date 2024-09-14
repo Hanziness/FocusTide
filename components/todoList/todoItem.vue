@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { nextTick, type Ref, type PropType } from 'vue'
-import { MenuIcon, TrashIcon, PencilIcon } from 'vue-tabler-icons'
+import { IconMenu, IconTrash, IconPencil } from '@tabler/icons-vue'
 import { ButtonImportance } from '../base/types/button'
 import { TaskState, useTasklist, type Task } from '~~/stores/tasklist'
 import { useSettings, ColorMethod } from '~~/stores/settings'
@@ -109,8 +109,8 @@ const handleEdit = (newValue: string) => {
   >
     <div :class="['absolute left-0 top-0 h-full self-stretch bg-themed transition-all duration-75 text-white flex flex-row items-center flex-shrink-0 cursor-move', showReorder ? 'w-6' : 'w-0']">
       <span v-show="showReorder">
-        <PencilIcon v-if="props.manage && state.editing" size="16" />
-        <MenuIcon v-else size="16" />
+        <IconPencil v-if="props.manage && state.editing" size="16" />
+        <IconMenu v-else size="16" />
       </span>
     </div>
     <div class="flex flex-col flex-grow w-full min-w-0 py-2 -my-2 transition-all duration-75 select-none mr-7" :class="[showReorder ? 'translate-x-6' : 'translate-x-0']" @click="state.editing = true">
@@ -139,7 +139,7 @@ const handleEdit = (newValue: string) => {
           bg-class="ring-themed bg-themed"
           @click="emit('delete')"
         >
-          <TrashIcon size="18" />
+          <IconTrash size="18" />
         </Button>
       </transition>
       <input v-model="checked" type="checkbox" class="w-6 h-6 mr-1 rounded accent-themed text-themed dark:text-themed md:w-5 md:h-5">

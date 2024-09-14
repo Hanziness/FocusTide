@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CoffeeIcon, BrandGithubIcon, BrandTwitterIcon, BrandFacebookIcon, BrandRedditIcon } from 'vue-tabler-icons'
+import { IconCoffee, IconBrandGithub, IconBrandTwitter, IconBrandFacebook, IconBrandReddit } from '@tabler/icons-vue'
 import { ButtonImportance } from '../base/types/button'
 import Button from '~~/components/base/uiButton.vue'
 import { AppPlatform } from '~~/platforms/platforms'
@@ -39,7 +39,7 @@ const mainStore = useMain()
           inner-class="flex flex-row items-center gap-1 text-slate-50 text-gray-50"
           bg-class="bg-slate-900 dark:bg-slate-700"
         >
-          <BrandGithubIcon />
+          <IconBrandGithub />
           <span v-text="$t('settings.about.source')" />
         </Button>
         <Button
@@ -53,7 +53,7 @@ const mainStore = useMain()
           inner-class="flex flex-row items-center gap-1 text-black"
           bg-class="bg-yellow-300"
         >
-          <CoffeeIcon />
+          <IconCoffee />
           <span v-text="$t('settings.about.support')" />
         </Button>
         <Button
@@ -63,7 +63,7 @@ const mainStore = useMain()
           inner-class="flex flex-row items-center gap-1 text-black"
           bg-class="bg-yellow-300"
         >
-          <CoffeeIcon />
+          <IconCoffee />
           <span v-text="$t('settings.about.support')" />
         </Button>
       </div>
@@ -81,7 +81,7 @@ const mainStore = useMain()
           bg-class="bg-[#1da1f2]"
           inner-class="!p-4 text-slate-50"
         >
-          <BrandTwitterIcon :aria-label="$t('support.share.twitter')" size="24" />
+          <IconBrandTwitter :aria-label="$t('support.share.twitter')" size="24" />
         </Button>
         <Button
           link
@@ -94,7 +94,7 @@ const mainStore = useMain()
           bg-class="bg-[#1877f2]"
           inner-class="!p-4 text-slate-50"
         >
-          <BrandFacebookIcon :aria-label="$t('support.share.facebook')" size="24" class="translate-x-[-1px]" />
+          <IconBrandFacebook :aria-label="$t('support.share.facebook')" size="24" class="translate-x-[-1px]" />
         </Button>
         <Button
           link
@@ -107,7 +107,7 @@ const mainStore = useMain()
           bg-class="bg-[#ff4500]"
           inner-class="!p-4 text-slate-50"
         >
-          <BrandRedditIcon :aria-label="$t('support.share.reddit')" size="24" />
+          <IconBrandReddit :aria-label="$t('support.share.reddit')" size="24" />
         </Button>
       </div>
     </div>

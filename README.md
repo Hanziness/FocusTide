@@ -85,7 +85,7 @@ This is an open-source project that welcomes contributions. Please check the [**
   * [`nuxt/google-fonts`](https://github.com/nuxt-community/google-fonts-module) for Google Fonts support
   * [`pinia`](https://pinia.vuejs.org/) for state management
 * [**Tailwind CSS**](https://tailwindcss.com/)
-* [Tabler Icons](https://tabler-icons.io/) through [`vue-tabler-icons`](https://github.com/alex-oleshkevich/vue-tabler-icons)
+* [Tabler Icons](https://tabler-icons.io/)
 * [Workbox](https://github.com/GoogleChrome/workbox) as a PWA service worker
 * [`conventional-changelog/standard-version`](https://github.com/conventional-changelog/standard-version) for automatic changelog generation from [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
 

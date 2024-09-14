@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MoodSadIcon as IconCrash, RoadSignIcon as IconLost, MoodConfuzedIcon as IconOtherError, RefreshAlertIcon as IconReset, RefreshIcon as IconReload, HomeIcon as IconHome, BrandGithubIcon as IconGithub, BrandTwitterIcon as IconTwitter, MessagesIcon as IconDiscussion, BugIcon as IconShowError } from 'vue-tabler-icons'
+import { IconMoodSad as IconCrash, IconRoadSign as IconLost, IconMoodConfuzed as IconOtherError, IconRefreshAlert as IconReset, IconRefresh as IconReload, IconHome as IconHome, IconBrandGithub as IconGithub, IconBrandTwitter as IconTwitter, IconMessages as IconDiscussion, IconBug as IconShowError } from '@tabler/icons-vue'
 import { useI18n } from 'vue-i18n'
 import type { Component, ComputedRef } from 'vue'
 import { ActionType } from './components/error/types'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XIcon as CloseIcon, AdjustmentsIcon as TabIconGeneral, AlarmIcon as TabIconSchedule, ArtboardIcon as TabIconVisuals, InfoCircleIcon as InfoIcon, InfoCircleIcon as TabIconAbout } from 'vue-tabler-icons'
+import { IconX as CloseIcon, IconAdjustments as TabIconGeneral, IconAlarm as TabIconSchedule, IconArtboard as TabIconVisuals, IconInfoCircle as InfoIcon, IconInfoCircle as TabIconAbout } from '@tabler/icons-vue'
 
 import { ButtonImportance } from '../base/types/button'
 import ThemeSettings from './theme/themeSettings.vue'

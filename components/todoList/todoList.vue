@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { XIcon } from 'vue-tabler-icons'
+import { IconX } from '@tabler/icons-vue'
 
 import { ButtonImportance, ButtonTheme } from '../base/types/button'
 import ControlButton from '~~/components/base/uiButton.vue'
@@ -68,7 +68,7 @@ const handleDrop = () => {
       <p class="text-xl font-bold tracking-tighter text-gray-800 uppercase dark:text-gray-100" v-text="$t('tasks.title')" />
       <div class="absolute right-0 float-right -mr-2">
         <ControlButton circle default-style :theme="ButtonTheme.Primary" :importance="ButtonImportance.Text" @click="openPanels.todo = false">
-          <XIcon />
+          <IconX />
         </ControlButton>
       </div>
     </div>

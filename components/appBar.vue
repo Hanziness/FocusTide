@@ -1,5 +1,5 @@
 <script setup>
-import { SettingsIcon, ChecklistIcon } from 'vue-tabler-icons'
+import { IconSettings, IconChecklist } from '@tabler/icons-vue'
 import { ButtonImportance, ButtonTheme } from './base/types/button'
 import CButton from '~~/components/base/uiButton.vue'
 import ScheduleView from '@/components/schedule/scheduleDisplay.vue'
@@ -33,7 +33,7 @@ const settingsStore = useSettings()
       :aria-label="$t('appbar.todo')"
       @click="openPanels.todo = !openPanels.todo"
     >
-      <ChecklistIcon class="inline-block" />
+      <IconChecklist class="inline-block" />
     </CButton>
     <CButton
       circle
@@ -46,7 +46,7 @@ const settingsStore = useSettings()
       inner-class="p-1"
       @click="openPanels.settings = !openPanels.settings"
     >
-      <SettingsIcon class="inline-block" />
+      <IconSettings class="inline-block" />
     </CButton>
   </div>
 </template>

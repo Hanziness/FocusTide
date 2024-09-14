@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Component, PropType } from 'vue'
+import type { Component, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { BrandGithubIcon as GitHub, CoffeeIcon as Coffee } from 'vue-tabler-icons'
+import { IconBrandGithub as GitHub, IconCoffee as Coffee } from '@tabler/icons-vue'
 
 const { t } = useI18n()
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CornerDownLeftIcon } from 'vue-tabler-icons'
+import { IconCornerDownLeft } from '@tabler/icons-vue'
 import { type Ref } from 'vue'
 import { ButtonImportance } from '../base/types/button'
 import Button from '~~/components/base/uiButton.vue'
@@ -70,7 +70,7 @@ const checkEnter = (event: KeyboardEvent) => {
       :disabled="!data.valid"
       @click="addTask"
     >
-      <CornerDownLeftIcon :stroke-width="2" class="relative" size="24" />
+      <IconCornerDownLeft :stroke-width="2" class="relative" size="24" />
     </Button>
   </div>
 </template>

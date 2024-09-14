@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ClockPlayIcon } from 'vue-tabler-icons'
+import { IconClockPlay } from '@tabler/icons-vue'
 import OnboardingPage from './onboardingPage.vue'
 import OnboardingHeader from './onboardingHeader.vue'
 import OptionGroup from '~~/components/base/optionGroup.vue'
@@ -11,7 +11,7 @@ const settingsStore = useSettings()
 <template>
   <OnboardingPage>
     <OnboardingHeader :text="$t('tutorials.onboarding.pages.1.heading')">
-      <ClockPlayIcon :size="42" />
+      <IconClockPlay :size="42" />
     </OnboardingHeader>
 
     <div class="text-center -mt-3 mb-4" v-text="$t('tutorials.onboarding.pages.1.text')" />

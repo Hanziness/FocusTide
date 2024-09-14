@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CheckIcon, XIcon } from 'vue-tabler-icons'
+import { IconCheck, IconX } from '@tabler/icons-vue'
 
 const props = defineProps({
   value: {
@@ -36,14 +36,14 @@ const computedValue = computed({
       <!-- ON component -->
       <div class="transition" :class="[{ 'opacity-0': !props.value }]">
         <slot name="when-on">
-          <CheckIcon size="18" class="opacity-80" />
+          <IconCheck size="18" class="opacity-80" />
         </slot>
       </div>
 
       <!-- OFF component -->
       <div class="transition" :class="[{ 'opacity-0': !!props.value }]">
         <slot name="when-off">
-          <XIcon size="18" class="opacity-80" />
+          <IconX size="18" class="opacity-80" />
         </slot>
       </div>
     </div>
