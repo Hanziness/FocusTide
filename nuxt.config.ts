@@ -6,8 +6,6 @@ import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 import StylelintPlugin from 'vite-plugin-stylelint'
-import IconResizer from './modules/build/icon_resize'
-import ServiceWorkerGenerator from './modules/build/pwa'
 import { AppPlatform } from './platforms/platforms'
 
 const packageJson = fs.readFileSync('./package.json').toString()
@@ -91,6 +89,7 @@ export default defineNuxtConfig({
     '@/assets/scss/transitions.scss',
     '@/assets/css/disable_tap_highlight.css'
   ],
+
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
@@ -114,7 +113,21 @@ export default defineNuxtConfig({
     // Doc: https://github.com/nuxt-community/eslint-module
     // '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    ['./modules/build/icon_resize', iconConfig],
+    ['./modules/build/icon_resize', {
+      outputFolder: 'icons',
+      sizes: [192],
+      variants: [
+        {
+          src: '/public/icon.png',
+          prefix: 'icon-apple-',
+          purpose: 'any',
+          bgColor: '#fee2e2'
+        }
+      ]
+    }],
+    ['modules/build/pwa', { swPath: 'serviceworker.js' }]
     // '@nuxtjs/sitemap'
   ],
 
@@ -219,7 +232,11 @@ export default defineNuxtConfig({
     define: {
       // disable Options API support in Vue
       __VUE_OPTIONS_API__: false,
-      __VUE_PROD_DEVTOOLS__: false
+      __VUE_PROD_DEVTOOLS__: false,
+      __VUE_I18N_LEGACY_API__: false,
+      __VUE_I18N_FULL_INSTALL__: false,
+      __INTLIFY_JIT_COMPILATION__: true,
+      __INTLIFY_DROP_MESSAGE_COMPILER__: true
     },
     build: {
       manifest: false,
@@ -237,20 +254,9 @@ export default defineNuxtConfig({
           resolve(dirname(fileURLToPath(import.meta.url)), './i18n/*.json')
         ]
       }),
-      ServiceWorkerGenerator({ swPath: 'serviceworker.js' }),
-      IconResizer(iconConfig),
-      IconResizer({
-        outputFolder: 'icons',
-        sizes: [192],
-        variants: [
-          {
-            src: '/public/icon.png',
-            prefix: 'icon-apple-',
-            purpose: 'any',
-            bgColor: '#fee2e2'
-          }
-        ]
-      })
+      // ServiceWorkerGenerator({ swPath: 'serviceworker.js' })
     ]
-  }
+  },
+
+  compatibilityDate: '2024-09-14'
 })
