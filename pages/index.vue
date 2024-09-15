@@ -79,9 +79,6 @@ const pageTitle = computed(() => {
 
 const progressBarSchedules = computed(() => {
   const numSchedules = settingsStore.performance.showProgressBar ? 2 : 1
-
-  console.info(scheduleStore.getSchedule.slice(0, numSchedules))
-
   return scheduleStore.getSchedule.slice(0, numSchedules)
 })
 </script>
