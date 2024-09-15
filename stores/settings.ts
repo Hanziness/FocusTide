@@ -19,7 +19,8 @@ export enum SectionEndAction {
 }
 
 export enum SoundSet {
-  Musical = 'musical'
+  Musical = 'musical',
+  Sharp = 'sharp'
 }
 
 export enum Section {
@@ -73,7 +74,6 @@ export interface Settings {
     },
     audio: {
       volume: number,
-      repeatTimes: number,
       soundSet: SoundSet
     },
     timerControls: {
@@ -154,7 +154,6 @@ export const useSettings = defineStore('settings', {
     },
     audio: {
       volume: 0.9,
-      repeatTimes: 2,
       soundSet: SoundSet.Musical
     },
     timerControls: {

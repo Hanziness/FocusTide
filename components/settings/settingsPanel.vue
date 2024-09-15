@@ -84,6 +84,7 @@ notificationsStore.updateEnabled()
                   }
                 }"
               />
+              <SettingsItem :type="Control.Option" :choices="{musical: SoundSet.Musical, sharp: SoundSet.Sharp}" path="audio.soundSet" />
             </template>
 
             <template v-if="isMobile">
