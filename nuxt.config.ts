@@ -228,6 +228,10 @@ export default defineNuxtConfig({
     }
   },
 
+  build: {
+    transpile: ['vue-i18n']
+  },
+
   vite: {
     define: {
       // disable Options API support in Vue
@@ -245,9 +249,9 @@ export default defineNuxtConfig({
     plugins: [
       StylelintPlugin(),
       VueI18nVitePlugin({
-        // TODO this is needed to make lazy-loading work properly
-        runtimeOnly: false,
+        runtimeOnly: true,
         fullInstall: false,
+        compositionOnly: true,
         dropMessageCompiler: true,
         ssr: true,
         include: [
