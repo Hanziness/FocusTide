@@ -57,7 +57,7 @@ notificationsStore.updateEnabled()
         </ControlButton>
       </h1>
       <div class="flex-grow overflow-y-auto">
-        <Transition tag="div" name="tab-transition" mode="out-in" class="relative w-full">
+        <Transition tag="div" name="tab-transition" mode="out-in">
           <!-- Core settings -->
           <div v-if="state.activeTab === 1" :key="1" class="settings-tab">
             <OptionGroup
