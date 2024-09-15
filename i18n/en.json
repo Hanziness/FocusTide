@@ -190,12 +190,14 @@
         },
         "soundSet": {
           "_title": "Sound set",
-          "_description": "Sounds used for notifications",
+          "_description": "Sounds played at the end of each session",
           "_values": {
-            "musical": "Musical"
+            "musical": "Musical",
+            "sharp": "Sharp"
           },
           "_valueDescription": {
-            "musical": "The default sounds"
+            "musical": "The default sounds",
+            "sharp": "Shorter, beep-like sounds better for training"
           }
         }
       },
