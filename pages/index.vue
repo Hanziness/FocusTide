@@ -91,13 +91,11 @@ const progressBarSchedules = computed(() => {
     <div class="absolute w-full h-full dark:bg-gray-900" />
 
     <!-- Progress bar -->
-    <div>
-      <div class="absolute top-0 left-0 block w-full h-full transition"
-        :style="{ backgroundColor: scheduleStore.getScheduleColour[0] }" />
-      <TimerProgress :key="progressBarSchedules[0].id" :colour="scheduleStore.getScheduleColour[1]"
-        :schedule-entry-id="1" :background="false" :time-elapsed="scheduleStore.getCurrentItem.timeElapsed"
+    <TransitionGroup name="progress-transition" :duration="1000">
+      <TimerProgress v-for="(scheduleItem, index) in progressBarSchedules" :key="scheduleItem.id" :colour="scheduleStore.getScheduleColour[index]"
+        :schedule-entry-id="scheduleItem.id" :background="index === 0" :time-elapsed="scheduleStore.getCurrentItem.timeElapsed"
         :time-original="scheduleStore.getCurrentItem.length" />
-    </div>
+    </TransitionGroup>
     <div class="relative flex flex-col items-center justify-center w-full h-full isolate" :style="{
       'padding-top': `${mobileSettingsStore.padding.top}px`,
       'padding-bottom': `${mobileSettingsStore.padding.bottom}px`

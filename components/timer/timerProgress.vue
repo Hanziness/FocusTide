@@ -32,16 +32,18 @@ const progressPercentage = computed(() => {
 </script>
 
 <template>
-  <div
-    class="absolute top-0 left-0 block w-full h-full transition-all duration-500 transform-gpu timer-progress"
-    :class="[{ 'ease-out-expo': props.background }]"
-    :style="{
-      'background-color': props.colour ? props.colour : scheduleStore.getScheduleColour[scheduleEntryId],
-      '--transform': `translateX(${-100 + progressPercentage}%)`,
-    }"
-  >
-    <!-- Dark mode background override -->
-    <div class="absolute invisible w-full h-full bg-gray-600 dark:visible mix-blend-multiply" />
+  <div class="absolute top-0 left-0 block w-full h-full transition-all">
+    <div
+      class="w-full h-full transition-all duration-500 transform-gpu timer-progress"
+      :class="[{ 'ease-out-expo': props.background }]"
+      :style="{
+        'background-color': props.colour ? props.colour : scheduleStore.getScheduleColour[scheduleEntryId],
+        '--transform': `translateX(${-100 + progressPercentage}%)`,
+      }"
+    >
+      <!-- Dark mode background override -->
+      <div class="absolute invisible w-full h-full bg-gray-600 dark:visible mix-blend-multiply" />
+    </div>
   </div>
 </template>
 
