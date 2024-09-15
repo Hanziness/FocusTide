@@ -38,6 +38,10 @@ export function useWeb () {
     }
   })
 
+  watch(() => settingsStore.audio.soundSet, (newSoundSet) => {
+    loadSoundSet(newSoundSet)
+  })
+
   eventsStore.$subscribe(() => {
     if (eventsStore.lastEvent !== null && eventsStore.lastEvent._event === EventType.NOTIFICATIONS_ENABLED && window.Notification && window.Notification.permission === 'default') {
       window.Notification.requestPermission().then((newNotificationPermission) => {
@@ -75,7 +79,7 @@ export function useWeb () {
 
     // check if timer is already running
     if (scheduleStore.timerState === 1) {
-      loadSoundSet()
+      loadSoundSet(settingsStore.audio.soundSet)
     }
 
     // Check Visibility and register in store
@@ -118,7 +122,7 @@ export function useWeb () {
 
       state.currentSoundSet = setName
     } catch (err) {
-      // console.warn(err)
+      console.warn(err)
     }
   }
 
@@ -129,7 +133,7 @@ export function useWeb () {
   const playSound = (key: keyof typeof state.sounds) => {
     // load sound set if not already loaded
     if (!state.currentSoundSet) {
-      loadSoundSet()
+      loadSoundSet(settingsStore.audio.soundSet)
     }
 
     if (state.sounds[key] !== null && settingsStore.permissions.audio) {
