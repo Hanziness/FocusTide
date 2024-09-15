@@ -46,7 +46,7 @@ const settingsStore = useSettings()
       inner-class="p-1"
       @click="openPanels.settings = !openPanels.settings"
     >
-      <IconSettings class="inline-block" />
+      <IconSettings size="24" class="inline-block" />
     </CButton>
   </div>
 </template>
