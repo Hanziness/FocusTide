@@ -14,35 +14,35 @@
   "screenshots": [
     {
       "src": "/assets/img/screenshots/stores/mobile_0.jpg",
-      "sizes": "1520x3040",
+      "sizes": "1140x2280",
       "type": "image/jpg",
       "platform": "narrow",
       "label": "A pomodoro timer running in the app"
     },
     {
       "src": "/assets/img/screenshots/stores/mobile_1.jpg",
-      "sizes": "1520x3040",
+      "sizes": "1140x2280",
       "type": "image/jpg",
       "platform": "narrow",
       "label": "AnotherPomdoro comes with a built-in to-do manager"
     },
     {
       "src": "/assets/img/screenshots/stores/mobile_2.jpg",
-      "sizes": "1520x3040",
+      "sizes": "1140x2280",
       "type": "image/jpg",
       "platform": "narrow",
       "label": "The timer is fully customizable: the timer\"s looks, the schedules and there\"s also a dark mode."
     },
     {
       "src": "/assets/img/screenshots/stores/mobile_3.jpg",
-      "sizes": "1520x3040",
+      "sizes": "1140x2280",
       "type": "image/jpg",
       "platform": "narrow",
       "label": "Every feature is optional in FocusTide. If all you need is a simple timer, it can do that, too."
     },
     {
       "src": "/assets/img/screenshots/stores/mobile_4.jpg",
-      "sizes": "1520x3040",
+      "sizes": "1140x2280",
       "type": "image/jpg",
       "platform": "narrow",
       "label": "Two screenshots showing the 'approximate' and 'percentage' timer styles."
