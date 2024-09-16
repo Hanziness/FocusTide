@@ -33,7 +33,7 @@ const settingsStore = useSettings()
       :aria-label="$t('appbar.todo')"
       @click="openPanels.todo = !openPanels.todo"
     >
-      <IconChecklist class="inline-block" />
+      <IconChecklist size="24" class="inline-block" />
     </CButton>
     <CButton
       circle
