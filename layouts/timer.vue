@@ -17,7 +17,11 @@ useHead(() => {
     htmlAttrs: { lang: locale },
     bodyAttrs: {
       class: computed(() => settingsStore.visuals.darkMode ? 'dark' : '')
-    }
+    },
+    link: [{
+      rel: "manifest",
+      href: "/app_manifest.json"
+    }]
   }
 })
 </script>
