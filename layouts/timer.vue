@@ -14,7 +14,10 @@ const { locale } = useI18n()
 
 useHead(() => {
   return {
-    htmlAttrs: { lang: locale }
+    htmlAttrs: { lang: locale },
+    bodyAttrs: {
+      class: computed(() => settingsStore.visuals.darkMode ? 'dark' : '')
+    }
   }
 })
 </script>
