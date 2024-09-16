@@ -3,15 +3,15 @@ import { join } from 'node:path'
 import { existsSync, mkdirSync } from 'fs'
 import sharp from 'sharp'
 
-interface IconVariant {
-    src: string,
-    prefix: string,
+export interface IconVariant {
+    src: string
+    prefix: string
     purpose: string
+    size: number[]
     bgColor?: string
   }
   
-interface IconResizerPluginOptions {
-    sizes: number[],
+export interface IconResizerPluginOptions {
     outputFolder: string,
     variants: IconVariant[],
   }
@@ -31,10 +31,10 @@ export default defineNuxtModule({
                     mkdirSync(outputFolder, { recursive: true })
                 }
 
-                console.info(`Generating ${iconConfig.src} into sizes [${moduleOptions.sizes.join(', ')}] -> ${moduleOptions.outputFolder}`)
+                console.info(`Generating ${iconConfig.src} into sizes [${iconConfig.size.join(', ')}] -> ${moduleOptions.outputFolder}`)
 
                 const promises = []
-                for (const size of moduleOptions.sizes) {
+                for (const size of iconConfig.size) {
                     const outputFileName = `${iconConfig.prefix}${size}.png`
                     let basePromise = sharp(join(nuxt.options.rootDir, iconConfig.src)).resize(size)
 
