@@ -25,9 +25,11 @@ export default defineNuxtModule({
 
       await generateSW({
         swDest: join(outputDir, moduleOptions.swPath),
-        globDirectory: outputDir,
+        globDirectory: '.output/public',
         globPatterns: [
-          '**/*.{js,json,mjs,css,html,svg,woff2}'
+          '!(_nuxt)/**/*.{js,json,mjs,css,html,svg,woff2,mp3}',
+          '*.{html,svg,png}',
+          '_nuxt/*.{js,css}'
         ],
         sourcemap: false,
         navigationPreload: true,
@@ -43,7 +45,7 @@ export default defineNuxtModule({
             }
           },
           {
-            urlPattern: ({ url }) => /\.(jpg|png|jpeg|svg)$/.exec(url.pathname) !== null,
+            urlPattern: ({ url }) => /\.(jpg|png|jpeg|svg|mp3)$/.exec(url.pathname) !== null,
             handler: 'CacheFirst',
             options: {
               cacheName: 'assets',
