@@ -5,23 +5,19 @@ module.exports = {
     node: true
   },
   parserOptions: {
-    parser: '@babel/eslint-parser',
-    requireConfigFile: false
+    ecmaVersion: 'latest',
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module'
   },
   extends: [
-    "eslint:recommended",
-    "plugin:vue/essential",
-    "plugin:@typescript-eslint/recommended",
-    "@nuxtjs/eslint-config-typescript"
+    'eslint:recommended',
+    'plugin:vue/essential',
+    'plugin:@typescript-eslint/recommended',
+    '@nuxtjs/eslint-config-typescript'
   ],
-  parserOptions: {
-    "ecmaVersion": "latest",
-    "parser": "@typescript-eslint/parser",
-    "sourceType": "module"
-  },
   plugins: [
-    "vue",
-    "@typescript-eslint"
+    'vue',
+    '@typescript-eslint'
   ],
   // add your custom rules here
   rules: {
