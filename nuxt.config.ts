@@ -19,19 +19,19 @@ const iconConfig: IconResizerPluginOptions = {
       src: '/public/icon.png',
       prefix: 'icon-maskable-',
       purpose: 'maskable',
-      size: [64, 120, 144, 152, 192, 384, 512],
+      size: [64, 120, 144, 152, 192, 384, 512]
     },
     {
       src: '/public/icon_monochrome.png',
       prefix: 'icon-monochrome-',
       purpose: 'monochrome',
-      size: [64, 120, 144, 152, 192, 384, 512],
+      size: [64, 120, 144, 152, 192, 384, 512]
     },
     {
       src: '/public/favicon.png',
       prefix: 'icon-base-',
       purpose: 'any',
-      size: [64, 120, 144, 152, 192, 384, 512],
+      size: [64, 120, 144, 152, 192, 384, 512]
     },
     {
       src: '/public/icon.png',
@@ -68,6 +68,13 @@ export default defineNuxtConfig({
   },
 
   ssr: true,
+
+  nitro: {
+    prerender: {
+      crawlLinks: false,
+      routes: ['/']
+    }
+  },
 
   app: {
     head: {
@@ -255,7 +262,7 @@ export default defineNuxtConfig({
         include: [
           resolve(dirname(fileURLToPath(import.meta.url)), './i18n/*.json')
         ]
-      }),
+      })
       // ServiceWorkerGenerator({ swPath: 'serviceworker.js' })
     ]
   },
