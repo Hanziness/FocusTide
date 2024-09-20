@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
-import { useHead } from '#app'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '#imports'
 import { useSchedule } from '~~/stores/schedule'
 import { useSettings } from '~~/stores/settings'
 
@@ -44,11 +44,46 @@ const iconSvg = computed(() => `data:image/svg+xml,
 useHead({
   link: [
     {
-      rel: 'icon',
-      type: 'image/svg+xml',
-      href: iconSvg
+      rel: 'manifest',
+      href: '/app_manifest.json'
+    },
+    {
+      rel: 'apple-touch-icon',
+      href: '/icons/icon-apple-192.png'
     }
+  ],
+  meta: [
+    { name: 'theme-color', content: '#F87171' }
   ]
+})
+
+if (!import.meta.server) {
+  useHead({
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/svg+xml',
+        href: iconSvg
+      }
+    ]
+  })
+}
+
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    if ('serviceWorker' in navigator) {
+      const registerSw = () => {
+        console.debug('Registering service worker at /serviceworker.js')
+        navigator.serviceWorker.register('/serviceworker.js')
+      }
+
+      if (document.readyState === 'complete') {
+        registerSw()
+      } else {
+        window.addEventListener('load', registerSw)
+      }
+    }
+  }
 })
 
 useTicker()
@@ -92,18 +127,33 @@ const progressBarSchedules = computed(() => {
       <div class="absolute w-full h-full dark:bg-gray-900" />
       <!-- Progress bar -->
       <TransitionGroup name="progress-transition" :duration="1000">
-        <TimerProgress v-for="(scheduleItem, index) in progressBarSchedules" :key="scheduleItem.id" :colour="scheduleStore.getScheduleColour[index]"
-          :schedule-entry-id="scheduleItem.id" :background="index === 0" :time-elapsed="scheduleStore.getCurrentItem.timeElapsed"
-          :time-original="scheduleStore.getCurrentItem.length" />
+        <TimerProgress
+          v-for="(scheduleItem, index) in progressBarSchedules"
+          :key="scheduleItem.id"
+          :colour="scheduleStore.getScheduleColour[index]"
+          :schedule-entry-id="scheduleItem.id"
+          :background="index === 0"
+          :time-elapsed="scheduleStore.getCurrentItem.timeElapsed"
+          :time-original="scheduleStore.getCurrentItem.length"
+        />
       </TransitionGroup>
-      <div class="relative flex flex-col items-center justify-center w-full h-full isolate" :style="{
-        'padding-top': `${mobileSettingsStore.padding.top}px`,
-        'padding-bottom': `${mobileSettingsStore.padding.bottom}px`
-      }">
+      <div
+        class="relative flex flex-col items-center justify-center w-full h-full isolate"
+        :style="{
+          'padding-top': `${mobileSettingsStore.padding.top}px`,
+          'padding-bottom': `${mobileSettingsStore.padding.bottom}px`
+        }"
+      >
         <AppBar />
-        <TimerSwitch key="timerswitch" :time-elapsed="scheduleStore.getCurrentItem.timeElapsed"
-          :time-original="scheduleStore.getCurrentItem.length" :timer-state="scheduleStore.timerState"
-          :timer-widget="settingsStore.currentTimer" class="flex-grow" @tick="state.timeString = $event" />
+        <TimerSwitch
+          key="timerswitch"
+          :time-elapsed="scheduleStore.getCurrentItem.timeElapsed"
+          :time-original="scheduleStore.getCurrentItem.length"
+          :timer-state="scheduleStore.timerState"
+          :timer-widget="settingsStore.currentTimer"
+          class="flex-grow"
+          @tick="state.timeString = $event"
+        />
         <TimerControls class="mb-8" />
       </div>
       <client-only>
