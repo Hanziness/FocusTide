@@ -55,32 +55,10 @@ export function useWeb () {
   })
 
   onMounted(() => {
-    // // sound set watcher
-    // this.storeUnwatch.soundSet = this.$store.watch(
-    //   state => state.settings.audio.soundSet,
-    //   (newValue) => {
-    //     // load new sound set
-    //     this.loadSoundSet(newValue)
-    //   }
-    // )
-
-    // this.storeUnwatch.timerState = this.$store.watch(
-    //   state => state.schedule.timerState,
-    //   (newValue) => {
-    //     // update volume of sounds
-    //     if (newValue === 1) {
-    //       this.loadSoundSet(this.$store.state.settings.audio.soundSet)
-    //     }
-    //   }
-    // )
-
     // Register app started notification
     eventsStore.recordEvent(EventType.APP_STARTED)
 
-    // check if timer is already running
-    if (scheduleStore.timerState === 1) {
-      loadSoundSet(settingsStore.audio.soundSet)
-    }
+    loadSoundSet(settingsStore.audio.soundSet)
 
     // Check Visibility and register in store
     if (window && window.document && 'hidden' in window.document) {
@@ -137,7 +115,7 @@ export function useWeb () {
     }
 
     if (state.sounds[key] !== null && settingsStore.permissions.audio) {
-      state.sounds[key]!.source.volume = settingsStore.audio.volume // eslint-disable-line @typescript-eslint/no-non-null-assertion
+      state.sounds[key]!.source.volume = settingsStore.audio.volume
       state.sounds[key]?.source.play()
     }
   }
