@@ -22,7 +22,6 @@ import Layout from '~/layouts/timer.vue'
 const AppBar = defineAsyncComponent(() => import('@/components/appBar.vue'))
 const TutorialView = defineAsyncComponent(() => import('@/components/tutorial/_tutorialView.vue'))
 
-
 const settingsStore = useSettings()
 const mobileSettingsStore = useMobileSettings()
 const scheduleStore = useSchedule()
