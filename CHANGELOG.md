@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/Hanziness/FocusTide/compare/v1.7.0-0...v1.7.0) (2024-11-22)
+
+
+### Refactors
+
+* Update dependencies ([002e550](https://github.com/Hanziness/FocusTide/commit/002e5508b07a59127ec41457b35ae76bd9d4b423))
+
 ## [1.7.0-0](https://github.com/Hanziness/FocusTide/compare/v1.6.0...v1.7.0-0) (2024-09-21)
 
 
