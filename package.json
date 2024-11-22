@@ -26,20 +26,20 @@
     "vue": "^3.5.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.2",
+    "@babel/core": "^7.26.0",
     "@babel/eslint-parser": "^7.25.1",
-    "@babel/runtime-corejs3": "^7.25.6",
-    "@intlify/unplugin-vue-i18n": "^5.0.0",
+    "@babel/runtime-corejs3": "^7.26.0",
+    "@intlify/unplugin-vue-i18n": "^6.0.0",
     "@nuxt/kit": "^3.13.1",
     "@nuxtjs/eslint-config": "12.0.0",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/google-fonts": "^3.2.0",
-    "@pinia/nuxt": "^0.5.4",
+    "@pinia/nuxt": "^0.5.0",
     "@typescript-eslint/eslint-plugin": "^8.5.0",
     "@typescript-eslint/parser": "^8.5.0",
     "autoprefixer": "^10.4.20",
-    "core-js": "^3.38.1",
+    "core-js": "^3.39.0",
     "eslint": "^8.0.0",
     "eslint-import-resolver-typescript": "^3.6.3",
     "eslint-plugin-nuxt": "^4.0.0",
@@ -55,10 +55,10 @@
     "stylelint-config-standard": "^36.0.1",
     "tailwindcss": "^3.4.11",
     "typescript": "^5.6.2",
-    "vite": "^5.4.5",
+    "vite": "^5.4.11",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-stylelint": "^5.3.1",
-    "vue-i18n": "^10.0.1",
-    "workbox-build": "^7.1.1"
+    "vue-i18n": "^10.0.4",
+    "workbox-build": "^7.3.0"
   }
 }
