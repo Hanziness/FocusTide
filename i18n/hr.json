@@ -107,6 +107,20 @@
           "_description": "Timer će rjeđe otkucavati dok je u pozadini"
         }
       },
+      "sectionEndAction": {
+        "_title": "Ponašanje na kraju faze",
+        "_description": "Što bi se trebalo dogoditi kada timer istekne",
+        "_values": {
+          "continue": "Nastavi",
+          "stop": "Prekini",
+          "skip": "Sljedeća"
+        },
+        "_valueDescription": {
+          "continue": "Nastavi otkucavati",
+          "stop": "Prekini timer",
+          "skip": "Pokreni sljedeću fazu"
+        }
+      },
       "schedule": {
         "longPauseInterval": {
           "_title": "Interval duge pauze",
@@ -176,12 +190,14 @@
         },
         "soundSet": {
           "_title": "Postaljen zvuk",
-          "_description": "Korišteni zvukovi za obavijesti",
+          "_description": "Zvukovi koji se reproduciraju na kraju svake sesije",
           "_values": {
-            "musical": "Glazba"
+            "musical": "Glazba",
+            "sharp": "Visoki"
           },
           "_valueDescription": {
-            "musical": "Standardni zvukovi"
+            "musical": "Standardni zvukovi",
+            "sharp": "Kraći signalni zvukovi, bolji za treniranje"
           }
         }
       },
