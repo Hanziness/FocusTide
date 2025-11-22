@@ -19,6 +19,10 @@
     "stop": "Reset timer",
     "advance": "Go to next section"
   },
+  "appbar": {
+    "settings": "Ouvrir les paramètres",
+    "todo": "Ouvrir la liste de tâches"
+  },
   "timer": {
     "approximate": {
       "hours": "heure | heures",
@@ -54,6 +58,8 @@
       "madeby": "Développé par Imre Gera",
       "source": "Code source",
       "support": "Soutenir le projet",
+      "supportBody": "Je développe FocusTide dans mon temps libre. Cela signifierait beaucoup pour moi si vous pouviez m'aider à continuer à travailler dessus !",
+      "mobileSupport": "En raison des règles appliquées par le Google Play Store, je ne peux pas vous montrer de liens dans l'application mobile pour faire un don au projet.",
       "share": "ou partagez l'application sur les réseaux sociaux :"
     },
     "values": {
@@ -61,13 +67,25 @@
         "_title": "Gérer les paramètres",
         "_description": "Télécharger les paramètres actuels ou les charger à partir d'un fichier"
       },
+      "mobile": {
+        "notifications": {
+          "sectionOver": {
+            "_title": "Notification de période terminée",
+            "_description": "Affiche une notification lorsqu'une période est terminée"
+          },
+          "persistent": {
+            "_title": "Notification persistante",
+            "_description": "Afficher la progression du minuteur en cours"
+          }
+        }
+      },
       "lang": {
-        "_description": "",
-        "_title": "Langue"
+        "_title": "Langue",
+        "_description": ""
       },
       "eventLoggingEnabled": {
-        "_description": "",
-        "_title": "Activer la journalisation des événements"
+        "_title": "Activer la journalisation des événements",
+        "_description": ""
       },
       "currentTimer": {
         "_title": "Style de minuterie",
@@ -87,6 +105,20 @@
         "enabled": {
           "_title": "Activer le ticking adaptatif",
           "_description": "Le minuteur se met à jour moins souvent lorsqu'il est en arrière-plan."
+        }
+      },
+      "sectionEndAction": {
+        "_title": "Comportement de fin de période",
+        "_description": "Que devrait-il se passer lorsque le minuteur s'achève",
+        "_values": {
+          "continue": "Continuer",
+          "stop": "Arrêter",
+          "skip": "Avancer"
+        },
+        "_valueDescription": {
+          "continue": "Laisser en marche",
+          "stop": "Arrêter le minuteur",
+          "skip": "Passer à la période suivante"
         }
       },
       "schedule": {
@@ -112,96 +144,103 @@
           "_title": "Minuteurs prédéfinie",
           "_description": "",
           "_values": {
-            "custom": "Personnalisé",
+            "default": "Défaut",
             "debug": "Déboguer",
-            "default": "Défaut"
+            "custom": "Personnalisé"
           },
           "_valueDescription": {
-            "custom": "Défini par vous",
+            "default": "25 minutes de travail, 5 minutes de pause",
             "debug": "À des fins de débogage",
-            "default": "25 minutes de travail, 5 minutes de pause"
+            "custom": "Défini par vous"
           },
           "work": {
-            "_description": "",
-            "_title": "Travail"
+            "_title": "Travail",
+            "_description": ""
           },
           "shortpause": {
-            "_description": "",
-            "_title": "Pause"
+            "_title": "Pause",
+            "_description": ""
           },
           "longpause": {
-            "_description": "",
-            "_title": "Longue pause"
+            "_title": "Longue pause",
+            "_description": ""
           }
         }
       },
       "performance": {
         "showProgressBar": {
-          "_description": "Afficher la progression derrière la minuterie",
-          "_title": "Afficher la barre de progression"
+          "_title": "Afficher la barre de progression",
+          "_description": "Afficher la progression derrière la minuterie"
         }
       },
       "permissions": {
         "audio": {
-          "_description": "Laisser l'application jouer des sons lorsqu'une section est terminée",
-          "_title": "Lecture audio"
+          "_title": "Lecture audio",
+          "_description": "Laisser l'application jouer des sons lorsqu'une section est terminée"
         },
         "notifications": {
-          "_description": "Laissez l'application vous envoyer des notifications lorsqu'une section est terminée",
-          "_title": "Autorisations de notification"
+          "_title": "Autorisations de notification",
+          "_description": "Laissez l'application vous envoyer des notifications lorsqu'une section est terminée"
         }
       },
       "audio": {
         "volume": {
-          "_description": "",
-          "_title": "Volume sonore"
+          "_title": "Volume sonore",
+          "_description": ""
         },
         "soundSet": {
           "_title": "Ensemble de sons",
-          "_description": "Sons utilisés pour les notifications",
+          "_description": "Sons joués à la fin de chaque session",
           "_values": {
-            "musical": "Musical"
+            "musical": "Musical",
+            "sharp": "Sec"
           },
           "_valueDescription": {
-            "musical": "Les sons par défaut"
+            "musical": "Les sons par défaut",
+            "sharp": "Des sons plus courts du genre \"bip\", mieux pour l'entraînement"
           }
         }
       },
       "timerControls": {
         "enableKeyboardShortcuts": {
-          "_description": "Démarrer/mettre en pause le minuteur avec la touche espace",
-          "_title": "Activer les raccourcis clavier"
+          "_title": "Activer les raccourcis clavier",
+          "_description": "Démarrer/mettre en pause le minuteur avec la touche espace"
         }
       },
       "tasks": {
         "enabled": {
-          "_description": "Gérez votre travail directement depuis l'application",
-          "_title": "Activer la liste des tâches"
+          "_title": "Activer la liste des tâches",
+          "_description": "Gérez votre travail directement depuis l'application"
         },
         "maxActiveTasks": {
-          "_description": "Vous ne verrez que ce nombre de tâches actives au maximum",
-          "_title": "Tâches actives maximales à afficher"
+          "_title": "Tâches actives maximales à afficher",
+          "_description": "Vous ne verrez que ce nombre de tâches actives au maximum"
         },
         "removeCompletedTasks": {
-          "_description": "Les tâches terminées seront supprimées lorsqu'une nouvelle section commencera",
-          "_title": "Supprimer les tâches terminées"
+          "_title": "Supprimer les tâches terminées",
+          "_description": "Les tâches terminées seront supprimées lorsqu'une nouvelle section commencera"
         }
       },
       "pageTitle": {
         "useTickEmoji": {
-          "_description": "Afficher ✔ a la place de \"fait\"",
-          "_title": "Utilisez tick emoji dans le titre"
+          "_title": "Utilisez tick emoji dans le titre",
+          "_description": "Afficher ✔ a la place de \"fait\""
         }
       },
       "visuals": {
+        "theme": {
+          "_title": "Configuration du thème",
+          "_description": "Sélectionnez ou créez un ensemble de couleur pour les périodes",
+          "custom": "Personnalisé"
+        },
         "darkMode": {
-          "_description": "Moins lumineux, tout aussi productif",
-          "_title": "Activer le mode sombre"
+          "_title": "Activer le mode sombre",
+          "_description": "Moins lumineux, tout aussi productif"
         }
       },
       "reset": {
-        "_description": "Tous les paramètres seront réinitialisés après le rechargement de l'application",
-        "_title": "Réinitialiser les paramètres"
+        "_title": "Réinitialiser les paramètres",
+        "_description": "Tous les paramètres seront réinitialisés après le rechargement de l'application"
       }
     }
   },
@@ -224,20 +263,20 @@
   },
   "error": {
     "format_invalid": "Format d'entrée invalide",
-    "max": "La valeur doit être au plus {max}",
-    "min": "La valeur doit être d'au moins {min}",
-    "min_time": "Le temps de saisie est trop court",
-    "numeric": "La valeur doit être un nombre",
     "range_invalid": "La valeur doit être comprise entre {min} et {max}",
     "required": "Ce champ doit être rempli",
+    "numeric": "La valeur doit être un nombre",
+    "min": "La valeur doit être d'au moins {min}",
+    "max": "La valeur doit être au plus {max}",
     "time_format": "Heure au format incorrect (MM:SS)",
+    "min_time": "Le temps de saisie est trop court",
     "undefined": "Erreur indéfinie"
   },
   "tasks": {
-    "addPlaceholder": "Entrez quelque chose à faire",
+    "title": "Tâches",
     "empty": "Aucune tâche pour le moment",
     "manage": "Faire en sorte",
-    "title": "Tâches"
+    "addPlaceholder": "Entrez quelque chose à faire"
   },
   "ready": "Fait",
   "errorpage": {
@@ -247,11 +286,11 @@
       "other": "Quelque chose s'est mal passé"
     },
     "action": {
-      "githubDiscussion": "Demandez aux autres s'ils ont le même problème",
-      "githubIssue": "Rapport un bug",
-      "home": "Retournez à la page d'accueil",
-      "reload": "Recharge la page",
       "reset": "Réinitialiser l'application",
+      "reload": "Recharge la page",
+      "home": "Retournez à la page d'accueil",
+      "githubIssue": "Rapport un bug",
+      "githubDiscussion": "Demandez aux autres s'ils ont le même problème",
       "twitter": "Écrivez un tweet amical"
     },
     "showError": {
@@ -282,32 +321,54 @@
     "onboarding": {
       "pages": {
         "0": {
-          "text": "Jetez un coup d'œil sur la façon d'utiliser l'application efficacement.",
-          "title": "Bienvenue sur FocusTide !"
+          "title": "Bienvenue sur FocusTide !",
+          "onboarding_invite": "Commençons par configurer votre première fois. Vous pourrez tout modifier plus tard dans les paramètres.",
+          "heading": "Choisissez votre langue"
         },
         "1": {
-          "text": "Travaillez ou faites une pause jusqu'à la fin du temps imparti. \nEnsuite, passez au prochain minuteur.",
-          "title": "Suivez l'horloge"
+          "heading": "Définissez vos minuteurs",
+          "text": "Travaillez ou faites une pause jusqu'à la fin du temps imparti. \nEnsuite, passez au prochain minuteur."
         },
         "2": {
-          "text": "Après quelques cycles de travail et courte pause, vous obtenez plus de temps pour vous reposer. \nFaites-en bon usage.",
-          "title": "Reposez-vous régulièrement"
+          "theme": {
+            "heading": "Choisissez un thème",
+            "options": {
+              "_values": {
+                "light": "Clair",
+                "dark": "Foncé"
+              },
+              "_valueDescription": {
+                "light": "",
+                "dark": ""
+              }
+            }
+          },
+          "display": {
+            "heading": "Choisissez un affichage"
+          }
         },
         "3": {
-          "text": "Définissez vos propres minuteries, utilisez la liste des tâches et les notifications à votre avantage. \nConsultez le menu des paramètres pour plus de réglages !",
-          "title": "Restez flexible"
+          "heading": "Bon à savoir",
+          "text": "Définissez vos propres minuteries, utilisez la liste des tâches et les notifications à votre avantage. \nConsultez le menu des paramètres pour plus de réglages !"
         },
         "support": {
+          "heading": "Soutenir le projet",
           "text": "Si ce projet vous a aidé, pensez à offrir un café à l'auteur. Vous retrouverez le boutton pour supporter l'auteur dans le menu \"À propos\".",
-          "title": "Soutenir le projet"
+          "hint": "Vous pouvez aussi trouvez des moyens de soutien dans Paramètres > À Propos."
         }
       },
       "buttons": {
         "close": "Fermer",
-        "next": "Suivant",
         "start": "Démarrer le tutoriel",
+        "next": "Suivant",
         "support": "Soutenir le projet"
       }
+    },
+    "olddomain": {
+      "heading": "\"AnotherPomodoro\" est désormais \"FocusTide\"",
+      "warning": "Nous avons détecté que vous pourriez venir de l'ancien domaine another-pomodoro.app, qui expirera d'ici la fin de 2023.",
+      "action": "Veuillez mettre à jour votre favori ou lien hypertexte vers focustide.app.",
+      "button": "Ok"
     }
   }
 }
