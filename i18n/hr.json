@@ -112,12 +112,12 @@
         "_description": "Što bi se trebalo dogoditi kada timer istekne",
         "_values": {
           "continue": "Nastavi",
-          "stop": "Prekini",
+          "stop": "Zaustavi",
           "skip": "Sljedeća"
         },
         "_valueDescription": {
           "continue": "Nastavi otkucavati",
-          "stop": "Prekini timer",
+          "stop": "Zaustavi timer",
           "skip": "Pokreni sljedeću fazu"
         }
       },
@@ -231,7 +231,7 @@
         "theme": {
           "_title": "Postavke teme",
           "_description": "Odaberi skup unaprijed definiranih boja sekcija ili postavi vlastite",
-          "custom": "Prilagođeni"
+          "custom": "Prilagođeno"
         },
         "darkMode": {
           "_title": "Aktiviraj tamni modus",
